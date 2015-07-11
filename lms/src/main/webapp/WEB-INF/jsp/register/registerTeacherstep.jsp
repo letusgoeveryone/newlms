@@ -3,6 +3,7 @@
 
 <%
     String path = request.getContextPath();
+    System.out.println(path);
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":"
             + request.getServerPort() + path + "/";
@@ -129,11 +130,11 @@
                         </tr>
 
 
-                        <tr>
+<!--                        <tr>
                             <td class="tdLabel"><label for="birthday" class="label">生日:</label></td>
                             <td
                                 ><input type="date" name="birthday" value="1980-01-01" id="birthday" class="ui-widget-content"/></td>
-                        </tr>
+                        </tr>-->
 
 
 
@@ -286,7 +287,7 @@
                 });
                 $('#ccdImage').click(function () {
                     $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random());
-
+                    
                 });
                 $('#registerForm2').form({
                     //url: '<%=path%>/reg/registerOK',

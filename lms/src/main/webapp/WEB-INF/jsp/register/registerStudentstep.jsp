@@ -5,7 +5,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":"
-            + request.getServerPort() + path + "/";
+            + request.getServerPort() + path ;
 %>
 
 <!DOCTYPE html>
@@ -121,11 +121,11 @@
                         </td>
                         </tr>
 
-                        <tr>
+<!--                        <tr>
                             <td class="tdLabel"><label for="birthday" class="label">生日:</label></td>
                             <td
                                 ><input type="date" name="birthday" value="1990-01-01" id="birthday" class="ui-widget-content"/></td>
-                        </tr>
+                        </tr>-->
 
 
                         <tr>

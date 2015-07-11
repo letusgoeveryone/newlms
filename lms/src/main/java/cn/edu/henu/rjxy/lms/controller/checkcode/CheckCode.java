@@ -132,7 +132,7 @@ public class CheckCode {
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expires", 0);
-
+        
         try {
             // 输出图象到页面
             ImageIO.write(image, "JPEG", response.getOutputStream());
@@ -146,7 +146,7 @@ public class CheckCode {
 //			e.printStackTrace();
 //			return "error";
 //		}
-        return "success";
+        return null;
     }
 
     @RequestMapping("/checkCode")
