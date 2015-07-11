@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" >
+    <persistence-unit name="lms" transaction-type="RESOURCE_LOCAL">
+        <!--事务类型配置为本地事务，不是全局事务JTA-->
+        <!--        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        <property name="hibernate.hbm2ddl.auto" value="update"/>
+        <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lms?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="javax.persistence.jdbc.user" value="root"/>
+        <property name="javax.persistence.jdbc.password" value="root"/>-->
+        
+        <!--        <property name="hibernate.connection.url" value="${jdbc.connection.url}" /> 
+        <property name="hibernate.connection.driver_class" value="${jdbc.driver.class}" /> 
+        <property name="hibernate.connection.username" value="${jdbc.user}" /> 
+        <property name="hibernate.connection.password" value="${jdbc.password}" /> 
+        <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" /> 
+        <property name="hibernate.c3p0.min_size" value="${min.pool.size}" /> 
+        <property name="hibernate.c3p0.max_size" value="${max.pool.size}" /> 
+        <property name="hibernate.c3p0.acquire_increment" value="1" /> 
+        <property name="hibernate.c3p0.idle_test_period" value="3000" /> 
+        <property name="hibernate.c3p0.max_statements" value="50" /> 
+        <property name="hibernate.c3p0.timeout" value="1800" />-->
+        
+        <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/lms?useUnicode=true&amp;characterEncoding=UTF-8" /> 
+        <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
+        <property name="hibernate.connection.username" value="root" /> 
+        <property name="hibernate.connection.password" value="root" /> 
+        
+        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+        <property name="hibernate.hbm2ddl.auto" value="update" />      
+        <property name="hibernate.show_sql" value="true" />  
+        <property name="hibernate.format_sql" value="true" />
+        
+        <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" /> 
+        <property name="hibernate.c3p0.min_size" value="10" /> 
+        <property name="hibernate.c3p0.max_size" value="100" /> 
+        <property name="hibernate.c3p0.acquire_increment" value="3" /> 
+        <property name="hibernate.c3p0.idle_test_period" value="3000" /> 
+        <property name="hibernate.c3p0.max_statements" value="50" /> 
+        <property name="hibernate.c3p0.timeout" value="1800" />
+        
+    </persistence-unit>
+</persistence>

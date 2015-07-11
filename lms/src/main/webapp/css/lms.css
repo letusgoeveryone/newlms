@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-7-31, 12:40:18
+    Author     : wht
+*/
+
+#header{
+    height:60px;
+    background-color:#d7ebf9;
+    background-image:url(../images/logo.png);
+    background-repeat:no-repeat;
+}
+#copyright{
+    //background-color:#d7ebf9;
+    padding-top: 10px;
+    font-family:宋体;
+    font-size: 1.2em;
+    text-align:center;
+    color:#2779aa;
+}
+#welcome{
+    width:49%;
+    height:100%;    
+    float:left;
+    background:url(../images/welcome.png);
+    /*background-color: red;*/
+    background-size: contain;
+    background-repeat:no-repeat;
+    background-origin:content-box;
+    background-position:center;
+}
+
+#login{
+    width:30%;
+    height:100%; 
+    //padding:2px;
+    float:right;
+    position: absolute;
+    left:60%;
+    overflow: hidden;
+
+}
+
+#inlogin{
+    text-align:center;
+    padding:8%;
+    font-size: 15px ;
+    font-weight:bold;
+}
+
+
+.college{
+    width:auto;
+}
