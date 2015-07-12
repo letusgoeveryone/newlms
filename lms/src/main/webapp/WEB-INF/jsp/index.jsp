@@ -78,7 +78,7 @@
 
                             <div>
                                 <!--<s:a href="course/course_list.jsp" cssClass="easyui-linkbutton" data-options="iconCls:'icon-man1'" cssStyle="padding:5px 0px;width:40%;">-->
-                                <a href="course/course_list.jsp" class="easyui-linkbutton" style="padding:5px 0px;width:40%;" data-options="iconCls:'icon-man1'">
+                                <a href="guest.jsp" class="easyui-linkbutton" style="padding:5px 0px;width:40%;" data-options="iconCls:'icon-man1'">
                                     <span style="font-size:14px;">访客</span>
                                 </a>
                                 <!--</s:a>-->

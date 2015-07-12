@@ -20,4 +20,10 @@ public class IndexController {
         System.out.println("-------index annotion--------");
         return "index";
     }
+    
+    @RequestMapping("guest")
+    public String guest(){
+        System.out.println("-------guest annotion--------");
+        return "guest";
+    }
 }
