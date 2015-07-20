@@ -1,0 +1,39 @@
+body{
+    font-family:微软雅黑 ,  monospace;
+}
+.mar-top{
+	margin-top: 3%;
+}
+.min-height{
+	min-height: 400px;
+}
+/*重置超链接样式*/
+a:focus {
+	outline:none;
+}
+a:active,a:hover {
+	outline:none;
+}
+/*footer css 定制*/
+footer{
+	background-color: rgb(0,67,113);
+	/*background-color: white;*/
+	border-radius: 2px 2px 5px 5px;
+}
+.img-footer{
+	display: block;
+	/*margin: auto;*/
+	margin-top: 5%;
+	border-radius: 5px;
+
+	/**/
+}
+address{
+	color: white;
+}
+address ul li{
+	list-style: none;
+}
+.line{
+	border-top: 2px dotted wheat;
+}
