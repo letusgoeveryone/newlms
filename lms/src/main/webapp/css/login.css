@@ -1,25 +1,28 @@
-html,
-body {
-	width: 100%;
+body, html{
 	height: 100%;
+	width: 100%;
 }
+
 body {
-	background: #16a085;
-	font-family: 微软雅黑, monospace;
-	color: #fff;
-	line-height: 1.3;
-	overflow-y: scroll;
+	background-color: #fff;
+	background-image: url(../images/henu-logo.jpg);
+	background-attachment:fixed;
+	background-size:  contain;
+	background-repeat: no-repeat;
+	background-position:  center;
+	font-family: 文泉驿微米黑, 微软雅黑,  monospace;
+	color: #000;
+	overflow: auto;
 	-webkit-font-smoothing: antialiased;
 }
-#particles {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
+.login-form{
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
 }
 .intro {
 	margin: auto;
 	margin-top: 10%;
-	paddin: 0 20px;
+	padding: 0 20px;
 	width: 100%;
 	text-align: center;
 }
@@ -30,29 +33,32 @@ h1 {
 	letter-spacing: 0.015em;
 }
 h1::after {
-	content: '';
-	width: 80px;
+	content: ' ';
+	width: 0;
 	display: block;
-	background: #fff;
 	height: 10px;
 	margin: 30px auto;
-	line-height: 1.1;
 }
 p {
 	margin: 0 0 30px 0;
 	font-size: 24px;
 }
+button{
+	border: none;
+	border-radius: none;
+}
 .btn-o {
 	display: inline-block;
-	padding: 15px 30px;
-	border: 2px solid #fff;
+	padding: 5px 10px;
+	border: 2px solid wheat;
 	text-transform: uppercase;
 	letter-spacing: 0.015em;
-	font-size: 18px;
+	font-size: 11px;
 	font-weight: 700;
 	line-height: 1;
-	margin: 10px;
-	color: #fff;
+	margin: 0;
+	color: #000;
+	border-radius: 5px;
 	text-decoration: none;
 	-webkit-transition: all 0.4s;
 	-moz-transition: all 0.4s;
@@ -60,9 +66,46 @@ p {
 	transition: all 0.4s;
 }
 .btn-o:hover {
-	color: #005544;
-	border-color: #005544;
+	color: #337ab7;
+	border: 2px solid gray;
+	text-decoration: none;
 }
+ .btn-login{
+	background-color: transparent;
+	display: block;
+ 	padding: 15px 30px;
+ 	border-bottom: 2px solid #fff;
+ 	text-transform: uppercase;
+ 	letter-spacing: 0.015em;
+ 	font-size: 18px;
+ 	font-weight: 700;
+ 	line-height: 1;
+	margin: auto;
+ 	margin-top:5%;
+ 	color: gray;
+ 	text-decoration: none;
+	text-align: center;
+ 	-webkit-transition: all 0.4s;
+ 	-moz-transition: all 0.4s;
+ 	-o-transition: all 0.4s;
+ 	transition: all 0.4s;
+ }
+ .btn-login:hover {
+ 	color: #000;
+ 	border-bottom: 2px solid orange;
+ 	text-decoration: none;
+ }
+ footer{
+	 margin-top: 5%;
+ }
+/*重置超链接样式*/
+a:focus {
+	outline:none;
+}
+a:active,a:hover {
+	outline:none;
+}
+/*媒体控制*/
 @media only screen and (max-width: 1500px) {
 	h1 {
 		font-size: 70px;
@@ -105,63 +148,4 @@ p {
 	h1::after {
 		height: 4px;
 	}
-}
-/* Login Framework*/
-
-.accountPage {
-	width: 626px;
-	margin: auto;
-	padding-top: 3%;
-}
-.accountPageTable {
-	width: 500px;
-	background-color: rgba(255, 255, 255, 0.4);
-	padding: 20px;
-	border-radius: 3px;
-}
-.accountPageTable form {
-	width: 626px;
-}
-.accountPageTable tr td {
-	height: 36px;
-	line-height: 36px;
-	padding: 12px;
-	margin: auto;
-}
-.fontWheat {
-	color: #DDDDDD;
-}
-.code {
-	font-style: italic;
-	font-weight: bolder;
-}
-.checkcod-btn{
-	background-color: #DDDDDD ;
-}
-.opt {
-	float: right;
-}
-.opt input {
-	/*display: block;*/
-	
-	margin-right: 20px;
-	margin-top: 15px;
-}
-input[type="radio"]:checked {
-	background: rgba(255, 255, 255, 1);
-	-webkit-box-shadow: 0px 0px 0px 15px rgba(255, 255, 255, 0.3);
-	-moz-box-shadow: 0px 0px 0px 15px rgba(255, 255, 255, 0.3);
-	box-shadow: 0px 0px 0px 15px rgba(255, 255, 255, 0.3);
-}
-input[type="radio"]:checked {
-	z-index: 2;
-	-webkit-transform: translatex(0px);
-	-moz-transform: translatex(0px);
-	-ms-transform: translatex(0px);
-	-o-transform: translatex(0px);
-	transform: translatex(0px);
-	-webkit-transition: all .15s, z-index 0s;
-	-moz-transition: all .15s, z-index 0s;
-	-o-transition: all .15s, z-index 0s;
-	transition: all .15s, z-index 0s;
 }
