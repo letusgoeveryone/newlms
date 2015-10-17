@@ -33,33 +33,37 @@
         <div class="container ">
             <div class="row">
                 <div class="col-md-3"></div>
-                <div class="col-md-6" >
+                
+                <div class="col-md-6">
+                    <form class="form-horizontal tab-content" method="post" name="form_login" action="student_register_message" >
                     <div class="" id="account-title">
                         <h1 class="page-header stage-box">
                             注册<span></span>
                         </h1>
                     </div>
-                    <div class=""  id="account">
-                        <form class="form-horizontal" method="post"  name="form1" action="teacher_register_message">
+                    <div  class="tab-pane fade in active" id="login-0">
+                        <div>
+                            
                             <!-- 学号 -->
                             <div class="input-group">
                                 <span class="input-group-addon">工号：</span>
-                                <input type="text" name="idCard" class="form-control" placeholder="请输入您的学号 " maxlength="16" onblur="verifyText('idcard', 'idcardMsg');">
-                            </div>    
+                                <input type="text" id="idcard" name="idCard" class="form-control" placeholder="请输入您的工号 " maxlength="16" onblur="verifyText('idcard', 'idcardMsg');">
+                            </div>      
                             <span id="idcardMsg" class="fontTips"></span>
 
 
                             <!-- 姓名 -->
                             <div class="input-group">
                                 <span class="input-group-addon">姓名：</span>
-                                <input type="text" id="name" name="name"class="form-control" placeholder="请输入您的姓名" width="180px" height="30px" size="25" maxlength="16" onblur="verifyText('name', 'nameMsg');" onfocus="initMessage('nameMsg');">
+                                <input type="text" id="name" name="name"class="form-control" placeholder="请输入您的姓名" maxlength="16" onblur="verifyText('name','nameMsg');" onfocus="initMessage('nameMsg');" />
                             </div>
                             <span id="nameMsg" class="fontTips"></span>
 
                             <!-- 身份证号 -->
                             <div class="input-group">
                                 <span class="input-group-addon">身份证号：</span>
-                                <input type="text" id="myIDNum" name="myIDNum" class="form-control" placeholder="请再次输入您常用的身份证号" me="pn" onblur="verifyText('myIDNum', 'myIDNumMsg');" >
+                                <input type="text" id="myIDNum" name="myIDNum" class="form-control" placeholder="请再次输入您的身份证号" me="pn" onblur="verifyText('myIDNum', 'myIDNumMsg');
+                                       " >
                             </div>
                             <span id="myIDNumMsg" class="fontTips"></span>
 
@@ -67,14 +71,13 @@
                             <div class="input-group">
                                 <span class="input-group-addon">年级：</span>
                                 <select class="form-control" required="required" name="niji" >
-                                    <option value="2008" type='hide' >2008</option>
+                                    <option value="2008" type='hide'>2008</option>
                                     <option value="2009" type='hide'>2009</option>
                                     <option value="2010" type='hide'>2010</option>
                                     <option value="2011" type='hide'>2011</option>
                                     <option value="2012" type='hide'>2012</option>
-
                                     <option value="2013" type='hide'>2013</option>
-                                    <option value="2014" type='hide'>2014</option>
+                                    <option value="2014" type='hide' selected="">2014</option>
                                     <option value="2015" type='hide'>2015</option>
                                     <option value="2016" type='hide'>2016</option>
                                     <option value="2017" type='hide'>2017</option>
@@ -130,39 +133,30 @@
                             <!-- 手机号码 -->
                             <div class="input-group">
                                 <span class="input-group-addon">手机：</span>
-                                <input type="text" id="myPhone" name="myPhone" class="form-control" placeholder="请输入您常用的手机号码" me="pn" onblur="verifyText('myPhone', 'myPhoneMsg');
-                                       " >
+                                <input type="text" id="myPhone" name="myPhone" class="form-control" placeholder="请输入您常用的手机号码" me="pn" onblur="verifyText('myPhone', 'myPhoneMsg');" >
                             </div>
                             <span id="myPhoneMsg" class="fontTips"></span>
                             <!-- QQ -->
                             <div class="input-group">
                                 <span class="input-group-addon">扣扣：</span>
-                                <input type="text" id="myQq" name="myQq" class="form-control" placeholder="请输入您的QQ号" me="qq" onblur="verifyText('myQq', 'myQqMsg');
-                                       ">
+                                <input type="text" id="myQq" name="myQq" class="form-control" placeholder="请输入您的QQ号" me="qq" onblur="verifyText('myQq', 'myQqMsg');">
                             </div>
                             <span id="myQqMsg" class="fontTips"></span>
 
                             <!-- 密码 -->
                             <div class="input-group">
                                 <span class="input-group-addon">密码：</span>
-                                <input type="password" name="password_plain" id="mima" class="form-control" placeholder="请输入密码" me="psw" onblur="verifyText('passwFrist', 'passwFristMsg');
+                                <input type="password" name="password_plain" id="passwFrist" class="form-control" placeholder="请输入密码" me="psw" onblur="verifyText('passwFrist', 'passwFristMsg');
                                        " onfocus="initMessage('passwFristMsg');">
                                 <input type="hidden" name="password_md5">
                             </div>
                             <span id="passwFristMsg" class="fontTips"></span>
 
 
-                            <!-- 验证码 -->
-                            <div class="input-group">
-                                <span class="input-group-addon"></span></span>
-                                <input type="text" class="form-control"  id="checkcodeText" placeholder="请输入右侧的验证码" onblur="verifyText('checkcodeText', 'checkcodeMsg');" >
-                                <span class="input-group-addon"><input type="button" id="checkcode" onclick="createCheckCode(5);" readonly="readonly"></span>
-                            </div>
-                            <span id="checkcodeMsg" class="fontTips"></span>
                             <br>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <a  onclick="mysubmit()"><div class="btn-card btn-danger col-md-6"  >下一步</div></a>
+                                    <a data-toggle="tab" href="#login-1"><div class="btn-card btn-danger col-md-6">下一步</div></a>
 
                                     <a href="index-acount-0.html" class="btn-card btn-default col-md-3" >
                                         重新选择角色
@@ -173,112 +167,225 @@
 
                                 </div>
                             </div>
-
-                        </form>
-                        <script>
-                            //加密代码
-                            function mysubmit()
-                            {
-                                document.form1.password_md5.value = hex_md5(document.getElementById('mima').value);
-                                // alert(document.form1.password_md5.value);
-                                // alert("密码已经加密");
-                                document.form1.submit();
-                            }
-                            /**构造&&实例化*********************************************************************************************************/
-                            /*验证和提示*/
-                            function verifyObject(targetParm) { //targetParm为待验证的消息
-                                this.target = targetParm;
-                            }
-                            verifyObject.prototype.trim = function () {
-                                var pattern = /(^\s*)|(\s*$)/g;
-                                this.target = this.target.replace(pattern, "");
-                            }
-                            verifyObject.prototype.isEqual = function (anyParm) {
-                                if (this.target == anyParm) {
-                                    return true;
-                                } else {
-                                    return false;
-                                }
-                            }
-                            verifyObject.prototype.isPattern = function (patternParm) {
-                                var pattern = new RegExp(patternParm);
-                                var flag = pattern.test(this.target);
-                                if (flag) {
-                                    return true;
-                                } else {
-                                    return false;
-                                }
-                            }
-
-                            function verifyText(checkText, checkMessage) {
-                                var text = document.getElementById(checkText).value;
-                                var verifyObj = new verifyObject(text); //实例化对象
-                                verifyObj.trim();
-                                if (checkText == "name") {
-                                    if (!(verifyObj.isPattern(/^[a-z A-Z 0-9 \u4e00-\u9fa5]{2,16}$/))) {
-                                        document.getElementById(checkMessage).innerHTML = "用户名 错误";
-                                    } else {
-                                        document.getElementById(checkMessage).innerHTML = "";
-                                    }
-                                } else if (checkText == "idcard") {
-                                    if (!(verifyObj.isPattern(/^[0-9 _]{6,18}$/))) {
-                                        document.getElementById(checkMessage).innerHTML = "学号错误";
-                                    } else {
-                                        document.getElementById(checkMessage).innerHTML = "";
-                                    }
-                                } else if (checkText == "myIDNum") {
-                                    if (!(verifyObj.isPattern(/^[0-9 x]{14}$/))) {
-                                        document.getElementById(checkMessage).innerHTML = "身份证号有误";
-                                    } else {
-                                        document.getElementById(checkMessage).innerHTML = "";
-                                    }
-                                } else if (checkText == "myPhone") {
-                                    if (!(verifyObj.isPattern(/^[0-9]{11}$/))) {
-                                        document.getElementById(checkMessage).innerHTML = "手机号有误";
-                                    } else {
-                                        document.getElementById(checkMessage).innerHTML = "";
-                                    }
-                                } else if (checkText == "myQq") {
-                                    if (!(verifyObj.isPattern(/^[0-9]{6,12}$/))) {
-                                        document.getElementById(checkMessage).innerHTML = "Qq号有误";
-                                    } else {
-                                        document.getElementById(checkMessage).innerHTML = "";
-                                    }
-                                } else if (checkText == "passwFrist") {
-                                    if (!(verifyObj.isPattern(/^[a-z A-Z 0-9 _]{6,18}$/))) {
-                                        document.getElementById(checkMessage).innerHTML = "密码必须为6-18位";
-                                    } else {
-                                        document.getElementById(checkMessage).innerHTML = "";
-                                    }
-                                } else if (checkText == "email") {
-                                    if (!(verifyObj.isPattern(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/))) {
-                                        document.getElementById(checkMessage).innerHTML = "邮箱格式不对";
-                                    } else {
-                                        document.getElementById(checkMessage).innerHTML = "";
-                                    }
-                                } else if (checkText == "checkcodeText") {
-                                    if (!(verifyObj.isEqual(document.getElementById("checkcode").value))) {
-                                        document.getElementById(checkMessage).innerHTML = "验证码输入错误";
-                                    } else {
-                                        document.getElementById(checkMessage).innerHTML = "";
-                                    }
-                                }
-                            }
-
-                            function initMessage(objId) {
-                                var obj = document.getElementById(objId); //实例化对象obj
-                                if (objId == "nameMsg") {
-                                    obj.innerHTML = "<span style='color:green'>用户名必须为2-16位的字母,数字或汉字构成</span>";
-                                } else if (objId == "passwFristMsg") {
-                                    obj.innerHTML = "<span style='color:green'>密码必须为6-18位的字母,数字或下划线构成</span>";
-                                }
-                            }
-
-                        </script>
-
+                        </div>
                     </div>
+                    <div class="tab-pane fade" id="login-1">
+                        
+                        <!-- 学号 -->
+                        <div class="input-group">
+                                <span class="input-group-addon">工号：</span>
+                                <input type="text" id="idcardCheck" class="form-control" placeholder="请再次输入您的工号 " maxlength="16" onblur="verifyText('idcardCheck','idcardCheckMsg');">
+                        </div>
+                        <span id="idcardCheckMsg" class="fontTips"></span>
+
+
+                        <!-- 姓名 -->
+                        <div class="input-group">
+                                 <span class="input-group-addon">姓名：</span>
+                                 <input type="text" id="nameCheck" class="form-control" placeholder="请再次输入您的姓名" width="180px" height="30px" size="25" maxlength="16" onblur="verifyText('nameCheck','nameCheckMsg');">
+                        </div>
+                        <span id="nameCheckMsg" class="fontTips"></span>
+
+                        <!-- 手机号码 -->
+                        <div class="input-group">
+                                 <span class="input-group-addon">身份证号：</span>
+                                 <input type="text" id="myIDNumCheck" class="form-control" placeholder="请再次输入您的身份证号" me="pn" onblur="verifyText('myIDNumCheck','myIDNumCheckMsg'); ">
+                        </div>
+                        <span id="myIDNumCheckMsg" class="fontTips"></span>
+
+                        <!-- 密码 -->
+                        <div class="input-group">
+                                 <span class="input-group-addon">密码：</span>
+                                 <input type="password" id="passwLast" class="form-control" placeholder="请再次输入您的密码" me="psw" onblur="verifyText('passwLast','passwLastMsg'); ">
+                        </div>
+                        <span id="passwLastMsg" class="fontTips"></span>
+
+
+                        <!-- 验证码 -->
+                        <div class="input-group">
+                             <span class="input-group-addon"></span>
+                             <input type="text" class="form-control"  id="checkcodeText" placeholder="请输入右侧的验证码" onblur="verifyText('checkcodeText','checkcodeMsg');" >
+                             <span class="input-group-addon"><input type="button" id="checkcode" onclick="createCheckCode(5);" readonly="readonly"></span>
+                        </div>
+                        <span id="checkcodeMsg" class="fontTips"></span>
+                        <br>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div onclick="mysubmit()" type="submit" class="btn-card btn-danger col-md-9">注册</div>
+                                <a href="#login-0" data-toggle="tab" class="btn-card btn-default col-md-3" >
+                                    上一步
+                                </a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    </form>
                 </div>
                 <div class="col-md-3"></div>
+                <script>
+                    var statusBase = [0,0,0,0,0,0];
+                    var statusCheck   = [0,0,0,0,0];
+                    function checknull(){
+                        var k=0, s=0;
+                        for(var i in statusBase ){
+                            if(statusBase[i] == 1){
+                                k++;
+                            }
+                        }
+                        for(var t in statusCheck ){
+                            if(statusCheck[t] == 1){
+                                s++;
+                            }
+                        }
+                        if(s==5&&k==6) return true;
+                      //if(s==5&&k==6) return ture;
+                        else return false;
+                    }
+                    //加密代码
+                    function mysubmit()
+                    {
+                        
+                        if( checknull() ){
+                            document.form_login.password_md5.value = hex_md5(document.getElementById('passwLast').value);
+                            // alert(document.form1.password_md5.value);
+                            // alert("密码已经加密");
+                            document.form_login.submit();
+                        }else{
+                            alert("请填写完成并且检查无误后再行提交");
+                        }
+                        
+                    }
+                    /**构造&&实例化*********************************************************************************************************/
+                    /*验证和提示*/
+                    function verifyObject(targetParm) { //targetParm为待验证的消息
+                        this.target = targetParm;
+                    }
+                    verifyObject.prototype.trim = function () {
+                        var pattern = /(^\s*)|(\s*$)/g;
+                        this.target = this.target.replace(pattern, "");
+                    }
+                    verifyObject.prototype.isEqual = function (anyParm) {
+                        if (this.target == anyParm) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                    verifyObject.prototype.isPattern = function (patternParm) {
+                        var pattern = new RegExp(patternParm);
+                        var flag = pattern.test(this.target);
+                        if (flag) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+
+                    function verifyText(checkText, checkMessage) {
+                        var text = document.getElementById(checkText).value;
+                        var verifyObj = new verifyObject(text); //实例化对象
+                        verifyObj.trim();
+                        if (checkText == "name") {
+                            if (!(verifyObj.isPattern(/^[a-z A-Z 0-9 \u4e00-\u9fa5]{2,16}$/))) {
+                                document.getElementById(checkMessage).innerHTML = "用户名有误";
+                            } else {
+                                statusBase[0] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "nameCheck") {
+                            if (!(verifyObj.isEqual(document.getElementById("name").value))) {
+                                document.getElementById(checkMessage).innerHTML = "用户名前后不一致";
+                                
+                            } else {
+                                statusCheck[0] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "idcard") {
+                            if (!(verifyObj.isPattern(/^[0-9 _]{6,18}$/))) {
+                                
+                                document.getElementById(checkMessage).innerHTML = "工号有误";
+                            } else {
+                                statusBase[1] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "idcardCheck") {
+                            if (!(verifyObj.isEqual(document.getElementById("idcard").value))) {
+                                document.getElementById(checkMessage).innerHTML = "工号前后不一致";
+                            } else {
+                                statusCheck[1] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "myIDNum") {
+                            if (!(verifyObj.isPattern(/^[0-9 x]{14}$/))) {
+                                document.getElementById(checkMessage).innerHTML = "身份证号有误";
+                            } else {
+                                statusBase[2] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "myIDNumCheck") {
+                            if (!(verifyObj.isEqual(document.getElementById("myIDNum").value))) {
+                                document.getElementById(checkMessage).innerHTML = "身份证号前后不一致";
+                            } else {
+                                statusCheck[2] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "passwFrist") {
+                            if (!(verifyObj.isPattern(/^[a-z A-Z 0-9 _]{6,18}$/))) {
+                                document.getElementById(checkMessage).innerHTML = "密码有误";
+                            } else {
+                                statusBase[3] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "passwLast") {
+                            if (!(verifyObj.isEqual(document.getElementById("passwFrist").value))) {
+                                document.getElementById(checkMessage).innerHTML = "密码前后不一致";
+                            } else {
+                                statusCheck[3] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "myPhone") {
+                            if (!(verifyObj.isPattern(/^[0-9]{11}$/))) {
+                                document.getElementById(checkMessage).innerHTML = "手机号有误";
+                            } else {
+                                statusBase[4] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "myQq") {
+                            if (!(verifyObj.isPattern(/^[0-9]{6,12}$/))) {
+                                document.getElementById(checkMessage).innerHTML = "Qq号有误";
+                            } else {
+                                statusBase[5] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "email") {
+                            if (!(verifyObj.isPattern(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/))) {
+                                document.getElementById(checkMessage).innerHTML = "邮箱格式不对";
+                            } else {
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        } else if (checkText == "checkcodeText") {
+                            if (!(verifyObj.isEqual(document.getElementById("checkcode").value))) {
+                                document.getElementById(checkMessage).innerHTML = "验证码输入错误";
+                            } else {
+                                statusCheck[4] = 1;
+                                document.getElementById(checkMessage).innerHTML = "";
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    function initMessage(objId) {
+                        var obj = document.getElementById(objId); //实例化对象obj
+                        if (objId == "nameMsg") {
+                            obj.innerHTML = "<span style='color:green'>用户名必须为2-16位的字母,数字或汉字构成</span>";
+                        } else if (objId == "passwFristMsg") {
+                            obj.innerHTML = "<span style='color:green'>密码必须为6-18位的字母,数字或下划线构成</span>";
+                        }
+                    }
+
+                </script>
+
             </div>
         </div>
     </body>

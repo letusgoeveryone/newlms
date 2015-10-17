@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/mnt/LazyLoki/LazyDay/LongYeh‘s_Resp/objects/java_web/item-lms/git-lsm/newlms/lms/web/css/stylesheet-base.css</file>
+            <file>file:/mnt/LazyLoki/LazyDay/LongYeh‘s_Resp/objects/java_web/item-lms/git-lsm/newlms/lms/web/WEB-INF/jsp/index.jsp</file>
+            <file>file:/mnt/LazyLoki/LazyDay/LongYeh‘s_Resp/objects/java_web/item-lms/git-lsm/newlms/lms/web/WEB-INF/jsp/register/student_teacher.jsp</file>
+            <file>file:/mnt/LazyLoki/LazyDay/LongYeh‘s_Resp/objects/java_web/item-lms/git-lsm/newlms/lms/web/WEB-INF/jsp/register/success.jsp</file>
+            <file>file:/mnt/LazyLoki/LazyDay/LongYeh‘s_Resp/objects/java_web/item-lms/git-lsm/newlms/lms/web/WEB-INF/jsp/register/student_register.jsp</file>
+            <file>file:/mnt/LazyLoki/LazyDay/LongYeh‘s_Resp/objects/java_web/item-lms/git-lsm/newlms/lms/web/WEB-INF/jsp/register/teacher_register.jsp</file>
+        </group>
     </open-files>
 </project-private>
