@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-11 15:39:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cn.edu.henu.rjxy.lms.model.Student" table="student" catalog="cs" optimistic-lock="version">
+        <id name="stuId" type="java.lang.Integer">
+            <column name="stu_id" />
+            <generator class="identity" />
+        </id>
+        <property name="stuSn" type="int">
+            <column name="stu_sn" not-null="true" />
+        </property>
+        <property name="stuName" type="string">
+            <column name="stu_name" length="45" not-null="true" />
+        </property>
+        <property name="stuIdcard" type="string">
+            <column name="stu_idcard" length="18" not-null="true" />
+        </property>
+        <property name="stuSex" type="boolean">
+            <column name="stu_sex" not-null="true" />
+        </property>
+        <property name="stuBirthday" type="date">
+            <column name="stu_birthday" length="10" />
+        </property>
+        <property name="stuTel" type="string">
+            <column name="stu_tel" length="20" />
+        </property>
+        <property name="stuQq" type="string">
+            <column name="stu_qq" length="20" />
+        </property>
+        <property name="stuEmail" type="string">
+            <column name="stu_email" length="45" />
+        </property>
+        <property name="stuPwd" type="string">
+            <column name="stu_pwd" length="45" not-null="true" />
+        </property>
+        <property name="stuGrade" type="string">
+            <column name="stu_grade" length="4" not-null="true" />
+        </property>
+        <property name="stuCollegeId" type="int">
+            <column name="stu_college_id" not-null="true" />
+        </property>
+        <property name="stuDepartId" type="java.lang.Integer">
+            <column name="stu_depart_id" />
+        </property>
+        <property name="stuClassId" type="java.lang.Integer">
+            <column name="stu_class_id" />
+        </property>
+        <property name="stuEnrolling" type="timestamp">
+            <column name="stu_enrolling" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

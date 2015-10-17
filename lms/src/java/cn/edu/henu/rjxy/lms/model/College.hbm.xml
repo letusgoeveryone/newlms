@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-11 15:39:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cn.edu.henu.rjxy.lms.model.College" table="college" catalog="cs" optimistic-lock="version">
+        <id name="collegeId" type="java.lang.Integer">
+            <column name="college_id" />
+            <generator class="identity" />
+        </id>
+        <property name="collegeName" type="string">
+            <column name="college_name" length="20" not-null="true" />
+        </property>
+        <property name="collegeSn" type="int">
+            <column name="college_sn" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

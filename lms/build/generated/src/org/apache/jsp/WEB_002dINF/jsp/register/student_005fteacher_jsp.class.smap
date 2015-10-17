@@ -1,0 +1,17 @@
+SMAP
+student_005fteacher_jsp.java
+JSP
+*S JSP
+*F
++ 0 student_teacher.jsp
+WEB-INF/jsp/register/student_teacher.jsp
+*L
+5,4:44
+10,5:49
+14,8:54
+22,3:62,3
+25:71,5
+26,35:76
+61:111,3
+62,14:114
+*E
