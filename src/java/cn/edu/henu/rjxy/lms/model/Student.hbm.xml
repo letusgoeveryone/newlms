@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-10 23:24:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="cs" name="cn.edu.henu.rjxy.lms.model.Student" optimistic-lock="version" table="student">
+    <id name="stuId" type="java.lang.Integer">
+      <column name="stu_id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="stuSn" type="int">
+      <column name="stu_sn" not-null="true"/>
+    </property>
+    <property name="stuName" type="string">
+      <column length="45" name="stu_name" not-null="true"/>
+    </property>
+    <property name="stuIdcard" type="string">
+      <column length="18" name="stu_idcard" not-null="true"/>
+    </property>
+    <property name="stuSex" type="boolean">
+      <column name="stu_sex" not-null="true"/>
+    </property>
+    <property name="stuBirthday" type="date">
+      <column length="10" name="stu_birthday"/>
+    </property>
+    <property name="stuTel" type="string">
+      <column length="20" name="stu_tel"/>
+    </property>
+    <property name="stuQq" type="string">
+      <column length="20" name="stu_qq"/>
+    </property>
+    <property name="stuEmail" type="string">
+      <column length="45" name="stu_email"/>
+    </property>
+    <property name="stuPwd" type="string">
+      <column length="45" name="stu_pwd" not-null="true"/>
+    </property>
+    <property name="stuGrade" type="string">
+      <column length="4" name="stu_grade" not-null="true"/>
+    </property>
+    <property name="stuCollegeId" type="int">
+      <column name="stu_college_id" not-null="true"/>
+    </property>
+    <property name="stuDepartId" type="java.lang.Integer">
+      <column name="stu_depart_id"/>
+    </property>
+    <property name="stuClassId" type="java.lang.Integer">
+      <column name="stu_class_id"/>
+    </property>
+    <property name="stuEnrolling" type="timestamp">
+      <column length="19" name="stu_enrolling" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>
