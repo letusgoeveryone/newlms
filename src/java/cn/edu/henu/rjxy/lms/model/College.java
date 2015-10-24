@@ -1,5 +1,5 @@
 package cn.edu.henu.rjxy.lms.model;
-// Generated 2015-10-10 23:24:35 by Hibernate Tools 4.3.1
+// Generated 2015-10-23 19:30:46 by Hibernate Tools 4.3.1
 
 
 

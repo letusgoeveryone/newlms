@@ -5,6 +5,7 @@
  */
 package cn.edu.henu.rjxy.lms.controller.register;
 
+import cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil;
 import cn.edu.henu.rjxy.lms.model.TempTeacher;
 import cn.edu.henu.rjxy.lms.server.TempTeacherAddMessagelmpl;
 import java.io.UnsupportedEncodingException;
@@ -52,7 +53,7 @@ public class teacherregister_message {
 //        teacher.setTeacherBirthday(teacher_birthday);
           teacher.setTeacherCollegeId(teacher_college_id);
 //        teacher.setTeacherDepartId(teacher_id); 
-          teacher.setTeacherEmail(xueyuan);
+//          teacher.setTeacherEmail(xueyuan);
           teacher.setTeacherEnrolling(teacher_enrolling);
           teacher.setTeacherId(teacher_id);
           teacher.setTeacherIdcard(teacher_idcard);
@@ -75,7 +76,7 @@ public class teacherregister_message {
         System.out.println(teacher_qq);
         System.out.println(teacher_pwd);
         System.out.println(xueyuan);
-        tempTeacherAddMessagelmpl.addTempTeacherMessage(teacher);
+        HibernateUtil.saveTempTeacher(teacher);
         System.out.println(teacher.toString());
         return "index";
     }

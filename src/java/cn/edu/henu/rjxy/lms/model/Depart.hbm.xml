@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-23 19:30:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cn.edu.henu.rjxy.lms.model.Depart" table="depart" catalog="cs" optimistic-lock="version">
+        <id name="departId" type="java.lang.Integer">
+            <column name="depart_id" />
+            <generator class="identity" />
+        </id>
+        <property name="departName" type="string">
+            <column name="depart_name" length="20" not-null="true" />
+        </property>
+        <property name="departSn" type="int">
+            <column name="depart_sn" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

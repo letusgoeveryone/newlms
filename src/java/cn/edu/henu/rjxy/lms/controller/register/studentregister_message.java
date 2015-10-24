@@ -5,6 +5,7 @@
  */
 package cn.edu.henu.rjxy.lms.controller.register;
 
+import cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,16 +46,16 @@ public class studentregister_message {
         SimpleDateFormat zh = new SimpleDateFormat("yyyyMMdd");//生日格式
         Date stuEnrolling = zh.parse("20151010");
         
-        stu.setStuName(stuName);
-        stu.setStuIdcard(stuIdcard);
-        stu.setStuTel(stuTel);
-        stu.setStuQq(stuQq);
-        stu.setStuPwd(stuPwd);
-        stu.setStuSn(stu_sn);
-        stu.setStuGrade(stu_college);
+        stu.setStudentName(stuName);
+        stu.setStudentIdcard(stuIdcard);
+        stu.setStudentTel(stuTel);
+        stu.setStudentQq(stuQq);
+        stu.setStudentPwd(stuPwd);
+        stu.setStudentSn(stu_sn);
+        stu.setStudentGrade(HibernateUtil.getIdByCollegeName(stu_college));
        // stu.setStuCollegeId(stuCollegeId);string 
-        stu.setStuClassId(stu_niji);
-        stu.setStuEnrolling(stuEnrolling);
+//        stu.setStudentClassId(stu_niji);
+        stu.setStudentEnrolling(stuEnrolling);
         //测试数据
         System.out.println("学号" + stu_sn);
         System.out.println("身份证" + stuIdcard);
@@ -65,7 +66,7 @@ public class studentregister_message {
         System.out.println("年级" + stu_niji);
         System.out.println("学院" + stu_college);
          //调用数据库，注册信息存入
-        tempStudentAddMessagelmpl.addTempStudentMessage(stu);
+        HibernateUtil.saveTempStudent(stu);
         System.out.println(stu.toString());
         System.out.println("调用了学生注册");
         return "register/success";

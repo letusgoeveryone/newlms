@@ -2,9 +2,11 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="cs"/>
-  <table-filter match-name="temp_student"/>
+  <table-filter match-name="temp_teacher"/>
+  <table-filter match-name="position"/>
+  <table-filter match-name="depart"/>
+  <table-filter match-name="teacher"/>
   <table-filter match-name="student"/>
   <table-filter match-name="college"/>
-  <table-filter match-name="teacher"/>
-  <table-filter match-name="temp_teacher"/>
+  <table-filter match-name="temp_student"/>
 </hibernate-reverse-engineering>
