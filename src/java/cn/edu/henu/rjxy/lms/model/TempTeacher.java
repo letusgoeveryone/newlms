@@ -11,17 +11,17 @@ public class TempTeacher  implements java.io.Serializable {
 
 
      private Integer teacherId;
-     private int teacherSn;
-     private String teacherName;
-     private String teacherIdcard;
-     private int teacherCollegeId;
-     private int teacherDepartId;
-     private String teacherTel;
-     private String teacherQq;
-     private String teacherPwd;
-     private boolean teacherSex;
-     private int teacherPositionId;
-     private Date teacherEnrolling;
+     private int teacherSn;//工号
+     private String teacherName;//姓名
+     private String teacherIdcard;//身份证 
+     private int teacherCollegeId;//年级 
+     private int teacherDepartId;// 系
+     private String teacherTel;//手机号 
+     private String teacherQq;//qq 
+     private String teacherPwd;//密码 
+     private boolean teacherSex;//性别 
+     private int teacherPositionId;//职称 
+     private Date teacherEnrolling;//注册时间
 
     public TempTeacher() {
     }

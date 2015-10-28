@@ -40,6 +40,7 @@
                             <h1 class="page-header stage-box">
                                 注册<span></span>
                             </h1>
+                             ${requestScope.Errors}
                         </div>
                         <div  class="tab-pane fade in active" id="login-0">
                             <div>
@@ -55,22 +56,42 @@
                                 <!-- 姓名 -->
                                 <div class="input-group">
                                     <span class="input-group-addon">姓名：</span>
-                                    <input type="text" id="name" name="name"class="form-control" placeholder="请输入您的姓名" maxlength="16" onblur="verifyText('name', 'nameMsg');" onfocus="initMessage('nameMsg');" />
+                                    <input type="text" id="name" name="name1" class="form-control" placeholder="请输入您的姓名" maxlength="16" onblur="verifyText('name', 'nameMsg');" onfocus="initMessage('nameMsg');" />
                                 </div>
                                 <span id="nameMsg" class="fontTips"></span>
 
                                 <!-- 身份证号 -->
                                 <div class="input-group">
                                     <span class="input-group-addon">身份证号：</span>
-                                    <input type="text" id="myIDNum" name="myIDNum" class="form-control" placeholder="请再次输入您的身份证号" me="pn" onblur="verifyText('myIDNum', 'myIDNumMsg');
-                                           " >
+                                    <input type="text" id="myIDNum" name="myIDNum" class="form-control" placeholder="请再次输入您的身份证号" onblur="verifyText('myIDNum', 'myIDNumMsg');" >
                                 </div>
                                 <span id="myIDNumMsg" class="fontTips"></span>
+                                
+                                <!-- 职称 -->
+                                <div class="input-group">
+                                    <span class="input-group-addon">职称：</span>
+                                    <select class="form-control" required="required" name="Vname" >
+                                        <option value="院长" type='hide'>院长</option>
+                                        <option value="教务员" type='hide'>教务员</option>
+                                        <option value="教师" type='hide'>教师</option>
+                                        <option value="助教" type='hide'>助教</option>
+                                        <option value="辅导员" type='hide'>辅导员</option>
+                                    </select>
+                                </div>
+                                  <span id="myIDNumMsg" class="fontTips"></span>
+                                <div class="input-group">
+                                    <span class="input-group-addon">性别：</span>
+                                    <select class="form-control" required="required" name="xingbie" >                                       
+                                        <option value="女" type='hide'>女</option>
+                                        <option value="男" type='hide' selected="">男</option>                                     
+                                    </select>
+                                </div>
+                                <span id="VnameMsg" class="fontTips"></span>
 
                                 <!-- 年级 -->
                                 <div class="input-group">
                                     <span class="input-group-addon">年级：</span>
-                                    <select class="form-control" required="required" name="niji" >
+                                    <select class="form-control" required="required" name="Grade" >
                                         <option value="2008" type='hide'>2008</option>
                                         <option value="2009" type='hide'>2009</option>
                                         <option value="2010" type='hide'>2010</option>
@@ -92,7 +113,7 @@
                                 <!-- 院系 -->
                                 <div class="input-group">
                                     <span class="input-group-addon">院系：</span>
-                                    <select class="form-control" name="xueyuan">
+                                    <select class="form-control" name="Institute">
                                         <option value="文学院" type='hide'>文学院	</option>
                                         <option value="历史文化学院" type='hide'>历史文化学院</option>
                                         <option value="教育科学学院" type='hide'>教育科学学院</option>
@@ -156,12 +177,12 @@
                                 <br>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <a data-toggle="tab" href="#login-1"><div class="btn-card btn-danger col-md-6">下一步</div></a>
+                                        <a id="fornext" onclick="fornext()" data-toggle="tab" href="#"><div class="btn-card btn-danger col-md-6">下一步</div></a>
 
-                                        <a href="index-acount-0.html" class="btn-card btn-default col-md-3" >
+                                        <a href="student_teacher" class="btn-card btn-default col-md-3" >
                                             重新选择角色
                                         </a>
-                                        <a href="index" class="btn-card btn-default col-md-3" >
+                                        <a href="index1" class="btn-card btn-default col-md-3" >
                                             返回登陆界面
                                         </a>
 
@@ -209,7 +230,7 @@
                                 <td class="content">
                                     <input id="ccd" name="ccd" class="ui-widget-content easyui-validatebox" type="text" maxlength="5"  
                                            data-options="required:true,validType:'chk_code',missingMessage:'请输入验证码',tipPosition:'left' "
-                                           title="验证码不区分大小写，看不清楚请单击图片" >
+                                           title="验证码区分大小写，看不清楚请单击图片" >
                                     <img id="ccdImage" style="border:0" title="看不清楚请单击图片" onclick="reload()" >
                                 </td>
                             </div>
@@ -234,46 +255,58 @@
                 </div>
                 <div class="col-md-3"></div>
                 <script>
-                    $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random());//yangzhengma sui ji sheng cheng
+                    $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random());//随机生成验证码
 
                     function reload() {
 
-                        $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random());//yangzhengma sui ji sheng cheng
+                        $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random());//随机生成验证码
                     }
                     var statusBase = [0, 0, 0, 0, 0, 0];
                     var statusCheck = [0, 0, 0, 0, 0];
                     function checknull() {
-                        var k = 0, s = 0;
-                        for (var i in statusBase) {
-                            if (statusBase[i] == 1) {
-                                k++;
-                            }
-                        }
+                        var s = 0;
+                        
                         for (var t in statusCheck) {
                             if (statusCheck[t] == 1) {
                                 s++;
                             }
                         }
-                        if (s == 5 && k == 6)
+                        if (s == 4)
                             return true;
                         //if(s==5&&k==6) return ture;
                         else
                             return false;
                     }
                     //加密代码
+                    function fornext()
+                    {
+                        var k=0;
+                        for (var i in statusBase) {
+                            if (statusBase[i] == 1) {
+                                k++;
+                            }
+                        }
+
+                        if (k == 6) {
+                           $('#fornext').attr("href", "#login-1");
+                            
+                        } else {
+                           $('#fornext').attr("href", "#");
+                           alert("请填写完成并且检查无误后再行下一步");
+                        }
+
+                    }
                     function mysubmit()
                     {
-                       document.form_login.password_md5.value = hex_md5(document.getElementById('passwLast').value);
-                         document.form_login.submit();
-                         alert("密码已经加密");
-//                        if (checknull()) {
-//                            document.form_login.password_md5.value = hex_md5(document.getElementById('passwLast').value);
-//                            // alert(document.form1.password_md5.value);
-//                            
-//                            document.form_login.submit();
-//                        } else {
-//                            alert("请填写完成并且检查无误后再行提交");
-//                        }
+
+                        if (checknull()) {
+                            document.form_login.password_md5.value = hex_md5(document.getElementById('passwLast').value);
+                            // alert(document.form1.password_md5.value);
+                            // alert("密码已经加密");
+                            document.form_login.submit();
+                        } else {
+                            alert("请填写完成并且检查无误后再行提交");
+                        }
 
                     }
                     /**构造&&实例化*********************************************************************************************************/
@@ -309,6 +342,7 @@
                         if (checkText == "name") {
                             if (!(verifyObj.isPattern(/^[a-z A-Z 0-9 \u4e00-\u9fa5]{2,16}$/))) {
                                 document.getElementById(checkMessage).innerHTML = "用户名有误";
+                                statusBase[0] = 0;
                             } else {
                                 statusBase[0] = 1;
                                 document.getElementById(checkMessage).innerHTML = "";
@@ -325,6 +359,7 @@
                             if (!(verifyObj.isPattern(/^[0-9 _]{6,18}$/))) {
 
                                 document.getElementById(checkMessage).innerHTML = "工号有误";
+                                statusBase[1] = 0;
                             } else {
                                 statusBase[1] = 1;
                                 document.getElementById(checkMessage).innerHTML = "";
@@ -337,8 +372,9 @@
                                 document.getElementById(checkMessage).innerHTML = "";
                             }
                         } else if (checkText == "myIDNum") {
-                            if (!(verifyObj.isPattern(/^[0-9 x]{14}$/))) {
+                            if (!(verifyObj.isPattern( /(^\d{15}$)|(^\d{17}([0-9]|X)$)/g))) {
                                 document.getElementById(checkMessage).innerHTML = "身份证号有误";
+                                statusBase[2] = 0;
                             } else {
                                 statusBase[2] = 1;
                                 document.getElementById(checkMessage).innerHTML = "";
@@ -353,6 +389,7 @@
                         } else if (checkText == "passwFrist") {
                             if (!(verifyObj.isPattern(/^[a-z A-Z 0-9 _]{6,18}$/))) {
                                 document.getElementById(checkMessage).innerHTML = "密码有误";
+                                statusBase[3] = 0;
                             } else {
                                 statusBase[3] = 1;
                                 document.getElementById(checkMessage).innerHTML = "";
@@ -365,8 +402,9 @@
                                 document.getElementById(checkMessage).innerHTML = "";
                             }
                         } else if (checkText == "myPhone") {
-                            if (!(verifyObj.isPattern(/^[0-9]{11}$/))) {
+                            if (!(verifyObj.isPattern(/^1\d{10}$/g))) {
                                 document.getElementById(checkMessage).innerHTML = "手机号有误";
+                                statusBase[4] = 0;
                             } else {
                                 statusBase[4] = 1;
                                 document.getElementById(checkMessage).innerHTML = "";
@@ -374,6 +412,7 @@
                         } else if (checkText == "myQq") {
                             if (!(verifyObj.isPattern(/^[0-9]{6,12}$/))) {
                                 document.getElementById(checkMessage).innerHTML = "Qq号有误";
+                                statusBase[5] = 0;
                             } else {
                                 statusBase[5] = 1;
                                 document.getElementById(checkMessage).innerHTML = "";

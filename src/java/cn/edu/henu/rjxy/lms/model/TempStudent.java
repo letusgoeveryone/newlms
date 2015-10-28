@@ -11,16 +11,16 @@ public class TempStudent  implements java.io.Serializable {
 
 
      private Integer studentId;
-     private int studentSn;
-     private String studentName;
-     private String studentIdcard;
-     private int studentGrade;
-     private int studentCollegeId;
-     private String studentTel;
-     private String studentQq;
-     private String studentPwd;
-     private boolean studentSex;
-     private Date studentEnrolling;
+     private int studentSn;//学号
+     private String studentName;//姓名
+     private String studentIdcard;// 身份证 
+     private int studentGrade; // 年级
+     private int studentCollegeId;//院系
+     private String studentTel;//手机号
+     private String studentQq;//qq
+     private String studentPwd;//密码 
+     private boolean studentSex;//性别
+     private Date studentEnrolling;//注册时间
 
     public TempStudent() {
     }
