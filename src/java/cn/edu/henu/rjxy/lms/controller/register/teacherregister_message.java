@@ -37,8 +37,6 @@ public class teacherregister_message {
         HttpSession session = request.getSession();
         String ccd = (String) session.getAttribute("hccd");
         String ccd1 = request.getParameter("ccd");
-        System.out.println(ccd1);
-        System.out.println(ccd);
         if (!ccd.equals(ccd1)) {
             request.setAttribute("Errors", "验证码错误，请重新注册!");
             request.getRequestDispatcher("teacher_register").forward(request, response);
@@ -49,29 +47,15 @@ public class teacherregister_message {
         String teacher_idcard = request.getParameter("myIDNum");//身份证 
         String teacher_Vname = request.getParameter("Vname");//职称
         String teacher_sex = request.getParameter("xingbie");//性别
-        Integer teacher_college_id = Integer.parseInt(request.getParameter("Grade"));//年级 
+     //   Integer teacher_college_id = Integer.parseInt(request.getParameter("Grade"));//年级 
         String xueyuan = request.getParameter("Institute");  // 系
         String teacher_tel = request.getParameter("myPhone");//手机号 
         String teacher_qq = request.getParameter("myQq");//qq 
         String teacher_pwd = request.getParameter("password_md5");//密码 
-
-//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-//     // new Date()为获取当前系统时间
-//        teacher.setTeacherCollegeId(teacher_college_id);
-//        teacher.setTeacherId(teacher_id);
-//        teacher.setTeacherIdcard("012345678912345678");
-//        teacher.setTeacherName(teacher_name);
-//        teacher.setTeacherPwd(teacher_pwd);
-//        teacher.setTeacherQq(teacher_qq);
-//        teacher.setTeacherTel(teacher_tel);
-//        teacher.setTeacherDepartId(HibernateUtil.getIdByCollegeName(xueyuan));
-//        teacher.setTeacherSex(true);
-//        teacher.setTeacherEnrolling(new Date());
-//        teacher.setTeacherPositionId(1);
+       
         System.out.println(teacher_id);
         System.out.println(teacher_name);
         System.out.println(teacher_idcard);
-        System.out.println(teacher_college_id);
         System.out.println(teacher_tel);
         System.out.println(teacher_qq);
         System.out.println(teacher_pwd);
@@ -79,8 +63,8 @@ public class teacherregister_message {
         System.out.println(teacher_sex);
         System.out.println(teacher_Vname);
         
-        //学院和职称有问题，，类型不符
-        TempTeacherAddMessagelmpl.addTempTeacherMessage(teacher_id, teacher_name, teacher_idcard, teacher_college_id, 2, teacher_tel, teacher_qq, teacher_pwd, teacher_sex, 1, new Date());
+        //职称有问题，，类型不符
+        TempTeacherAddMessagelmpl.addTempTeacherMessage(teacher_id, teacher_name, teacher_idcard, xueyuan, 0, teacher_tel, teacher_qq, teacher_pwd, teacher_sex, 2, new Date());
         return "register/success";
     }
 }

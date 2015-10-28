@@ -86,29 +86,7 @@
                                         <option value="男" type='hide' selected="">男</option>                                     
                                     </select>
                                 </div>
-                                <span id="VnameMsg" class="fontTips"></span>
-
-                                <!-- 年级 -->
-                                <div class="input-group">
-                                    <span class="input-group-addon">年级：</span>
-                                    <select class="form-control" required="required" name="Grade" >
-                                        <option value="2008" type='hide'>2008</option>
-                                        <option value="2009" type='hide'>2009</option>
-                                        <option value="2010" type='hide'>2010</option>
-                                        <option value="2011" type='hide'>2011</option>
-                                        <option value="2012" type='hide'>2012</option>
-                                        <option value="2013" type='hide'>2013</option>
-                                        <option value="2014" type='hide' selected="">2014</option>
-                                        <option value="2015" type='hide'>2015</option>
-                                        <option value="2016" type='hide'>2016</option>
-                                        <option value="2017" type='hide'>2017</option>
-                                        <option value="2018" type='hide'>2018</option>
-                                        <option value="2019" type='hide'>2019</option>
-                                        <option value="2020" type='hide'>2020</option>
-                                        <option value="2021" type='hide'>2021</option>
-                                    </select>
-                                </div>
-                                <span class="fontTips"></span>
+                     <span class="fontTips"></span>
 
                                 <!-- 院系 -->
                                 <div class="input-group">

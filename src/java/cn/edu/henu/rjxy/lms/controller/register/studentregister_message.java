@@ -35,8 +35,6 @@ public class studentregister_message {
         HttpSession session = request.getSession();
         String ccd = (String) session.getAttribute("hccd");
         String ccd1 = request.getParameter("ccd");
-        System.out.println(ccd1);
-        System.out.println(ccd);
         if (!ccd.equals(ccd1)) {
             request.setAttribute("Error", "验证码错误，请重新注册!"); 
             request.getRequestDispatcher("student_register").forward(request,response); 
@@ -69,7 +67,6 @@ public class studentregister_message {
         System.out.println("性别:" + stu_sex);
        
         TempStudentAddMessagelmpl.addTempStudentMessage(stu_sn, stuName, stuIdcard, stu_niji, stu_college, stuTel, stuQq, stuPwd, stu_sex, new Date());
-        System.out.println(stu.toString());
         return "register/success";
     }
 }

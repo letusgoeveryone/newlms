@@ -14,7 +14,7 @@ public class TempTeacher  implements java.io.Serializable {
      private int teacherSn;//工号
      private String teacherName;//姓名
      private String teacherIdcard;//身份证 
-     private int teacherCollegeId;//年级 
+     private int teacherCollegeId;//yuan
      private int teacherDepartId;// 系
      private String teacherTel;//手机号 
      private String teacherQq;//qq 
