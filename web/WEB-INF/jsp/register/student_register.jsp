@@ -14,6 +14,7 @@
             + request.getServerName() + ":"
             + request.getServerPort() + path + "/";
 %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,6 +42,7 @@
                             <h1 class="page-header stage-box">
                                 注册<span></span>
                             </h1>
+
                             ${requestScope.Error}
                         </div>
                         <div  class="tab-pane fade in active" id="login-0">
@@ -67,7 +69,7 @@
                                     <input type="text" id="myIDNum" name="myIDNum" class="form-control" placeholder="请再次输入您的身份证号" me="pn" onblur="verifyText('myIDNum', 'myIDNumMsg');
                                            " >
                                 </div>
-                                 <span id="myIDNumMsg" class="fontTips"></span>
+                                <span id="myIDNumMsg" class="fontTips"></span>
                                 <div class="input-group">
                                     <span class="input-group-addon">性别：</span>
                                     <select class="form-control" required="required" name="xingbie" >                                       
@@ -75,7 +77,7 @@
                                         <option value="男" type='hide' selected="">男</option>                                     
                                     </select>
                                 </div>
-                                  <span id="myIDNumMsg" class="fontTips"></span>
+                                <span id="myIDNumMsg" class="fontTips"></span>
                                 <!-- 年级 -->
                                 <div class="input-group">
                                     <span class="input-group-addon">年级：</span>
@@ -215,9 +217,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon">验证码：</span>
                                 <td class="content">
-                                    <input id="ccd" name="ccd" class="ui-widget-content easyui-validatebox" type="text" maxlength="5"  
+                                    <input id="ccd" name="ccd" class="ui-widget-content easyui-validatebox" type="text" maxlength="4"  
                                            data-options="required:true,validType:'chk_code',missingMessage:'请输入验证码',tipPosition:'left' "
-                                           title="验证码区分大小写，看不清楚请单击图片" >
+                                           title="验证码区分不大小写，看不清楚请单击图片" >
                                     <img id="ccdImage" style="border:0" title="看不清楚请单击图片" onclick="reload()" >
 
                                     <!--</td>-->
@@ -244,6 +246,20 @@
 
                         $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random()); //随机生成验证码
                     }
+//                    
+//                    window.onload = function () {
+//                        setTimeout("fun(3)", 1000);
+//                        alert("1");
+//                    }
+//                    function fun(n) {
+//                        if (n > 0) {
+//                            n--;  
+//                             alert("2");
+//                           <% request.removeAttribute("Error");%>
+//                                        alert("3");
+//                        }                    
+//                    }
+                    
                     var statusBase = [0, 0, 0, 0, 0, 0];
                     var statusCheck = [0, 0, 0, 0, 0];
                     function checknull() {

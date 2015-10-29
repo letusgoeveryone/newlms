@@ -36,7 +36,9 @@
                 text-shadow: black 5px 3px 3px;
             }
             .nav-tabs > li > a {border-top: 1px solid #ddd;}
-
+            #ccd{
+                width: 170px;
+            }
         </style>
         <script type="text/javascript">
             $(document).ready(function () {
@@ -121,25 +123,35 @@
 
                                             <div class="input-group">
                                                 <span class="input-group-addon">名字:</span></span>
-                                                <input type="text" class="form-control" id="firstname" name="username" placeholder="请输入名字">
+                                                <input type="text" class="form-control" id="firstname" name="username" placeholder="学号／工号／身份证号／手机号">
                                             </div><br>
                                             <div class="input-group">
                                                 <span class="input-group-addon">密码:</span></span>
                                                 <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
                                                 <input type="hidden" name="password_md5">
                                             </div><br>
-                                            <div class="input-group">
+
+<!--                                            <div class="input-group">
                                                 <span class="input-group-addon"></span></span>
                                                 <input type="text" class="form-control" id="checkcodeText" placeholder="请输入右侧的验证码" onblur="verifyText('checkcodeText', 'checkcodeMsg');" onfocus="initMessage('checkcodeMsg');">
                                                 <span class="input-group-addon"><input type="button" id="checkcode" onclick="createCheckCode(5);" readonly="readonly"></span>
+                                            </div>-->
+
+                                            <!-- 验证码 -->
+                                            <div class="input-group">
+                                                <span class="input-group-addon">验证码:</span>
+                                                    <input  id="ccd" name="ccd" class="ui-widget-content easyui-validatebox" type="text" maxlength="4"  
+                                                           data-options="required:true,validType:'chk_code',missingMessage:'请输入验证码',tipPosition:'left' "
+                                                           title="验证码区分不大小写，看不清楚请单击图片" >
+                                                    <img id="ccdImage" style="border:0" title="看不清楚请单击图片" onclick="reload()" >                                        
                                             </div>
                                             <span id="checkcodeMsg" class="fontTips"></span>
                                             <div class="form-group">
                                                 <div class="col-md-12">
                                                     <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" />请记住我
-                                                        </label>
+                                                        <!--                                                        <label>
+                                                                                                                    <input type="checkbox" />请记住我
+                                                                                                                </label>-->
                                                         <label class="pull-right">
                                                             <a class="btn-forget" href="#">忘记密码?</a>
                                                         </label>
@@ -159,6 +171,13 @@
                         </div>
                     </div>
                     <script>
+                        $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random());//随机生成验证码
+
+                        function reload() {
+
+                            $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random());//随机生成验证码
+                        }
+
                         //post to message
                         function post1() {
 

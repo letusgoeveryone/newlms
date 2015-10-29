@@ -206,9 +206,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon">验证码：</span>
                                 <td class="content">
-                                    <input id="ccd" name="ccd" class="ui-widget-content easyui-validatebox" type="text" maxlength="5"  
+                                    <input id="ccd" name="ccd" class="ui-widget-content easyui-validatebox" type="text" maxlength="4"  
                                            data-options="required:true,validType:'chk_code',missingMessage:'请输入验证码',tipPosition:'left' "
-                                           title="验证码区分大小写，看不清楚请单击图片" >
+                                           title="验证码区分不大小写，看不清楚请单击图片" >
                                     <img id="ccdImage" style="border:0" title="看不清楚请单击图片" onclick="reload()" >
                                 </td>
                             </div>
@@ -239,6 +239,8 @@
 
                         $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random());//随机生成验证码
                     }
+                    
+                    
                     var statusBase = [0, 0, 0, 0, 0, 0];
                     var statusCheck = [0, 0, 0, 0, 0];
                     function checknull() {
