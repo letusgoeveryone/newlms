@@ -6,7 +6,10 @@
 package cn.edu.henu.rjxy.lms.controller;
 
 import cn.edu.henu.rjxy.lms.model.TempTeacher;
+import static cn.edu.henu.rjxy.lms.server.TempTeacherMethod.getTempTeacherByCollegeName;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,17 +34,17 @@ public class IndexController {//主页映射
     //    测试json
    
     @RequestMapping(value = "/json_test88", method = RequestMethod.GET)
-    public  @ResponseBody TempTeacher json_test(){
-      TempTeacher tempTeacher;
-      tempTeacher = new TempTeacher("1445201112", "刘丙戌", "192929299292929292", 4, "12345678901","434353535", "123456", true, 0, new Date());
-        
-      return tempTeacher;
+    public  @ResponseBody  Iterator<TempTeacher> json_test(){
+       List list= getTempTeacherByCollegeName("软件学院");
+       Iterator<TempTeacher> iterator = list.iterator();
+      return iterator;
     }
     //测试json
-      @RequestMapping(value = "/json_test12", method = RequestMethod.POST)
-    public  @ResponseBody TempTeacher json_test(@RequestBody TempTeacher tempTeacher){
-      
+      @RequestMapping(value = "/json_test12", method = RequestMethod.GET)
+    public  @ResponseBody Iterator<TempTeacher> json_test1(){
+       List list= getTempTeacherByCollegeName("软件学院");
+       Iterator<TempTeacher> iterator = list.iterator();
         
-      return tempTeacher;
+      return iterator;
     }
 }

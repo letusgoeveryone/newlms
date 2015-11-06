@@ -22,13 +22,12 @@
             $.ajax({
                 type:'post',
                 url:'${pageContext.request.contextPath}/json_test12.action',
-                contentType:'application/json;charset= utf-8',
+//                contentType:'application/json;charset= utf-8',
                 date,'{"teacherName:"手机","teacherIdcard"999}',
                 success:funtion(date){
                     alert(date);
                 }
-            });
-            
+            });           
         }
             
         </script>

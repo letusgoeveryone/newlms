@@ -20,7 +20,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 
-public class TempTeacherMethod {
+public class TempTeacherMethod {//根据学号范围　
     
     public static List<TempTeacher> getTempTeacherBySn(int MinSn,int MaxSn){
         QueryResult<TempTeacher> queryResult = new QueryResult<TempTeacher>();
@@ -35,7 +35,8 @@ public class TempTeacherMethod {
         return queryResult.getList();
         
     }
-    
+  //  根据　学院查询
+
         public static List getTempTeacherByCollegeName(String collegeName){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -57,10 +58,7 @@ public class TempTeacherMethod {
         }
     }
     
-    public static void main(String[] args) {
-
-        
-        TempTeacherDao.saveTempTeacher(new TempTeacher("1445200005", "小", "3131313131313", 1, "12345678", "12312312432", "123456", true, 2, new Date()));
+    public static void main(String[] args) {      
         List list = getTempTeacherByCollegeName("文学院");
         System.out.println(list.size());
         Iterator<TempTeacher> iterator = list.iterator();
