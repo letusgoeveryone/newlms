@@ -11,7 +11,7 @@ public class TempStudent  implements java.io.Serializable {
 
 
      private Integer studentId;
-     private int studentSn;//学号
+     private String studentSn;//学号
      private String studentName;//姓名
      private String studentIdcard;// 身份证 
      private int studentGrade; // 年级
@@ -25,7 +25,7 @@ public class TempStudent  implements java.io.Serializable {
     public TempStudent() {
     }
 
-    public TempStudent(int studentSn, String studentName, String studentIdcard, int studentGrade, int studentCollegeId, String studentTel, String studentQq, String studentPwd, boolean studentSex, Date studentEnrolling) {
+    public TempStudent(String studentSn, String studentName, String studentIdcard, int studentGrade, int studentCollegeId, String studentTel, String studentQq, String studentPwd, boolean studentSex, Date studentEnrolling) {
        this.studentSn = studentSn;
        this.studentName = studentName;
        this.studentIdcard = studentIdcard;
@@ -45,11 +45,11 @@ public class TempStudent  implements java.io.Serializable {
     public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
-    public int getStudentSn() {
+    public String getStudentSn() {
         return this.studentSn;
     }
     
-    public void setStudentSn(int studentSn) {
+    public void setStudentSn(String studentSn) {
         this.studentSn = studentSn;
     }
     public String getStudentName() {

@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package cn.edu.henu.rjxy.lms.controller;
-
-import cn.edu.henu.rjxy.lms.server.StudentSignIn;
-import cn.edu.henu.rjxy.lms.server.TeacherSignIn;
+import cn.edu.henu.rjxy.lms.server.StudentMethod;
+import cn.edu.henu.rjxy.lms.server.TeacherMethod;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,12 +27,12 @@ public class Login {
         System.out.println("user:" + user + "password" + password);
 
         //do check mysql 
-        if (StudentSignIn.studentSignInBySn(user, password) == true) {
+        if (StudentMethod.studentSignInByUserName(user, password) == true) {
             //登陆成功,跳转到学生页面
             return "register/success";
 
         } else {
-            if (TeacherSignIn.teacherSignInBySn(user, password) == true) {
+            if (TeacherMethod.teacherSignInByUserName(user, password) == true) {
                 //登陆成功,跳转到老师页面
                 return "register/success";
             }

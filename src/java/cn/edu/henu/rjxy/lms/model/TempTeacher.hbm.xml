@@ -8,7 +8,7 @@
             <column name="teacher_id" />
             <generator class="identity" />
         </id>
-        <property name="teacherSn" type="int">
+        <property name="teacherSn" type="string">
             <column name="teacher_sn" not-null="true" />
         </property>
         <property name="teacherName" type="string">
@@ -19,9 +19,6 @@
         </property>
         <property name="teacherCollegeId" type="int">
             <column name="teacher_college_id" not-null="true" />
-        </property>
-        <property name="teacherDepartId" type="int">
-            <column name="teacher_depart_id" not-null="true" />
         </property>
         <property name="teacherTel" type="string">
             <column name="teacher_tel" length="20" not-null="true" />

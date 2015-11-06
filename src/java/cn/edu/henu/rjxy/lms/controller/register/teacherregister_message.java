@@ -4,15 +4,11 @@
  * and open the template in the editor.
  */
 package cn.edu.henu.rjxy.lms.controller.register;
-
-import cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil;
-import static cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil.getIdByCollegeName;
 import cn.edu.henu.rjxy.lms.model.TempTeacher;
-import cn.edu.henu.rjxy.lms.server.TempTeacherAddMessagelmpl;
+import cn.edu.henu.rjxy.lms.server.TempTeacherMethod;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -66,7 +62,7 @@ public class teacherregister_message {
         System.out.println(teacher_Vname);
 
         //职称有问题，，类型不符
-        TempTeacherAddMessagelmpl.addTempTeacherMessage(teacher_id, teacher_name, teacher_idcard, xueyuan, 0, teacher_tel, teacher_qq, teacher_pwd, teacher_sex, 2, new Date());
+        TempTeacherMethod.addTempTeacherMessage(teacher_id.toString(), teacher_name, teacher_idcard, xueyuan,  teacher_tel, teacher_qq, teacher_pwd, teacher_sex, 2, new Date());
         return "register/success";
     }
 }

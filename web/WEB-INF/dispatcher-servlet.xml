@@ -16,11 +16,14 @@
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
     <context:annotation-config/> 
-   
+    <!--支持json转换器--> 
+    <mvc:annotation-driven/>
     <context:component-scan base-package="cn.edu.henu.rjxy.*" />
- 
-    <mvc:annotation-driven />
-   
+   <!--     配置直接转发的页面不用开发控制器-->    
+    <mvc:view-controller path="/console_dean" view-name="console_dean"/>
+    <mvc:view-controller path="/json_test" view-name="json_test"/>
+    <context:component-scan base-package="cn.edu.henu.rjxy.*" /> 
+    <mvc:annotation-driven />  
     <mvc:resources location="/js/" mapping="/js/**" />
     <mvc:resources location="/css/" mapping="/css/**" />
     <mvc:resources location="/images/" mapping="/images/**" />

@@ -11,11 +11,11 @@ public class TempTeacher  implements java.io.Serializable {
 
 
      private Integer teacherId;
-     private int teacherSn;//工号
+     private String teacherSn;//工号
      private String teacherName;//姓名
      private String teacherIdcard;//身份证 
      private int teacherCollegeId;//yuan
-     private int teacherDepartId;// 系
+
      private String teacherTel;//手机号 
      private String teacherQq;//qq 
      private String teacherPwd;//密码 
@@ -26,12 +26,11 @@ public class TempTeacher  implements java.io.Serializable {
     public TempTeacher() {
     }
 
-    public TempTeacher(int teacherSn, String teacherName, String teacherIdcard, int teacherCollegeId, int teacherDepartId, String teacherTel, String teacherQq, String teacherPwd, boolean teacherSex, int teacherPositionId, Date teacherEnrolling) {
+    public TempTeacher(String teacherSn, String teacherName, String teacherIdcard, int teacherCollegeId, String teacherTel, String teacherQq, String teacherPwd, boolean teacherSex, int teacherPositionId, Date teacherEnrolling) {
        this.teacherSn = teacherSn;
        this.teacherName = teacherName;
        this.teacherIdcard = teacherIdcard;
        this.teacherCollegeId = teacherCollegeId;
-       this.teacherDepartId = teacherDepartId;
        this.teacherTel = teacherTel;
        this.teacherQq = teacherQq;
        this.teacherPwd = teacherPwd;
@@ -47,11 +46,11 @@ public class TempTeacher  implements java.io.Serializable {
     public void setTeacherId(Integer teacherId) {
         this.teacherId = teacherId;
     }
-    public int getTeacherSn() {
+    public String getTeacherSn() {
         return this.teacherSn;
     }
     
-    public void setTeacherSn(int teacherSn) {
+    public void setTeacherSn(String teacherSn) {
         this.teacherSn = teacherSn;
     }
     public String getTeacherName() {
@@ -75,13 +74,7 @@ public class TempTeacher  implements java.io.Serializable {
     public void setTeacherCollegeId(int teacherCollegeId) {
         this.teacherCollegeId = teacherCollegeId;
     }
-    public int getTeacherDepartId() {
-        return this.teacherDepartId;
-    }
-    
-    public void setTeacherDepartId(int teacherDepartId) {
-        this.teacherDepartId = teacherDepartId;
-    }
+
     public String getTeacherTel() {
         return this.teacherTel;
     }
@@ -125,8 +118,9 @@ public class TempTeacher  implements java.io.Serializable {
         this.teacherEnrolling = teacherEnrolling;
     }
 
-
-
+    public boolean getTeacherSex() {
+        return this.teacherSex;
+    }
 
 }
 

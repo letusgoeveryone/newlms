@@ -1,0 +1,64 @@
+/* 动态 */
+
+/*stage: 触发类 >> 打开stage
+
+.stage{}
+.stage{
+
+	'position':'fixed',
+	'margin':'0'.
+	'padding':'0',
+	'top':'0',
+	'right':'0',
+	'bottom':'0',
+	'left':'0',
+	'height':'100%',
+	'width':'100%'
+
+}*/
+/*stage-x : 触发类 >> 关闭stage*/
+
+.stage-x{
+	position: fixed;
+	top: 5px;
+	right: 5px;
+	height: 30px;
+	width: 30px;
+	font-size: large;
+	text-align: center;
+	border-radius: 50%;
+	background-color: rgba(255, 255, 255, 0.8);
+	cursor: pointer;
+	z-index: 30;
+}
+.forstage-x{
+	margin-top: 40px;
+}
+
+
+/* 静态 */
+.stage-content{
+	cursor: default;
+}
+.stage-image{
+	cursor: default;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center center;
+	-webkit-transition: all 0.4s ;
+	-moz-transition: all 0.4s ;
+	-o-transition: all 0.4s ;
+	transition: all 0.4s ;
+}
+
+.stage-section {     /* stage-bg / stage-content 直接唯一孩子  建议 */
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: 1%;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+
+/*stage 辅助按钮*/

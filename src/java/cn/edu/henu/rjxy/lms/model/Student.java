@@ -10,7 +10,7 @@ public class Student  implements java.io.Serializable {
 
 
      private Integer studentId;
-     private int studentSn;
+     private String studentSn;
      private String studentName;
      private String studentIdcard;
      private int studentGrade;
@@ -23,7 +23,7 @@ public class Student  implements java.io.Serializable {
     public Student() {
     }
 
-    public Student(int studentSn, String studentName, String studentIdcard, int studentGrade, int studentCollegeId, String studentTel, String studentQq, String studentPwd, boolean studentSex) {
+    public Student(String studentSn, String studentName, String studentIdcard, int studentGrade, int studentCollegeId, String studentTel, String studentQq, String studentPwd, boolean studentSex) {
        this.studentSn = studentSn;
        this.studentName = studentName;
        this.studentIdcard = studentIdcard;
@@ -42,11 +42,11 @@ public class Student  implements java.io.Serializable {
     public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
-    public int getStudentSn() {
+    public String getStudentSn() {
         return this.studentSn;
     }
     
-    public void setStudentSn(int studentSn) {
+    public void setStudentSn(String studentSn) {
         this.studentSn = studentSn;
     }
     public String getStudentName() {

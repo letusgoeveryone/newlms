@@ -40,7 +40,7 @@
                             <h1 class="page-header stage-box">
                                 注册<span></span>
                             </h1>
-                             ${requestScope.Errors}
+                            <p>${requestScope.Errors}</p>   
                         </div>
                         <div  class="tab-pane fade in active" id="login-0">
                             <div>
@@ -337,7 +337,7 @@
                             }
                         } else if (checkText == "idcard") {
                             if (!(verifyObj.isPattern(/^[0-9 _]{6,18}$/))) {
-
+                                  $("p").hide();//jQuery 代码该方法隐藏所有 <p> 元素
                                 document.getElementById(checkMessage).innerHTML = "工号有误";
                                 statusBase[1] = 0;
                             } else {
