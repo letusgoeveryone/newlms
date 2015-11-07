@@ -34,7 +34,7 @@
      function textJson1(){
            $.ajax({
               type:'get',
-              url:'json_test12',            
+              url:'json_test89',            
               date:'teacherName=刘并需&teacherIdcard=4545454',
               success:function(date){
                   

@@ -7,10 +7,10 @@ package cn.edu.henu.rjxy.lms.server;
 
 import cn.edu.henu.rjxy.lms.dao.CollegeDao;
 import cn.edu.henu.rjxy.lms.dao.QueryResult;
-import cn.edu.henu.rjxy.lms.dao.TeacherDao;
 import cn.edu.henu.rjxy.lms.dao.TempTeacherDao;
 import cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil;
 import cn.edu.henu.rjxy.lms.model.TempTeacher;
+import cn.edu.henu.rjxy.lms.model.TempTeacherWithoutPwd;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -39,17 +39,33 @@ public class TempTeacherMethod {//根据学号范围　
 
         public static List getTempTeacherByCollegeName(String collegeName){
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();//开启事务
+
             //操作
             SQLQuery sQLQuery = session.createSQLQuery("select * from temp_teacher where teacher_college_id ="+CollegeDao.getIdByCollegeName(collegeName));
             sQLQuery.addEntity(TempTeacher.class);
-            
-            
-            
+            List<TempTeacherWithoutPwd> list = new LinkedList<TempTeacherWithoutPwd>();
+            TempTeacher tempTeacher;
+            TempTeacherWithoutPwd teacherWithoutPwd;
+            Iterator<TempTeacher> iterator = sQLQuery.iterate();
+            int i = 0;
+            for(; i < sQLQuery.list().size(); i++){
+                tempTeacher = iterator.next();
+                teacherWithoutPwd = new TempTeacherWithoutPwd();
+                teacherWithoutPwd.setTeacherSn(tempTeacher.getTeacherSn());
+                teacherWithoutPwd.setTeacherName(tempTeacher.getTeacherName());
+                teacherWithoutPwd.setTeacherIdcard(tempTeacher.getTeacherIdcard());
+                teacherWithoutPwd.setTeacherCollegeId(tempTeacher.getTeacherCollegeId());
+                teacherWithoutPwd.setTeacherTel(tempTeacher.getTeacherTel());
+                teacherWithoutPwd.setTeacherCollegeId(tempTeacher.getTeacherCollegeId());
+                teacherWithoutPwd.setTeacherQq(tempTeacher.getTeacherQq());
+                teacherWithoutPwd.setTeacherPositionId(tempTeacher.getTeacherPositionId());
+                teacherWithoutPwd.setTeacherEnrolling(tempTeacher.getTeacherEnrolling());
+                list.add(teacherWithoutPwd);
+            }
             transaction.commit();//提交
-            return sQLQuery.list();
+            return list;
         } catch (RuntimeException e) {
             transaction.rollback();//滚回事务
             throw e;
