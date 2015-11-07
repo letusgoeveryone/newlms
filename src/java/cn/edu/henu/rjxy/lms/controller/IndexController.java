@@ -31,13 +31,17 @@ public class IndexController {//主页映射
     public String index2(){
         return  "redirect:/index ";
     }
-    //    测试json
-   
-    @RequestMapping(value = "/json_test88", method = RequestMethod.GET)
-    public  @ResponseBody  Iterator<TempTeacher> json_test(){
-       List list= getTempTeacherByCollegeName("软件学院");
-       Iterator<TempTeacher> iterator = list.iterator();
-      return iterator;
+    
+    
+    //    测试json 请求json输出json
+    @RequestMapping("/json_test88")
+    public  @ResponseBody TempTeacher json_test(@RequestBody TempTeacher tec){
+      return tec;
+    }
+    //请求key/value输出json
+      @RequestMapping("/json_test89")
+    public  @ResponseBody TempTeacher json_test1( TempTeacher tec){
+      return tec;
     }
     //测试json
       @RequestMapping(value = "/json_test12", method = RequestMethod.GET)

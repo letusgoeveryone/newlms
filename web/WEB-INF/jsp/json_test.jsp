@@ -16,24 +16,36 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSON test</title>
-        <script type="text/javascript" src="<%=path%>/css/jquery.min.js"></script>
+        <script src="<%=path%>/js/jquery-1.7.min.js"></script>
         <script type="text/javascript">
         function textJson(){
-            $.ajax({
-                type:'post',
-                url:'${pageContext.request.contextPath}/json_test12.action',
-//                contentType:'application/json;charset= utf-8',
-                date,'{"teacherName:"手机","teacherIdcard"999}',
-                success:funtion(date){
-                    alert(date);
-                }
-            });           
+           $.ajax({
+              type:'post',
+              url:'json_test88',
+              contentType :'application/json;charset=utf-8',
+              date:'{"teacherName":"仙人是","teacherIdcard":411121199604284025}',
+              success:function(date){
+                  
+                  alert(date);
+              }
+           });
         }
-            
+        
+     function textJson1(){
+           $.ajax({
+              type:'get',
+              url:'json_test12',            
+              date:'teacherName=刘并需&teacherIdcard=4545454',
+              success:function(date){
+                  
+                  alert(date[0].teacherName);
+              }
+           });
+        }
         </script>
     </head>
     <body>
         <input type="button" onclick="textJson()" value="requestJson" /> 
-         
+        <input type="button" onclick="textJson1()" value="responseJson" />  
     </body>
 </html>
