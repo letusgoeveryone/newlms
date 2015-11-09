@@ -108,6 +108,10 @@ public class TempStudent  implements java.io.Serializable {
     public void setStudentSex(boolean studentSex) {
         this.studentSex = studentSex;
     }
+    public boolean getStudentSex() {
+        return this.studentSex;
+    }
+    
     public Date getStudentEnrolling() {
         return this.studentEnrolling;
     }

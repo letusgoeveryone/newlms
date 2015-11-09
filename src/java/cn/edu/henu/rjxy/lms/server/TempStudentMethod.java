@@ -11,13 +11,12 @@ import cn.edu.henu.rjxy.lms.dao.QueryResult;
 import cn.edu.henu.rjxy.lms.dao.TempStudentDao;
 import cn.edu.henu.rjxy.lms.dao.TempTeacherDao;
 import cn.edu.henu.rjxy.lms.model.TempStudent;
-import cn.edu.henu.rjxy.lms.model.TempTeacher;
+import cn.edu.henu.rjxy.lms.model.TempStudentWithoutPwd;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import org.hibernate.SQLQuery;
-import org.hibernate.Transaction;
+
 
 /**
  *
@@ -38,7 +37,7 @@ public class TempStudentMethod {
         return true;
     }
     
-    public static List<TempStudent> getStudentBySn(int MinSn,int MaxSn){
+    public static List<TempStudentWithoutPwd> getStudentBySn(int MinSn,int MaxSn){
         QueryResult<TempStudent> queryResult = new QueryResult<TempStudent>();
         queryResult.setList(new LinkedList());
         QueryResult<TempStudent> tempQueryResult;
@@ -48,11 +47,22 @@ public class TempStudentMethod {
             queryResult.getList().addAll(tempQueryResult.getList());
            }
         }
-        return queryResult.getList();
+        TempStudent tempStudent;
+        TempStudentWithoutPwd tempStudentWithoutPwd;
+        List<TempStudentWithoutPwd> list = new LinkedList<TempStudentWithoutPwd>();
+        Iterator<TempStudent> it = queryResult.getList().iterator();
+        while(it.hasNext()){
+            tempStudent = it.next();
+            tempStudentWithoutPwd = new TempStudentWithoutPwd();
+            tempStudentWithoutPwd.copy(tempStudent);
+            list.add(tempStudentWithoutPwd);
+        }
+ 
+        return list;
         
     }
     
-        public static QueryResult getAllTempStudent(){
+        public static List getAllTempStudent(){
         return TempStudentDao.getAllTempStudent();
     }
         

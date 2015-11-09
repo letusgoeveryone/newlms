@@ -22,17 +22,27 @@ import org.hibernate.Transaction;
 
 public class TempTeacherMethod {//根据学号范围　
     
-    public static List<TempTeacher> getTempTeacherBySn(int MinSn,int MaxSn){
+    public static List<TempTeacherWithoutPwd> getTempTeacherBySn(int MinSn,int MaxSn){
         QueryResult<TempTeacher> queryResult = new QueryResult<TempTeacher>();
         queryResult.setList(new LinkedList());
         QueryResult<TempTeacher> tempQueryResult;
+        List<TempTeacherWithoutPwd> list = new LinkedList<TempTeacherWithoutPwd>();
         for(;MinSn <= MaxSn;MinSn++){
             tempQueryResult = TempTeacherDao.getTempTeacherByUserName(""+MinSn);
            if( tempQueryResult.getList() != null){
             queryResult.getList().addAll(tempQueryResult.getList());
            }
+           TempTeacher tempTeacher;
+           Iterator<TempTeacher> it = queryResult.getList().iterator();
+           
+           while(it.hasNext()){
+               TempTeacherWithoutPwd teacherWithoutPwd = new TempTeacherWithoutPwd();
+               tempTeacher = it.next();
+               teacherWithoutPwd.copy(tempTeacher);
+               list.add(teacherWithoutPwd);
+           }
         }
-        return queryResult.getList();
+        return list;
         
     }
   //  根据　学院查询
@@ -49,19 +59,10 @@ public class TempTeacherMethod {//根据学号范围　
             TempTeacher tempTeacher;
             TempTeacherWithoutPwd teacherWithoutPwd;
             Iterator<TempTeacher> iterator = sQLQuery.iterate();
-            int i = 0;
-            for(; i < sQLQuery.list().size(); i++){
+            while(iterator.hasNext()){
                 tempTeacher = iterator.next();
                 teacherWithoutPwd = new TempTeacherWithoutPwd();
-                teacherWithoutPwd.setTeacherSn(tempTeacher.getTeacherSn());
-                teacherWithoutPwd.setTeacherName(tempTeacher.getTeacherName());
-                teacherWithoutPwd.setTeacherIdcard(tempTeacher.getTeacherIdcard());
-                teacherWithoutPwd.setTeacherCollegeId(tempTeacher.getTeacherCollegeId());
-                teacherWithoutPwd.setTeacherTel(tempTeacher.getTeacherTel());
-                teacherWithoutPwd.setTeacherCollegeId(tempTeacher.getTeacherCollegeId());
-                teacherWithoutPwd.setTeacherQq(tempTeacher.getTeacherQq());
-                teacherWithoutPwd.setTeacherPositionId(tempTeacher.getTeacherPositionId());
-                teacherWithoutPwd.setTeacherEnrolling(tempTeacher.getTeacherEnrolling());
+                teacherWithoutPwd.copy(tempTeacher);
                 list.add(teacherWithoutPwd);
             }
             transaction.commit();//提交
@@ -84,14 +85,11 @@ public class TempTeacherMethod {//根据学号范围　
 //        System.err.println("成功");
         return true;
     } 
-    public static QueryResult getAllTempTeacher(){
+    public static List getAllTempTeacher(){
         return TempTeacherDao.getAllTempTeacher();
     }
     
     
     
-    public static void main(String[] args) {
-        System.out.println(getAllTempTeacher().getList().size());
-    }
     
 }

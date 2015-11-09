@@ -33,11 +33,22 @@ public class TempTeacherWithoutPwd  implements java.io.Serializable {
        this.teacherCollegeId = teacherCollegeId;
        this.teacherTel = teacherTel;
        this.teacherQq = teacherQq;
-
        this.teacherSex = teacherSex;
        this.teacherPositionId = teacherPositionId;
        this.teacherEnrolling = teacherEnrolling;
     }
+    public void copy(TempTeacher tempTeacher){
+       this.teacherSn = tempTeacher.getTeacherSn();
+       this.teacherName = tempTeacher.getTeacherName();
+       this.teacherIdcard = tempTeacher.getTeacherIdcard();
+       this.teacherCollegeId = tempTeacher.getTeacherCollegeId();
+       this.teacherTel = tempTeacher.getTeacherTel();
+       this.teacherQq = tempTeacher.getTeacherQq();
+       this.teacherSex = tempTeacher.getTeacherSex();
+       this.teacherPositionId = tempTeacher.getTeacherPositionId();
+       this.teacherEnrolling = tempTeacher.getTeacherEnrolling();
+    }
+    
    
     public Integer getTeacherId() {
         return this.teacherId;

@@ -6,7 +6,10 @@
 package cn.edu.henu.rjxy.lms.dao;
 import cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil;
 import cn.edu.henu.rjxy.lms.model.TempStudent;
+import cn.edu.henu.rjxy.lms.model.TempStudentWithoutPwd;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -79,7 +82,7 @@ public class TempStudentDao {
         }
     }
      
-    public static QueryResult getAllTempStudent(){
+    public static List getAllTempStudent(){
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -96,9 +99,18 @@ public class TempStudentDao {
                 Iterator<TempStudent> iterator = sqlq.list().iterator();
                 queryResult.setE(iterator.next());
             }
-            
+            List list = new LinkedList();
+            Iterator<TempStudent> it = queryResult.getList().iterator();
+            TempStudent tempStudent;
+            TempStudentWithoutPwd tempStudentWithoutPwd;
+            while(it.hasNext()){
+                tempStudent = it.next();
+                tempStudentWithoutPwd = new TempStudentWithoutPwd();
+                tempStudentWithoutPwd.copy(tempStudent);
+                list.add(tempStudentWithoutPwd);
+            }
             transaction.commit();//提交
-            return queryResult;
+            return list;
         } catch (RuntimeException e) {
             transaction.rollback();//滚回事务
             throw e;
