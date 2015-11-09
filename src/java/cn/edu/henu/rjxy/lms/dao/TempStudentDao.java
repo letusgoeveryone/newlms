@@ -7,11 +7,10 @@ package cn.edu.henu.rjxy.lms.dao;
 import cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil;
 import cn.edu.henu.rjxy.lms.model.TempStudent;
 import java.util.Iterator;
-import java.util.List;
-import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+
 
 /**
  *
@@ -24,9 +23,8 @@ public class TempStudentDao {
     //保存临时教师
     public static void saveTempStudent(TempStudent tempStudent){
         
-        Transaction transaction = null;
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();
             //操作
             session.save(tempStudent);
             transaction.commit();//提交
@@ -41,28 +39,36 @@ public class TempStudentDao {
      
      //根据用户名查询正式学生对象
     public static QueryResult getTempStudentByUserName(String userName){
-        Transaction transaction = null;
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();
             //操作
-            Criteria criteria = null;
+                        //Criteria criteria;
+            SQLQuery sqlq;
            if(userName.length() == 10){//十位即根据学号查询
-            criteria = session.createCriteria(TempStudent.class);
-            criteria.add(Restrictions.eq("studentSn", userName));
+            //criteria = session.createCriteria(TempTeacher.class);
+            //criteria.add(Restrictions.eq("teacherSn", userName));
+            sqlq = session.createSQLQuery("select * from temp_student where student_sn = "+userName);
+
            }else if(userName.length() == 11){//十一位即根据手机号查询
-            criteria = session.createCriteria(TempStudent.class);
-            criteria.add(Restrictions.eq("studentTel", userName));
+            //criteria = session.createCriteria(TempTeacher.class);
+            //criteria.add(Restrictions.eq("teacherTel", userName));
+               sqlq = session.createSQLQuery("select * from temp_student where student_tel = "+userName);
            }else{//其他则根据身份证查询
-            criteria = session.createCriteria(TempStudent.class);
-            criteria.add(Restrictions.eq("studentIdcard", userName));
+//            criteria = session.createCriteria(TempTeacher.class);
+//            criteria.add(Restrictions.eq("teacherIdcard", userName));
+               sqlq = session.createSQLQuery("select * from temp_student where student_idcard = "+userName);
            }
-            QueryResult<TempStudent> queryResult = new QueryResult<TempStudent>();
-            queryResult.setList((List<TempStudent>) criteria.list());//记录结果集合
-            queryResult.setNumber(criteria.list().size());//记录条数
+           sqlq.addEntity(TempStudent.class);
+            QueryResult queryResult = new QueryResult();
+            //queryResult.setList(criteria.list());//记录结果集合
+            queryResult.setList(sqlq.list());
+            queryResult.setNumber(sqlq.list().size());//记录条数
+            
             if(queryResult.getNumber() == 1){//若结果唯一，则为结果中的对象赋值
-                Iterator<TempStudent> iterator = criteria.list().iterator();
+                Iterator<TempStudent> iterator = sqlq.list().iterator();
                 queryResult.setE(iterator.next());
             }
+            
             transaction.commit();//提交
             return queryResult;
         } catch (RuntimeException e) {
@@ -73,5 +79,34 @@ public class TempStudentDao {
         }
     }
      
-     
+    public static QueryResult getAllTempStudent(){
+        Transaction transaction = session.beginTransaction();
+        try {
+            //操作
+                        //Criteria criteria;
+            SQLQuery sqlq;
+            sqlq = session.createSQLQuery("select * from temp_student");
+           sqlq.addEntity(TempStudent.class);
+            QueryResult queryResult = new QueryResult();
+            //queryResult.setList(criteria.list());//记录结果集合
+            queryResult.setList(sqlq.list());
+            queryResult.setNumber(sqlq.list().size());//记录条数
+            
+            if(queryResult.getNumber() == 1){//若结果唯一，则为结果中的对象赋值
+                Iterator<TempStudent> iterator = sqlq.list().iterator();
+                queryResult.setE(iterator.next());
+            }
+            
+            transaction.commit();//提交
+            return queryResult;
+        } catch (RuntimeException e) {
+            transaction.rollback();//滚回事务
+            throw e;
+        }finally{
+            session.close();
+        }
+    }
+    
+    
+    
 }

@@ -13,8 +13,11 @@ import cn.edu.henu.rjxy.lms.dao.TempTeacherDao;
 import cn.edu.henu.rjxy.lms.model.TempStudent;
 import cn.edu.henu.rjxy.lms.model.TempTeacher;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import org.hibernate.SQLQuery;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -34,4 +37,25 @@ public class TempStudentMethod {
         TempStudentDao.saveTempStudent(tempStudent);
         return true;
     }
+    
+    public static List<TempStudent> getStudentBySn(int MinSn,int MaxSn){
+        QueryResult<TempStudent> queryResult = new QueryResult<TempStudent>();
+        queryResult.setList(new LinkedList());
+        QueryResult<TempStudent> tempQueryResult;
+        for(;MinSn <= MaxSn;MinSn++){
+            tempQueryResult = TempTeacherDao.getTempTeacherByUserName(""+MinSn);
+           if( tempQueryResult.getList() != null){
+            queryResult.getList().addAll(tempQueryResult.getList());
+           }
+        }
+        return queryResult.getList();
+        
+    }
+    
+        public static QueryResult getAllTempStudent(){
+        return TempStudentDao.getAllTempStudent();
+    }
+        
+
+    
 }

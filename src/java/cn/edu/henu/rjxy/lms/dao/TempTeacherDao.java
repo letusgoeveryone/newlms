@@ -8,12 +8,12 @@ package cn.edu.henu.rjxy.lms.dao;
 import cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil;
 import cn.edu.henu.rjxy.lms.model.TempTeacher;
 import java.util.Iterator;
-import java.util.List;
-import org.hibernate.Criteria;
+//import java.util.List;
+//import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+//import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -25,9 +25,8 @@ public class TempTeacherDao {
     //保存临时教师对象
     public static void saveTempTeacher(TempTeacher tempTeacher){
         session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
+        Transaction transaction = session.beginTransaction();//开启事务
         try {
-            transaction = session.beginTransaction();//开启事务
             //操作
             session.save(tempTeacher);
             transaction.commit();//提交
@@ -42,11 +41,9 @@ public class TempTeacherDao {
      //根据用户名查询临时教师对象
     public static QueryResult getTempTeacherByUserName(String userName){
         session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
+        Transaction transaction = session.beginTransaction();
         
         try {
-            
-            transaction = session.beginTransaction();
             //操作
             //Criteria criteria;
             SQLQuery sqlq;
@@ -84,4 +81,33 @@ public class TempTeacherDao {
             session.close();
         }
     }
+    
+    public static QueryResult getAllTempTeacher(){
+        Transaction transaction = session.beginTransaction();
+        try {
+            //操作
+                        //Criteria criteria;
+            SQLQuery sqlq;
+            sqlq = session.createSQLQuery("select * from temp_teacher");
+           sqlq.addEntity(TempTeacher.class);
+            QueryResult queryResult = new QueryResult();
+            queryResult.setList(sqlq.list());
+            queryResult.setNumber(sqlq.list().size());//记录条数
+            if(queryResult.getNumber() == 1){//若结果唯一，则为结果中的对象赋值
+                Iterator<TempTeacher> iterator = sqlq.list().iterator();
+                queryResult.setE(iterator.next());
+            }
+            
+            transaction.commit();//提交
+            return queryResult;
+        } catch (RuntimeException e) {
+            transaction.rollback();//滚回事务
+            throw e;
+        }finally{
+            session.close();
+        }
+    }
+    
+    
+    
 }

@@ -74,15 +74,6 @@ public class TempTeacherMethod {//根据学号范围　
         }
     }
     
-    public static void main(String[] args) {      
-        List list = getTempTeacherByCollegeName("文学院");
-        System.out.println(list.size());
-        Iterator<TempTeacher> iterator = list.iterator();
-        while(iterator.hasNext()){
-            System.out.println((iterator.next().getTeacherName()));
-        }
-
-    }
     
     public static boolean addTempTeacherMessage(String teacherSn, String teacherName, String teacherIdcard, String teacherCollegeName, String teacherTel, String teacherQq, String teacherPwd, String teacherSex, int teacherPositionId, Date teacherEnrolling){
         if(teacherSex.compareTo("男") != 0 && teacherSex.compareTo("女") != 0 ){
@@ -92,6 +83,15 @@ public class TempTeacherMethod {//根据学号范围　
         TempTeacherDao.saveTempTeacher(tempTeacher);
 //        System.err.println("成功");
         return true;
+    } 
+    public static QueryResult getAllTempTeacher(){
+        return TempTeacherDao.getAllTempTeacher();
+    }
+    
+    
+    
+    public static void main(String[] args) {
+        System.out.println(getAllTempTeacher().getList().size());
     }
     
 }
