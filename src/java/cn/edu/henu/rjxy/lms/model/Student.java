@@ -34,6 +34,18 @@ public class Student  implements java.io.Serializable {
        this.studentPwd = studentPwd;
        this.studentSex = studentSex;
     }
+    
+    public void copy(TempStudent tempStudent){
+        this.setStudentCollegeId(tempStudent.getStudentCollegeId());
+        this.setStudentSn(tempStudent.getStudentSn());
+        this.setStudentName(tempStudent.getStudentName());
+        this.setStudentIdcard(tempStudent.getStudentIdcard());
+        this.setStudentGrade(tempStudent.getStudentGrade());
+        this.setStudentTel(tempStudent.getStudentTel());
+        this.setStudentQq(tempStudent.getStudentQq());
+        this.setStudentPwd(tempStudent.getStudentPwd());
+        this.setStudentSex(tempStudent.getStudentSex());
+    }
    
     public Integer getStudentId() {
         return this.studentId;

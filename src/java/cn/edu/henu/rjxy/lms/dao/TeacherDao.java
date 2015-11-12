@@ -22,7 +22,7 @@ import org.hibernate.criterion.Restrictions;
  * @author Administrator
  */
 public  class TeacherDao {
-    static Session session = HibernateUtil.getSessionFactory().openSession();
+    static Session session;
     
      //根据用户名查询正式教师对象
     
@@ -32,6 +32,7 @@ public  class TeacherDao {
      * @return 返回一个QueryResult对象
      */
     public static QueryResult getTeacherByUserName(String userName){
+        session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -66,22 +67,11 @@ public  class TeacherDao {
     
     public static void addTeacherFromtempTeacher(TempTeacher tempTeacher){
         session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();
             //操作
             Teacher teacher = new Teacher();
-            teacher.setTeacherSn(tempTeacher.getTeacherSn());
-            teacher.setTeacherName(tempTeacher.getTeacherName());
-            teacher.setTeacherIdcard(tempTeacher.getTeacherIdcard());
-            teacher.setTeacherCollegeId(tempTeacher.getTeacherCollegeId());
-            teacher.setTeacherTel(tempTeacher.getTeacherTel());
-            teacher.setTeacherQq(tempTeacher.getTeacherQq());
-            teacher.setTeacherPwd(tempTeacher.getTeacherPwd());
-            teacher.setTeacherSex(tempTeacher.getTeacherSex());
-            teacher.setTeacherPositionId(tempTeacher.getTeacherPositionId());
-            teacher.setTeacherEnrolling(tempTeacher.getTeacherEnrolling());
-            teacher.setTeacherRoleValue(0);
+            teacher.copy(tempTeacher);
             session.save(teacher);
             transaction.commit();//提交
 
@@ -94,9 +84,9 @@ public  class TeacherDao {
     }
     
     public static void saveTeacher(Teacher teacher){
-        Transaction transaction = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
         try {
-            transaction = session.beginTransaction();
             //操作
             session.save(teacher);
             transaction.commit();//提交

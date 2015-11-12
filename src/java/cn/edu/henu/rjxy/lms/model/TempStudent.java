@@ -38,13 +38,7 @@ public class TempStudent  implements java.io.Serializable {
        this.studentEnrolling = studentEnrolling;
     }
    
-    public Integer getStudentId() {
-        return this.studentId;
-    }
-    
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
+
     public String getStudentSn() {
         return this.studentSn;
     }
@@ -118,6 +112,20 @@ public class TempStudent  implements java.io.Serializable {
     
     public void setStudentEnrolling(Date studentEnrolling) {
         this.studentEnrolling = studentEnrolling;
+    }
+
+    /**
+     * @return the studentId
+     */
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    /**
+     * @param studentId the studentId to set
+     */
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
 

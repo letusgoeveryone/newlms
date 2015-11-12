@@ -6,7 +6,9 @@
 package cn.edu.henu.rjxy.lms.server;
 import cn.edu.henu.rjxy.lms.dao.QueryResult;
 import cn.edu.henu.rjxy.lms.dao.StudentDao;
+import cn.edu.henu.rjxy.lms.dao.TempStudentDao;
 import cn.edu.henu.rjxy.lms.model.Student;
+import cn.edu.henu.rjxy.lms.model.TempStudent;
 
 /**
  *
@@ -32,10 +34,19 @@ public class StudentMethod {
        return false;
     }
     
-    public static void main(String[] args) {
-        
-        StudentDao.saveStudent(new Student("1445203133", "小郑", "412824199502190611", 2015, 10, "13839248586", "434345356", "123456", true));
-        if(studentSignInByUserName("1445203133", "123456")) System.out.print("登录成功");
+        //当且仅当学号和身份证查询到同一对象时，才将该对象添加到正式表
+        public static void addStudentFromtempStudent(String tempStudentSn, String tempStudentIdcard){
+            TempStudent tempStudent1 =(TempStudent) TempStudentDao.getTempStudentByUserName(tempStudentSn).getE();
+            TempStudent tempStudent2=(TempStudent) TempStudentDao.getTempStudentByUserName(tempStudentIdcard).getE();
+            
+                Student student = new Student();
+                student.copy(tempStudent2);
+                StudentDao.saveStudent(student);
+                
+        }
+    
+        public static void main(String[] args) {
+            addStudentFromtempStudent("1445203130", "012345678912345678");
     }
     
 }

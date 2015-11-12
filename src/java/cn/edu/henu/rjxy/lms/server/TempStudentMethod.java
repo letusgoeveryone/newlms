@@ -26,15 +26,11 @@ public class TempStudentMethod {
     
     
     
-    public static boolean addTempStudentMessage(String studentSn, String studentName,
+    public static void addTempStudentMessage(String studentSn, String studentName,
             String studentIdcard, int studentGrade, String studentCollegeName, String studentTel,
             String studentQq, String studentPwd, String studentSex, Date studentEnrolling){
-        if(studentSex.compareTo("男")!= 0 && studentSex.compareTo("女") != 0){//检查性别参数
-            return false;
-        }
         TempStudent tempStudent = new TempStudent(studentSn, studentName, studentIdcard, studentGrade, CollegeDao.getIdByCollegeName(studentCollegeName), studentTel, studentQq, studentPwd, studentSex.compareTo("男")==0, studentEnrolling);
         TempStudentDao.saveTempStudent(tempStudent);
-        return true;
     }
     
     public static List<TempStudentWithoutPwd> getStudentBySn(int MinSn,int MaxSn){

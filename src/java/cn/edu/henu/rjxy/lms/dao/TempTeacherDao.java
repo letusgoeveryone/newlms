@@ -23,7 +23,7 @@ import org.hibernate.Transaction;
  * @author Administrator
  */
 public class TempTeacherDao {
-    static Session session = HibernateUtil.getSessionFactory().openSession();
+    static Session session;
     
     //保存临时教师对象
     public static void saveTempTeacher(TempTeacher tempTeacher){

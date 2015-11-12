@@ -10,18 +10,16 @@ import java.util.Date;
 public class TempTeacherWithoutPwd  implements java.io.Serializable {
 
 
-     private Integer teacherId;
+
      private String teacherSn;//工号
      private String teacherName;//姓名
      private String teacherIdcard;//身份证 
-     private int teacherCollegeId;//yuan
-
+     private int teacherCollegeId;//学院  这个做一下转换  转为字符
      private String teacherTel;//手机号 
      private String teacherQq;//qq 
-
      private boolean teacherSex;//性别 
      private int teacherPositionId;//职称 
-     private Date teacherEnrolling;//注册时间
+
 
     public TempTeacherWithoutPwd() {
     }
@@ -35,7 +33,7 @@ public class TempTeacherWithoutPwd  implements java.io.Serializable {
        this.teacherQq = teacherQq;
        this.teacherSex = teacherSex;
        this.teacherPositionId = teacherPositionId;
-       this.teacherEnrolling = teacherEnrolling;
+
     }
     public void copy(TempTeacher tempTeacher){
        this.teacherSn = tempTeacher.getTeacherSn();
@@ -46,17 +44,10 @@ public class TempTeacherWithoutPwd  implements java.io.Serializable {
        this.teacherQq = tempTeacher.getTeacherQq();
        this.teacherSex = tempTeacher.getTeacherSex();
        this.teacherPositionId = tempTeacher.getTeacherPositionId();
-       this.teacherEnrolling = tempTeacher.getTeacherEnrolling();
     }
     
    
-    public Integer getTeacherId() {
-        return this.teacherId;
-    }
-    
-    public void setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
-    }
+
     public String getTeacherSn() {
         return this.teacherSn;
     }
@@ -115,19 +106,10 @@ public class TempTeacherWithoutPwd  implements java.io.Serializable {
     public void setTeacherPositionId(int teacherPositionId) {
         this.teacherPositionId = teacherPositionId;
     }
-    public Date getTeacherEnrolling() {
-        return this.teacherEnrolling;
-    }
-    
-    public void setTeacherEnrolling(Date teacherEnrolling) {
-        this.teacherEnrolling = teacherEnrolling;
-    }
 
     public boolean getTeacherSex() {
         return this.teacherSex;
     }
-    
-
 
 }
 

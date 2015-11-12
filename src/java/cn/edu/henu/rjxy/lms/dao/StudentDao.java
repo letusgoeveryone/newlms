@@ -9,6 +9,7 @@ package cn.edu.henu.rjxy.lms.dao;
 
 import cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil;
 import cn.edu.henu.rjxy.lms.model.Student;
+import cn.edu.henu.rjxy.lms.model.TempStudent;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -21,11 +22,11 @@ import org.hibernate.criterion.Restrictions;
  * @author Administrator
  */
 public class StudentDao {
-    static Session session = HibernateUtil.getSessionFactory().openSession();
+    static Session session;
     
      //根据用户名查询正式学生对象
     public static QueryResult getStudentByUserName(String userName){
-        
+        session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -68,6 +69,7 @@ public class StudentDao {
      * 
      */
     public static void saveStudent(Student student){
+        session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -86,7 +88,7 @@ public class StudentDao {
      * @return 返回QueryResult对象，只有查询结果惟一时才真正删除
      */
     public static QueryResult<Student> deleteStudent(String userName){
-        
+        session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -96,6 +98,24 @@ public class StudentDao {
             }
             transaction.commit();//提交
             return queryResult;
+        } catch (RuntimeException e) {
+            transaction.rollback();//滚回事务
+            throw e;
+        }finally{
+            session.close();
+        }
+    }
+    
+    public static void addTeacherFromtempStudent(TempStudent tempStudent){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            //操作
+            Student student = new Student();
+            student.copy(tempStudent);
+            session.save(student);
+            transaction.commit();//提交
+
         } catch (RuntimeException e) {
             transaction.rollback();//滚回事务
             throw e;

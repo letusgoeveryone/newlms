@@ -10,16 +10,15 @@ import java.util.Date;
 public class TempStudentWithoutPwd  implements java.io.Serializable {
 
 
-     private Integer studentId;
+
      private String studentSn;//学号
      private String studentName;//姓名
      private String studentIdcard;// 身份证 
+     private boolean studentSex;//性别
      private int studentGrade; // 年级
      private int studentCollegeId;//院系
      private String studentTel;//手机号
      private String studentQq;//qq
-     private boolean studentSex;//性别
-     private Date studentEnrolling;//注册时间
 
     public TempStudentWithoutPwd() {
     }
@@ -33,7 +32,7 @@ public class TempStudentWithoutPwd  implements java.io.Serializable {
        this.studentTel = studentTel;
        this.studentQq = studentQq;
        this.studentSex = studentSex;
-       this.studentEnrolling = studentEnrolling;
+
     }
     public void copy(TempStudent tempStudent) {
        this.studentSn = tempStudent.getStudentSn();
@@ -44,16 +43,9 @@ public class TempStudentWithoutPwd  implements java.io.Serializable {
        this.studentTel = tempStudent.getStudentTel();
        this.studentQq = tempStudent.getStudentQq();
        this.studentSex = tempStudent.getStudentSex();
-       this.studentEnrolling = tempStudent.getStudentEnrolling();
     }
    
-    public Integer getStudentId() {
-        return this.studentId;
-    }
-    
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
+
     public String getStudentSn() {
         return this.studentSn;
     }
@@ -111,16 +103,6 @@ public class TempStudentWithoutPwd  implements java.io.Serializable {
     public void setStudentSex(boolean studentSex) {
         this.studentSex = studentSex;
     }
-    public Date getStudentEnrolling() {
-        return this.studentEnrolling;
-    }
-    
-    public void setStudentEnrolling(Date studentEnrolling) {
-        this.studentEnrolling = studentEnrolling;
-    }
-
-
-
 
 }
 

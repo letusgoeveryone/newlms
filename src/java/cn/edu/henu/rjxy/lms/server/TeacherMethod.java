@@ -2,6 +2,9 @@ package cn.edu.henu.rjxy.lms.server;
 
 import cn.edu.henu.rjxy.lms.dao.QueryResult;
 import cn.edu.henu.rjxy.lms.dao.TeacherDao;
+import cn.edu.henu.rjxy.lms.dao.TempTeacherDao;
+import cn.edu.henu.rjxy.lms.model.Teacher;
+import cn.edu.henu.rjxy.lms.model.TempTeacher;
 
 /**
  *该类包含了关于正式老师的相关操作
@@ -24,6 +27,15 @@ public class TeacherMethod {
            }
        }
        return false;
+    }
+    //当且仅当学号和身份证查询到同一对象时，才将该对象添加到正式表
+    public void addTeacherFromtempTeacher(String tempTeacherSn, String tempTeacherIdcard){
+        TempTeacher tempTeacher1 = (TempTeacher)TempTeacherDao.getTempTeacherByUserName(tempTeacherSn).getE();
+        TempTeacher tempTeacher2 = (TempTeacher)TempTeacherDao.getTempTeacherByUserName(tempTeacherIdcard).getE();
+            Teacher teacher = new Teacher();
+            teacher.copy(tempTeacher2);
+            TeacherDao.saveTeacher(teacher);
+            
     }
 }
 

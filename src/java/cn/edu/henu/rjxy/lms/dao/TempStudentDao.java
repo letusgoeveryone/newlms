@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cn.edu.henu.rjxy.lms.dao;
+import static cn.edu.henu.rjxy.lms.dao.TempTeacherDao.session;
 import cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil;
 import cn.edu.henu.rjxy.lms.model.TempStudent;
 import cn.edu.henu.rjxy.lms.model.TempStudentWithoutPwd;
@@ -21,11 +22,11 @@ import org.hibernate.Transaction;
  */
 
 public class TempStudentDao {
-     static Session session = HibernateUtil.getSessionFactory().openSession();
+     static Session session;
      
     //保存临时教师
     public static void saveTempStudent(TempStudent tempStudent){
-        
+        session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -42,6 +43,7 @@ public class TempStudentDao {
      
      //根据用户名查询正式学生对象
     public static QueryResult getTempStudentByUserName(String userName){
+        session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -67,10 +69,10 @@ public class TempStudentDao {
             queryResult.setList(sqlq.list());
             queryResult.setNumber(sqlq.list().size());//记录条数
             
-            if(queryResult.getNumber() == 1){//若结果唯一，则为结果中的对象赋值
+            
                 Iterator<TempStudent> iterator = sqlq.list().iterator();
                 queryResult.setE(iterator.next());
-            }
+            
             
             transaction.commit();//提交
             return queryResult;
@@ -83,15 +85,14 @@ public class TempStudentDao {
     }
      
     public static List getAllTempStudent(){
+        session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
                         //Criteria criteria;
-            SQLQuery sqlq;
-            sqlq = session.createSQLQuery("select * from temp_student");
+            SQLQuery sqlq = session.createSQLQuery("select * from temp_student");
            sqlq.addEntity(TempStudent.class);
             QueryResult queryResult = new QueryResult();
-            //queryResult.setList(criteria.list());//记录结果集合
             queryResult.setList(sqlq.list());
             queryResult.setNumber(sqlq.list().size());//记录条数
             

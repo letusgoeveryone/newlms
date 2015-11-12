@@ -74,7 +74,9 @@ public class TempTeacherMethod {//根据学号范围　
             session.close();
         }
     }
-    
+    public static List getAllTempTeacher(){
+        return TempTeacherDao.getAllTempTeacher();
+    }
     
     public static boolean addTempTeacherMessage(String teacherSn, String teacherName, String teacherIdcard, String teacherCollegeName, String teacherTel, String teacherQq, String teacherPwd, String teacherSex, int teacherPositionId, Date teacherEnrolling){
         if(teacherSex.compareTo("男") != 0 && teacherSex.compareTo("女") != 0 ){
@@ -84,10 +86,8 @@ public class TempTeacherMethod {//根据学号范围　
         TempTeacherDao.saveTempTeacher(tempTeacher);
 //        System.err.println("成功");
         return true;
-    } 
-    public static List getAllTempTeacher(){
-        return TempTeacherDao.getAllTempTeacher();
     }
+    
     
     
     
