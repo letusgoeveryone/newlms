@@ -1,3 +1,7 @@
+
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,7 +9,13 @@
  */
 package cn.edu.henu.rjxy.lms.controller;
 
+import cn.edu.henu.rjxy.lms.dao.QueryResult;
+import static cn.edu.henu.rjxy.lms.dao.TempStudentDao.getAllTempStudent;
+import static cn.edu.henu.rjxy.lms.dao.TempTeacherDao.getAllTempTeacher;
 import cn.edu.henu.rjxy.lms.model.TempTeacher;
+import cn.edu.henu.rjxy.lms.model.TempTeacherWithoutPwd;
+import cn.edu.henu.rjxy.lms.server.TempTeacherMethod;
+import static cn.edu.henu.rjxy.lms.server.TempTeacherMethod.getAllTempTeacher;
 import static cn.edu.henu.rjxy.lms.server.TempTeacherMethod.getTempTeacherByCollegeName;
 import java.util.Date;
 import java.util.Iterator;
@@ -39,16 +49,19 @@ public class IndexController {//主页映射
       return tec;
     }
     //请求key/value输出json
-      @RequestMapping("/json_test89")
-    public  @ResponseBody TempTeacher json_test1( TempTeacher tec){
-      return tec;
+      @RequestMapping(value = "/json_test89", method = RequestMethod.GET)
+    public  @ResponseBody Iterator<TempTeacherWithoutPwd> json_test1(){
+        List list = getTempTeacherByCollegeName("软件学院");  
+        Iterator<TempTeacherWithoutPwd> iterator = list.iterator();      
+      return iterator;
     }
     //测试json
       @RequestMapping(value = "/json_test12", method = RequestMethod.GET)
-    public  @ResponseBody Iterator<TempTeacher> json_test1(){
-       List list= getTempTeacherByCollegeName("软件学院");
-       Iterator<TempTeacher> iterator = list.iterator();
-        
-      return iterator;
+    public  @ResponseBody List json_test123(){
+               List list = TempTeacherMethod.getAllTempTeacher();           
+      return  list;
     }
+    
+     //学生信息请求key/value输出json
+   
 }

@@ -34,19 +34,16 @@ public class StudentMethod {
        return false;
     }
     
-        //当且仅当学号和身份证查询到同一对象时，才将该对象添加到正式表
-        public static void addStudentFromtempStudent(String tempStudentSn, String tempStudentIdcard){
-            TempStudent tempStudent1 =(TempStudent) TempStudentDao.getTempStudentByUserName(tempStudentSn).getE();
-            TempStudent tempStudent2=(TempStudent) TempStudentDao.getTempStudentByUserName(tempStudentIdcard).getE();
+        public static void addStudentFromtempStudent(String userName){
+
+            TempStudent tempStudent=(TempStudent) TempStudentDao.getTempStudentByUserName(userName).getE();
             
                 Student student = new Student();
-                student.copy(tempStudent2);
+                student.copy(tempStudent);
                 StudentDao.saveStudent(student);
                 
         }
     
-        public static void main(String[] args) {
-            addStudentFromtempStudent("1445203130", "012345678912345678");
-    }
+
     
 }

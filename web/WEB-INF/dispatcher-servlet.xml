@@ -19,13 +19,14 @@
     <!--支持json转换器--> 
     <mvc:annotation-driven/>
     <context:component-scan base-package="cn.edu.henu.rjxy.*" />
-   <!--     配置直接转发的页面不用开发控制器-->    
+    <!--     配置直接转发的页面不用开发控制器-->    
     <mvc:view-controller path="/console_dean" view-name="console_dean"/>
     <mvc:view-controller path="/json_test" view-name="json_test"/>
-<!--    <mvc:view-controller path="/json_test88" view-name="json_test88"/>-->
-   
-
-
+    <mvc:view-controller path="/json_test88" view-name="json_test89"/>
+    <mvc:view-controller path="/json_test88" view-name="json_test90"/>
+     <mvc:view-controller path="/newjsp" view-name="newjsp"/>
+    <mvc:view-controller path="/json_test12" view-name="json_test12"/>
+    
     <context:component-scan base-package="cn.edu.henu.rjxy.*" /> 
     <mvc:annotation-driven />  
     <mvc:resources location="/js/" mapping="/js/**" />

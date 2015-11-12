@@ -86,6 +86,7 @@ public class TempTeacherDao {
     }
     
     public static List getAllTempTeacher(){
+        session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
