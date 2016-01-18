@@ -1,0 +1,696 @@
+/*!
+ * Name : Stylesheet.css
+ * rule_csspartSetting: 基于模块化,功能化的划分
+ * rule_cssName: base bootstrap (http://getbootstrap.com)
+ * Author : LongYeh
+ * Licensed under MIT
+ */
+/*! global_css 样式重置 */
+	/*重置超链接样式*/
+
+	a:focus {
+		outline: none;
+	}
+	a:active,
+	a:hover {
+		outline: none;
+	}
+/*************************************END!*/
+/*! global_css样式设置 */
+
+html, body{
+	height: 100%;
+	width:100%;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, 文泉驿微米黑, 微软雅黑;
+	/*color:#fff;*/
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url("https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff") format("ttf");
+}
+ul li{
+	list-style: none;
+}
+.theme-dark{
+	background-color: #444;
+	color: #fff;
+}
+/*************************************END!*/
+
+/*导航
+* 1. 基本布局 页眉页脚,左侧导航栏以及mydot按钮
+	* 1.1 页眉页脚
+	* 1.2 左侧导航栏
+	* 1.3 mydot按钮
+* 2. 三种基本设计构架
+	* 2.1 主页构架
+		*2.1.1 顶部轮播图
+		*2.1.2 课程页面
+			*2.1.2.1 课程导航栏
+			*2.1.2 .2 课程介绍栏
+	* 2.2 课程交互构架
+		* 2.2.1 科目
+		* 2.2.2 目录
+		* 2.2.3 内容
+	* 2.3 管理员构架
+		* 2.3.1 Root管理员
+		* 2.3.2 教学院长
+		* 2.3.3 校务员
+		* 2.3.4 老师
+		* 2.3.5 学生
+	*2.4 登录
+* 3. 待定...
+*  一些按钮的小工具
+*  一些辅助用的小工具
+*/
+
+
+
+
+
+
+/*! 基本布局 开始  */
+
+	/*  页眉页脚  样式设置 */
+	header{
+		border-bottom: 0.5px solid #0088CC;
+		background-color: #333333;
+		color: #fff;
+	}
+	.navbar-toggle > span{
+	    background-color: white;
+	}
+	.nav >li> .btn-forline:hover, .nav >li .btn-forline:focus {
+	    text-decoration: none;
+	    background-color: #0088CC;
+	}
+	.navbar-brand{
+		font-size: 15px;
+		text-transform:  capitalize;
+	    color: #0088CC;
+		cursor:  pointer;
+	}
+	.navbar-brand:hover,.navbar-brand:focus {
+		color: #fff;
+		background-color: #0088CC;
+		transition: all 0.4s ;
+	}
+	.navbar-brand .idom{
+		color: #ffffcc;
+	}
+	.navbar-collapse {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	footer {
+	    background-color: #333333;
+	    color: #fff;
+	}
+	/* 左侧导航栏 样式设置 */
+	.console-sidebar{
+	    padding:0;
+	}
+	.course-list li{
+	    list-style: none;
+	}
+	li .btn-forline{
+	    width: 100%;
+	    text-align: left;
+	}
+	/* myDot按钮 样式设置 */
+	#mydot{
+		height: 81px;
+		width: 81px;
+		border-radius: 3px;
+		background-color: rgba(255, 255, 255, 0.9);;
+		position: fixed;
+		right: 20px;
+		bottom: 20px;
+		z-index: 25;
+	}
+	#mydot div img{
+		cursor:pointer;
+		padding: 5px;
+
+	}
+	.lighthouse{
+		width: 100px;
+		height: 0;
+		border-radius: 3px;
+		background-color: transparent;
+		position: absolute;
+		bottom:100px;
+		overflow: hidden;
+	}
+	.lighthouse	ul{
+		padding: 0;
+	}
+	.lighthouse ul li{
+		width: 100px;
+		height:100px;
+		display: block;
+	}
+	.lighthouse ul li a{
+		position: relative;
+		display: block;
+		height: 81px;
+		width: 81px;
+		padding-left: 9.5px;
+		padding-right: 9.5px;
+		border-radius: 50%;
+		color:#000;
+		background-color: #77aa77;
+		line-height: 81px;
+		text-align: center;
+		text-decoration: none;
+		z-index: 21;
+	}
+	.lighthouse ul li a:hover{
+		background-color: #99CC99;
+	}
+/* 基本布局 结束 !*/
+
+/*!  三种基本设计构架  */
+
+/*  主页构架  样式设置*/
+#tree-frame{
+	overflow-x: hidden;
+}
+.section-nav{
+    margin: auto;
+}
+	/*   顶部轮播图  样式设置*/
+	#tree-body{
+		/*padding-top: 6.2%;
+		padding-bottom: 0.8%;*/
+		background-color: #444;
+		/*border-bottom: 1px solid #0088CC;*/
+		color: #fff;
+	}
+	#intro-frame{
+		/*background-color: #0055AA;*/
+
+		color: #fff;
+	}
+	.intro {
+		background-color: rgba(0, 0, 0, 0.5);
+		border-radius: 3px;
+		border: 15px solid #333;
+		border-right: 15px solid transparent;
+		/*overflow-y: scroll;*/
+	}
+	.intro-body p{
+		background-color:#333;
+		display: block;
+		padding: 20px;
+		line-height: 20px;
+		border-right: 15px solid #fff;
+	}
+	@keyframes liunianpic {
+		from {
+			transform: scale(0);
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+	.intro-foot{
+		position: absolute;
+		padding: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+	}
+	.intro-foot div{
+		text-align: center;
+		width: 100%;
+		background-color: rgb(250,250,250);
+		border-top: 5px solid #333;
+        }
+	#myCarousel {
+	    overflow: hidden;
+	    border-radius: 3px;
+	}
+	#myCarousel img {
+		overflow:hidden;
+		border-radius: 2px;
+	}
+	.carousel-indicators {
+		position: static;
+		bottom: 10px;
+		left: 50%;
+		z-index: 15;
+		width: auto;
+		margin-top: 20px;
+		padding-left: 0;
+		margin-left: 0;
+		text-align: right;
+	}
+	.carousel-indicators li {
+	  display: inline-block;
+	  width: auto;
+	  height: auto;
+	  margin: 1px;
+	  padding: 5px 30px;
+	  cursor: pointer;
+	  text-indent: inherit;
+
+	  background-color:rgba(0, 0, 0, 0.5);
+	  border: none;
+	  border-radius: 1px;
+	}
+	.carousel-indicators li:hover{
+		background-color: #fff;
+	}
+	.carousel-indicators .active {
+	  width: auto;
+  	  height: auto;
+  	  margin: 1px;
+  	  padding: 5px 30px;
+	  background-color: #fff;
+	}
+	.carousel .item{
+		height: 600px;
+		/*background-color: #0A64A4;*/
+	}
+	.carousel .item > div{
+		height:100%;
+	}
+	.carousel-caption{
+		z-index: 10;
+	}
+	.carousel-caption table{
+		display: inline-block;
+		margin: 12px 0;
+	}
+	.carousel-caption table tr th{
+		padding-right: 12px;
+		text-align: right;
+	}
+	.carousel-caption table tr td{
+		padding-left: 12px;
+		text-align: left;
+	}
+	#carousel-bg1,#carousel-bg2,#carousel-bg3,#carousel-bg4{
+		overflow: hidden;
+		background-color: rgb(250,250,250);
+		border: 15px solid #232121;
+		border-radius: 2px;
+	}
+	.carousel-inner {
+		border: 3px solid #333;
+	}
+	/*#carousel-bg1,#carousel-bg2,#carousel-bg3,#carousel-bg4{
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: center center;
+	}
+	#carousel-bg1{
+		background-image: url(../images/cover1.jpg);
+	}
+	#carousel-bg2{
+		background-image: url(../images/cover2.jpg);
+	}
+	#carousel-bg3{
+		background-image: url(../images/cover3.jpg);
+	}
+	#carousel-bg4{
+		background-image: url(../images/cover4.jpg);
+	}*/
+
+	.carousel-control.left {
+    	background-image:none;
+	}
+	.carousel-control.right {
+    	background-image:none;
+	}
+
+	/*! 三种基本设计构架 响应式设计 */
+	@media (min-width: 768px) {
+	  /* The navbar becomes detached from the top, so we round the corners */
+	  .navbar-wrapper .navbar {
+		border-radius: 4px;
+	  }
+	  /* Bump up size of carousel content */
+	  .carousel-caption p {
+		margin-bottom: 20px;
+		font-size: 21px;
+		line-height: 1.4;
+	  }
+	}
+		/*  2.2 课程交互构架 */
+			/*  2.2.1 科目 */
+			/*  2.2.2 目录 */
+			.course-chapter,.course-sections,.course-section{
+				-webkit-transition: all 0.4s ;
+				-moz-transition: all 0.4s ;
+				-o-transition: all 0.4s ;
+				transition: all 0.4s ;
+			}
+			.course-chapter{
+				padding-top: 50px;
+				padding-bottom: 50px;
+			}
+			.course-chapter:hover {
+				background: #6581D8;
+			}
+			.course-sections{
+				margin-top: 50px;
+				margin-right: 50px;
+				padding: 12px 6px;
+				border-radius: 3px;
+				background: #6581D8;
+			}
+			.course-chapter:hover .course-sections{
+				background: #fff;
+			}
+			.course-sections:hover{
+				background: #5470C7;
+			}
+			.course-section{
+				margin-top: 50px;
+				margin-right: 50px;
+				padding: 12px 6px;
+				border-radius: 3px;
+				background: #fff;
+			}
+			.course-section:hover{
+				background: #7F7F7F;
+			}
+			.course-chapter:hover,.course-sections:hover,.course-chapter:active,.course-sections:active{
+
+				border-right: 15px solid rgba(0, 0, 0, 0.5);;
+				padding-top: 50px;
+				padding-bottom: 50px;
+				-webkit-transition: all 0.4s ;
+				-moz-transition: all 0.4s ;
+				-o-transition: all 0.4s ;
+				transition: all 0.4s ;
+			}
+			.homework-card{
+
+			}
+			/*  2.2.3 内容 */
+			/* 班级 */
+
+		/*  2.3 管理员构架 */
+			#consolebar{
+				overflow: hidden;
+			}
+			#consolebarToShow{
+				border-radius:0.5em 0 0 0;
+				background-color:#fff;
+				padding-bottom: 1%;
+			}
+			/*  2.3.1 Root管理员 */
+			/*  2.3.2 教学院长 */
+			/*  2.3.3 校务员 */
+			/*  2.3.4 老师 */
+			/*  2.3.5 学生 */
+
+		/*  登录 */
+
+		.tabs-below>.nav-tabs{border-top:1px solid #ddd;}
+		.tabs-below>.nav-tabs>li{margin-top:-1px;margin-bottom:0;}
+		.tabs-below>.nav-tabs>li>a{-webkit-border-radius:0 0 4px 4px;-moz-border-radius:0 0 4px 4px;border-radius:0 0 4px 4px;}.tabs-below>.nav-tabs>li>a:hover,.tabs-below>.nav-tabs>li>a:focus{border-bottom-color:transparent;border-top-color:#ddd;}
+		.tabs-below>.nav-tabs>.active>a,.tabs-below>.nav-tabs>.active>a:hover,.tabs-below>.nav-tabs>.active>a:focus{border-color:transparent #ddd #ddd #ddd;}
+		.tabs-left>.nav-tabs>li,.tabs-right>.nav-tabs>li{float:none;}
+		.tabs-left>.nav-tabs>li>a,.tabs-right>.nav-tabs>li>a{min-width:74px;margin-right:0;}
+		.tabs-left>.nav-tabs{float:left;margin-right:19px;border-right:1px solid #ddd;}
+		.tabs-left>.nav-tabs>li>a{margin-right:-1px;-webkit-border-radius:4px 0 0 4px;-moz-border-radius:4px 0 0 4px;border-radius:4px 0 0 4px;}
+		.tabs-left>.nav-tabs>li>a:hover,.tabs-left>.nav-tabs>li>a:focus{border-color:#eeeeee #dddddd #eeeeee #eeeeee;}
+		.tabs-left>.nav-tabs .active>a,.tabs-left>.nav-tabs .active>a:hover,.tabs-left>.nav-tabs .active>a:focus{border-color:#ddd transparent #ddd #ddd;*border-right-color:#ffffff;}
+		.tabs-right>.nav-tabs{float:right;margin-left:19px;border-left:1px solid #ddd;}
+		.tabs-right>.nav-tabs>li>a{margin-left:-1px;-webkit-border-radius:0 4px 4px 0;-moz-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0;}
+		.tabs-right>.nav-tabs>li>a:hover,.tabs-right>.nav-tabs>li>a:focus{border-color:#eeeeee #eeeeee #eeeeee #dddddd;}
+		.tabs-right>.nav-tabs .active>a,.tabs-right>.nav-tabs .active>a:hover,.tabs-right>.nav-tabs .active>a:focus{border-color:#ddd #ddd #ddd transparent;*border-left-color:#ffffff;}
+		.form-control,.input-group-addon{
+			border-radius: 0;
+		}
+
+		#login-show{
+			position: absolute;
+			width: 75%;
+			background-color: rgba(0, 0, 0, 0.1);
+			color: #fff;
+			padding: 30px;
+
+		}
+		#form-frame{
+		}
+		#login-form{
+			margin: auto;
+			/*margin: 15px;*/
+			padding: 15px;
+			min-width:320px;
+			max-width: 450px;
+
+		}
+		.btn-forget{
+			color:#999;
+		}
+		.fontTips{
+			display: block;
+			height: 30px;
+			width: 100%;
+			line-height: 30px;
+			color: orange;
+			margin: 4px;
+		}
+/* 一些按钮类型的样式设计 */
+li [ class^= "btn-" ],
+a [ class^= "btn-" ],
+div [ class^= "btn-" ]{
+	display: inline-block;
+	font-size: middle;
+    font-weight: 10;
+    line-height: 1;
+	text-decoration: none;
+	letter-spacing: 0.02em;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+		touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+		-ms-user-select: none;
+			user-select: none;
+	-webkit-transition: all 0.4s ;
+	-moz-transition: all 0.4s ;
+	-o-transition: all 0.4s ;
+	transition: all 0.4s ;
+	/*transition-property: all;
+	transition-duration: 0.4s;
+	transition-timing-function: ease;
+	transition-delay: 0s;*/
+}
+.btn-card{
+	cursor: pointer;
+	padding:15px 30px  ;
+	margin:   0px   0px;
+	border-radius: none;
+	text-align: center;
+	color: #fff;
+}
+.btn-forline {
+    padding:15px 30px  ;
+    margin:   0px   0px;
+
+    border-radius: none;
+    color:  #0088CC;
+}
+.btn-forline:hover {
+	color: #fff;
+    background-color: #0088CC;
+}
+.btn-forline:focus {
+	color: #fff;
+    background-color: #0088CC;
+	text-decoration: none;
+}
+.forline-active{
+	color:#fff;
+	background-color: #0088CC;
+}
+.btn-trans {
+    padding: 15px 30px;
+    margin:   0 15px  0  0 ;
+
+    background-color: rgba(255, 255, 255, 0.5);
+
+    color: #000;
+}
+.btn-trans:hover {
+	color: #000;
+	background-color: rgba(255, 255, 255, 5);
+	/*border-bottom: 2px solid orange;*/
+	text-decoration: none;
+}
+.btn-trans:focus {
+	color: #000;
+	background-color: rgba(255, 255, 255, 5);
+	/*border-bottom: 2px solid orange;*/
+	text-decoration: none;
+}
+@media only screen and (max-width: 560px) {
+	.btn-forline {
+		padding: 10px 10px;
+		letter-spacing: 0.02em;
+		font-weight: 700;
+	}
+    .btn-trans {
+        padding:12px 15px;
+        letter-spacing: 0.02em;
+        font-weight: 700;
+    }
+}
+@media only screen and (max-width: 450px) {
+	.btn-forline {
+		padding: 10px 10px;
+		letter-spacing: 0.02em;
+	}
+	.btn-trans {
+		padding: 9px 7px;
+		letter-spacing: 0.02em;
+		font-weight: 700;
+	}
+}
+
+@media only screen and (max-width: 340px) {
+	.btn-forline {
+		display: inline-block;
+		padding: 9px 7px;
+		letter-spacing: 0.02em;
+		font-weight: 700;
+	}
+	.btn-trans {
+        margin-left: 2.5px;
+        margin-right: 2.5px;
+		padding: 8px 6px;
+		letter-spacing: 0.01em;
+        font-size: small;
+		font-weight: 700;
+	}
+}
+/**/
+@media (min-width: 992px) and (max-width: 1500px) {
+    .inline2block{
+        display: block;
+        padding: 10px;
+        float: right;
+    }
+ }
+/* 一些辅助用的小工具 */
+.bg-content{
+   /*padding: inherit;*/
+   background-color: white;
+   color: black;
+}
+/*.bg-content > div{
+	padding-right: 15px;
+	padding-left: 15px;
+}*/
+
+
+.bg-trans {     /* stage-content 直接唯一孩子  建议 */
+	background-color: rgba(255, 255, 255, 0.1);
+	margin:  auto;
+	/*padding-top: 1%;*/
+    border-style: none;
+    border-radius: 1px;
+    color: white;
+}
+.bg-trans .card{
+	color: #333;
+}
+.box-control{
+    height:100%;
+	width:100%;
+}
+.cards{
+	padding: 0 10px;
+}
+.card{
+	display: block;
+	padding: 4px;
+	margin-bottom: 20px;
+	line-height: 1.42857;
+	background-color: #FFF;
+	border: 1px solid #DDD;
+}
+.height-control{
+    height:inherit;
+}.min-height-control{
+	min-height: 100%;
+}.width-control{
+    width:100%;
+}
+
+.hidden-x{
+    overflow-x: hidden;
+}
+.hidden-y{
+    overflow-y: hidden;
+}
+.scroll-x{
+    overflow-x: scroll;
+}
+.scroll-y{
+    overflow-y: scroll;
+}
+
+.paragraph{
+	padding: 4px 4px;
+	letter-spacing: normal;
+}
+
+.stage-box{
+  /*position: relative;*/
+  padding: 35px 2px;
+  border-radius: 3px;
+}.box-none{
+    margin: auto;
+    padding: 0;
+    border: 0;
+}.box-small{
+	padding-top:   15px;
+	padding-bottom:   15px;
+	}.small-top{
+    padding-top: 15px;
+}
+
+.top{
+    z-index: 20;
+}
+/* 仿照bootstrap的设置 */
+.stage-section::before,
+.stage-section::after,
+.bg-content::before,
+.bg-content::after,
+.btn-forline::before,
+.btn-forline::after,
+.btn-trans::before,
+.btn-trans::after
+ {
+    display: table;
+    /*content: " ";*/
+}
+ .bg-content::after,
+ .btn-forline::after,
+ .btn-trans::after
+ {
+  clear: both;
+}
+.nav-tabs {
+    margin-bottom: 3em;
+}
+.input-group-addon {
+    color: #555;
+    background-color: #EEE;
+    padding: 1px 12px;
+}

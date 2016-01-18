@@ -1,0 +1,243 @@
+/*!
+ * LongYe customization for Learning Bootstrap and it's plugins
+ *
+ * Copyright 2015 LongYe
+ * Licensed under MIT
+*/
+
+body {
+	font-family: 文泉驿微米黑, 微软雅黑, monospace;
+	color: black;
+}
+.bg-magin {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.bg-content {
+	background-color: rgb(255, 255, 255);
+}
+.bg-dym {
+	background-image: url(../images/bg-starsky.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center center;
+}
+.btn-m {
+	display: inline-block;
+	padding: 15px 30px;
+	/*border-bottom: 2px solid transparent;*/
+	
+	letter-spacing: 0.02em;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1;
+	margin: 0;
+	color: orange;
+	text-decoration: none;
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+}
+.btn-m:link {
+	/*border-bottom: 2px solid transparent;*/
+	
+	text-decoration: none;
+}
+.btn-m:hover {
+	color: #000;
+	background-color: rgba(255, 255, 255, 5);
+	/*border-bottom: 2px solid orange;*/
+	
+	text-decoration: none;
+}
+.btn-m:active {
+	color: #000;
+	/*border-bottom: 2px solid orange;*/
+	
+	text-decoration: none;
+}
+.btn-m:focus {
+	color: #000;
+	/*border-bottom: 2px solid orange;*/
+}
+.btn-o {
+	display: inline-block;
+	padding: 15px 30px;
+	border-bottom: 2px solid transparent;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1;
+	margin: 0;
+	color: #111;
+	text-decoration: none;
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+}
+.btn-o:link {
+	border-bottom: 2px solid transparent;
+	text-decoration: none;
+}
+.btn-o:hover {
+	color: #000;
+	border-bottom: 2px solid orange;
+	text-decoration: none;
+}
+.btn-o:active {
+	color: #000;
+	border-bottom: 2px solid orange;
+	text-decoration: none;
+}
+.btn-o:focus {
+	color: #000;
+	border-bottom: 2px solid orange;
+}
+/*.just-margin-navbar{
+	margin-top: 20%;
+}*/
+
+.quote {
+	position: relative;
+	bottom: 5px;
+}
+.regard {
+	position: relative;
+	left: -4px;
+}
+.section-trans {
+	background-color: rgba(255, 255, 255, 0.1);
+	/*background-color: transparent;*/
+	
+	border-style: none;
+	border-radius: 1px;
+	color: white;
+}
+
+.section-white {
+	background-color: rgb(255, 255, 255);
+	/*background-color: transparent;*/
+	
+	border-style: none;
+	border-radius: 1px;
+	color: black;
+}
+.sidebar-o {
+	height: 25px;
+	width: 25px;
+	padding: 5px;
+	position: absolute;
+	/*top: 100%;
+	left: 100%;*/
+	
+	right: 0;
+	bottom: 0;
+}
+.tree {
+	background: rgba(255, 255, 255, 0.9);
+	padding: 4px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border-radius: 3px;
+}
+/*Bootstrap Css reset !*/
+
+.badge {
+	display: inline-block;
+	min-width: 10px;
+	padding: 0 3px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 1;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	background-color: #777;
+	border-radius: 10px;
+}
+.navbar-default .navbar-nav > li > a {
+	color: #000;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+	background-color: transparent;
+	color: #fff;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+	background-color: #e7e7e7;
+	color: #555;
+}
+.thumbnail {
+	margin-bottom: 0;
+}
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+@media only screen and (max-width: 500px) {
+	.btn-o {
+		padding: 10px 10px;
+		letter-spacing: 0.02em;
+		font-weight: 700;
+		font-size: 8px;
+	}
+}
+@media only screen and (max-width: 450px) {
+	.btn-o {
+		padding: 10px 10px;
+		letter-spacing: 0.02em;
+		font-size: 8px;
+	}
+	.btn-m {
+		padding: 12px 15px;
+		letter-spacing: 0.02em;
+		font-size: 8px;
+		font-weight: 700;
+	}
+	.nav,.nav-tabs{
+		padding: 5px 10px;
+		font-size: 5px;
+	}
+}
+
+@media only screen and (max-width: 340px) {
+	.btn-o {
+		display: inline-block;
+		padding: 9px 7px;
+		border-bottom: 2px solid transparent;
+		letter-spacing: 0.02em;
+		font-weight: 700;
+		font-size: 5px;
+	}
+	.btn-m {
+		padding: 10px 10px;
+		letter-spacing: 0.02em;
+		font-size: 8px;
+		font-weight: 700;
+	}
+	.nav,.nav-tabs{
+		padding: 5px 10px;
+		font-size: 5px;
+	}
+}
+/* Pingendo Css reset !*/
+
+.navbar-default .navbar-text {
+	color: #000;
+}
+/*重置超链接样式*/
+
+a:focus {
+	outline: none;
+}
+a:active,
+a:hover {
+	outline: none;
+}

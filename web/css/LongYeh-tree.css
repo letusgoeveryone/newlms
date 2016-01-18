@@ -1,0 +1,24 @@
+/*!
+ * LongYe customization for Design
+ *
+ * Copyright 2015 LongYe
+ * Licensed under MIT
+*/
+
+.bg-dym{
+	background-image: url(../images/bg-starsky.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center center;
+	min-height: 100%;
+}
+.tree{
+	background: rgba(255, 255, 255, 0.9);
+	padding: 4px;
+	margin-top: 1px;
+	margin-bottom:1px;
+	border-radius: 3px;
+}
+#tree-content{overflow: scroll;}
+#tree-content > pre{overflow: scroll;}

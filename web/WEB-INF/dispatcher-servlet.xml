@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+    <context:annotation-config/> 
+    <!--支持json转换器--> 
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="cn.edu.henu.rjxy.*" />
+    <!--     配置直接转发的页面不用开发控制器-->    
+    <mvc:view-controller path="/console_dean" view-name="console_dean"/>
+    <mvc:view-controller path="/json_test" view-name="json_test"/>
+    <mvc:view-controller path="/json_test88" view-name="json_test89"/>
+    <mvc:view-controller path="/json_test88" view-name="json_test88"/>
+     <mvc:view-controller path="/new" view-name="new"/>
+    <mvc:view-controller path="/json_test" view-name="json_test"/>
+    <mvc:view-controller path="/xlk" view-name="xlk"/>
+    <mvc:view-controller path="/qx" view-name="qx"/>
+    <mvc:view-controller path="/test" view-name="test"/>
+    <mvc:view-controller path="/set_all" view-name="set_all"/>
+    <mvc:view-controller path="/nj" view-name="nj"/>
+
+    <context:component-scan base-package="cn.edu.henu.rjxy.*" /> 
+    <mvc:annotation-driven />  
+    <mvc:resources location="/js/" mapping="/js/**" />
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/images/" mapping="/images/**" />  
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+    
+    <!--///配置CommonsMultipartResolver文件上传-->
+     <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+         <property name="defaultEncoding" value="UTF-8"></property>  
+         <property name="maxUploadSize" value="10240000"></property>      
+     </bean>
+</beans>
