@@ -5,15 +5,10 @@
  */
 package cn.edu.henu.rjxy.lms.controller.checkcode;
 
-//import com.sun.image.codec.jpeg.ImageFormatException;
-//import com.sun.image.codec.jpeg.JPEGCodec;
-//import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-//import java.io.ByteArrayInputStream;
-//import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
@@ -117,17 +112,7 @@ public class CheckCode {
         // 图象生效
         g.dispose();
 
-        // 输出图象到页面
-//        try {
-//            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//            JPEGImageEncoder jpeg = JPEGCodec.createJPEGEncoder(bos);
-//            jpeg.encode(image);
-//            byte[] bts = bos.toByteArray();
-//            imageStream = new ByteArrayInputStream(bts);
-//        } catch (IOException | ImageFormatException e) {
-//            e.printStackTrace();
-//            return "error";
-//        }
+
         //设置页面不缓存
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");
@@ -139,14 +124,8 @@ public class CheckCode {
         } catch (IOException ex) {
             Logger.getLogger(CheckCode.class.getName()).log(Level.SEVERE, null, ex);
         }
-//		HttpServletResponse response = ServletActionContext.getResponse();
-//		try {
-//			ImageIO.write(image, "JPEG", response.getOutputStream());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return "error";
-//		}
-        return "success";
+
+        return null;
     }
 
     @RequestMapping("/checkCode")
@@ -158,7 +137,8 @@ public class CheckCode {
         response.setCharacterEncoding("utf-8");
         PrintWriter out = null;
         try {
-            out = response.getWriter();
+           
+          out = response.getWriter();
             out.print(ccd);
             out.flush();
             out.close();
@@ -168,11 +148,4 @@ public class CheckCode {
         }
     }
 
-//    public InputStream getImageStream() {
-//        return imageStream;
-//    }
-//
-//    public void setImageStream(InputStream imageStream) {
-//        this.imageStream = imageStream;
-//    }
 }

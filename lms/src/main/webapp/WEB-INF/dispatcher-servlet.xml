@@ -15,38 +15,30 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
-    <context:component-scan base-package="cn.edu.henu.rjxy.lms.controller" />
-    <mvc:annotation-driven />
+    <context:annotation-config/> 
+    <!--支持json转换器--> 
+    <mvc:annotation-driven/>
+    <!--配置直接转发的页面不用开发控制器-->    
+    <mvc:view-controller path="/teacher" view-name="teacher"/>
+    <mvc:view-controller path="/new" view-name="new"/>
+    <context:component-scan base-package="cn.edu.henu.rjxy.*" /> 
+    <mvc:resources location="/file/" mapping="/file/**" />
     <mvc:resources location="/js/" mapping="/js/**" />
     <mvc:resources location="/css/" mapping="/css/**" />
-    <mvc:resources location="/images/" mapping="/images/**" />
-    <!--
-    Most controllers will use the ControllerClassNameHandlerMapping above, but
-    for the index controller we are using ParameterizableViewController, so we must
-    define an explicit mapping for it.
-    -->
-<!--    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="mappings">
-            <props>
-                该部分对应redirec.jsp中的重定向的部分
-                <prop key="index.htm">indexController</prop>
-            </props>
-        </property>
-    </bean>-->
-
+    <mvc:resources location="/fonts/" mapping="/fonts/**" />
+    <mvc:resources location="/images/" mapping="/images/**" />  
+    <mvc:resources location="/ueditor/" mapping="/ueditor/**" />
+    <mvc:resources location="/uploadify/" mapping="/uploadify/**" />
+    <mvc:resources location="/easyui/" mapping="/easyui/**" />
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-         
           p:prefix="/WEB-INF/jsp/"
-          
           p:suffix=".jsp" />
-
-    <!--
-    The index controller.
-    -->
-<!--    <bean name="indexController"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          
-          p:viewName="index" />-->
-
+    
+    <!--配置CommonsMultipartResolver文件上传-->
+    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>  
+        <property name="maxUploadSize" value="52428800"></property>  
+             
+    </bean>
 </beans>
