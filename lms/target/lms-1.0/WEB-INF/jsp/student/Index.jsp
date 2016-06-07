@@ -89,10 +89,6 @@
                                         <jsp:include page="Course.jsp"  />
                                     </div>
                                 </div>
-                                <div class="card-action">
-
-                                    
-                                </div>
                             </div>
                         </div>
                     </section>
@@ -108,16 +104,21 @@
                                 </span>
                             </aside>
                             <div class="card-main">
-                                <div class="card-header">
-                                    <div class="padding-1em" style="width: 100%;padding: 1em;height: 3em;line-height: 1em;font-size: 2em;">
-                                        选课
-                                    </div>
-                                </div>
-                                <div class="card-inner row">
-                                    <div class="col-md-12" >
+                                <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
+                                    <ul class="nav nav-list">
+                                        <li class="active"><a href="#panel-CCouseList" data-toggle="tab">选课列表</a></li>
+                                        <li><a href="#panel-CCouseStatus" data-toggle="tab">选课状态</a></li>
+                                    </ul>
+                                </nav>
+                                <div class="card-inner row  tab-content">
+                                    <div class="col-md-12 tab-pane fade in active" id="panel-CCouseList">
                                         <jsp:include page="JoinCourse.jsp"  />
                                     </div>
+                                    <div class="col-md-12 tab-pane fade in" id="panel-CCouseStatus">
+                                        <jsp:include page="CourseState.jsp"  />
+                                    </div>
                                 </div>
+                                
                                 <div class="card-action">
 <!--                                    
                                     <ul class="nav nav-list margin-no pull-right">
@@ -134,7 +135,7 @@
                                         </li>
                                     </ul>
 -->
-                                </div>
+                                </div>    
                             </div>
                         </div>
                     </section>
