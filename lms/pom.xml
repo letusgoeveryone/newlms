@@ -10,7 +10,7 @@
      <!-- 项目信息设置 -->
     <name>lms</name>
     <description>Learn Manage System.</description>
-    <url>cn.edu.henu.rjxy.lms</url>
+    <url>lms.rjxy.henu.edu.cn</url>
     <inceptionYear>2014</inceptionYear>
     <licenses></licenses>
     <organization>
@@ -53,11 +53,6 @@
             <id>central</id>
             <name>Central Repository</name>
             <url>http://repo.maven.apache.org/maven2/</url>
-        </repository>
-        <repository>
-            <id>central-2</id>
-            <name>Central Repository2</name>
-            <url>http://repo1.maven.apache.org/maven2/</url>
         </repository>
     </repositories>
     
