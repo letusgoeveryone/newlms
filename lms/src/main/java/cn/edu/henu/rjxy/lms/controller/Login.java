@@ -43,27 +43,27 @@ public class Login {
 
     @RequestMapping("/login")
     public String loginpage(HttpServletRequest request, HttpServletResponse response) {
-        for (int i = 10; i < 80; i++) {
-            TeacherDao.saveTeacher(new Teacher("14452030" + i, "正式教师" + i, "4104821900020212" + i, "软件学院", "130850012" + i, "1234567" + i, "21232f297a57a5a743894a0e4a801fc3", true, "1", new Date(), 131));  //131是所有权限
-            StudentDao.saveStudent(new Student("14452031" + i, "正式学生" + i, "4104821900020210" + i, 2014, "文学院", "130850010" + i, "1234567" + i, "21232f297a57a5a743894a0e4a801fc3", true));
-        }
-        return "/";
-//        String sn = getCurrentUsername();
-//        if (sn.equals("anonymousUser")) {
-//            return "login";
-//        } else {
-//            String op = request.getParameter("op");
-//
-//            if (op != null) {
-//                if (op.toLowerCase().equals("changeuser")) {
-//                    return "login";
-//                }
-//                return "login";
-//            } else {
-//                return "redirect:/loginsuccess";
-//            }
-//
+//        for (int i = 10; i < 80; i++) {
+//            TeacherDao.saveTeacher(new Teacher("14452030" + i, "正式教师" + i, "4104821900020212" + i, "软件学院", "130850012" + i, "1234567" + i, "21232f297a57a5a743894a0e4a801fc3", true, "1", new Date(), 131));  //131是所有权限
+//            StudentDao.saveStudent(new Student("14452031" + i, "正式学生" + i, "4104821900020210" + i, 2014, "文学院", "130850010" + i, "1234567" + i, "21232f297a57a5a743894a0e4a801fc3", true));
 //        }
+        
+        String sn = getCurrentUsername();
+        if (sn.equals("anonymousUser")) {
+            return "login";
+        } else {
+            String op = request.getParameter("op");
+
+            if (op != null) {
+                if (op.toLowerCase().equals("changeuser")) {
+                    return "login";
+                }
+                return "login";
+            } else {
+                return "redirect:/loginsuccess";
+            }
+
+        }
     }
 //登录失败的跳转，已弃用
 //    @RequestMapping("loginfailure")

@@ -140,7 +140,7 @@ public class TeaController {
         return a;
     } 
     
-    //教师课程树
+    //教师课程树http://localhost:8080/lms/teacher/courselist?xueqi=201602
     @RequestMapping(value = "courselist",method = RequestMethod.GET)
     public @ResponseBody List<TeacherCourseResult> courselist(HttpServletRequest request,@RequestParam ("xueqi") String xueqi) throws UnsupportedEncodingException{
       request.setCharacterEncoding("utf-8");

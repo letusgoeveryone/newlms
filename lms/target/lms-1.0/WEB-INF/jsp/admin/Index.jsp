@@ -253,7 +253,7 @@
     <script src="<%=path%>/js/jquery.easyui.min.js"></script>
     <link rel="stylesheet"  href="<%=path%>/css/easyuicss/easyui.css">
     <link rel="stylesheet"  href="<%=path%>/css/easyuicss/icon.css">
-    <link rel="stylesheet"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
+    <link rel="image/png"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
     
     <!--uploadify-->
     <script src="<%=path%>/js/jquery.uploadify.min.js"></script>
@@ -263,7 +263,7 @@
     <script charset="utf-8" src="<%=path%>/js/umeditor.min.js"></script>
     <script src="<%=path%>/js/zh-cn.js"></script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
         var browserVersion = window.navigator.userAgent.toUpperCase();
         var isOpera = false, isFireFox = false, isChrome = false, isSafari = false, isIE = false;
         function reinitIframe(iframeId, minHeight) {
@@ -304,7 +304,7 @@
                 //   ifm.height = subWeb.body.scrollHeight;
                 //   ifm.width = subWeb.body.scrollWidth;
                 //}   
-        }
+        }   
     </script>      
     </body>  
 </html>

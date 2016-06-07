@@ -39,11 +39,11 @@
         <div class="row width-control" id="lms_admin_tnav_class">
             <div class="col-md-12" style="min-height: 500px">
 
-                <div id="mystudent" style="display: none">
+                <div id="mystudent" hidden>
                     <jsp:include page="../teacher/mystudent.jsp"/>
                 </div>
 
-                <div class="container-fluid" style="display: none;" id="mycourse">
+                <div id="mycourse" hidden>
                     <jsp:include page="../teacher/mycourse.jsp"/>
                 </div>
             </div>
@@ -76,14 +76,14 @@
                 $("#mystudent").hide();
                 $("#mycourse").hide();
                 $('#tt').tree({
-                    url: '../teacher/courselist?xueqi=' + $("#sz_xq").val(),
+                    url: '<%=path%>/teacher/courselist?xueqi=' + $("#sz_xq").val(),
                     onClick: function (node) {
                         lookTree(node);
                     }
                 });
             });
             $('#tt').tree({
-                url: '../teacher/courselist?xueqi=' + $("#sz_xq").val(),
+                url: '/lms/teacher/courselist?xueqi=' + $("#sz_xq").val(),
                 onClick: function (node) {
                     lookTree(node);
                 }
@@ -112,7 +112,7 @@
         function mystudent(a, b, c, term) {
             $('#dg_zs_stu').datagrid({
                 title: " " + a,
-                url: '../teacher/mystudent?classid=' + b + '&course_id=' + c + '&term=' + term,
+                url: '<%=path%>/teacher/mystudent?classid=' + b + '&course_id=' + c + '&term=' + term,
                 loadMsg: '数据加载中请稍后……'
             });
         }

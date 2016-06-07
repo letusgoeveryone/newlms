@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <copy todir="target/classes/cn/edu/henu/rjxy/lms/model" overwrite="true">
+    <fileset dir="src/main/java/cn/edu/henu/rjxy/lms/model">
+      <include name="**/*.hbm.xml"/>
+    </fileset>
+  </copy>
+</target>
+</project>

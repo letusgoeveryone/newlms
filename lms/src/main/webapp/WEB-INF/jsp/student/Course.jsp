@@ -61,64 +61,64 @@
 
 </script>
 
-<div class="tabbable" id="tabs-974895">
-    <ul class="nav nav-tabs settabs">
+<nav class="tab-nav tab-nav-gold hidden-xx ui-tab" id="tabs-974895">
+    <ul class="nav nav-list">
         <li class="active"><a href="#panel-236368" data-toggle="tab" onclick="setheight(1)">课程介绍</a></li>
         <li><a href="#panel-86366" data-toggle="tab" onclick="setheight(1)">课程大纲</a></li>
         <li><a href="#panel-86367" data-toggle="tab" onclick="setheight(2)">课程内容</a></li>
         <li><a href="#panel-86365" data-toggle="tab" onclick="setheight(1)">作业区</a></li>
         <li style="float:right"><a href="#panel-86369" data-toggle="tab" onclick="setheight(1)">退出该课程</a></li>
     </ul>
-    <div class="tab-content">
-        <div class="tab-pane active" id="panel-236368">
-            ${syllabusspan}
+</nav>
+<div class="tab-content">
+    <div class="tab-pane active" id="panel-236368">
+        ${syllabusspan}
 
-        </div>
-        <div class="tab-pane" id="panel-86366">
-            <span  id = "hfText2"><br>${Coursesb}</span>
-            <div> ${CourseDescription}</div>
-        </div> 
-        <div class="tab-pane" id="panel-86365">
+    </div>
+    <div class="tab-pane" id="panel-86366">
+        <span  id = "hfText2"><br>${Coursesb}</span>
+        <div> ${CourseDescription}</div>
+    </div> 
+    <div class="tab-pane" id="panel-86365">
 
-            <table class="table">
-                <thead>
-                    <tr><th>序号</th><th>作业名称</th><th>作业状态</th><th>截止时间</th><th>操作</th></tr>
-                </thead>
-                <tbody>
+        <table class="table">
+            <thead>
+                <tr><th>序号</th><th>作业名称</th><th>作业状态</th><th>截止时间</th><th>操作</th></tr>
+            </thead>
+            <tbody>
 
-                    ${homework}
-                </tbody>
-            </table>
+                ${homework}
+            </tbody>
+        </table>
 
 
-        </div>        
-        <div class="tab-pane" id="panel-86367">
+    </div>        
+    <div class="tab-pane" id="panel-86367">
 
-            <div style="width: 20%;float: left;">
-                <ul id="tt1"  class="easyui-tree" data-options="
-                    url:'kcgs?scid='+${scid},
-                    method: 'get',
-                    animate: true ">        
-                </ul></div>  
-            <div style="width: 78%;float: right;">
-                <span  id = "hfText"></span>
-                <iframe src="" id="swfplayer" frameborder="0" scrolling="no" marginheight="0" height="450px" width="600px" name="swfplayer"></iframe>
-            </div>                         
+        <div style="width: 20%;float: left;">
+            <ul id="tt1"  class="easyui-tree" data-options="
+                url:'kcgs?scid='+${scid},
+                method: 'get',
+                animate: true ">        
+            </ul></div>  
+        <div style="width: 78%;float: right;">
+            <span  id = "hfText"></span>
+            <iframe src="" id="swfplayer" frameborder="0" scrolling="no" marginheight="0" height="450px" width="600px" name="swfplayer"></iframe>
+        </div>                         
 
-        </div>
-        <div class="tab-pane" id="panel-86369">
-            <div class="hero-unit">
-                <h1 style="font-color:red;">
-                    请慎重操作！
-                </h1>
-                <p style="font-color:red;">
-                    退出该课程意味着您的所有作业及其他与该课程相关的内容均会被删除。
-                </p>
-                <p>
+    </div>
+    <div class="tab-pane" id="panel-86369">
+        <div class="hero-unit">
+            <h1 style="font-color:red;">
+                请慎重操作！
+            </h1>
+            <p style="font-color:red;">
+                退出该课程意味着您的所有作业及其他与该课程相关的内容均会被删除。
+            </p>
+            <p>
 
-                    <a class="btn btn-primary btn-large" onclick="quitcourse()">我知道了，我要继续删除»</a>
-                </p>
-            </div>
+                <a class="btn btn-primary btn-large" onclick="quitcourse()">我知道了，我要继续删除»</a>
+            </p>
         </div>
     </div>
 </div>

@@ -109,7 +109,7 @@
                 
         <section id="lms_stu_homework" class="tab-pane fade">
             
-            <jsp:include page="Homework.jsp"  />
+            <jsp:include page="Homework.jsp" />
             
         </section>
 

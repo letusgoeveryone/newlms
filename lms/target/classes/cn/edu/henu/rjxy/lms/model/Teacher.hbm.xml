@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-23 19:30:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cn.edu.henu.rjxy.lms.model.Teacher" table="teacher" catalog="cs" optimistic-lock="version">
+        <id name="teacherId" type="java.lang.Integer">
+            <column name="teacher_id" />
+            <generator class="identity" />
+        </id>
+        <property name="teacherSn" type="string">
+            <column name="teacher_sn" not-null="true" />
+        </property>
+        <property name="teacherName" type="string">
+            <column name="teacher_name" length="45" not-null="true" />
+        </property>
+        <property name="teacherIdcard" type="string">
+            <column name="teacher_idcard" length="18" not-null="true" />
+        </property>
+        <property name="teacherCollege" type="string">
+            <column name="teacher_college" length="18"   not-null="true" />
+        </property>
+        <property name="teacherTel" type="string">
+            <column name="teacher_tel" length="20" not-null="true" />
+        </property>
+        <property name="teacherQq" type="string">
+            <column name="teacher_qq" length="20" not-null="true" />
+        </property>
+        <property name="teacherPwd" type="string">
+            <column name="teacher_pwd" length="45" not-null="true" />
+        </property>
+        <property name="teacherSex" type="boolean">
+            <column name="teacher_sex" not-null="true" />
+        </property>
+        <property name="teacherPosition" type="string">
+            <column name="teacher_position" length="20" not-null="true" />
+        </property>
+        <property name="teacherEnrolling" type="timestamp">
+            <column name="teacher_enrolling" length="19" not-null="true" />
+        </property>
+        <property name="teacherRoleValue" type="int">
+            <column name="teacher_role_value" not-null="true" />
+        </property>
+
+<!--         <set name =  "courseMasters"  >
+            <key column = "teacher_id"></key>
+            <one-to-many class = "cn.edu.henu.rjxy.lms.model.CourseMaster"></one-to-many>
+        </set>-->
+        <set name =  "termCourse"  >
+            <key column = "teacher_id"></key>
+            <one-to-many class = "cn.edu.henu.rjxy.lms.model.TermCourse"></one-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
