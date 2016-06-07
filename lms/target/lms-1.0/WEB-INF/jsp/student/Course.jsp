@@ -67,7 +67,7 @@
         <li><a href="#panel-86366" data-toggle="tab" onclick="setheight(1)">课程大纲</a></li>
         <li><a href="#panel-86367" data-toggle="tab" onclick="setheight(2)">课程内容</a></li>
         <li><a href="#panel-86365" data-toggle="tab" onclick="setheight(1)">作业区</a></li>
-        <li style="float:right"><a href="#panel-86369" data-toggle="tab" onclick="setheight(1)">退出该课程</a></li>
+        <li class="nav-item-pullrigh"><a href="#panel-86369" data-toggle="tab" onclick="setheight(1)">退出该课程</a></li>
     </ul>
 </nav>
 <div class="tab-content">

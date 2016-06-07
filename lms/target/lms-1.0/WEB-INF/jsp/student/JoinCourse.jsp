@@ -79,31 +79,28 @@
     });
 </script>
 
-<div style="width:23%;float: left;">
-    <div id="tree"></div>     
-</div>
-<div style="width:76%;float: right;">
-    <div class="tabbable" id="tabs-974895 setwidth">
-        <ul class="nav nav-tabs settabs">
-            <li class="active"><a href="#panel-236368" data-toggle="tab">课程说明</a></li>
-            <li><a href="#panel-86366" data-toggle="tab" onclick="setheight()">课程大纲</a></li>
+<div class="col-md-3" style="min-height:300px;border-right: 1px solid whitesmoke;"><div id="tree"></div></div>
 
+<div class="col-md-9">
+    <nav class="tab-nav tab-nav-gold hidden-xx ui-tab" id="tabs-974895 setwidth">
+        <ul class="nav nav-list">
+            <li class="active"><a href="#panel-CourseInfo" data-toggle="tab">课程说明</a></li>
+            <li><a href="#panel-CourseOutline" data-toggle="tab" onclick="setheight()">课程大纲</a></li>
+            <li class="nav-item-pullrigh"><a id="subcor">提交选课申请</a></li>
         </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="panel-236368">
-                <p><label  id="submas"> </label>  </p>
-                <p><a class="btn btn-primary btn-large" id="subcor">提交选课申请»</a></p>
-                <p><label  id="submas2"> </label> </p>
-
-
-
-                <input type="hidden" id="cidinput" value="-1">
-                </p>
-            </div>
-            <div class="tab-pane" id="panel-86366">
-                <label  id="submas3"> </label>
-            </div>
+    </nav>
+    
+    <div class="tab-content">
+        
+        <div class="tab-pane active" id="panel-CourseInfo">
+            <label id="submas"></label>
+            <label id="submas2"></label>
+            <input type="hidden" id="cidinput" value="-1">
 
         </div>
+        <div class="tab-pane" id="panel-CourseOutline">
+            <label id="submas3"></label>
+        </div>
+
     </div>
 </div>

@@ -37,69 +37,117 @@
                 color: #3c763d;
                 background-color: rgba(200,200,200,0.2);
             }
+            #lms_stu_tnav_pInfo{
+                padding-top: 5em;
+            }
+            #lms_stu_tnav_pInfo .card{
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            #scrollUp{top: -70px;}
         </style>
     </head>
     <body class="page-default tab-content">
+        
         <section id="lms_main" class="tab-pane fade in active stage-image bg-top"
-                     style="background-image:url(<%=path%>/images/bg_for_timeLine.jpg);min-height:2000px;">
-            <header class="header " id="tree-header">
+                     style="background-image:url(<%=path%>/images/bg_for_timeLine.jpg);min-height:1500px;">
+            
+            <header class="header" id="tree-header">
                 <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
                     <ul class="nav nav-list">
-                        <li  class="active"><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_stu_tnav_pInfo"><span class="text-white">个人主页</span></a></li>
+                        <li  class="active"><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_stu_tnav_pInfo"><span class="text-white">我的课程</span></a></li>
                         <li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_stu_tnav_tLine"><span class="text-white">时光轴</span></a></li>
-                        <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white">退出系统<span class="icon margin-left-sm">exit_to_app</span></span></a></li>
+                        <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white">退出系统<span class="icon icon-fixHans margin-left-sm">exit_to_app</span></span></a></li>
                     </ul>
                 </nav>
             </header>
-
-            <section class="tab-content" >
-                <div id="lms_stu_tnav_pInfo" class="container tab-pane fade in active">
-                    <div class="row card" style="margin-top:120px;">
-                        <aside class="card-side pull-left">
-                            <span class="card-heading" style="padding-top:22.5px;"><i class="icon">info_outline</i></span>
-                        </aside>
-                        <div class="card-main">
-                            <div class="card-inner row">
-                                <div class="col-md-3">
-                                    <div class="card-heading">我的课程</div>
-                                    <ul id="card_btn_courseList">${stucou}</ul>
+            
+            <section class="tab-content container" >
+                <div id="lms_stu_tnav_pInfo" class="tab-content tab-pane fade in active">
+                    
+                    <section id="panel-MyCourse" class="row card tab-pane fade in active">
+                        <div class="card" >
+                            <aside class="card-side pull-left">
+                                <span class="card-heading" >
+                                    <a class="fbtn btn-brand waves-attach waves-circle waves-light waves-effect" 
+                                       href="#panel-ChooseCourse" data-toggle="tab" ><span class="icon">add</span>
+                                        <span class="fbtn-text fbtn-text-left">加入课程</span>
+                                    </a>
+                                </span>
+                            </aside>
+                            <div class="card-main">
+                                <div class="card-header">
+                                    <div class="padding-1em" style="width: 100%;padding: 1em;height: 3em;line-height: 1em;font-size: 2em;">
+                                        课程
+                                    </div>
                                 </div>
-                                <div class="col-md-9">
-                                    <jsp:include page="Course.jsp"  />
+                                <div class="card-inner row">
+                                    <div class="col-md-3" style="min-height:300px;border-right: 1px solid whitesmoke;">
+                                        <ul id="card_btn_courseList">${stucou}</ul>
+                                    </div>
+                                    <div class="col-md-9" >
+                                        <jsp:include page="Course.jsp"  />
+                                    </div>
+                                </div>
+                                <div class="card-action">
+
+                                    
                                 </div>
                             </div>
-                            <div class="card-action">
+                        </div>
+                    </section>
+                    <section id="panel-ChooseCourse" class="row card tab-pane fade in">
 
-                                <ul class="nav nav-list margin-no pull-right">
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">keyboard_arrow_down</span></a>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li>
-                                                <a class="waves-attach waves-effect" href="javascript:void(0)"><span class="icon margin-right-sm">filter_1</span>&nbsp;未批准课程</a>
-                                            </li>
-                                            <li>
-                                                <a class="waves-attach waves-effect" href="javascript:void(0)"><span class="icon margin-right-sm">filter_2</span>&nbsp;加入课程</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                        <div class="card">
+                            <aside class="card-side pull-left">
+                                <span class="card-heading" >
+                                    <a class="fbtn btn-brand waves-attach waves-circle waves-light waves-effect" 
+                                       href="#panel-MyCourse" data-toggle="tab" ><span class="icon">arrow_back</span>
+                                        <span class="fbtn-text fbtn-text-left">返回</span>
+                                    </a>
+                                </span>
+                            </aside>
+                            <div class="card-main">
+                                <div class="card-header">
+                                    <div class="padding-1em" style="width: 100%;padding: 1em;height: 3em;line-height: 1em;font-size: 2em;">
+                                        选课
+                                    </div>
+                                </div>
+                                <div class="card-inner row">
+                                    <div class="col-md-12" >
+                                        <jsp:include page="JoinCourse.jsp"  />
+                                    </div>
+                                </div>
+                                <div class="card-action">
+<!--                                    
+                                    <ul class="nav nav-list margin-no pull-right">
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">keyboard_arrow_down</span></a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li>
+                                                    <a class="waves-attach waves-effect" href="javascript:void(0)"><span class="icon margin-right-sm">filter_1</span>&nbsp;</a>
+                                                </li>
+                                                <li>
+                                                    <a class="waves-attach waves-effect" href="javascript:void(0)"><span class="icon margin-right-sm">filter_2</span>&nbsp;</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+-->
+                                </div>
                             </div>
                         </div>
-                    </div>
-                            
-                    <div class="tab-content">
-                        <div></div>
-                        <div></div>
-                        <div>
-                            
-                        </div>
-                    </div>
+                    </section>
+                                
+                                
                 </div>
+                                
+                            
                 <div id="lms_stu_tnav_tLine" class="tab-pane fade in active" >
 
                 </div>
             </section>
-
+                                
             <footer class="ui-footer" id="tree-footer">
                 <div class="container">
                     <strong>Copyright © 2015 河南大学软件学院  · 【教务系统】</strong
@@ -113,9 +161,18 @@
             
         </section>
 
-        <div class="fbtn-container" id="scrollUp">
-            <div class="fbtn-inner">
+        <div class="fbtn-container">
+            
+            <div class="fbtn-inner" id="scrollUp">
                 <a class="fbtn fbtn-lg fbtn-brand waves-attach waves-circle waves-light waves-effect" >T<span class="fbtn-text fbtn-text-left">返回顶部</span></a>
+            </div>
+            <div class="fbtn-inner">
+                <a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-text fbtn-text-left">关闭</span><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
+                <div class="fbtn-dropup">
+                    <a class="fbtn waves-attach waves-circle stage-card" href="http:<%=path%>/student/PersonalInfo"><span class="fbtn-text fbtn-text-left">点击查看/修改个人信息</span><span class="icon">account_circle</span></a>
+                    <a class="fbtn fbtn-brand waves-attach waves-circle waves-light" href="<%=path%>/us" target="_blank"><span class="fbtn-text fbtn-text-left">关于我们</span><span class="icon">all_inclusive</span></a>
+                    <a class="fbtn fbtn-green waves-attach waves-circle" href="#" target="_blank"><span class="fbtn-text fbtn-text-left">加入我们</span><span class="icon">add</span></a>
+                </div>
             </div>
         </div>
 
