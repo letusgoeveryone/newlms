@@ -1,8 +1,3 @@
-<%-- 
-    Document   : console_dean
-    Created on : 2016-4-25, 12:00:28
-    Author     : Name : liubingxu Email : 2727826327qq.com
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <%
@@ -14,170 +9,178 @@
 %>
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-    <meta charset="UTF-8">
-    <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-    <title>我的主页-教务员页面</title>
-        <link rel="stylesheet" type="text/css" href="<%=path%>/css/bootstrap.css" />
-        <script type="text/javascript" src="<%=path%>/easyui/jquery.min.js"></script>
-        <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
-        <script type="text/javascript" src="<%=path%>/easyui/jquery.easyui.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="<%=path%>/easyui/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="<%=path%>/easyui/themes/icon.css">
-        <link rel="stylesheet" type="text/css" href="<%=path%>/easyui/demo/demo.css">
-  
-    <!-- css -->
-    <link href="<%=path%>/css/base.min.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=path%>/css/project.min.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=path%>/css/lms.css" rel="stylesheet" type="text/css"/>
-     <!-- js -->
-    <script src="<%=path%>/js/jquery.scrollUp.min.js"></script>
-    <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
-    <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-    <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
-       
-      
-    <script language="javascript" type="text/javascript">
-       
-    </script>
-</head>
-<body class="page-default">
-    
-    <div class="content">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
+        <title>校务员</title>
+
+        <!-- css -->
+        <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
+        <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
+        <link href="<%=path%>/css/lms.css" rel="stylesheet" />
+        <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" />
         
-        <div class="content-header ui-content-header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-8 ">
-                        <h1 class="content-heading">个人中心</h1>
-                        <div class="space-block"></div>
-                    </div>
+        <script src="<%=path%>/js/jquery.min.js"></script>
+          
+    </head>
+    <body class="page-default tab-content" id='lms_acdemic'>
+      
+        <!--管理员 副区 教务区 -->
+        <div id="lms_main"  class="tab-pane fade in active">
+            
+            <!--功能列表-->
+            <nav class="lms-admin-sidebar">
+            <ul class="nav nav-tabs">
+                <div style="
+                   color: #fff;
+                   background-color: #444;
+                   border-radius: 0px;
+                   text-align: left;
+                   width: 100%;
+                   padding: 1em;
+                   font-size: 1.2em;
+                   ">
+                   校务员（控制台）
+                </div>
+                <div class="stage-box"></div>
+                
+                
+                <li class="active">
+                    <a href="#panel-gradeInfoManage" data-toggle="tab" onclick="newbjxx()">班级信息管理</a>
+                </li>
+                <li>
+                    <a href="#panel-courseInfoManage" data-toggle="tab" onclick="newkcxx()">课程信息管理</a>
+                </li>
+                <li>
+                    <a href="#panel-courseTableManage" data-toggle="tab" onclick="newkcbxx()">课程表管理</a>
+                </li>
+                <hr>
+                <li>
+                    <a href="#panel-TeacherManage" data-toggle="tab" onclick="newzsjs()">教师信息管理</a>
+                </li>
+                <li>
+                    <a href="#panel-StudentManage" data-toggle="tab" onclick="newzsxs()">学生信息管理</a>
+                </li>
+                <hr>
+                <li>
+                    <a href="#panel-tmpTeacherManage" data-toggle="tab" onclick="newlsjs()">教师信息管理【临时】</a>
+                </li>
+                <li>
+                    <a href="#panel-tmpStudentManage" data-toggle="tab" onclick="newlsxs()">学生信息管理【临时】</a>
+                </li>
+                <hr>
+                <li>
+                    <a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout">退出系统<span class="icon icon-fixHans margin-left-sm">exit_to_app</span></a>
+                </li>
+            </ul>
+            </nav>
+
+            <!--功能区-->
+            <div class="tab-content lms-admin-content">
+                
+                <div class="tab-pane fade in active" id="panel-tmpStudentManage">
+                    <jsp:include page="szxsxx.jsp"  />
+                </div>
+                <div class="tab-pane fade in " id="panel-StudentManage">
+                    <jsp:include page="zs_stu.jsp"  />
+                </div>
+                <div class="tab-pane fade in " id="panel-tmpTeacherManage">
+                    <jsp:include page="szlsjsxx.jsp"  />
+                </div>
+                <div class="tab-pane fade in " id="panel-TeacherManage">
+                    <jsp:include page="zs_js.jsp"  />
+                </div>
+                <div class="tab-pane fade in " id="panel-gradeInfoManage">
+                    <jsp:include page="ckbjxx.jsp"  />
+                </div>
+                <div class="tab-pane fade in " id="panel-courseInfoManage">
+                    <jsp:include page="course.jsp"  />
+                </div>
+                <div class="tab-pane fade in " id="panel-courseTableManage">
+                    <jsp:include page="set_all.jsp"  />
+                </div>
+                
+            </div>
+            
+        </div>
+        <!--管理员 副区 教务区 END-->  
+        
+        <!--返回顶部-->
+        <div class="fbtn-container">
+
+            <div class="fbtn-inner" id="scrollUp">
+                <a class="fbtn fbtn-lg fbtn-trans waves-attach waves-circle waves-light waves-effect" ><span class="fbtn-ori icon">keyboard_arrow_up</span><span class="fbtn-text fbtn-text-left">返回顶部</span></a>
+            </div>
+            <div class="fbtn-inner">
+                <a class="fbtn fbtn-lg btn-gold waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
+                <div class="fbtn-dropup">
+                    <a class="fbtn fbtn-brand waves-attach waves-circle stage-card" href="http:<%=path%>/student/teapnda"><span class="fbtn-text fbtn-text-left">点击查看/修改个人信息</span><span class="icon">account_circle</span></a>
+                    <a class="fbtn fbtn-red waves-attach waves-circle waves-light" href="<%=path%>/us" target="_blank"><span class="fbtn-text fbtn-text-left">关于我们</span><span class="icon">all_inclusive</span></a>
+                    <a class="fbtn fbtn-trans waves-attach waves-circle" href="#" ><span class="fbtn-text fbtn-text-left">关于系统</span><span class="icon">information</span></a>
                 </div>
             </div>
         </div>
         
-<header class="header header-transparent header-waterfall ui-header navbar-wrapper" id="tree-header">
-    <div class="container">
-        <div class="row" >
-             <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <a class="header-logo " href="admin">管理员页面</a>
-             </sec:authorize>
-             <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                    <a class="header-logo " href="dean">院长页面</a>
-             </sec:authorize>
-             <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <a class="header-logo " href="teacherIndex">教师页面</a>
-             </sec:authorize>
-            <nav class="tab-nav tab-nav-gold pull-right hidden-xx ui-tab" id="zdytab">
-                <ul class="nav nav-list">
-                    <li  class="active"><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#ui_tab_example_pInfo"><span class="text-white">个人资料</span></a></li>
-                    <li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#ui_tab_example_class"><span class="text-white">信息管理</span></a></li>
-                    <li><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white">退出系统</span></a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</header>
-        
-<div class="tab-content" style="padding-left: 100px">
-    <div class="row tab-pane fade active in" id="ui_tab_example_pInfo">       
-        <div class="col-md-12"> 
-             <iframe src="<%=path%>/acdemic/teapnda" iframepage" frameborder="0" scrolling="no" marginheight="0" height="500px" width="100%" name="pInfocontent"></iframe>
-        </div>
-    </div>
+    <!-- js -->
+    <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
+    <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
+    <script>
+        var Stickup= 0;
+    </script>
+    <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
 
-    <div class="row tab-pane fade" id="ui_tab_example_class" style="min-height: 500px;">                                                     
-               
-        
-        
-                    <div class="container-fluid">
-                        <div class="row-fluid">
-                                <div class="span12">
-                                        <div class="tabbable tabs-left" id="tabs-606390">
-                                                <ul class="nav nav-tabs">
-                                                        <li class="active">
-                                                            <a href="#panel-654307" data-toggle="tab" onclick="newlsxs()">临时学生信息管理</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#panel-298358" data-toggle="tab" onclick="newzsxs()">正式学生信息管理</a>
-                                                        </li>
-                                                         <li>
-                                                             <a href="#panel-298359" data-toggle="tab" onclick="newlsjs()">临时教师信息管理</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#panel-298360" data-toggle="tab" onclick="newzsjs()">正式教师信息管理</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#panel-298361" data-toggle="tab" onclick="newbjxx()">班级信息管理</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#panel-298362" data-toggle="tab" onclick="newkcxx()">课程信息管理</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#panel-298363" data-toggle="tab" onclick="newkcbxx()">课程表管理</a>
-                                                        </li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                        <div class="tab-pane active" id="panel-654307">
-                                                                <p>
-                                                                       <jsp:include page="szxsxx.jsp"  />
-                                                                </p>
-                                                        </div>
-                                                        <div class="tab-pane" id="panel-298358">
-                                                                <p>
-                                                                        <jsp:include page="zs_stu.jsp"  />
-                                                                </p>
-                                                        </div>
-                                                         <div class="tab-pane" id="panel-298359">
-                                                                <p>
-                                                                        <jsp:include page="szlsjsxx.jsp"  />
-                                                                </p>
-                                                        </div>
-                                                         <div class="tab-pane" id="panel-298360">
-                                                                <p>
-                                                                        <jsp:include page="zs_js.jsp"  />
-                                                                </p>
-                                                        </div>
-                                                         <div class="tab-pane" id="panel-298361">
-                                                                <p>
-                                                                        <jsp:include page="ckbjxx.jsp"  />
-                                                                </p>
-                                                        </div>
-                                                         <div class="tab-pane" id="panel-298362">
-                                                                <p>
-                                                                        <jsp:include page="course.jsp"  />
-                                                                </p>
-                                                        </div>
-                                                        <div class="tab-pane" id="panel-298363">
-                                                                <p>
-                                                                        <jsp:include page="set_all.jsp"  />
-                                                                </p>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
-                        </div>
-                </div>
-        
-
-    </div>
-</div>
-
+    <!--easyui-->
+    <script src="<%=path%>/js/jquery.easyui.min.js"></script>
+    <link rel="stylesheet"  href="<%=path%>/css/easyuicss/easyui.css">
+    <link rel="stylesheet"  href="<%=path%>/css/easyuicss/icon.css">
+    <link rel="image/png"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
     
-    <footer class="ui-footer" id="tree-footer">
-        <div class="container">
-            <p >
-                <strong>Copyright © 2015 河南大学软件学院  · 【教务系统】</strong>
-            </p>
-        </div>
-    </footer>
+    <!--uploadify-->
+    <script src="<%=path%>/js/jquery.uploadify.min.js"></script>
 
-    <div class="fbtn-container" id="scrollUp">
-        <div class="fbtn-inner">
-            <a class="fbtn fbtn-lg fbtn-brand waves-attach waves-circle waves-light waves-effect" >T<span class="fbtn-text fbtn-text-left">返回顶部</span></a>
-        </div>
-    </div>
-        
-   
-</body>
+
+        <script type="text/javascript">
+        var browserVersion = window.navigator.userAgent.toUpperCase();
+        var isOpera = false, isFireFox = false, isChrome = false, isSafari = false, isIE = false;
+        function reinitIframe(iframeId, minHeight) {
+            try {
+                var iframe = document.getElementById(iframeId);
+                var bHeight = 0;
+                if (isChrome == false && isSafari == false)
+                    bHeight = iframe.contentWindow.document.body.scrollHeight;
+                var dHeight = 0;
+                if (isFireFox == true)
+                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                else if (isIE == false && isOpera == false)
+                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                else if (isIE == true && !-[1, ] == false) {
+                } //ie9+
+                else
+                    bHeight += 3;
+                var height = Math.max(bHeight, dHeight);
+                if (height < minHeight)
+                    height = minHeight;
+                iframe.style.height = height + "px";
+            } catch (ex) {
+            }
+        }
+        function startInit(iframeId, minHeight) {
+            isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
+            isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
+            isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
+            isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
+            if (!!window.ActiveXObject || "ActiveXObject" in window)
+                isIE = true;
+            window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
+        }
+
+        function iFrameHeight() {
+                //var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
+                //if(ifm != null && subWeb != null) {
+                //   ifm.height = subWeb.body.scrollHeight;
+                //   ifm.width = subWeb.body.scrollWidth;
+                //}   
+        }   
+    </script>      
+    </body>  
 </html>

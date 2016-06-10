@@ -129,8 +129,8 @@ public class StuController {
     //返回课程页详情
     @RequestMapping("/student/Course")
     public String Course(HttpServletRequest request, HttpServletResponse response) throws Exception{
-         String cid=request.getParameter("cou");
-         request.setAttribute("scid",cid);
+        String cid=request.getParameter("cou");
+        request.setAttribute("scid",cid);
         Teacher tec=TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(cid));
         String sn=tec.getTeacherSn();
         String tec_sn= tec.getTeacherSn();
@@ -244,8 +244,23 @@ public class StuController {
             sb.append("<li><a href=\"./student/Course_noready?scid="+list.get(4*i)+"\" target=\"noreadycoucontent\">"+list.get(4*i+1)+"</a></li>");
         }
         request.setAttribute("noreadycou",sb.toString());
-       
-       
+        
+        String[] a = new String[2];
+        sb.append("<ol type='1' class='' >");
+        for (int i = 0; i < list.size() / 2; i++) {
+            sb.append("<li><a href='./student/Course?cou=" + list.get(2 * i) + "' target='coucontent'>" + list.get(2 * i + 1) + "</a></li>");
+        }
+        sb.append("</ol>");
+        a[0] = sb.toString();
+        sb = new StringBuffer();
+        sb.append("<ol type='1' class='' >");
+        list = StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
+        for (int i = 0; i < list.size() / 4; i++) {
+            sb.append("<li><a href='./student/Course_noready?scid=" + list.get(4 * i) + "' target='noreadycoucontent'>" + list.get(4 * i + 1) + "</a></li>");
+        }
+        sb.append("</ol>");
+        a[1] = sb.toString();
+        
 	return "student/Index";
     }
     //刷新已选、未选 span

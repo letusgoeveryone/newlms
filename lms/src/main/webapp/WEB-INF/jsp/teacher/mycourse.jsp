@@ -11,8 +11,8 @@
 
 <div class="row-fluid" style="min-height: 600px" id="coall">
     <div class="span12">
-        <div class="tab-nav">
-            <ul class="nav  nav-list">
+        <div class="tab-nav tab-nav-gold hidden-xx ui-tab">
+            <ul class="nav nav-list ">
                 <li class="active">
                     <a href="#panel-761012" data-toggle="tab">课程介绍</a>
                 </li>
@@ -26,27 +26,28 @@
                     <a href="#panel-587335" data-toggle="tab" onclick="ck()">作业区</a>
                 </li>
             </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade in active" id="panel-761012">
-                    <p>
-                        <jsp:include page="kcjs.jsp"  />
-                    </p>
-                </div>
-                <div class="tab-pane fade in" id="panel-587333">
-                    <p>
-                        <jsp:include page="kcdg.jsp"  />
-                    </p>
-                </div>
-                <div class="tab-pane fade in" id="panel-587334">
-                    <p>
-                        <jsp:include page="kcnr.jsp" /> 
-                    </p>
-                </div>
-                <div class="tab-pane fade in" id="panel-587335">
-                    <p>
-                        <jsp:include page="work.jsp"  /> 
-                    </p>
-                </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="panel-761012">
+                <p>
+                    <jsp:include page="kcjs.jsp"  />
+                </p>
+            </div>
+            <div class="tab-pane fade in" id="panel-587333">
+                <p>
+                    <jsp:include page="kcdg.jsp"  />
+                </p>
+            </div>
+            <div class="tab-pane fade in" id="panel-587334">
+                <p>
+                    <jsp:include page="kcnr.jsp" /> 
+                </p>
+            </div>
+            <div class="tab-pane fade in" id="panel-587335">
+                <p>
+                    <jsp:include page="work.jsp"  /> 
+                </p>
             </div>
         </div>
     </div>

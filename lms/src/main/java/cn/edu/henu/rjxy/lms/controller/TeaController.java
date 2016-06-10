@@ -68,15 +68,20 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Name : liubingxu Email : 2727826327qq.com
  */
 @Controller
-@RequestMapping("/teacher/")
+//@RequestMapping("teacher//teacher")
 public class TeaController {
     
-    @RequestMapping("student")
-    public String tudent(HttpServletRequest request,HttpServletResponse response) {
+    @RequestMapping("teacher")
+    public String tea_index(HttpServletRequest request, HttpServletResponse response) {
+        return "teacher/Index";
+    }
+    
+    @RequestMapping("teacher/student")
+    public String student(HttpServletRequest request,HttpServletResponse response) {
         
         return "teacher/mystudent";
     } 
-      @RequestMapping("resetpw_p")
+      @RequestMapping("teacher/resetpw_p")
     public @ResponseBody String resetpw_p(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();
         Teacher teacher=TeacherDao.getTeacherBySn(sn);
@@ -91,7 +96,7 @@ public class TeaController {
         return "3";
      }
     
-    @RequestMapping("alljsp")
+    @RequestMapping("teacher/alljsp")
     public String alljsp(HttpServletRequest request,HttpServletResponse response) {
         String term = request.getParameter("term");
         String courseid = request.getParameter("courseid");
@@ -102,7 +107,7 @@ public class TeaController {
         return "teacher/alljsp";
     } 
     
-    @RequestMapping("/teapnda")
+    @RequestMapping("teacher//teapnda")
     public String teacher(HttpServletRequest request,HttpServletResponse response) {
          String sn=getCurrentUsername();
          Teacher teacher = TeacherDao.getTeacherBySn(sn);
@@ -120,7 +125,7 @@ public class TeaController {
         return "teacher/teapnda";
     } 
     
-    @RequestMapping("/updatetea")
+    @RequestMapping("teacher//updatetea")
     public @ResponseBody
         String update(HttpServletRequest request,HttpServletResponse response) {
         String a="0";
@@ -153,7 +158,7 @@ public class TeaController {
     
       
     //修改密码
-    @RequestMapping("teaPassward")
+    @RequestMapping("teacher/teaPassward")
     public @ResponseBody String teaPassward(HttpServletRequest request){
          String sn=getCurrentUsername();
          Teacher tec = TeacherDao.getTeacherBySn(sn);
@@ -172,7 +177,7 @@ public class TeaController {
       }
       
       //班级学生信息显示
-      @RequestMapping("mystudent")
+      @RequestMapping("teacher/mystudent")
       public @ResponseBody JSONObject mystudent(HttpServletRequest request,HttpServletResponse response){
           int pc = Integer.parseInt(request.getParameter("page"));
           int ps = Integer.parseInt(request.getParameter("rows"));
@@ -216,7 +221,7 @@ public class TeaController {
           return JSONObject.fromObject(jg);
       }
       //删除班级学生
-      @RequestMapping("scstu")
+      @RequestMapping("teacher/scstu")
       public @ResponseBody String[] scstu(HttpServletRequest request,HttpServletResponse response){
           String [] a =new String [1];
           a[0] = "删除成功";
@@ -236,7 +241,7 @@ public class TeaController {
       }
       
     //批准班级学生
-    @RequestMapping("pzstu")
+    @RequestMapping("teacher/pzstu")
     public @ResponseBody String[] pzstu(HttpServletRequest request,HttpServletResponse response){
           String [] a =new String [1];
           a[0] = "批准班级学生成功";
@@ -256,7 +261,7 @@ public class TeaController {
       }
       
       //批量批准学生
-       @RequestMapping("pzPLstu")
+       @RequestMapping("teacher/pzPLstu")
       public @ResponseBody String[] pzPLstu(HttpServletRequest request,HttpServletResponse response,@RequestParam("jssz[]") int[] stuid){
           String [] a =new String [1];
           a[0] = "批准班级学生成功";
@@ -277,7 +282,7 @@ public class TeaController {
       
       
         //导出学生信息,getStuSelectByTermCourseId(trem_courseid,1,300);1表示第一页．300表示最大学生数
-    @RequestMapping("xz_xs_xx")
+    @RequestMapping("teacher/xz_xs_xx")
     public @ResponseBody String daochuxuesheng(HttpServletRequest request, HttpServletResponse response) throws IOException{
           int classid = Integer.parseInt(request.getParameter("zjd_id"));
           int course_id = Integer.parseInt(request.getParameter("fjd_id"));
@@ -367,7 +372,7 @@ public class TeaController {
 
   
   //教师课程设置格式
-  @RequestMapping("kcgs")
+  @RequestMapping("teacher/kcgs")
   public @ResponseBody List<AutoCourseNode> kcgs(){
      List<AutoCourseNode> list = new LinkedList();
      AutoCourseNode node1 = new AutoCourseNode();
@@ -476,7 +481,7 @@ public class TeaController {
   }
   
   //解析josn文件生成树
-  @RequestMapping("scTree")
+  @RequestMapping("teacher/scTree")
   public @ResponseBody String scTree(HttpServletRequest request) throws FileNotFoundException, IOException{
       String sn=getCurrentUsername();
       Teacher tec = TeacherDao.getTeacherBySn(sn);
@@ -508,7 +513,7 @@ public class TeaController {
   
   
   //检查老师是否设置过课程目录
-  @RequestMapping("lookMulu")
+  @RequestMapping("teacher/lookMulu")
   public @ResponseBody String lookMulu(HttpServletRequest request){
       String sn=getCurrentUsername();
       Teacher tec = TeacherDao.getTeacherBySn(sn);
@@ -526,7 +531,7 @@ public class TeaController {
   }
   
   //课程内容树的删除
-  @RequestMapping("kcnr_sc")
+  @RequestMapping("teacher/kcnr_sc")
   public @ResponseBody String kcnr_sc(HttpServletRequest request){
      String sn=getCurrentUsername();
      Teacher tec = TeacherDao.getTeacherBySn(sn);
@@ -561,7 +566,7 @@ public class TeaController {
   }
   
   //上传课程内容
-  @RequestMapping("kcnr_submit")
+  @RequestMapping("teacher/kcnr_submit")
   public @ResponseBody String[] kcnr_submit(HttpServletRequest request) throws IOException, FileUploadException, Exception{
      String []s=new String[1];
      String sn=getCurrentUsername();
@@ -611,7 +616,7 @@ public class TeaController {
   
   
   //更新课程介绍
-  @RequestMapping("addcourseinfo")
+  @RequestMapping("teacher/addcourseinfo")
   public @ResponseBody String addcourseinfo(HttpServletRequest request,HttpServletResponse response){
      String term = request.getParameter("term");
      String courseid = request.getParameter("courseid");
@@ -622,7 +627,7 @@ public class TeaController {
   }
   
   //更新课程大纲
-  @RequestMapping("addcourseoutline")
+  @RequestMapping("teacher/addcourseoutline")
   public @ResponseBody String addcourseoutline(HttpServletRequest request,HttpServletResponse response) throws IOException{
      String term = request.getParameter("term");
      String courseid = request.getParameter("courseid");
@@ -633,7 +638,7 @@ public class TeaController {
   }
 
   //删除课程大纲附件
-  @RequestMapping("scDGwork")
+  @RequestMapping("teacher/scDGwork")
   public @ResponseBody String[] scDGwork(HttpServletRequest request){
      String []a = new String[1];
      String term = request.getParameter("term");
@@ -652,7 +657,7 @@ public class TeaController {
     return a;
   }
   //look课程内容
-  @RequestMapping("courdir")
+  @RequestMapping("teacher/courdir")
   public @ResponseBody String[] courdir(HttpServletRequest request){
      String []s=new String[4];
      String sn=getCurrentUsername();
@@ -710,7 +715,7 @@ public class TeaController {
   }
   
   //显示大纲名称
-  @RequestMapping("lookDGwork")
+  @RequestMapping("teacher/lookDGwork")
  public @ResponseBody String[] lookDGwork(HttpServletRequest request){
      String term = request.getParameter("term");
      String coursename = request.getParameter("coursename");
@@ -733,7 +738,7 @@ public class TeaController {
      return s;
  }
   //返回课程大纲
-  @RequestMapping("lookcourseDG")
+  @RequestMapping("teacher/lookcourseDG")
   public @ResponseBody String[] lookcourseDG(HttpServletRequest request,HttpServletResponse response){
      String term = request.getParameter("term");
      String courseid = request.getParameter("courseid");
@@ -744,7 +749,7 @@ public class TeaController {
      return a;
   }
   //返回课程介绍
-   @RequestMapping("lookcourseline")
+   @RequestMapping("teacher/lookcourseline")
   public @ResponseBody String[] lookcourseline(HttpServletRequest request,HttpServletResponse response){
      String term = request.getParameter("term");
      String courseid = request.getParameter("courseid");
@@ -757,7 +762,7 @@ public class TeaController {
   
   
   //查看是否为课程负责人
-  @RequestMapping("lookisCourseMaster")
+  @RequestMapping("teacher/lookisCourseMaster")
   public @ResponseBody String lookisCourseMaster(HttpServletRequest request,HttpServletResponse response){
      String term = request.getParameter("term");
      String courseid = request.getParameter("courseid");
@@ -770,7 +775,7 @@ public class TeaController {
   }
   
   //课件删除
-  @RequestMapping("kcsc")
+  @RequestMapping("teacher/kcsc")
   public @ResponseBody String[] kcsc(HttpServletRequest request,HttpServletResponse response){
       String []a = new String[1];
      String sn=getCurrentUsername();
@@ -800,7 +805,7 @@ public class TeaController {
   
   
   //作业要求上传
-  @RequestMapping("work")
+  @RequestMapping("teacher/work")
   public @ResponseBody String work(HttpServletRequest request) throws IOException{
       int length = 0;
       String textWork = request.getParameter("arred");//作业要求
@@ -835,7 +840,7 @@ public class TeaController {
   }
   
    //修改作业要求上传
-  @RequestMapping("xgwork")
+  @RequestMapping("teacher/xgwork")
   public @ResponseBody String xgwork(HttpServletRequest request) throws IOException{
       String textWork = request.getParameter("arred");//作业要求
       String time = request.getParameter("time");//学生提交作业截至时间
@@ -901,7 +906,7 @@ public class TeaController {
 
   }
   
-  @RequestMapping("homework_submit")
+  @RequestMapping("teacher/homework_submit")
   public @ResponseBody String homework_submit(HttpServletRequest request,@RequestParam("file") MultipartFile file) throws FileNotFoundException, IOException{
      int length = 0;
      String textWork = request.getParameter("arr1");//作业要求
@@ -951,7 +956,7 @@ public class TeaController {
   }
   
   //显示共有几次作业
-  @RequestMapping("ckcourselist")
+  @RequestMapping("teacher/ckcourselist")
   public @ResponseBody String [] ckcourselist(HttpServletRequest request) throws IOException{
       String []a = new String[100000];
       int length = 0;
@@ -974,7 +979,7 @@ public class TeaController {
   }
   
   //窗口显示作业详情
-  @RequestMapping("worknewwindow")
+  @RequestMapping("teacher/worknewwindow")
   public @ResponseBody String[] worknewwindow(HttpServletRequest request) throws IOException{
       String coursename =request.getParameter("courseName");
       String term = request.getParameter("term");
@@ -1003,7 +1008,7 @@ public class TeaController {
       return b;
   }
  // 删除作业附件
-  @RequestMapping("dlworkfj")
+  @RequestMapping("teacher/dlworkfj")
   public @ResponseBody String scworkfj(HttpServletRequest request) throws IOException{
       String coursename =request.getParameter("courseName");
       String term = request.getParameter("term");
@@ -1025,7 +1030,7 @@ public class TeaController {
   }
   
   // 作业目录下班级显示
-  @RequestMapping("lkworkbj")
+  @RequestMapping("teacher/lkworkbj")
   public @ResponseBody String[] lkworkbj(HttpServletRequest request) throws IOException{
       String []c = new String[1];
       String coursename =request.getParameter("courseName");
@@ -1061,7 +1066,7 @@ public class TeaController {
   }
   
   ////班级目录下学生长度
-  @RequestMapping("lkworkxs")
+  @RequestMapping("teacher/lkworkxs")
   public @ResponseBody String[] lkworkxs(HttpServletRequest request) throws IOException{
       String []c = new String[1];
       String clsssname =request.getParameter("a");
@@ -1157,7 +1162,7 @@ public class TeaController {
     return b;
   }
   //下载全部作业
-   @RequestMapping("download")    
+   @RequestMapping("teacher/download")    
     public ResponseEntity<byte[]> download(HttpServletRequest request,HttpServletResponse response) throws IOException {  
         String term = request.getParameter("term");
         String courseName = request.getParameter("courseName");
@@ -1184,7 +1189,7 @@ public class TeaController {
     }    
     
     //下载当前班级的提交作业
-   @RequestMapping("downloadclas")    
+   @RequestMapping("teacher/downloadclas")    
     public ResponseEntity<byte[]> downloadclass(HttpServletRequest request,HttpServletResponse response) throws IOException {  
         String term = request.getParameter("term");
         String courseName = request.getParameter("courseName");
@@ -1212,7 +1217,7 @@ public class TeaController {
     }    
 
     //教师下载作业后清楚临时文件
-    @RequestMapping("clear")    
+    @RequestMapping("teacher/clear")    
     public @ResponseBody String clear(HttpServletRequest request,HttpServletResponse response) throws IOException {  
         String term = request.getParameter("term");
         String sn = getCurrentUsername();

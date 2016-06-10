@@ -138,9 +138,9 @@ public class IndexController {
            return str;
         }
         //关于我们
-        @RequestMapping("about_us")
+        @RequestMapping("us")
         public String aboutus(){
-            return "about_us";
+            return "us";
         }
       
         

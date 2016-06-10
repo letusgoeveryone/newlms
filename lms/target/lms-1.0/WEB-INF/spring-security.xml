@@ -8,7 +8,7 @@
     <sec:http use-expressions="true">
         <sec:intercept-url pattern="/student" access="hasRole('ROLE_STUDENT')"/>
         <sec:intercept-url pattern="/student/**" access="hasRole('ROLE_STUDENT')"/>
-        <sec:intercept-url pattern="/teacherIndex" access="hasRole('ROLE_TEACHER')"/>
+        <!--<sec:intercept-url pattern="/teacherIndex" access="hasRole('ROLE_TEACHER')"/>-->
         <sec:intercept-url pattern="/teacher/**" access="hasRole('ROLE_TEACHER')"/>
         <sec:intercept-url pattern="/acdemic" access="hasRole('ROLE_ACDEMIC')"/>
         <!--<sec:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>-->

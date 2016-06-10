@@ -40,31 +40,31 @@
                 font-size: 36px;
                 color: #000;
             }
-            #lms_admin header{
+            #lms_dean header{
                 background-color: #333;
             }
-            #lms_admin .btn{
+            #lms_dean .btn{
                 min-width: 100px;
             }
-            #lms_admin .card-side .btn-golden{
+            #lms_dean .card-side .btn-golden{
                 display: block;
                 max-width: 150px;
                 margin-top: 15px;
             }
-            #lms_admin .tab-content{
+            #lms_dean .tab-content{
                 min-height: 1000px;
             }
-            #lms_admin_tnav_pInfo{
+            #lms_dean_tnav_pInfo{
                 padding-top: 120px;
             }
             /******************************************************************/
-            #lms_admin_t,
-            #lms_admin_d{
+            #lms_dean_t,
+            #lms_dean_d{
                 margin: 0;
                 padding: 200px 0;
             }
-            #lms_admin_t .bg-content,
-            #lms_admin_d .bg-content{
+            #lms_dean_t .bg-content,
+            #lms_dean_d .bg-content{
                 position: absolute;
                 background-color: #333;
                 top: 0;
@@ -72,19 +72,19 @@
                 right: 0;
                 height: 450px;
             }
-            #lms_admin_tnav,
-            #lms_admin_dnav{
+            #lms_dean_tnav,
+            #lms_dean_dnav{
                 position: absolute;
                 top: -55px;
                 width: 100%;
                 padding: 0;
                 left: 0;
             }
-            #lms_admin_tnav div,
+            #lms_dean_tnav div,
             .lms-control-list div{
                 display: inline-block;
             }
-            #lms_admin_tnav select{
+            #lms_dean_tnav select{
                 height: 36px;
             }
             .dropdown.open .dropdown-menu {
@@ -129,20 +129,20 @@
                 position: relative;
                 right:  0;
             }
-            #lms_admin_d{
+            #lms_dean_d{
                 padding-top: 210px;
             }
-            #lms_admin_dbtn .img-left,
-            #lms_admin_dbtn .img-right{
+            #lms_dean_dbtn .img-left,
+            #lms_dean_dbtn .img-right{
                 height: 120px;
                 min-height: 100%;
             }
-            #lms_admin_d .modal-content{
+            #lms_dean_d .modal-content{
                 width: 520px;
                 margin: auto;
                 margin-top: 210px;
             }
-            #lms_admin_d .btn-brand{
+            #lms_dean_d .btn-brand{
                 background-color: transparent;
             }
             .small {
@@ -151,10 +151,10 @@
             }
         </style>
     </head>
-    <body class="page-default tab-content" id='lms_admin'>
+    <body class="page-default tab-content" id='lms_dean'>
         
         <!--管理员 主区-->
-        <div id='lms_admin_main' class="tab-pane fade in active">
+        <div id='lms_dean_main' class="tab-pane fade in active">
 
             <!--            
             <div class="content-header ui-content-header">
@@ -172,15 +172,15 @@
             <header class="header " id="tree-header">
                 <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
                     <ul class="nav nav-list">
-                        <li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_admin_tnav_class"><span class="text-white">信息管理</span></a></li>
-                        <li  class="active"><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_admin_tnav_pInfo"><span class="text-white">个人面板</span></a></li>
+                        <li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_dean_tnav_class"><span class="text-white">院长按钮</span></a></li>
+                        <li  class="active"><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_dean_tnav_pInfo"><span class="text-white">个人面板</span></a></li>
                         <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white">退出系统<span class="icon margin-left-sm">exit_to_app</span></span></a></li>
                     </ul>
                 </nav>
             </header>
 
             <div class="container tab-content">
-                <div class="row tab-pane fade in active" id="lms_admin_tnav_pInfo">
+                <div class="row tab-pane fade in active" id="lms_dean_tnav_pInfo">
                     
                     <!-- 角色转换 -->
                     <div class="col-md-12"> 
@@ -195,20 +195,20 @@
                             </aside>
                             <div class="card-main">
                                 <div class="card-inner">
-                                    <section class="card-heading">角色转换【院长】到</section>
+                                    <section class="card-heading">院长视角（角色转换）</section>
                                     <section>
-                                        <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a  data-toggle="tab" href="#lms_admin_d" class='btn btn-brand  waves-attach  waves-light waves-effect' style="margin:auto;">
+                                        <%--<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
+                                            <a  data-toggle="tab" href="#lms_dean_d" class='btn btn-brand  waves-attach  waves-light waves-effect' style="margin:auto;">
                                                【A 管理员】
                                             </a>
-                                        </sec:authorize>
+                                        </sec:authorize>--%>
                                         <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a  data-toggle="tab" href="#lms_admin_a" class='btn btn-brand waves-attach  waves-light waves-effect' >
+                                            <a  data-toggle="tab" href="#lms_dean_a" class='btn btn-brand waves-attach  waves-light waves-effect' >
                                                【A 教务员】
                                             </a>
                                         </sec:authorize>
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                            <a  data-toggle="tab" href="#lms_admin_t" class='btn btn-brand waves-attach  waves-light waves-effect' style="margin:auto;">
+                                            <a  data-toggle="tab" href="#lms_dean_t" class='btn btn-brand waves-attach  waves-light waves-effect' style="margin:auto;">
                                                【T 教职】
                                             </a>
                                         </sec:authorize>
@@ -226,41 +226,110 @@
                     <!-- 角色转换 END-->                
                 </div>
 
-                <div class="row tab-pane fade " id="lms_admin_tnav_class" style="min-height: 500px;">             
+                <div class="row tab-pane fade " id="lms_dean_tnav_class" style="min-height: 500px;">             
                     <!--管理员 功能区-->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="tab-nav tab-nav-brand hidden-xx ui-tab " id="tabs-606390" >
-                                    <ul class="nav nav-list">
-                                        <li class="active">
-                                            <a href="#panel-ServerInformation" data-toggle="tab" >服务器信息</a>
-                                        </li>
-                                        <li>
-                                            <a href="#panel-UserSituation" data-toggle="tab">用户统计</a>
-                                        </li>
-                                        <li>
-                                            <a href="#panel-personManage" data-toggle="tab" >用户管理</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-12 tab-content" style="padding-bottom:60px;">
-                                
-                                <div class="tab-pane fade in" id="panel-personManage">
-                                    <iframe  src="<%=path%>/admin/PersonManage" id="iframepage" frameborder="0" scrolling="yes" marginheight="0" height="1800px" width="100%" name="用户管理"></iframe>
-                                </div>
-                                <div class="tab-pane fade in" id="panel-UserSituation">
-                                    <iframe  src="<%=path%>/admin/UserSituation" id="iframepage" frameborder="0" scrolling="yes" marginheight="0" height="1800px" width="100%" name="用户统计"></iframe>
-                                </div>
-                                <div class="tab-pane fade in active" id="panel-ServerInformation">
-                                    <iframe  src="<%=path%>/admin/ServerInformation" id="iframepage" frameborder="0" scrolling="yes" marginheight="0" height="3000px" width="100%" name="服务器信息"></iframe>                                    
+                            <div class="bg-content"></div>
+                            <div class="container " style="position:relative;">
+
+                                <div class="row width-control stage-box" id="lms_dean_dbtn">
+                                    <div class="col-md-5 card">
+                                        <aside class="card-side card-side-img pull-right">
+                                            <img alt="alt text" src="<%=path%>/images/dean_end.bmp" class="img-right">
+                                        </aside>
+                                        <div class="card-main">
+                                            <div class="card-inner">
+                                                <p class="card-heading">Great End !</p>
+                                                <p class="margin-bottom-lg">
+                                                    确定这学期结束了么(⊙o⊙)？
+                                                </p>
+                                            </div>
+                                            <div class="card-action">
+                                                <div class="card-action-btn pull-left">
+                                                    <button class="btn btn-flat waves-attach waves-effect" data-toggle="modal" data-target="#modalEndTerm"  >CLICK TO CONTINUE</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-2 card">
+                                        <aside class="card-side card-side-img pull-left">
+                                            <img alt="alt text" src="<%=path%>/images/dean_start.bmp"  class="img-left">
+                                        </aside>
+                                        <div class="card-main">
+                                            <div class="card-inner">
+                                                <p class="card-heading">Good start !</p>
+                                                <p class="margin-bottom-lg">
+                                                    确定要开始新的学期了么\(≧▽≦)/
+                                                </p>
+                                            </div>
+                                            <div class="card-action">
+                                                <div class="card-action-btn pull-left">
+                                                    <button class="btn btn-flat waves-attach waves-effect" data-toggle="modal" data-target="#modalStartTerm"  >CLICK TO CONTINUE</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                            </div>
+                                <div class="modal fade" id="modalEndTerm" role="dialog" >
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-heading">
+                                                <a class="modal-close" data-dismiss="modal">×</a>
+                                                <h2 class="modal-title">:-)</h2>
+                                            </div>
+                                            <div class="modal-inner">
+                                                <p class = "test-center h4">您确定要结束本学期了么？<span class="small">做最后一次确认吧</span></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Close</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="end">OK</button></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="modalStartTerm" role="dialog" >
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-heading">
+                                                <a class="modal-close" data-dismiss="modal">×</a>
+                                                <h2 class="modal-title">:-)</h2>
+                                            </div>
+                                            <div class="modal-inner">
+                                                <p class = "test-center h4">您确定要开始新的学期了么？<span class="small">做最后一次确认吧</span></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <p class="text-right"><button class="btn btn-flat  btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Close</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="begin">OK</button></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <script>
+                                    $(function(){
+
+
+                                    $("#begin").click(function(){
+                                        $.post("<%=path%>/dean/start",
+                                        function(data){
+
+                                           if(data === "1"){alert("新学期开始成功")};
+                                            if(data ==="0"){alert("新学期开始失败")};
+                                            })
+                                    });
+                                     $("#end").click(function(){
+
+                                        $.post("<%=path%>/dean/end",
+                                        function(data){
+                                            if(data=="1"){alert("旧学期结束成功")};
+                                            if(data=="0"){alert("旧学期结束失败")};
+                                            }
+                                         );
+                                    });
+                                    });
+                                </script>
                         </div>
-                    </div>
-                </div>
                                 
             </div>
                                 
@@ -278,125 +347,18 @@
         <!--管理员 主区 END-->
         
         <!--管理员 副区 院长区-->
-        <div id="lms_admin_d"  class="tab-pane fade in">
-            <div class="bg-content"></div>
-            <div class="container " style="position:relative;">
-                <nav id="lms_admin_dnav">
-                    <div>
-                        <a href="#lms_admin_main"class="btn lms-c-text-light waves-attach waves-light waves-effect pull-left" data-toggle="tab">
-                            <span> 返回 </span> 
-                        </a>
-                    </div>
-                </nav>
-
-                <div class="row width-control stage-box" id="lms_admin_dbtn">
-                    <div class="col-md-5 card">
-                        <aside class="card-side card-side-img pull-right">
-                            <img alt="alt text" src="<%=path%>/images/dean_end.bmp" class="img-right">
-                        </aside>
-                        <div class="card-main">
-                            <div class="card-inner">
-                                <p class="card-heading">Great End !</p>
-                                <p class="margin-bottom-lg">
-                                    确定这学期结束了么(⊙o⊙)？
-                                </p>
-                            </div>
-                            <div class="card-action">
-                                <div class="card-action-btn pull-left">
-                                <button class="btn btn-flat waves-attach waves-effect" data-toggle="modal" data-target="#modalEndTerm"  >CLICK TO CONTINUE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-md-offset-2 card">
-                        <aside class="card-side card-side-img pull-left">
-                            <img alt="alt text" src="<%=path%>/images/dean_start.bmp"  class="img-left">
-                        </aside>
-                        <div class="card-main">
-                            <div class="card-inner">
-                                <p class="card-heading">Good start !</p>
-                                <p class="margin-bottom-lg">
-                                    确定要开始新的学期了么\(≧▽≦)/
-                                </p>
-                            </div>
-                            <div class="card-action">
-                                <div class="card-action-btn pull-left">
-                                <button class="btn btn-flat waves-attach waves-effect" data-toggle="modal" data-target="#modalStartTerm"  >CLICK TO CONTINUE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        
-                </div>
-
-                <div class="modal fade" id="modalEndTerm" role="dialog" >
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-heading">
-                                <a class="modal-close" data-dismiss="modal">×</a>
-                                <h2 class="modal-title">:-)</h2>
-                            </div>
-                            <div class="modal-inner">
-                                <p class = "test-center h4">您确定要结束本学期了么？<span class="small">做最后一次确认吧</span></p>
-                            </div>
-                            <div class="modal-footer">
-                                <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Close</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="end">OK</button></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                                
-                <div class="modal fade" id="modalStartTerm" role="dialog" >
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-heading">
-                                <a class="modal-close" data-dismiss="modal">×</a>
-                                <h2 class="modal-title">:-)</h2>
-                            </div>
-                            <div class="modal-inner">
-                                <p class = "test-center h4">您确定要开始新的学期了么？<span class="small">做最后一次确认吧</span></p>
-                            </div>
-                            <div class="modal-footer">
-                                <p class="text-right"><button class="btn btn-flat  btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Close</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="begin">OK</button></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                                
-
-                <script>
-                    $(function(){
-
-
-                    $("#begin").click(function(){
-                        $.post("<%=path%>/dean/start",
-                        function(data){
-
-                           if(data === "1"){alert("新学期开始成功")};
-                            if(data ==="0"){alert("新学期开始失败")};
-                            })
-                    });
-                     $("#end").click(function(){
-
-                        $.post("<%=path%>/dean/end",
-                        function(data){
-                            if(data=="1"){alert("旧学期结束成功")};
-                            if(data=="0"){alert("旧学期结束失败")};
-                            }
-                         );
-                    });
-                    });
-                </script>
+        <div id="lms_dean_d"  class="tab-pane fade in">
+            
             </div>
         </div>
         <!--管理员 副区 院长区 END-->
         
         <!--管理员 副区 教务区 -->
-        <div id="lms_admin_a"  class="tab-pane fade in">
+        <div id="lms_dean_a"  class="tab-pane fade in">
             <!--功能列表-->
             <nav class="lms-admin-sidebar">
             <ul class="nav nav-tabs">
-                <a href="#lms_admin_main" data-toggle="tab" class="btn btn-flat" style="
+                <a href="#lms_dean_main" data-toggle="tab" class="btn btn-flat" style="
                    left: 0px;
                    right: 0px;
                    top: 0px;
@@ -466,13 +428,13 @@
         <!--管理员 副区 教务区 END-->
         
         <!--管理员 副区 教职区 -->
-        <div id="lms_admin_t"  class="tab-pane fade in">
+        <div id="lms_dean_t"  class="tab-pane fade in">
 
             <div class="bg-content"></div>
             <div class="container card" style="position:relative;">
-                <nav id="lms_admin_tnav">
+                <nav id="lms_dean_tnav">
                     <div>
-                        <a href="#lms_admin_main"class="btn lms-c-text-light waves-attach waves-light waves-effect pull-left" data-toggle="tab">
+                        <a href="#lms_dean_main"class="btn lms-c-text-light waves-attach waves-light waves-effect pull-left" data-toggle="tab">
                             <span> 返回 </span> 
                         </a>
                     </div>
@@ -491,7 +453,7 @@
                     </div>
                 </nav>
                 
-                <div class="row width-control" id="lms_admin_tnav_class">
+                <div class="row width-control" id="lms_dean_tnav_class">
                     <div class="col-md-12" style="min-height: 500px">
 
                         <div id="mystudent" style="display: none">

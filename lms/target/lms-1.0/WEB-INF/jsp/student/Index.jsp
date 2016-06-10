@@ -44,10 +44,9 @@
                 margin-top: 0 !important;
                 margin-bottom: 0 !important;
             }
-            #scrollUp{top: -70px;}
         </style>
     </head>
-    <body class="page-default tab-content">
+    <body class="page-default tab-content" id="lms_stu">
         
         <section id="lms_main" class="tab-pane fade in active stage-image bg-top"
                      style="background-image:url(<%=path%>/images/bg_for_timeLine.jpg);min-height:1500px;">
@@ -56,8 +55,8 @@
                 <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
                     <ul class="nav nav-list">
                         <li  class="active"><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_stu_tnav_pInfo"><span class="text-white">我的课程</span></a></li>
-                        <li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_stu_tnav_tLine"><span class="text-white">时光轴</span></a></li>
-                        <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white">退出系统<span class="icon icon-fixHans margin-left-sm">exit_to_app</span></span></a></li>
+                        <!--<li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_stu_tnav_tLine"><span class="text-white">时光轴</span></a></li>-->
+                        <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white"> 【${username}】退出系统<span class="icon icon-fixHans margin-left-sm">exit_to_app</span></span></a></li>
                     </ul>
                 </nav>
             </header>
@@ -86,7 +85,7 @@
                                         <ul id="card_btn_courseList">${stucou}</ul>
                                     </div>
                                     <div class="col-md-9" >
-                                        <jsp:include page="Course.jsp"  />
+                                        <jsp:include page="Course.jsp"/>
                                     </div>
                                 </div>
                             </div>
@@ -165,29 +164,25 @@
         <div class="fbtn-container">
             
             <div class="fbtn-inner" id="scrollUp">
-                <a class="fbtn fbtn-lg fbtn-brand waves-attach waves-circle waves-light waves-effect" >T<span class="fbtn-text fbtn-text-left">返回顶部</span></a>
+                <a class="fbtn fbtn-lg fbtn-trans waves-attach waves-circle waves-light waves-effect" ><span class="fbtn-ori icon">keyboard_arrow_up</span><span class="fbtn-text fbtn-text-left">返回顶部</span></a>
             </div>
             <div class="fbtn-inner">
-                <a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-text fbtn-text-left">关闭</span><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
+                <a class="fbtn fbtn-lg btn-gold waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
                 <div class="fbtn-dropup">
-                    <a class="fbtn waves-attach waves-circle stage-card" href="http:<%=path%>/student/PersonalInfo"><span class="fbtn-text fbtn-text-left">点击查看/修改个人信息</span><span class="icon">account_circle</span></a>
-                    <a class="fbtn fbtn-brand waves-attach waves-circle waves-light" href="<%=path%>/us" target="_blank"><span class="fbtn-text fbtn-text-left">关于我们</span><span class="icon">all_inclusive</span></a>
-                    <a class="fbtn fbtn-green waves-attach waves-circle" href="#" target="_blank"><span class="fbtn-text fbtn-text-left">加入我们</span><span class="icon">add</span></a>
+                    <a class="fbtn fbtn-brand waves-attach waves-circle stage-card" href="http:<%=path%>/student/PersonalInfo"><span class="fbtn-text fbtn-text-left">点击查看/修改个人信息</span><span class="icon">account_circle</span></a>
+                    <a class="fbtn fbtn-red waves-attach waves-circle waves-light" href="<%=path%>/us"><span class="fbtn-text fbtn-text-left">关于我们</span><span class="icon">all_inclusive</span></a>
+                    <a class="fbtn fbtn-trans waves-attach waves-circle" href="#" target="_blank"><span class="fbtn-text fbtn-text-left">加入我们</span><span class="icon">add</span></a>
                 </div>
             </div>
         </div>
 
         <!-- js -->
-        <script src="<%=path%>/js/jquery.fs.boxer.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
         <script>
             var Stickup=0;
-            var Masonry= 0;
-            $('.stage-card').boxer();
         </script>
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/jquery.scrollUp.min.js" type="text/javascript"></script>
 
         <!--easyui-->
         <script src="<%=path%>/js/jquery.easyui.min.js"></script>
@@ -196,11 +191,11 @@
         <link rel="stylesheet"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
 
         <!--uploadify-->
-        <script src="<%=path%>/js/jquery.uploadify.min.js"></script>
+        <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
 
         <!--umeditor-->
-        <script charset="utf-8" src="<%=path%>/js/umeditor.config.js"></script>
-        <script charset="utf-8" src="<%=path%>/js/umeditor.min.js"></script>
+        <script charset="utf-8" src="<%=path%>/umeditor/umeditor.config.js"></script>
+        <script charset="utf-8" src="<%=path%>/umeditor/umeditor.min.js"></script>
         <script src="<%=path%>/js/zh-cn.js"></script>
 
         <script type="text/javascript">

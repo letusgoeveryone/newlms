@@ -79,7 +79,7 @@
     });
 </script>
 
-<div class="col-md-3" style="min-height:300px;border-right: 1px solid whitesmoke;"><div id="tree"></div></div>
+<div class="col-md-3" style="min-height:300px;border-right: 1px solid whitesmoke;"><div id="tree"><ul>${noreadycou}</ul></div></div>
 
 <div class="col-md-9">
     <nav class="tab-nav tab-nav-gold hidden-xx ui-tab" id="tabs-974895 setwidth">

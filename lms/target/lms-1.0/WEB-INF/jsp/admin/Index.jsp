@@ -20,9 +20,14 @@
         <link href="<%=path%>/css/lms.css" rel="stylesheet" />
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" />
         <link href="<%=path%>/css/uploadify.css" rel="stylesheet"  />
-        <link href="<%=path%>/css/umeditor.min.css"  rel="stylesheet">
+        <link href="<%=path%>/ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
         
         <script src="<%=path%>/js/jquery.min.js"></script>
+        
+        <!--umeditor-->
+        <script charset="utf-8" src="<%=path%>/ueditor/umeditor.config.js"></script>
+        <script charset="utf-8" src="<%=path%>/ueditor/umeditor.min.js"></script>
+        <script src="<%=path%>/js/zh-cn.js"></script>
         
     </head>
     <body class="page-default tab-content" id='lms_admin'>
@@ -238,16 +243,12 @@
         </div>
         
     <!-- js -->
-    <script src="<%=path%>/js/jquery.fs.boxer.min.js" type="text/javascript"></script>
     <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
     <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
     <script>
-        var Stickup=1;
-        var Masonry= 0;
-        $('.stage-card').boxer();
+        var Stickup= 0;
     </script>
     <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
-    <script src="<%=path%>/js/jquery.scrollUp.min.js" type="text/javascript"></script>
 
     <!--easyui-->
     <script src="<%=path%>/js/jquery.easyui.min.js"></script>
@@ -256,12 +257,9 @@
     <link rel="image/png"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
     
     <!--uploadify-->
-    <script src="<%=path%>/js/jquery.uploadify.min.js"></script>
+    <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
 
-    <!--umeditor-->
-    <script charset="utf-8" src="<%=path%>/js/umeditor.config.js"></script>
-    <script charset="utf-8" src="<%=path%>/js/umeditor.min.js"></script>
-    <script src="<%=path%>/js/zh-cn.js"></script>
+
 
         <script type="text/javascript">
         var browserVersion = window.navigator.userAgent.toUpperCase();

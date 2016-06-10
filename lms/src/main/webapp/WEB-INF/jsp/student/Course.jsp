@@ -19,9 +19,9 @@
         switch (window.location.hash) {
             case '#zy':
                 //alert(66); 
-                $('#tabs-974895 a[href="#panel-86365"]').tab('show');
-//                $('#panel-236368').tab('hide');
-//                $('#panel-86365').tab('show');
+                $('#tabs-974895 a[href="#panel-CourseHomework"]').tab('show');
+//                $('#panel-CourseIntro').tab('hide');
+//                $('#panel-CourseHomework').tab('show');
                 break;
         }
 
@@ -56,44 +56,43 @@
             document.getElementById("swfplayer").src = "about:blank";
         }
         // parent.iFrameHeight();
-    }
+    } 
     ;
 
 </script>
 
 <nav class="tab-nav tab-nav-gold hidden-xx ui-tab" id="tabs-974895">
     <ul class="nav nav-list">
-        <li class="active"><a href="#panel-236368" data-toggle="tab" onclick="setheight(1)">课程介绍</a></li>
-        <li><a href="#panel-86366" data-toggle="tab" onclick="setheight(1)">课程大纲</a></li>
-        <li><a href="#panel-86367" data-toggle="tab" onclick="setheight(2)">课程内容</a></li>
-        <li><a href="#panel-86365" data-toggle="tab" onclick="setheight(1)">作业区</a></li>
-        <li class="nav-item-pullrigh"><a href="#panel-86369" data-toggle="tab" onclick="setheight(1)">退出该课程</a></li>
+        <li class="active"><a href="#panel-CourseIntro" data-toggle="tab" onclick="setheight(1)">课程介绍</a></li>
+        <li><a href="#panel-CourseOutline" data-toggle="tab" onclick="setheight(1)">课程大纲</a></li>
+        <li><a href="#panel-CourseContent" data-toggle="tab" onclick="setheight(2)">课程内容</a></li>
+        <li><a href="#panel-CourseHomework" data-toggle="tab" onclick="setheight(1)">作业区</a></li>
+        <li class="nav-item-pullrigh"><a href="#panel-ExitCourse" data-toggle="tab" onclick="setheight(1)">退出该课程</a></li>
     </ul>
 </nav>
-<div class="tab-content">
-    <div class="tab-pane active" id="panel-236368">
+<div class="tab-content" style="margin-left: 2em;">
+    <div class="tab-pane active" id="panel-CourseIntro">
         ${syllabusspan}
 
     </div>
-    <div class="tab-pane" id="panel-86366">
+    <div class="tab-pane" id="panel-CourseOutline">
         <span  id = "hfText2"><br>${Coursesb}</span>
         <div> ${CourseDescription}</div>
     </div> 
-    <div class="tab-pane" id="panel-86365">
+    <div class="tab-pane" id="panel-CourseHomework">
 
         <table class="table">
             <thead>
                 <tr><th>序号</th><th>作业名称</th><th>作业状态</th><th>截止时间</th><th>操作</th></tr>
             </thead>
             <tbody>
-
                 ${homework}
             </tbody>
         </table>
 
 
     </div>        
-    <div class="tab-pane" id="panel-86367">
+    <div class="tab-pane" id="panel-CourseContent">
 
         <div style="width: 20%;float: left;">
             <ul id="tt1"  class="easyui-tree" data-options="
@@ -107,18 +106,15 @@
         </div>                         
 
     </div>
-    <div class="tab-pane" id="panel-86369">
+    <div class="tab-pane" id="panel-ExitCourse">
         <div class="hero-unit">
-            <h1 style="font-color:red;">
-                请慎重操作！
-            </h1>
-            <p style="font-color:red;">
+            <div class="text-red">
+                请慎重操作！<br>
                 退出该课程意味着您的所有作业及其他与该课程相关的内容均会被删除。
-            </p>
-            <p>
-
-                <a class="btn btn-primary btn-large" onclick="quitcourse()">我知道了，我要继续删除»</a>
-            </p>
+            </div><hr>
+            <form class="input-group-addon" >
+                <input type="password" style="height:36px;margin-right: 2em;position: relative;top: 1px;"/><btn class="btn btn-red" onclick="quitcourse()">点击输入密码 继续退出 </btn>
+            </form>
         </div>
     </div>
 </div>

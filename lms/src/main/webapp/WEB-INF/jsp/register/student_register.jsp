@@ -31,9 +31,8 @@
                 <div class="col-md-3 stage-box">
                     <div class="pull-left">
 
-                        <a href="<%=path%>/login" class="btn-arrow">
-                            <i class="fbtn waves-attach waves-circle waves-effect">←</i> 
-                            <span> 返回登陆界面 </span> 
+                        <a href="<%=path%>/login">
+                            <span><i class="fbtn waves-attach waves-circle waves-effect icon">arrow_back</i>  返回登陆界面 </span> 
                         </a>
                     </div>
                 </div>
@@ -262,9 +261,8 @@
                 <div class="col-md-3 stage-box">
 
                     <div class="pull-right">
-                        <a href="student_teacher" class="btn-arrow">
-                            <span> 重新选择角色 </span>
-                            <i class="fbtn waves-attach waves-circle waves-effect">→</i>
+                        <a href="student_teacher">
+                            <span><i class="fbtn waves-attach waves-circle waves-effect icon">arrow_forward</i> 重新选择角色 </span>
                         </a>
                     </div>
                 </div>

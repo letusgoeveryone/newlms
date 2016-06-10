@@ -19,15 +19,15 @@
         <title>ServerInformation</title>
 
         <!-- css -->
-        <link href="<%=path%>/css/base.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<%=path%>/css/project.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<%=path%>/css/lms.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" type="text/css" href="<%=path%>/css/images/tree_icons.png"> 
+        <link rel="stylesheet"  href="<%=path%>/css/base.min.css"/>
+        <link rel="stylesheet"  href="<%=path%>/css/project.min.css"/>
+        <link rel="stylesheet"  href="<%=path%>/css/lms.css"/>
+        <!--<link rel="stylesheet"  href="<%=path%>/css/images/tree_icons.png">--> 
 
         <!--JS-->
-        <script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-        <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.min.js"></script>
+        <script src="<%=path%>/js/base.min.js" ></script>
+        <script src="<%=path%>/js/project.min.js" ></script>
         
     </head>
     <body>

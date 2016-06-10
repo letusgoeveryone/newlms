@@ -54,7 +54,7 @@ public class DeanController {
      public String personal_InfInformation(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("username",SecurityContextHolder.getContext().getAuthentication().getName());
 
-         return "dean";
+         return "dean/Index";
      }
      
      @RequestMapping("/stu_index2")
