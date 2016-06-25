@@ -47,14 +47,14 @@
     </head>
     <body class="page-default tab-content" id='lms_teach'>
 
-        <section id="lms_main" class="tab-pane fade in active stage-image bg-top"
-                 style="background-image:url(<%=path%>/images/bg_for_timeLine.jpg);min-height:1500px;">
+        <section id="lms_main" class="tab-pane fade in active stage-image bg-center"
+                 style="background-image:url(<%=path%>/images/bg-for-tl.jpg);min-height:1500px;">
 
             <header class="header" id="tree-header">
                 <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
                     <ul class="nav nav-list">
                         <li  class="active"><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_teach_CouCenter"><span class="text-white">课程中心</span></a></li>
-                        <li ><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_teach_RequstManage"><span class="text-white">学生管理</span></a></li>
+                        <!--<li ><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_teach_RequstManage"><span class="text-white">学生管理</span></a></li>-->
                         <!--<li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_stu_tnav_tLine"><span class="text-white">时光轴</span></a></li>-->
                         <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white"> 【${username}】退出系统<span class="icon icon-fixHans margin-left-sm">exit_to_app</span></span></a></li>
                     </ul>
@@ -77,16 +77,32 @@
                             <div class="card-main">
                                 <div class="card-header">
                                     <div class="padding-1em" style="width: 100%;padding: 1em;height: 3em;line-height: 1em;font-size: 2em;">
-                                        课程
+                                        学期课程
                                     </div>
                                 </div>
                                 <div class="card-inner row">
                                     <div class="col-md-3" style="min-height:300px;border-right: 1px solid whitesmoke;">
-                                        <ul id="card_btn_courseList"></ul>
+                                        <!--<ul id="card_btn_courseList"></ul>-->
+                                        <form class="form-group form-group-brand">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <select class="form-control form-control-static test" name="xq" id="sz_xq"></select>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        
+                                        <!--学期:<select id="sz_xq" class="test "></select><br><br><br>-->
+                                        <ul id="tt" class="easyui-tree" data-options="method:'get',animate:true"></ul>
                                     </div>
                                     <div class="col-md-9" >
-                                        <%--<jsp:include page="Course.jsp"/>--%>
-                                        <jsp:include page="mycourse.jsp"/>
+                                        <div id="mystudent" style="display: none">
+                                            <jsp:include page="mystudent.jsp"  />
+                                        </div>
+                                        <div style="display: none;" id="mycourse">
+                                            <%--<jsp:include page="mycourse.jsp"/>--%>
+                                            <iframe  iframepage id="addcouocontent" frameborder="0" scrolling="no" marginheight="0" height="500px" width="100%" name="addcouocontent"   onload=" startInit('addcouocontent', 500);"></iframe>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -146,11 +162,11 @@
 
 
                 <!--教师 副区 学生管理 -->
-                <div id="lms_teach_RequstManage"  class="tab-pane fade in">
+<!--                <div id="lms_teach_RequstManage"  class="tab-pane fade in">
 
-                    <jsp:include page="mystudent.jsp"/>
+                    <%--<jsp:include page="mystudent.jsp"/>--%>
 
-                </div>
+                </div>-->
                 <!--教师 副区 学生管理 END-->  
             </section>
 
@@ -211,14 +227,14 @@
                     $("#mystudent").hide();
                     $("#mycourse").hide();
                     $('#tt').tree({
-                        url: '<%=path%>/teacher/courselist?xueqi=' + $("#sz_xq").val(),
+                        url: '<%=path%>/courselist?xueqi=' + $("#sz_xq").val(),
                         onClick: function (node) {
                             lookTree(node);
                         }
                     });
                 });
                 $('#tt').tree({
-                    url: '/lms/teacher/courselist?xueqi=' + $("#sz_xq").val(),
+                    url: '<%=path%>/courselist?xueqi=' + $("#sz_xq").val(),
                     onClick: function (node) {
                         lookTree(node);
                     }
@@ -239,7 +255,7 @@
                     var term = $("#sz_xq").val();
                     var courseName = node.text;
                     var courseid = node.id;
-                    var b = "<%=path%>/teacher/alljsp?term=" + term + "&courseid=" + courseid + "&courseName=" + courseName;
+                    var b = "<%=path%>/teacher/mycourse?term=" + term + "&courseid=" + courseid + "&courseName=" + courseName;
                     $("#addcouocontent", parent.document.body).attr("src", b);
                 }
             }
