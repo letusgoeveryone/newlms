@@ -68,7 +68,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author Name : liubingxu Email : 2727826327qq.com
  */
 @Controller
-//@RequestMapping("teacher//teacher")
+//@RequestMapping("teacher/teacher")
 public class TeaController {
     
     @RequestMapping("teacher")
@@ -96,7 +96,7 @@ public class TeaController {
         return "3";
      }
     
-    @RequestMapping("teacher/alljsp")
+    @RequestMapping("teacher/mycourse")
     public String alljsp(HttpServletRequest request,HttpServletResponse response) {
         String term = request.getParameter("term");
         String courseid = request.getParameter("courseid");
@@ -104,10 +104,10 @@ public class TeaController {
         request.setAttribute("term", term);
         request.setAttribute("courseid",courseid);
         request.setAttribute("courseName",courseName );
-        return "teacher/alljsp";
+        return "teacher/mycourse";
     } 
     
-    @RequestMapping("teacher//teapnda")
+    @RequestMapping("teacher/teapnda")
     public String teacher(HttpServletRequest request,HttpServletResponse response) {
          String sn=getCurrentUsername();
          Teacher teacher = TeacherDao.getTeacherBySn(sn);
@@ -125,7 +125,7 @@ public class TeaController {
         return "teacher/teapnda";
     } 
     
-    @RequestMapping("teacher//updatetea")
+    @RequestMapping("teacher/updatetea")
     public @ResponseBody
         String update(HttpServletRequest request,HttpServletResponse response) {
         String a="0";

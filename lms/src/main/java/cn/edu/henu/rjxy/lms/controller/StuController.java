@@ -43,7 +43,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class StuController {
     
     //返回学生信息页
-    @RequestMapping("/student/PersonalInfo")
+    @RequestMapping("/student/personal_Inf")
     public String personal_InfInformation(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
@@ -56,12 +56,12 @@ public class StuController {
         request.setAttribute("StudentSex",(std.getStudentSex())?("男"):("女"));
         request.setAttribute("StudentTel",std.getStudentTel());
         request.setAttribute("StudentQq",std.getStudentQq()); 
-        return "student/PersonalInfo";
+        return "/student/personal_Inf";
     }
     //返回密码修改页
-    @RequestMapping("/student/ResetPasswd")
+    @RequestMapping("/student/resetpw")
     public String resetpassword(HttpServletRequest request, HttpServletResponse response) {
-        return "student/ResetPasswd";
+        return "/student/resetpw";
     }
     //密码修改提交处理
     @RequestMapping("/student/resetpw_p")
@@ -127,10 +127,10 @@ public class StuController {
         return a;
     }
     //返回课程页详情
-    @RequestMapping("/student/Course")
-    public String Course(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String cid=request.getParameter("cou");
-        request.setAttribute("scid",cid);
+    @RequestMapping("/student/stu_course")
+    public String stu_course(HttpServletRequest request, HttpServletResponse response) throws Exception{
+         String cid=request.getParameter("cou");
+         request.setAttribute("scid",cid);
         Teacher tec=TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(cid));
         String sn=tec.getTeacherSn();
         String tec_sn= tec.getTeacherSn();
@@ -191,14 +191,14 @@ public class StuController {
             
         }
          request.setAttribute("CourseDescription",TermCourseInfoDao.getCourseInfo(Integer.valueOf(term), TermCourseDao.getCourseidByCourseId(cid), 0));
-	return "student/Course";
+	return "/student/stu_course";
     }
 
     //学生选课页
-    @RequestMapping("/student/JoinCourse")
+    @RequestMapping("/student/stu_addcourse")
     public String stu_addcourse(HttpServletRequest request, HttpServletResponse response) {
         String sumcourse="";
-        Integer xueqi=Integer.valueOf("201601");
+        Integer xueqi=Integer.valueOf("201602");
          List<String> coulist = CourseDao.getCourseIdByTerm(xueqi);
         for (String coulist1 : coulist) {
             sumcourse = sumcourse+ "{text: \"" + CourseDao.getCourseById(Integer.valueOf(coulist1)).getCourseName() + "\",state: {expanded: false},";
@@ -222,7 +222,7 @@ public class StuController {
             sumcourse=sumcourse+ "},"; 
         }
 	request.setAttribute("Course","["+sumcourse+"]");
-	return "student/JoinCourse";
+	return "/student/stu_addcourse";
     }
     //学生首页
     @RequestMapping("/student")
@@ -234,34 +234,19 @@ public class StuController {
 
         List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId(xueqi, stusn);
         for (int i = 0; i < list.size()/2; i++) {
-            sb.append("<li><a href=\"./student/Course?cou="+list.get(2*i)+"\" target=\"coucontent\">"+list.get(2*i+1)+"</a></li>");
+            sb.append("<li><a href=\"./student/stu_course?cou="+list.get(2*i)+"\" target=\"coucontent\">"+list.get(2*i+1)+"</a></li>");
  
         }
         request.setAttribute("stucou",sb.toString());
         sb=new StringBuffer();
         list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
          for (int i = 0; i < list.size()/4; i++) {
-            sb.append("<li><a href=\"./student/Course_noready?scid="+list.get(4*i)+"\" target=\"noreadycoucontent\">"+list.get(4*i+1)+"</a></li>");
+            sb.append("<li><a href=\"./student/stu_course_noready?scid="+list.get(4*i)+"\" target=\"noreadycoucontent\">"+list.get(4*i+1)+"</a></li>");
         }
         request.setAttribute("noreadycou",sb.toString());
-        
-        String[] a = new String[2];
-        sb.append("<ol type='1' class='' >");
-        for (int i = 0; i < list.size() / 2; i++) {
-            sb.append("<li><a href='./student/Course?cou=" + list.get(2 * i) + "' target='coucontent'>" + list.get(2 * i + 1) + "</a></li>");
-        }
-        sb.append("</ol>");
-        a[0] = sb.toString();
-        sb = new StringBuffer();
-        sb.append("<ol type='1' class='' >");
-        list = StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
-        for (int i = 0; i < list.size() / 4; i++) {
-            sb.append("<li><a href='./student/Course_noready?scid=" + list.get(4 * i) + "' target='noreadycoucontent'>" + list.get(4 * i + 1) + "</a></li>");
-        }
-        sb.append("</ol>");
-        a[1] = sb.toString();
-        
-	return "student/Index";
+       
+       
+	return "/student/Index";
     }
     //刷新已选、未选 span
     @RequestMapping("/student/refleshspan")
@@ -273,7 +258,7 @@ public class StuController {
         sb.append("<ol type='1' class='' >");
         List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId(xueqi, stusn);
         for (int i = 0; i < list.size()/2; i++) {
-            sb.append("<li><a href='./student/Course?cou="+list.get(2*i)+"' target='coucontent'>"+list.get(2*i+1)+"</a></li>");
+            sb.append("<li><a href='./student/stu_course?cou="+list.get(2*i)+"' target='coucontent'>"+list.get(2*i+1)+"</a></li>");
         }
         sb.append("</ol>");
         a[0]=sb.toString();
@@ -281,7 +266,7 @@ public class StuController {
         sb.append("<ol type='1' class='' >");
         list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
          for (int i = 0; i < list.size()/4; i++) {
-            sb.append("<li><a href='./student/Course_noready?scid="+list.get(4*i)+"' target='noreadycoucontent'>"+list.get(4*i+1)+"</a></li>");
+            sb.append("<li><a href='./student/stu_course_noready?scid="+list.get(4*i)+"' target='noreadycoucontent'>"+list.get(4*i+1)+"</a></li>");
         }
         sb.append("</ol>");
         a[1]=sb.toString();
@@ -400,7 +385,7 @@ public class StuController {
       return read((getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/"+"test.json").replaceAll("\\\\", "/"));
   }
     //返回作业详情
-    @RequestMapping("/student/Homework")
+    @RequestMapping("/student/dohomework")
     public String dohomework(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String stusn=getCurrentUsername();
         String scid = request.getParameter("scid");
@@ -448,7 +433,7 @@ public class StuController {
             }
              request.setAttribute("Myattachment",sb.toString());  
             }
-        return "student/Homework";
+        return "/student/dohomework";
         }else{//作业未开始
         return "redirect:"+request.getHeader("Referer");
         }
