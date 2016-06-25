@@ -246,7 +246,7 @@
 
                                 <div onclick="mysubmit()" type="submit" class="btn btn-brand-accent btn-block">注册</div>
                                 <br />
-                                <a href="#login-0" data-toggle="tab"><div class="btn btn-brand btn-block">上一步</div></a>
+                                <a href="#login-0" data-toggle="tab"><div class="btn btn-default btn-block">上一步</div></a>
                             </div>
                             <div class="stage-box"></div>         
 
@@ -472,9 +472,9 @@
         function initMessage(objId) {
             var obj = document.getElementById(objId); //实例化对象obj
             if (objId === "nameMsg") {
-                obj.innerHTML = "<span style='color:green'>用户名必须为2-16位的字母,数字或汉字构成</span>";
+                obj.innerHTML = "<span style='color:#489887'>用户名必须为2-16位的字母,数字或汉字构成</span>";
             } else if (objId === "passwFristMsg") {
-                obj.innerHTML = "<span style='color:green'>密码必须为6-18位的字母,数字或下划线构成</span>";
+                obj.innerHTML = "<span style='color:#489887'>密码必须为6-18位的字母,数字或下划线构成</span>";
             }
         }
         $(function () {
