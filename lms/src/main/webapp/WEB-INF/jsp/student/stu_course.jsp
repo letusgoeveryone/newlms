@@ -19,7 +19,7 @@
         switch (window.location.hash) {
             case '#zy':
                 //alert(66); 
-                $('#tabs-974895 a[href="#panel-CourseHomework"]').tab('show');
+                $('a[href="#panel-CourseHomework"]').tab('show');
 //                $('#panel-CourseIntro').tab('hide');
 //                $('#panel-CourseHomework').tab('show');
                 break;
@@ -61,7 +61,7 @@
 
 </script>
 
-<nav class="tab-nav tab-nav-gold hidden-xx ui-tab" id="tabs-974895">
+<nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
     <ul class="nav nav-list">
         <li class="active"><a href="#panel-CourseIntro" data-toggle="tab" onclick="setheight(1)">课程介绍</a></li>
         <li><a href="#panel-CourseOutline" data-toggle="tab" onclick="setheight(1)">课程大纲</a></li>

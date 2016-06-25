@@ -11,6 +11,7 @@ and open the template in the editor.
 全局样式  
 =================================================================================
 */
+*{outline: none;}
 html, body{
     padding: 0;
     width:100%;
@@ -29,6 +30,7 @@ a:hover {
 p{
     padding-left: 2em;
 }
+select{outline:none}
 .shadow{box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);}
 .padding-1em{padding: 1em;}
 .nav-list .nav-item-pullrigh{position: absolute;right: 0;}
@@ -665,13 +667,13 @@ p{
 #lms_stu_reg a{
     color:#FFF;
 }
-#lms_tch_reg a:hover span,
+/*#lms_tch_reg a:hover span,
 #lms_stu_reg a:hover span{
-    color:#ccc;
-}
+    color:#444;
+}*/
 #lms_stu_reg .text-error,
 #lms_tch_reg .text-error{
-    color: orange;
+    color: #F44336;
 }
 #lms_stu_reg .input-group,
 #lms_tch_reg .input-group{
@@ -683,6 +685,25 @@ p{
     color: gray;
     background-color: whitesmoke;
 }
+#lms_stu_reg .btn-brand-accent,
+#lms_tch_reg .btn-brand-accent{
+    background-color: #E75C5C;
+}
+#lms_tch_reg .control-focus .floating-label,
+#lms_stu_reg .control-focus .floating-label{
+    color:#489887;
+    font-weight: bolder;
+}
+
+#lms_tch_reg .control-focus input,
+#lms_stu_reg .control-focus input,
+#lms_tch_reg .control-focus select,
+#lms_stu_reg .control-focus select{
+    color:#212121;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+    -moz-outline: none;
+}
+
 
 /*   ** 3.0 实用类 Stage
 =================================================================================

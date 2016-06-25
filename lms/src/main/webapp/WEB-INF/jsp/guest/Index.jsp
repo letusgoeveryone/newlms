@@ -29,7 +29,7 @@
             #course-nav{
                 border-right: 1px solid whitesmoke;
                 /*background-image: url(<%=path%>/images/banner-1.jpg);*/
-                background-color:#3f51b5;
+                background-color:#489887;
             }
             #fix-001{
                 margin: 1em;
@@ -49,7 +49,7 @@
                 margin:auto -31px;
             }
             #course-list li:hover{
-                background-color: #303f9f;
+                background-color: #2D685B;
             }
             #course-list li a{
                 display:block;
@@ -78,13 +78,16 @@
                 text-align: center;
                 background-color: whitesmoke;
                 padding: 1em;
+                border-radius:0;
+                color:#2D685B;
             }
             #f_reg_btn_grp>div>a:hover{
-                background-color: #212121;
+                background-color: #59a999;
                 transition: all 0.3s;
+                color:#fff;
             }
             .card {
-                box-shadow: 0 -1px 0 #3f5779,0 0 2px rgba(39, 39, 39, 0.1),0 2px 4px rgba(0,0,0,.24);
+                box-shadow: 0 -1px 0 #489887,0 0 2px rgba(39, 39, 39, 0.1),0 2px 4px rgba(0,0,0,.24);
                 padding-bottom:20px;
             }
         </style>
@@ -107,8 +110,8 @@
                         ${Courselist}
                     </ul>
                     <div id="f_reg_btn_grp" class="btn-group-justified">
-                        <div><a href="<%=path%>/reg/student_teacher" class="waves-attach waves-light waves-effect">注册</a> </div>
-                        <div><a href="<%=path%>/login" class="waves-attach waves-light waves-effect">登录</a> </div>
+                        <div><a href="<%=path%>/reg/student_teacher" class="btn btn-flat  waves-attach waves-light waves-effect">注册</a> </div>
+                        <div><a href="<%=path%>/login" class="btn btn-flat waves-attach waves-light waves-effect">登录</a> </div>
                     </div>
                 </nav>
                 <div class="col-md-9 width-control " id="course-content">
