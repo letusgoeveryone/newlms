@@ -23,7 +23,6 @@
         <tr><th>课程</th><th>教师</th><th>班级</th><th>操作</th></tr>
     </thead>
     <tbody>
-
         ${wpzCourse}
     </tbody>
 </table>

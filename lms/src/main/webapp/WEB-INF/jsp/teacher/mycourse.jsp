@@ -13,7 +13,12 @@
     <meta charset="UTF-8">
     <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
     <title></title>
-
+    <style>
+        .progress-circular, .tab-nav {
+            margin-top: 12px !important;
+            margin-bottom: 24px;
+    }
+        </style>
     <!-- css -->
     <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
     <link href="<%=path%>/css/project.min.css" rel="stylesheet" />

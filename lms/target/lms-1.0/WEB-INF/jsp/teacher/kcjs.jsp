@@ -1,9 +1,18 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <h3 style="text-align: center;color: blue" id="kcdg_kcjs" ></h3><br>
-   
-    <div style="border:0px solid #CCC;"><span  id = "hfText"></span></div>
-    <script type="text/plain" id="myEditor" style="width: 800px;height:50px;">
+    <!--<h3 style="text-align: center;color: blue" id="kcdg_kcjs" ></h3>-->
+    <style>
+        #hfText{
+            padding:2em 1em;
+            background: whitesmoke;
+            margin: 2em 0;
+        }
+        #hfText p{
+            padding: 0 2em;
+        }
+    </style>
+    <div><div id="hfText" style="border:0px solid #CCC;"></div></div>
+    <script type="text/plain" id="myEditor" style="width: 100%;min-height:50px;">
     <p>在此处编辑课程介绍</p>
     </script>
     <br>

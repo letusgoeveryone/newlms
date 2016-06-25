@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class FileController {
     
-    @RequestMapping("/getFlash")
+    @RequestMapping("/getswf")
     public String Filegetswf(HttpServletRequest request, HttpServletResponse response) {
         String uri=request.getParameter("uri");
         uri=uri.replaceAll("\\\\", "/");
         uri=uri.replaceAll("//", "/");
         System.out.println(uri);
 	request.setAttribute("uri","file/"+uri);
-	return "getFlash"; 
+	return "getswf"; 
     }
     
     @RequestMapping("/getVideo")

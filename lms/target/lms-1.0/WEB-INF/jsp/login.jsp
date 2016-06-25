@@ -107,7 +107,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <a href="#login" data-toggle="tab" class="pull-right">返回登录 </a>
+                                                <a href="#login" data-toggle="tab" class="btn btn-flat pull-right">返回登录 </a>
                                             </div>
                                         </form>
                                     </div>
@@ -146,7 +146,8 @@
                     'marginTop': 0.05 * treePosition
                 });
                 $("#account").css({
-                    'marginTop': 0.5 * treePosition
+                    'marginTop': 0.1 * treePosition,
+                    'marginBottom':0.1 * treePosition
                 });
                 $("#lms_login_banner").carousel('cycle');
             });

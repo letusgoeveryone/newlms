@@ -39,17 +39,20 @@
             }
             #lms_stu_tnav_pInfo{
                 padding-top: 5em;
+                padding-bottom:100%;
             }
             #lms_stu_tnav_pInfo .card{
                 margin-top: 0 !important;
                 margin-bottom: 0 !important;
+                /*min-height: 700px;
+                background-color: rgba(255,255,255,0.8);*/
             }
         </style>
     </head>
     <body class="page-default tab-content" id="lms_stu">
         
-        <section id="lms_main" class="tab-pane fade in active stage-image bg-top"
-                     style="background-image:url(<%=path%>/images/bg_for_timeLine.jpg);min-height:1500px;">
+        <section id="lms_main" class="tab-pane fade in active stage-image bg-center"
+                     style="background-image:url(<%=path%>/images/bg-for-tl.jpg);min-height:1500px;">
             
             <header class="header" id="tree-header">
                 <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
@@ -82,11 +85,12 @@
                                 </div>
                                 <div class="card-inner row">
                                     <div class="col-md-3" style="min-height:300px;border-right: 1px solid whitesmoke;">
-                                        <ul id="card_btn_courseList">${stucou}</ul>
+                                        <span id="span1">
+                                            <ol type="1" class="" >${stucou}</ol> 
+                                        </span>
                                     </div>
                                     <div class="col-md-9" >
-                                        <jsp:include page="Course.jsp"/>
-                                    </div>
+                                        <iframe src="" id="couiframepage" frameborder="0" scrolling="no" marginheight="0" height="500px" width="100%" name="coucontent" onload=" startInit('couiframepage', 500);"></iframe> </div>
                                 </div>
                             </div>
                         </div>
@@ -105,16 +109,24 @@
                             <div class="card-main">
                                 <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
                                     <ul class="nav nav-list">
-                                        <li class="active"><a href="#panel-CCouseList" data-toggle="tab">选课列表</a></li>
-                                        <li><a href="#panel-CCouseStatus" data-toggle="tab">选课状态</a></li>
+                                        <li class="active"><a href="#panel-ChooseCouseList" data-toggle="tab">选课列表</a></li>
+                                        <li><a href="#panel-ChooseCouseStatus" data-toggle="tab">选课状态</a></li>
                                     </ul>
                                 </nav>
                                 <div class="card-inner row  tab-content">
-                                    <div class="col-md-12 tab-pane fade in active" id="panel-CCouseList">
-                                        <jsp:include page="JoinCourse.jsp"  />
+                                    <div class="tab-pane fade in active" id="panel-ChooseCouseList">
+                                        <div class="col-md-3" style="min-height:300px;border-right: 1px solid whitesmoke;">
+                                            <span id="span2" >
+                                                <ol type="1" class="" >${noreadycou}</ol>
+                                            </span>
+                                        </div>
+                                        <div class="col-md-9"><iframe src="" id="noreadycoucontent" frameborder="0" scrolling="no" marginheight="0" height="500px" width="100%" name="noreadycoucontent" onload=" startInit('noreadycoucontent', 500);"></iframe> 
                                     </div>
-                                    <div class="col-md-12 tab-pane fade in" id="panel-CCouseStatus">
-                                        <jsp:include page="CourseState.jsp"  />
+                                    </div>
+                                    <div class="col-md-12 tab-pane fade in" id="panel-ChooseCouseStatus">
+                                        <%--<jsp:include page="CourseState.jsp"  />--%>
+
+                                        <iframe src="<%=path%>/student/stu_addcourse" id="addcouocontent" frameborder="0" scrolling="no" marginheight="0" height="500px" width="100%" name="addcouocontent" onload=" startInit('addcouocontent', 500);"></iframe>
                                     </div>
                                 </div>
                                 
@@ -138,14 +150,10 @@
                             </div>
                         </div>
                     </section>
-                                
-                                
-                </div>
-                                
+                                                               
+                </div>                                
                             
-                <div id="lms_stu_tnav_tLine" class="tab-pane fade in active" >
-
-                </div>
+                <div id="lms_stu_tnav_tLine" class="tab-pane fade in active" ></div>
             </section>
                                 
             <footer class="ui-footer" id="tree-footer">
@@ -157,7 +165,7 @@
                 
         <section id="lms_stu_homework" class="tab-pane fade">
             
-            <jsp:include page="Homework.jsp" />
+            <jsp:include page="dohomework.jsp" />
             
         </section>
 
@@ -169,7 +177,7 @@
             <div class="fbtn-inner">
                 <a class="fbtn fbtn-lg btn-gold waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
                 <div class="fbtn-dropup">
-                    <a class="fbtn fbtn-brand waves-attach waves-circle stage-card" href="http:<%=path%>/student/PersonalInfo"><span class="fbtn-text fbtn-text-left">点击查看/修改个人信息</span><span class="icon">account_circle</span></a>
+                    <a class="fbtn fbtn-brand waves-attach waves-circle stage-card" href="http:<%=path%>/student/personal_Inf"><span class="fbtn-text fbtn-text-left">点击查看/修改个人信息</span><span class="icon">account_circle</span></a>
                     <a class="fbtn fbtn-red waves-attach waves-circle waves-light" href="<%=path%>/us"><span class="fbtn-text fbtn-text-left">关于我们</span><span class="icon">all_inclusive</span></a>
                     <a class="fbtn fbtn-trans waves-attach waves-circle" href="#" target="_blank"><span class="fbtn-text fbtn-text-left">加入我们</span><span class="icon">add</span></a>
                 </div>
@@ -188,14 +196,13 @@
         <script src="<%=path%>/js/jquery.easyui.min.js"></script>
         <link rel="stylesheet"  href="<%=path%>/css/easyuicss/easyui.css">
         <link rel="stylesheet"  href="<%=path%>/css/easyuicss/icon.css">
-        <link rel="stylesheet"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
 
         <!--uploadify-->
         <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
 
         <!--umeditor-->
-        <script charset="utf-8" src="<%=path%>/umeditor/umeditor.config.js"></script>
-        <script charset="utf-8" src="<%=path%>/umeditor/umeditor.min.js"></script>
+        <script charset="utf-8" src="<%=path%>/ueditor/umeditor.config.js"></script>
+        <script charset="utf-8" src="<%=path%>/ueditor/umeditor.min.js"></script>
         <script src="<%=path%>/js/zh-cn.js"></script>
 
         <script type="text/javascript">
@@ -240,6 +247,19 @@
                     //   ifm.width = subWeb.body.scrollWidth;
                     //}   
             }
+            function refleshspan() {   
+               $.ajax({
+                   type: "GET", 
+                   url: "<%=path%>/student/refleshspan", 
+                   success: function (data) {
+                       $("#span1")[0].innerHTML=data[0];
+                       $("#span2")[0].innerHTML=data[1];
+                   },
+                    error:function(){
+                        alert("出错！");
+                       }
+                    });
+            }   
         </script> 
     </body>
 </html>

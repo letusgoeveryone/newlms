@@ -319,7 +319,7 @@ public class FileUpload extends HttpServlet {
            String swftmp=(ff+"/"+newFileName).replace(getFileFolder(request), "");
            swftmp=swftmp.substring(0,swftmp.lastIndexOf("."))+".swf";
            if (res){
-            System.out.println("转换为flash成功。网页引用地址:http://localhost:8080/Web/getswf?uri="+swftmp);
+            System.out.println("转换为flash成功。网页引用地址:http://localhost:8080/lms/getswf?uri="+swftmp);
            }else{System.out.println("转换为flash失败");}
         }
    

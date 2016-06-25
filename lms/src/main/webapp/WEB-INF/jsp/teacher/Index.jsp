@@ -21,7 +21,13 @@
         <link href="<%=path%>/css/uploadify.css" rel="stylesheet"  />
         <link href="<%=path%>/ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
         <link href="<%=path%>/css/lms.css" rel="stylesheet" />
-        
+        <style>
+            .col-md-9{
+                padding-bottom: 5em;
+                border-left: 1px solid whitesmoke;
+                min-height: 500px;
+            }
+        </style>
         <script src="<%=path%>/js/jquery.min.js"></script>
         <!-- js -->
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
@@ -48,7 +54,7 @@
     <body class="page-default tab-content" id='lms_teach'>
 
         <section id="lms_main" class="tab-pane fade in active stage-image bg-center"
-                 style="background-image:url(<%=path%>/images/bg-for-tl.jpg);min-height:1500px;">
+                 style="background-image:url(<%=path%>/images/bg-for-tl.jpg);min-height:1500px;padding-bottom:100px;">
 
             <header class="header" id="tree-header">
                 <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
@@ -65,7 +71,7 @@
                 <div id="lms_teach_CouCenter" class="tab-content tab-pane fade in active">
 
                     <section id="panel-MyCourse" class="row tab-pane fade in active">
-                        <div class="card" >
+                        <div class="card">
                             <aside class="card-side pull-left">
                                 <span class="card-heading" >
                                     <a class="fbtn btn-brand waves-attach waves-circle waves-light waves-effect" 
@@ -74,14 +80,14 @@
                                     </a>
                                 </span>
                             </aside>
-                            <div class="card-main">
+                            <div class="card-main" >
                                 <div class="card-header">
                                     <div class="padding-1em" style="width: 100%;padding: 1em;height: 3em;line-height: 1em;font-size: 2em;">
                                         学期课程
                                     </div>
                                 </div>
                                 <div class="card-inner row">
-                                    <div class="col-md-3" style="min-height:300px;border-right: 1px solid whitesmoke;">
+                                    <div class="col-md-3" style="min-height:300px;">
                                         <!--<ul id="card_btn_courseList"></ul>-->
                                         <form class="form-group form-group-brand">
                                             <div class="row">
