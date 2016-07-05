@@ -482,13 +482,11 @@ public class StuController {
         return "ok";
       }
         return "error";
-
- 
-        
+    
     }
     //返回课程目录树下面列表
     @RequestMapping("/student/courdir")
-    public @ResponseBody String[] courdir(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public @ResponseBody List<String> courdir(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String stsn=getCurrentUsername();
         String scid=request.getParameter("scid");
         String dir=request.getParameter("dir");
@@ -499,49 +497,25 @@ public class StuController {
         String term =TermCourseDao.getxueqiBySCId(scid).toString();
         String courseName =TermCourseDao.getCourseNameByCourseId(scid);
         String ff=getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
-        String ff2="../file/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
-        String ff3="../getswf?uri="+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
-        String ff4="../getvideo?uri="+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
-        String []a = new String[1];
-        a[0]="";
-        String dlc="";
+        String ff2="/file/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
+        List<String> fileList=new ArrayList<String>();   
         File f =new File(ff);
-        if(!f.exists()){ a[0]="<ol class=\"breadcrumb\" id=\"breadcour\"><p>此目录下暂无资源</p></ol>";}
+        if(!f.exists()){return fileList;}
         if(f.exists()&&f.isDirectory()){
          String[] files = f.list();
-            System.out.println(ff+"===="+files.length);
          if(files.length<=0){
-             a[0]="<ol class=\"breadcrumb\" id=\"breadcour\"><p>此目录下暂无资源</p></ol>";
-         }else{
-             boolean swf=false;
-             boolean ddoc=false;
-             
+                 return fileList;
+        }else{         
              for (String file : files) {
-                 System.out.println(file);
                  if (file.lastIndexOf(".")!=-1) {
-                     if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".swf")){
-                 swf=true;
-                 a[0]=a[0]+"<li><a href=\""+ff3+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a></li>";
-                     }else if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".mp4")){
-                 swf=true;
-                 a[0]=a[0]+"<li><a href=\""+ff4+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a></li>";   
-                     }else{
-                 ddoc=true;
-                 dlc=dlc+"<li><a href=\""+ff2+file+"\">"+file+"</a></li>";
-                 }
-                 }
-                  
-             }
-             if(swf){a[0]="<ol class=\"breadcrumb\" id=\"breadcour\"><p>以下是可供在线预览的资源</p>"+a[0]+"</ol>";}
-             if(ddoc){a[0]=a[0]+"<ol class=\"breadcrumb\" id=\"breadcour\"><p>以下是可以下载的资源</p>"+dlc+"</ol>";}
-             if (a[0].equals("")) {a[0]="<ol class=\"breadcrumb\" id=\"breadcour\"><p>此目录下暂无资源</p></ol>";}
+                     fileList.add(file);
+                 }              
+             }    
          }
       }
-        for(String c:a){
-            System.out.println(c);
-        }
-        return a;
+        return fileList;
     }
+
     //判断目录是否存在，不存在则创建
     public boolean file(String path){
       File f = new File(path);
