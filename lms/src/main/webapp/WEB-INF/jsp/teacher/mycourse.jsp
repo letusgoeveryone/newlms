@@ -114,10 +114,10 @@
                         <div id="worklk" style="border:0px solid #b8dcff;width: 800px;padding-left: 0%;display: none">
                             <span >作业要求:</span><br>
                             <span id = "newwork" style="width: 550px"></span><br>
+                            <span > 学生提交作业开始时间:</span><br>
+                            <span id="jzzyks" > </span><br><br><br>
                             <span > 学生提交作业截至时间:</span><br>
                             <span id="jzsj" > </span><br><br><br>
-                            <span > 学生提交作业开始时间</span><br>
-                            <span id="jzzyks" > </span><br><br><br>
                             <span id="zyfj" style="width: 800px"></span>
                             <div id="fj" style="display: none">
                                 <input type="file" name="uploadify" id="zymultiple_file_upload" />
@@ -139,7 +139,7 @@
                             <input id="xgdd" class="easyui-datetimebox" style="width: 200px"></input><br><br>
                             作业名称:<br><input class="easyui-textbox"  id="xgzyms" style="width: 200px"></input><br><br>
                             作业要求:
-                            <script type="text/plain" id="xghomework" style="width: 800px;height:100px;"></script><br>
+                            <script type="text/plain" id="xghomework" style="width:550%;height:100px;"><p></p></script><br>
                             <button type="button"  class="btn btn-primary"  onclick="tjzygg()">
                                 提交更改
                             </button>

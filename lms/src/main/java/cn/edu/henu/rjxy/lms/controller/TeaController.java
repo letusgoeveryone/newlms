@@ -995,7 +995,7 @@ public class TeaController {
       String []b = new String[4];
       b[0] = a;//作业要求
       b[1] = a2;//作业截至时间
-      b[2] = a3;
+      b[2] = a3;////starttime
       if(length==1){
            String a1 = readname(ff+"/"+1+"/", 1)[0];
            String ff2="../file/"+"homework"+"/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/"+1+"/";

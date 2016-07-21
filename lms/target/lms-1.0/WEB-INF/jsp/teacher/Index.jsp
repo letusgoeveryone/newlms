@@ -76,7 +76,7 @@
                                 <span class="card-heading" >
                                     <a class="fbtn btn-brand waves-attach waves-circle waves-light waves-effect" 
                                        href="#panel-HomeworkArea" data-toggle="tab" ><span class="icon">cloud_upload</span>
-                                        <span class="fbtn-text fbtn-text-left">加入课程</span>
+                                        <span class="fbtn-text fbtn-text-left">工具</span>
                                     </a>
                                 </span>
                             </aside>

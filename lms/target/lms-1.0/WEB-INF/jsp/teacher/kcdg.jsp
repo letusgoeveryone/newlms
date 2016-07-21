@@ -27,7 +27,7 @@
             <a class="btn btn-primary" href="javascript:$('#dgmultiple_file_upload').uploadify('stop','*')" hidden=true id="stopUpload">停止上传</a>
         </div><br>
         
-        <script type="text/plain" id="CourseDaGangEditor" style="width: 800px;height:100px;">
+        <script type="text/plain" id="CourseDaGangEditor" style="width: 600%;height:100px;">
            <p>在此处编辑课程大纲</p>
         </script>
         

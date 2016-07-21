@@ -14,17 +14,17 @@
     <body>     
         <div style="border:0px solid #b8dcff"><span id="iswork" style="color: blue"></span><span id="zjtime" style="float: right"></span><hr>
             <ol id="myul"  ></ol>     
-        </div><hr>		
+        </div><hr>	
+        作业名称:<br><input class="easyui-textbox"  id="zyms" style="width: 200px"></input><br><br>
         学生提交作业开始时间<br>
         <input id="onexgtjzyksdd" class="easyui-datetimebox" style="width: 200px"></input><br><br>
         学生提交作业截至时间:<br>
         <input id="dd" class="easyui-datetimebox" style="width: 200px"></input><br><br>
-        作业名称:<br><input class="easyui-textbox"  id="zyms" style="width: 200px"></input><br><br>
         作业要求:
-        <script type="text/plain" id="homework" style="width: 800px;height:50px;"></script><br><br>
+        <script type="text/plain" id="homework" style="width: 600%;height:50px;"></script><br><br>
 
-        <button  class="button button-raised button-royal" onclick="uploadWork()">提交</button>&nbsp;
-        <button onclick="ck()" class="button button-raised button-royal">查看作业</button>
+        <button  class="btn btn-primary" onclick="uploadWork()">提交</button>&nbsp;
+        <button onclick="ck()" class="btn btn-success">查看作业</button>
         <script>
 
             $(function () {
@@ -166,7 +166,7 @@
             }
             function creatlist(n) {
                 var term = ${term};
-               var courseName = "${courseName}";
+                var courseName = "${courseName}";
                 var ul = document.getElementById("myul");
                 $("#myul").children("li").remove();
                 for (var i = 0; i < n[0]; i++) {
@@ -185,18 +185,22 @@
                     li.onclick = function () {
                         $("#zyfj").hide();
                         var id = this.id;
+                        var name = n[id];
                         $.ajax({
                             url: "<%=path%>/teacher/worknewwindow",
                             type: "post",
                             data: {term: term, courseName: courseName, id: id},
                             success: function (data) {
                                 workid = id;
-                                $("#bjalllk").hide();
                                 $("#worklk").show();
                                 $("#stuwork").hide();
                                 document.getElementById("newwork").innerHTML = data[0];
+                                document.getElementById("xghomework").innerHTML = data[0];
                                 document.getElementById("jzsj").innerHTML = data[1];
                                 document.getElementById("jzzyks").innerHTML = data[2];
+                                $("#xgzyms").textbox('setValue',name);//赋值
+                                $('#xgtjzyksdd').datetimebox('setValue', data[2]);
+                                $('#xgdd').datetimebox('setValue', data[1]);
                                 $("#mywork").show();
                                 $("#coall").hide();
                                 if (data[3] === "2") {
@@ -260,7 +264,8 @@
                 var id = workid;
                 var term = ${term};
                 var courseName = "${courseName}";
-                $.ajax({
+                if (window.confirm('你确定要删除吗？')) {
+                  $.ajax({
                     url: "<%=path%>/teacher/dlworkfj",
                     type: "POST",
                     data: {term: term, courseName: courseName, id: id},
@@ -274,7 +279,8 @@
                     error: function () {
 
                     }
-                });
+                  });
+                }
             }
             function ckallclass() {
                 var id = workid;//作业id
@@ -287,10 +293,9 @@
                     success: function (data) {
                         clear();
                         if (data.length === 1 && data[0] === "0") {
-                            $("#bjalllk").hide();
+                            document.getElementById("bjalllk").innerHTML = "暂时没有学生交作业";
                         }
                         else {
-                            $("#bjalllk").show();
                             document.getElementById("bjalllk").innerHTML = data[0];
                         }
                     },

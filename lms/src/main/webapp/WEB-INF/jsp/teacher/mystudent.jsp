@@ -14,7 +14,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-
+<a href="mystudent.jsp"></a>
 <br><br>
 <div id='xs'class="box-small">
     <a href="javascript:void(0)" class="easyui-linkbutton" id="dc" data-options="iconCls:'icon-add',plain:true" onclick="dc_xs()">导出</a>  
