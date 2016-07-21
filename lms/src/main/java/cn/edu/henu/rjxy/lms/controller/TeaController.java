@@ -441,9 +441,8 @@ public class TeaController {
      list.add(node4);
      return list;
   }
-
  //存成josn文件保存到教师目录
-  @RequestMapping(value = "saveTree",method = RequestMethod.POST)
+  @RequestMapping("teacher/saveTree")
   public @ResponseBody String saveTree(HttpServletRequest request,@RequestBody Tree3[] users) throws Exception{
       String sn=getCurrentUsername();
       Teacher tec = TeacherDao.getTeacherBySn(sn);
@@ -469,7 +468,7 @@ public class TeaController {
         aa = JSONObject.fromObject(users[i])+"";
         ss +=aa+',';
     }
-    aa = JSONObject.fromObject(users[3])+"";
+    aa = JSONObject.fromObject(users[users.length-1])+"";
     ss = ss+aa;
     ss= '['+ss+']';
     System.out.println(ss);
@@ -479,6 +478,7 @@ public class TeaController {
     pw.close();
     return "1";
   }
+ 
   
   //解析josn文件生成树
   @RequestMapping("teacher/scTree")

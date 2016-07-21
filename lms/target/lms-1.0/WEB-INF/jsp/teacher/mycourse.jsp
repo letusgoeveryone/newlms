@@ -26,22 +26,17 @@
     <link href="<%=path%>/css/uploadify.css" rel="stylesheet"  />
     <link href="<%=path%>/ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
     <link href="<%=path%>/css/lms.css" rel="stylesheet" />
-
+   
     <script src="<%=path%>/js/jquery.min.js"></script>
     <!-- js -->
     <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
     <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-    <script>
-        var Stickup = 0;
-    </script>
     <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
-
     <!--easyui-->
     <script src="<%=path%>/js/jquery.easyui.min.js"></script>
     <link rel="stylesheet"  href="<%=path%>/css/easyuicss/easyui.css">
     <link rel="stylesheet"  href="<%=path%>/css/easyuicss/icon.css">
     <link rel="image/png"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
-
     <!--uploadify-->
     <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
     <!--umeditor-->
