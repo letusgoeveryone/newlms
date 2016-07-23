@@ -341,22 +341,30 @@
          }            
 
     //课件删除
-    function kcdg_sc(filename){
+    function kcnrfj_sc(filename){
           var term  = ${term}; 
           var courseName= "${courseName}";
-          var a1=null,a2="undefined",a3="undefined";
           var selected = $('#tt1').tree('getSelected'); 
           if(selected.id!==null){
-                var a = selected.attributes+"",b = "undefined";
-                if(a===""||a==="3"||a===b){
-                    parent=$('#tt1').tree('getParent',selected.target);
-                    root=$('#tt1').tree('getParent',parent.target);
-                    a1 = root.id;
-                    a2 = parent.id;
-                    a3 = selected.id;
+                var node = $('#tt1').tree('getSelected');
+                if(node.attributes==="1"){
+                   node1=node.id; 
+                   node2=null;
+                   node3=null;
+                }else if(node.attributes==="2"){
+                    node2=node.id;
+                    node1=$('#tt1').tree('getParent',node.target).id;
+                    node3=null;
+                }else{
+                   node3=node.id; 
+                   parent=$('#tt1').tree('getParent',node.target);
+                   root=$('#tt1').tree('getParent',parent.target);
+                   node2=parent.id;
+                   node1=root.id;
+                }
                     if(window.confirm('你确定要删除此课件吗？')){  
                                $.ajax({
-                                    url:'<%=path%>/teacher/kcsc?term='+term+'&courseName='+courseName+'&node1='+a1+'&node2='+a2+'&node3='+a3+'&filename='+filename,
+                                    url:'<%=path%>/teacher/kcsc?term='+term+'&courseName='+courseName+'&node1='+node1+'&node2='+node2+'&node3='+node3+'&filename='+filename,
                                     type:"post",
                                     success:function(data){
                                               alert("删除成功，你可以重新上传!");
@@ -365,10 +373,8 @@
                                     }
                                 });
                     }  
-                }else{
-                    alert("选择节点错误，请选择最低节点!");
-                }
-            }
+                
+            }else{alert("请选择节点!");}
     }
    
         
