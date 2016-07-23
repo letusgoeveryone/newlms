@@ -129,7 +129,6 @@ public class TeaController {
     public @ResponseBody
         String update(HttpServletRequest request,HttpServletResponse response) {
         String a="0";
-        System.out.println("111111111");
         String tsn=getCurrentUsername();
         Teacher teacher=TeacherDao.getTeacherBySn(tsn);
         System.out.println(tsn);
@@ -702,7 +701,7 @@ public class TeaController {
                  a[0]=a[0]+"<li><a href=\""+ff4+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcdg_sc('"+file+"')\">"+"删除"+"</a></li>";   
                      }else{
                  ddoc=true;
-                 dlc=dlc+"<li><a href=\""+ff2+file+"\">"+file+"</a>&nbsp;<a  onclick=\"kcdg_sc('"+file+"')\">"+"删除"+"</a></li>";
+                 dlc=dlc+"<li><a  onclick=\"kcnrxz('"+dir+file+"')\">"+file+"</a>&nbsp;<a  onclick=\"kcdg_sc('"+file+"')\">"+"删除"+"</a></li>";
                  }
                  }
              }
@@ -731,8 +730,8 @@ public class TeaController {
      String a,b;
      if(readname(ff,2)[0].endsWith(".swf")){a = readname(ff,2)[1];b = readname(ff,2)[0];}else{ a = readname(ff,2)[0];b = readname(ff,2)[1];}
      b =term +"/"+collage+"/"+coursename+"/"+"课程大纲"+"/"+ b;
-     String ff2="../file/"+term +"/"+collage+"/"+coursename+"/"+"课程大纲/"+a;
-     s[0] = "<li><a href=\""+ff2+"\">"+a+"</a>&nbsp;<a  onclick=\"scfj()\">"+"删除"+"</a>&nbsp;<a  onclick=\"dgyl('"+b+"')\">"+"预览"+"</a>&nbsp;<a  onclick=\"gbdgyl()\">"+"关闭预览"+"</a>";
+     String ff2=term +"/"+collage+"/"+coursename+"/"+"课程大纲/"+a;
+     s[0] = "<li><a onclick=\"dgxz('"+ff2+"')\">"+a+"</a>&nbsp;<a  onclick=\"scfj()\">"+"删除"+"</a>&nbsp;<a  onclick=\"dgyl('"+b+"')\">"+"预览"+"</a>&nbsp;<a  onclick=\"gbdgyl()\">"+"关闭预览"+"</a>";
      s[0]= "<ol class=\"breadcrumb\" id=\"breadcour\"><p>​课程大纲附件，你可以点击下载,删除</p>"+s[0]+"</ol>";
      s[1]="1";
      return s;
@@ -1216,6 +1215,23 @@ public class TeaController {
                                                  headers, HttpStatus.CREATED);    
     }    
 
+    
+    
+      //下载当前班级的提交作业
+   @RequestMapping("teacher/downloadDG")    
+    public ResponseEntity<byte[]> downloadDG(HttpServletRequest request,HttpServletResponse response) throws IOException {  
+        String path = request.getParameter("temp");
+        String filename =path.substring(path.lastIndexOf("/"));
+        String compress = getFileFolder(request)+path;   
+        File file=new File(compress);  
+        HttpHeaders headers = new HttpHeaders();    
+        String fileName=new String(filename.getBytes("UTF-8"),"iso-8859-1");//为了解决中文名称乱码问题  
+        headers.setContentDispositionFormData("attachment", fileName);   
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);   
+        return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),    
+                                                 headers, HttpStatus.CREATED);    
+    } 
+    
     //教师下载作业后清楚临时文件
     @RequestMapping("teacher/clear")    
     public @ResponseBody String clear(HttpServletRequest request,HttpServletResponse response) throws IOException {  
@@ -1353,7 +1369,7 @@ public class TeaController {
     public String getFileFolder(HttpServletRequest request) {
         String path = this.getClass().getClassLoader().getResource("/").getPath();
         System.out.println(path);
-        path=path.replace("build/web/WEB-INF/classes/", "build/web/file/");
+        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/", "file/");
         System.out.println(path);
         return path;        
     }  

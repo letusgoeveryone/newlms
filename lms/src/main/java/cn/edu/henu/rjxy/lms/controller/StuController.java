@@ -48,7 +48,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class StuController {
-    
+   
+   
     //返回学生信息
     @RequestMapping("/student/getpersoninfo")
     public @ResponseBody Student personal_InfInformation2(HttpServletRequest request, HttpServletResponse response) {

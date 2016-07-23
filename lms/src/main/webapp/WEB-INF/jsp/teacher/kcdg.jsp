@@ -160,6 +160,9 @@
                 lookcourseDG();
             }
 
+            function dgxz(path){
+                 window.location.href = "<%=path%>/teacher/downloadDG?temp="+ path;
+            }
             function lookcourseDGword() {
                 var coursename = "${courseName}";
                 var term = ${term};

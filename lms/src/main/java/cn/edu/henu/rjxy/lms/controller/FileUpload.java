@@ -330,8 +330,8 @@ public class FileUpload extends HttpServlet {
        public String getFileFolder(HttpServletRequest request) {
         String path = this.getClass().getClassLoader().getResource("/").getPath();
         System.out.println("项目运行地址"+path);
-        path=path.replace("build/web/WEB-INF/classes/", "build/web/file/");
-        System.out.println(path);
+        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/", "file/");
+        System.out.println("path=   "+path);
         return path;        
     }  
        

@@ -64,17 +64,17 @@
                                     <section class="card-heading">角色转换（管理员）到</section>
                                     <section>
                                         <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a  data-toggle="tab" href="#lms_admin_d" class='btn btn-brand  waves-attach  waves-light waves-effect' style="margin:auto;">
+                                            <a  data-toggle="tab" href="dean" class='btn btn-brand  waves-attach  waves-light waves-effect' style="margin:auto;">
                                                【D 院长】
                                             </a>
                                         </sec:authorize>
                                         <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a  data-toggle="tab" href="#lms_admin_a" class='btn btn-brand waves-attach  waves-light waves-effect' >
+                                            <a  data-toggle="tab" href="acdemic" class='btn btn-brand waves-attach  waves-light waves-effect' >
                                                【A 教务员】
                                             </a>
                                         </sec:authorize>
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                            <a  data-toggle="tab" href="#lms_admin_t" class='btn btn-brand waves-attach  waves-light waves-effect' style="margin:auto;">
+                                            <a  data-toggle="tab" href="teacher" class='btn btn-brand waves-attach  waves-light waves-effect' style="margin:auto;">
                                                【T 教职】
                                             </a>
                                         </sec:authorize>

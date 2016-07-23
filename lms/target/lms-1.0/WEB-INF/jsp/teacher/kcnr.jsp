@@ -128,6 +128,10 @@
                 });
                
           }
+          
+          function kcnrxz(path){
+             window.location.href = "<%=path%>/teacher/downloadDG?temp="+ path;
+          }
           $(function() {
 		$("#multiple_file_upload").uploadify({
 			'uploader' : '<%=path%>/teacher/upload100.do;jsessionid=<%=sessionid%>?Func=uploadwallpaper2Dfs',//************ action **************
