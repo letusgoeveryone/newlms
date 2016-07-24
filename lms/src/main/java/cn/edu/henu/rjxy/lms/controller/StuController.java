@@ -48,8 +48,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class StuController {
-   
-   
+    
     //返回学生信息
     @RequestMapping("/student/getpersoninfo")
     public @ResponseBody Student personal_InfInformation2(HttpServletRequest request, HttpServletResponse response) {
@@ -582,13 +581,11 @@ public class StuController {
       return 201601;
    }
     public String getFileFolder(HttpServletRequest request) {
-//        String uri=getClass().getResource("/").getFile();  
-//        uri=uri.replace("build/web/WEB-INF/classes/", "web/file/");
         String path = this.getClass().getClassLoader().getResource("/").getPath();
         System.out.println(path);
-        path=path.replace("build/web/WEB-INF/classes/", "build/web/file/");
+        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/", "file/");
         System.out.println(path);
-        return path;
-    }
+        return path;        
+    } 
 }
 
