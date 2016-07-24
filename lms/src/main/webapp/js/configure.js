@@ -97,3 +97,13 @@ jQuery(function($){$(document).ready(function(){
     })
     
 });});
+
+
+!(function(){
+    $("#btn-centerbox").click(function(){
+        $("#for-centerbox").fadeToggle();
+        $("#btn-centerbox-x").click(function(){
+            $("#for-centerbox").fadeOut();
+        });
+    });
+})();

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%
     //将项目的根取出来，页面中不再使用相对路径
     String path = request.getContextPath();
@@ -23,20 +23,20 @@
     <script src="<%=path%>/js/ie-emulation-modes-warning.js"></script><style type="text/css"></style>
        <script>
          $(function () {
-           ${window.location.href}                  
+           ${window.location.href}
          });
      </script>
-    </head>  
+    </head>
 <body>
  <h2>Test Index Page</h2><br>
-<sec:authorize ifNotGranted="ROLE_ACDEMIC,ROLE_COUNSELLOR,ROLE_DEAN,ROLE_STUDENT,ROLE_TEACHER,ROLE_TUTOR,ROLE_ADMIN">  
+<sec:authorize ifNotGranted="ROLE_ACDEMIC,ROLE_COUNSELLOR,ROLE_DEAN,ROLE_STUDENT,ROLE_TEACHER,ROLE_TUTOR,ROLE_ADMIN">
 <a href="login" class="button button-3d button-primary button-rounded">登录</a>
-</sec:authorize>  
+</sec:authorize>
 <sec:authorize access="hasRole('ROLE_STUDENT') or hasRole('ROLE_ADMIN')"> <a href="student" class="button button-3d button-primary button-rounded">学生页面</a> </sec:authorize>
 <sec:authorize access="hasRole('ROLE_TEACHER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_ACDEMIC')"><a href="teacher" class="button button-3d button-primary button-rounded">教师页面</a></sec:authorize>
 <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN')"> <a href="console_dean" class="button button-3d button-primary button-rounded">管理员页面</a> </sec:authorize>
-<sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_COUNSELLOR') or hasRole('ROLE_DEAN') or hasRole('ROLE_STUDENT') or hasRole('ROLE_TEACHER') or hasRole('ROLE_TUTOR') or hasRole('ROLE_ADMIN')">  
+<sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_COUNSELLOR') or hasRole('ROLE_DEAN') or hasRole('ROLE_STUDENT') or hasRole('ROLE_TEACHER') or hasRole('ROLE_TUTOR') or hasRole('ROLE_ADMIN')">
 <a href="logout"class="button button-3d button-primary button-rounded">登出</a>
-</sec:authorize>  
+</sec:authorize>
 </body>
 </html>

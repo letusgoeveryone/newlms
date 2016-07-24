@@ -204,80 +204,259 @@ select{outline:none}
 =================================================================================
 */
 
-/*header*/
+/**
+  &header
+ =>css construct 
+    header  #tree-header
+        nav .tab-nav .ui-tab
+            ul .header-nav .nav .nav-list
+                li .nav-brand 
+                    a {{}}
+                li .active 
+                    a data-toggle="tab" href="#{{ id }}"
+                li .dropdown .fix-dd-usr style="position:absolute;right: 0;"
+                    a .dropdown-toggle data-toggle="dropdown
+                        span .avatar
+                    ul .dropdown-menu
+                        li
+                            a .waves-attach .waves-light .waves-effect .stage-card()
+                                span .icon .mg-sm-right{{}}
+*/
 
-#tree-header{
-    background-color: #333;
+    #tree-header{
+        background-color: #2c3e50;
+        color: #FFF;
+        z-index: 100;
+        -moz-box-shadow: 0 1px 8px rgba(0,0,0,.3);
+        box-shadow: 0 1px 8px rgba(0,0,0,.3);
+    }
+    #tree-header .header-nav{
+        width: 1408px;
+        margin: auto;
+    }
+    .header-nav > li{
+        transition: all 0.3s;
+    }
+    .header-nav > li:hover{
+        background-color: #34495e;
+        box-shadow: 0 .8px 5px rgba(3,3,3,0.8);
+    }
+    .header-nav > .active{
+        box-shadow: 0 .6px 2px rgba(3,3,3,0.8);
+    }
+    .header-nav > .nav-brand{
+        background-color: transparent;
+        font-size: large;
+        color: whitesmoke;
+        font-weight: bold;
+        padding: 0px 15px;
+        box-shadow: none;
+        position: fixed;
+        left: 0;
+    }
+    .header-nav > .nav-brand:hover{
+        box-shadow:none;
+        background-color: transparent;
+        border: none;
+        color: #FFF;
+    }
+    .header-nav > .nav-brand> a:hover{
+        box-shadow:none;
+        border: none;
+    }
+    .header-nav > .open{
+        background-color: #34495e;
+        border-bottom: 2px solid #FFFF66;
+    }
+    .fix-dd-usr{
+        box-shadow: none !important;
+    }
+    .fix-dd-usr > .open > .avatar{
+        background: rgba(155,155,155,0.9);
+    }
+    .fix-dd-usr>ul{
+        min-width: 200px;
+        top: 60px;
+    }
+    /*修改默认 nav底部细线颜色*/
+    .tab-nav .nav > li > a:after {
+      border-bottom-color: #ffff66;
+    }
+    .tab-nav .nav > .nav-brand > a:after {
+      border-bottom-color: #333;
+    }
+    .tab-nav .tab-nav-indicator.animate {
+      background-color: #FFFF66;
+    }
+
+/**
+  &footer
+ =>css construct 
+        footer #tree-footer .ui-footer"
+            div .container
+                strong {{Copyright © 2015 河南大学软件学院  · 【教务系统】}}
+*/
+
+    #tree-footer{
+        background-color: #2c3e50;
+        color: #FFF;
+    }
+    #tree-footer > div{
+        padding: 1em;
+    }
+
+/*android-logo 按钮*/
+
+    #android-logo{
+        height: 100px;width: 100px;
+        border-radius: 50%;
+        /*border: 3px dotted gray;*/
+        margin: auto;
+        position: relative;
+    }
+    #android-logo-wrap{
+        position: absolute;
+        height: 100px;width: 100px;
+    }
+    #logo-head,
+    .horn,
+    .eyes,
+    #logo-body,
+    .arms,
+    .leg {
+        box-shadow: .2px .2px .6px #000;
+    }
+    #logo-head {
+        height: 22px;
+        width: 44px;
+        border-radius: 21px 21px 0 0;
+        background-color: #a4ca39;
+        margin: auto;
+        position: relative;
+        transform-origin: 0 22px;
+    }
+/*    #logo-head:hover {
+        transform: rotate(-5deg);
+    }*/
+    #logo-head .horn {
+        height: 12px;
+        width: 2px;
+        background-color: #a4ca39;
+        border-radius: 1px;
+        position: absolute;
+        top: -8px;
+    }
+    #logo-head .eyes {
+        height: 5px;
+        width: 5px;
+        background-color: #FFFFFF;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 6px;
+    }
+    #logo-head .eyes:hover {
+        background-color: #DEF799;
+        box-shadow: 1px 1px 3px #6F8B22;
+        background: -webkit-radial-gradient(#D3F27B 55%, #A4CA39 85%, #FFFFFF 98%);
+        background: -o-radial-gradient(#D3F27B 55%, #A4CA39 85%, #FFFFFF 98%);
+        background: -moz-radial-gradient(#D3F27B 55%, #A4CA39 85%, #FFFFFF 98%);
+        background: radial-gradient(#D3F27B 55%, #A4CA39 85%, #FFFFFF 98%);
+        transition: all 0.1s;
+    }
+    #logo-body {
+        background-color: #a4ca39;
+        height: 38px;
+        width: 44px;
+        margin: auto;
+        margin-top: 1px;
+        position: relative;
+        border-radius: 1px 1px 4px 4px;
+        z-index: 100;
+    }
+    #logo-body .arms:first-child,
+    #logo-body .arms:last-child {
+        z-index: 10;
+        height: 32px;
+        width: 11px;
+        background-color: #a4ca39;
+        border-radius: 10px;
+        position: absolute;
+        top: 0;
+        transform-origin: 6px 6px;
+    }
+    #logo-body .arms:first-child {
+        left: -12px;
+    }
+    #logo-body .arms:last-child {
+        right: -12px;
+    }
+    #logo-body:hover > .arms:last-child{
+        transform: rotate(-170deg);
+    }
+    #logo-legs {
+        margin: auto;
+        position: relative;
+        height: 16px;
+        width: 44px;
+    }
+    #logo-legs>.leg {
+        width: 11px;
+        height: 16px;
+        background-color: #a4ca39;
+        position: absolute;
+        top: -3px;
+        border-radius: 0 0 10px 10px;
+    }
+    #logo-legs>.leg:first-child {
+        left: 7px;
+    }
+    #logo-legs>.leg:last-child {
+        right: 7px;
+    }
+
+.btn-scrollup {
+    height: 20px;
+    width: 100px;
+    bottom: 0px;
+    background-color: RGBA(255, 255, 255, 0.76);
+    border-radius: 2px;
+    cursor: pointer;
+}
+#for-centerbox{
+    position: absolute;
+    height: 300px;
+    min-width: 500px;
+    right: 0;
+    bottom: 0;
+    background-color: #2c3e50;
+    border-radius: 2px;
+    box-shadow: 0 .6px 2px rgba(3,3,3,0.8);
+    transform: scale(1,1);
+    z-index: 500;
+}
+#for-centerbox > .tab-nav{
+    margin-top: 0;
+}
+#btn-centerbox{
+    cursor: pointer;
     color: #FFF;
-    z-index: 100;
-    /*margin-top: 3px;*/
 }
-#tree-header .header-nav{
-    color: #FFFF66;
-    font-size: 25px;
-    padding: 1em;
-}
-.header{
-    /*min-height: 59px;*/
-}
- .header-waterfall {
-    position: static;
- }
-.header-transparent::before {
-    background-color: #333;
-}
-.header-transparent {
-     background-color: rgba(0, 0, 0, 0.3)  !important;
- }
- .isStuck {
-     top: -3px !important;
- }
-.content-inner {
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-.navbar-toggle > span{
-    background-color: white;
-}
-.nav >li> .btn-forline:hover, .nav >li .btn-forline:focus {
-    text-decoration: none;
-    background-color: #0088CC;
-}
-.navbar-brand{
-    font-size: 15px;
-    color: #0088CC;
-    cursor:  pointer;
-}
-.navbar-brand:hover,.navbar-brand:focus {
-    color:  #0055AA;
-    text-decoration: none;
-}
-.navbar-collapse {
-    padding-left: 0;
-    padding-right: 0;
-}
-.tab-nav-gold .nav > li > a:after,
-.tab-nav-gold .nav > li > .a:after {
-  border-bottom-color: #ffff66;
-}
-.tab-nav-gold .tab-nav-indicator.animate {
-  background-color: #FFFF66;
-}
-
-/*footer*/
-#tree-footer{
-    background-color: #333;
+#btn-centerbox-x{
+    position: absolute;
+    right: 12px;
+    line-height: 48px;
+    cursor: pointer;
+    height: 48px;
+    width: 48px;
+    background-color: rgba(255, 255, 255, 0.1);
     color: #FFF;
 }
-#tree-footer div{
-    padding: 1em;
+#btn-centerbox-x > .icon{
+    padding: 0 18px;
 }
-
-/*scrollUp 按钮*/
-.fbtn-yellow{
-    background: #FFD700 ;
+#for-centerbox > .tab-content{
+    padding: .2em 1em;
 }
-
 /*! 基本布局 结束 */
 
 /*!  三种基本设计构架  */
@@ -941,7 +1120,11 @@ div [ class^= "btn-" ]{
     height:100%;
     width:100%;
 }
-
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
 .left-padding{
     padding-left: 1em;
 }
@@ -973,13 +1156,30 @@ a[class *= text-grey]:hover{
     padding: 4px 4px;
     letter-spacing: normal;
 }
+.divider{
+    width:0px;
+    border-right: 2px solid gray;
+    margin: auto 1em;
+}
+.divider-right{
+    border-right: 1px solid whitesmoke;
+}
+.mg-sm-right{
+    margin-right: 1em !important;
+}
+.pd-md-top{
+    padding-top: 100px !important;
+}
+.pd-sm-left{
+    padding-left: 1em;
+}
 .scroll-x{
     overflow-x: scroll;
 }
 .scroll-y{
     overflow-y: scroll;
 }
- .space-block {
+.space-block {
      margin-top: 5em;
      margin-bottom: 0px;
  }
@@ -1038,3 +1238,5 @@ a[class *= text-grey]:hover{
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
+
+

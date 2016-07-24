@@ -217,7 +217,7 @@
                     async: false, //设置ajax同步加载
                     success: function (data) {
                         document.getElementById("sz_xq").options.length = 0;
-                        for (var i = 1; i < data.length; i++) {
+                        for (var i = 0; i < data.length; i++) {
                             document.getElementById("sz_xq").options.add(new Option(data[i], data[i]));
                         }
                     },

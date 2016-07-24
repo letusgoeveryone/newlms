@@ -25,15 +25,22 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
 
 /**
  *
@@ -42,29 +49,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class StuController {
     
-    //返回学生信息页
-    @RequestMapping("/student/personal_Inf")
-    public String personal_InfInformation(HttpServletRequest request, HttpServletResponse response) {
+    //返回学生信息
+    @RequestMapping("/student/getpersoninfo")
+    public @ResponseBody Student personal_InfInformation2(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
-        request.setAttribute("StudentId",std.getStudentSn());
-        request.setAttribute("StudentName",std.getStudentName());
-        request.setAttribute("StudentIdcard",std.getStudentIdcard());
-        request.setAttribute("StudentGrade",std.getStudentGrade()); 
-        request.setAttribute("StudentCollege",std.getStudentCollege());
-        request.setAttribute("StudentCollege2","\""+std.getStudentCollege()+"\"");
-        request.setAttribute("StudentSex",(std.getStudentSex())?("男"):("女"));
-        request.setAttribute("StudentTel",std.getStudentTel());
-        request.setAttribute("StudentQq",std.getStudentQq()); 
-        return "/student/personal_Inf";
-    }
-    //返回密码修改页
-    @RequestMapping("/student/resetpw")
-    public String resetpassword(HttpServletRequest request, HttpServletResponse response) {
-        return "/student/resetpw";
+        std.setStudentPwd("");
+        return std;
     }
     //密码修改提交处理
-    @RequestMapping("/student/resetpw_p")
+    @RequestMapping("/student/updatepassword")
     public @ResponseBody String resetpassword_p(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
@@ -79,7 +73,7 @@ public class StuController {
         return "3";
     }
     //个人信息修改提交处理
-    @RequestMapping("/student/resetinf_p")
+    @RequestMapping("/student/updatepersoninfo")
     public @ResponseBody String resetinf_p(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
@@ -101,24 +95,23 @@ public class StuController {
         return "1";
     }
     //学生选课提交处理
-    @RequestMapping("/student/subcourse")
+    @RequestMapping("/student/subselectcourse")
     public @ResponseBody String submitcourse(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
-        Integer cid=Integer.valueOf(request.getParameter("cid"));
+        Integer cid=Integer.valueOf(request.getParameter("scid"));
         try {
             StudentSelectCourseDao.saveStudentSelectCourse(sn,cid,0);
         } catch (Exception e) {
             return "0";
         }
-        return "1";
-        
+        return "1"; 
     }
       //选课时展示的课程页
     @RequestMapping("/student/getkcjs")
     public @ResponseBody String[] stugetkcjs(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        Integer cid=TermCourseDao.getCourseidByCourseId(request.getParameter("cid"));
-        int term=201601;
+        Integer cid=TermCourseDao.getCourseidByCourseId(request.getParameter("scid"));
+        int term=getCurrentTerm();
         String []a = new String[2];
         a[0]=TermCourseInfoDao.getCourseInfo(term, cid, 0);
         a[1]=TermCourseInfoDao.getCourseInfo(term, cid, 1);
@@ -126,79 +119,119 @@ public class StuController {
         if(a[1].equals(""))a[1]="暂无";
         return a;
     }
-    //返回课程页详情
+    //获取已选课程
+    @RequestMapping("/student/getselectcourse")
+    public @ResponseBody Map[] getselectcourse(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String stusn=getCurrentUsername();
+        int xueqi=getCurrentTerm();
+        List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId(xueqi, stusn);
+        Map []a = new Map[list.size()/2];
+        for (int i = 0; i < list.size()/2; i++) {
+           a[i]=new HashMap();
+           a[i].put("course", list.get(2*i+1));
+           a[i].put("scid", list.get(2*i));
+        }
+        return a;
+    }   
+    //获取已选未批准课程
+    @RequestMapping("/student/getselectingcourse")
+    public @ResponseBody Map[] getselectingcourse(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String stusn=getCurrentUsername();
+        int xueqi=getCurrentTerm();
+        List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
+        Map []a = new Map[list.size()/4];
+        for (int i = 0; i < list.size()/4; i++) {
+            a[i]=new HashMap();
+            a[i].put("course", list.get(4*i+1));
+            a[i].put("scid", list.get(4*i));
+            a[i].put("teacher", list.get(4*i+2));
+            a[i].put("ClassName", list.get(4*i+3));
+        }
+        return a;
+    }   
+ //返回课程页详情
     @RequestMapping("/student/stu_course")
-    public String stu_course(HttpServletRequest request, HttpServletResponse response) throws Exception{
-         String cid=request.getParameter("cou");
-         request.setAttribute("scid",cid);
-        Teacher tec=TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(cid));
-        String sn=tec.getTeacherSn();
+    public @ResponseBody Map[] stu_course(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String scid=request.getParameter("scid");
+        Teacher tec=TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(scid));
+        String term =TermCourseDao.getxueqiBySCId(scid).toString();
+        String collage = tec.getTeacherCollege();
+        String courseName =TermCourseDao.getCourseNameByCourseId(scid);
+        String swf_syllabus="";
+        Map []a = new Map[6];
+        for (int i = 0; i < 6; i++) {a[i]=new HashMap();} 
+        a[0].put("courseName",courseName);//课程名
+        a[1].put("teacherName",tec.getTeacherName());//教师名
+        a[2].put("teacherSn",tec.getTeacherSn());//教师工号
+        a[3].put("syllabus", TermCourseInfoDao.getCourseInfo(Integer.valueOf(term), TermCourseDao.getCourseidByCourseId(scid), 0));//html版课程大纲
+        a[4].put("introduction", TermCourseInfoDao.getCourseInfo(Integer.valueOf(term), TermCourseDao.getCourseidByCourseId(scid), 1));//html版课程介绍
+        File f =new File(getFileFolder(request)+term +"/"+collage+"/"+courseName+"/课程大纲/");
+        if(f.exists()&&f.isDirectory()){
+            String[] files = f.list();
+            for (String file : files) {
+                if (file.toLowerCase().endsWith(".swf")) {
+                    swf_syllabus="/getswf?uri="+term +"/"+collage+"/"+courseName+"/课程大纲/"+file;
+                    break;
+                }
+            }
+        }
+        a[5].put("swf_syllabus",swf_syllabus);//swf版课程大纲
+        return a;
+    }
+ //返回作业列表
+    @RequestMapping("/student/stu_course_homework")
+    public @ResponseBody List<Map> stu_course_homework(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String scid=request.getParameter("scid");
+        Teacher tec=TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(scid));
+        String term =TermCourseDao.getxueqiBySCId(scid).toString();
+        String collage = tec.getTeacherCollege();
+        String courseName =TermCourseDao.getCourseNameByCourseId(scid);
         String tec_sn= tec.getTeacherSn();
         String tec_name = tec.getTeacherName();
-        String collage = tec.getTeacherCollege();
         String stusn=getCurrentUsername();
-        String term =TermCourseDao.getxueqiBySCId(cid).toString();
-        String courseName =TermCourseDao.getCourseNameByCourseId(cid);
         String ff = getFileFolder(request)+"homework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/";
         String ff2;
         int length = haveFile(ff);
         String dataString="";
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         Date d1 = new Date();
+        List<Map> sumList=new ArrayList<Map>();
         for(int i = 1;i<=length;i++){
-            ff2 = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+i+"/"+TermCourseDao.getclassNameByCourseId(cid)+"/"+stusn+"/";
+            ff2 = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+i+"/"+courseName+"/"+stusn+"/";
             Date d3 = df.parse(readline(ff+"/"+i+"/Workall.txt")[2]);
             if(d1.getTime() > d3.getTime()){//判断作业是否已开始
+            Map a = new HashMap();
             Date d2 = df.parse(readline(ff+"/"+i+"/Workall.txt")[1]);
-             File f=new File(ff2+"submitTime.txt");
-           if (d1.getTime() < d2.getTime()) {//判断作业是否过期
-               if (f.exists()) {
-                    dataString=dataString+ "<tr><td>"+i+"</td><td>"+readline(ff+"/"+i+"/Workall.txt")[0]+"</td><td>已提交[上次提交:"+readline(ff2+"submitTime.txt")[0]+"]</td><td>"+readline(ff+"/"+i+"/Workall.txt")[1]+"</td><td><a href=\"dohomework?scid="+cid+"&homeworkid="+i+"\" >"+"作业详情</a></td></tr>";
-               }else{
-                    dataString=dataString+ "<tr><td>"+i+"</td><td>"+readline(ff+"/"+i+"/Workall.txt")[0]+"</td><td>可提交[尚未提交]</td><td>"+readline(ff+"/"+i+"/Workall.txt")[1]+"</td><td><a href=\"dohomework?scid="+cid+"&homeworkid="+i+"\" >"+"作业详情</a></td></tr>";
-               }
-           } else{
-               if (f.exists()) {
-                    dataString=dataString+ "<tr><td>"+i+"</td><td>"+readline(ff+"/"+i+"/Workall.txt")[0]+"</td><td>已过期[最后提交:"+readline(ff2+"submitTime.txt")[0]+"]</td><td>"+readline(ff+"/"+i+"/Workall.txt")[1]+"</td><td><a href=\"dohomework?scid="+cid+"&homeworkid="+i+"\" >"+"作业详情</a></td></tr>";
-               }else{
-                    dataString=dataString+ "<tr><td>"+i+"</td><td>"+readline(ff+"/"+i+"/Workall.txt")[0]+"</td><td>已过期[尚未提交]</td><td>"+readline(ff+"/"+i+"/Workall.txt")[1]+"</td><td><a href=\"dohomework?scid="+cid+"&homeworkid="+i+"\" >"+"作业详情</a></td></tr>";
-               } 
-           }
+            File f=new File(ff2+"submitTime.txt");
+            a.put("homeworkid", i);
+            a.put("title", readline(ff+"/"+i+"/Workall.txt")[0]);
+            a.put("deadline",readline(ff+"/"+i+"/Workall.txt")[1]); 
+                if (d1.getTime() < d2.getTime()) {//判断作业是否过期
+                   if (f.exists()) {
+                       a.put("status", "已提交");
+                       a.put("lastsubmittime", readline(ff2+"submitTime.txt")[0]);
+                   }else{
+                       a.put("status", "未提交");
+                       a.put("lastsubmittime","");
+                   }
+                } else{
+                   if (f.exists()) {
+                       a.put("status", "已过期");
+                       a.put("lastsubmittime", readline(ff2+"submitTime.txt")[0]); 
+                   }else{
+                       a.put("status", "已过期且未提交");
+                       a.put("lastsubmittime", "");
+                   } 
+                }
             }
         }
-        
-        request.setAttribute("homework",dataString);
-        request.setAttribute("syllabusspan",TermCourseInfoDao.getCourseInfo(Integer.valueOf(term), TermCourseDao.getCourseidByCourseId(cid), 1));
-        File f =new File(getFileFolder(request)+term +"/"+collage+"/"+courseName+"/课程大纲/");
-        ff2="../getswf?uri="+term +"/"+collage+"/"+courseName+"/课程大纲/";
-        if(f.exists()&&f.isDirectory()){
-        String[] files = f.list();
-        String tmpString=null;
-        StringBuffer sb=new StringBuffer();
-        sb.append("<ol class=\"breadcrumb\" id=\"breadcour\">\n" );  
-
-            for (String file : files) {
-                if (file.lastIndexOf(".")!=-1) {
-                     if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".swf")){
-                        sb.append("<li><a href=\""+ff2+file+"\" target=\"swfplayer2\">"+file+"</a></li>");  
-                        tmpString=ff2+file;
-                    }
-                }
-        }
-
-            sb.append("</ol><iframe src=\""+tmpString+"\" id=\"swfplayer2\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" height=\"600px\" width=\"900px\" name=\"swfplayer2\"></iframe>" );  
-            if(tmpString!=null){request.setAttribute("Coursesb",sb.toString());}
-            
-        }
-         request.setAttribute("CourseDescription",TermCourseInfoDao.getCourseInfo(Integer.valueOf(term), TermCourseDao.getCourseidByCourseId(cid), 0));
-	return "/student/stu_course";
+        return sumList;
     }
-
-    //学生选课页
-    @RequestMapping("/student/stu_addcourse")
-    public String stu_addcourse(HttpServletRequest request, HttpServletResponse response) {
+      //学生选课页
+    @RequestMapping("/student/addnewcourse")
+    public @ResponseBody String[] stu_addcourse(HttpServletRequest request, HttpServletResponse response) {
         String sumcourse="";
-        Integer xueqi=Integer.valueOf("201602");
+        int xueqi=getCurrentTerm();
          List<String> coulist = CourseDao.getCourseIdByTerm(xueqi);
         for (String coulist1 : coulist) {
             sumcourse = sumcourse+ "{text: \"" + CourseDao.getCourseById(Integer.valueOf(coulist1)).getCourseName() + "\",state: {expanded: false},";
@@ -211,7 +244,7 @@ public class StuController {
                     if (stu_cou_clas.size()>0) {
                         sumcourse=sumcourse+ "nodes: [";
                         for (String stu_cou_cla : stu_cou_clas) {
-                            sumcourse = sumcourse+ "{text: \"" + ClassesDao.getClassById(Integer.valueOf(stu_cou_cla)).getClassName() + "\"" + ",coid: \"" + StudentSelectCourseDao.getTermCourseIdByothers(xueqi, Integer.valueOf(coulist1), Integer.valueOf(stu_cou_cla), TeacherDao.getTeacherBySn(teacher_cou1).getTeacherId()) + "\"," + "},";
+                            sumcourse = sumcourse+ "{text: \"" + ClassesDao.getClassById(Integer.valueOf(stu_cou_cla)).getClassName() + "\"" + ",scid: \"" + StudentSelectCourseDao.getTermCourseIdByothers(xueqi, Integer.valueOf(coulist1), Integer.valueOf(stu_cou_cla), TeacherDao.getTeacherBySn(teacher_cou1).getTeacherId()) + "\"," + "},";
                         }
                         sumcourse=sumcourse+ "],";
                     }
@@ -221,146 +254,21 @@ public class StuController {
             }
             sumcourse=sumcourse+ "},"; 
         }
-	request.setAttribute("Course","["+sumcourse+"]");
-	return "/student/stu_addcourse";
+        String []a = new String[1];
+        a[0]=sumcourse;
+	return a;
     }
     //学生首页
     @RequestMapping("/student")
     public String stu_index(HttpServletRequest request, HttpServletResponse response) {
-        String stusn=getCurrentUsername();
-	request.setAttribute("username",stusn);
-        Integer xueqi=Integer.valueOf("201601");
-        StringBuffer sb=new StringBuffer();
-
-        List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId(xueqi, stusn);
-        for (int i = 0; i < list.size()/2; i++) {
-            sb.append("<li><a href=\"./student/stu_course?cou="+list.get(2*i)+"\" target=\"coucontent\">"+list.get(2*i+1)+"</a></li>");
- 
-        }
-        request.setAttribute("stucou",sb.toString());
-        sb=new StringBuffer();
-        list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
-         for (int i = 0; i < list.size()/4; i++) {
-            sb.append("<li><a href=\"./student/stu_course_noready?scid="+list.get(4*i)+"\" target=\"noreadycoucontent\">"+list.get(4*i+1)+"</a></li>");
-        }
-        request.setAttribute("noreadycou",sb.toString());
-       
-       
-	return "/student/Index";
+	return "student/stu_index";
     }
-    //刷新已选、未选 span
-    @RequestMapping("/student/refleshspan")
-    public @ResponseBody String[] refleshspan(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String stusn=getCurrentUsername();
-        Integer xueqi=Integer.valueOf("201601");
-        StringBuffer sb=new StringBuffer();
-        String []a = new String[2];
-        sb.append("<ol type='1' class='' >");
-        List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId(xueqi, stusn);
-        for (int i = 0; i < list.size()/2; i++) {
-            sb.append("<li><a href='./student/stu_course?cou="+list.get(2*i)+"' target='coucontent'>"+list.get(2*i+1)+"</a></li>");
-        }
-        sb.append("</ol>");
-        a[0]=sb.toString();
-        sb=new StringBuffer();
-        sb.append("<ol type='1' class='' >");
-        list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
-         for (int i = 0; i < list.size()/4; i++) {
-            sb.append("<li><a href='./student/stu_course_noready?scid="+list.get(4*i)+"' target='noreadycoucontent'>"+list.get(4*i+1)+"</a></li>");
-        }
-        sb.append("</ol>");
-        a[1]=sb.toString();
-        return a;
-    }
-    
-//    //获取已批准课程tree_json
-//    @RequestMapping("/student/getreadycourse")
-//    public @ResponseBody String[] getReadyCourse(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//         String stusn=getCurrentUsername();
-//        Integer xueqi=Integer.valueOf("201601");
-//        StringBuffer sb=new StringBuffer();
-//        sb.append("[");
-//        List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId(xueqi, stusn);
-//        for (int i = 0; i < list.size()/2; i++) {
-//            sb.append("{\"text\": \""+list.get(2*i+1)+"\",\"href\": \""+list.get(2*i)+"\"}");
-//            if (i != list.size()/2-1) {
-//                sb.append(",");
-//            }
-//        }
-//        sb.append("]");
-//        String []a = new String[1];
-//        a[0]=sb.toString();
-//        return a;
-//    }
-//    //获取未批准课程tree_json
-//    @RequestMapping("/student/getnoreadycourse")
-//    public @ResponseBody String[] getnoReadyCourse(HttpServletRequest request, HttpServletResponse response) throws Exception{
-//         String stusn=getCurrentUsername();
-//        Integer xueqi=Integer.valueOf("201601");
-//        StringBuffer sb=new StringBuffer();
-//        sb.append("[");
-//        
-//
-//        List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
-//        for (int i = 0; i < list.size()/4; i++) {
-//            sb.append("{\"text\": \""+list.get(4*i+1)+"\",\"href\": \""+list.get(4*i)+"\"}");
-//            if (i != list.size()/4-1) {
-//                sb.append(",");
-//            }
-//        }
-//        sb.append("]");
-//        String []a = new String[1];
-//        a[0]=sb.toString();
-//        return a;
-//    }
-    //查看未批准课程详情
-    @RequestMapping("/student/stu_course_noready")
-    public String stulistwpzcourse(HttpServletRequest request, HttpServletResponse response) {
-        String stusn=getCurrentUsername();
-        String cid = request.getParameter("scid");
-        int term=201601;
-        int courseid=TermCourseDao.getCourseidByCourseId(cid);
-        List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(term, stusn);
-        for (int i = 0; i < list.size()/4; i++) {
-            if (list.get(4*i).toString().equals(cid)) {
-                request.setAttribute("noreadycou","您选择的是&nbsp;"+list.get(4*i+1)+">>"+list.get(4*i+2)+">>"+list.get(4*i+3)+"&nbsp;&nbsp;&nbsp;<a class='btn btn-primary button-small' onclick='giveupnoreadycou("+cid+")'>取消选课»</a>");
-            }
-        }
-        request.setAttribute("syllabusspan2",TermCourseInfoDao.getCourseInfo(term, courseid, 1));
-        request.setAttribute("CourseDescription2",TermCourseInfoDao.getCourseInfo(term, courseid, 0));
-        
-
-        return "guestcour";
-	
-    }    
-    
-//    //返回选课未批准页
-//    @RequestMapping("/student/stu_listwpzcourse")
-//    public String stulistwpzcourse(HttpServletRequest request, HttpServletResponse response) {
-//        String stusn=getCurrentUsername();
-//        Integer xueqi=Integer.valueOf("201601");
-//        List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
-//        String cou="";
-//              for (int i = 0; i < list.size()/4; i++) {
-//        cou=cou+ "<tr><td>"+list.get(4*i+1)+"</td><td>"+list.get(4*i+2)+"</td><td>"+list.get(4*i+3)+"</td><td><a href=\"cancelcourse?scid="+list.get(4*i)+"\" >"+"取消申请</a></td></tr>";
-//        }
-//       request.setAttribute("wpzCourse",cou);
-//	return "student/stu_listwpzcourse";
-//    }
     //取消选课处理
     @RequestMapping("/student/cancelcourse")
     public @ResponseBody  String stuCancelCourse(HttpServletRequest request, HttpServletResponse response) {
         String scid=request.getParameter("scid");
         String stusn=getCurrentUsername();
-        System.out.println("Courseid:"+TermCourseDao.getCourseidByCourseId(scid));   
         TeacherDao.updateStudentCourse(StudentDao.getStudentBySn(stusn).getStudentId(),Integer.valueOf(scid), true);
-        Integer xueqi=TermCourseDao.getxueqiBySCId(scid);
-        List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
-        String cou="";
-              for (int i = 0; i < list.size()/4; i++) {
-        cou=cou+ "<tr><td>"+list.get(4*i+1)+"</td><td>"+list.get(4*i+2)+"</td><td>"+list.get(4*i+3)+"</td><td><a href=\"cancelcourse?scid="+list.get(4*i)+"\" >"+"取消申请</a></td></tr>";
-        }
-       request.setAttribute("wpzCourse",cou);
 	return "1";
     }
     //学生退选课程处理
@@ -372,7 +280,7 @@ public class StuController {
 	return "1";
     }
     //返回课程内容目录树json
-    @RequestMapping(value="/student/kcgs")
+    @RequestMapping("/student/kcgs")
     public @ResponseBody String lookMulu(HttpServletRequest request, HttpServletResponse response) throws Exception{
       String cid=request.getParameter("scid");
       Teacher tec=TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(cid));
@@ -433,7 +341,7 @@ public class StuController {
             }
              request.setAttribute("Myattachment",sb.toString());  
             }
-        return "/student/dohomework";
+        return "student/dohomework";
         }else{//作业未开始
         return "redirect:"+request.getHeader("Referer");
         }
@@ -699,6 +607,9 @@ public class StuController {
      }
     public String getCurrentUsername() {
       return SecurityContextHolder.getContext().getAuthentication().getName();
+   }
+   public int getCurrentTerm() {
+      return 201602;
    }
     public String getFileFolder(HttpServletRequest request) {
 //        String uri=getClass().getResource("/").getFile();  
