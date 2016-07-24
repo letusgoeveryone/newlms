@@ -48,7 +48,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class StuController {
-    
+   
+   
     //返回学生信息
     @RequestMapping("/student/getpersoninfo")
     public @ResponseBody Student personal_InfInformation2(HttpServletRequest request, HttpServletResponse response) {
@@ -198,6 +199,7 @@ public class StuController {
         List<Map> sumList=new ArrayList<Map>();
         for(int i = 1;i<=length;i++){
             ff2 = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+i+"/"+courseName+"/"+stusn+"/";
+            System.out.println(length);
             Date d3 = df.parse(readline(ff+"/"+i+"/Workall.txt")[2]);
             if(d1.getTime() > d3.getTime()){//判断作业是否已开始
             Map a = new HashMap();
@@ -223,6 +225,7 @@ public class StuController {
                        a.put("lastsubmittime", "");
                    } 
                 }
+            sumList.add(a);
             }
         }
         return sumList;
@@ -292,16 +295,16 @@ public class StuController {
       String courseName =TermCourseDao.getCourseNameByCourseId(cid);
       return read((getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/"+"test.json").replaceAll("\\\\", "/"));
   }
-    //返回作业详情
+   //返回作业详情  
     @RequestMapping("/student/dohomework")
-    public String dohomework(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public @ResponseBody Map dohomework(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String stusn=getCurrentUsername();
+        int xueqi=getCurrentTerm();
         String scid = request.getParameter("scid");
         String homeworkid= request.getParameter("homeworkid");
-        request.setAttribute("scid",scid);
-        request.setAttribute("homeworkid",homeworkid);
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         Teacher tec=TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(scid));
+        List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
         String sn=tec.getTeacherSn();
         String tec_sn= tec.getTeacherSn();
         String tec_name = tec.getTeacherName();
@@ -311,42 +314,41 @@ public class StuController {
         String ff = getFileFolder(request)+"homework/"+term+"/"+collage +"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/";
         Date d1 = new Date();
         Date d3 = df.parse(readline(ff+"/Workall.txt")[2]);
+        Map a = new HashMap();
+        List<String> HwattachmentList=new ArrayList<String>();
         if(d1.getTime() > d3.getTime()){//判断作业是否已开始
-        request.setAttribute("Hwtitle",readline(ff+"/Workall.txt")[0]);
-        request.setAttribute("Hwendtime",readline(ff+"/Workall.txt")[1]);  
-        request.setAttribute("Hwhelp",read(ff+"/textWork.html")); 
-        
-        File f =new File(ff+"1/");
-        if(f.exists()&&f.isDirectory()){
-        String[] files = f.list();
-        String ff2="../file/homework/"+term+"/"+collage +"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/1/";
-        StringBuffer sb=new StringBuffer();
-            for (String file : files) {
-                sb.append("<li><a href=\""+ff2+file+"\">"+file+"</a></li>");  
-            }
-         request.setAttribute("Hwattachment",sb.toString()); 
+            a.put("Hwtitle", readline(ff+"/Workall.txt")[0]);
+            a.put("Hwendtime", readline(ff+"/Workall.txt")[1]);
+            a.put("Hwhelp", read(ff+"/textWork.html"));
+            File f =new File(ff+"1/");
+            if(f.exists()&&f.isDirectory()){
+                String[] files = f.list();
+                String ff2="/file/homework/"+term+"/"+collage +"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/1/";
+                HwattachmentList.add(ff2+"1.txt");
+                for (String file : files) {
+                    HwattachmentList.add(ff2+file);
+                }
+            }   
+            a.put("Hwattachment",HwattachmentList);   
+            HwattachmentList.clear();
+            ff = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
+            String ff2="/file/uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
+            a.put("HwtextWork", read(ff+"/textWork.html"));
+            a.put("Hwtime", read(ff+"/submitTime.txt"));
+            f =new File(ff);
+            if(f.exists()&&f.isDirectory()){
+                String[] files = f.list();
+                for (String file : files) {
+                    if(!(file.equals("textWork.html")||file.equals("submitTime.txt")) )  {
+                        HwattachmentList.add(file);
+                    }
+                } 
+          }
+          a.put("Myattachment",HwattachmentList);    
         }
-        
-        ff = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
-        String ff2="../file/uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
-        request.setAttribute("HwtextWork",read(ff+"/textWork.html")); 
-        request.setAttribute("Hwtime",read(ff+"/submitTime.txt")); 
-         f =new File(ff);
-        if(f.exists()&&f.isDirectory()){
-        String[] files = f.list();
-        StringBuffer sb=new StringBuffer();
-            for (String file : files) {
-                if(!(file.equals("textWork.html")||file.equals("submitTime.txt")) )  
-                sb.append("<li><a href=\"downattach?src="+file+"&homeworkid="+homeworkid+"&scid="+scid+"\">"+file+"</a>&nbsp;&nbsp;<a href=\"#\" onclick=\"delmyattach('delattach?src="+file+"&homeworkid="+homeworkid+"&scid="+scid+"')\">删除</a></li>");  
-            }
-             request.setAttribute("Myattachment",sb.toString());  
-            }
-        return "student/dohomework";
-        }else{//作业未开始
-        return "redirect:"+request.getHeader("Referer");
-        }
-        
-  }
+        return a;
+    }  
+
     //学生上传作业处理
     @RequestMapping("student/homeworksubmit")
     public @ResponseBody String homeworksubmit(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -389,7 +391,7 @@ public class StuController {
   } 
     //学生作业附件刷新
     @RequestMapping("/student/stuhwrefresh")
-    public @ResponseBody String[] stuhwrefresh(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public @ResponseBody List<String> stuhwrefresh(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String stusn=getCurrentUsername();
         String scid = request.getParameter("scid");
         String homeworkid= request.getParameter("homeworkid");
@@ -401,24 +403,18 @@ public class StuController {
         String term =TermCourseDao.getxueqiBySCId(scid).toString();
         String courseName =TermCourseDao.getCourseNameByCourseId(scid);
         String ff = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
-        String ff2="../file/uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
-        request.setAttribute("HwtextWork",read(ff+"/textWork.html")); 
+        String ff2="/file/uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";  
         File f =new File(ff);
-        StringBuffer sb=new StringBuffer();
-         sb.append("<ol class=\"breadcrumb\" id=\"breadcour2\">");
-        if(f.exists()&&f.isDirectory()){
-        String[] files = f.list();
-        
-            for (String file : files) {
-                if(!(file.equals("textWork.html")||file.equals("submitTime.txt")) )  
-                sb.append("<li><a href=\"downattach?src="+file+"&homeworkid="+homeworkid+"&scid="+scid+"\">"+file+"</a>&nbsp;&nbsp;<a href=\"#\" onclick=\"delmyattach('delattach?src="+file+"&homeworkid="+homeworkid+"&scid="+scid+"')\">删除</a></li>");  
-             }
-         
-        }
-        sb.append("</ol>");
-        String []a = new String[1];
-        a[0]=sb.toString() ;
-        return a;
+         List<String> HwattachmentList=new ArrayList<String>();
+            if(f.exists()&&f.isDirectory()){
+                String[] files = f.list();
+                for (String file : files) {
+                    if(!(file.equals("textWork.html")||file.equals("submitTime.txt")) )  {
+                        HwattachmentList.add(file);
+                    }
+                } 
+          }
+        return HwattachmentList;
     }
     //学生作业附件下载
     @RequestMapping("/student/downattach")
@@ -487,13 +483,11 @@ public class StuController {
         return "ok";
       }
         return "error";
-
- 
-        
+    
     }
     //返回课程目录树下面列表
     @RequestMapping("/student/courdir")
-    public @ResponseBody String[] courdir(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public @ResponseBody List<String> courdir(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String stsn=getCurrentUsername();
         String scid=request.getParameter("scid");
         String dir=request.getParameter("dir");
@@ -504,49 +498,25 @@ public class StuController {
         String term =TermCourseDao.getxueqiBySCId(scid).toString();
         String courseName =TermCourseDao.getCourseNameByCourseId(scid);
         String ff=getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
-        String ff2="../file/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
-        String ff3="../getswf?uri="+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
-        String ff4="../getvideo?uri="+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
-        String []a = new String[1];
-        a[0]="";
-        String dlc="";
+        String ff2="/file/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
+        List<String> fileList=new ArrayList<String>();   
         File f =new File(ff);
-        if(!f.exists()){ a[0]="<ol class=\"breadcrumb\" id=\"breadcour\"><p>此目录下暂无资源</p></ol>";}
+        if(!f.exists()){return fileList;}
         if(f.exists()&&f.isDirectory()){
          String[] files = f.list();
-            System.out.println(ff+"===="+files.length);
          if(files.length<=0){
-             a[0]="<ol class=\"breadcrumb\" id=\"breadcour\"><p>此目录下暂无资源</p></ol>";
-         }else{
-             boolean swf=false;
-             boolean ddoc=false;
-             
+                 return fileList;
+        }else{         
              for (String file : files) {
-                 System.out.println(file);
                  if (file.lastIndexOf(".")!=-1) {
-                     if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".swf")){
-                 swf=true;
-                 a[0]=a[0]+"<li><a href=\""+ff3+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a></li>";
-                     }else if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".mp4")){
-                 swf=true;
-                 a[0]=a[0]+"<li><a href=\""+ff4+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a></li>";   
-                     }else{
-                 ddoc=true;
-                 dlc=dlc+"<li><a href=\""+ff2+file+"\">"+file+"</a></li>";
-                 }
-                 }
-                  
-             }
-             if(swf){a[0]="<ol class=\"breadcrumb\" id=\"breadcour\"><p>以下是可供在线预览的资源</p>"+a[0]+"</ol>";}
-             if(ddoc){a[0]=a[0]+"<ol class=\"breadcrumb\" id=\"breadcour\"><p>以下是可以下载的资源</p>"+dlc+"</ol>";}
-             if (a[0].equals("")) {a[0]="<ol class=\"breadcrumb\" id=\"breadcour\"><p>此目录下暂无资源</p></ol>";}
+                     fileList.add(file);
+                 }              
+             }    
          }
       }
-        for(String c:a){
-            System.out.println(c);
-        }
-        return a;
+        return fileList;
     }
+
     //判断目录是否存在，不存在则创建
     public boolean file(String path){
       File f = new File(path);
@@ -609,7 +579,7 @@ public class StuController {
       return SecurityContextHolder.getContext().getAuthentication().getName();
    }
    public int getCurrentTerm() {
-      return 201602;
+      return 201601;
    }
     public String getFileFolder(HttpServletRequest request) {
 //        String uri=getClass().getResource("/").getFile();  
@@ -621,3 +591,4 @@ public class StuController {
         return path;
     }
 }
+

@@ -11,86 +11,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style>
-            #DGword li{
-                padding: 1em;
-                background-color: whitesmoke;
-                width: 100%;
-                display: block;
-            }
-            #DGword li>a{
-                color:#212121;
-                display: inline-block;
-                padding: 0 1em;
-                float: right;
-            }
-            #DGword li>a:hover{cursor: pointer;color: #00438a;}
-            #DGword li a:first-child{
-                float: left;
-                color: #00438a;
-            }
-            .uploadify-button{
-                border-radius: 0;
-                width: 100% !important;
-                display: block;
-                padding: 5em 0;
-                line-height: 1em;
-                background-color: whitesmoke;
-                background-image: none;
-                border: 3px dotted #888888;
-                color: #212121;
-                position: relative;
-                height: auto !important;
-            }
-            .uploadify:hover .uploadify-button{
-                border-radius: 0;
-                background-color: whitesmoke;
-                background-image: none;
-            }
-            #dgmultiple_file_upload{
-                height: auto !important;
-                width: 100% !important;
-            }
-            #dgmultiple_file_upload>object{
-                width: 100%;
-                height: 100%;
-                left: 0;
-                /*position: relative !important;*/
-            }
-            #multiple_file_upload{
-
-                height: auto !important;
-                width: 100% !important;
-            }
-            #multiple_file_upload>object{
-                width: 100%;
-                height: 100%;
-                left: 0;
-                /*position: relative !important;*/
-            }
-            .edui-container,
-            .edui-container>div,
-            #myCourseDaGangEditor{
-                width: 100% !important;
-            }
-            .uploadify-queue-item {
-                max-width: 100%;
-            }
-            #documentViewer{
-                border: 1px solid whitesmoke;
-            }
-        </style>
-        <script>
-//            $(".uploadify-button").mouseover(function(){
-//                $("#dgmultiple_file_upload>object").mouseover();
-//            });
-//            $(".uploadify-button").mouseout(function(){
-//                $("#dgmultiple_file_upload>object").mouseout();
-//            })
-        </script>
     </head>
     <body>  
-        <!--<h3 style="text-align: center;color: blue" id="kcdg_kcm" ></h3><br>-->
         <div><div id="DGText" style="border:0px solid #CCC;"></div></div>
         
         <div id="DGword"></div>  
@@ -105,23 +27,23 @@
             <a class="btn btn-primary" href="javascript:$('#dgmultiple_file_upload').uploadify('stop','*')" hidden=true id="stopUpload">停止上传</a>
         </div><br>
         
-        <script type="text/plain" id="myCourseDaGangEditor" style="width: 100%;min-height:50px;">
-            <p>在此处编辑课程大纲</p>
+        <script type="text/plain" id="CourseDaGangEditor" style="width: 600%;height:100px;">
+           <p>在此处编辑课程大纲</p>
         </script>
         
         <br>
-        <button  class="button button-raised button-royal" onclick="getContentDG()">预览</button>
-        <button  class="button button-raised button-royal" onclick="QXDG()">撤销</button>
-        <button id="DG" class="button button-raised button-royal" onclick="updateDG()">提交</button>
-        <button class="button button-raised button-royal" onclick="lookcourseDG()">查看</button>
+        <button   class="btn btn-default " onclick="getContentDG()">预览</button>
+        <button   class="btn btn-primary" onclick="QXDG()">撤销</button>
+        <button id="DG" class="btn btn-success" onclick="updateDG()">提交</button>
+        <button class="btn btn-info" onclick="lookcourseDG()">查看</button>
         <script type="text/javascript">
 
-            var ue = UM.getEditor('myCourseDaGangEditor');
+            var ue = UM.getEditor('CourseDaGangEditor');
             function getContentDG() {
                 var arr = [];
-                arr.push(UM.getEditor('myCourseDaGangEditor').getContent());
-                var value = UM.getEditor('myCourseDaGangEditor').getContent();
-                UM.getEditor("myCourseDaGangEditor").setContent(value);
+                arr.push(UM.getEditor('CourseDaGangEditor').getContent());
+                var value = UM.getEditor('CourseDaGangEditor').getContent();
+                UM.getEditor("CourseDaGangEditor").setContent(value);
                 document.getElementById("DGText").innerHTML = value;
             }
             function ksscdg() {
@@ -131,15 +53,15 @@
                 $('#dgmultiple_file_upload').uploadify('upload', '*');
             }
             $(function () {
-        $("#dgmultiple_file_upload").uploadify        ({
+                  $("#dgmultiple_file_upload").uploadify({
                     'uploader': '<%=path%>/teacher/dgupload100.do;jsessionid=<%=sessionid%>?Func=uploadwallpaper2Dfs',
                     'width': 120,
                     'buttonText': '选择文件',
                     'buttonCursor': 'hand',
                     'auto': false,
                     'multi': false,
-            'method': 'post        ',
-            'swf': '<%=path%>/uploadify/uploadify.swf        ',
+                    'method': 'post        ',
+                    'swf': '<%=path%>/uploadify/uploadify.swf        ',
                     'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png',
                     'fileTypeExts': '**.docx;*.doc;*.xls;*.xlsx;*.ppt ',
                     'fileSizeLimit': '200MB',
@@ -174,16 +96,16 @@
                     data: {courseid:${courseid}, term:${term}},
                     url: "<%=path%>/teacher/lookisCourseMaster",
                     success: function (data) {
-        //                         if(data==="0"){
-        //                            alert("你不是课程负责人，不能在此编辑课程大纲!");
-        //                         }else{
-                        if (window.confirm('你确定要更新课程大纲吗？')) {
+                       if(data==="0"){
+                            alert("你不是课程负责人，不能在此编辑课程大纲!");
+                       }else{
+                         if (window.confirm('你确定要更新课程大纲吗？')) {
                             var arr = [];
-                            arr.push(UM.getEditor('myCourseDaGangEditor').getContent());
+                            arr.push(UM.getEditor('CourseDaGangEditor').getContent());
                             addcourseoutlino(arr);
                             return true;
-                        }
-        //                         }
+                         }
+                       }
                     },
                     error: function () {
                         CourseMaster();
@@ -198,8 +120,8 @@
                 arrinfor = arr + "";
                 $.ajax({
                     type: "post",
-            url: "<%=path%>/teacher/addcourseoutline",
-            data: {arrinfor: arrinfor, courseid:${courseid}, term:${term}},
+                    url: "<%=path%>/teacher/addcourseoutline",
+                    data: {arrinfor: arrinfor, courseid:${courseid}, term:${term}},
                     success: function (data) {
                         if (data === "1") {
                             alert("更新成功!");
@@ -238,12 +160,15 @@
                 lookcourseDG();
             }
 
+            function dgxz(path){
+                 window.location.href = "<%=path%>/teacher/downloadDG?temp="+ path;
+            }
             function lookcourseDGword() {
                 var coursename = "${courseName}";
                 var term = ${term};
                 $.ajax({
                     type: "post",
-            url: "<%=path%>/teacher/lookDGwork?term=" + term + '&coursename=' + coursename,
+                    url: "<%=path%>/teacher/lookDGwork?term=" + term + '&coursename=' + coursename,
                     success: function (data) {
                         document.getElementById("DGword").innerHTML = data[0];
                         if (data[1] === "0") {
@@ -262,7 +187,6 @@
                 var term = parent.document.getElementById("sz_xq").value;
                 node = parent.$('#tt').tree('getSelected');
                 var coursename = node.text;
-        //            alert(coursename);
                 if (window.confirm('你确定要删除课程大纲吗？')) {
                     $.ajax({
                         type: "post",
@@ -286,6 +210,7 @@
             function dgyl(url) {
                 $("#dgxsid").show();
                 url = "http://localhost:8080/lms/getswf?uri=" + url;
+                alert(url);
                 document.getElementById("kcdgurl").src = url;
             }
         </script>

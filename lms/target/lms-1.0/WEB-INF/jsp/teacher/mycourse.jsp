@@ -26,22 +26,17 @@
     <link href="<%=path%>/css/uploadify.css" rel="stylesheet"  />
     <link href="<%=path%>/ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
     <link href="<%=path%>/css/lms.css" rel="stylesheet" />
-
+   
     <script src="<%=path%>/js/jquery.min.js"></script>
     <!-- js -->
     <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
     <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-    <script>
-        var Stickup = 0;
-    </script>
     <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
-
     <!--easyui-->
     <script src="<%=path%>/js/jquery.easyui.min.js"></script>
     <link rel="stylesheet"  href="<%=path%>/css/easyuicss/easyui.css">
     <link rel="stylesheet"  href="<%=path%>/css/easyuicss/icon.css">
     <link rel="image/png"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
-
     <!--uploadify-->
     <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
     <!--umeditor-->
@@ -119,10 +114,10 @@
                         <div id="worklk" style="border:0px solid #b8dcff;width: 800px;padding-left: 0%;display: none">
                             <span >作业要求:</span><br>
                             <span id = "newwork" style="width: 550px"></span><br>
+                            <span > 学生提交作业开始时间:</span><br>
+                            <span id="jzzyks" > </span><br><br><br>
                             <span > 学生提交作业截至时间:</span><br>
                             <span id="jzsj" > </span><br><br><br>
-                            <span > 学生提交作业开始时间</span><br>
-                            <span id="jzzyks" > </span><br><br><br>
                             <span id="zyfj" style="width: 800px"></span>
                             <div id="fj" style="display: none">
                                 <input type="file" name="uploadify" id="zymultiple_file_upload" />
@@ -144,7 +139,7 @@
                             <input id="xgdd" class="easyui-datetimebox" style="width: 200px"></input><br><br>
                             作业名称:<br><input class="easyui-textbox"  id="xgzyms" style="width: 200px"></input><br><br>
                             作业要求:
-                            <script type="text/plain" id="xghomework" style="width: 800px;height:100px;"></script><br>
+                            <script type="text/plain" id="xghomework" style="width:550%;height:100px;"><p></p></script><br>
                             <button type="button"  class="btn btn-primary"  onclick="tjzygg()">
                                 提交更改
                             </button>
