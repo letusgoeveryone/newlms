@@ -276,6 +276,7 @@
         <script src="<%=path%>/js/api.json.student.js" type="text/javascript"></script>
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/vue.js" type="text/javascript"></script>
         <script>
             var Stickup=0;
         </script>

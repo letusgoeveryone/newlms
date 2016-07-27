@@ -2,7 +2,7 @@
  *  学生界面 数据传输
  */
 
-
+var NODATA = false;
 var StudentAPI = {
     stuObj: new Object() ,
     path : [
@@ -20,9 +20,9 @@ var StudentAPI = {
         "student/stu_course",           //[11] 返回课程详情 一个参数选课id（scid）
         "student/stu_course_homework"   //[12] 返回作业列表 一个参数选课id（scid）
     ],
-        
-    //获取个人信息
-    getPersonalInfo: function() {
+    
+    //初始化个人信息
+    initPersonalInfo: function() {
         $.ajax({
             url: StudentAPI.path[0],
             type: 'get',
@@ -45,11 +45,55 @@ var StudentAPI = {
             }
         });
     },
+    
+    //绑定个人数据
+    bindPersonalInfo: function(){
+//        var header = new Vue({
+//            el: "#tree-header",
+//            data: {
+//                name:StudentAPI.stuObj.name,
+//                portrait: StudentAPI.stuObj.name.toString()[0]
+//            }
+//        });
+        var ubox = new Vue({
+            el: "#ubox",
+            data: {
+                id:StudentAPI.stuObj.id,
+                sn:StudentAPI.stuObj.sn,
+                name:StudentAPI.stuObj.name,
+                portrait: StudentAPI.stuObj.name.toString()[0],
+                ID:StudentAPI.stuObj.ID,
+                grade:StudentAPI.stuObj.grade,
+                college:StudentAPI.stuObj.college,
+                tel:StudentAPI.stuObj.tel,
+                qq:StudentAPI.stuObj.qq,
+                pw:StudentAPI.stuObj.pw,
+                sex:StudentAPI.stuObj.sex
+            }
+        });
+        
+        var tab = new Vue({
+            el: "#tab-personalInfo",
+            data: {
+                id: StudentAPI.stuObj.id,
+                sn: StudentAPI.stuObj.sn,
+                name: StudentAPI.stuObj.name,
+                portrait: StudentAPI.stuObj.name.toString()[0],
+                ID: StudentAPI.stuObj.ID,
+                grade: StudentAPI.stuObj.grade,
+                college: StudentAPI.stuObj.college,
+                tel: StudentAPI.stuObj.tel,
+                qq: StudentAPI.stuObj.qq,
+                pw: StudentAPI.stuObj.pw,
+                sex: StudentAPI.stuObj.sex
+            }
+        });
+    },
 
     //更新个人信息
     updatePersonalInfo: function() {
         $.ajax({
-            url: path,
+            url: path[1],
             type: 'post',
             async: false,
             dataType: 'json',
@@ -94,20 +138,19 @@ var StudentAPI = {
             }
         });
     },
-
-    //列出当前学期所有可选课程
-    getSelectableCourse: function() {
+    
+    //获取已选课程
+    getSelectedCourse: function () {
         $.ajax({
-            url: StudentAPI.path[4],
+            url: StudentAPI.path[3],
             type: 'get',
             async: false,
             dataType: 'json',
             success: function (data) {
                 if (data.toString() === "") {
-                    alert("It's null string !");
-                }
-                else{
-                    StudentAPI.stuObj.selectableCourseTree = data;
+                    StudentAPI.stuObj.selectedCourseTree = NODATA;
+                } else {
+                    StudentAPI.stuObj.selectedCourseTree = data;
                 }
             },
             error: function () {
@@ -116,7 +159,7 @@ var StudentAPI = {
         });
     },
 
-    //列出当前学期所有可选课程
+    //获取课程介绍
     getCourseIntroduction: function(cid) {
         $.ajax({
             url: StudentAPI.path[5],
@@ -125,25 +168,65 @@ var StudentAPI = {
             dataType: 'json',
             success: function (data) {
                 if (data.toString() === "") {
-                    alert("It's null string !");
-                }
-                else{
-                    StudentAPI.stuObj.selectableCourseTree = data;
+                } else {
                 }
             },
             error: function () {
                 alert("数据传输失败 ！");
             }
         });
-    }
+    },
+    
+    //获取课程大纲(目录树)
+    getCourseOutline: function (cid) {
+        $.ajax({
+            url: StudentAPI.path[10],
+            type: 'get',
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.toString() === "") 
+                    if (data.toString() === "") {
+                    } else {
+                    }
+            },
+            error: function () {
+                alert("数据传输失败 ！");
+            }
+        });
+    },
+    
+
+    //列出当前学期所有可选课程
+    getSelectableCourse: function () {
+        $.ajax({
+            url: StudentAPI.path[4],
+            type: 'get',
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.toString() === "") {
+                } else {
+                }
+            },
+            error: function () {
+                alert("数据传输失败 ！");
+            }
+        });
+    },
+    
+    //获取选课状态
+    gerSelectingCourseStatus: function(){}
 
     
 };
 !(function () {
-    StudentAPI.getPersonalInfo();
+    StudentAPI.initPersonalInfo();
+    StudentAPI.bindPersonalInfo();
     StudentAPI.getSelectableCourse();
+    StudentAPI.getSelectedCourse();
     console.log(Object.getOwnPropertyNames(StudentAPI.stuObj).sort());
 })();
-
-alert(StudentAPI.stuObj.id);
-alert(StudentAPI.stuObj.selectableCourseTree);
+//
+//alert(StudentAPI.stuObj.id);
+alert(StudentAPI.stuObj.selectableCourseTree + "\n" + StudentAPI.stuObj.selectedCourseTree);

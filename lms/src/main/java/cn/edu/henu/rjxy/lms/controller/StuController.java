@@ -263,7 +263,7 @@ public class StuController {
     //学生首页
     @RequestMapping("/student")
     public String stu_index(HttpServletRequest request, HttpServletResponse response) {
-	return "student/stu_index";
+	return "student/Index";
     }
     //取消选课处理
     @RequestMapping("/student/cancelcourse")
@@ -578,7 +578,7 @@ public class StuController {
       return SecurityContextHolder.getContext().getAuthentication().getName();
    }
    public int getCurrentTerm() {
-      return 201601;
+      return 201602;
    }
     public String getFileFolder(HttpServletRequest request) {
         String path = this.getClass().getClassLoader().getResource("/").getPath();
