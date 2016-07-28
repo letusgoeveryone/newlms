@@ -33,14 +33,21 @@
             .content{
                 display: block;
             }
-            
+            .btn-card-darken{
+                background: #444 !important;
+            }
+            form .btn-card{
+                margin-top: 5em;
+            }
             
             /*like github*/
             .vcard-avatar{
                 padding: .5em 0;
             }
-            .vcard-avatar img{
-                border-radius: 3px;
+            .vcard-avatar img {
+                border-radius: 0px;
+                box-shadow: 0 0 1px rgba(0,0,0,.5);
+                margin: 8px 0;
             }
             .vcard-names {
                 line-height: 1;
@@ -131,6 +138,14 @@
                 margin-top: 14px;
                 margin-bottom: 14px;
             }
+            .tile-wrap .active a{color: #fff;}
+            .tile-wrap .active a:hover{color: #fff !important;background-color: rgba(255,255,255,0.05) !important;}
+            .tile-wrap .dock a{color: #000;}
+            .tile-wrap .dock a:hover{color: #000 !important;background-color: rgba(0,0,0,0.05) !important;}
+            .tile-brand .tile-sub {
+                padding: 15px;
+            }
+            
             .fix-tile-position > .active {
                 width: 200px;
                 position: fixed;
@@ -158,7 +173,7 @@
                 left: 0px;
                 margin: auto;
             }
-            .fix-tile-bug{
+            .fix-tile-close{
                 position: fixed;
                 width: 265px;
                 height: 56px;
@@ -176,7 +191,8 @@
                 right: 0;
             }
             .menu-scroll {
-                width: 95%;
+                width: 80%;
+                box-shadow: 0 0 10px rgba(0,0,0,.5);
             }
             .menu-content > .menu-logo:first-child {
                 margin-top: -15px;
@@ -203,10 +219,24 @@
                 margin-left: 265px;
             }
             .menu-top {
-                background-color: #473E3E;
+                background-color: #3f51b5;
                 color: #fff;
                 position: relative;
-                z-index: 1;
+                z-index: 1;    
+                margin-bottom: 2em;
+                box-shadow: 2px 0px 2px rgba(0,0,0,0.5);
+            }
+            .menu-logo {
+                color: #3F51B5;
+            }
+            .menu-logo[href]:focus, .menu-logo[href]:hover {
+                color: #3F51B5;
+            }
+            .menu-content > .vcard{
+                margin-right: auto;
+                margin-left: auto;
+                padding-right: 16px;
+                padding-left: 16px;
             }
             .menu-backdrop.in {
                 opacity: 1;
@@ -214,7 +244,7 @@
             .menu-backdrop {
                 -webkit-backface-visibility: hidden;
                 backface-visibility: hidden;
-                background-color: #6D7ADA;
+                background-color: rgba(0,0,0,0.15);
                 opacity: 0;
                 right: 0;
                 bottom: 0;
@@ -258,109 +288,108 @@
         <aside id="ubox" class="menu menu-left nav-drawer nav-drawer-md" >
             <div class="menu-scroll">
                 <div class="menu-content">
-                    <a class="menu-logo" href="#">个人面板</a>
-                </div>
-                <div class="container vcard">
-                    <a href="/account" alt="Change your avatar" class="vcard-avatar">
-                        <img alt="" class=" img-rounded" src="<%=path%>/images/avatar.jpg" height="230" width="230">
-                    </a>
+                    <a class="menu-logo" href="#">{{name}}</a>
+                    <div class="vcard">
 
+                        <a href="/account" alt="Change your avatar" class="vcard-avatar">
+                            <img alt="" class=" img-rounded" src="<%=path%>/images/avatar.jpg" height="230" width="230">
+                        </a>
 
+                        <h1 class="vcard-names">
+                            <!--<div class="vcard-fullname" >{{name}}</div>-->
+                            <div class="vcard-id" >ID: {{sn}} ( {{grade}}级 )</div>
+                        </h1>
 
-                    <h1 class="vcard-names">
-                        <div class="vcard-fullname" >{{name}}</div>
-                        <div class="vcard-id" >ID: {{sn}} ( {{grade}}级 )</div>
-                    </h1>
+                        <div class="user-profile-edit">
+                            <a data-toggle="tab" href="#tab-personalInfo">编辑个人信息 <span class="icon">edit</span></a>
 
-                    <div class="user-profile-edit">
-                        <a data-toggle="modal" href="#modal-personalInfo">编辑个人信息 <span class="icon">edit</span></a>
-                            
-                    </div>
+                        </div>
 
-                    <ul class="vcard-details">
-                        <li alt="Home location" class="vcard-detail" title="China">
-                            <span class="icon">location_on</span> {{college}}
-                        </li>
-                        <li alt="Email" class="vcard-detail">
-                            <span class="icon">chat</span> 扣扣: {{qq}}
-                        </li>
-                        <li alt="Member since" class="vcard-detail ">
-                            <span class="icon">access_time</span>
-                            加入时间: <span title="Jun 9, 2015, 2:36 PM GMT+8" class="join-date">Jun 9, 2015</span>
-                        </li>
-                    </ul>
+                        <ul class="vcard-details">
+                            <li alt="Home location" class="vcard-detail" title="China">
+                                <span class="icon">location_on</span> {{college}}
+                            </li>
+                            <li alt="Email" class="vcard-detail">
+                                <span class="icon">chat</span> 扣扣: {{qq}}
+                            </li>
+                            <li alt="Member since" class="vcard-detail ">
+                                <span class="icon">access_time</span>
+                                加入时间: <span title="Jun 9, 2015, 2:36 PM GMT+8" class="join-date">Jun 9, 2015</span>
+                            </li>
+                        </ul>
 
-                    <!--课程 列表 O--> 
-                    <nav id="tree-course-list">
-                        <div class="tile-wrap fix-tile-position">
-                            <div class="tile tile-collapse tile-brand active">
-                                <div data-target="#tile-course-list" data-toggle="tile">
-                                    <div class="tile-inner">
-                                        <div class="text-overflow">课程列表</div>
-                                    </div>
-                                </div>
-                                <div class="collapse in" >
-                                    <nav class="tile-sub collapse in" id="tile-course-list">
-                                        <ul class="nav nav-brand">
-                                            <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                            <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                            <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                            <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                            <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                            <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                            <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                            <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                            <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                            <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                        </ul>
-                                        <div class="fix-tile-bug"></div>
-                                    </nav>
-                                    <div class="tile-footer">
-
-                                        <div class="tile-footer-btn pull-left">
-                                            <a class="btn btn-flat waves-attach waves-effect" onclick="makeCourseTileColse();toggleCourseTileLocked(true);">
-                                                <span ><span class="icon">close</span>&nbsp;关闭</span>
-                                            </a>
+                        <!--课程 列表 O--> 
+                        <nav id="tree-course-list">
+                            <div class="tile-wrap fix-tile-position">
+                                <div class="tile tile-collapse tile-brand active">
+                                    <div data-target="#tile-course-list" data-toggle="tile">
+                                        <div class="tile-inner">
+                                            <div class="text-overflow">课程列表</div>
                                         </div>
-                                        <div class="tile-footer-btn pull-right">
-                                            <a class="btn btn-flat waves-attach waves-effect" onclick="toggleCourseTileLocked()">
-                                                <span class="tile-toggle-lock"><span class="icon">lock</span>&nbsp;固定到侧栏</span>
-                                                <span class="tile-toggle-unlock" hidden=""><span class="icon">lock</span>&nbsp;解除固定</span>
-                                            </a>
+                                    </div>
+                                    <div class="collapse in" >
+                                        <nav class="tile-sub collapse in" id="tile-course-list">
+                                            <ul class="nav nav-brand">
+                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
+                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
+                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
+                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
+                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
+                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
+                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
+                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
+                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
+                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
+                                            </ul>
+                                            <div class="fix-tile-close"></div>
+                                        </nav>
+                                        <div class="tile-footer">
+
+                                            <div class="tile-footer-btn pull-left">
+                                                <a class="btn btn-flat waves-attach waves-effect" onclick="makeCourseTileColse();toggleCourseTileLocked(true);">
+                                                    <span ><span class="icon">close</span>&nbsp;关闭</span>
+                                                </a>
+                                            </div>
+                                            <div class="tile-footer-btn pull-right">
+                                                <a class="btn btn-flat waves-attach waves-effect" onclick="toggleCourseTileLocked()">
+                                                    <span class="tile-toggle-lock"><span class="icon">lock</span>&nbsp;固定到侧栏</span>
+                                                    <span class="tile-toggle-unlock" hidden=""><span class="icon">lock</span>&nbsp;解除固定</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </nav>
+                        <!--课程 列表 X-->
+
+                        <!--个人状态 O-->
+                        <div class="vcard-stats">
+                            <!--<h3 class="vcard-stat-heading">个人状态</h3>-->
+                            <a class="vcard-stat" href="#">
+                                <strong class="vcard-stat-count">63</strong>
+                                <span class="text-muted">未完成作业</span>
+                            </a>
+                            <a class="vcard-stat" href="#">
+                                <strong class="vcard-stat-count">2</strong>
+                                <span class="text-muted">已选课程</span>
+                            </a>
+                            <a class="vcard-stat" href="#">
+                                <strong class="vcard-stat-count">10</strong>
+                                <span class="text-muted">可选课程</span>
+                            </a>
+                            <a class="vcard-stat" href="#">
+                                <strong class="vcard-stat-count">10</strong>
+                                <span class="text-muted">已批准课程</span>
+                            </a>
+                            <a class="vcard-stat" href="#">
+                                <strong class="vcard-stat-count">10</strong>
+                                <span class="text-muted">未批准课程</span>
+                            </a>
                         </div>
-                    </nav>
-                    <!--课程 列表 X-->
-                    
-                    <!--个人状态 O-->
-                    <div class="vcard-stats">
-                        <!--<h3 class="vcard-stat-heading">个人状态</h3>-->
-                        <a class="vcard-stat" href="#">
-                            <strong class="vcard-stat-count">63</strong>
-                            <span class="text-muted">未完成作业</span>
-                        </a>
-                        <a class="vcard-stat" href="#">
-                            <strong class="vcard-stat-count">2</strong>
-                            <span class="text-muted">已选课程</span>
-                        </a>
-                        <a class="vcard-stat" href="#">
-                            <strong class="vcard-stat-count">10</strong>
-                            <span class="text-muted">可选课程</span>
-                        </a>
-                        <a class="vcard-stat" href="#">
-                            <strong class="vcard-stat-count">10</strong>
-                            <span class="text-muted">已批准课程</span>
-                        </a>
-                        <a class="vcard-stat" href="#">
-                            <strong class="vcard-stat-count">10</strong>
-                            <span class="text-muted">未批准课程</span>
-                        </a>
+                        <!--个人状态 X-->
+
                     </div>
-                    <!--个人状态 X-->
-                    
                 </div>
             </div>
         </aside>

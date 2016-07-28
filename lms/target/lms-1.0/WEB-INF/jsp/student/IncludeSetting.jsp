@@ -36,18 +36,10 @@
                     <nav class="col-md-3 fix-menu-nav">
                         <ul class="nav ">
                             <li>
-                                <a class="waves-attach waves-effect" href="javascript:void(0)">
+                                <a class="waves-attach waves-effect" href="#">
                                     <span class="icon mg-sm-right">info</span>个人信息
-                                    <span class="menu-collapse-toggle waves-attach waves-effect" data-target="#collapse-profile-settings" data-toggle="collapse">
-                                        <div class="menu-collapse-toggle-close">
-                                            <i class="icon icon-lg">close</i>
-                                        </div>
-                                        <div class="menu-collapse-toggle-default">
-                                            <i class="icon icon-lg">add</i>
-                                        </div>
-                                    </span>
                                 </a>
-                                <ul style="" aria-expanded="true" class="menu-collapse collapse in" id="collapse-profile-settings">
+                                <ul id="collapse-profile-settings">
                                     <li>
                                         <a class="waves-attach waves-effect" data-toggle="tab" href="#tab-personalInfo">基础资料</a>
                                     </li>
@@ -57,18 +49,10 @@
                                 </ul>
                             </li>
                             <li>
-                                <a class="waves-attach waves-effect" href="javascript:void(0)">
+                                <a class="waves-attach waves-effect" href="#">
                                     <span class="icon mg-sm-right">class</span>课程管理
-                                    <span aria-expanded="true" class="menu-collapse-toggle waves-attach waves-effect" data-target="#collapse-course-settings" data-toggle="collapse">
-                                        <div class="menu-collapse-toggle-close">
-                                            <i class="icon icon-lg">close</i>
-                                        </div>
-                                        <div class="menu-collapse-toggle-default">
-                                            <i class="icon icon-lg">add</i>
-                                        </div>
-                                    </span>
                                 </a>
-                                <ul class="menu-collapse collapse in" id="collapse-course-settings">
+                                <ul id="collapse-course-settings">
                                     <li>
                                         <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-course-selected">
                                             已选课程
@@ -140,7 +124,7 @@
                                 </div>
 
 
-                                <div class="btn btn-block btn-brand btn-card">
+                                <div class="btn btn-block  btn-card btn-card-darken">
                                     确认
                                 </div>
                             </form>
@@ -161,7 +145,7 @@
                                     <input class="form-control" id="newPasswordConfirm" type="password">
                                 </div>
                                 
-                                <div class="btn btn-block btn-brand btn-card">
+                                <div class="btn btn-block btn-card btn-card-darken">
                                     确认
                                 </div>
                             </form>
