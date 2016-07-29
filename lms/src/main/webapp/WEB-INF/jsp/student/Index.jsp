@@ -39,6 +39,9 @@
             form .btn-card{
                 margin-top: 5em;
             }
+            .sample-height{
+                min-height: 1500px;
+            }
             
             /*like github*/
             .vcard-avatar{
@@ -127,68 +130,12 @@
             
             .collapsing {
             }
-            .tile-wrap{
-                min-height: 48px;
-                max-height: 48px;
-                overflow: hidden;
-                background-color: whitesmoke;
-                border: 2px dashed lightgrey;
-                box-sizing: content-box;
-                transition: all 0.3s;
-                margin-top: 14px;
-                margin-bottom: 14px;
+            .fix-tile-style > .tile{
+                width: 100%;
+                margin: 0;
             }
-            .tile-wrap .active a{color: #fff;}
-            .tile-wrap .active a:hover{color: #fff !important;background-color: rgba(255,255,255,0.05) !important;}
-            .tile-wrap .dock a{color: #000;}
-            .tile-wrap .dock a:hover{color: #000 !important;background-color: rgba(0,0,0,0.05) !important;}
-            .tile-brand .tile-sub {
-                padding: 15px;
-            }
-            
-            .fix-tile-position > .active {
-                width: 200px;
-                position: fixed;
-                left: 285px;
-                bottom: -15px;
-            }
-            .fix-tile-position > .dock {
-                left: 0 !important;
-                width: 265px !important;
-                top: 0px;
-                margin: 0 !important;
-                z-index: 100;
-                bottom: 0 !important;
-                background-color: #f5f5f5;
-                color: #000;
-            }
-            .fix-tile-position > .dock > div:first-child{
-                flex: none;
-                height: 56px;
-            }
-            .fix-tile-position > .dock .tile-footer{
-                position: absolute;
-                bottom: 0px;
-                right: 0px;
-                left: 0px;
-                margin: auto;
-            }
-            .fix-tile-close{
-                position: fixed;
-                width: 265px;
-                height: 56px;
-                background-color: transparent;
-                left: 0;
-                top: 0;
-                z-index: 100;
-            }
-            
             .fix-modal-align{
                 margin-right: -15px;
-            }
-            .fix-tab-pullright{
-                position: absolute !important;
-                right: 0;
             }
             .menu-scroll {
                 width: 80%;
@@ -280,12 +227,20 @@
             .fix-menu-nav>ul>li>a:hover{
                 background-color: whitesmoke !important;
             }
+            
+            
+            .nav-drawer.nav-drawer-md.hide{
+                display: none !important;
+            }
+            .hide-ubox{
+                margin-left: 0px !important;
+            }
         </style>
     </head>
     <body class="page-brand container-full" id="lms_stu">
         
         <!--aside -->
-        <aside id="ubox" class="menu menu-left nav-drawer nav-drawer-md" >
+        <aside id="menu-ubox" class="menu menu-left nav-drawer nav-drawer-md" >
             <div class="menu-scroll">
                 <div class="menu-content">
                     <a class="menu-logo" href="#">{{name}}</a>
@@ -317,51 +272,6 @@
                                 加入时间: <span title="Jun 9, 2015, 2:36 PM GMT+8" class="join-date">Jun 9, 2015</span>
                             </li>
                         </ul>
-
-                        <!--课程 列表 O--> 
-                        <nav id="tree-course-list">
-                            <div class="tile-wrap fix-tile-position">
-                                <div class="tile tile-collapse tile-brand active">
-                                    <div data-target="#tile-course-list" data-toggle="tile">
-                                        <div class="tile-inner">
-                                            <div class="text-overflow">课程列表</div>
-                                        </div>
-                                    </div>
-                                    <div class="collapse in" >
-                                        <nav class="tile-sub collapse in" id="tile-course-list">
-                                            <ul class="nav nav-brand">
-                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                                <li><a href="#" class="btn btn-flat waves-attach waves-effect">C语言</a></li>
-                                            </ul>
-                                            <div class="fix-tile-close"></div>
-                                        </nav>
-                                        <div class="tile-footer">
-
-                                            <div class="tile-footer-btn pull-left">
-                                                <a class="btn btn-flat waves-attach waves-effect" onclick="makeCourseTileColse();toggleCourseTileLocked(true);">
-                                                    <span ><span class="icon">close</span>&nbsp;关闭</span>
-                                                </a>
-                                            </div>
-                                            <div class="tile-footer-btn pull-right">
-                                                <a class="btn btn-flat waves-attach waves-effect" onclick="toggleCourseTileLocked()">
-                                                    <span class="tile-toggle-lock"><span class="icon">lock</span>&nbsp;固定到侧栏</span>
-                                                    <span class="tile-toggle-unlock" hidden=""><span class="icon">lock</span>&nbsp;解除固定</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </nav>
-                        <!--课程 列表 X-->
 
                         <!--个人状态 O-->
                         <div class="vcard-stats">
@@ -398,7 +308,7 @@
         <header class="header header-brand header-waterfall ui-header affix-top">
             <ul class="nav nav-list pull-left">
                 <li>
-                    <a data-toggle="menu" href="#ui_menu">
+                    <a href="#menu-ubox" id="anchor-ubox" onclick="toggleUbox()">
                         <span class="icon icon-lg">menu</span>
                     </a>
                 </li>
@@ -406,7 +316,7 @@
             <span class="header-logo" >教务系统 | 学生页面</span>
             <ul class="nav nav-list pull-right">
                 <li>
-                    <a data-toggle="menu" href="#menu-settings" id="menu-anchor">
+                    <a data-toggle="menu" href="#menu-settings" id="anchor-menu">
                         <span class="icon icon-lg">settings</span>
                     </a>
                 </li>
@@ -416,12 +326,7 @@
         <!--content-->
         <content class="content" id="ucontent" style="min-height:2000px">
             <div class="space-block"></div>
-            <div class="container">
-                <div class="row">
-                    <!--col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1-->
-                    <jsp:include page="../student/IncludeContent.jsp" />
-                </div>
-            </div>
+            <jsp:include page="../student/IncludeContent.jsp" />
         </content>
         
         <!--footer-->

@@ -56,7 +56,7 @@ var StudentAPI = {
 //            }
 //        });
         var ubox = new Vue({
-            el: "#ubox",
+            el: "#menu-ubox",
             data: {
                 id:StudentAPI.stuObj.id,
                 sn:StudentAPI.stuObj.sn,
@@ -72,7 +72,7 @@ var StudentAPI = {
             }
         });
         
-        var tab = new Vue({
+        var personalInfo = new Vue({
             el: "#tab-personalInfo",
             data: {
                 id: StudentAPI.stuObj.id,
@@ -229,4 +229,4 @@ var StudentAPI = {
 })();
 //
 //alert(StudentAPI.stuObj.id);
-alert(StudentAPI.stuObj.selectableCourseTree + "\n" + StudentAPI.stuObj.selectedCourseTree);
+//alert(StudentAPI.stuObj.selectableCourseTree + "\n" + StudentAPI.stuObj.selectedCourseTree);

@@ -31,23 +31,40 @@ $(function () {
     });
 });
 
-function toggleCourseTileLocked(is){
-    if(is===true){
-        $(".tile-toggle-lock").show();
-        $(".tile-toggle-unlock").hide();
-    }else{
+function toggleCourseTileLocked(isScroll){
         
-        $(".tile-toggle-lock").toggle();
-        $(".tile-toggle-unlock").toggle();
-        $(".fix-tile-position>div").toggleClass("dock");
-    }
+    $(".tile-toggle-lock").toggle();
+    $(".tile-toggle-unlock").toggle();
+    $("#tree-course-list > .tile-wrap").toggleClass("tile-position-fixed");
+
+}
+function toggleCourseTileScroll(isLocked){
+
+    $(".tile-toggle-unscroll").toggle();
+    $(".tile-toggle-scroll").toggle();
+    $("#tree-course-list .nav").toggleClass("tile-scroll");
 }
 function makeCourseTileColse(){
     $("#tile-course-list").removeClass("in")
-    $(".fix-tile-position>div").removeClass("active");
+    $(".fix-tile-position>").removeClass("active");
     $(".fix-tile-position>div").removeClass("dock");
 }
 
 function toggleSettingContent(){
-    $("#menu-anchor").click();
+    $("#anchor-menu").click();
+}
+
+function toggleUbox(){
+    var ubox = $("#menu-ubox")
+    var header = $("header");
+    var footer = $("footer");
+    var content = $("content");
+
+    ubox.toggleClass("hide");
+    header.toggleClass("hide-ubox");
+    footer.toggleClass("hide-ubox");
+    content.toggleClass("hide-ubox");
+    coulist.toggleClass("hide-ubox");
+    
+    
 }
