@@ -370,19 +370,19 @@
                                 <strong class="vcard-stat-count">63</strong>
                                 <span class="text-muted">未完成作业</span>
                             </a>
-                            <a class="vcard-stat" href="#">
+                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selected" onclick="toggleSettingContent()">
                                 <strong class="vcard-stat-count">2</strong>
                                 <span class="text-muted">已选课程</span>
                             </a>
-                            <a class="vcard-stat" href="#">
+                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selectable" onclick="toggleSettingContent()">
                                 <strong class="vcard-stat-count">10</strong>
                                 <span class="text-muted">可选课程</span>
                             </a>
-                            <a class="vcard-stat" href="#">
+                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-permit" onclick="toggleSettingContent()">
                                 <strong class="vcard-stat-count">10</strong>
                                 <span class="text-muted">已批准课程</span>
                             </a>
-                            <a class="vcard-stat" href="#">
+                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-notpermit" onclick="toggleSettingContent()">
                                 <strong class="vcard-stat-count">10</strong>
                                 <span class="text-muted">未批准课程</span>
                             </a>
@@ -406,7 +406,7 @@
             <span class="header-logo" >教务系统 | 学生页面</span>
             <ul class="nav nav-list pull-right">
                 <li>
-                    <a data-toggle="menu" href="#ui_menu_settings">
+                    <a data-toggle="menu" href="#menu-settings" id="menu-anchor">
                         <span class="icon icon-lg">settings</span>
                     </a>
                 </li>

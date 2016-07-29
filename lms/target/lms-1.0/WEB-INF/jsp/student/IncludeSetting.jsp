@@ -21,7 +21,7 @@
         }
         
     </style>
-    <nav aria-hidden="true" class="menu menu-left" id="ui_menu_settings" tabindex="-1">
+    <nav class="menu menu-left" id="menu-settings">
         <div class="menu-scroll">
             <div class="menu-top">
                 <!--<div class="menu-top-img"><img alt="" src=""></div>-->

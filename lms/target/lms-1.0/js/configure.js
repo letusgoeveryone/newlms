@@ -47,3 +47,7 @@ function makeCourseTileColse(){
     $(".fix-tile-position>div").removeClass("active");
     $(".fix-tile-position>div").removeClass("dock");
 }
+
+function toggleSettingContent(){
+    $("#menu-anchor").click();
+}
