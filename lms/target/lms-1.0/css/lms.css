@@ -182,6 +182,263 @@ ul, ol {
     color: grey;
     font-size: 0.8em;
 }
+body{
+    background-color: #F5F5F5;
+}
+a {
+    /*color: #f50057;*/
+    color: #8b95cb;
+}
+aside a{
+    color: #8b95cb;
+}
+user-settings,
+user-content{
+    display: block;
+}
+.header::after {
+    box-shadow: 2px 1px 2px rgba(0,0,0,.5);
+    content: "";
+}
+user-content{
+    display: block;
+    background-color: #F5F5F5;
+}
+.btn-card-darken{
+    background: #444 !important;
+}
+form .btn-card{
+    margin-top: 5em;
+}
+.sample-height{
+    min-height: 1500px;
+}
+
+/*like github*/
+.vcard-avatar{
+    padding: .5em 0;
+}
+.vcard-avatar img {
+    border-radius: 0px;
+    box-shadow: 0 0 1px rgba(0,0,0,.5);
+    margin: 8px 0;
+}
+.vcard-names {
+    line-height: 1;
+    color: #473E3E;
+    font-weight: 500;
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+}
+.vcard-fullname {
+    font-size: 25px;
+    line-height: 30px;
+}
+.vcard-id {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+    color: #666;
+}
+.user-profile-edit{
+    color: lightgray;
+}
+.vcard-details {
+    list-style: none;
+    border-top: 1px solid whitesmoke;
+    border-bottom:  1px solid whitesmoke;
+    padding: 1em 0;
+    margin: 1.2em auto;
+}
+.vcard-detail{
+    margin: 0;
+    padding: .3em 0;
+    color: #473E3E;
+    font-size: 14px;
+
+}
+.vcard-detail .icon{
+    color: #8b95cb;
+    margin-right: .8em;
+}
+.vcard-stats {
+    text-align: center;
+}
+.vcard-stat-heading{
+    margin-top: 1em;
+    font-size: 20px;
+    line-height: 30px;
+}
+.vcard-stat {
+    float: left;
+    width: 29%;
+    margin: 2%;
+    padding: 10px;
+    font-size: 11px;
+    text-transform: capitalize;
+    position: relative;
+    background: whitesmoke;
+    height: 60px;
+    border-radius: 1px;
+}
+.vcard-stat-count {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1;
+}
+.vcard-stat > .text-muted {
+    color: #767676 !important;
+    float: left;
+    position: absolute;
+    bottom: .5em;
+    width: 100%;
+    left: 0;
+}
+.header-logo, .header-text {
+    line-height: 56px;
+}
+
+.collapsing {
+}
+.fix-tile-style > .tile{
+    width: 100%;
+    margin: 0;
+}
+.fix-modal-align{
+    margin-right: -15px;
+}
+.menu-scroll {
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+}
+.menu-content > .menu-logo:first-child {
+    margin-top: -15px;
+}
+.nav-drawer.nav-drawer-md .menu-scroll {
+    box-shadow: 0 0 2px rgba(0,0,0,.5);
+    -webkit-transform: none;
+    transform: none;
+    width: 265px;
+    background-color: rgb(252, 252, 252);
+    background-size: cover;
+
+}
+.nav-drawer.nav-drawer-md {
+    background-color: transparent;
+    display: block !important;
+    overflow: visible;
+    width: 265px;
+    z-index: 30;
+}
+.nav-drawer.nav-drawer-md.menu-left ~ .content,
+.nav-drawer.nav-drawer-md.menu-left ~ .footer,
+.nav-drawer.nav-drawer-md.menu-left ~ .header {
+    margin-left: 265px;
+}
+.menu-top {
+    background-color: #3f51b5;
+    color: #fff;
+    position: relative;
+    z-index: 1;    
+    margin-bottom: 2em;
+    box-shadow: 2px 0px 2px rgba(0,0,0,0.5);
+}
+.menu-logo {
+    color: #3F51B5;
+}
+.menu-logo[href]:focus, .menu-logo[href]:hover {
+    color: #3F51B5;
+}
+.menu-content > .vcard{
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+.menu-backdrop.in {
+    opacity: 1;
+}
+.menu-backdrop {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background-color: rgba(0,0,0,0.15);
+    opacity: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: opacity .3s cubic-bezier(.4,0,.2,1);
+    transition: opacity .3s cubic-bezier(.4,0,.2,1);
+    z-index: 30;
+}
+.menu-content {
+    margin-top: 0.5em;
+    padding-bottom: 8px;
+}
+.menu-content .nav a:hover{
+    background-color: transparent;
+    color: #6C7AC5;
+}
+.menu-content .nav .a:focus, .menu-content .nav .a:hover, .menu-content .nav a:focus, .menu-content .nav a:hover {
+    background-color: transparent;
+}
+.menu-collapse-toggle, .menu-collapse-toggle-close {
+    background-color: rgba(221, 221, 221, 0.3);
+}
+.fix-menu-nav{
+    border-right: 1px solid whitesmoke;
+    min-height: 600px;
+}
+.fix-menu-nav>ul{
+    background-color: transparent;
+}
+.fix-menu-nav>ul>li{
+    padding: 0 0 1em 0;
+}
+.fix-menu-nav>ul>li>a,
+.fix-menu-nav>ul>li>a:hover{
+    background-color: whitesmoke !important;
+}
+
+
+.nav-drawer.nav-drawer-md.hide{
+    display: none !important;
+}
+.hide-ubox{
+    margin-left: 0px !important;
+}
+.menu-backdrop {
+    background-color: rgba(255, 255, 255, .5);
+}
+#tab-personalInfo>form,
+#tab-password>form{
+    width: 500px;
+    margin: auto;
+}
+.fix-tab-plugin>a,
+.fix-tab-plugin>a:hover,
+.fix-tab-plugin>a:focus{
+    background-color: whitesmoke !important;
+    padding: 0px 16px;
+    min-height: 46px;
+    line-height: 46px;
+    display: block;
+}
+.treeview .list-group-item {
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 1em;
+    padding-left: 1em;
+    cursor: default;
+}
+#course-selectable-tree [class*="icons-"]{
+    cursor: pointer;
+}
+#course-selectable-tree .icons-minus::after {
+    content: "indeterminate_check_box";
+}
+#course-selectable-tree .icons-plus::after {
+    content: "add_box";
+}
 /*************************************END!*/
 
 /*导航 o.o
@@ -283,7 +540,7 @@ ul, ol {
         min-width: 200px;
         top: 60px;
     }
-    /*修改默认 nav底部细线颜色*/
+    /*修改默认 nav底部细线颜色
     .tab-nav .nav > li > a:after {
       border-bottom-color: #ffff66;
     }
@@ -293,7 +550,7 @@ ul, ol {
     .tab-nav .tab-nav-indicator.animate {
       background-color: #FFFF66;
     }
-
+    */
 /**
   &footer
  =>css construct 
@@ -1185,8 +1442,8 @@ a[class *= text-grey]:hover{
     overflow-y: scroll;
 }
 .space-block {
-     margin-top: 5em;
-     margin-bottom: 0px;
+     padding-top: 5em;
+     padding-bottom: 0px;
  }
 .stage-box{
     /*position: relative;*/
@@ -1243,5 +1500,16 @@ a[class *= text-grey]:hover{
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
-
-
+input[type="radio"]:checked ~ .radiobtn-circle-check {
+    -webkit-transform: scale(.4,.4);
+    transform: scale(.4,.4);
+}
+.radio-inline,
+.checkbox-inline, .radiobtn-inline {
+    display: inline-block;
+    margin-right: 16px;
+}
+.treeview .list-group-item{cursor:pointer}
+.treeview span.indent{margin-left:10px;margin-right:10px}
+.treeview span.icon{width:12px;margin-right:5px}
+.treeview .node-disabled{color:silver;cursor:not-allowed}

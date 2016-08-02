@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -231,34 +232,40 @@ public class StuController {
     }
       //学生选课页
     @RequestMapping("/student/addnewcourse")
-    public @ResponseBody String[] stu_addcourse(HttpServletRequest request, HttpServletResponse response) {
-        String sumcourse="";
+    public @ResponseBody List<Map> stu_addcourse(HttpServletRequest request, HttpServletResponse response) {
+        List<Map> courseList=new ArrayList<>();
         int xueqi=getCurrentTerm();
-         List<String> coulist = CourseDao.getCourseIdByTerm(xueqi);
+        List<String> coulist = CourseDao.getCourseIdByTerm(xueqi);
         for (String coulist1 : coulist) {
-            sumcourse = sumcourse+ "{text: \"" + CourseDao.getCourseById(Integer.valueOf(coulist1)).getCourseName() + "\",state: {expanded: false},";
             List<String> teacher_cou = CourseDao.getTeacherSnByTermCourseId(xueqi, Integer.valueOf(coulist1));
+            Map courseMap = new LinkedHashMap();
+            Map stateMap = new LinkedHashMap();
+            courseMap.put("text", CourseDao.getCourseById(Integer.valueOf(coulist1)).getCourseName());
+            stateMap.put("expanded", false);
+            courseMap.put("state",stateMap);
             if (teacher_cou.size()>0) {
-                sumcourse=sumcourse+ "nodes: [";
+            List<Map> teacherList=new ArrayList<>();
                 for (String teacher_cou1 : teacher_cou) {
-                    sumcourse = sumcourse+ "{text: \"" + TeacherDao.getTeacherBySn(teacher_cou1).getTeacherName() + "\",";
+                    Map teacherMap = new LinkedHashMap();
+                    teacherMap.put("text", TeacherDao.getTeacherBySn(teacher_cou1).getTeacherName());
                     List<String> stu_cou_clas = CourseDao.getClassSnByTermCourseNumber(xueqi, Integer.valueOf(coulist1), teacher_cou1);
                     if (stu_cou_clas.size()>0) {
-                        sumcourse=sumcourse+ "nodes: [";
+                        List<Map> classList=new ArrayList<>();
                         for (String stu_cou_cla : stu_cou_clas) {
-                            sumcourse = sumcourse+ "{text: \"" + ClassesDao.getClassById(Integer.valueOf(stu_cou_cla)).getClassName() + "\"" + ",scid: \"" + StudentSelectCourseDao.getTermCourseIdByothers(xueqi, Integer.valueOf(coulist1), Integer.valueOf(stu_cou_cla), TeacherDao.getTeacherBySn(teacher_cou1).getTeacherId()) + "\"," + "},";
+                            Map classMap = new LinkedHashMap();
+                            classMap.put("text", ClassesDao.getClassById(Integer.valueOf(stu_cou_cla)).getClassName());
+                            classMap.put("scid",StudentSelectCourseDao.getTermCourseIdByothers(xueqi, Integer.valueOf(coulist1), Integer.valueOf(stu_cou_cla), TeacherDao.getTeacherBySn(teacher_cou1).getTeacherId()));
+                            classList.add(classMap);
                         }
-                        sumcourse=sumcourse+ "],";
+                        teacherMap.put("nodes", classList);
                     }
-                    sumcourse=sumcourse+ "},";
-                } //j for end
-                sumcourse=sumcourse+ "],";
+                    teacherList.add(teacherMap); 
+                }
+            courseMap.put("nodes", teacherList);  
             }
-            sumcourse=sumcourse+ "},"; 
+            courseList.add(courseMap);
         }
-        String []a = new String[1];
-        a[0]=sumcourse;
-	return a;
+	return courseList;
     }
     //学生首页
     @RequestMapping("/student")
@@ -588,4 +595,3 @@ public class StuController {
         return path;        
     } 
 }
-

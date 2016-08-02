@@ -202,10 +202,10 @@
                             $("#yz")[0].innerHTML = "学号/工号不能为空";
                             return false;
                         }
-                        if ($.trim($("#password").val()) == "") {
-                            $("#yz")[0].innerHTML = "密码不能为空";
-                            return false;
-                        }
+//                        if ($.trim($("#password").val()) == "") {
+//                            $("#yz")[0].innerHTML = "密码不能为空";
+//                            return false;
+//                        }
                         if ($.trim($("#checkcodeText").val()) == "") {
                             $("#yz")[0].innerHTML = "验证码不能为空";
                             return false;

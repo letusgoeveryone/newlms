@@ -1,6 +1,6 @@
-/* 
- * 插件中心
- * 
+/** 
+ * 配置中心
+ * @author longyeh@outlook.com
  */
 
 /*!
@@ -31,6 +31,56 @@ $(function () {
     });
 });
 
+!(function($){
+    
+    var scrolling = false;
+    var contentSections = $('.cd-section'),
+        verticalNavigation = $('.cd-nav'),
+        navigationItems = verticalNavigation.find('a');
+        
+    $(window).on('scroll', checkScroll);
+        
+    // 平滑过渡到相应section
+    verticalNavigation.on('click', 'a', function(event){
+        event.preventDefault();
+        smoothScroll($(this.hash));
+        verticalNavigation.removeClass('open');
+    });
+
+    function updateSections() {
+        var halfWindowHeight = $(window).height() / 2,
+            scrollTop = $(window).scrollTop();
+    
+        contentSections.each(function(){
+            var section = $(this),
+                sectionId = section.attr('id'),
+                navigationItem = navigationItems.filter('[href^="#' + sectionId + '"]');
+                ((section.offset().top - halfWindowHeight < scrollTop) && (section.offset().top + section.height() - halfWindowHeight > scrollTop))
+                    ? navigationItem.addClass('active')
+                    : navigationItem.removeClass('active');
+        });
+        scrolling = false;
+    }
+
+    function smoothScroll(target) {
+        $('body,html').animate({'scrollTop':target.offset().top}, 300);
+    }
+});
+
+tinymce.init({
+selector: '#MceEditor',
+        theme: 'modern',
+        height: 300,
+        language: 'zh_CN',
+        plugins: [
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'save table contextmenu directionality emoticons template paste textcolor'
+        ],
+        content_css: 'css/content.css',
+        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+});
+        
 function toggleCourseTileLocked(isScroll){
         
     $(".tile-toggle-lock").toggle();
@@ -39,7 +89,7 @@ function toggleCourseTileLocked(isScroll){
 
 }
 function toggleCourseTileScroll(isLocked){
-
+    
     $(".tile-toggle-unscroll").toggle();
     $(".tile-toggle-scroll").toggle();
     $("#tree-course-list .nav").toggleClass("tile-scroll");
@@ -55,16 +105,27 @@ function toggleSettingContent(){
 }
 
 function toggleUbox(){
-    var ubox = $("#menu-ubox")
+    var ubox = $("#ubox")
     var header = $("header");
     var footer = $("footer");
-    var content = $("content");
+    var content = $("#ucontent");
 
     ubox.toggleClass("hide");
     header.toggleClass("hide-ubox");
     footer.toggleClass("hide-ubox");
     content.toggleClass("hide-ubox");
-    coulist.toggleClass("hide-ubox");
     
     
 }
+function toggleUserSettings(){
+    var home = $('user-home');
+    var settings = $('user-settings');
+    var homeLeft = home.css("left");
+    var settingLeft = settings.css("left");
+    var tmpLeft = settingLeft;
+    
+    for(;settingLeft == tmpLeft;settingLeft++,homeLeft++){
+        home.css("left", homeLeft);
+        settings.css("left", settingLeft);
+    }
+};

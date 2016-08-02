@@ -1,0 +1,8 @@
+cn.edu.henu.rjxy.lms.hibernateutil
+cn.edu.henu.rjxy.lms.model
+cn.edu.henu.rjxy.lms.server
+cn.edu.henu.rjxy.lms.controller
+cn.edu.henu.rjxy.lms.controller.register
+cn.edu.henu.rjxy.lms.controller.checkcode
+cn.edu.henu.rjxy.lms.impl
+cn.edu.henu.rjxy.lms.dao
