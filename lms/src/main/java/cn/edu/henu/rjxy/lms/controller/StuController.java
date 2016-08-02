@@ -40,7 +40,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import java.util.LinkedHashMap;
 
 
 /**
@@ -233,7 +233,7 @@ public class StuController {
       //学生选课页
     @RequestMapping("/student/addnewcourse")
     public @ResponseBody List<Map> stu_addcourse(HttpServletRequest request, HttpServletResponse response) {
-        List<Map> courseList=new ArrayList<>();
+        List<Map> courseList=new ArrayList<Map>();
         int xueqi=getCurrentTerm();
         List<String> coulist = CourseDao.getCourseIdByTerm(xueqi);
         for (String coulist1 : coulist) {
@@ -244,13 +244,13 @@ public class StuController {
             stateMap.put("expanded", false);
             courseMap.put("state",stateMap);
             if (teacher_cou.size()>0) {
-            List<Map> teacherList=new ArrayList<>();
+            List<Map> teacherList=new ArrayList<Map>();
                 for (String teacher_cou1 : teacher_cou) {
                     Map teacherMap = new LinkedHashMap();
                     teacherMap.put("text", TeacherDao.getTeacherBySn(teacher_cou1).getTeacherName());
                     List<String> stu_cou_clas = CourseDao.getClassSnByTermCourseNumber(xueqi, Integer.valueOf(coulist1), teacher_cou1);
-                    if (stu_cou_clas.size()>0) {
-                        List<Map> classList=new ArrayList<>();
+                    if (stu_cou_clas.size()>0) {                   
+                        List<Map> classList=new ArrayList<Map>();
                         for (String stu_cou_cla : stu_cou_clas) {
                             Map classMap = new LinkedHashMap();
                             classMap.put("text", ClassesDao.getClassById(Integer.valueOf(stu_cou_cla)).getClassName());
