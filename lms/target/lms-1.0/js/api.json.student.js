@@ -651,7 +651,7 @@ var bindSelectedCourse = new Vue({
  * @type Vue
  */
 var bindSelectableCourse = new Vue({
-    el: '#course-selectable-content',
+    el: '#tab-course-selectable',
     data: {
         tableData:XCourseTableHS,
         introduction: ThisCourse[1].introduction,
