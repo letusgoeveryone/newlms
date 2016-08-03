@@ -40,7 +40,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.util.LinkedHashMap;
+
 
 
 /**
@@ -237,6 +237,7 @@ public class StuController {
         int xueqi=getCurrentTerm();
         List<String> coulist = CourseDao.getCourseIdByTerm(xueqi);
         for (String coulist1 : coulist) {
+            boolean effective=false;
             List<String> teacher_cou = CourseDao.getTeacherSnByTermCourseId(xueqi, Integer.valueOf(coulist1));
             Map courseMap = new LinkedHashMap();
             Map stateMap = new LinkedHashMap();
@@ -256,6 +257,7 @@ public class StuController {
                             classMap.put("text", ClassesDao.getClassById(Integer.valueOf(stu_cou_cla)).getClassName());
                             classMap.put("scid",StudentSelectCourseDao.getTermCourseIdByothers(xueqi, Integer.valueOf(coulist1), Integer.valueOf(stu_cou_cla), TeacherDao.getTeacherBySn(teacher_cou1).getTeacherId()));
                             classList.add(classMap);
+                            effective=true;
                         }
                         teacherMap.put("nodes", classList);
                     }
@@ -263,7 +265,8 @@ public class StuController {
                 }
             courseMap.put("nodes", teacherList);  
             }
-            courseList.add(courseMap);
+            if (effective) {courseList.add(courseMap);}
+            
         }
 	return courseList;
     }
