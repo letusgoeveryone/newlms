@@ -163,8 +163,8 @@
                         <div id="course-selectable-tree" class="col-md-3">
 
                         </div>
-                        <div id="course-selectable-content" class="col-md-9">
-
+                        <div id="course-selectable-content" class="col-md-9 table-responsive">
+                             {{tableData}}
                         </div>
                     </div>
                     <!--已批准课程-->

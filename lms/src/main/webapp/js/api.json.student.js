@@ -478,7 +478,7 @@ var OCourseListHS = "";
  * <br>由<b>setXCourseListHS()</b>根据<b>XCourse对象<b>设置和更新</b>
  * @type String
  */
-var XCourseListHS = "";
+var XCourseTableHS = "";
 
 // 初始化 相关基础参数
 StudentAPI.initPersonalInfo();
@@ -494,15 +494,103 @@ function setOCourseListHS(){
                 + OCourse[i].course + '</a></li>';
     }
 }
-function setXCourseListHS() {
-    var _header,
-        _footer,
-        _body;
-    XCourse = _header + _body + _footer;
+function setXCourseTableHS() {
+    var _head = '<table class="table table-responsive" title="选课表">'
+				+'<thead><tr><th>课程</th><th>老师</th><th>地点</th><th>状态</th></tr></thead>'
+                +'<tbody>',
+        _body = '',
+        _foot = '</tbody></table>',
+        _O=[],
+        _I=[],    //记录 当前课类节点对象
+        _X=[],    //记录 当前教师节点对象
+        _numO = 0,//记录 课类数量 
+        _numI = 0,//记录 每个课类下 教师数量 临时变量
+        _numX = 0,//记录 每个教师下 课程数量 临时变量
+        _sum = 0; //记录 所有课程总数
+    /**
+     * _O[
+            {
+                text: "C", state: {expanded: false},
+                nodes: _I[{
+                        text: "Long",
+                        nodes: _X[{
+                                text: "详情",
+                                scid: "5"
+                            }]
+                    }]
+            },
+            {
+                text: "Linux",
+                state: {expanded: false},
+                nodes: [{
+                        text: "Long",
+                        nodes: [{
+                                text: "详情",
+                                scid: "11"
+                            }]
+                    }]
+            }
+        ]
+     */
+    _O = XCourse;
+    _numO = _O.length;
+    for(var i=0; i<_numO; i++){
+        _I = _O[i].nodes;
+        _numI = _I.length;
+        
+        var _tmpHS = '';
+        var _tmpSum = 0;
+        
+        for (var j = 0; j < _numI; j++) {
+            _X = _I[j].nodes;
+            _numX = _X.length;
+            _tmpSum += _numX;
+            if (j === 0) {
+                for (var k = 0; k < _numX; k++) {
+                    if (k === 0) {
+                        _tmpHS = '<td rowspan="' + _numX + '">'
+                                + _I[j].text + '</td><td>'
+                                + _X[k].text + '</td><td><a onclick="selectCourse(' + _X[k].scid + ')" id="xscid-' + _X[k].scid + '">'
+                                + '选课</a></td></tr>';
+                    } else {
+                        _tmpHS = _tmpHS
+                                + '<tr><td>'
+                                + _X[k].text + '</td><td><a onclick="selectCourse(' + _X[k].scid + ')" id="xscid-' + _X[k].scid + '">'
+                                + '选课</a></td></tr>';
+                    }
+                    console.log(_X[k].scid);
+                }
+            } else {
+                for (var k = 0; k < _numX; k++) {
+                    if (k === 0) {
+                        _tmpHS = _tmpHS
+                                + '<tr><td rowspan="' + _numX + '">'
+                                + _I[j].text + '</td><td>'
+                                + _X[k].text + '</td><td><a onclick="selectCourse(' + _X[k].scid + ')" id="xscid-' + _X[k].scid + '">'
+                                + '选课</a></td></tr>';
+                    } else {
+                        _tmpHS = _tmpHS
+                                + '<tr><td>'
+                                + _X[k].text + '</td><td><a onclick="selectCourse(' + _X[k].scid + ')" id="xscid-' + _X[k].scid + '">'
+                                + '选课</a></td></tr>';
+                    }
+                }
+            }
+            
+            _sum += _tmpSum;
+        }
+        
+        console.log(_sum);
+        XCourseTableHS += '<tr><td rowspan="' + _tmpSum + '">' + _O[i].text + '</td>' + _tmpHS;
+        
+        
+    }
+    XCourseTableHS = _head + XCourseTableHS + _foot;
     
 }
 setOCourseListHS();
-setXCourseListHS();
+setXCourseTableHS();
+alert(XCourseTableHS);
 // 绑定 相关基础参数
 /**
  * 对个人面板的信息进行绑定
@@ -565,16 +653,11 @@ var bindSelectedCourse = new Vue({
 var bindSelectableCourse = new Vue({
     el: '#course-selectable-content',
     data: {
+        tableData:XCourseTableHS,
         introduction: ThisCourse[1].introduction,
         syllabus: ThisCourse[1].syllabus
     }
 });
-
-/**
- * 
- * @type JSON
- */
-var bindSelectableCourseTree = $('#course-selectable-tree').treeview({data: StudentAPI.selectableCourseDSTree});
 
 
 
@@ -639,4 +722,8 @@ function updataThisCourse1cid(scid){
  */
 function updataThisCourse0cid(scid) {
     ThisCourse[0].scid = scid;
+}
+//选课
+function selectCourse(scid){
+    StudentAPI.operateCidIsCourse.add(scid);
 }

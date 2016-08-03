@@ -162,12 +162,7 @@
                     </div>
                     <!--可选课程-->
                     <div id="tab-course-selectable" class="tab-pane fade">
-                        <div id="course-selectable-tree" class="col-md-3">
-
-                        </div>
-                        <div id="course-selectable-content" class="col-md-9">
-
-                        </div>
+                        {{{tableData}}}
                     </div>
                     <!--已批准课程-->
                     <div id="tab-course-permit" class="tab-pane fade">
