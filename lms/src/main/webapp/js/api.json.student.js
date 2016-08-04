@@ -11,6 +11,18 @@
  * @type type
  */
 var StudentAPI = {
+    id:0, 
+    sn:0, 
+    name:'', 
+    ID:0, 
+    pw:'', 
+    sex:false, 
+    grade:'', 
+    college:'', 
+    tel:'', 
+    qq:'',
+    numOCourse:0,
+    numXCourse:0,
     /**
      * 包含相关JSON路径数组的对象
      * @type Object
@@ -508,29 +520,27 @@ function setXCourseTableHS() {
         _numX = 0,//记录 每个教师下 课程数量 临时变量
         _sum = 0; //记录 所有课程总数
     /**
-     * _O[
-            {
-                text: "C", state: {expanded: false},
-                nodes: _I[{
-                        text: "Long",
-                        nodes: _X[{
-                                text: "详情",
-                                scid: "5"
-                            }]
-                    }]
-            },
-            {
-                text: "Linux",
-                state: {expanded: false},
+    * _O[{
+        text: "C", state: {expanded: false},
+        nodes: _I[{
+                text: "Long",
+                nodes: _X[{
+                    text: "详情",
+                    scid: "5"
+                }]
+            }]
+        },
+        {
+        text: "Linux",
+        state: {expanded: false},
+        nodes: [{
+                text: "Long",
                 nodes: [{
-                        text: "Long",
-                        nodes: [{
-                                text: "详情",
-                                scid: "11"
-                            }]
-                    }]
-            }
-        ]
+                    text: "详情",
+                    scid: "11"
+                }]
+            }]
+        }]
      */
     _O = XCourse;
     _numO = _O.length;
@@ -579,18 +589,17 @@ function setXCourseTableHS() {
             
             _sum += _tmpSum;
         }
-        
-        console.log(_sum);
         XCourseTableHS += '<tr><td rowspan="' + _tmpSum + '">' + _O[i].text + '</td>' + _tmpHS;
         
         
     }
     XCourseTableHS = _head + XCourseTableHS + _foot;
+    StudentAPI.numXCourse = _sum;
+    console.log(_sum);
     
 }
 setOCourseListHS();
 setXCourseTableHS();
-alert(XCourseTableHS);
 // 绑定 相关基础参数
 /**
  * 对个人面板的信息进行绑定
