@@ -343,7 +343,6 @@
     //课件删除
     function kcnrfj_sc(filename){
           var term  = ${term}; 
-          alert(filename);
           var courseName= "${courseName}";
           var selected = $('#tt1').tree('getSelected'); 
           if(selected.id!==null){
