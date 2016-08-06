@@ -140,8 +140,8 @@
                 lookcourseDGword();
                 $.ajax({
                     type: "post",
-            url: "<%=path%>/teacher/lookcourseDG",
-            data: {courseid:${courseid}, term:${term}},
+                    url: "<%=path%>/teacher/lookcourseDG",
+                    data: {courseid:${courseid}, term:${term}},
                     success: function (data) {
                         if (data === "null") {
                             document.getElementById("DGText").innerHTML = "课程大纲暂未更新，等待课程负责人添加";

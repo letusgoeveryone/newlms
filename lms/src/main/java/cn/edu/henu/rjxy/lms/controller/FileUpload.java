@@ -148,16 +148,25 @@ public class FileUpload extends HttpServlet {
 		// 获取前台传值
 		String[] term = multipartRequest.getParameterValues("term");
 		String[] coursename = multipartRequest.getParameterValues("coursename");
-                String[] a1 = multipartRequest.getParameterValues("a1");
-                String[] a2 = multipartRequest.getParameterValues("a2");
-                String[] a3 = multipartRequest.getParameterValues("a3");
+                String[] node1 = multipartRequest.getParameterValues("a1");
+                String[] node2 = multipartRequest.getParameterValues("a2");
+                String[] node3 = multipartRequest.getParameterValues("a3");
                 //前台自定义参数结束
                 String sn=getCurrentUsername();
                 Teacher tec = TeacherDao.getTeacherBySn(sn);
                 String tec_sn= tec.getTeacherSn();
                 String tec_name = tec.getTeacherName();
                 String collage = tec.getTeacherCollege();
-                String ff = getFileFolder(request)+term[0] +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+coursename[0]+"/"+"课程内容"+"/"+a1[0]+"/"+a2[0]+"/"+a3[0]+"/";
+                String dir="";
+                if(!node2[0].equals("null")&&!node3[0].equals("null")){
+                   dir = node1[0]+"/"+node2[0]+"/"+node3[0]+"/";
+                }else if(!node2[0].equals("null")&&node3[0].equals("null")){
+                   dir =node1[0]+"/"+node2[0]+"/";
+                }else if(node2[0].equals("null")&&node3[0].equals("null")){
+                   dir = node1[0]+"/";
+                }
+                System.out.println("dir="+dir);
+                String ff = getFileFolder(request)+term[0] +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+coursename[0]+"/"+"课程内容"+"/"+dir+"/";
                 String temp = null;//文件格式，视频表示0，word表示1
 //                if(haveFile(ff)>0){return "other file upload fail";}
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();

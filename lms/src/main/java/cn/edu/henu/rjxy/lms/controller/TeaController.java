@@ -669,13 +669,22 @@ public class TeaController {
      String node1 = request.getParameter("node1");
      String node2 = request.getParameter("node2");
      String node3 = request.getParameter("node3");
-     System.out.println(node1 + " "+ node2+"  "+node3+"  "+term+"  "+courseName);
-     String dir = term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+node1+"/"+node2+"/"+node3+"/";
-     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/";
-     ff=ff+node1+"/"+node2+"/"+node3+"/";
-     String ff2="../file/"+dir;
+     String dir="",ff=null;
+     if(!node2.equals("null")&&!node3.equals("null")){
+        dir = node1+"/"+node2+"/"+node3+"/";
+        ff= node1+"/"+node2+"/"+node3+"/";
+     }else if(!node2.equals("null")&&node3.equals("null")){
+        dir =node1+"/"+node2+"/";
+        ff= node1+"/"+node2+"/";
+     }else if(node2.equals("null")&&node3.equals("null")){
+        dir = node1+"/";
+        ff= node1+"/";
+     }
+     dir = term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+dir;
+     ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+ff;
+     System.out.println("dir="+dir);
      String ff3="../"+"getswf?uri="+dir;
-     String ff4="../getvideo?uri="+dir;
+     String ff4="../"+"getVideo?uri="+dir;
      String []a = new String[1];
      a[0]="";
      String dlc="";
@@ -688,20 +697,19 @@ public class TeaController {
              a[0]="<ol class=\"breadcrumb\" id=\"breadcour\"><p>此目录下暂无资源</p></ol>";
          }else{
              boolean swf=false;
-             boolean ddoc=false;
-             
+             boolean ddoc=false;   
              for (String file : files) {
                  System.out.println(file);
                  if (file.lastIndexOf(".")!=-1) {
                      if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".swf")){
                  swf=true;
-                 a[0]=a[0]+"<li><a href=\""+ff3+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcdg_sc('"+file+"')\">"+"删除"+"</a></li>";
+                 a[0]=a[0]+"<li><a href=\""+ff3+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";
                      }else if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".mp4")){
                  swf=true;
-                 a[0]=a[0]+"<li><a href=\""+ff4+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcdg_sc('"+file+"')\">"+"删除"+"</a></li>";   
+                 a[0]=a[0]+"<li><a href=\""+ff4+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";   
                      }else{
                  ddoc=true;
-                 dlc=dlc+"<li><a  onclick=\"kcnrxz('"+dir+file+"')\">"+file+"</a>&nbsp;<a  onclick=\"kcdg_sc('"+file+"')\">"+"删除"+"</a></li>";
+                 dlc=dlc+"<li><a  onclick=\"kcnrxz('"+dir+file+"')\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";
                  }
                  }
              }
@@ -776,7 +784,8 @@ public class TeaController {
   //课件删除
   @RequestMapping("teacher/kcsc")
   public @ResponseBody String[] kcsc(HttpServletRequest request,HttpServletResponse response){
-      String []a = new String[1];
+     System.out.println("课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除111");
+     String []a = new String[1];
      String sn=getCurrentUsername();
      Teacher tec = TeacherDao.getTeacherBySn(sn);
      String tec_sn= tec.getTeacherSn();
@@ -788,10 +797,18 @@ public class TeaController {
      String node1 = request.getParameter("node1");
      String node2 = request.getParameter("node2");
      String node3 = request.getParameter("node3");
-     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容";
-     ff = ff+"/"+node1+"/"+node2+"/"+node3+"/"; 
+     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"; 
+     if(!node2.equals("null")&&!node3.equals("null")){
+       ff = ff+"/"+node1+"/"+node2+"/"+node3+"/";
+     }else if(!node2.equals("null")&&node3.equals("null")){
+       ff = ff+"/"+node1+"/"+node2+"/";
+     }else  if(node2.equals("null")&&node3.equals("null")){
+        ff = ff+"/"+node1+"/";
+     }
+     
      String a1 = ff+filename;//要删除的文件 
 //     String a2 = ff+getFileNameNoEx(filename)+".swf";//判断是否有swf
+      System.out.println("a1="+a1);
      File f =new File(a1);
      if(f.exists()){//删除文件
             f.delete();
@@ -799,7 +816,8 @@ public class TeaController {
      }else{
        a[0] = "0";
      }
-     return a;    
+    
+     return a;   
   }
   
   
