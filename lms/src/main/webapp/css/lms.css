@@ -204,8 +204,13 @@ user-content{
     display: block;
     background-color: #F5F5F5;
 }
-.btn-card-darken{
+.btn-card-darken {
     background: #444 !important;
+    color: goldenrod !important;
+}
+.btn-card-darken:hover {
+    background: #666 !important;
+    color: gold !important;
 }
 form .btn-card{
     margin-top: 5em;
@@ -331,10 +336,13 @@ form .btn-card{
     width: 265px;
     z-index: 30;
 }
-.nav-drawer.nav-drawer-md.menu-left ~ .content,
-.nav-drawer.nav-drawer-md.menu-left ~ .footer,
+.nav-drawer.nav-drawer-md.menu-left ~ .content, 
+.nav-drawer.nav-drawer-md.menu-left ~ .footer, 
 .nav-drawer.nav-drawer-md.menu-left ~ .header {
     margin-left: 265px;
+} 
+.nav-drawer.nav-drawer-md.menu-left ~ .footer{
+    margin-bottom: -256px;
 }
 .menu-top {
     background-color: #3f51b5;
@@ -438,6 +446,57 @@ form .btn-card{
 }
 #course-selectable-tree .icons-plus::after {
     content: "add_box";
+}
+#tree-course-list .active > a {
+    background-color: #3E1262 !important;
+    color: #FFD600 !important;
+}
+.text-red-0{
+    color:#EF5350;
+}
+.text-green-0{
+    color:#C5E1A5;
+}
+.text-green-1{
+    color:#CDDC39;
+}
+.text-green-2{
+    color: #4CAF50;
+}
+.text-purple-0{
+    color:#9C27B0;
+}
+.bg-light{
+    background-color: #E5E5E5;
+}
+.text-blod{
+    font-weight: bold;
+}
+.table td, .table th {
+    border: 1px solid #dadada;
+    vertical-align: middle;
+    text-align: left;
+}
+.table td>a{
+    font-size: 14px;
+    line-height: 20px;
+    margin: -13px -16px -14px;
+    padding: 13px 16px 14px;
+    width:100%;
+    display: block;
+}
+.table td>a:hover{
+    cursor: pointer;
+}
+#content-CourseOutline h1{
+    font-size: 2em;
+}
+.clearfix:before,
+.clearfix:after{
+    
+  display: table;
+  content: " ";
+  clear: both;
 }
 /*************************************END!*/
 

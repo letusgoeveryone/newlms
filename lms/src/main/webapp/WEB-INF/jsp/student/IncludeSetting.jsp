@@ -13,13 +13,15 @@
     </style>
     
     <div class="menu-scroll">
+        <!--        
         <div class="menu-top">
-            <!--<div class="menu-top-img"><img alt="" src=""></div>-->
+            <div class="menu-top-img"><img alt="" src=""></div>
             <div class="menu-top-info">
                 <a class="menu-top-user" href="#"><span class="avatar avatar-inline margin-right">L</span>设置中心</a>
             </div>
-            <!--<div class="menu-top-info-sub"><small></small></div>-->
+            <div class="menu-top-info-sub"><small></small></div>
         </div>
+        -->
         <div class="menu-content container-fluid">
 
             <div class="row">

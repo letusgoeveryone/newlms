@@ -23,7 +23,7 @@
         <script src="<%=path%>/js/jquery.min.js"></script>
         <script src="<%=path%>/js/vue.js"></script>
         <script src="<%=path%>/js/md5.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/bootstrap-treeview.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.fullPage.min.js" type="text/javascript"></script>
         <style>
             
         </style>
@@ -53,10 +53,10 @@
 
                         <ul class="vcard-details">
                             <li alt="Home location" class="vcard-detail" title="China">
-                                <span class="icon">location_on</span> {{college}}
+                                <span class="icon">person_outline</span> 软件学院
                             </li>
                             <li alt="Email" class="vcard-detail">
-                                <span class="icon">chat</span> 扣扣: {{qq}}
+                                <span class="icon">chat_bubble_outline</span> 扣扣: 123456738
                             </li>
                             <li alt="Member since" class="vcard-detail ">
                                 <span class="icon">access_time</span>
@@ -72,11 +72,11 @@
                                 <span class="text-muted">未完成作业</span>
                             </a>
                             <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selected" onclick="toggleSettingContent()">
-                                <strong class="vcard-stat-count">2</strong>
+                                <strong class="vcard-stat-count">{{numOCourse}}</strong>
                                 <span class="text-muted">已选课程</span>
                             </a>
                             <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selectable" onclick="toggleSettingContent()">
-                                <strong class="vcard-stat-count">10</strong>
+                                <strong class="vcard-stat-count">{{numXCourse}}</strong>
                                 <span class="text-muted">可选课程</span>
                             </a>
                             <a class="vcard-stat" data-toggle="tab"  href="#tab-course-permit" onclick="toggleSettingContent()">
@@ -115,7 +115,7 @@
         </header>
 
         <!--content-->
-        <div class="content" id="ucontent" style="min-height:2000px">
+        <div class="content clearfix" id="ucontent" style="min-height:2000px">
             <div class=" space-block"></div>
             <jsp:include page="../student/IncludeContent.jsp" />
         </div>
@@ -127,9 +127,9 @@
             </div>
         </footer>
     
-        <user-settings class="menu menu-left" id="menu-settings">
+        <div class="menu menu-left" id="menu-settings">
             <jsp:include page="../student/IncludeSetting.jsp" />
-        </user-settings>
+        </div>
     
         <!--scrollUp-->
         <div class="fbtn-container" id="scrollUp" hidden>

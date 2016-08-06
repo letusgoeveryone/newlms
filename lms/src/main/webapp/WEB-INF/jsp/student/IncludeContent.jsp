@@ -121,14 +121,11 @@
                     <nav class="tab-nav tab-nav-brand margin-top-no" id="fix-thiscou-nav">
                         <ul class="nav nav-brand">
                             <li class="active">
-                                <a data-toggle="tab" href="#content-CourseIntro"> 课程介绍 </a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#content-CourseOutline"> 课程大纲 </a>
+                                <a data-toggle="tab" href="#content-CourseOutline"> 课程纲要 </a>
                             </li>
 
                             <li>
-                                <a data-toggle="tab" href="#content-CourseContent"> 课程内容 </a>
+                                <a data-toggle="tab" href="#content-CourseResource"> 课程资源 </a>
                             </li>
                             <li class="">
                                 <a data-toggle="tab" href="#content-Homework"> 作业区 </a>
@@ -149,13 +146,24 @@
                         
                     </nav>
                     <div class="tab-content">
-                        <div id="content-CourseIntro" class=" tab-pane fade in active">
-                            {{{introduction}}}
-                        </div>
-                        <div id="content-CourseOutline" class=" tab-pane fade">
-                            {{{syllabus}}}
-                        </div>
-                        <div id="content-CourseContent" class=" tab-pane fade">
+                        
+                        <article id="content-CourseOutline" class=" tab-pane fade in active">
+                            <h1>
+                                课程简介
+                            </h1>
+                            <hr>
+                            <section>
+                                {{{introduction}}}
+                            </section>
+                            <h1>
+                                课程大纲
+                            </h1>
+                            <hr>
+                            <section>
+                                {{{syllabus}}}
+                            </section>
+                        </article>
+                        <div id="content-CourseResource" class=" tab-pane fade">
                             
                         </div>
                         <div id="content-Homework" class=" tab-pane fade">

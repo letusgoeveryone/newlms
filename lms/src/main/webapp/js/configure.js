@@ -31,42 +31,6 @@ $(function () {
     });
 });
 
-!(function($){
-    
-    var scrolling = false;
-    var contentSections = $('.cd-section'),
-        verticalNavigation = $('.cd-nav'),
-        navigationItems = verticalNavigation.find('a');
-        
-    $(window).on('scroll', checkScroll);
-        
-    // 平滑过渡到相应section
-    verticalNavigation.on('click', 'a', function(event){
-        event.preventDefault();
-        smoothScroll($(this.hash));
-        verticalNavigation.removeClass('open');
-    });
-
-    function updateSections() {
-        var halfWindowHeight = $(window).height() / 2,
-            scrollTop = $(window).scrollTop();
-    
-        contentSections.each(function(){
-            var section = $(this),
-                sectionId = section.attr('id'),
-                navigationItem = navigationItems.filter('[href^="#' + sectionId + '"]');
-                ((section.offset().top - halfWindowHeight < scrollTop) && (section.offset().top + section.height() - halfWindowHeight > scrollTop))
-                    ? navigationItem.addClass('active')
-                    : navigationItem.removeClass('active');
-        });
-        scrolling = false;
-    }
-
-    function smoothScroll(target) {
-        $('body,html').animate({'scrollTop':target.offset().top}, 300);
-    }
-});
-
 tinymce.init({
 selector: '#MceEditor',
         theme: 'modern',
