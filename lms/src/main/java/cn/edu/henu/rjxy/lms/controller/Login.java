@@ -104,10 +104,11 @@ public class Login {
         HttpSession session = request.getSession();
         String ccd2 = (String) session.getAttribute("hccd");
         String ccd3 = request.getParameter("ccd");
-        System.out.println(ccd2.toLowerCase() + " --- " + ccd3.toLowerCase());
-        if (!ccd2.toLowerCase().equals(ccd3.toLowerCase())) {
+        //System.out.println(ccd2.toLowerCase() + " --- " + ccd3.toLowerCase());
+        if (!ccd2.equalsIgnoreCase(ccd3)) {
             return "CheckCodeError";
         }
+        session.removeAttribute("hccd");
         username = username.trim();
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
         try {
