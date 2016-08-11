@@ -26,9 +26,19 @@ var StudentAPI = {
     numOCourse:0,
     numXCourse:0,
     numICourse:0,
-    selectedCourseDS:null,
-    selectingCourseDS:null,
-    selectableCourseDS:null,
+    selectedCourseDS:[],
+    selectingCourseDS:[],
+    selectableCourseDS:[],
+    WhippingBoy:{
+        courseName: '',
+        teacherName: '',
+        teacherSn: '',
+        introduction: '[请至少选着一门课程]',
+        syllabus: '[请至少选着一门课程]',
+        attachment: '',
+        resourceDS: {},
+        homeworkDS: {}
+    },
     /**
      * 当前 聚焦的已选课程
      * @type Object
@@ -905,8 +915,12 @@ function initPage() {
     //Step 初始化 相关基础参数
     StudentAPI.initPersonalInfo();
     StudentAPI.initPersnalCourseInfo();
-    ThisCourse[0].scid = StudentAPI.selectedCourseDS[0].scid;//获得已选课程的第一个,加以初始化
-    ThisCourse[0]=StudentAPI.structureCidIsCourse(ThisCourse[0].scid);
+    if(StudentAPI.selectedCourseDS[0] !== undefined ){
+        ThisCourse[0].scid = StudentAPI.selectedCourseDS[0].scid;//获得已选课程的第一个,加以初始化
+        ThisCourse[0] = StudentAPI.structureCidIsCourse(ThisCourse[0].scid);    
+    }else{
+        ThisCourse[0] = StudentAPI.WhippingBoy;
+    }
     
     //Step 绑定 相关基础参数
 
