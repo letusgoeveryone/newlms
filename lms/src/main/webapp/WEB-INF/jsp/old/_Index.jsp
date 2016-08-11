@@ -530,3 +530,14 @@
         </script> 
     </body>
 </html>
+
+/**
+* HTML片段: 存储已选课程列表 
+* @type String
+*/
+var OCourseListHS = "";
+/**
+* HTML片段: 存储待选课程表格 
+* @type String
+*/
+var XCourseTableHS = '';

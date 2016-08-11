@@ -9,73 +9,85 @@
 %>
 <sec:authorize access="hasRole('ROLE_STUDENT') or hasRole('ROLE_ADMIN')">
     <style>
-
+        .menu-top{
+            margin-bottom: 86px;
+        }
+        .menu-top-info{
+            padding: 0;
+            height: 56px;
+            line-height: 56px;
+            position: absolute;
+            width: 100%;
+            background-color: indianred;
+            padding-left: 15px;
+            box-shadow: 0 0 2px #000;
+            font-size: 18px;
+        }
     </style>
     
     <div class="menu-scroll">
-        <!--        
+                
         <div class="menu-top">
-            <div class="menu-top-img"><img alt="" src=""></div>
             <div class="menu-top-info">
-                <a class="menu-top-user" href="#"><span class="avatar avatar-inline margin-right">L</span>设置中心</a>
+                <span class="icon icon-lg  mg-sm-right">menu</span>设置中心</a>
             </div>
-            <div class="menu-top-info-sub"><small></small></div>
         </div>
-        -->
+        
         <div class="menu-content container-fluid">
 
             <div class="row">
                 <nav class="col-md-3 fix-menu-nav">
-                    <ul class="nav ">
-                        <li>
-                            <a class="waves-attach waves-effect" href="#">
+                    <ul class="nav" id="anchor-vstatus">
+                        <li class="sn-l">
+                            <a class="sn-a" href="javascript:void(0)">
                                 <span class="icon mg-sm-right">info</span>个人信息
                             </a>
-                            <ul id="collapse-profile-settings">
-                                <li>
-                                    <a class="waves-attach waves-effect" data-toggle="tab" href="#tab-personalInfo">基础资料</a>
-                                </li>
-                                <li>
-                                    <a class="waves-attach waves-effect" data-toggle="tab" href="#tab-password">密码设置</a>
-                                </li>
-                            </ul>
                         </li>
-                        <li>
-                            <a class="waves-attach waves-effect" href="#">
+                        <li class="sn-lu active">
+                            <a class="waves-attach waves-effect" data-toggle="tab" href="#tab-personalInfo">基础资料</a>
+                        </li>
+                        <li class="sn-lu">
+                            <a class="waves-attach waves-effect" data-toggle="tab" href="#tab-password">密码设置</a>
+                        </li>
+                        <li class="sn-l">
+                            <a class="sn-a" href="javascript:void(0)">
                                 <span class="icon mg-sm-right">class</span>课程管理
                             </a>
-                            <ul id="collapse-course-settings">
-                                <li>
-                                    <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-course-selected">
-                                        已选课程
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-course-selectable">
-                                        可选课程
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-course-permit">
-                                        已批准课程
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-course-notpermit">
-                                        未批准课程
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-                        <li>
-                            <span class="fix-tab-plugin">
-                                <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-plugin">
-                                    <span class="icon mg-sm-right">view_quilt</span> 插件管理
-                                </a>
-                            </span>
+                        <li class="sn-lu">
+                            <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-course-selected">
+                                已选课程
+                            </a>
                         </li>
-                        <li>
-                            <a class="waves-attach waves-light waves-effect" href="<%=path%>/logout">
+                        <li class="sn-lu">
+                            <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-course-selectable">
+                                可选课程
+                            </a>
+                        </li>
+                        <!--                        
+                        <li class="sn-lu">
+                            <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-course-permit">
+                                已批准课程
+                            </a>
+                        </li>
+                        -->
+                        <li class="sn-lu">
+                            <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-course-notpermit">
+                                待批准课程
+                            </a>
+                        </li>
+                        <li class="sn-l">
+                            <a class="sn-a" href="javascript:void(0)">
+                                <span class="icon mg-sm-right">view_quilt</span>其它
+                            </a>
+                        </li>
+                        <li class="sn-lu">
+                            <a class="waves-attach waves-effect" data-toggle="tab"  href="#tab-plugin">
+                                插件管理
+                            </a>
+                        </li>
+                        <li class="sn-l">
+                            <a class="waves-attach waves-effect sn-a cursor-pointer" href="<%=path%>/logout">
                                 <span class="icon mg-sm-right">exit_to_app</span> 注销
                             </a>
                         </li>
@@ -101,15 +113,15 @@
                             <div class="form-group form-group-label">
 
                                 <div class="radiobtn radiobtn-adv radio-inline">
-                                    <label for="man">
-                                        <input class="access-hide" id="man" name="sex" type="radio">男生
+                                    <label for="boy">
+                                        <input class="access-hide" id="boy" name="sex" type="radio">男生
                                         <span class="radiobtn-circle" ></span><span class="radiobtn-circle-check" ></span>
                                     </label>
                                 </div>
 
                                 <div class="radiobtn radiobtn-adv radio-inline">
-                                    <label for="weman">
-                                        <input class="access-hide" id="weman" name="sex" type="radio">女生
+                                    <label for="girl">
+                                        <input class="access-hide" id="girl" name="sex" type="radio">女生
                                         <span class="radiobtn-circle" ></span><span class="radiobtn-circle-check" ></span>
                                     </label>
                                 </div>
@@ -160,11 +172,11 @@
                     </div>
                     <!--已选课程-->
                     <div id="tab-course-selected" class="tab-pane fade">
-
+                        {{{OCourseTableHF}}}
                     </div>
                     <!--可选课程-->
                     <div id="tab-course-selectable" class="tab-pane fade">
-                        {{{tableData}}}
+                        {{{XCourseTableHF}}}
                     </div>
                     <!--已批准课程-->
                     <div id="tab-course-permit" class="tab-pane fade">
@@ -172,7 +184,7 @@
                     </div>
                     <!--未批准课程-->
                     <div id="tab-course-notpermit" class="tab-pane fade">
-                        2
+                        {{{ICourseTableHF}}}
                     </div>
 
                     <!--插件管理-->

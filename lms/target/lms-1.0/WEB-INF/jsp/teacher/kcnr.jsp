@@ -36,7 +36,7 @@
 <!--        <div id="ylkenr"  style="min-height: 50px;border:0px solid #b8dcff" > <iframe id="kcnrurl" frameborder="0" scrolling="no" height="700px" width="100%" name="content" ></iframe></div>-->
         <br>
         <span id="kcnr"></span>
-        <!--<iframe src="" id="swfplayer" frameborder="0" scrolling="no" marginheight="0" height="400px" width="700px" name="swfplayer"></iframe>-->
+        <iframe src="" id="swfplayer" frameborder="0" scrolling="no" marginheight="0" height="600px" width="100%" name="swfplayer"></iframe>
            
         <hr>
            
@@ -343,7 +343,6 @@
     //课件删除
     function kcnrfj_sc(filename){
           var term  = ${term}; 
-          alert(filename);
           var courseName= "${courseName}";
           var selected = $('#tt1').tree('getSelected'); 
           if(selected.id!==null){

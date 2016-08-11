@@ -1387,7 +1387,7 @@ public class TeaController {
     public String getFileFolder(HttpServletRequest request) {
         String path = this.getClass().getClassLoader().getResource("/").getPath();
         System.out.println(path);
-        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/", "file/");
+        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/", "lms/target/lms-1.0/file/");
         System.out.println(path);
         return path;        
     }  

@@ -329,17 +329,21 @@ form .btn-card{
     background-size: cover;
 
 }
+.header{
+    z-index: 10;
+}
 .nav-drawer.nav-drawer-md {
     background-color: transparent;
     display: block !important;
     overflow: visible;
     width: 265px;
     z-index: 30;
+    left: auto;
 }
-.nav-drawer.nav-drawer-md.menu-left ~ .content, 
-.nav-drawer.nav-drawer-md.menu-left ~ .footer, 
-.nav-drawer.nav-drawer-md.menu-left ~ .header {
-    margin-left: 265px;
+.nav-drawer.nav-drawer-md.menu-right ~ .content, 
+.nav-drawer.nav-drawer-md.menu-right ~ .footer, 
+.nav-drawer.nav-drawer-md.menu-right ~ .header {
+    margin-right: 265px;
 } 
 .nav-drawer.nav-drawer-md.menu-left ~ .footer{
     margin-bottom: -256px;
@@ -399,14 +403,42 @@ form .btn-card{
 .fix-menu-nav>ul{
     background-color: transparent;
 }
-.fix-menu-nav>ul>li{
-    padding: 0 0 1em 0;
-}
-.fix-menu-nav>ul>li>a,
-.fix-menu-nav>ul>li>a:hover{
-    background-color: whitesmoke !important;
-}
 
+.sn-a,
+.sn-a:hover{
+    text-decoration: none;
+    color: black !important;
+    background-color: whitesmoke !important;
+    cursor: default;
+}
+.sn-l{
+    padding: 0;
+}
+.sn-lu{
+    margin: 1em .5em;
+    border: 1.5px dashed rgba(129, 129, 129, 0.5);
+}
+.sn-lu:hover{
+    border: 1.5px dashed #6c7ac5;
+}
+.sn-lu.active{
+    border: 1.5px solid #CD5C5C;
+}
+.sn-lu.active >a {
+    background-color: #CD5C5C;
+    color: white !important;
+}
+.sn-lu.active >a:hover,
+.sn-lu.active >a:focus{
+    background-color: #CD5C5C;
+    color: white !important;
+}
+.sn-a.cursor-pointer{
+    cursor: pointer;
+}
+.ui-footer{
+    position: relative;
+}
 
 .nav-drawer.nav-drawer-md.hide{
     display: none !important;
@@ -448,7 +480,7 @@ form .btn-card{
     content: "add_box";
 }
 #tree-course-list .active > a {
-    background-color: #3E1262 !important;
+    background-color: rgba(0,0,0,.3) !important;
     color: #FFD600 !important;
 }
 .text-red-0{
@@ -471,6 +503,9 @@ form .btn-card{
 }
 .text-blod{
     font-weight: bold;
+}
+.text-indianred{
+    color: indianred;
 }
 .table td, .table th {
     border: 1px solid #dadada;
@@ -498,6 +533,20 @@ form .btn-card{
   content: " ";
   clear: both;
 }
+.lms-editor{
+    min-height: 500px;
+    padding: 1em 3em 3em 2em;
+    position: relative;
+    margin-top: -2em;
+}
+.mce-floatpanel{
+    margin-left: 1em !important; 
+}
+.mce-tinymce-inline {
+    margin-left: -0em !important;
+    margin-top: 3em !important;
+}
+
 /*************************************END!*/
 
 /*导航 o.o
@@ -598,6 +647,10 @@ form .btn-card{
     .fix-dd-usr>ul{
         min-width: 200px;
         top: 60px;
+    }
+    .header-brand {
+        background-color: #00539f;
+        color: #fff;
     }
     /*修改默认 nav底部细线颜色
     .tab-nav .nav > li > a:after {
@@ -777,6 +830,16 @@ form .btn-card{
 }
 #for-centerbox > .tab-content{
     padding: .2em 1em;
+}
+@media (max-width: 1360px) {
+    #ubox{
+        display: none !important;
+    }
+    .nav-drawer.nav-drawer-md.menu-right ~ .content, 
+    .nav-drawer.nav-drawer-md.menu-right ~ .footer, 
+    .nav-drawer.nav-drawer-md.menu-right ~ .header {
+        margin-right: 0;
+    } 
 }
 /*! 基本布局 结束 */
 

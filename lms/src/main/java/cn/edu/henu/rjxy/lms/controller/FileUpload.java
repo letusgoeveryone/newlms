@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -339,7 +339,7 @@ public class FileUpload extends HttpServlet {
        public String getFileFolder(HttpServletRequest request) {
         String path = this.getClass().getClassLoader().getResource("/").getPath();
         System.out.println("项目运行地址"+path);
-        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/", "file/");
+        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/", "lms/target/lms-1.0/file/");
         System.out.println("path=   "+path);
         return path;        
     }  

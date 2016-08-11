@@ -30,6 +30,7 @@
     <mvc:resources location="/ueditor/" mapping="/ueditor/**" />
     <mvc:resources location="/uploadify/" mapping="/uploadify/**" />
     <mvc:resources location="/easyui/" mapping="/easyui/**" />
+    <mvc:resources location="/viewer/" mapping="/viewer/**" />
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"

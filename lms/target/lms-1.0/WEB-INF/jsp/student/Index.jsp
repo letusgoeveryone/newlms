@@ -23,7 +23,6 @@
         <script src="<%=path%>/js/jquery.min.js"></script>
         <script src="<%=path%>/js/vue.js"></script>
         <script src="<%=path%>/js/md5.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/jquery.fullPage.min.js" type="text/javascript"></script>
         <style>
             
         </style>
@@ -31,23 +30,25 @@
     <body class="page-brand container-full" id="lms_stu">
 
         <!--aside -->
-        <aside id="ubox" class="menu menu-left nav-drawer nav-drawer-md" >
+        <aside id="ubox" class="menu menu-right nav-drawer nav-drawer-md" >
             <div class="menu-scroll">
                 <div class="menu-content">
-                    <a class="menu-logo" href="#">{{name}}</a>
+                    <div class="menu-logo" href="javascript:void(0)">个人面板</div>
                     <div class="vcard">
 
-                        <a href="/account" alt="Change your avatar" class="vcard-avatar">
-                            <img alt="" class=" img-rounded" src="<%=path%>/images/avatar.jpg" height="230" width="230">
-                        </a>
-
-                        <h1 class="vcard-names">
-                            <!--<div class="vcard-fullname" >{{name}}</div>-->
-                            <div class="vcard-id" >ID: {{sn}} ( {{grade}}级 )</div>
-                        </h1>
+                        <div class="vcard-avatar-wrapper">
+                            <a href="/account" alt="Change your avatar" class="vcard-avatar">
+                                <img alt="" class=" img-rounded" src="<%=path%>/images/avatar.jpg" height="230" width="230">
+                            </a>
+                        </div>
+                        
+                        <div class="vcard-names">
+                            <p class="vcard-fullname" >{{name}}</p>
+                            <p class="vcard-id" >ID: {{sn}} ( {{grade}}级 )</p>
+                        </div>
 
                         <div class="user-profile-edit">
-                            <a data-toggle="tab" href="#tab-personalInfo" onclick="toggleSettingContent()">编辑个人信息 <span class="icon">edit</span></a>
+                            <a data-toggle="tab" href="#tab-personalInfo">编辑个人信息 <span class="icon">edit</span></a>
 
                         </div>
 
@@ -67,25 +68,25 @@
                         <!--个人状态 O-->
                         <div class="vcard-stats">
                             <!--<h3 class="vcard-stat-heading">个人状态</h3>-->
-                            <a class="vcard-stat" href="#">
+<!--                            <a class="vcard-stat" href="javascript:void(0)">
                                 <strong class="vcard-stat-count">63</strong>
                                 <span class="text-muted">未完成作业</span>
-                            </a>
-                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selected" onclick="toggleSettingContent()">
+                            </a>-->
+                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selected">
                                 <strong class="vcard-stat-count">{{numOCourse}}</strong>
                                 <span class="text-muted">已选课程</span>
                             </a>
-                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selectable" onclick="toggleSettingContent()">
+                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selectable">
                                 <strong class="vcard-stat-count">{{numXCourse}}</strong>
                                 <span class="text-muted">可选课程</span>
                             </a>
-                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-permit" onclick="toggleSettingContent()">
+<!--                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-permit">
                                 <strong class="vcard-stat-count">10</strong>
                                 <span class="text-muted">已批准课程</span>
-                            </a>
-                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-notpermit" onclick="toggleSettingContent()">
-                                <strong class="vcard-stat-count">10</strong>
-                                <span class="text-muted">未批准课程</span>
+                            </a>-->
+                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-notpermit">
+                                <strong class="vcard-stat-count">{{numICourse}}</strong>
+                                <span class="text-muted">待批准课程</span>
                             </a>
                         </div>
                         <!--个人状态 X-->
@@ -99,8 +100,8 @@
         <header class="header header-brand header-waterfall ui-header">
             <ul class="nav nav-list pull-left">
                 <li>
-                    <a href="#ubox" id="anchor-ubox" onclick="toggleUbox()">
-                        <span class="icon icon-lg">menu</span>
+                    <a href="javascript:void(0)">
+                        <span class="icon icon-lg">home</span>
                     </a>
                 </li>
             </ul>
@@ -115,11 +116,11 @@
         </header>
 
         <!--content-->
-        <div class="content clearfix" id="ucontent" style="min-height:2000px">
+        <div class="content clearfix clear" id="ucontent" style="min-height:2000px">
             <div class=" space-block"></div>
             <jsp:include page="../student/IncludeContent.jsp" />
         </div>
-
+        
         <!--footer-->
         <footer class="ui-footer footer">
             <div class="container">
@@ -131,6 +132,10 @@
             <jsp:include page="../student/IncludeSetting.jsp" />
         </div>
     
+        <div>
+            <jsp:include page="../student/IncludeWidgets.jsp" />
+        </div>
+        
         <!--scrollUp-->
         <div class="fbtn-container" id="scrollUp" hidden>
             <div class="fbtn-inner">
@@ -144,9 +149,9 @@
 
 
         <!-- js -->
-        <script src="<%=path%>/js/api.json.student.js" type="text/javascript"></script>
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/api.json.student.js" type="text/javascript"></script>
         <script src="<%=path%>/js/tinymce/tinymce.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
         <!--<script src="http://open.iciba.com/huaci/huaci.js"></script>-->

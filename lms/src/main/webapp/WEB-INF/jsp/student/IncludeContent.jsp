@@ -42,7 +42,6 @@
             position: absolute;
             right: 2px;
             width: 2em;
-            z-index: 20;
             box-shadow: none;
         }
         #fix-thiscou-nav .nav > li > a::after {
@@ -61,6 +60,7 @@
         }
         #fix-thiscou-nav > ul > .active{
             box-shadow:1px 0 2px rgba(0,0,0,.25);
+            z-index: 0;
         }
         
         #fix-thiscou-nav > ul > .active> a{
@@ -109,6 +109,27 @@
         }
         .btn::after, .card, .fbtn-text {
             border-radius: 0;
+        }
+        a[href^='#nodes'],
+        a[href^='#folder']{
+            display: inline-block;
+            position: relative;
+            height: 100px;
+            width: 70px;
+            margin: 15px;
+        }
+        a[href^='#nodes'] .icon,
+        a[href^='#folder'] .icon{
+            color: #fdefc0;
+        }
+        a[href^="#nodes"] .folder-name,
+        a[href^='#folder'] .folder-name{
+            display: block;
+            text-align: center;
+        }
+        .file-num {
+            display: block;
+            text-align: center;
         }
     </style>
 
@@ -164,7 +185,16 @@
                             </section>
                         </article>
                         <div id="content-CourseResource" class=" tab-pane fade">
-                            
+                           {{{resource}}}
+                           <div class="file-wrapper" >
+                               <span class="icon icon-5x"></span>
+                               <span class="file-name"></span>
+                               <div class="file-btn-wrapper">
+                                   <a href="<%=path%>/getswf?uri=+swftmp"><span class="icon stage-card">preview</span></a>
+                                   <a href="<%=path%>/getvedio?uri=+swftmp"><span class="icon stage-card">preview</span></a>
+                                   <a><span class="icon">download</span></a>
+                               </div>
+                           </div>
                         </div>
                         <div id="content-Homework" class=" tab-pane fade">
                             
@@ -208,7 +238,6 @@
             </div>
         </nav>
         <!--课程 列表 X-->
-
 
     </div>
 </sec:authorize>

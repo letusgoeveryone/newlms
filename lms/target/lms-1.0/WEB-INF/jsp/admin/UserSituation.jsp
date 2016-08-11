@@ -19,19 +19,18 @@
         <title>UserSituation</title>
 
         <!-- css -->
-        <link href="<%=path%>/css/base.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<%=path%>/css/project.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<%=path%>/css/lms.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" type="text/css" href="<%=path%>/css/images/tree_icons.png"> 
+        <link href="<%=path%>/css/base.min.css" rel="stylesheet"/>
+        <link href="<%=path%>/css/project.min.css" rel="stylesheet"/>
+        <link href="<%=path%>/css/lms.css" rel="stylesheet"/>
         
-        <!--JS
-        <script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-        <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-        -->
+        <!--JS-->
+        <script src="<%=path%>/js/jquery.min.js"></script>
+        <script src="<%=path%>/js/base.min.js"></script>
+        <script src="<%=path%>/js/project.min.js"></script>
+        
 
     </head>
-    <body  style="padding: 1px;" >
+    <body class="container">
         
         <table class="table table-bordered table-responsive" data-search ="true"  data-striped = "true" data-pagination ="true" data-toggle="table" >
             <thead>
