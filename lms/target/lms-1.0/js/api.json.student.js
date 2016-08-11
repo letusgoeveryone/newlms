@@ -928,30 +928,7 @@ function initPage() {
 //        }
 //    });
     
-    USetting = new Vue({
-        el: '#menu-settings',
-        data: {
-            XCourseTableHF: StudentAPI.analyzeDS.selectableCourse.getTableHF(),
-            ICourseTableHF: StudentAPI.analyzeDS.selectingCourse.getTableHF(),
-            OCourseTableHF: StudentAPI.analyzeDS.selectedCourse.getTableHF()
-        }
-    });
-    
-    UPanel = new Vue({
-        el: "#ubox",
-        data: {
-            sn: StudentAPI.sn,
-            name: StudentAPI.name,
-            portrait: StudentAPI.name.toString()[0],
-            grade: StudentAPI.grade,
-            college: StudentAPI.college,
-            qq: StudentAPI.qq,
-            numOCourse: StudentAPI.numOCourse,
-            numICourse: StudentAPI.numICourse,
-            numXCourse: StudentAPI.numXCourse
-        }
-    });
-    
+
     UProfile = new Vue({
         el: "#tab-personalInfo",
         data: {
@@ -965,6 +942,28 @@ function initPage() {
             qq: StudentAPI.qq,
             pw: StudentAPI.pw,
             sex: StudentAPI.sex
+        }
+    });
+    USetting = new Vue({
+        el: '#menu-settings',
+        data: {
+            XCourseTableHF: StudentAPI.analyzeDS.selectableCourse.getTableHF(),
+            ICourseTableHF: StudentAPI.analyzeDS.selectingCourse.getTableHF(),
+            OCourseTableHF: StudentAPI.analyzeDS.selectedCourse.getTableHF()
+        }
+    });  
+    UPanel = new Vue({
+        el: "#ubox",
+        data: {
+            sn: StudentAPI.sn,
+            name: StudentAPI.name,
+            portrait: StudentAPI.name.toString()[0],
+            grade: StudentAPI.grade,
+            college: StudentAPI.college,
+            qq: StudentAPI.qq,
+            numOCourse: StudentAPI.numOCourse,
+            numICourse: StudentAPI.numICourse,
+            numXCourse: StudentAPI.numXCourse
         }
     });
 };
