@@ -12,7 +12,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-        <title>校务员</title>
+        <title>教务系统 | 校务员</title>
 
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />

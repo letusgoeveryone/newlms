@@ -9,27 +9,14 @@
 %>
 <sec:authorize access="hasRole('ROLE_STUDENT') or hasRole('ROLE_ADMIN')">
     <style>
-        .menu-top{
-            margin-bottom: 86px;
-        }
-        .menu-top-info{
-            padding: 0;
-            height: 56px;
-            line-height: 56px;
-            position: absolute;
-            width: 100%;
-            background-color: indianred;
-            padding-left: 15px;
-            box-shadow: 0 0 2px #000;
-            font-size: 18px;
-        }
+        
     </style>
     
     <div class="menu-scroll">
                 
         <div class="menu-top">
             <div class="menu-top-info">
-                <span class="icon icon-lg  mg-sm-right">menu</span>设置中心</a>
+                <span class="icon icon-lg  mg-sm-right">menu</span>设置中心
             </div>
         </div>
         

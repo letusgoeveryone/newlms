@@ -12,7 +12,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-        <title>管理员</title>
+        <title>『管理员』| 教务系统</title>
 
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
@@ -88,7 +88,7 @@
 
                 <div class="row tab-pane fade " id="lms_admin_tnav_sInfo" style="min-height: 500px;margin-bottom: 100px;">             
                     <!--管理员 功能区-->
-                    <div class="bg-content"style="top:56px;bottom: 30px;background-color: #445;"></div>
+                    <div class="bg-content" style="top:56px;bottom: 30px;background-color: #445;"></div>
                     <div class="container card" style="margin-top: 120px;margin-bottom: 30px;position: relative;">
                         <div class="row width-control">
                             <div class="col-md-12">
@@ -115,7 +115,7 @@
                                     <iframe  src="<%=path%>/admin/UserSituation" id="UserSituation" frameborder="0" scrolling="yes" marginheight="0" height="1800px" width="100%" name="用户统计"></iframe>
                                 </div>
                                 <div class="tab-pane fade in active" id="panel-ServerInformation">
-                                    <iframe  src="<%=path%>/admin/ServerInfo" id="ServerInfo" frameborder="0" scrolling="no" marginheight="0"  width="100%" name="服务器信息" name="ServerInfo" onload ="startInit('ServerInfo', 500);"></iframe>                                    
+                                    <iframe  src="<%=path%>/admin/ServerInfo" id="ServerInfo" frameborder="0" scrolling="no" marginheight="0"  width="100%" name="服务器信息" onload ="startInit('ServerInfo', 500);"></iframe>                                    
                                 </div>
 
                             </div>

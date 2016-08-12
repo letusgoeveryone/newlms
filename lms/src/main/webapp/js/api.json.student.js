@@ -32,8 +32,8 @@ var StudentAPI = {
     courseStatus:false,
     schoolYearsDS: [],
     schoolCollegeDS: [],
-    schoolYearsHS:'',
-    schoolCollegeHS:'',
+    schoolYearsListHS:'',
+    schoolCollegeListHS:'',
     WhippingBoy:{
         courseName: '',
         teacherName: '',
@@ -174,7 +174,7 @@ var StudentAPI = {
             dataType: 'json',
             success: function (data) {
                 var _hs = '';
-                StudentAPI.schoolYearsListDS = data;
+                StudentAPI.schoolYearsDS = data;
                 
                 for(var i=0; i<data.length; i++){
                     
@@ -196,7 +196,7 @@ var StudentAPI = {
             dataType: 'json',
             success: function (data) {
                 var _hs = '';
-                StudentAPI.schoolCollegeListDS = data;
+                StudentAPI.schoolCollegeDS = data;
                 
                 for(var i=0; i<data.length; i++){
                     _hs +=  '<option value="'+ data[i] +'"> ' + data[i] +' </option>';
@@ -1019,7 +1019,7 @@ function initPage() {
         }
     });
     USetting = new Vue({
-        el: '#menu-settings',
+        el: '#usettings',
         data: {
             XCourseTableHF: StudentAPI.analyzeDS.selectableCourse.getTableHF(),
             ICourseTableHF: StudentAPI.analyzeDS.selectingCourse.getTableHF(),

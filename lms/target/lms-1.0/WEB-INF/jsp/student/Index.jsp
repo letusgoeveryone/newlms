@@ -13,7 +13,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-        <title>教务系统</title>
+        <title>教务系统 |　学生</title>
 
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
@@ -57,11 +57,11 @@
                                 <span class="icon">person_outline</span> {{college}}
                             </li>
                             <li alt="Email" class="vcard-detail">
-                                <span class="icon">chat_bubble_outline</span> 扣扣: {{qq}}
+                                <span class="icon">chat_bubble_outline</span> <b>扣扣:</b> {{qq}}
                             </li>
                             <li alt="Member since" class="vcard-detail ">
-                                <span class="icon">access_time</span>
-                                加入时间: <span title="Jun 9, 2015, 2:36 PM GMT+8" class="join-date">Jun 9, 2015</span>
+                                <span class="icon">exit_to_app</span>
+                                <a class="" href="<%=path%>/logout"> 注销</a>
                             </li>
                         </ul>
 
@@ -108,7 +108,7 @@
             <span class="header-logo" >教务系统 | 学生页面</span>
             <ul class="nav nav-list pull-right">
                 <li>
-                    <a data-toggle="menu" href="#menu-settings" id="anchor-menu" onclick="toggleUserSettings()">
+                    <a data-toggle="menu" href="#usettings" id="anchor-menu" onclick="toggleUserSettings()">
                         <span class="icon icon-lg">settings</span>
                     </a>
                 </li>
@@ -128,7 +128,7 @@
             </div>
         </footer>
     
-        <div class="menu menu-left" id="menu-settings">
+        <div class="menu menu-left" id="usettings">
             <jsp:include page="../student/IncludeSetting.jsp" />
         </div>
     
