@@ -94,7 +94,7 @@
                     </ul>
                 </nav>
 
-                <div class='col-md-9' class="tab-content">
+                <div class='col-md-9 tab-content'>
                     <!--基础资料-->
                     <div id="tab-personalInfo" class="tab-pane fade in active">
                         <form>
@@ -128,11 +128,17 @@
                             </div>
                             <div class="form-group form-group-label">
                                 <label class="floating-label" for="college"> 学院 </label>
-                                <input class="form-control" id="college" type="text" value="{{college}}">
+                                <select class="form-control" id="college" value="">
+                                    <option value="{{college}}"> {{college}} </option>
+                                    {{{schoolCollegeList}}}
+                                </select>
                             </div>
                             <div class="form-group form-group-label">
                                 <label class="floating-label" for="grade"> 年级 </label>
-                                <input class="form-control" id="grade" type="text" value="{{grade}}">
+                                <select class="form-control" id="grade" value="">
+                                    <option value="{{grade}}"> {{grade}} </option>
+                                    {{{schoolYearsList}}}
+                                </select>
                             </div>
                             <div class="form-group form-group-label">
                                 <label class="floating-label" for="tel"> 联系方式 </label>

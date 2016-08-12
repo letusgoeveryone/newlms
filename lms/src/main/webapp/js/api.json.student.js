@@ -30,6 +30,10 @@ var StudentAPI = {
     selectingCourseDS:[],
     selectableCourseDS:[],
     courseStatus:false,
+    schoolYearsDS: [],
+    schoolCollegeDS: [],
+    schoolYearsHS:'',
+    schoolCollegeHS:'',
     WhippingBoy:{
         courseName: '',
         teacherName: '',
@@ -159,6 +163,51 @@ var StudentAPI = {
             },
             error: function() {
                 alert("数据传输失败 ！");
+            }
+        });
+            
+
+        $.ajax({
+            url: 'reg/fhnj',
+            type: 'get',
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                var _hs = '';
+                StudentAPI.schoolYearsListDS = data;
+                
+                for(var i=0; i<data.length; i++){
+                    
+                    _hs +=  '<option value="'+ data[i] +'"> ' + data[i] +' </option>';
+                }
+                StudentAPI.schoolYearsListHS = _hs;
+            },
+            error: function () {
+                $('#snackbar').snackbar({
+                    alive: 10000,
+                    content: '数据 [学年] 传输失败 ！ <a data-dismiss="snackbar">我知道了</a>'
+                });
+            }
+        });
+        $.ajax({
+            url: 'reg/hq_xy',
+            type: 'get',
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                var _hs = '';
+                StudentAPI.schoolCollegeListDS = data;
+                
+                for(var i=0; i<data.length; i++){
+                    _hs +=  '<option value="'+ data[i] +'"> ' + data[i] +' </option>';
+                }
+                StudentAPI.schoolCollegeListHS = _hs;
+            },
+            error: function () {
+                $('#snackbar').snackbar({
+                    alive: 10000,
+                    content: '数据 [学年] 传输失败 ！ <a data-dismiss="snackbar">我知道了</a>'
+                });
             }
         });
     },
@@ -909,7 +958,8 @@ var ThisCourse = [
 
 var OCourse;
 var XCourse;
-
+var schoolYearsList;
+var collegeList;
 //定义初始化函数
 function initPage() {
     
@@ -952,7 +1002,9 @@ function initPage() {
             name: StudentAPI.name,
             ID: StudentAPI.ID,
             grade: StudentAPI.grade,
+            schoolYearsList: StudentAPI.schoolYearsListHS,
             college: StudentAPI.college,
+            collegeList:StudentAPI.schoolCollegeListHS,
             tel: StudentAPI.tel,
             qq: StudentAPI.qq,
             pw: StudentAPI.pw,
