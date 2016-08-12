@@ -29,6 +29,7 @@ var StudentAPI = {
     selectedCourseDS:[],
     selectingCourseDS:[],
     selectableCourseDS:[],
+    courseStatus:false,
     WhippingBoy:{
         courseName: '',
         teacherName: '',
@@ -741,7 +742,7 @@ var StudentAPI = {
          * @returns {Boolean} 0 - 出错, 1 - 成功
          */
         add: function(scid, path){
-            var status = false;
+            var status = StudentAPI.courseStatus;
             if(path === undefined ? true : false){
                 //alert("path === undefined");
                 path = StudentAPI.Path.cOperate[0] + "?scid=" + scid;
@@ -753,9 +754,9 @@ var StudentAPI = {
                 dataType: 'json',
                 success: function (data) {
                     if (data === 0) {
-                        return status = false;
+                        status = false;
                     } else if (data === 1) {
-                        return status = true;
+                        status = true;
                     } else {
                         alert("出现 代码逻辑错误 !");
                     }
@@ -774,7 +775,7 @@ var StudentAPI = {
          * @returns {Boolean} 0 - 出错, 1 - 成功
          */
         quit: function(scid, path){
-            var status = false;
+            var status = StudentAPI.courseStatus;
             if(path === undefined ? true : false){
                 path = StudentAPI.Path.cOperate[2] + "?scid=" + scid;
             }
@@ -785,9 +786,9 @@ var StudentAPI = {
                 dataType: 'json',
                 success: function (data) {
                     if (data === 0) {
-                        return status = false;
+                        status = false;
                     } else if (data === 1) {
-                        return status = true;
+                        status = true;
                     } else {
                         alert("出现 代码逻辑错误 !");
                     }
@@ -806,7 +807,7 @@ var StudentAPI = {
          * @returns {Boolean} 0 - 出错, 1 - 成功
          */
         cancel: function(scid, path){
-            var status = false;
+            var status = StudentAPI.courseStatus;
             if(path === undefined ? true : false){
                 path = StudentAPI.Path.cOperate[1] + "?scid=" + scid;
             }
@@ -817,9 +818,9 @@ var StudentAPI = {
                 dataType: 'json',
                 success: function (data) {
                     if (data === 0) {
-                        return status = false;
+                        status = false;
                     } else if (data === 1) {
-                        return status = true;
+                        status = true;
                     } else {
                         alert("出现 代码逻辑错误 !");
                     }
@@ -913,7 +914,7 @@ var XCourse;
 function initPage() {
     
     //Step 初始化 相关基础参数
-    StudentAPI.initPersonalInfo();
+    StudentAPI.initPersonalInfo();if(StudentAPI.sex === true){$('#boy').attr("checked","checked");}else {$('#girl').attr("checked","checked");}
     StudentAPI.initPersnalCourseInfo();
     if(StudentAPI.selectedCourseDS[0] !== undefined ){
         ThisCourse[0].scid = StudentAPI.selectedCourseDS[0].scid;//获得已选课程的第一个,加以初始化
@@ -1002,7 +1003,7 @@ function updataPersonalInfo(){
     var ID = $('#ID').val();
     var grade = $('#grade').val();
     var college = $('#college').val();
-    var sex = $('#boy').is(":checked") ? true : false;
+    var sex = $('#boy').is(":checked") ? '男' : '女';
     
     var tel = $('#tel').val();
     var qq = $('#qq').val();
@@ -1014,14 +1015,6 @@ function updataPersonalInfo(){
             +"&sex=" + sex 
             +"&telnum=" + tel 
             +"&qqnum=" + qq);
-    console.log(StudentAPI.Path.uInfo[1]
-            + "?name=" + name
-            + "&idcard=" + ID
-            + "&grade=" + grade
-            + "&college=" + college
-            + "&sex=" + sex
-            + "&telnum=" + tel
-            + "&qqnum=" + qq);
 };
 function updataPassword(){
     StudentAPI.updatePassword(StudentAPI.Path.uInfo[2]
@@ -1036,10 +1029,57 @@ function updataThisCourse0cid(scid){
 };
 function selectCourse(scid){
     var status = StudentAPI.operateCidIsCourse.add(scid);
+    if(status === true){
+        StudentAPI.initPersnalCourseInfo();
+        USetting.$data.ICourseTableHF = StudentAPI.analyzeDS.selectingCourse.getTableHF();
+        UPanel.$data.numICourse = StudentAPI.numICourse;
+        $('#snackbar').snackbar({
+            alive: 10000,
+            content: '选课申请已提交, 等待老师批准 '+ '<a data-dismiss="snackbar">我知道了</a>'
+        });
+    }else{
+        
+        $('#snackbar').snackbar({
+            alive: 10000,
+            content: '选课申请提交 失败 !' + '<a data-dismiss="snackbar">我知道了</a>'
+        });
+    }
 };
 function quitCourse(scid){
     var status = StudentAPI.operateCidIsCourse.quit(scid);
+    if(status === true){
+        StudentAPI.initPersnalCourseInfo();
+        USetting.$data.OCourseTableHF = StudentAPI.analyzeDS.selectedCourse.getTableHF();
+        UPanel.$data.numOCourse = StudentAPI.numOCourse;
+        $('#snackbar').snackbar({
+            alive: 10000,
+            content: '已经退选课程'+ '<a data-dismiss="snackbar">我知道了</a>'
+        });
+    }else{
+        
+        $('#snackbar').snackbar({
+            alive: 10000,
+            content: '退选失败 !' + '<a data-dismiss="snackbar">我知道了</a>'
+        });
+    }
 };
-
+function cancelCourse(scid){
+    var status = StudentAPI.operateCidIsCourse.cancel(scid);
+    if(status === true){
+        StudentAPI.initPersnalCourseInfo();
+        USetting.$data.ICourseTableHF =  StudentAPI.analyzeDS.selectingCourse.getTableHF();
+        UPanel.$data.numICourse = StudentAPI.numICourse;
+        $('#snackbar').snackbar({
+            alive: 10000,
+            content: '已经取消选课'+ '<a data-dismiss="snackbar">我知道了</a>'
+        });
+    }else{
+        
+        $('#snackbar').snackbar({
+            alive: 10000,
+            content: '取消失败 !' + '<a data-dismiss="snackbar">我知道了</a>'
+        });
+    }
+}
 // 执行!
 initPage();
