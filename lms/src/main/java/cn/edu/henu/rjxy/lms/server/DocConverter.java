@@ -121,7 +121,7 @@ public class DocConverter {
                 } else if (environment == 2) {// linux环境处理  
                     try {  
                         Process p = r.exec("pdf2swf " + pdfFile.getPath()  
-                                + " -o " + swfFile.getPath() + " -T 9");  
+                                + " -o " + swfFile.getPath() + " -f -T 9 -t -s storeallcharacters");  
                         System.out.print(loadStream(p.getInputStream()));  
                         System.err.print(loadStream(p.getErrorStream()));  
                        // System.err.println("****swf转换成功，文件输出："   + swfFile.getPath() + "****");  
