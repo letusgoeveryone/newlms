@@ -206,7 +206,7 @@ var StudentAPI = {
             error: function () {
                 $('#snackbar').snackbar({
                     alive: 10000,
-                    content: '数据 [学年] 传输失败 ！ <a data-dismiss="snackbar">我知道了</a>'
+                    content: '数据 [学院] 传输失败 ！ <a data-dismiss="snackbar">我知道了</a>'
                 });
             }
         });
@@ -227,9 +227,16 @@ var StudentAPI = {
             dataType: 'json',
             success: function(data) {
                 if (data === 0) {
-                    alter('修改失败 !');
+                    $('#snackbar').snackbar({
+                        alive: 10000,
+                        content: '个人信息修改失败 !' + '<a data-dismiss="snackbar">我知道了</a>'
+                    });
                 } else {
-                    alert('修改成功 !');
+                    updataUPanel(0);
+                    $('#snackbar').snackbar({
+                        alive: 10000,
+                        content: '个人信息已修改...' + '<a data-dismiss="snackbar">我知道了</a>'
+                    });
                 }
             },
             error: function() {
@@ -1004,7 +1011,7 @@ function initPage() {
             grade: StudentAPI.grade,
             schoolYearsList: StudentAPI.schoolYearsListHS,
             college: StudentAPI.college,
-            collegeList:StudentAPI.schoolCollegeListHS,
+            schoolCollegeList:StudentAPI.schoolCollegeListHS,
             tel: StudentAPI.tel,
             qq: StudentAPI.qq,
             pw: StudentAPI.pw,
@@ -1079,6 +1086,43 @@ function updataThisCourse1cid(scid){
 function updataThisCourse0cid(scid){
     ThisCourse[0].scid = scid;
 };
+function updataUPanel(method){
+    switch (method){
+        case 0:{
+            StudentAPI.initPersonalInfo();
+            UPanel.$data.sn = StudentAPI.sn;
+            UPanel.$data.name = StudentAPI.name;
+            UPanel.$data.portrait = StudentAPI.name.toString()[0];
+            UPanel.$data.grade = StudentAPI.grade;
+            UPanel.$data.college = StudentAPI.college;
+            UPanel.$data.qq = StudentAPI.qq;
+            break;
+        };
+        case 1:{
+                
+            StudentAPI.initPersnalCourseInfo();
+            UPanel.$data.numOCourse = StudentAPI.numOCourse;
+            UPanel.$data.numICourse = StudentAPI.numICourse;
+            UPanel.$data.numXCourse = StudentAPI.numXCourse;
+            break;
+        };
+        default :{
+            StudentAPI.initPersonalInfo();
+            StudentAPI.initPersnalCourseInfo();
+            UPanel.$data.sn = StudentAPI.sn;
+            UPanel.$data.name = StudentAPI.name;
+            UPanel.$data.portrait = StudentAPI.name.toString()[0];
+            UPanel.$data.grade = StudentAPI.grade;
+            UPanel.$data.college = StudentAPI.college;
+            UPanel.$data.qq = StudentAPI.qq;
+            UPanel.$data.numOCourse = StudentAPI.numOCourse;
+            UPanel.$data.numICourse = StudentAPI.numICourse;
+            UPanel.$data.numXCourse = StudentAPI.numXCourse;
+            break;
+        };
+        
+    }
+}
 function selectCourse(scid){
     var status = StudentAPI.operateCidIsCourse.add(scid);
     if(status === true){

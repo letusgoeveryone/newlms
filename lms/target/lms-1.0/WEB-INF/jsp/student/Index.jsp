@@ -54,10 +54,10 @@
 
                         <ul class="vcard-details">
                             <li alt="Home location" class="vcard-detail" title="China">
-                                <span class="icon">person_outline</span> 软件学院
+                                <span class="icon">person_outline</span> {{college}}
                             </li>
                             <li alt="Email" class="vcard-detail">
-                                <span class="icon">chat_bubble_outline</span> 扣扣: 123456738
+                                <span class="icon">chat_bubble_outline</span> 扣扣: {{qq}}
                             </li>
                             <li alt="Member since" class="vcard-detail ">
                                 <span class="icon">access_time</span>
