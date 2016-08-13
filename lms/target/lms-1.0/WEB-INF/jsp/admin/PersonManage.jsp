@@ -23,14 +23,17 @@
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" type="text/css"/>
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" type="text/css"/>
         <link href="<%=path%>/css/lms.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=path%>/table/dist/bootstrap-table.min.css" rel="stylesheet" type="text/css"/>
 
         <!--JS-->
         <script  src="<%=path%>/js/jquery.min.js"></script>
         <script src="<%=path%>/js/base.min.js" ></script>
         <script src="<%=path%>/js/project.min.js" ></script>
+        <script src="<%=path%>/table/dist/bootstrap-table.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/table/dist/bootstrap-table-locale-all.min.js" type="text/javascript"></script>
 
     </head>
-    <body class="container-full">  
+    <body class="container-full" style="padding-bottom: 100px;">  
 
         <div class="row-fluid">
             <div class="col-md-10">
@@ -48,67 +51,52 @@
                         </tr>
 
                     </thead>
+                    <tbody>
+                        
+                    </tbody>
                 </table>
             </div>
 
             <div class="col-md-2">
-                <from class="form-inline" role="form">
-                    <div class="form-group">
-                        <input type="text" id="searchtext" class="form-control" style="width: 180px" placeholder="请输入查询信息"></input>
-                    </div>
-                    <div class="form-group">
-                        <button id="search" type="submit" class="btn btn-default btn-block">查询</button>
-                    </div>
-
-                </from>
-                <div>
-                    <a href="#" id="power" class="btn btn-default pull-left" >权限管理</a>
-                    <a href="#" id="pwd" class="btn btn-default pull-right" >密码重置</a>
+                <div class="box-small">
+                    <a style="border-radius: 50%; height: 100px; width: 100px; line-height: 100px; padding: 0px; top: -50px;" 
+                       href="#" id="managePower" class="fbtn fbtn-brand-accent pull-left">权限管理</a>
+                    <a style="height: 150px; width: 150px; border-radius: 50%; line-height: 150px; padding: 0px; top: -25px; left: 5px;" 
+                       href="#" id="resetPassword" class="fbtn fbtn-brand pull-right">密码重置</a>
                 </div>
             </div>
         </div>
+        <div class="space-block"></div>
 
-        <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal fade in" id="modal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">编辑老师的权限与角色</h4>
+                    <div class="modal-heading">
+                        <a class="modal-close" data-dismiss="modal">×</a>
+                        <h2 class="modal-title"  id="modalLabel">编辑老师的权限与角色</h2>
                     </div>
-                    <div class="modal-body" style="width: 100%">
-
-
-                        <div class="container" style="width:300px">
-                            <input type="hidden" id="teasn">
-                            <span id="managerolespan">
-
-                            </span>
-                            <a class="btn btn-primary" onclick="saverole()">保存更改</a>
-
-                        </div>
-
+                    <div class="modal-inner">
+                        <input type="hidden" id="teacherSn">
+                        <span id="managerolespan"></span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>  
+                        <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">关闭</button><button class="btn btn-flat btn-brand" type="button" onclick="saverole()">保存更改</button></p>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <script>
             var flag = 0;
 
             function manage(teacherId, temp) {
 
-                $("#teasn").val(teacherId);
-                var jssz = new Array();
-                var jssz = [];
-                jssz[0] = teacherId;
+                $("#teacherSn").val(teacherId);
                 
                 if (temp === 0) {
 
-                    document.getElementById("myModalLabel").innerHTML = "编辑老师的权限与角色";
-                    $('#myModal').modal('show');
+                    document.getElementById("modalLabel").innerHTML = "编辑老师的权限与角色";
+                    $('#modal').modal('show');
                     $.ajax({
                         type: "post",
                         url: "rolecheck",
@@ -147,11 +135,11 @@
                 $.ajax({
                     type: "post",
                     url: "roleset",
-                    data: {sn: $("#teasn").val(), rolesum: sum},
+                    data: {sn: $("#teacherSn").val(), rolesum: sum},
                     success: function (data) {
                         if (data == "ok") {
                             alert("保存成功！");
-                            $('#myModal').modal('hide');
+                            $('#modal').modal('hide');
                         }
 
                     },
@@ -173,7 +161,7 @@
 
             });
 
-            $('#power').click(function () {
+            $('#managePower').click(function () {
                 flag = 0;
                 $('#table-style').bootstrapTable('destroy')
                         .bootstrapTable({
@@ -183,7 +171,7 @@
                         });
             });
             
-            $('#pwd').click(function () {
+            $('#resetPassword').click(function () {
                 flag = 1;
                 $('#table-style').bootstrapTable('destroy')
                         .bootstrapTable({
@@ -193,6 +181,7 @@
                         });
 
             });
+            $(".dropdown-menu").removeAttr("role");
         </script>
 
     </body>

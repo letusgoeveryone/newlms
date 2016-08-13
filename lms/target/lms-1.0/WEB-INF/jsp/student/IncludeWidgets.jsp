@@ -20,7 +20,7 @@
         </div>
     </div>
     -->
-    <a class="btn" id="anchor-modal"></a>
+    <!--<a class="btn" id="anchor-modal"></a>-->
     <div class="modal fade" id="modal" role="dialog">
         <div class="modal-dialog  container">
             <div class="modal-content">

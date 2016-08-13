@@ -201,12 +201,12 @@
                                             </a>
                                         </sec:authorize>--%>
                                         <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a href="<%=path%>/acdemic" class='btn btn-brand'>
+                                            <a href="<%=path%>/acdemic" class='btn btn-aqua'>
                                                 【A 教务员】
                                             </a>
                                         </sec:authorize>
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                            <a href="<%=path%>/teacher" class='btn btn-brand'>
+                                            <a href="<%=path%>/teacher" class='btn btn-aqua'>
                                                 【T 教职】
                                             </a>
                                         </sec:authorize>
@@ -231,7 +231,7 @@
                     <div class="container " style="position:relative;">
 
                         <div class="row width-control stage-box" id="lms_dean_dbtn">
-                            <div class="col-md-5 card">
+                            <div class="col-md-5 card" style="left: 85px; top: -10px;">
                                 <aside class="card-side card-side-img pull-right">
                                     <img alt="alt text" src="<%=path%>/images/dean_end.bmp" class="img-right">
                                 </aside>
@@ -249,7 +249,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5 col-md-offset-2 card">
+                            <div class="col-md-5 col-md-offset-2 card"  style="top: 100px; left: -35px;">
                                 <aside class="card-side card-side-img pull-left">
                                     <img alt="alt text" src="<%=path%>/images/dean_start.bmp"  class="img-left">
                                 </aside>
@@ -271,34 +271,34 @@
                         </div>
 
                         <div class="modal fade" id="modalEndTerm" role="dialog" >
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-xs">
                                 <div class="modal-content">
                                     <div class="modal-heading">
                                         <a class="modal-close" data-dismiss="modal">×</a>
                                         <h2 class="modal-title">:-)</h2>
                                     </div>
                                     <div class="modal-inner">
-                                        <p class = "test-center h4">您确定要结束本学期了么？<span class="small">做最后一次确认吧</span></p>
+                                        <p class = "test-center h5">您确定要结束本学期了么？<span class="small">做最后一次确认吧</span></p>
                                     </div>
                                     <div class="modal-footer">
-                                        <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Close</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="end">OK</button></p>
+                                        <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="end">结束本学期</button></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="modal fade" id="modalStartTerm" role="dialog" >
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-xs">
                                 <div class="modal-content">
                                     <div class="modal-heading">
                                         <a class="modal-close" data-dismiss="modal">×</a>
                                         <h2 class="modal-title">:-)</h2>
                                     </div>
                                     <div class="modal-inner">
-                                        <p class = "test-center h4">您确定要开始新的学期了么？<span class="small">做最后一次确认吧</span></p>
+                                        <p class = "test-center h5">您确定要开始新的学期了么？<span class="small">做最后一次确认吧</span></p>
                                     </div>
                                     <div class="modal-footer">
-                                        <p class="text-right"><button class="btn btn-flat  btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Close</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="begin">OK</button></p>
+                                        <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="begin">开始新的学期</button></p>
                                     </div>
                                 </div>
                             </div>

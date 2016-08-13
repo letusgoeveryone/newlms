@@ -57,17 +57,17 @@
                                     <section class="card-heading">角色转换（管理员）到</section>
                                     <section>
                                         <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a href="<%=path%>/dean" class='btn btn-brand'>
+                                            <a href="<%=path%>/dean" class='btn btn-aqua'>
                                                【D 院长】
                                             </a>
                                         </sec:authorize>
                                         <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a href="<%=path%>/acdemic" class='btn btn-brand' >
+                                            <a href="<%=path%>/acdemic" class='btn btn-aqua' >
                                                【A 教务员】
                                             </a>
                                         </sec:authorize>
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                            <a href="<%=path%>/teacher" class='btn btn-brand'>
+                                            <a href="<%=path%>/teacher" class='btn btn-aqua'>
                                                【T 教职】
                                             </a>
                                         </sec:authorize>
