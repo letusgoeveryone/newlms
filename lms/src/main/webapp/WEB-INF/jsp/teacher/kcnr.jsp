@@ -378,15 +378,15 @@
         var saveDataAry = [];
         var roots = $('#tt1').tree('getRoots'), i, j, m = 1, n = 1;
         console.log(JSON.stringify(roots));
-//        for (i = 0; i < roots.length; i++) {
-//            saveDataAry.push(roots[i]);
-//        }
+        for (i = 0; i < roots.length; i++) {
+            saveDataAry.push(roots[i]);
+        }
         $.ajax({
             type: "post",
             url: '<%=path%>/teacher/saveTree?term=' + term + '&courseName=' + courseName,
             dataType: "json",
             contentType: "application/json",
-            data: JSON.stringify(roots),
+            data: JSON.stringify(saveDataAry),
             success: function () {
                 if (temp === 1) {
                     alert("保存成功!");
