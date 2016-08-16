@@ -133,7 +133,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="stage-box"></div>
+                                    <div class="space-block"></div>
                                 </div>
                             </div>
                         </div>

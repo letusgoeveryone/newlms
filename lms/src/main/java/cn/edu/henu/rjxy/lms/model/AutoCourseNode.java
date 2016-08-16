@@ -17,6 +17,7 @@ public class AutoCourseNode {
     private String state;
     private String text; 
     private String attributes;
+    private String[] resource;
     private List<TeacherCourseResult> children = new LinkedList(); //子节点
 
     public String getAttributes() {

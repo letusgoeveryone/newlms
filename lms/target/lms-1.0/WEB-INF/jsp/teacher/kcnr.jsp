@@ -105,6 +105,9 @@
         var term = ${term};
         var courseName = "${courseName}";
         var node = $('#tt1').tree('getSelected');
+        if(node.resource === undefined){
+            node.resource=[];
+        }
         if (node.attributes === "1") {
             node1 = node.id;
             node2 = null;
@@ -133,6 +136,7 @@
                 document.getElementById("kcnr").innerHTML = data;
             }
         });
+        console.log(node);
 
     }
 
@@ -167,6 +171,7 @@
             },
             'onUploadSuccess': function (file, data, response) {
                 ckkcnr();
+                
                 var dir  = TeacherAPI.activeCoordinate[0] + '/'
                          + TeacherAPI.activeCoordinate[1] + '/'
                          + (TeacherAPI.activeCoordinate[2] === null ? '':(TeacherAPI.activeCoordinate[2] + '/'))
@@ -190,7 +195,13 @@
                     TeacherAPI.uploadedFile.handle.status = 0;
                     TeacherAPI.uploadedFile.handle.downloadDir = dir + file.name;
                 };
+                
+                var node = $('#tt1').tree('getSelected');
+                node.resource.push(TeacherAPI.uploadedFile);
                 console.log(TeacherAPI);
+                console.log(node);
+                save(0);
+                
                 alert(file.name + " upload success !");
                 $("#stopUpload").attr("hidden", true);
             }
@@ -215,7 +226,8 @@
                 data: {
                     id: max,
                     attributes: '1',
-                    text: '第一级'
+                    text: '第一级',
+                    resource:[]
                 }
             });
         }
@@ -233,7 +245,8 @@
                 data: [{
                         id: max,
                         attributes: '2',
-                        text: '第二级'
+                        text: '第二级',
+                        resource:[]
                     }]
             });
         }
@@ -243,7 +256,8 @@
                 data: [{
                         id: max,
                         attributes: '3',
-                        text: '第三级'
+                        text: '第三级',
+                        resource:[]
                     }]
             });
         }
@@ -363,15 +377,16 @@
         var courseName = "${courseName}";
         var saveDataAry = [];
         var roots = $('#tt1').tree('getRoots'), i, j, m = 1, n = 1;
-        for (i = 0; i < roots.length; i++) {
-            saveDataAry.push(roots[i]);
-        }
+        console.log(JSON.stringify(roots));
+//        for (i = 0; i < roots.length; i++) {
+//            saveDataAry.push(roots[i]);
+//        }
         $.ajax({
             type: "post",
             url: '<%=path%>/teacher/saveTree?term=' + term + '&courseName=' + courseName,
             dataType: "json",
             contentType: "application/json",
-            data: JSON.stringify(saveDataAry),
+            data: JSON.stringify(roots),
             success: function () {
                 if (temp === 1) {
                     alert("保存成功!");

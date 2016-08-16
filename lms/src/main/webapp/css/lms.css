@@ -19,7 +19,6 @@ and open the template in the editor.
 
 html,
 body {
-    padding: 0 !important;
     width: 100%;
     font-family: 华文细黑, 文泉驿微米黑, 微软雅黑, "Helvetica Neue", Helvetica, Arial, sans-serif;
     overflow-x: hidden;
@@ -52,7 +51,9 @@ ul li {
     list-style: none;
 }
 
-
+body[id^=lms]{
+    padding: 0 !important;
+}
 /*dark-primary-color*/
 
 .lms-bc-dark {

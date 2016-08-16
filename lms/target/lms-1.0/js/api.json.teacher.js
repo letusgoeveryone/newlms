@@ -22,6 +22,6 @@ var TeacherAPI = {
     cidIsCourseResource:[]
 }; 
 function delExtension(name) {
-    var str = name.substring(0,str.lastIndexOf("."));
+    var str = name.substring(0,name.lastIndexOf("."));
     return str;
 }
