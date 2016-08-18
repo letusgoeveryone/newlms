@@ -333,13 +333,13 @@ public class StuController {
             if(f.exists()&&f.isDirectory()){
                 String[] files = f.list();
                 String ff2="/file/homework/"+term+"/"+collage +"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/1/";
-                HwattachmentList.add(ff2+"1.txt");
+                //HwattachmentList.add(ff2+"1.txt");
                 for (String file : files) {
                     HwattachmentList.add(ff2+file);
                 }
             }   
             a.put("Hwattachment",HwattachmentList);   
-            HwattachmentList.clear();
+            HwattachmentList=new ArrayList<String>();
             ff = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
             String ff2="/file/uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
             a.put("HwtextWork", read(ff+"/textWork.html"));
