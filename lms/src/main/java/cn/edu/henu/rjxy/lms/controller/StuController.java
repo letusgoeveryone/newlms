@@ -194,12 +194,11 @@ public class StuController {
         String ff = getFileFolder(request)+"homework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/";
         String ff2;
         int length = haveFile(ff);
-        String dataString="";
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         Date d1 = new Date();
         List<Map> sumList=new ArrayList<Map>();
         for(int i = 1;i<=length;i++){
-            ff2 = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+i+"/"+courseName+"/"+stusn+"/";
+            ff2 = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+i+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
             System.out.println(length);
             Date d3 = df.parse(readline(ff+"/"+i+"/Workall.txt")[2]);
             if(d1.getTime() > d3.getTime()){//判断作业是否已开始
