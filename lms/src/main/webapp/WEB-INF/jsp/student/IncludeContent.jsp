@@ -18,6 +18,7 @@
         <div id="tree-course-content" class="main-content">
             <div class="card sample-height">
                 <div class=" card-main">
+                    
                     <nav class="tab-nav tab-nav-brand margin-top-no" id="fix-thiscou-nav">
                         <ul class="nav nav-brand">
                             <li class="active">
@@ -30,21 +31,9 @@
                             <li class="">
                                 <a data-toggle="tab" href="#content-Homework"> 作业区 </a>
                             </li>
-<!--                            <li>
-                                <a data-toggle="tab" href="#"> 课程列表 </a>
-                                <nav class="tile-sub tab-nav tabs-right tab-nav-brand collapse in" id="tile-course-list">
-                                    <ul class="nav nav-brand">
-                                        <li><a href="#" data-toggle="tab" class="btn btn-flat ">C语言程序与设计</a></li>
-                                        <li><a href="#" data-toggle="tab" class="btn btn-flat ">计算机导论</a></li>
-                                        <li><a href="#" data-toggle="tab" class="btn btn-flat ">读写译(一)</a></li>
-                                        <li><a href="#" data-toggle="tab" class="btn btn-flat ">视听说(一)</a></li>
-                                    </ul>
-                                    <div class="fix-tile-close"></div>
-                                </nav>
-                            </li>-->
                         </ul>
-                        
                     </nav>
+                    
                     <div class="tab-content">
                         
                         <article id="content-CourseOutline" class=" tab-pane fade in active">
@@ -63,20 +52,61 @@
                                 {{{syllabus}}}
                             </section>
                         </article>
+                        
                         <div id="content-CourseResource" class=" tab-pane fade">
                            {{{resource}}}
-                           <div class="file-wrapper" >
-                               <span class="icon icon-5x"></span>
-                               <span class="file-name"></span>
-                               <div class="file-btn-wrapper">
-                                   <a href="<%=path%>/getswf?uri=+swftmp"><span class="icon stage-card">preview</span></a>
-                                   <a href="<%=path%>/getvedio?uri=+swftmp"><span class="icon stage-card">preview</span></a>
-                                   <a><span class="icon">download</span></a>
-                               </div>
-                           </div>
                         </div>
+                        
                         <div id="content-Homework" class=" tab-pane fade">
+                            <h2 class="content-sub-heading">未提交作业</h2>
+                            <hr>
+                            {{{IHomeworkHS}}}
+<!--                            <div class="card">
+                                <div class="card-main">
                             
+                                    <div class="card-action">
+                            
+                                        <div class="card-action-btn btn btn-flat pull-left homework-name">
+                                            作业
+                                        </div>
+                            
+                            
+                            
+                                        <a class="card-action-btn btn btn-flat pull-right">
+                                            <span><span class="icon avatar avatar-sm">cloud_upload</span></span>
+                                        </a>
+                                        <a class="card-action-btn btn btn-flat pull-right">
+                                            <span><span class="icon avatar avatar-sm">attachment</span></span>
+                                        </a>
+                                        <a class="collapse card-action-btn btn btn-flat pull-right" data-toggle="collapse" href="#collapse-homework-id">
+                                            <span><span class="icon avatar avatar-sm">edit</span></span>
+                                        </a>
+                            
+                                    </div>
+                            
+                                    <div class="card-inner">
+                            
+                                        <title class="btn btn-flat text-blod text-indianred">作业要求</title>
+                                        <p class="homework-info">Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                            
+                                        <title class="btn btn-flat text-blod text-indianred">截止日期:</title>
+                                        <p class="homework-info">2016-12-21 14:35</p>
+                            
+                                    </div>
+                            
+                                    <div class="card-inner collapsible-region collapse" id="collapse-homework-id">
+                                        <div id="demo" class="editor-area"></div>
+                                    </div>
+                            
+                                    <div class="card-action">
+                            
+                                        <div class="card-action-btn btn btn-flat attachment-list"><span class="icon">attachment</span> 附件列表</div>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <h2 class="content-sub-heading">已提交作业</h2>
+                            <hr>
+                            {{{OHomeworkHS}}}
                         </div>
                     </div>
                 </div>
@@ -100,13 +130,13 @@
                         <div class="tile-footer">
 
                             <div class="tile-footer-btn pull-left">
-                                <a class="btn btn-flat waves-attach waves-effect" onclick="toggleCourseTileScroll()">
+                                <a class="btn btn-flat" onclick="toggleCourseTileScroll()">
                                     <span class="tile-toggle-unscroll"><span class="icon">fullscreen</span></span>
                                     <span class="tile-toggle-scroll"  hidden=""><span class="icon">fullscreen_exit</span></span>
                                 </a>
                             </div>
                             <div class="tile-footer-btn pull-right">
-                                <a class="btn btn-flat waves-attach waves-effect" onclick="toggleCourseTileLocked()">
+                                <a class="btn btn-flat" onclick="toggleCourseTileLocked()">
                                     <span class="tile-toggle-lock"><span class="icon">lock</span>&nbsp;固定位置</span>
                                     <span class="tile-toggle-unlock" hidden=""><span class="icon">lock_open</span>&nbsp;解除固定</span>
                                 </a>

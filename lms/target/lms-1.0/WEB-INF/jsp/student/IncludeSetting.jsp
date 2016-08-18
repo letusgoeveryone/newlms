@@ -137,7 +137,7 @@
                             </div>
 
 
-                            <div class="btn btn-block  btn-card btn-card-darken" onclick="updataPersonalInfo()">
+                            <div class="btn btn-block  btn-card btn-gold" onclick="updataPersonalInfo()">
                                 确认
                             </div>
                         </form>
@@ -158,18 +158,18 @@
                                 <input class="form-control" id="newPasswordConfirm" type="password">
                             </div>
 
-                            <div class="btn btn-block btn-card btn-card-darken" onclick="updataPassword()">
+                            <div class="btn btn-block btn-card btn-gold" onclick="updataPassword()">
                                 确认
                             </div>
                         </form>
                     </div>
                     <!--已选课程-->
                     <div id="tab-course-selected" class="tab-pane fade">
-                        {{{OCourseTableHF}}}
+                        {{{OCourseTableHS}}}
                     </div>
                     <!--可选课程-->
                     <div id="tab-course-selectable" class="tab-pane fade">
-                        {{{XCourseTableHF}}}
+                        {{{XCourseTableHS}}}
                     </div>
                     <!--已批准课程-->
                     <div id="tab-course-permit" class="tab-pane fade">
@@ -177,7 +177,7 @@
                     </div>
                     <!--未批准课程-->
                     <div id="tab-course-notpermit" class="tab-pane fade">
-                        {{{ICourseTableHF}}}
+                        {{{ICourseTableHS}}}
                     </div>
 
                     <!--插件管理-->

@@ -43,18 +43,44 @@ $(function () {
 // 插件 Boxer 配置 :为添加stage-boxer类的元素绑定Boxer
 $('.stage-card').boxer();
 
+    
+
+
 tinymce.init({
-selector: '#MceEditor',
-        theme: 'modern',
-        height: 300,
-        language: 'zh_CN',
-        plugins: [
-                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-                'save table contextmenu directionality emoticons template paste textcolor'
-        ],
-        content_css: 'css/content.css',
-        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+    selector: '.editor-area',
+    fixed_toolbar_container: 'body',
+    theme: 'inlite',
+    language: 'zh_CN',
+    inline: true,
+    plugins: [
+      'advlist autolink autosave code link image lists charmap codesample hr anchor',
+      'searchreplace visualchars insertdatetime media nonbreaking',
+      'save table contextmenu directionality emoticons template paste preview textcolor textpattern visualblocks'
+    ],
+    insert_toolbar: 'h1 h2 h3 hr bullist numlist outdent indent  blockquote quickimage codesample insertdatetime template | removeformat',
+    selection_toolbar: 'bold italic underline subscript superscript textcolor forecolor backcolor strikethrough | alignleft aligncenter alignright alignjustify  outdent indent | link h1 h2 h3 blockquote codesample media | removeformat | ',
+    contextmenu: 'image media codesample | charmap | link anchor | inserttable | cell row column deletetable | visualblocks preview',
+    insertdatetime_formats: ["%H:%M:%S %Y-%m-%d","%H:%M:%S", "%Y-%m-%d", "%I:%M:%S %p", "%D"],
+    templates: [
+        {title: 'Some title 1', description: 'Some desc 1', content: 'My content'},
+        {title: 'Some title 2', description: 'Some desc 2', url: 'development.html'}
+    ],
+    textpattern_patterns: [
+        {start: '*', end: '*', format: 'italic'},
+        {start: '**', end: '**', format: 'bold'},
+        {start: '#', format: 'h1'},
+        {start: '##', format: 'h2'},
+        {start: '###', format: 'h3'},
+        {start: '####', format: 'h4'},
+        {start: '#####', format: 'h5'},
+        {start: '######', format: 'h6'},
+        {start: '>_ ', format: 'blockquote'},
+        {start: '1. ', cmd: 'InsertOrderedList'},
+        {start: '* ', cmd: 'InsertUnorderedList'},
+        {start: '- ', cmd: 'InsertUnorderedList'}
+    ],
+    media_live_embeds: true
+            
 });
         
 function toggleCourseTileLocked(isScroll){
@@ -108,3 +134,9 @@ function toggleUserSettings(){
         settings.css("left", settingLeft);
     }
 };
+//
+//$(".btn-upload").hover(function(){
+//    var hid = getIdByDomId('btn-upload-', $(this).attr('id'));
+//    updataHid(hid);
+//    console.log(hid);
+//});

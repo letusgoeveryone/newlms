@@ -32,6 +32,7 @@
     <mvc:resources location="/easyui/" mapping="/easyui/**" />
     <mvc:resources location="/viewer/" mapping="/viewer/**" />
     <mvc:resources location="/table/" mapping="/table/**" />
+    <mvc:resources location="/lib/" mapping="/lib/**" />
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"

@@ -1,0 +1,225 @@
+*{
+    outline: none;
+    overflow-x: hidden;
+}
+body {
+    background: #333;
+    color: #fff;
+}
+a {
+    outline: none;
+    text-decoration: none;
+}
+.blank-box{
+    min-height: 100px;
+}
+header>div{
+    margin: 9px 0 !important;
+}
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#player .cover {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    overflow: hidden;
+    box-shadow: 0 2px 10px black;
+}
+#coverimg {
+    width: 140px;
+}
+#lyric{
+    max-height: 500px;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+#lyric-bottom-bar{
+    position: absolute;
+    bottom: 0;
+}
+.slider {
+    background: rgba(0, 0, 0, 0.3);
+    height: 5px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 9px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset;
+}
+.control img:hover, .volume img:hover {
+    cursor: pointer;
+}
+.control, .volume, .progressbar {
+    margin-top: 20px;
+    position: relative;
+}
+#alllist {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    padding: 0;
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#alllist::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    border-radius: 4px;
+}
+#alllist::-webkit-scrollbar-button {
+    display: none;
+}
+#alllist::-webkit-scrollbar-track {
+    background: #191919;
+}
+#alllist::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+#alllist::-webkit-scrollbar-corner {
+    display: none;
+}
+#alllist ul {
+    list-style: none;
+    padding: 0;
+    padding-left: 15px;
+}
+#alllist ul li {
+    color: #aaa;
+    font-size: 12px;
+    line-height: 2;
+    cursor: pointer;
+    text-overflow: ellipsis;
+}
+#alllist ul li:hover {
+    color: #fff;
+    font-weight: bold;
+}
+#alllist ul li img {
+    display: none;
+}
+#alllist ul li.playing {
+    color: #fff;
+    font-weight: bolder;
+}
+#alllist li div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+#currentprogress {
+    height: 5px;
+    background: #7700C7;
+    width: 0;
+    position: absolute;
+}
+
+#loadedprogress {
+    height: 5px;
+    background: #4c4c48;
+    width: 0;
+    position: absolute;
+}
+#currentvolumebar {
+    height: 5px;
+    background: #7700C7;
+}
+hr {
+    border: none;
+}
+#lrcdiv {
+    color: #fff;
+    font-size: 22px;
+    /*text-shadow: 0 0 5px #CCCCCC, 0 0 10px #CCCCCC, 0 0 15px #CCCCCC, 0 0 20px black, 0 0 25px black, 0 0 30px black;*/
+    
+    height: 400px;
+}
+#lrcdiv p {
+    line-height: 22px;
+}
+.lrctime:hover {
+    cursor: pointer;
+}
+#searchsongdiv {
+    background: #ffffff;
+    /*box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);*/
+    
+    margin: 0;
+    padding: 0;
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#searchsongdiv::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    border-radius: 4px;
+}
+#searchsongdiv::-webkit-scrollbar-button {
+    display: none;
+}
+#searchsongdiv::-webkit-scrollbar-track {
+    background: #aaa;
+}
+#searchsongdiv::-webkit-scrollbar-thumb {
+    background: #000000;
+    border-radius: 4px;
+}
+#searchsongdiv::-webkit-scrollbar-corner {
+    display: none;
+}
+#searchsongdiv ul {
+    list-style: none;
+}
+#searchsongdiv ul li {
+    color: #1f1f1f;
+    font-size: 12px;
+    line-height: 2;
+    cursor: pointer;
+    text-overflow: ellipsis;
+}
+#searchsongdiv ul li:hover {
+    color: #000000;
+    font-weight: bold;
+}
+
+#playpaush {
+    width: 32px;
+    margin: 0 10px;
+}
+
+#previewsong, #nextsong, #download, #mute, #single {
+    width: 16px;
+    margin-top: 8px;
+}
+
+#volumebar {
+    margin-top: 14px;
+}
+
+.text-nowrap {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#lrcrepair {
+    max-width: 140px;
+}
+
+.lrctime {
+    display: inline-block;
+}
+
+.liimg, #single {
+    margin-left: 2px;
+    width: 16px;
+}
+
+#searchsongdiv ul {
+    list-style: none;
+    padding: 0;
+}

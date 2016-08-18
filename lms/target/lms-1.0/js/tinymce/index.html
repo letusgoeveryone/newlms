@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="css/base.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/project.min.css" rel="stylesheet" type="text/css"/>
+    <script src="jquery.min.js"></script>
+    <script src="tinymce.min.js" type="text/javascript"></script>
+    <script src="jquery.tinymce.min.js" type="text/javascript"></script>
+    <script src="js/base.min.js" type="text/javascript"></script>
+    <script src="js/project.min.js" type="text/javascript"></script>
+    <script src="themes/inlite/theme.min.js" type="text/javascript"></script>
+    <style>
+        .lms-editor{
+            min-height: 500px;
+            padding: 1em 3em 3em 2em;
+            position: relative;
+            margin-top: -2em;
+        }
+        .mce-floatpanel{
+            margin-left: 1em !important; 
+        }
+        .mce-tinymce-inline {
+            margin-left: -0em !important;
+            margin-top: 3em !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form action="post" class="card">
+                    <div class="card-main" id="demo"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        tinymce.init({
+            selector: '#demo',
+            fixed_toolbar_container: 'body',
+            theme: 'inlite',
+            language: 'zh_CN',
+            inline: true,
+            plugins: [
+              'advlist autolink autosave code link image lists charmap codesample hr anchor',
+              'searchreplace visualchars insertdatetime media nonbreaking',
+              'save table contextmenu directionality emoticons template paste textcolor textpattern visualblocks'
+            ],
+            insert_toolbar: 'h1 h2 h3 hr bullist numlist outdent indent  blockquote quickimage codesample insertdatetime template | removeformat',
+            selection_toolbar: 'bold italic underline subscript superscript textcolor forecolor backcolor strikethrough | alignleft aligncenter alignright alignjustify  outdent indent | link h1 h2 h3 blockquote codesample | removeformat | ',
+            contextmenu: 'image codesample | charmap | link anchor | inserttable | cell row column deletetable | visualblocks',
+            insertdatetime_formats: ["%H:%M:%S %Y-%m-%d","%H:%M:%S", "%Y-%m-%d", "%I:%M:%S %p", "%D"],
+            templates: [
+                {title: 'Some title 1', description: 'Some desc 1', content: 'My content'},
+                {title: 'Some title 2', description: 'Some desc 2', url: 'development.html'}
+            ],
+            textpattern_patterns: [
+                {start: '*', end: '*', format: 'italic'},
+                {start: '**', end: '**', format: 'bold'},
+                {start: '#', format: 'h1'},
+                {start: '##', format: 'h2'},
+                {start: '###', format: 'h3'},
+                {start: '####', format: 'h4'},
+                {start: '#####', format: 'h5'},
+                {start: '######', format: 'h6'},
+                {start: '>_ ', format: 'blockquote'},
+                {start: '1. ', cmd: 'InsertOrderedList'},
+                {start: '* ', cmd: 'InsertUnorderedList'},
+                {start: '- ', cmd: 'InsertUnorderedList'}
+            ]
+            
+        });
+    </script>
+</body>
+
+</html>

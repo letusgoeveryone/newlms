@@ -3,6 +3,7 @@
 <%
     //将项目的根取出来，页面中不再使用相对路径
     String path = request.getContextPath();
+    String sessionid = session.getId();
     String basePath = request.getScheme() + "://"
         + request.getServerName() + ":"
         + request.getServerPort() + path + "/";
@@ -18,8 +19,9 @@
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
+        <link href="<%=path%>/lib/uploadify/uploadify.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" type="text/css"/>
         <link href="<%=path%>/css/lms.css" rel="stylesheet" />
-
         <script src="<%=path%>/js/jquery.min.js"></script>
         <script src="<%=path%>/js/vue.js"></script>
         <script src="<%=path%>/js/md5.js" type="text/javascript"></script>
@@ -151,10 +153,44 @@
         <!-- js -->
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/lib/uploadify/jquery.uploadify.js" type="text/javascript"></script>
         <script src="<%=path%>/js/api.json.student.js" type="text/javascript"></script>
         <script src="<%=path%>/js/tinymce/tinymce.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
         <!--<script src="http://open.iciba.com/huaci/huaci.js"></script>-->
-        
+        <script>
+            $(function () {
+                $("#uploadify").uploadify({
+                    'uploader': '<%=path%>/student/zyupload100.do;jsessionid=<%=sessionid%>?Func=uploadwallpaper2Dfs', //************ action **************
+                    'height': 30,
+                    'width': 120,
+                    'buttonText': '选择文件',
+                    'buttonCursor': 'hand',
+                    'auto': false,
+                    'multi': true,
+                    'method': 'post       ',
+                    'swf': '<%=path%>/lib/uploadify/uploadify.swf       ',
+                    'cancelImg': '<%=path%>/lib/uploadify/uploadify-cancel.png',
+                    'fileTypeExts': '*.docx;*.doc;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar;*.7z;*.txt;', //指定文件格式
+                    'fileSizeLimit': '50MB',
+                    'fileObjName': 'myFile',
+                    'progressData': 'speed',
+                    'preventCaching': true,
+                    'timeoutuploadLimit': 1,
+                    'removeCompleted': true,
+                    'removeTimeout': 1,
+                    'requeueErrors': true,
+                    'successTimeout': 30,
+                    'uploadLimit': 5,
+                    'onUploadStart': function () {
+                        
+                    },
+                    'onUploadSuccess': function () {
+                        refreshUploadedArea();
+                    }
+
+                });
+            });
+    </script>
     </body>
 </html>

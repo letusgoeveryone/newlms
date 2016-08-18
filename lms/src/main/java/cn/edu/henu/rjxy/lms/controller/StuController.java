@@ -35,6 +35,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import net.sf.json.JSONObject;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -493,6 +494,24 @@ public class StuController {
       }
         return "error";
     
+    }
+    @RequestMapping("/student/resourcedir")
+    public @ResponseBody
+    String resourceDir(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String stsn = getCurrentUsername();
+        String scid = request.getParameter("scid");
+        String dir = request.getParameter("dir");
+        Teacher tec = TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(scid));
+        String tec_sn = tec.getTeacherSn();
+        String tec_name = tec.getTeacherName();
+        String collage = tec.getTeacherCollege();
+        String term = TermCourseDao.getxueqiBySCId(scid).toString();
+        String courseName = TermCourseDao.getCourseNameByCourseId(scid);
+        String resourceDir = "/" + term + "/" + collage + "/" + tec_sn + "/" + tec_name + "/" + courseName + "/" + "课程内容";
+        System.out.print("\n=====================\n" + resourceDir + "\n=====================\n");
+        JSONObject obj =new JSONObject();
+        obj.put("dir", resourceDir);
+        return obj.toString();
     }
     //返回课程目录树下面列表
     @RequestMapping("/student/courdir")

@@ -40,19 +40,11 @@ select {
     outline: none
 }
 
-ul,
-ol {
-    padding-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-}
 
-ul li {
-    list-style: none;
-}
 
 body[id^=lms]{
     padding: 0 !important;
+    overflow: unset;
 }
 /*dark-primary-color*/
 
@@ -864,7 +856,6 @@ body[id^=lms]{
 
 
 /*header footer*/
-
 .header {
     z-index: 10;
 }
@@ -916,7 +907,9 @@ body[id^=lms]{
     float: left;
     position: relative;
 }
-
+.main-content >.card{
+    min-height: 1264px;
+}
 #content-CourseOutline h1 {
     font-size: 2em;
 }
@@ -950,8 +943,18 @@ body[id^=lms]{
     box-shadow: none;
 }
 
-#fix-thiscou-nav .nav> li> a::after {
-    border-right: 2px solid #f50057;
+#fix-thiscou-nav .nav> li:nth-child(1)> a::after {
+    border-right: 2px solid orange;
+    border-bottom: none !important;
+    height: 100%;
+}
+#fix-thiscou-nav .nav> li:nth-child(2)> a::after {
+    border-right: 2px solid green;
+    border-bottom: none !important;
+    height: 100%;
+}
+#fix-thiscou-nav .nav> li:nth-child(3)> a::after {
+    border-right: 2px solid gold;
     border-bottom: none !important;
     height: 100%;
 }
@@ -1029,16 +1032,24 @@ body[id^=lms]{
 .fbtn-text {
     border-radius: 0;
 }
-
+/*文件管理*/
+/*文件夹*/
 a[href^='#nodes'],
 a[href^='#folder'] {
     display: inline-block;
     position: relative;
-    height: 100px;
-    width: 70px;
+    height: 135px;
+    width: 100px;
     margin: 15px;
+    margin-left: 0;
+    background-color: rgba(245, 245, 245, 0.31);
+    padding: 15px;
+    border-radius: 3px;
 }
-
+a[href^='#nodes']:hover,
+a[href^='#folder']:hover{
+    background-color:whitesmoke;
+}
 a[href^='#nodes'] .icon,
 a[href^='#folder'] .icon {
     color: #fdefc0;
@@ -1048,8 +1059,17 @@ a[href^="#nodes"] .folder-name,
 a[href^='#folder'] .folder-name {
     display: block;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
+.folder-name:hover{
+    overflow: unset !important;
+}
+/*文件[名,大小,按钮]*/
+.table-filelist .btn{
+   padding: 0; 
+}
 .file-num {
     display: block;
     text-align: center;
@@ -1060,7 +1080,34 @@ a[href^='#folder'] .folder-name {
     margin: 0;
 }
 
-
+#content-Homework .card-inner .btn-flat{
+    padding: 0;
+}
+#content-Homework .card-action:first-child{
+    padding: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+#content-Homework .btn-flat::after {
+     background: transparent !important;
+}
+.homework-name{
+    font-size: larger;
+    font-weight: bolder;
+    line-height: 30px;
+    height: 48px;
+    color: #727272;
+}
+.homework-info{
+    color: #606060;
+}
+.attachment-list{
+    float: left;
+    color: #727272;
+}
+.editor-area{
+    border: 2px dashed #c5cae9;
+    padding: 1em 1em 4em 1em;
+}
 /*panel*/
 
 #ubox a {
@@ -1243,6 +1290,11 @@ a[href^='#folder'] .folder-name {
     margin-top: 5em;
 }
 
+#tab-personalInfo>form,
+#tab-password>form {
+    width: 500px;
+    margin: auto;
+}
 
 /*导航*/
 
@@ -1297,7 +1349,9 @@ a[href^='#folder'] .folder-name {
 
 
 /*表格*/
-
+#usettings tbody>tr:first-child>td:first-child{
+    background: whitesmoke;
+}
 #usettings .table td,
 #usettings .table th {
     border: 1px solid #dadada;
@@ -1317,7 +1371,37 @@ a[href^='#folder'] .folder-name {
 #usettings .table td>a:hover {
     cursor: pointer;
 }
+/*文件上传*/
+#uploaded-area td, #uploaded-area th {
+    border: 1px solid #dadada;
+    vertical-align: middle;
+    text-align: left;
+}
+/*作业编辑*/
+.btn-edit,
+.btn-submit,
+.btn-upload {
+    position: relative;
+    margin: 6px 8px;
+    background-color: transparent;
+    box-shadow: none;
+    border: 0;
+    display: inline-block;
+    max-width: 100%;
+    padding: 8px;
+    text-transform: uppercase;
+}
 
+
+.btn-edit:hover .avatar{
+    background-color: #D24A3D;
+}
+.btn-upload:hover .avatar{
+    background-color: #0088CC;
+}
+.btn-submit:hover .avatar{
+    background-color: #4CAF50;
+}
 
 /*  &2.5 登录/注册 */
 
@@ -1726,6 +1810,50 @@ a[class *=text-grey]:hover {
     color: red;
 }
 
+.text-red-0 {
+    color: #EF5350;
+}
+
+.text-green-0 {
+    color: #C5E1A5;
+}
+
+.text-green-1 {
+    color: #CDDC39;
+}
+
+.text-green-2 {
+    color: #4CAF50;
+}
+
+.text-purple-0 {
+    color: #9C27B0;
+}
+.text-golden {
+    color: goldenrod;
+}
+
+.text-golden:hover {
+    color: gold;
+}
+
+.small {
+    color: grey;
+    font-size: 0.8em;
+}
+
+.bg-light {
+    background-color: #E5E5E5;
+}
+
+.text-blod {
+    font-weight: bold;
+}
+
+.text-indianred {
+    color: indianred;
+}
+
 .height-control {
     height: inherit;
 }
@@ -1817,8 +1945,33 @@ a[class *=text-grey]:hover {
     ** 全局 问题修复区 3.e
     **
 */
+/*修复uploadify样式*//*文件上传*/
+#uploadify-button {
+    background: #FCFCFC;
+    border: 2px dashed grey;
+    background-image: none;
+    border-radius: 2px;
+    padding: 8px;
+    margin: 0;
+    line-height: 12px !important;
+    color: #111;
+    text-shadow: none;
+}
 
-
+/*修复编辑器*/
+.lms-editor{
+    min-height: 500px;
+    padding: 1em 3em 3em 2em;
+    position: relative;
+    margin-top: -2em;
+}
+.mce-floatpanel{
+    margin-left: 1em !important; 
+}
+.mce-tinymce-inline {
+    margin-left: -0em !important;
+    margin-top: 3em !important;
+}
 /*修复 Material框架缺失Bootstrap container-fluid类  的问题*/
 
 .container-fluid {
@@ -1871,12 +2024,12 @@ input[type="radio"]:checked~ .radiobtn-circle-check {
     margin-right: 16px;
 }
 
-.nav> li> a:hover,
+/*.nav> li> a:hover,
 .nav> li> a:focus {
     text-decoration: none;
     background-color: rgba(238, 238, 238, 0) !important;
     outline: none  !important;
-}
+}*/
 
 /*修改模态框 xs 距顶部高度*/
 .modal-dialog.modal-xs {
@@ -1924,22 +2077,7 @@ input[type="radio"]:checked~ .radiobtn-circle-check {
     cursor: pointer;
 }
 
-.text-golden {
-    color: goldenrod;
-}
 
-.text-golden:hover {
-    color: gold;
-}
-
-
-
-
-
-.small {
-    color: grey;
-    font-size: 0.8em;
-}
 
 
 
@@ -1957,37 +2095,6 @@ input[type="radio"]:checked~ .radiobtn-circle-check {
     margin: auto;
 }
 
-.text-red-0 {
-    color: #EF5350;
-}
-
-.text-green-0 {
-    color: #C5E1A5;
-}
-
-.text-green-1 {
-    color: #CDDC39;
-}
-
-.text-green-2 {
-    color: #4CAF50;
-}
-
-.text-purple-0 {
-    color: #9C27B0;
-}
-
-.bg-light {
-    background-color: #E5E5E5;
-}
-
-.text-blod {
-    font-weight: bold;
-}
-
-.text-indianred {
-    color: indianred;
-}
 
 
 

@@ -22,11 +22,37 @@
     -->
     <!--<a class="btn" id="anchor-modal"></a>-->
     <div class="modal fade" id="modal" role="dialog">
-        <div class="modal-dialog  container">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-heading"></div>
                 <div class="modal-inner"></div>
                 <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-uploadify" role="dialog">
+        <div class="modal-dialog modal-xs">
+            <div class="modal-content">
+                <div class="modal-heading">
+                    <h4>我的附件</h4>
+                </div>
+                <div class="modal-inner">
+                    <h5>文件上传</h5>
+                    <hr>
+                    <input type="file" name="uploadify" id="uploadify" />
+                    <a class="btn btn-flat btn-green" id="uploadify-o"><span class="icon">file_upload</span></a>
+                    <a class="btn btn-flat btn-default" id="uploadify-s" ><span class="icon">pause</span></a>
+                    <a class="btn btn-flat text-grey" id="uploadify-c" ><span class="icon">stop</span></a>
+                    
+                    <hr>
+                    <h5>已传文件</h5>
+                    <div id="uploaded-area" class="table-responsive">
+                        
+                    </div>
+                    <hr>
+                </div>
+                <div class="modal-footer">
+                </div>
             </div>
         </div>
     </div>

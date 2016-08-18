@@ -442,7 +442,7 @@ public class TeaController {
   }
  //存成josn文件保存到教师目录
   @RequestMapping("teacher/saveTree")
-  public @ResponseBody String saveTree(HttpServletRequest request,@RequestBody Tree3[] users) throws Exception{
+  public @ResponseBody String saveTree(HttpServletRequest request,@RequestBody String data) throws Exception{
       String sn=getCurrentUsername();
       Teacher tec = TeacherDao.getTeacherBySn(sn);
       String tec_sn= tec.getTeacherSn();
@@ -461,19 +461,19 @@ public class TeaController {
       }
     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/";
     List list =new LinkedList();
-    String ss = "",aa;
-    for(int i =0;i < users.length-1;i++){
-        list.add(users[i]); 
-        aa = JSONObject.fromObject(users[i])+"";
-        ss +=aa+',';
-    }
-    aa = JSONObject.fromObject(users[users.length-1])+"";
-    ss = ss+aa;
-    ss= '['+ss+']';
-    System.out.println(ss);
+//    String ss = "",aa;
+//    for(int i =0;i < users.length-1;i++){
+//        list.add(users[i]); 
+//        aa = JSONObject.fromObject(users[i])+"";
+//        ss +=aa+',';
+//    }
+//    aa = JSONObject.fromObject(users[users.length-1])+"";
+//    ss = ss+aa;
+//    ss= '['+ss+']';
+    System.out.println(data);
     OutputStreamWriter pw = null;//定义一个流
     pw = new OutputStreamWriter(new FileOutputStream(new File(ff+File.separator+"test.json")),"GBK");
-    pw.write(ss);
+    pw.write(data);
     pw.close();
     return "1";
   }

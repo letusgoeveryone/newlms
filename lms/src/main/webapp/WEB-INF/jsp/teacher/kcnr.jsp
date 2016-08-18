@@ -151,7 +151,7 @@
             'buttonText': '选择文件', //按钮上显示的文字，默认”SELECT FILES”
             'buttonCursor': 'hand', //上传按钮Hover时的鼠标形状，默认值是’hand’
             'auto': false, //是否自动开始   
-            'multi': true, //是否支持多文件上传，默认为true
+            'multi': false, //是否支持多文件上传，默认为true
             'method': 'post', //默认是’post’,也可以设置为’get’
             'swf': '<%=path%>/uploadify/uploadify.swf', //进度条显示文件
             'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png', //取消按钮的图片
@@ -165,7 +165,7 @@
             'removeTimeout': 0, //上传完成后多久删除队列中的进度条，默认为3，即3秒。
             'requeueErrors': true, //若设置为True，那么在上传过程中因为出错导致上传失败的文件将被重新加入队列。
             'successTimeout': 30, //表示文件上传完成后等待服务器响应的时间。不超过该时间，那么将认为上传成功。默认是30，表示30秒。
-            'uploadLimit': 5, //最多上传文件数量，默认999
+            'uploadLimit': 999, //最多上传文件数量，默认999
             'onUploadStart': function (file) {
                 $("#stopUpload").removeAttr("hidden");
             },
@@ -378,15 +378,15 @@
         var saveDataAry = [];
         var roots = $('#tt1').tree('getRoots'), i, j, m = 1, n = 1;
         console.log(JSON.stringify(roots));
-        for (i = 0; i < roots.length; i++) {
-            saveDataAry.push(roots[i]);
-        }
+//        for (i = 0; i < roots.length; i++) {
+//            saveDataAry.push(roots[i]);
+//        }
         $.ajax({
             type: "post",
             url: '<%=path%>/teacher/saveTree?term=' + term + '&courseName=' + courseName,
             dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(saveDataAry),
+            contentType: "application/json; charset=utf-8", 
+            data: JSON.stringify(roots),
             success: function () {
                 if (temp === 1) {
                     alert("保存成功!");
