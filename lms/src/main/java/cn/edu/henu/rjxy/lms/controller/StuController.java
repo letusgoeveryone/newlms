@@ -444,26 +444,29 @@ public class StuController {
         File f=new File(ff);
         String []a = new String[1];
         a[0]="";
-        HttpSession session = request.getSession();
-        session.setAttribute("state", null);
+        java.io.BufferedInputStream bis = null;  
+        java.io.BufferedOutputStream bos = null;  
         try {
-        FileInputStream inputStream = new FileInputStream(f);
-        byte[] data = new byte[(int)f.length()];
-        int length = inputStream.read(data);
-        inputStream.close();
-        response.setContentType("application/octet-stream");
-        if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) { 
-            response.setHeader("content-disposition", "attachment;filename=" + new String (src.getBytes("gb2312"), "UTF-8"));
-        } else {  
-            response.setHeader("content-disposition", "attachment;filename=" + new String (src.getBytes("gb2312"), "ISO8859-1" ));
-        }  
-        OutputStream stream = response.getOutputStream();
-        stream.write(data);
-        stream.flush();
-        stream.close(); 
+            response.setContentType("application/octet-stream");
+                if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) { 
+                response.setHeader("content-disposition", "attachment;filename=" + new String (src.getBytes("gb2312"), "UTF-8"));
+                } else {  
+                response.setHeader("content-disposition", "attachment;filename=" + new String (src.getBytes("gb2312"), "ISO8859-1" ));
+                }  
+            OutputStream stream = response.getOutputStream();
+            bis = new BufferedInputStream(new FileInputStream(f));  
+            bos = new BufferedOutputStream(response.getOutputStream());  
+            byte[] buff = new byte[2048];  
+            int bytesRead;  
+            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {  
+                bos.write(buff, 0, bytesRead);  
+            }  
         } catch (Exception e) {
         } finally {
-            session.setAttribute("state", "open");
+            if (bis != null)  
+                bis.close();  
+            if (bos != null)  
+                bos.close(); 
         }
         return a;
     }
