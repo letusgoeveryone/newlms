@@ -838,12 +838,12 @@ var StudentAPI = {
                 var _o = StudentAPI.OCidIsCourse.homeworkDS.o;
                 if(_o.length===0) return '<p>暂无已提交作业<p>';
                 var hs = '';
-                for (var i = 0; i < _i.length; i++) {
+                for (var i = 0; i < _o.length; i++) {
                     hs += '<div class="card"><div class="card-main"><div class="card-action"><div class="card-action-btn btn btn-flat pull-left homework-name">' + _o[i].title + '</div>'
                             + '<a class="card-action-btn btn btn-flat pull-right" onclick="submitHomework('+ _o[i].homeworkid +')"><span><span class="icon avatar avatar-sm">cloud_upload</span></span></a>'
                             + '<a title="" class="btn btn-flat btn-upload pull-right" onclick="updataByThisHid('+ _o[i].homeworkid +')" href="#modal-uploadify" data-toggle="modal" id="btn-upload-'+ _o[i].homeworkid +'"><span><span class="icon avatar avatar-sm">attachment</span></span></a>'
                             + '<a class="collapse card-action-btn btn btn-flat pull-right" data-toggle="collapse" href="#collapse-homework-'+ _o[i].homeworkid +'"><span><span class="icon avatar avatar-sm">edit</span></span></a>'
-                            + '</div><div class="card-inner"><title class="btn btn-flat text-blod text-indianred">作业要求</title><p class="homework-info">'+_i[i].detail+'</p>'
+                            + '</div><div class="card-inner"><title class="btn btn-flat text-blod text-indianred">作业要求</title><p class="homework-info">'+_o[i].detail+'</p>'
                             + '<title class="btn btn-flat text-blod text-indianred">截止日期:</title><p class="homework-info">'+ _o[i].deadline +'</p></div>'
                             + '<div class="card-inner collapsible-region collapse" id="collapse-homework-'+ _o[i].homeworkid +'"> <div id="editor-'+ _o[i].homeworkid +'" class="editor-area"></div></div>'
                             + '<div class="card-action"><div class="card-action-btn btn btn-flat attachment-list"><span class="icon">attachment</span> 附件列表</div></div></div></div>';
