@@ -539,7 +539,7 @@ public class StuController {
         }else{         
              for (String file : files) {
                  if (file.lastIndexOf(".")!=-1) {
-                     fileList.add(file);
+                     fileList.add(ff2+file);
                  }              
              }    
          }
