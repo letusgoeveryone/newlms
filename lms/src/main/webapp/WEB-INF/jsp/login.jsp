@@ -155,7 +155,9 @@
 
                 <script type="text/javascript">
                     $(document).ready(function() {
-
+                        if(top.location!=self.location){
+                            top.location = self.location;
+                        }
                         var treeFrame = $(window).height();
                         var treeHeader = $("#lms-login-footer").height();
                         var treeBlank = $("#login-form").height();
