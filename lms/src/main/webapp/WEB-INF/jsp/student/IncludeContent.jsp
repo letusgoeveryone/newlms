@@ -58,7 +58,7 @@
                         </div>
                         
                         <div id="content-Homework" class=" tab-pane fade">
-                            <h2 class="content-sub-heading">未提交作业</h2>
+                            <h2 class="content-sub-heading">待提交作业</h2>
                             <hr>
                             {{{IHomeworkHS}}}
 <!--                            <div class="card">
@@ -107,6 +107,11 @@
                             <h2 class="content-sub-heading">已提交作业</h2>
                             <hr>
                             {{{OHomeworkHS}}}
+                            
+                            <div class="history-divider">神奇历史的分割线,以下作业只能查看不能提交↖(^ω^)↗</div>
+                            <h2 class="content-sub-heading text-indianred">历史作业</h2>
+                            <hr>
+                            {{{XHomeworkHS}}}
                         </div>
                     </div>
                 </div>

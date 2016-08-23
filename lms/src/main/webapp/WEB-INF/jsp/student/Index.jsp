@@ -19,7 +19,6 @@
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
-        <link href="<%=path%>/lib/uploadify/uploadify.css" rel="stylesheet" type="text/css"/>
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" type="text/css"/>
         <link href="<%=path%>/css/lms.css" rel="stylesheet" />
         <script src="<%=path%>/js/jquery.min.js"></script>
@@ -153,7 +152,8 @@
         <!-- js -->
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-        <script src="<%=path%>/lib/uploadify/jquery.uploadify.js" type="text/javascript"></script>
+        <link href="<%=path%>/uploadify/uploadify.css" rel="stylesheet" type="text/css"/>
+        <script src="<%=path%>/uploadify/jquery.uploadify.js" type="text/javascript"></script>
         <script src="<%=path%>/js/api.json.student.js" type="text/javascript"></script>
         <script src="<%=path%>/js/tinymce/tinymce.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
@@ -169,8 +169,8 @@
                     'auto': false,
                     'multi': true,
                     'method': 'post       ',
-                    'swf': '<%=path%>/lib/uploadify/uploadify.swf       ',
-                    'cancelImg': '<%=path%>/lib/uploadify/uploadify-cancel.png',
+                    'swf': '<%=path%>/uploadify/uploadify.swf       ',
+                    'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png',
                     'fileTypeExts': '*.docx;*.doc;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar;*.7z;*.txt;', //指定文件格式
                     'fileSizeLimit': '50MB',
                     'fileObjName': 'myFile',

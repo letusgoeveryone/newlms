@@ -82,6 +82,7 @@
                 </nav>
 
                 <div class='col-md-9 tab-content'>
+                    <div id="valid-message"></div>
                     <!--基础资料-->
                     <div id="tab-personalInfo" class="tab-pane fade in active">
                         <form>
@@ -92,10 +93,12 @@
                             <div class="form-group form-group-label">
                                 <label class="floating-label" for="name"> 姓名 </label>
                                 <input class="form-control" id="name" type="text" value="{{name}}">
+                                <div id="validMsg-name" hidden>请输入至少两个汉字</div>
                             </div>
                             <div class="form-group form-group-label">
                                 <label class="floating-label" for="ID"> 身份证 </label>
                                 <input class="form-control" id="ID" type="text" value="{{ID}}">
+                                <div id="validMsg-ID" hidden>您输入的身份证格式不正确，正确格式为15或18位数字，最后一个可以是X</div>
                             </div>
                             <div class="form-group form-group-label">
 
@@ -130,10 +133,12 @@
                             <div class="form-group form-group-label">
                                 <label class="floating-label" for="tel"> 联系方式 </label>
                                 <input class="form-control" id="tel" type="text" value="{{tel}}">
+                                <div id="validMsg-tel" hidden>请输入正确的手机号</div>
                             </div>
                             <div class="form-group form-group-label">
                                 <label class="floating-label" for="qq"> QQ </label>
                                 <input class="form-control" id="qq" type="text" value="{{qq}}">
+                                <div id="validMsg-qq" hidden>请输入正确QQ号</div>
                             </div>
 
 
@@ -148,14 +153,17 @@
                             <div class="form-group form-group-label">
                                 <label class="floating-label" for="oldPassword"> 原始密码 </label>
                                 <input class="form-control" id="oldPassword" type="password">
+                                <div id="validMsg-opw" hidden></div>
                             </div>
                             <div class="form-group form-group-label">
                                 <label class="floating-label" for="newPassword"> 新密码 </label>
-                                <input class="form-control" id="newPassword" type="password" >
+                                <input class="form-control" id="newPassword" type="password" placeholder="密码最短为6位">
+                                <div id="validMsg-npw" hidden></div>
                             </div>
                             <div class="form-group form-group-label">
                                 <label class="floating-label" for="newPasswordConfirm"> 确认密码  </label>
                                 <input class="form-control" id="newPasswordConfirm" type="password">
+                                <div id="validMsg-npwconfirm" hidden></div>
                             </div>
 
                             <div class="btn btn-block btn-card btn-gold" onclick="updataPassword()">
