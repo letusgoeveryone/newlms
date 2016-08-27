@@ -11,11 +11,12 @@
         <!--<sec:intercept-url pattern="/teacherIndex" access="hasRole('ROLE_TEACHER')"/>-->
         <sec:intercept-url pattern="/teacher/**" access="hasRole('ROLE_TEACHER')"/>
         <sec:intercept-url pattern="/acdemic" access="hasRole('ROLE_ACDEMIC')"/>
-        <!--<sec:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>-->
+        <sec:intercept-url pattern="/acdemic/**" access="hasRole('ROLE_ACDEMIC')"/>
+        <sec:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
         <sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <sec:intercept-url pattern="/dean" access="hasRole('ROLE_DEAN')"/>
         <sec:intercept-url pattern="/dean/**" access="hasRole('ROLE_DEAN')"/> 
-        <sec:intercept-url pattern="/file/uploadhomework/**" access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_COUNSELLOR') or hasRole('ROLE_DEAN') or hasRole('ROLE_TEACHER') or hasRole('ROLE_TUTOR') or hasRole('ROLE_ADMIN')"/>                             
+        <sec:intercept-url pattern="/file/uploadhomework/**" access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_DEAN') or hasRole('ROLE_TEACHER') or hasRole('ROLE_ADMIN')"/>                             
         <sec:logout logout-url="/logout" logout-success-url="/login"  invalidate-session="true" />
         <sec:form-login login-page="/login" authentication-failure-url="/login"/>
     </sec:http>

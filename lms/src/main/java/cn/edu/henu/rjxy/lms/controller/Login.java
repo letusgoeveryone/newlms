@@ -9,7 +9,8 @@ import cn.edu.henu.rjxy.lms.dao.StudentDao;
 import cn.edu.henu.rjxy.lms.dao.TeacherDao;
 import cn.edu.henu.rjxy.lms.model.Student;
 import cn.edu.henu.rjxy.lms.model.Teacher;
-import cn.edu.henu.rjxy.lms.server.TeacherMethod;
+import cn.edu.henu.rjxy.lms.model.TempTeacherWithoutPwd;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
@@ -44,7 +45,7 @@ public class Login {
     @RequestMapping("/login")
     public String loginpage(HttpServletRequest request, HttpServletResponse response) {
 //        for (int i = 10; i < 80; i++) {
-//            TeacherDao.saveTeacher(new Teacher("14452030" + i, "正式教师" + i, "4104821900020212" + i, "软件学院", "130850012" + i, "1234567" + i, "21232f297a57a5a743894a0e4a801fc3", true, "1", new Date(), 131));  //131是所有权限
+//            TeacherDao.saveTeacher(new Teacher("14452030" + i, "正式教师" + i, "4104821900020212" + i, "软件学院", "130850012" + i, "1234567" + i, "21232f297a57a5a743894a0e4a801fc3", true, "系统管理员", new Date(), 15));  //15是所有权限
 //            StudentDao.saveStudent(new Student("14452031" + i, "正式学生" + i, "4104821900020210" + i, 2014, "文学院", "130850010" + i, "1234567" + i, "21232f297a57a5a743894a0e4a801fc3", true));
 //        }
 
@@ -85,9 +86,9 @@ public class Login {
         String sn = getCurrentUsername();
         List<String> list = getCurrentAuthoritiest(sn);
 
-        String str[] = {"ROLE_ADMIN", "ROLE_DEAN", "ROLE_ACDEMIC", "ROLE_COUNSELLOR", "ROLE_TEACHER", "ROLE_TUTOR", "ROLE_STUDENT"};
-        String str2[] = {"redirect:/admin", "redirect:/dean", "redirect:/acdemic", "redirect:/teacherIndex", "redirect:/teacher", "redirect:/teacher", "redirect:/student"};
-        for (int j = 0; j < 7; j++) {
+        String str[] = {"ROLE_ADMIN", "ROLE_DEAN", "ROLE_ACDEMIC", "ROLE_TEACHER", "ROLE_STUDENT"};
+        String str2[] = {"redirect:/admin", "redirect:/dean", "redirect:/acdemic", "redirect:/teacherIndex", "redirect:/student"};
+        for (int j = 0; j < 5; j++) {
             if (list.contains(str[j])) {
                 return str2[j];
             }
@@ -132,7 +133,7 @@ public class Login {
 //判断个sn是否具有对应的ROLE值
 
     public boolean checkCurrentAuthorities(String sn, String role) {
-        String str[] = {"ROLE_ACDEMIC", "ROLE_COUNSELLOR", "ROLE_DEAN", "ROLE_STUDENT", "ROLE_TEACHER", "ROLE_TUTOR", "ROLE_ADMIN"};
+        String str[] =  {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER","ROLE_ADMIN"};
         try {
             Teacher tea = TeacherDao.getTeacherBySn(sn);
             char[] ch = Integer.toBinaryString(Integer.valueOf(tea.getTeacherRoleValue())).toCharArray();
@@ -162,7 +163,7 @@ public class Login {
 //获取一个sn对应的ROLE值的List
 
     public List<String> getCurrentAuthoritiest(String sn) {
-        String str[] = {"ROLE_ACDEMIC", "ROLE_COUNSELLOR", "ROLE_DEAN", "ROLE_STUDENT", "ROLE_TEACHER", "ROLE_TUTOR", "ROLE_ADMIN"};
+        String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER","ROLE_ADMIN"};
         List list = new LinkedList();
         try {
             Teacher tea = TeacherDao.getTeacherBySn(sn);
@@ -183,6 +184,34 @@ public class Login {
         } catch (Exception e) {
         }
         return list;
+    }
+    
+    @RequestMapping("/tea_dat_up")
+    public @ResponseBody String[] teacherRoleDataUpdate(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, ServletException, IOException {
+        int str[] = {1,0,2,0,4,0,8};
+//       String str2[] = {"教务员","辅导员","院长","学生","教工","助教","系统管理员"};
+        int sum=0,ok=0;
+
+        List<TempTeacherWithoutPwd> tealist = TeacherDao.getAllTeacher();
+            for (TempTeacherWithoutPwd tea : tealist) {
+                Teacher teacher = TeacherDao.getTeacherBySn(tea.getTeacherSn());
+                sum++;
+                if(teacher.getTeacherRoleValue()>15){
+                    char[] ch = Integer.toBinaryString(teacher.getTeacherRoleValue()).toCharArray();
+                    int j = 0;
+                    for (int i = ch.length - 1; i >= 0; i--) {
+                        if (String.valueOf(ch[i]).equals("1")) {
+                            j=j+str[i];
+                        }
+                    }
+                    teacher.setTeacherRoleValue(j);
+                    TeacherDao.updateTeacherById(teacher);
+                    ok++;
+                }
+            } 
+        String []a = new String[1];
+        a[0]="教师权限数据已全部处理完成。共"+sum+ "条，更新成功"+ok+ "条";
+        return a;
     }
 // //管理员页面Role编辑
 //    @RequestMapping("/admin/rolecheck")

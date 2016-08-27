@@ -53,11 +53,11 @@ public class Teacher implements java.io.Serializable {
             this.setTeacherSex(tempTeacher.getTeacherSex());
             this.setTeacherPosition(tempTeacher.getTeacherPosition());
             this.setTeacherEnrolling(tempTeacher.getTeacherEnrolling());
-            String str2[] = {"教务员", "辅导员", "院长", "教工", "助教", "系统管理员"};
-            int str3[] = {1+16, 2+16, 4+16, 16, 32, 64+1+4+16};
-            for (int j = 0; j < 6; j++) {
+            String str2[] = {"教务员", "院长", "教工", "系统管理员"};
+            int str3[] = {5, 7, 4, 15};
+            for (int j = 0; j < 4; j++) {
              if(str2[j].equals(tempTeacher.getTeacherPosition())){this.setTeacherRoleValue(str3[j]);}
-             }
+            }
                               
     }
    
