@@ -47,9 +47,12 @@ public class Login {
 //            TeacherDao.saveTeacher(new Teacher("14452030" + i, "正式教师" + i, "4104821900020212" + i, "软件学院", "130850012" + i, "1234567" + i, "21232f297a57a5a743894a0e4a801fc3", true, "1", new Date(), 131));  //131是所有权限
 //            StudentDao.saveStudent(new Student("14452031" + i, "正式学生" + i, "4104821900020210" + i, 2014, "文学院", "130850010" + i, "1234567" + i, "21232f297a57a5a743894a0e4a801fc3", true));
 //        }
-        
-        String sn = getCurrentUsername();
+
+        String sn = getCurrentUsername(); 
         if (sn.equals("anonymousUser")) {
+//            if (request.getHeader("x-requested-with") != null  && request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {  
+//              
+//            }  
             return "login";
         } else {
             String op = request.getParameter("op");
