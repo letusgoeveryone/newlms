@@ -1,6 +1,14 @@
-
+<%
+    //    将项目的根取出来，页面中不再使用相对路径
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+        + request.getServerName() + ":"
+        + request.getServerPort() + path + "/";
+    String sessionid = session.getId();
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <!--<h3 style="text-align: center;color: blue" id="kcdg_kcjs" ></h3>-->
+ <link rel="stylesheet" type="text/css" href="<%=path%>/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="<%=path%>/css/buttons.css">
     <style>
         #hfText{
             padding:2em 1em;
@@ -10,16 +18,17 @@
         #hfText p{
             padding: 0 2em;
         }
+        
     </style>
     <div><div id="hfText" style="border:0px solid #CCC;"></div></div>
-    <script type="text/plain" id="myEditor" style="width: 100%;min-height:50px;">
+    <script type="text/plain" id="myEditor" style="width: 100%;min-height:100px;">
     <p>在此处编辑课程介绍</p>
     </script>
     <br>
-    <button  class="button button-raised button-royal" onclick="getContent()">预览</button>
-    <button  class="button button-raised button-royal" onclick="QXJS()">撤销</button>
-    <button id="tj" class="button button-raised button-royal" onclick="update()">提交</button>
-    <button class="button button-raised button-royal" onclick="lookcourseJS()">查看</button>
+    <button  class="btn btn-default " onclick="getContent()">预览</button>
+    <button  class="btn btn-primary " onclick="QXJS()">撤销</button>
+    <button id="tj"  class="btn btn-success" onclick="update()">提交</button>
+    <button class="btn btn-info" onclick="lookcourseJS()">查看</button>
 <script type="text/javascript">
     function update(){
             $.ajax({
@@ -27,16 +36,16 @@
                data:{courseid:${courseid},term:${term}},
                url:"lookisCourseMaster",
                success: function (data) {
-//                         if(data==="0"){
-//                            alert("你不是课程负责人，不能在此编辑课程大纲!");
-//                         }else{
+                         if(data!=="0"){
+                            alert("你不是课程负责人，不能在此编辑课程大纲!");
+                         }else{
                              if(window.confirm('你确定要更新课程介绍吗？')){  
                                 var arr = [];     
                                 arr.push(UM.getEditor('myEditor').getContent());
                                 addcourseinfo(arr);
-                        return true;
-                    }
-//                         }
+                             return true;
+                          }
+                         }
                 },
                 error: function () {
                     CourseMaster();
@@ -92,7 +101,7 @@
          });
 
          var ue = UM.getEditor('myEditor');
-         function getContent(){
+        function getContent(){
          var arr = [];     
          arr.push(UM.getEditor('myEditor').getContent());
          var value = UM.getEditor('myEditor').getContent();

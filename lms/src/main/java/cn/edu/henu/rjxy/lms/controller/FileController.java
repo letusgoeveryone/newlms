@@ -17,6 +17,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class FileController {
     
+    @RequestMapping("/file")
+    public String FileString(HttpServletRequest request, HttpServletResponse response) {
+        String uri = request.getParameter("uri");
+        uri = uri.replaceAll("\\\\", "/");
+        uri = uri.replaceAll("//", "/");
+        System.out.println(uri);
+        request.setAttribute("uri", "file/" + uri);
+        return "/file"+uri;
+    }
+    
     @RequestMapping("/getswf")
     public String Filegetswf(HttpServletRequest request, HttpServletResponse response) {
         String uri=request.getParameter("uri");
@@ -27,20 +37,20 @@ public class FileController {
 	return "getswf"; 
     }
     
-    @RequestMapping("/getVideo")
+    @RequestMapping("/getvideo")
     public String Filegetvideo(HttpServletRequest request, HttpServletResponse response) {
         String uri=request.getParameter("uri");
         uri=uri.replaceAll("\\\\", "/");
         uri=uri.replaceAll("//", "/");
         System.out.println(uri);
 	request.setAttribute("uri","file/"+uri);
-	return "getVideo"; 
+	return "getvideo"; 
     }
     
     @RequestMapping("/officedocconverter")
     public @ResponseBody String officedocconverter(HttpServletRequest request, HttpServletResponse response) {
         String uri=request.getClass().getResource("/").getFile().toString()+request.getParameter("uri");
-        uri=uri.replace("build/web/WEB-INF/classes/", "web/file/");
+        uri=uri.replace("lms/target/lms-1.0/WEB-INF/classes/", "lms/target/lms-1.0/file/");
         uri=uri.replaceAll("\\\\", "/");
         File f = new File(uri.substring(0,uri.lastIndexOf("."))+".swf");  // 输入要删除的文件位置
         if(f.exists())

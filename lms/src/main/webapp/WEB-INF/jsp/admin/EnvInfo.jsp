@@ -1,18 +1,18 @@
 <%
-    //    ½«ÏîÄ¿µÄ¸ùÈ¡³öÀ´£¬Ò³ÃæÖĞ²»ÔÙÊ¹ÓÃÏà¶ÔÂ·¾¶
+    //    å°†é¡¹ç›®çš„æ ¹å–å‡ºæ¥ï¼Œé¡µé¢ä¸­ä¸å†ä½¿ç”¨ç›¸å¯¹è·¯å¾„
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":"
-            + request.getServerPort() + path + "/";
+        + request.getServerName() + ":"
+        + request.getServerPort() + path + "/";
 %>
-<%@ page contentType="text/html;charset=gb2312" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*,java.io.*,javax.servlet.*,javax.servlet.http.*,java.lang.*" %>
 <%
     /**
      * ******************************************************************
-     * Title: JspEnv v Description : JSP»·¾³Ì½Õë CopyRight:(c)	2005 www.soho.net.ru
+     * Title: JspEnv v Description : JSPç¯å¢ƒæ¢é’ˆ CopyRight:(c)	2005 www.soho.net.ru
      *
-     * @author:	ÈôÓ°
+     * @author:	è‹¥å½±
      * @version:	1.0
      * @Data:	2005-1-1 12:00:00
      * *******************************************************************
@@ -89,8 +89,8 @@
 %>
 <html>
     <head>
-        <title>JSP Ì½Õë</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+        <title>JSP æ¢é’ˆ</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
 
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" type="text/css"/>
@@ -104,12 +104,9 @@
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
 
         <style>
-            a       { color: #000000; text-decoration: none}
-            body,td,span { font-size: 9pt}
             .input  {BORDER: 1px solid;font-size: 9pt}
             .backc  { BORDER:1px solid;font-size: 9pt;color:white}
             .PicBar { background-color: #f58200; border: 1px solid #000000; height: 12px;}
-
             .divcenter {
                 position:absolute;
                 height:30px;
@@ -117,64 +114,66 @@
                 left: 101px;
                 top: 993px;
             }
-        </STYLE>
-        <script language="javascript">
-            function showsubmenu(sid)
-            {
+        </style>
+        <script>
+            function showsubmenu(sid){
                 whichEl = eval("submenu" + sid);
-                if (whichEl.style.display == "none")
-                {
+                if (whichEl.style.display === "none"){
                     eval("submenu" + sid + ".style.display=\"\";");
-                    eval("txt" + sid + ".innerHTML=\"<a href='#' title='¹Ø±Õ´ËÏî'><font face='Wingdings' color=#FFFFFF>x</font></a>\";");
-                } else
-                {
+                    eval("txt" + sid + ".innerHTML=\"<a href='#' title='å…³é—­æ­¤é¡¹'><font face='Wingdings' color=#FFFFFF>x</font></a>\";");
+                } else {
                     eval("submenu" + sid + ".style.display=\"none\";");
-                    eval("txt" + sid + ".innerHTML=\"<a href='#' title='´ò¿ª´ËÏî'><font face='Wingdings' color=#FFFFFF>y</font></a>\";");
+                    eval("txt" + sid + ".innerHTML=\"<a href='#' title='æ‰“å¼€æ­¤é¡¹'><font face='Wingdings' color=#FFFFFF>y</font></a>\";");
                 }
             }
-        </SCRIPT>
+        </script>
     </head>
-    <body style="padding:1px;">
+    <body class="container">
 
-        <!--        <div class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <a href="#" class="navbar-brand">·şÎñÆ÷</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                        <li><a class="btn btn-default"  href="#ServerInfo">·şÎñÆ÷Ïà¹Ø²ÎÊı</a></li>
-                        <li><a class="btn btn-default"  href="#JAVAInfo">JAVAÏà¹Ø²ÎÊı</a></li>
-                        <li><a class="btn btn-default"  href="#Paramter">²ÎÊı²éÑ¯</a></li>
-                        <li><a class="btn btn-default"  href="javascript:location.reload()">Ë¢ĞÂ</a></li>
-                    </ul>
-                </div>-->
-        <div><a class="btn btn-default pull-right"  href="javascript:location.reload()">Ë¢ĞÂ</a></div>
-        <br>
-        <br>
-
-        <form action="?action=query" method="post" name="queryform">
+        <!--        
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">æœåŠ¡å™¨</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a class="btn btn-default"  href="#ServerInfo">æœåŠ¡å™¨ç›¸å…³å‚æ•°</a></li>
+                <li><a class="btn btn-default"  href="#JAVAInfo">JAVAç›¸å…³å‚æ•°</a></li>
+                <li><a class="btn btn-default"  href="#Paramter">å‚æ•°æŸ¥è¯¢</a></li>
+                <li><a class="btn btn-default"  href="javascript:location.reload()">åˆ·æ–°</a></li>
+            </ul>
+        </div>
+        -->
+        <div class="space-block"></div>
+        <div class=" box-small">
+            <a class="btn btn-default pull-right"  href="javascript:location.reload()">åˆ·æ–°</a>
+        </div>
+        
+        <form class=" box-small" action="?action=query" method="post" name="queryform">
+            
             <table border="0" cellpadding="0" cellspacing="1" class="table table-bordered">
                 <thead>
                     <tr> 
-                        <td   onclick="showsubmenu(1)"><strong>ÏµÍ³²ÎÊı²éÑ¯</strong>
+                        <td   onclick="showsubmenu(1)"><strong>ç³»ç»Ÿå‚æ•°æŸ¥è¯¢</strong>
                         </td>
                     </tr>
-                    
+
                 <thead>
                 <tfoot>
                     <tr > 
                         <td>
                             <div class="form-group">
-                                <input type="text" placeholder="ÇëÊäÈëËù²é²ÎÊı" name="query" class="form-control" size="70">
+                                <input type="text" placeholder="è¯·è¾“å…¥æ‰€æŸ¥å‚æ•°" name="query" class="form-control" size="70">
                                 <br>
 
-                                <a type="submit" value="Ìá½»" class="btn btn-default" onClick="document.queryform.submit();$('#srv_qresult').fadeToggle()">²éÑ¯</a>
-                                <a href="#"class="btn btn-default "onClick="document.queryform.submit()">Ã¶¾ÙËùÓĞ²ÎÊıĞÅÏ¢</a>
-                                <a type="reset" value="ÖØÖÃ" class="btn btn-default pull-right" onclick="$('#srv_qresult').fadeOut()">Çå³ı</a>
+                                <a type="submit" value="æäº¤" class="btn btn-default" onClick="document.queryform.submit();$('#srv_qresult').fadeToggle()">æŸ¥è¯¢</a>
+                                <a href="#"class="btn btn-default "onClick="document.queryform.submit()">æšä¸¾æ‰€æœ‰å‚æ•°ä¿¡æ¯</a>
+                                <a type="reset" value="é‡ç½®" class="btn btn-default pull-right" onclick="$('#srv_qresult').fadeOut()">æ¸…é™¤</a>
                             </div>
                         </td>
                     </tr>
                 <tfoot>
             </table>
+            
             <table class='table  table-striped' border=0 width=100% cellspacing=1 cellpadding=3 bgcolor="#f58200" id="srv_qresult">		
                 <%
                     if (action.equals("query")) {
@@ -182,9 +181,9 @@
                         env.getHashtable(query);
                         out.println("<tbody>");
                         if (env.htShowMsg.size() > 0) {
-                            out.println("<tr  >\n<td>&nbsp;²ÎÊıÃû³Æ</td>\n<td>&nbsp;²ÎÊıĞÅÏ¢</td>\n</tr>");
+                            out.println("<tr  >\n<td>&nbsp;å‚æ•°åç§°</td>\n<td>&nbsp;å‚æ•°ä¿¡æ¯</td>\n</tr>");
                         } else {
-                            out.println("<tr >\n<td>&nbsp;<font color=red>³ö´íĞÅÏ¢£º</font></td>\n<td>&nbsp;<font color=red>Ã»ÓĞÕÒµ½ÄãËù²éÑ¯µÄÄÚÈİ£¬ÇëÊäÈëËùÒª²éÑ¯µÄ²ÎÊı£¬Èç¹û²»È·ÈÏ£¬¿ÉÒÔ½øĞĞ³éÏó²éÑ¯£¬ÊäÈëËù°üº¬×ÖÄ¸¡£</font></td>\n</tr>");
+                            out.println("<tr >\n<td>&nbsp;<font color=red>å‡ºé”™ä¿¡æ¯ï¼š</font></td>\n<td>&nbsp;<font color=red>æ²¡æœ‰æ‰¾åˆ°ä½ æ‰€æŸ¥è¯¢çš„å†…å®¹ï¼Œè¯·è¾“å…¥æ‰€è¦æŸ¥è¯¢çš„å‚æ•°ï¼Œå¦‚æœä¸ç¡®è®¤ï¼Œå¯ä»¥è¿›è¡ŒæŠ½è±¡æŸ¥è¯¢ï¼Œè¾“å…¥æ‰€åŒ…å«å­—æ¯ã€‚</font></td>\n</tr>");
                         }
                         Enumeration em = env.htShowMsg.keys();
                         while (em.hasMoreElements()) {
@@ -199,96 +198,98 @@
                         out.println("</tbody>");
                     }
                 %>
-            </table>  		
-
-                    
+            </table> 
+            
         </form>
+            
         <table border="0" cellpadding="0" cellspacing="1" class="tableBorder table table-bordered table-striped">
             <thead>
                 <tr> 
-                    <td  onclick="showsubmenu(0)"><strong>·şÎñÆ÷Ïà¹Ø²ÎÊı</strong>
+                    <td  onclick="showsubmenu(0)"><strong>æœåŠ¡å™¨ç›¸å…³å‚æ•°</strong>
                     </td>
                 </tr>
             </thead>
             <tbody>
                 <tr > 
-                    <td width="130">&nbsp;·şÎñÆ÷Ãû</td>
+                    <td width="130">&nbsp;æœåŠ¡å™¨å</td>
                     <td colspan="3" height="22">&nbsp;<%= request.getServerName()%>(<%=request.getRemoteAddr()%>)</td>
                 </tr>
                 <tr > 
-                    <td>&nbsp;·şÎñÆ÷²Ù×÷ÏµÍ³</td>
+                    <td>&nbsp;æœåŠ¡å™¨æ“ä½œç³»ç»Ÿ</td>
                     <td colspan="3">&nbsp;<%=env.queryHashtable("os.name")%> <%=env.queryHashtable("os.version")%> 
                         <%=env.queryHashtable("sun.os.patch.level")%></td>
                 </tr>
                 <tr > 
-                    <td>&nbsp;·şÎñÆ÷²Ù×÷ÏµÍ³ÀàĞÍ</td>
+                    <td>&nbsp;æœåŠ¡å™¨æ“ä½œç³»ç»Ÿç±»å‹</td>
                     <td>&nbsp;<%=env.queryHashtable("os.arch")%></td>
-                    <td>&nbsp;·şÎñÆ÷²Ù×÷ÏµÍ³Ä£Ê½</td>
-                    <td>&nbsp;<%=env.queryHashtable("sun.arch.data.model")%>Î»</td>
+                    <td>&nbsp;æœåŠ¡å™¨æ“ä½œç³»ç»Ÿæ¨¡å¼</td>
+                    <td>&nbsp;<%=env.queryHashtable("sun.arch.data.model")%>ä½</td>
                 </tr>     
                 <tr > 
-                    <td>&nbsp;·şÎñÆ÷ËùÔÚµØÇø</td>
+                    <td>&nbsp;æœåŠ¡å™¨æ‰€åœ¨åœ°åŒº</td>
                     <td>&nbsp;<%=env.queryHashtable("user.country")%></td>
-                    <td>&nbsp;·şÎñÆ÷ÓïÑÔ</td>
+                    <td>&nbsp;æœåŠ¡å™¨è¯­è¨€</td>
                     <td>&nbsp;<%=env.queryHashtable("user.language")%></td>
                 </tr>
                 <tr > 
-                    <td>&nbsp;·şÎñÆ÷Ê±Çø</td>
+                    <td>&nbsp;æœåŠ¡å™¨æ—¶åŒº</td>
                     <td>&nbsp;<%=env.queryHashtable("user.timezone")%></td>
-                    <td>&nbsp;·şÎñÆ÷Ê±¼ä</td>
+                    <td>&nbsp;æœåŠ¡å™¨æ—¶é—´</td>
                     <td>&nbsp;<%=new java.util.Date()%> </td>
                 </tr>
                 <tr > 
-                    <td>&nbsp;·şÎñÆ÷½âÒëÒıÇæ</td>
+                    <td>&nbsp;æœåŠ¡å™¨è§£è¯‘å¼•æ“</td>
                     <td width="170">&nbsp;<%= getServletContext().getServerInfo()%></td>
-                    <td width="130">&nbsp;·şÎñÆ÷¶Ë¿Ú</td>
+                    <td width="130">&nbsp;æœåŠ¡å™¨ç«¯å£</td>
                     <td width="170">&nbsp;<%= request.getServerPort()%></td>
                 </tr>
                 <tr > 
-                    <td height="22">&nbsp;µ±Ç°ÓÃ»§</td>
+                    <td height="22">&nbsp;å½“å‰ç”¨æˆ·</td>
                     <td height="22" colspan="3">&nbsp;<%=env.queryHashtable("user.name")%></td>
                 </tr>
                 <tr > 
-                    <td>&nbsp;ÓÃ»§Ä¿Â¼</td>
+                    <td>&nbsp;ç”¨æˆ·ç›®å½•</td>
                     <td colspan="3">&nbsp;<%=env.queryHashtable("user.dir")%></td>
                 </tr>
                 <tr > 
-                    <td align=left >&nbsp;±¾ÎÄ¼şÊµ¼ÊÂ·¾¶</td>
+                    <td align=left >&nbsp;æœ¬æ–‡ä»¶å®é™…è·¯å¾„</td>
                     <td height="8" colspan="3">&nbsp;<%=request.getRealPath(request.getServletPath())%></td>
                 </tr>
             </tbody>
         </table>
+                
         <a name="JAVAInfo" id="JAVAInfo"></a><br>
+        
         <table border="0" cellpadding="0" cellspacing="1" class="tableBorder table table-bordered table-striped">
             <thead>
                 <tr> 
-                    <td   onclick="showsubmenu(1)"><strong>JAVAÏà¹Ø²ÎÊı</strong>
+                    <td   onclick="showsubmenu(1)"><strong>JAVAç›¸å…³å‚æ•°</strong>
                     </td>
                 </tr>
             </thead>
             <tbody>
                 <tr  height="22"> 
-                    <td>&nbsp;Ãû³Æ</td>
-                    <td width="50%" height="22">&nbsp;Ó¢ÎÄÃû³Æ</td>
-                    <td width="20%" height="22">&nbsp;°æ±¾</td>
+                    <td>&nbsp;åç§°</td>
+                    <td width="50%" height="22">&nbsp;è‹±æ–‡åç§°</td>
+                    <td width="20%" height="22">&nbsp;ç‰ˆæœ¬</td>
                 </tr>
                 <tr > 
-                    <td>&nbsp;JAVAÔËĞĞ»·¾³Ãû³Æ</td>
+                    <td>&nbsp;JAVAè¿è¡Œç¯å¢ƒåç§°</td>
                     <td width="50%" height="22">&nbsp;<%=env.queryHashtable("java.runtime.name")%></td>
                     <td width="20%" height="22">&nbsp;<%=env.queryHashtable("java.runtime.version")%></td>
                 </tr>
                 <tr > 
-                    <td>&nbsp;JAVAÔËĞĞ»·¾³ËµÃ÷ÊéÃû³Æ</td>
+                    <td>&nbsp;JAVAè¿è¡Œç¯å¢ƒè¯´æ˜ä¹¦åç§°</td>
                     <td width="50%" height="22">&nbsp;<%=env.queryHashtable("java.specification.name")%></td>
                     <td width="20%" height="22">&nbsp;<%=env.queryHashtable("java.specification.version")%></td>
                 </tr>
                 <tr > 
-                    <td>&nbsp;JAVAĞéÄâ»úÃû³Æ</td>
+                    <td>&nbsp;JAVAè™šæ‹Ÿæœºåç§°</td>
                     <td width="50%" height="22">&nbsp;<%=env.queryHashtable("java.vm.name")%></td>
                     <td width="20%" height="22">&nbsp;<%=env.queryHashtable("java.vm.version")%></td>
                 </tr>
                 <tr > 
-                    <td>&nbsp;JAVAĞéÄâ»úËµÃ÷ÊéÃû³Æ</td>
+                    <td>&nbsp;JAVAè™šæ‹Ÿæœºè¯´æ˜ä¹¦åç§°</td>
                     <td width="50%" height="22">&nbsp;<%=env.queryHashtable("java.vm.specification.name")%></td>
                     <td width="20%" height="22">&nbsp;<%=env.queryHashtable("java.vm.specification.version")%></td>
                 </tr>
@@ -298,7 +299,7 @@
                     float fPercent = fFreeMemory / fTotalMemory * 100;
                 %>
                 <tr > 
-                    <td height="22">&nbsp;JAVAĞéÄâ»úÊ£ÓàÄÚ´æ£º</td>
+                    <td height="22">&nbsp;JAVAè™šæ‹Ÿæœºå‰©ä½™å†…å­˜ï¼š</td>
                     <td height="22" colspan="2">
                         <div class="progress">
                             <div class="progress-bar" style="width:<%=0.85 * fPercent%>%"><%=fFreeMemory / 1024 / 1024%>M 
@@ -307,7 +308,7 @@
                     </td>
                 </tr>
                 <tr > 
-                    <td height="22">&nbsp;JAVAĞéÄâ»ú·ÖÅäÄÚ´æ</td>
+                    <td height="22">&nbsp;JAVAè™šæ‹Ÿæœºåˆ†é…å†…å­˜</td>
                     <td height="22" colspan="2">
                         <div class="progress">
                             <div class="progress-bar" style="width:85%"><%=fTotalMemory / 1024 / 1024%>M 
@@ -315,10 +316,10 @@
                         </div> 
                     </td>
                 </tr>
-                
+
                 <tr height="22"> 
-                    <td>&nbsp;²ÎÊıÃû³Æ</td>
-                    <td colspan="2">&nbsp;²ÎÊıÂ·¾¶</td>
+                    <td>&nbsp;å‚æ•°åç§°</td>
+                    <td colspan="2">&nbsp;å‚æ•°è·¯å¾„</td>
                 </tr>
                 <tr > 
                     <td>&nbsp;java.class.path </td>
@@ -344,5 +345,6 @@
             </tbody>
         </table>
         <a name="Paramter" id="Paramter"></a><br>
-</body>
+        
+    </body>
 </html>

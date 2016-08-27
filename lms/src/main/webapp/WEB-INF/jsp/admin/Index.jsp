@@ -12,7 +12,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-        <title>管理员</title>
+        <title>『管理员』| 教务系统</title>
 
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
@@ -20,15 +20,8 @@
         <link href="<%=path%>/css/lms.css" rel="stylesheet" />
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" />
         <link href="<%=path%>/css/uploadify.css" rel="stylesheet"  />
-        <link href="<%=path%>/ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
         
         <script src="<%=path%>/js/jquery.min.js"></script>
-        
-        <!--umeditor-->
-        <script charset="utf-8" src="<%=path%>/ueditor/umeditor.config.js"></script>
-        <script charset="utf-8" src="<%=path%>/ueditor/umeditor.min.js"></script>
-        <script src="<%=path%>/js/zh-cn.js"></script>
-        
     </head>
     <body class="page-default tab-content" id='lms_admin'>
         
@@ -64,17 +57,17 @@
                                     <section class="card-heading">角色转换（管理员）到</section>
                                     <section>
                                         <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a  data-toggle="tab" href="#lms_admin_d" class='btn btn-brand  waves-attach  waves-light waves-effect' style="margin:auto;">
+                                            <a href="<%=path%>/dean" class='btn btn-aqua'>
                                                【D 院长】
                                             </a>
                                         </sec:authorize>
                                         <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a  data-toggle="tab" href="#lms_admin_a" class='btn btn-brand waves-attach  waves-light waves-effect' >
+                                            <a href="<%=path%>/acdemic" class='btn btn-aqua' >
                                                【A 教务员】
                                             </a>
                                         </sec:authorize>
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                            <a  data-toggle="tab" href="#lms_admin_t" class='btn btn-brand waves-attach  waves-light waves-effect' style="margin:auto;">
+                                            <a href="<%=path%>/teacher" class='btn btn-aqua'>
                                                【T 教职】
                                             </a>
                                         </sec:authorize>
@@ -95,7 +88,7 @@
 
                 <div class="row tab-pane fade " id="lms_admin_tnav_sInfo" style="min-height: 500px;margin-bottom: 100px;">             
                     <!--管理员 功能区-->
-                    <div class="bg-content"style="top:56px;bottom: 30px;background-color: #445;"></div>
+                    <div class="bg-content" style="top:56px;bottom: 30px;background-color: #445;"></div>
                     <div class="container card" style="margin-top: 120px;margin-bottom: 30px;position: relative;">
                         <div class="row width-control">
                             <div class="col-md-12">
@@ -122,7 +115,7 @@
                                     <iframe  src="<%=path%>/admin/UserSituation" id="UserSituation" frameborder="0" scrolling="yes" marginheight="0" height="1800px" width="100%" name="用户统计"></iframe>
                                 </div>
                                 <div class="tab-pane fade in active" id="panel-ServerInformation">
-                                    <iframe  src="<%=path%>/admin/ServerInfo" id="ServerInfo" frameborder="0" scrolling="no" marginheight="0"  width="100%" name="服务器信息" name="ServerInfo" onload ="startInit('ServerInfo', 500);"></iframe>                                    
+                                    <iframe  src="<%=path%>/admin/ServerInfo" id="ServerInfo" frameborder="0" scrolling="no" marginheight="0"  width="100%" name="服务器信息" onload ="startInit('ServerInfo', 500);"></iframe>                                    
                                 </div>
 
                             </div>
@@ -139,101 +132,8 @@
                     </p>
                 </div>
             </footer>
-
-            
-
         </div>
-        <!--管理员 主区 END-->
-        
-        <!--管理员 副区 院长区-->
-        
-        <div id="lms_admin_d"  class="tab-pane fade in">
-            <jsp:include page="../dean/DeanButton.jsp"  />
-        </div>
-        <!--管理员 副区 院长区 END-->
-        
-        <!--管理员 副区 教务区 -->
-        <div id="lms_admin_a"  class="tab-pane fade in">
-            
-            <!--功能列表-->
-            <nav class="lms-admin-sidebar">
-            <ul class="nav nav-tabs">
-                <a href="#lms_main" data-toggle="tab" class="btn btn-flat" 
-                   style="
-                   left: 0px;
-                   right: 0px;
-                   top: 0px;
-                   position: relative;
-                   color: rgb(255, 255, 255);
-                   background-color: rgb(81, 81, 77);
-                   border-radius: 0px;
-                   ">
-                    <span><span class="icon margin-left-sm">arrow_back</span>  返回</span> 
-                </a>
-                <div class="stage-box"></div>
-                
-                
-                <li class="active">
-                    <a href="#panel-gradeInfoManage" data-toggle="tab" onclick="newbjxx()">班级信息管理</a>
-                </li>
-                <li>
-                    <a href="#panel-courseInfoManage" data-toggle="tab" onclick="newkcxx()">课程信息管理</a>
-                </li>
-                <li>
-                    <a href="#panel-courseTableManage" data-toggle="tab" onclick="newkcbxx()">课程表管理</a>
-                </li>
-                <hr>
-                <li>
-                    <a href="#panel-TeacherManage" data-toggle="tab" onclick="newzsjs()">教师信息管理</a>
-                </li>
-                <li>
-                    <a href="#panel-StudentManage" data-toggle="tab" onclick="newzsxs()">学生信息管理</a>
-                </li>
-                <hr>
-                <li>
-                    <a href="#panel-tmpTeacherManage" data-toggle="tab" onclick="newlsjs()">教师信息管理【临时】</a>
-                </li>
-                <li>
-                    <a href="#panel-tmpStudentManage" data-toggle="tab" onclick="newlsxs()">学生信息管理【临时】</a>
-                </li>
-            </ul>
-            </nav>
-
-            <!--功能区-->
-            <div class="tab-content lms-admin-content">
-                
-                <div class="tab-pane fade in active" id="panel-tmpStudentManage">
-                    <jsp:include page="../acdemic/szxsxx.jsp"  />
-                </div>
-                <div class="tab-pane fade in " id="panel-StudentManage">
-                    <jsp:include page="../acdemic/zs_stu.jsp"  />
-                </div>
-                <div class="tab-pane fade in " id="panel-tmpTeacherManage">
-                    <jsp:include page="../acdemic/szlsjsxx.jsp"  />
-                </div>
-                <div class="tab-pane fade in " id="panel-TeacherManage">
-                    <jsp:include page="../acdemic/zs_js.jsp"  />
-                </div>
-                <div class="tab-pane fade in " id="panel-gradeInfoManage">
-                    <jsp:include page="../acdemic/ckbjxx.jsp"  />
-                </div>
-                <div class="tab-pane fade in " id="panel-courseInfoManage">
-                    <jsp:include page="../acdemic/course.jsp"  />
-                </div>
-                <div class="tab-pane fade in " id="panel-courseTableManage">
-                    <jsp:include page="../acdemic/set_all.jsp"  />
-                </div>
-                
-            </div>
-            
-        </div>
-        <!--管理员 副区 教务区 END-->
-        
-        <!--管理员 副区 教职区 -->
-        <div id="lms_admin_t"  class="tab-pane fade in">
-            <jsp:include page="../teacher/TeacherConsoleInterface.jsp"  />
-        </div>
-        <!--管理员 副区 教职区 END-->    
+        <!--管理员 主区 END-->  
         
         <!--返回顶部-->
         <div class="fbtn-container" id="scrollUp">
@@ -245,19 +145,7 @@
     <!-- js -->
     <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
     <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-    <script>
-        var Stickup= 0;
-    </script>
     <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
-
-    <!--easyui-->
-    <script src="<%=path%>/js/jquery.easyui.min.js"></script>
-    <link rel="stylesheet"  href="<%=path%>/css/easyuicss/easyui.css">
-    <link rel="stylesheet"  href="<%=path%>/css/easyuicss/icon.css">
-    <link rel="image/png"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
-    
-    <!--uploadify-->
-    <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
 
 
 

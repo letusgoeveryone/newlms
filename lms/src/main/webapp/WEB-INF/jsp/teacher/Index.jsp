@@ -32,17 +32,14 @@
         <!-- js -->
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-        <script>
-            var Stickup= 0;
-        </script>
+        
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
 
         <!--easyui-->
-        <script src="<%=path%>/js/jquery.easyui.min.js"></script>
-        <link rel="stylesheet"  href="<%=path%>/css/easyuicss/easyui.css">
-        <link rel="stylesheet"  href="<%=path%>/css/easyuicss/icon.css">
-        <link rel="image/png"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
-
+        <script src="<%=path%>/js/jquery.easyui/jquery.easyui.min.js"></script>
+        <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/bootstrap/easyui.css">
+        <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/icon.css">
+ 
         <!--uploadify-->
         <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
         <!--umeditor-->
@@ -55,19 +52,20 @@
 
         <section id="lms_main" class="tab-pane fade in active stage-image bg-center"
                  style="background-image:url(<%=path%>/images/bg-for-tl.jpg);min-height:1500px;padding-bottom:100px;">
-
+            
             <header class="header" id="tree-header">
                 <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
                     <ul class="nav nav-list">
                         <li  class="active"><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_teach_CouCenter"><span class="text-white">课程中心</span></a></li>
                         <!--<li ><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_teach_RequstManage"><span class="text-white">学生管理</span></a></li>-->
                         <!--<li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_stu_tnav_tLine"><span class="text-white">时光轴</span></a></li>-->
-                        <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white"> 【${username}】退出系统<span class="icon icon-fixHans margin-left-sm">exit_to_app</span></span></a></li>
+                        <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white"> 退出系统<span class="icon icon-fixHans margin-left-sm">exit_to_app</span></span></a></li>
                     </ul>
                 </nav>
             </header>
 
             <section class="tab-content container" >
+                <div class=" space-block"></div>
                 <div id="lms_teach_CouCenter" class="tab-content tab-pane fade in active">
 
                     <section id="panel-MyCourse" class="row tab-pane fade in active">
@@ -76,7 +74,7 @@
                                 <span class="card-heading" >
                                     <a class="fbtn btn-brand waves-attach waves-circle waves-light waves-effect" 
                                        href="#panel-HomeworkArea" data-toggle="tab" ><span class="icon">cloud_upload</span>
-                                        <span class="fbtn-text fbtn-text-left">加入课程</span>
+                                        <span class="fbtn-text fbtn-text-left">工具</span>
                                     </a>
                                 </span>
                             </aside>
@@ -217,7 +215,7 @@
                     async: false, //设置ajax同步加载
                     success: function (data) {
                         document.getElementById("sz_xq").options.length = 0;
-                        for (var i = 1; i < data.length; i++) {
+                        for (var i = 0; i < data.length; i++) {
                             document.getElementById("sz_xq").options.add(new Option(data[i], data[i]));
                         }
                     },

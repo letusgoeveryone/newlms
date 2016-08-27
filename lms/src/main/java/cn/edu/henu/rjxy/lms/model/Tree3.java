@@ -20,6 +20,7 @@ public class Tree3 {
     private Tree3 target;
     private String domId;
     private boolean checked;
+    private String[] resource;
     private List<Tree1> children = new LinkedList(); //子节点
 
     public Tree3 getTarget() {
@@ -30,7 +31,13 @@ public class Tree3 {
         this.target = target;
     }
 
-   
+    public String[] getResource() {
+        return resource;
+    }
+
+    public void setResource(String[] resource) {
+        this.resource = resource;
+    }
 
     public String getDomId() {
         return domId;

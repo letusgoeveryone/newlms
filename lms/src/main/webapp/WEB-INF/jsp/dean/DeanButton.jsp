@@ -64,35 +64,37 @@
 
     </div>
 
-    <div class="modal fade" id="modalEndTerm" role="dialog" >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-heading">
-                    <a class="modal-close" data-dismiss="modal">×</a>
-                    <h2 class="modal-title">:-)</h2>
-                </div>
-                <div class="modal-inner">
-                    <p class = "test-center h4">您确定要结束本学期了么？<span class="small">做最后一次确认吧</span></p>
-                </div>
-                <div class="modal-footer">
-                    <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Close</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="end">OK</button></p>
+    <div style="position: absolute;">
+        <div class="modal fade" id="modalEndTerm" role="dialog" >
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-heading">
+                        <a class="modal-close" data-dismiss="modal">×</a>
+                        <h2 class="modal-title">:-)</h2>
+                    </div>
+                    <div class="modal-inner">
+                        <p class = "test-center h4">您确定要结束本学期了么？<span class="small">做最后一次确认吧</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Close</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="end">OK</button></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="modalStartTerm" role="dialog" >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-heading">
-                    <a class="modal-close" data-dismiss="modal">×</a>
-                    <h2 class="modal-title">:-)</h2>
-                </div>
-                <div class="modal-inner">
-                    <p class = "test-center h4">您确定要开始新的学期了么？<span class="small">做最后一次确认吧</span></p>
-                </div>
-                <div class="modal-footer">
-                    <p class="text-right"><button class="btn btn-flat  btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Close</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="begin">OK</button></p>
+        <div class="modal fade" id="modalStartTerm" role="dialog" >
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-heading">
+                        <a class="modal-close" data-dismiss="modal">×</a>
+                        <h2 class="modal-title">:-)</h2>
+                    </div>
+                    <div class="modal-inner">
+                        <p class = "test-center h4">您确定要开始新的学期了么？<span class="small">做最后一次确认吧</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <p class="text-right"><button class="btn btn-flat  btn-brand waves-attach waves-effect" data-dismiss="modal" type="button">Close</button><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="begin">OK</button></p>
+                    </div>
                 </div>
             </div>
         </div>

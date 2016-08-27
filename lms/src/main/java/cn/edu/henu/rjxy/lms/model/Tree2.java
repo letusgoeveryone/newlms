@@ -20,6 +20,7 @@ public class Tree2 {
     private Tree2 target;
     private String domId;
     private boolean checked;
+    private String[] resource;
     private List<Tree2> children = new LinkedList(); //子节点
 
     public boolean isChecked() {
@@ -29,7 +30,15 @@ public class Tree2 {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
+    
+    public String[] getResource() {
+        return resource;
+    }
 
+    public void setResource(String[] resource) {
+        this.resource = resource;
+    }
+    
     public Integer getId() {
         return id;
     }

@@ -129,7 +129,6 @@ public class TeaController {
     public @ResponseBody
         String update(HttpServletRequest request,HttpServletResponse response) {
         String a="0";
-        System.out.println("111111111");
         String tsn=getCurrentUsername();
         Teacher teacher=TeacherDao.getTeacherBySn(tsn);
         System.out.println(tsn);
@@ -441,10 +440,9 @@ public class TeaController {
      list.add(node4);
      return list;
   }
-
  //存成josn文件保存到教师目录
-  @RequestMapping(value = "saveTree",method = RequestMethod.POST)
-  public @ResponseBody String saveTree(HttpServletRequest request,@RequestBody Tree3[] users) throws Exception{
+  @RequestMapping("teacher/saveTree")
+  public @ResponseBody String saveTree(HttpServletRequest request,@RequestBody String data) throws Exception{
       String sn=getCurrentUsername();
       Teacher tec = TeacherDao.getTeacherBySn(sn);
       String tec_sn= tec.getTeacherSn();
@@ -463,22 +461,23 @@ public class TeaController {
       }
     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/";
     List list =new LinkedList();
-    String ss = "",aa;
-    for(int i =0;i < users.length-1;i++){
-        list.add(users[i]); 
-        aa = JSONObject.fromObject(users[i])+"";
-        ss +=aa+',';
-    }
-    aa = JSONObject.fromObject(users[3])+"";
-    ss = ss+aa;
-    ss= '['+ss+']';
-    System.out.println(ss);
+//    String ss = "",aa;
+//    for(int i =0;i < users.length-1;i++){
+//        list.add(users[i]); 
+//        aa = JSONObject.fromObject(users[i])+"";
+//        ss +=aa+',';
+//    }
+//    aa = JSONObject.fromObject(users[users.length-1])+"";
+//    ss = ss+aa;
+//    ss= '['+ss+']';
+    System.out.println(data);
     OutputStreamWriter pw = null;//定义一个流
     pw = new OutputStreamWriter(new FileOutputStream(new File(ff+File.separator+"test.json")),"GBK");
-    pw.write(ss);
+    pw.write(data);
     pw.close();
     return "1";
   }
+ 
   
   //解析josn文件生成树
   @RequestMapping("teacher/scTree")
@@ -670,13 +669,22 @@ public class TeaController {
      String node1 = request.getParameter("node1");
      String node2 = request.getParameter("node2");
      String node3 = request.getParameter("node3");
-     System.out.println(node1 + " "+ node2+"  "+node3+"  "+term+"  "+courseName);
-     String dir = term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+node1+"/"+node2+"/"+node3+"/";
-     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/";
-     ff=ff+node1+"/"+node2+"/"+node3+"/";
-     String ff2="../file/"+dir;
+     String dir="",ff=null;
+     if(!node2.equals("null")&&!node3.equals("null")){
+        dir = node1+"/"+node2+"/"+node3+"/";
+        ff= node1+"/"+node2+"/"+node3+"/";
+     }else if(!node2.equals("null")&&node3.equals("null")){
+        dir =node1+"/"+node2+"/";
+        ff= node1+"/"+node2+"/";
+     }else if(node2.equals("null")&&node3.equals("null")){
+        dir = node1+"/";
+        ff= node1+"/";
+     }
+     dir = term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+dir;
+     ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+ff;
+     System.out.println("dir="+dir);
      String ff3="../"+"getswf?uri="+dir;
-     String ff4="../getvideo?uri="+dir;
+     String ff4="../"+"getVideo?uri="+dir;
      String []a = new String[1];
      a[0]="";
      String dlc="";
@@ -689,20 +697,19 @@ public class TeaController {
              a[0]="<ol class=\"breadcrumb\" id=\"breadcour\"><p>此目录下暂无资源</p></ol>";
          }else{
              boolean swf=false;
-             boolean ddoc=false;
-             
+             boolean ddoc=false;   
              for (String file : files) {
                  System.out.println(file);
                  if (file.lastIndexOf(".")!=-1) {
                      if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".swf")){
                  swf=true;
-                 a[0]=a[0]+"<li><a href=\""+ff3+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcdg_sc('"+file+"')\">"+"删除"+"</a></li>";
+                 a[0]=a[0]+"<li><a href=\""+ff3+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";
                      }else if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".mp4")){
                  swf=true;
-                 a[0]=a[0]+"<li><a href=\""+ff4+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcdg_sc('"+file+"')\">"+"删除"+"</a></li>";   
+                 a[0]=a[0]+"<li><a href=\""+ff4+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";   
                      }else{
                  ddoc=true;
-                 dlc=dlc+"<li><a href=\""+ff2+file+"\">"+file+"</a>&nbsp;<a  onclick=\"kcdg_sc('"+file+"')\">"+"删除"+"</a></li>";
+                 dlc=dlc+"<li><a  onclick=\"kcnrxz('"+dir+file+"')\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";
                  }
                  }
              }
@@ -731,8 +738,8 @@ public class TeaController {
      String a,b;
      if(readname(ff,2)[0].endsWith(".swf")){a = readname(ff,2)[1];b = readname(ff,2)[0];}else{ a = readname(ff,2)[0];b = readname(ff,2)[1];}
      b =term +"/"+collage+"/"+coursename+"/"+"课程大纲"+"/"+ b;
-     String ff2="../file/"+term +"/"+collage+"/"+coursename+"/"+"课程大纲/"+a;
-     s[0] = "<li><a href=\""+ff2+"\">"+a+"</a>&nbsp;<a  onclick=\"scfj()\">"+"删除"+"</a>&nbsp;<a  onclick=\"dgyl('"+b+"')\">"+"预览"+"</a>&nbsp;<a  onclick=\"gbdgyl()\">"+"关闭预览"+"</a>";
+     String ff2=term +"/"+collage+"/"+coursename+"/"+"课程大纲/"+a;
+     s[0] = "<li><a onclick=\"dgxz('"+ff2+"')\">"+a+"</a>&nbsp;<a  onclick=\"scfj()\">"+"删除"+"</a>&nbsp;<a  onclick=\"dgyl('"+b+"')\">"+"预览"+"</a>&nbsp;<a  onclick=\"gbdgyl()\">"+"关闭预览"+"</a>";
      s[0]= "<ol class=\"breadcrumb\" id=\"breadcour\"><p>​课程大纲附件，你可以点击下载,删除</p>"+s[0]+"</ol>";
      s[1]="1";
      return s;
@@ -777,7 +784,8 @@ public class TeaController {
   //课件删除
   @RequestMapping("teacher/kcsc")
   public @ResponseBody String[] kcsc(HttpServletRequest request,HttpServletResponse response){
-      String []a = new String[1];
+     System.out.println("课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除111");
+     String []a = new String[1];
      String sn=getCurrentUsername();
      Teacher tec = TeacherDao.getTeacherBySn(sn);
      String tec_sn= tec.getTeacherSn();
@@ -789,10 +797,18 @@ public class TeaController {
      String node1 = request.getParameter("node1");
      String node2 = request.getParameter("node2");
      String node3 = request.getParameter("node3");
-     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容";
-     ff = ff+"/"+node1+"/"+node2+"/"+node3+"/"; 
+     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"; 
+     if(!node2.equals("null")&&!node3.equals("null")){
+       ff = ff+"/"+node1+"/"+node2+"/"+node3+"/";
+     }else if(!node2.equals("null")&&node3.equals("null")){
+       ff = ff+"/"+node1+"/"+node2+"/";
+     }else  if(node2.equals("null")&&node3.equals("null")){
+        ff = ff+"/"+node1+"/";
+     }
+     
      String a1 = ff+filename;//要删除的文件 
 //     String a2 = ff+getFileNameNoEx(filename)+".swf";//判断是否有swf
+      System.out.println("a1="+a1);
      File f =new File(a1);
      if(f.exists()){//删除文件
             f.delete();
@@ -800,7 +816,8 @@ public class TeaController {
      }else{
        a[0] = "0";
      }
-     return a;    
+    
+     return a;   
   }
   
   
@@ -995,7 +1012,7 @@ public class TeaController {
       String []b = new String[4];
       b[0] = a;//作业要求
       b[1] = a2;//作业截至时间
-      b[2] = a3;
+      b[2] = a3;////starttime
       if(length==1){
            String a1 = readname(ff+"/"+1+"/", 1)[0];
            String ff2="../file/"+"homework"+"/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/"+1+"/";
@@ -1216,6 +1233,23 @@ public class TeaController {
                                                  headers, HttpStatus.CREATED);    
     }    
 
+    
+    
+      //下载当前班级的提交作业
+   @RequestMapping("teacher/downloadDG")    
+    public ResponseEntity<byte[]> downloadDG(HttpServletRequest request,HttpServletResponse response) throws IOException {  
+        String path = request.getParameter("temp");
+        String filename =path.substring(path.lastIndexOf("/"));
+        String compress = getFileFolder(request)+path;   
+        File file=new File(compress);  
+        HttpHeaders headers = new HttpHeaders();    
+        String fileName=new String(filename.getBytes("UTF-8"),"iso-8859-1");//为了解决中文名称乱码问题  
+        headers.setContentDispositionFormData("attachment", fileName);   
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);   
+        return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),    
+                                                 headers, HttpStatus.CREATED);    
+    } 
+    
     //教师下载作业后清楚临时文件
     @RequestMapping("teacher/clear")    
     public @ResponseBody String clear(HttpServletRequest request,HttpServletResponse response) throws IOException {  
@@ -1353,7 +1387,7 @@ public class TeaController {
     public String getFileFolder(HttpServletRequest request) {
         String path = this.getClass().getClassLoader().getResource("/").getPath();
         System.out.println(path);
-        path=path.replace("build/web/WEB-INF/classes/", "build/web/file/");
+        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/","lms/target/lms-1.0/file/");
         System.out.println(path);
         return path;        
     }  
