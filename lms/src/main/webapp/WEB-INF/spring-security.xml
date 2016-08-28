@@ -19,6 +19,7 @@
         <sec:intercept-url pattern="/file/uploadhomework/**" access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_DEAN') or hasRole('ROLE_TEACHER') or hasRole('ROLE_ADMIN')"/>                             
         <sec:logout logout-url="/logout" logout-success-url="/login"  invalidate-session="true" />
         <sec:form-login login-page="/login" authentication-failure-url="/login"/>
+        <sec:session-management invalid-session-url="/login" /><!--session超时返回登录页-->
     </sec:http>
 
     <bean id="userDetailsService" class="cn.edu.henu.rjxy.lms.impl.UserDetailsServiceImpl"></bean>
