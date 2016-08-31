@@ -1519,7 +1519,7 @@ div[id^="collapse-history"]>.history-wrap>.table-wrap{
     bottom: 0;
     width: 100%;
     z-index: 1000;
-    left: 0;
+    left: 15px;
     text-align: center;
 }
 

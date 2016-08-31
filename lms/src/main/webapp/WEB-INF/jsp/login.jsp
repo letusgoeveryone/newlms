@@ -56,7 +56,7 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-4" id="form-frame">
 
-                            <div style="padding:3.5em 2.5em 1.5em;">
+                            <div style="padding:10vh 2em 2em;">
                                 <!--<img src="images/logo-white.png" class="" alt="" style="margin:auto;display: block;" />-->
                             </div>
 
@@ -155,7 +155,7 @@
 
                 <script type="text/javascript">
                     $(document).ready(function() {
-                        if(top.location!=self.location){
+                        if(top.location!==self.location){
                             top.location = self.location;
                         }
                         var treeFrame = $(window).height();
@@ -171,7 +171,6 @@
                             'marginTop': 0.1 * treePosition,
                             'marginBottom': 0.1 * treePosition
                         });
-                        $("#lms_login_banner").carousel('cycle');
                     });
                     $(window).resize(function() {
                         var treeFrame = $(window).height();
@@ -200,7 +199,7 @@
                     //提交注册
                     function postsubmit() {
                         $("#yz")[0].innerHTML = "正在检查...请稍后...";
-                        if ($.trim($("#firstname").val()) == "") {
+                        if ($.trim($("#firstname").val()) === "") {
                             $("#yz")[0].innerHTML = "学号/工号不能为空";
                             return false;
                         }
@@ -208,7 +207,7 @@
 //                            $("#yz")[0].innerHTML = "密码不能为空";
 //                            return false;
 //                        }
-                        if ($.trim($("#checkcodeText").val()) == "") {
+                        if ($.trim($("#checkcodeText").val()) === "") {
                             $("#yz")[0].innerHTML = "验证码不能为空";
                             return false;
                         }
@@ -244,7 +243,7 @@
                         {
                             keynum = e.which;
                         }
-                        if (keynum == 13) {
+                        if (keynum === 13) {
                             postsubmit();
                         }
                     }

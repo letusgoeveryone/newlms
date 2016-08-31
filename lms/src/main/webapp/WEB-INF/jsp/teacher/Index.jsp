@@ -50,8 +50,7 @@
     </head>
     <body class="page-default tab-content" id='lms_teach'>
 
-        <section id="lms_main" class="tab-pane fade in active stage-image bg-center"
-                 style="background-image:url(<%=path%>/images/bg-for-tl.jpg);min-height:1500px;padding-bottom:100px;">
+        <section id="lms_main" class="tab-pane fade in active">
             
             <header class="header" id="tree-header">
                 <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
