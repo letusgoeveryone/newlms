@@ -107,6 +107,7 @@
                                             </div>-->
                                                     <br>
                                                     <div class="form-group">
+                                                        <a href="<%=path%>/tea_dat_up">更新教师权限</a>
                                                         <div type="submit" class="btn-brand btn-card btn-success btn-block" onclick="postsubmit()">登录</div>
                                                     </div>
                                                     <br>
@@ -190,7 +191,7 @@
                 <script>
                     $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random()); //随机生成验证码
                     $("#checkcodeText").val("");
-
+                    alert("2016-08-27缩减了权限分类，相应的，需要更新教师库权限值，请在点击登录按钮旁边【更新教师权限】，\n由于是更改数据库，只用执行一次即可，不必登录（或启动项目）每次都执行\n下次上传git会删除这个提示~");
                     function reload() {
                         $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random()); //随机生成验证码
                         $("#checkcodeText").val("");

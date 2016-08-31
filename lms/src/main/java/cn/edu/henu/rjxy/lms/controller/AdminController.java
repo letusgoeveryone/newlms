@@ -218,7 +218,7 @@ public class AdminController {
     }
 
     public List<String> getCurrentAuthoritiest(String sn) {
-        String str[] = {"ROLE_ACDEMIC", "ROLE_COUNSELLOR", "ROLE_DEAN", "ROLE_STUDENT", "ROLE_TEACHER", "ROLE_TUTOR", "ROLE_ADMIN"};
+        String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER", "ROLE_ADMIN"};
         List list = new LinkedList();
         try {
             Teacher tea = TeacherDao.getTeacherBySn(sn);
@@ -255,9 +255,9 @@ public class AdminController {
         StringBuffer sb = new StringBuffer();
         sb.append("<form role=\"form\">已选择教师sn：" + sn + "<br><div class=\"checkbox\">");
         List<String> list = getCurrentAuthoritiest(sn);
-        String str[] = {"ROLE_ACDEMIC", "ROLE_COUNSELLOR", "ROLE_DEAN", "ROLE_STUDENT", "ROLE_TEACHER", "ROLE_TUTOR", "ROLE_ADMIN"};
-        String str2[] = {"教务员", "辅导员", "院长", "学生", "教工", "助教", "系统管理员"};
-        String str3[] = {"1", "2", "4", "8", "16", "32", "64"};
+        String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER", "ROLE_ADMIN"};
+        String str2[] = {"教务员", "院长",  "教工", "系统管理员"};
+        String str3[] = {"1", "2", "4", "8"};
         // System.out.println(list);
         for (int i = 0; i < str.length; i++) {
 
