@@ -67,6 +67,8 @@ public class StuController {
         Student std=StudentDao.getStudentBySn(sn);
         String pw=request.getParameter("pw");
         String repw=request.getParameter("repw");
+        if (repw.matches("\\w{6,18}")) {
+             return "0";}
         if (!pw.equals(std.getStudentPwd().toLowerCase())) {
              return "1";}
         if (pw.equals(repw.toLowerCase())) {
@@ -87,12 +89,27 @@ public class StuController {
         String sex=request.getParameter("sex");
         String telnum=request.getParameter("telnum");
         String qqnum=request.getParameter("qqnum");
+        if (!name.matches("[\u4e00-\u9fa5]{2,4}")) {
+            return "姓名校验未通过！";
+        }
         std.setStudentName(name);
+        if (!idcard.matches("([0-9]{17}([0-9]|X))|([0-9]{15})") ){
+            return "身份证校验未通过！";
+        }       
         std.setStudentIdcard(idcard);
+        if (!grade.matches("\\d{4}") ){
+            return "年级校验未通过！";
+        } 
         std.setStudentGrade(Integer.valueOf(grade));
         std.setStudentCollege(college);
         std.setStudentSex(sex.equals("男"));
+        if (!telnum.matches("\\d{11}") ){
+            return "电话号码校验未通过！";
+        } 
         std.setStudentTel(telnum);
+        if (!qqnum.matches("\\d{5,10}") ){
+            return "QQ号码校验未通过！";
+        } 
         std.setStudentQq(qqnum);
         StudentDao.updateStudent(std);
         return "1";
