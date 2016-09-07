@@ -42,6 +42,7 @@ public class teacherregister_message {
             request.setAttribute("Errors", "你输入的验证码错误，请重新注册!");
             request.getRequestDispatcher("teacher_register").forward(request, response);
         }
+        session.removeAttribute("hccd");//使当前验证码失效，否则将导致一个验证码能成功注册多个账号。刘昱注        
         String teacher_sn = request.getParameter("idCard");//工号
         String teacher_name = request.getParameter("name1");//姓名
         String teacher_idcard = request.getParameter("myIDNum");//身份证 

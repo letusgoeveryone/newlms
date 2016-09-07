@@ -46,6 +46,7 @@ public class studentregister_message {
             request.setAttribute("Error", "你输入的验证码错误，请重新注册!");
             request.getRequestDispatcher("student_register").forward(request, response);
         }
+        session.removeAttribute("hccd");//使当前验证码失效，否则将导致一个验证码能成功注册多个账号。刘昱注
         Integer stu_sn = Integer.parseInt(request.getParameter("idCard"));//学号
         String stu_college = request.getParameter("Institute");//院系
         String stu_sex = request.getParameter("xingbie");//性别
