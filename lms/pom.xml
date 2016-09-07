@@ -581,7 +581,7 @@
                             <tasks>  
                                 <copy todir="target/classes/cn/edu/henu/rjxy/lms/model" overwrite="true">  
                                     <fileset dir="src/main/java/cn/edu/henu/rjxy/lms/model">  
-                                        <include name="**/*.hbm.xml" />  
+                                        <include name="**/*.*" />  
                                     </fileset>  
                                 </copy>  
                             </tasks>  
