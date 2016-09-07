@@ -64,8 +64,8 @@
                                 <div class="form-group form-group-label">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label class="floating-label" for="name1">姓名：</label>
-                                            <input type="text" id="name" name="name1" class="form-control" placeholder="请输入您的姓名" maxlength="16" onblur="verifyText('name', 'nameMsg');" onfocus="initMessage('nameMsg');" />
+                                            <label class="floating-label" for="name">姓名：</label>
+                                            <input type="text" id="name" name="name" class="form-control" placeholder="请输入您的姓名" maxlength="16" onblur="verifyText('name', 'nameMsg');" onfocus="initMessage('nameMsg');" />
                                         </div>
                                     </div>
                                     <span id="nameMsg" class="text-error"></span>

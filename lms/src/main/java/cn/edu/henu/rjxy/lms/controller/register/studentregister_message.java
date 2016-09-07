@@ -47,7 +47,7 @@ public class studentregister_message {
             request.getRequestDispatcher("student_register").forward(request, response);
         }
         Integer stu_sn = Integer.parseInt(request.getParameter("idCard"));//学号
-        String stu_college = request.getParameter("xueyuan");//院系
+        String stu_college = request.getParameter("Institute");//院系
         String stu_sex = request.getParameter("xingbie");//性别
         Integer stu_niji = Integer.parseInt(request.getParameter("niji"));// 年级
         String stuName = request.getParameter("name");//姓名
