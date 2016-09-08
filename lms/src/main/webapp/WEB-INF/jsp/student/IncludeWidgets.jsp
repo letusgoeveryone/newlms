@@ -8,25 +8,190 @@
         + request.getServerPort() + path + "/";
 %>
 <sec:authorize access="hasRole('ROLE_STUDENT') or hasRole('ROLE_ADMIN')">    
-    <!--模态框 模板-->
-    <!--
-    <div class="modal fade fix-modal-align" id="modal-" role="dialog">
-        <div class="modal-dialog  container">
-            <div class="modal-content">
-                <div class="modal-heading"></div>
-                <div class="modal-inner"></div>
-                <div class="modal-footer"></div>
-            </div>
-        </div>
-    </div>
-    -->
-    <!--<a class="btn" id="anchor-modal"></a>-->
-    <div class="modal fade" id="modal" role="dialog">
+    <!--模态框-->
+    
+    <div class="modal fade" id="modal-is" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-heading"></div>
                 <div class="modal-inner"></div>
-                <div class="modal-footer"></div>
+                <div class="modal-footer">
+                    <p class="text-right">
+                        <a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal" id="is-yes">Continue</a>
+                        <a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal" id="is-no">No</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="usettings" role="dialog">
+        <div class="modal-dialog" style="max-width: 960px;">
+            <div class="modal-content tab-content" >
+                
+                <nav class="tab-nav tab-nav-brand no-margin" hidden="">
+                    <ul class="nav nav-list nav-justified">
+                        <li >
+                            <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#uinfo">
+                                <span class="text-grey">个人设置</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#ucourses">
+                                <span class="text-grey">课程管理</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <div class="tab-pane fade row mg" id="ucourses" style="margin:0 1em 1em 1em ;">
+                    <nav class="tab-nav tab-nav-brand no-margin">
+                        <ul class="nav nav-list nav-justified">
+                            <li>
+                                <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#tab-course-selected">
+                                    <span class="text-grey">已选课程</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#tab-course-notpermit">
+                                    <span class="text-grey">待批准课程</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="waves-attach waves-light waves-effect"  href="<%=path%>/student/settings">
+                                    <span class="text-grey">选课<span class="icon mg-sm-left">open_in_new</span></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="tab-pane fade modal-inner no-padding" id="tab-course-selected">
+                        {{{OCourseTableHS}}}
+                    </div>
+                    <div class="tab-pane fade modal-inner no-padding" id="tab-course-notpermit">
+                        {{{ICourseTableHS}}}
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade row" id="uinfo" style="margin:0 1em 1em 1em ;">
+                    <div class="tab-content divider-right">
+                        <!--基础资料-->
+                        <div class="tab-pane fade" id="tab-personalInfo" >
+                            <form>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="sn"> 学号 </label>
+                                    <input class="form-control" id="sn" type="text" value="{{sn}}" disabled="">
+                                </div>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="name"> 姓名 </label>
+                                    <input class="form-control" id="name" type="text" value="{{name}}">
+                                    <div id="validMsg-name" hidden>请输入至少两个汉字</div>
+                                </div>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="ID"> 身份证 </label>
+                                    <input class="form-control" id="ID" type="text" value="{{ID}}">
+                                    <div id="validMsg-ID" hidden>您输入的身份证格式不正确</div>
+                                </div>
+                                <div class="form-group form-group-label">
+
+                                    <div class="radiobtn radiobtn-adv radio-inline">
+                                        <label for="boy">
+                                            <input class="access-hide form-control" id="boy" name="sex" type="radio">男生
+                                            <span class="radiobtn-circle" ></span><span class="radiobtn-circle-check" ></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="radiobtn radiobtn-adv radio-inline">
+                                        <label for="girl">
+                                            <input class="access-hide form-control" id="girl" name="sex" type="radio">女生
+                                            <span class="radiobtn-circle" ></span><span class="radiobtn-circle-check" ></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="college"> 学院 </label>
+                                    <select class="form-control" id="college" value="">
+                                        <option value="{{college}}"> {{college}} </option>
+                                        {{{schoolCollegeList}}}
+                                    </select>
+                                </div>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="grade"> 年级 </label>
+                                    <select class="form-control" id="grade" value="">
+                                        <option value="{{grade}}"> {{grade}} </option>
+                                        {{{schoolYearsList}}}
+                                    </select>
+                                </div>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="tel"> 联系方式 </label>
+                                    <input class="form-control" id="tel" type="text" value="{{tel}}">
+                                    <div id="validMsg-tel" hidden>请输入正确的手机号</div>
+                                </div>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="qq"> QQ </label>
+                                    <input class="form-control" id="qq" type="text" value="{{qq}}">
+                                    <div id="validMsg-qq" hidden>请输入正确QQ号</div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--密码设置-->
+                        <div class="tab-pane fade" id="tab-password">
+                            <form>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="oldPassword"> 原始密码 </label>
+                                    <input class="form-control" id="oldPassword" type="password">
+                                    <div id="validMsg-opw" hidden></div>
+                                </div>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="newPassword"> 新密码 </label>
+                                    <input class="form-control" id="newPassword" type="password" placeholder="密码最短为6位">
+                                    <div id="validMsg-npw" hidden></div>
+                                </div>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="newPasswordConfirm"> 确认密码  </label>
+                                    <input class="form-control" id="newPasswordConfirm" type="password">
+                                    <div id="validMsg-npwconfirm" hidden></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="uinfo-blur"></div>
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <img alt="" class="img-circle img-rounded img-pinfo" id="img-pinfo" src="<%=path%>/images/avatar.jpg" height="230" width="230">
+                                <a class="btn btn-flat text-link">
+                                    修改头像 <span class="icon icon-edit"></span>
+                                </a>
+                            </div>
+                            <div class="card-action">
+                                <div class="card-action-btn btn btn-block btn-flat btn-dashed disabled" id="submit-uinfo" data-submit="uinfo" >
+                                    提交修改
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="card no-padding">
+                        <div class="card-main">
+                            <nav class="tab-nav tab-nav-brand no-margin">
+                                <ul class="nav nav-list nav-justified">
+                                    <li class="active">
+                                        <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#tab-personalInfo">
+                                            <span class="text-grey">个人信息</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#tab-password">
+                                            <span class="text-grey">密码设置</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -60,67 +225,4 @@
     <!--单向信息传递 snackbar-->
     <div id="snackbar"></div>
     
-<!--    <div style="display: flex; padding-right: 15px;" aria-hidden="true" class="modal modal-va-middle fade modal-va-middle-show in" id="ui_dialog_example_alert" role="dialog" tabindex="-1">
-        <div class="modal-dialog modal-xs">
-            <div class="modal-content">
-                <div class="modal-inner">
-                    <p class="h5 margin-top-sm text-black-hint">Discard draft?</p>
-                </div>
-                <div class="modal-footer">
-                    <p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">Cancel</a><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">Discard</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div style="display: none;" aria-hidden="true" class="modal modal-va-middle fade" id="ui_dialog_example_alert_alt" role="dialog" tabindex="-1">
-        <div class="modal-dialog modal-xs">
-            <div class="modal-content">
-                <div class="modal-heading">
-                    <p class="modal-title">Use location service?</p>
-                </div>
-                <div class="modal-inner">
-                    <p class="h5 margin-top-sm text-black-hint">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="modal-footer">
-                    <p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">Disagree</a><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">Agree</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div style="display: none;" aria-hidden="true" class="modal modal-va-middle fade" id="ui_dialog_example_simple" role="dialog" tabindex="-1">
-        <div class="modal-dialog modal-xs">
-            <div class="modal-content">
-                <div class="modal-heading">
-                    <h2 class="modal-title">Set backup account</h2>
-                </div>
-                <ul class="nav">
-                    <li>
-                        <a class="margin-bottom-sm waves-attach waves-effect" data-dismiss="modal" href="javascript:void(0)">
-                            <div class="avatar avatar-inline margin-left-sm margin-right-sm">
-                                <img alt="alt text for username avatar" src="images/users/avatar-001.jpg">
-                            </div>
-                            <span class="margin-right-sm text-black">username</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="margin-bottom-sm waves-attach waves-effect" data-dismiss="modal" href="javascript:void(0)">
-                            <div class="avatar avatar-inline margin-left-sm margin-right-sm">
-                                <img alt="alt text for another_account avatar" src="images/users/avatar-001.jpg">
-                            </div>
-                            <span class="margin-right-sm text-black">another_account</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="margin-bottom-sm waves-attach waves-effect" data-dismiss="modal" href="javascript:void(0)">
-                            <div class="avatar avatar-inline margin-left-sm margin-right-sm">
-                                <span class="icon icon-lg text-black">add</span>
-                            </div>
-                            <span class="margin-right-sm text-black">add account</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    -->
 </sec:authorize>

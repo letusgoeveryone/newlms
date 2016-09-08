@@ -23,7 +23,7 @@
         <div class="menu-content container-fluid">
 
             <div class="row">
-                <nav class="col-md-3 fix-menu-nav">
+                <nav class="col-sm-3 fix-menu-nav">
                     <ul class="nav" id="anchor-vstatus">
                         <li class="sn-l">
                             <a class="sn-a" href="javascript:void(0)">
@@ -81,7 +81,7 @@
                     </ul>
                 </nav>
 
-                <div class='col-md-9 tab-content'>
+                <div class='col-sm-9 tab-content'>
                     <div id="valid-message"></div>
                     <!--基础资料-->
                     <div id="tab-personalInfo" class="tab-pane fade in active">

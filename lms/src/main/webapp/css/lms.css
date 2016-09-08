@@ -216,15 +216,15 @@ body[id^=lms] {
 
 /*修改默认 nav底部细线颜色*/
 
-.tab-nav .nav> li> a:after {
+.tab-nav-gold .nav> li> a:after {
     border-bottom-color: #ffff66;
 }
 
-.tab-nav .nav> .nav-brand> a:after {
+.tab-nav-gold .nav> .nav-brand> a:after {
     border-bottom-color: #333;
 }
 
-.tab-nav .tab-nav-indicator.animate {
+.tab-nav-gold .tab-nav-indicator.animate {
     background-color: #FFFF66;
 }
 
@@ -303,7 +303,7 @@ body[id^=lms] {
     .nav-drawer.nav-drawer-md.menu-right~ .content,
     .nav-drawer.nav-drawer-md.menu-right~ .footer,
     .nav-drawer.nav-drawer-md.menu-right~ .header {
-        margin-right: 0;
+        margin-right: 0 !important;
     }
 }
 
@@ -320,6 +320,10 @@ body[id^=lms] {
 =================================================================================
 */
 
+.mg-hd-top{
+    margin-top: 56px;
+}
+
 .lms-iframe {
     min-height: 2000px;
 }
@@ -329,14 +333,23 @@ body[id^=lms] {
     height: inherit;
 }
 
-.lms-course-index {}
+.lms-course-index {
+    padding: 1.2em 0 2em 0;
+    background: rgba(242, 242, 242, 0.89);
+    border-bottom: 1.2px solid lightgray;
+    border-top: 2px solid #003c72;
+}
+
+.lms-course-content{
+    margin: 1em auto;
+}
 
 #lms_card_bg {
-    background-color: #D24A3D;
+    background-color: #FFF;
     margin: 0 -15px 0;
     overflow-x: hidden;
     /*background: transparent url('../bg/low-poly-texture-24.png') fixed top center no-repeat;*/
-    /*box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.5);*/
+    /*box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.5);#D24A3D*/
 }
 
 #lms_card_bg .card {
@@ -345,7 +358,7 @@ body[id^=lms] {
 
 #lms_ci_area {
     background: #FFF;
-    box-shadow: 0px -1px 0px #E5E5E5, 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.24);
+    /*box-shadow: 0px -1px 0px #E5E5E5, 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.24);*/
 }
 
 .lms-header {
@@ -407,12 +420,16 @@ body[id^=lms] {
 
 .lms-course-card {
     padding-top: 3em;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .lms-course-card .card {
-    margin: 1em;
+    margin: .8em;
     padding: 1em;
-    width: 300px;
+    width: 280px;
     transition: all 900ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 }
 
@@ -437,17 +454,38 @@ body[id^=lms] {
     margin: 0;
     z-index: 10000;
     cursor: pointer;
-    background: transparent url('../bg/red.jpeg') scroll no-repeat;
+    background: transparent url('../images/bg.jpg') scroll no-repeat;
     /*background-color: #D24A3D;*/
     overflow-y: scroll;
 }
 
+#view-model{
+    background-color: #e3e3e3;
+}
+
+.view-model-gbtn{
+}
+
+.view-model-gbtn .btn{
+    border-top: 2px solid transparent;
+    margin-top: -1.5px;
+}
+.view-model-gbtn .btn:after{
+    border-top: 2px solid rgba(154,154,154,.36);
+    height: 38px;
+    margin-top: -1.5px;
+}
+.view-model-gbtn .active{
+    background-color: #fff;
+    border-radius: 0px;
+    border-top: 2px solid black;
+}
 
 /*.card-expand .card-inner .card-main .card-img .card-img-heading .card-action*/
 
 .card-expand .card-main {
     margin: auto;
-    margin-top: 35%;
+    margin-top: 10vh;
     display: block;
     max-width: 1170px;
     transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
@@ -880,6 +918,7 @@ body[id^=lms] {
 .header-logo,
 .header-text {
     line-height: 56px;
+    height: 55px;
 }
 
 .nav-drawer.nav-drawer-md {
@@ -931,6 +970,10 @@ body[id^=lms] {
 
 .main-content>.card>.card-main {
     padding-bottom: 5em;
+}
+
+#content-CourseOutline{
+    padding: 2em;
 }
 
 #content-CourseOutline h1 {
@@ -1009,7 +1052,7 @@ body[id^=lms] {
     z-index: 30;
 }
 
-#fix-thiscou-nav> ul> li> a {
+#fix-thiscou-nav  ul> li> a {
     padding: .5em !important;
     background-color: rgba(255, 255, 255, .5);
     box-shadow: 1px 0 2px rgba(0, 0, 0, .5);
@@ -1068,25 +1111,28 @@ a[href^='#nodes'],
 a[href^='#folder'] {
     display: inline-block;
     position: relative;
-    height: 135px;
+    height: 150px;
     width: 100px;
     margin: 15px;
     margin-left: 0;
     background-color: rgba(245, 245, 245, 0.31);
     padding: 15px;
     border-radius: 3px;
+    background: transparent;
 }
 
 a[href^='#nodes']:hover,
 a[href^='#folder']:hover {
-    background-color: whitesmoke;
+    background-color: rgba(211,211,211,0.1);
 }
 
-a[href^='#nodes'] .icon,
-a[href^='#folder'] .icon {
-    color: #fdefc0;
+a[href^="#nodes"] .icon, 
+a[href^="#folder"] .icon {
+    background-color: #fdefc0;
+    color: transparent;
+    border-radius: 2px;
+    margin: 0 0 13px 0;
 }
-
 a[href^="#nodes"] .folder-name,
 a[href^='#folder'] .folder-name {
     display: block;
@@ -1121,9 +1167,14 @@ a[href^='#folder'] .folder-name {
     padding: 0;
 }
 
-#content-Homework .card-action:first-child {
+#content-Homework .divider-b {
     padding: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#content-Homework .divider-t {
+    padding-bottom: 2em;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 #content-Homework .btn-flat::after {
@@ -1284,9 +1335,95 @@ a[href^='#folder'] .folder-name {
     left: 0;
 }
 
+.vcard-stat-count.icon {
+    font-size: 23px;
+    line-height: 25px;
+    top: 2.5px;
+    position: relative;
+}
 
 /*setting*/
-
+.modal-dialog {
+    margin: 30px auto;
+}
+#uinfo>.tab-content{
+    padding: 1em;
+    width: 400px;
+    float: left;
+    height: 640px;
+}
+#uinfo>.card{
+    padding: 1em;
+    width: 400px;
+    margin: auto;
+    margin-top: 3em;
+    position: relative;
+}
+#uinfo .card-main{
+    z-index: 101;
+}
+.uinfo-blur {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    /*background: url("../images/avatar.jpg") no-repeat;*/
+    display: block;
+    margin: -1em;
+    filter: blur(15px);
+    z-index: 100;
+    background-size: cover;
+}
+#uinfo>form{
+    height: 640px;
+}
+#img-pinfo{
+    display: block;
+    margin: 1em auto;
+    border-radius: 50%;
+    box-shadow: 0px 0px 1.5px rgba(0, 0, 0, 0.77);
+}
+#uinfo .btn-dashed{
+    border: 2px dashed grey;
+    width: 150px;
+}
+#uinfo .btn-dashed.disabled{
+    cursor: not-allowed;
+    border: 2px dashed grey;
+    width: 150px;
+}
+#uinfo .text-link{
+    color: grey;
+    width: 150px;
+    margin: auto;
+    display: block;
+}
+#uinfo .text-link:hover{
+    position: relative;
+    color: #EF5350;
+}
+#uinfo .text-link .icon-edit{
+    position: absolute;
+    top: 12px;
+    margin: 0 6px;
+}
+#uinfo .text-link:hover .icon-edit:after{
+    content: "edit";
+}
+#uinfo .card-action-btn{
+    margin: 15px auto 6px auto;
+}
+#uinfo .card .active {
+    background-color: #212121;
+}
+#uinfo .text-grey:hover{
+    color: #212121 !important;
+}
+#uinfo .active .text-grey{
+    color: #fff !important;
+}
+#ucourses .tab-pane {
+    margin-top: 4em;
+}
 #usettings .menu-scroll {
     width: 80%;
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
@@ -1336,11 +1473,11 @@ a[href^='#folder'] .folder-name {
     margin-top: 5em;
 }
 
-#tab-personalInfo>form,
+/*#tab-personalInfo>form,
 #tab-password>form {
     width: 500px;
     margin: auto;
-}
+}*/
 
 #valid-message{
     width: 300px;
@@ -1432,6 +1569,30 @@ div[id^="validMsg"] {
 }
 
 
+#lms_stu_cou tbody>tr:first-child>td:first-child {
+    background: whitesmoke;
+}
+
+#lms_stu_cou .table td,
+#lms_stu_cou .table th {
+    border: 1px solid #dadada;
+    vertical-align: middle;
+    text-align: left;
+}
+
+#lms_stu_cou .table td>a {
+    font-size: 14px;
+    line-height: 20px;
+    margin: -13px -16px -14px;
+    padding: 13px 16px 14px;
+    width: 100%;
+    display: block;
+}
+
+#lms_stu_cou .table td>a:hover {
+    cursor: pointer;
+}
+
 /*文件上传*/
 
 #uploaded-area td,
@@ -1439,11 +1600,19 @@ div[id^="validMsg"] {
     border: 1px solid #dadada;
     vertical-align: middle;
     text-align: left;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#uploaded-area td:hover {
+    overflow: unset !important;
 }
 
-
 /*作业编辑*/
-
+.enhidden{
+    display: none !important;
+}
 .btn-edit,
 .btn-looks,
 .btn-submit,
@@ -1473,7 +1642,7 @@ div[id^="validMsg"] {
 }
 
 .history-divider {
-    border-top: 5px dashed rgb(223, 223, 223);
+    border-top: 1px dashed rgb(223, 223, 223);
     padding: 1em 0;
     margin: 5em 0;
     color: lightgray;
@@ -1489,6 +1658,13 @@ div[id^="collapse-history"]>.history-wrap>.content-area,
 div[id^="collapse-history"]>.history-wrap>.table-wrap{
     margin-left: 8px;
 }
+
+/* */
+#ucourses .tab-content{
+    border-radius: 2.5px;
+    padding: 4em;
+}
+
 /*  &2.5 登录/注册 */
 
 
@@ -1865,6 +2041,10 @@ div [ class^="btn-"] {
     color: #333;
 }
 
+.border-bottom-divider{
+    border-bottom: 2px solid grey;
+}
+
 .box-control {
     height: 100%;
     width: 100%;
@@ -1885,6 +2065,21 @@ div [ class^="btn-"] {
     padding-right: 1em;
 }
 
+.no-padding{
+    padding: 0 !important;
+}
+.no-margin{
+    margin: 0 !important; 
+}
+.mg{
+    margin: 1em;
+}
+.mg-bm{
+    margin-bottom: 1em;
+}
+.pd-bm{
+    padding-bottom: 1em;
+}
 .text-grey {
     color: #B6B6B6 !important;
 }
@@ -1982,6 +2177,11 @@ a[class *=text-grey]:hover {
     margin-right: 1em !important;
 }
 
+.mg-sm-left{
+
+    margin-left: 1em !important;
+}
+
 .pd-md-top {
     padding-top: 100px !important;
 }
@@ -2056,11 +2256,12 @@ a[class *=text-grey]:hover {
 
 /*修复编辑器*/
 
-.lms-editor {
+#lms-editor {
     min-height: 500px;
-    padding: 1em 3em 3em 2em;
+    padding: 1em 3em 4em 2em;
+    border: 2px dashed grey;
+    margin: 1em auto;
     position: relative;
-    margin-top: -2em;
 }
 
 .mce-floatpanel {
@@ -2074,7 +2275,6 @@ a[class *=text-grey]:hover {
 
 
 /*修复 Material框架缺失Bootstrap container-fluid类  的问题*/
-
 .container-fluid {
     padding-right: 15px;
     padding-left: 15px;

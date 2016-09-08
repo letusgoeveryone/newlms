@@ -16,7 +16,12 @@
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
         <title>教务系统 |　学生</title>
 
+        <link href="<%=path%>/css/nprogress.css" rel="stylesheet" />
+        <script src="<%=path%>/js/nprogress.js"  ></script>
+        <script>NProgress.start();</script>
+        
         <!-- css -->
+
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" type="text/css"/>
@@ -24,17 +29,16 @@
         <script src="<%=path%>/js/jquery.min.js"></script>
         <script src="<%=path%>/js/vue.js"></script>
         <script src="<%=path%>/js/md5.js" type="text/javascript"></script>
-        <style>
-            
-        </style>
+        
     </head>
     <body class="page-brand container-full" id="lms_stu">
-
+        <script>NProgress.set(0.4);</script>
         <!--aside -->
         <aside id="ubox" class="menu menu-right nav-drawer nav-drawer-md" >
             <div class="menu-scroll">
                 <div class="menu-content">
-                    <div class="menu-logo" href="javascript:void(0)">个人面板</div>
+                    <div class="menu-logo" href="javascript:void(0)">个人面板 
+                    </div>
                     <div class="vcard">
 
                         <div class="vcard-avatar-wrapper">
@@ -49,7 +53,7 @@
                         </div>
 
                         <div class="user-profile-edit">
-                            <a data-toggle="tab" href="#tab-personalInfo">编辑个人信息 <span class="icon">edit</span></a>
+                            <a data-toggle="tab" href="#tab-personalInfo">编辑个人名片 <span class="icon">edit</span></a>
 
                         </div>
 
@@ -73,22 +77,26 @@
                                 <strong class="vcard-stat-count">63</strong>
                                 <span class="text-muted">未完成作业</span>
                             </a>-->
-                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selected">
-                                <strong class="vcard-stat-count">{{numOCourse}}</strong>
-                                <span class="text-muted">已选课程</span>
-                            </a>
-                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selectable">
-                                <strong class="vcard-stat-count">{{numXCourse}}</strong>
-                                <span class="text-muted">可选课程</span>
-                            </a>
 <!--                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-permit">
                                 <strong class="vcard-stat-count">10</strong>
                                 <span class="text-muted">已批准课程</span>
                             </a>-->
-                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-notpermit">
+                            <!--tab-news-->
+                            <a class="vcard-stat" data-toggle="tab"  href="#">
                                 <strong class="vcard-stat-count">{{numICourse}}</strong>
-                                <span class="text-muted">待批准课程</span>
+                                <span class="text-muted">消息盒子</span>
                             </a>
+                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selected">
+                                <strong class="vcard-stat-count icon">person</strong>
+                                <span class="text-muted">个人中心</span>
+                            </a>
+                            <a class="vcard-stat" href="student/courses">
+                                <strong class="vcard-stat-count icon">open_in_new</strong>
+                                <span class="text-muted">选课系统</span>
+                            </a>
+                        </div>
+                        <div>
+                            
                         </div>
                         <!--个人状态 X-->
 
@@ -101,7 +109,7 @@
         <header class="header header-brand header-waterfall ui-header">
             <ul class="nav nav-list pull-left">
                 <li>
-                    <a href="javascript:void(0)">
+                    <a href="<%=path%>/student">
                         <span class="icon icon-lg">home</span>
                     </a>
                 </li>
@@ -110,7 +118,7 @@
             <ul class="nav nav-list pull-right">
                 <li>
                     <a data-toggle="menu" href="#usettings" id="anchor-menu" onclick="toggleUserSettings()">
-                        <span class="icon icon-lg">settings</span>
+                        <span class="icon icon-lg">menu</span>
                     </a>
                 </li>
             </ul>
@@ -128,17 +136,12 @@
                 <p>河南大学</p>
             </div>
         </footer>
-    
-        <div class="menu menu-left" id="usettings">
-            <jsp:include page="../student/IncludeSetting.jsp" />
-        </div>
-    
-        <div>
-            <jsp:include page="../student/IncludeWidgets.jsp" />
-        </div>
+        
+        <!--widgets-->
+        <jsp:include page="../student/IncludeWidgets.jsp" />
         
         <!--scrollUp-->
-        <div class="fbtn-container" id="scrollUp" hidden>
+        <div class="fbtn-container" id="scrollUp">
             <div class="fbtn-inner">
                 <a class="fbtn fbtn-brand waves-attach waves-circle">
                     <span class="fbtn-text fbtn-text-left">返回顶部</span>
@@ -146,19 +149,20 @@
                 </a>
             </div>
         </div>
-
-
-
+        
         <!-- js -->
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-        <link href="<%=path%>/uploadify/uploadify.css" rel="stylesheet" type="text/css"/>
-        <script src="<%=path%>/uploadify/jquery.uploadify.js" type="text/javascript"></script>
+        <script>NProgress.set(0.7);</script>
         <script src="<%=path%>/js/api.json.student.js" type="text/javascript"></script>
+        <script>var pluginMasonry = 0;</script>
         <script src="<%=path%>/js/tinymce/tinymce.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
+        <link href="<%=path%>/uploadify/uploadify.css" rel="stylesheet" type="text/css"/>
+        <script src="<%=path%>/uploadify/jquery.uploadify.js" type="text/javascript"></script>
         <!--<script src="http://open.iciba.com/huaci/huaci.js"></script>-->
         <script>
+            //文件上传 初始化
             $(function () {
                 $("#uploadify").uploadify({
                     'uploader': '<%=path%>/student/zyupload100.do;jsessionid=<%=sessionid%>?Func=uploadwallpaper2Dfs', //************ action **************
@@ -191,6 +195,142 @@
 
                 });
             });
-    </script>
+            //编辑器 初始化
+            
+            NProgress.set(0.9); 
+            tinymce.init({
+                mode : "exact",
+                selector: '#lms-editor',
+                fixed_toolbar_container: 'body',
+                theme: 'inlite',
+                language: 'zh_CN',
+                inline: true,
+                plugins: [
+                    'advlist autolink autosave code link image lists charmap codesample hr anchor',
+                    'searchreplace visualchars insertdatetime media nonbreaking',
+                    'save table contextmenu directionality emoticons template paste preview textcolor textpattern visualblocks'
+                ],
+                insert_toolbar: 'h1 h2 h3 hr bullist numlist outdent indent  blockquote quickimage codesample insertdatetime template | removeformat',
+                selection_toolbar: 'bold italic underline subscript superscript textcolor forecolor backcolor strikethrough | alignleft aligncenter alignright alignjustify  outdent indent | link h1 h2 h3 blockquote codesample media | removeformat | ',
+                contextmenu: 'image media codesample | charmap | link anchor | inserttable | cell row column deletetable | visualblocks preview',
+                insertdatetime_formats: ["%H:%M:%S %Y-%m-%d", "%H:%M:%S", "%Y-%m-%d", "%I:%M:%S %p", "%D"],
+                templates: [
+                    {title: 'Some title 1', description: 'Some desc 1', content: 'My content'},
+                    {title: 'Some title 2', description: 'Some desc 2', url: 'development.html'}
+                ],
+                textpattern_patterns: [
+                    {start: '*', end: '*', format: 'italic'},
+                    {start: '**', end: '**', format: 'bold'},
+                    {start: '#', format: 'h1'},
+                    {start: '##', format: 'h2'},
+                    {start: '###', format: 'h3'},
+                    {start: '####', format: 'h4'},
+                    {start: '#####', format: 'h5'},
+                    {start: '######', format: 'h6'},
+                    {start: '>_ ', format: 'blockquote'},
+                    {start: '1. ', cmd: 'InsertOrderedList'},
+                    {start: '* ', cmd: 'InsertUnorderedList'},
+                    {start: '- ', cmd: 'InsertUnorderedList'}
+                ],
+                media_live_embeds: true
+
+            });
+            NProgress.done(true);
+            
+            // 执行!
+            initPage();
+
+            //作业ID 监听器
+            $('a[data-hid]').click(function(){
+                NProgress.start();
+                var hid = $(this).attr('data-hid');
+                var isDone = $(this).attr('data-status') === true ? true : false;
+
+                //
+                if (ThisCourse[0].hid === 0 || (hid !== ThisCourse[0].hid) || (isDone)){
+                    refreshHomeworkArea(hid);
+                }
+
+                var content = tinymce.get('lms-editor').getContent({
+                    format: 'raw'
+                });
+
+                console.log(hid);
+                NProgress.done();
+
+            });
+
+            // 附件 监听器
+            $('#uploadify-o').click(function() {
+                $('#uploadify').uploadify("settings", "formData", {
+                    'scid': ThisCourse[0].scid,
+                    'homeworkid': ThisCourse[0].hid
+                });
+                $('#uploadify').uploadify('upload', '*');
+                console.log('#btn-upload-' + ThisCourse[0].hid);
+            });
+            $('#uploadify-s').click(function() {
+                $('#uploadify').uploadify('stop', '*');
+            });
+            $('#uploadify-c').click(function() {
+                $('#uploadify').uploadify('cancel', '*');
+            });
+
+
+            // 作业提交 监听器
+            $('#submit-homework').click(function(){
+                NProgress.start();
+                submitHomework(ThisCourse[0].hid);
+                NProgress.done();
+            });
+
+            // 个人信息 监听器
+            $('a[href="#tab-personalInfo"]').click(function(){
+
+                $('#submit-uinfo').attr("data-submit","uinfo");
+                console.log($('#submit-uinfo').attr('data-submit'));
+                $('.form-control').blur(function(){
+                    if(CheckValidation()){
+                        $('#submit-uinfo').removeClass('disabled');
+                    }else{
+                        $('#submit-uinfo').addClass('disabled');
+                    };
+                });
+
+                $('#submit-uinfo').addClass('disabled');
+            });
+            // 个人密码 监听器
+            $('a[href="#tab-password"]').click(function(){
+                $("#oldPassword").val("");
+                $("#newPassword").val("");
+                $("#newPasswordConfirm").val("");
+                $('#submit-uinfo').attr("data-submit","upassword");
+                console.log($('#submit-uinfo').attr('data-submit'));
+                $('.form-control').blur(function () {
+                    if (checkPassword()) {
+                        $('#submit-uinfo').removeClass('disabled');
+                    }else{
+                        $('#submit-uinfo').addClass('disabled');
+                    };
+                });
+
+                $('#submit-uinfo').addClass('disabled');
+            });
+
+            //submit 按钮 监听器
+            $('#submit-uinfo').click(function(){
+                var status = $(this).hasClass('disabled') === true ? false : true ;
+                var method = $(this).attr('data-submit');
+
+                console.log(status + " | " + method);
+                if (status && (method === "uinfo")) {
+                    updataPersonalInfo();
+                } else if(status && (method === "upassword")){
+                    console.log(status + " | " + method);
+                    updataPassword();
+                }
+
+            });
+        </script>
     </body>
 </html>

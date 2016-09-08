@@ -276,6 +276,11 @@ public class StuController {
     public String stu_index(HttpServletRequest request, HttpServletResponse response) {
 	return "student/Index";
     }
+    //学生首页
+    @RequestMapping("/student/courses")
+    public String stuSettings(HttpServletRequest request, HttpServletResponse response) {
+        return "student/Courses";
+    }
     //取消选课处理
     @RequestMapping("/student/cancelcourse")
     public @ResponseBody  String stuCancelCourse(HttpServletRequest request, HttpServletResponse response) {

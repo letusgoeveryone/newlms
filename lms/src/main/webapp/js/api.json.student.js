@@ -59,9 +59,8 @@ var StudentAPI = {
      * @type Array
      */
     ThisCourse: [{
-            scid: 0,
-            hid: 0,
-            obj: null
+            scid: 0, obj: null,
+            hid: 0, hobj: null
         },
 
         {
@@ -120,12 +119,12 @@ var StudentAPI = {
          */
         uInfo: [
 
-            "student/getpersoninfo",        //[0] 
-            "student/updatepersoninfo",     //[1]  
-            "student/updatepassword",       //[2]
-            "student/getselectcourse",      //[3] 
-            "student/addnewcourse",         //[4] 
-            "student/getselectingcourse"    //[5] 
+            "/lms/student/getpersoninfo",        //[0] 
+            "/lms/student/updatepersoninfo",     //[1]  
+            "/lms/student/updatepassword",       //[2]
+            "/lms/student/getselectcourse",      //[3] 
+            "/lms/student/addnewcourse",         //[4] 
+            "/lms/student/getselectingcourse"    //[5] 
         ],
 
         /**
@@ -142,12 +141,12 @@ var StudentAPI = {
          */
         cInfo: [
 
-            "student/stu_course",           //[0]  
-            "student/kcgs",                 //[1]  
-            "student/stu_course_homework",  //[2] 
-            "student/courdir",              //[3]
-            "student/resourcedir",          //[4]
-            "student/dohomework"            //[5]
+            "/lms/student/stu_course",           //[0]  
+            "/lms/student/kcgs",                 //[1]  
+            "/lms/student/stu_course_homework",  //[2] 
+            "/lms/student/courdir",              //[3]
+            "/lms/student/resourcedir",          //[4]
+            "/lms/student/dohomework"            //[5]
         ],
 
         /**
@@ -161,9 +160,9 @@ var StudentAPI = {
          */
         cOperate: [
 
-            "student/subselectcourse",      //[0] 
-            "student/cancelcourse",         //[1] 
-            "student/quitcourse"            //[2] 
+            "/lms/student/subselectcourse",      //[0] 
+            "/lms/student/cancelcourse",         //[1] 
+            "/lms/student/quitcourse"            //[2] 
         ],
         
         /**
@@ -348,6 +347,7 @@ var StudentAPI = {
      
      */
     initPersnalCourseInfo: function(path) {
+        console.log("init persnal course info...");
         if (path === undefined ? true : false) {
             path = [
                 StudentAPI.Path.uInfo[3],
@@ -359,6 +359,7 @@ var StudentAPI = {
         };
 
         //初始化 已选课程列的表树
+        console.log("init 已选课程列的表树 info...");
         $.ajax({
             url: path[0],
             type: 'get',
@@ -373,6 +374,7 @@ var StudentAPI = {
             }
         });
 
+        console.log("init 可选课程的列表树 info...");
         //初始化 可选课程的列表树
         $.ajax({
             url: path[1],
@@ -388,6 +390,7 @@ var StudentAPI = {
         });
 
         //初始化 待批准课程的列表树
+        console.log("init 待批准课程的列表树 info...");
         $.ajax({
             url: path[2],
             type: 'get',
@@ -403,18 +406,21 @@ var StudentAPI = {
         });
 
         //初始化 未批准课程的列表树
-        //        $.ajax({
-        //            url: path[3],
-        //            type: 'get',
-        //            async: false,
-        //            dataType: 'json',
-        //            success: function (data) {
-        //                StudentAPI.unratifiedCourseDS = data;
-        //            },
-        //            error: function () {
-        //                alert("数据传输失败 ！");
-        //            }
-        //        });
+//        console.log("init 未批准课程的列表树 info...");
+//        $.ajax({
+//            url: path[3],
+//            type: 'get',
+//            async: false,
+//            dataType: 'json',
+//            success: function (data) {
+//                StudentAPI.unratifiedCourseDS = data;
+//            },
+//            error: function () {
+//                alert("数据传输失败 ！");
+//            }
+//        });
+
+        console.log("init has done ! ");
     },
     /**
      * 解析相关数据结构
@@ -448,6 +454,10 @@ var StudentAPI = {
                     _body = '',
                     _foot = '</table>',
                     _o = StudentAPI.selectedCourseDS;
+                if(_o.length === 0){
+                    _body = '<tbody><tr><td  class="text-indianred text-blod" colspan="4">暂无已选课程</td></tr></tbody>';
+                    return _head + _body + _foot;
+                }
                 for (var i = 0; i < _o.length; i++) {
 
                     var hs = '<tbody><tr><td class="text-indianred text-blod">' +
@@ -563,6 +573,10 @@ var StudentAPI = {
                     _body = '',
                     _foot = '</table>',
                     _o = StudentAPI.selectingCourseDS;
+                if(_o.length === 0){
+                    _body = '<tbody><tr><td  class="text-indianred text-blod"  colspan="4">暂无待批准课程</td></tr></tbody>';
+                    return _head + _body + _foot;
+                }
                 for (var i = 0; i < _o.length; i++) {
 
                     var hs = '<tr><td  class="text-indianred text-blod">' +
@@ -766,7 +780,22 @@ var StudentAPI = {
         },
 
         Homework: {
-
+            updataJSON: function(scid){
+                $.ajax({
+                    url: StudentAPI.Path.cInfo[2] + "?scid=" + scid,
+                    type: 'get',
+                    async: false,
+                    dataType: 'json',
+                    success: function(data) {
+                        StudentAPI.OCidIsCourse.homeworkDS = StudentAPI.analyzeDS.Homework.getJSON(data, scid);
+                        statusCode = 1;
+                    },
+                    error: function() {
+                        alert("数据[作业]传输失败 ！");
+                        statusCode = -1;
+                    }
+                });
+            },
             /**
              * 数据结构:
              * <br> Myattachment    我的附件 myATT
@@ -792,28 +821,28 @@ var StudentAPI = {
 
                 for (var i = 0; i < data.length; i++) {
                     var xtime = new Date(data[i].deadline);
-                    var detail;
+//                    var detail;
                     if ((xtime - new Date()) > 0) {
                         _deadline = true;
                     } else {
                         _deadline = false;
                     }
                     if (data[i].status === "未提交" && _deadline) {
-                        detail = StudentAPI.analyzeDS.Homework.getDetail(scid, data[i].homeworkid);
                         _i.push(data[i]);
-                        _i[x].detail = detail.Hwhelp;
-                        _i[x].attachment = detail.Hwattachment;
-                        _i[x].content = detail.HwtextWork;
-                        _i[x].myAttachment = detail.Myattachment;
+//                        detail = StudentAPI.analyzeDS.Homework.getDetail(scid, data[i].homeworkid);
+//                        _i[x].detail = detail.Hwhelp;
+//                        _i[x].attachment = detail.Hwattachment;
+//                        _i[x].content = detail.HwtextWork;
+//                        _i[x].myAttachment = detail.Myattachment;
                         x++;
 
                     } else if (data[i].status === "已提交") {
-                        detail = StudentAPI.analyzeDS.Homework.getDetail(scid, data[i].homeworkid);
                         _o.push(data[i]);
-                        _o[y].detail = detail.Hwhelp;
-                        _o[y].attachment = detail.Hwattachment;
-                        _o[y].content = detail.HwtextWork;
-                        _o[y].myAttachment = detail.Myattachment;
+//                        detail = StudentAPI.analyzeDS.Homework.getDetail(scid, data[i].homeworkid);
+//                        _o[y].detail = detail.Hwhelp;
+//                        _o[y].attachment = detail.Hwattachment;
+//                        _o[y].content = detail.HwtextWork;
+//                        _o[y].myAttachment = detail.Myattachment;
                         y++;
                     } else {
                         _x.push(data[i]);
@@ -864,37 +893,17 @@ var StudentAPI = {
                 });
                 return detail;
             },
-            //<div class="card"><div class="card-main"><div class="card-action"><div class="card-action-btn btn btn-flat pull-left homework-name">作业</div>
-            //
-            //
-            //
-            //            <a class="card-action-btn btn btn-flat pull-right"><span><span class="icon avatar avatar-sm">cloud_upload</span></span></a>
-            //            <a class="card-action-btn btn btn-flat pull-right"><span><span class="icon avatar avatar-sm">attachment</span></span></a>
-            //            <a class="collapse card-action-btn btn btn-flat pull-right" data-toggle="collapse" href="#collapse-homework-id"><span><span class="icon avatar avatar-sm">edit</span></span></a>
-            //
-            //        </div>
-            //
-            //        <div class="card-inner"><title class="btn btn-flat text-blod text-indianred">作业要求</title><p class="homework-info"></p>
-            //
-            //            <title class="btn btn-flat text-blod text-indianred">截止日期:</title><p class="homework-info"></p></div>
-            //
-            //        <div class="card-inner collapsible-region collapse" id="collapse-homework-id"> <div id="demo" class="editor-area"></div></div>
-            //
-            //        <div class="card-action"><div class="card-action-btn btn btn-flat attachment-list"><span class="icon">attachment</span> 附件列表</div></div></div></div>
-
+            
             getDoneHS: function() {
                 var _o = StudentAPI.OCidIsCourse.homeworkDS.o;
                 if (_o.length === 0) return '<p>暂无已提交作业<p>';
                 var hs = '';
                 for (var i = 0; i < _o.length; i++) {
-                    hs += '<div class="card"><div class="card-main"><div class="card-action"><div class="card-action-btn btn btn-flat pull-left homework-name">' + _o[i].title + '</div>' +
-                        '<a title="提交作业" class="btn-submit btn btn-flat pull-right" onclick="submitHomework(' + _o[i].homeworkid + ')"><span><span class="icon avatar avatar-sm">cloud_upload</span></span></a>' +
-                        '<a title="附件" class="btn-upload btn btn-flat pull-right" onclick="updataByThisHid(' + _o[i].homeworkid + ')" href="#modal-uploadify" data-toggle="modal" id="btn-upload-' + _o[i].homeworkid + '"><span><span class="icon avatar avatar-sm">attachment</span></span></a>' +
-                        '<a title="编辑" class="btn-edit collapse btn btn-flat pull-right" data-toggle="collapse" href="#collapse-homework-' + _o[i].homeworkid + '"><span><span class="icon avatar avatar-sm">edit</span></span></a>' +
-                        '</div><div class="card-inner"><title class="btn btn-flat text-blod text-indianred">作业要求</title><p class="homework-info">' + _o[i].detail + '</p>' +
+                    hs += '<div class="card"><div class="card-main"><div class="card-action divider-b"><div class="card-action-btn btn btn-flat pull-left homework-name">' + _o[i].title + '</div>' +
+                        '<a title="编辑" class="btn-edit btn btn-flat pull-right" data-toggle="tab" href="#tab-homework-editor" data-status="true" data-hid="' + _o[i].homeworkid + '" ><span><span class="icon avatar avatar-sm">edit</span></span></a>' +
+                        '</div><div class="card-inner">' +
                         '<title class="btn btn-flat text-blod text-indianred">截止日期:</title><p class="homework-info">' + _o[i].deadline + '</p></div>' +
-                        '<div class="card-inner collapsible-region collapse" id="collapse-homework-' + _o[i].homeworkid + '"> <div id="editor-' + _o[i].homeworkid + '" class="editor-area">' + _o[i].content + '</div></div>' +
-                        '<div class="card-action"><div class="card-action-btn btn btn-flat attachment-list"><span class="icon">attachment</span> 附件列表</div></div></div></div>';
+                        '</div></div>';
                 }
                 return hs;
             },
@@ -904,14 +913,11 @@ var StudentAPI = {
                 if (_i.length === 0) return '<p>暂无需提交作业<p>';
                 var hs = '';
                 for (var i = 0; i < _i.length; i++) {
-                    hs += '<div class="card"><div class="card-main"><div class="card-action"><div class="card-action-btn btn btn-flat pull-left homework-name">' + _i[i].title + '</div>' +
-                        '<a title="重新提交作业" class="btn-submit btn btn-flat pull-right" onclick="submitHomework(' + _i[i].homeworkid + ')"><span><span class="icon avatar avatar-sm">cloud_upload</span></span></a>' +
-                        '<a title="附件" class="btn-upload btn btn-flat pull-right" onclick="updataByThisHid(' + _i[i].homeworkid + ')" href="#modal-uploadify" data-toggle="modal" id="btn-upload-' + _i[i].homeworkid + '"><span><span class="icon avatar avatar-sm">attachment</span></span></a>' +
-                        '<a title="编辑" class="btn-edit collapse btn btn-flat pull-right" data-toggle="collapse" href="#collapse-homework-' + _i[i].homeworkid + '"><span><span class="icon avatar avatar-sm">edit</span></span></a>' +
-                        '</div><div class="card-inner"><title class="btn btn-flat text-blod text-indianred">作业要求</title><p class="homework-info">' + _i[i].detail + '</p>' +
+                    hs += '<div class="card"><div class="card-main"><div class="card-action divider-b"><div class="card-action-btn btn btn-flat pull-left homework-name">' + _i[i].title + '</div>' +
+                        '<a title="编辑" class="btn-edit collapse btn btn-flat pull-right" data-toggle="tab" href="#tab-homework-editor" data-status="false" data-hid="' + _i[i].homeworkid + '" ><span><span class="icon avatar avatar-sm">edit</span></span></a>' +
+                        '</div><div class="card-inner">' +
                         '<title class="btn btn-flat text-blod text-indianred">截止日期:</title><p class="homework-info">' + _i[i].deadline + '</p></div>' +
-                        '<div class="card-inner collapsible-region collapse" id="collapse-homework-' + _i[i].homeworkid + '"> <div id="editor-' + _i[i].homeworkid + '" class="editor-area"></div></div>' +
-                        '<div class="card-action"><div class="card-action-btn btn btn-flat attachment-list"><span class="icon">attachment</span> 附件列表</div></div></div></div>';
+                        '</div></div>';
                 }
                 return hs;
             },
@@ -929,6 +935,7 @@ var StudentAPI = {
 
                 return hs;
             },
+            
             getMissDetailHS: function(scid, hid) {
                 var detail = StudentAPI.analyzeDS.Homework.getDetail(scid, hid);
                 console.log(detail);
@@ -1196,7 +1203,6 @@ var StudentAPI = {
                             alive: 10000,
                             content: '作业附件删除成功 <a data-dismiss="snackbar">我知道了</a>'
                         });
-                        updataAttachmentArea();
                     } else {
                         alert("作业附件删除失败！ 可能原因：作业已过期或文件不存在");
                     }
@@ -1215,6 +1221,7 @@ var StudentAPI = {
             });
             $('#uploadify').uploadify('upload', '*');
         },
+        
         getAttachmentList: function(scid, homeworkid) {
             $.ajax({
                 url: StudentAPI.Path.fOperate[2] + '?scid=' + scid + '&homeworkid=' + homeworkid,
@@ -1230,7 +1237,9 @@ var StudentAPI = {
             });
             return true;
         },
+        
         submit: function(scid, homeworkid, hs) {
+            var status = 0;
             $.ajax({
                 url: StudentAPI.Path.fOperate[3] + '?scid=' + scid + '&homeworkid=' + homeworkid,
                 type: 'POST',
@@ -1238,23 +1247,26 @@ var StudentAPI = {
                     HwEitor: hs
                 },
                 cache: false,
-                success: function(status) {
-                    if (status === "1") {
+                success: function(data) {
+                    if (data === "1") {
                         $('#snackbar').snackbar({
                             alive: 10000,
                             content: '作业提交成功 <a data-dismiss="snackbar">我知道了</a>'
                         });
-                        console.log(status);
+                        status = data;
                     } else {
-                        console.log(status);
                         alert("作业提交失败！ 可能原因：作业已不存在");
+                        status = data;
                     }
 
                 },
                 error: function() {
+                    status = -1;
                     alert("未知错误");
                 }
             });
+            console.log(status);
+            return status;
         }
     },
     operateResource: {
@@ -1273,7 +1285,7 @@ var StudentAPI = {
 };
 
 //定义全局变量
-
+var statusCode = 0;
 /**
  * 对个人面板的信息进行绑定
  * <br><b>选择器:</b>
@@ -1306,27 +1318,44 @@ function initPage() {
     }
     StudentAPI.initPersnalCourseInfo();
     if (StudentAPI.selectedCourseDS[0] !== undefined) {
+        
+        /**
+         * 获得已选课程的第一个,加以初始化
+         */
         var scid = StudentAPI.selectedCourseDS[0].scid;
         ThisCourse[0].obj = StudentAPI.structureCidIsCourse(scid);
-        ThisCourse[0].scid = scid; //获得已选课程的第一个,加以初始化
+        ThisCourse[0].scid = scid; 
+        ThisCourse[0].obj.__proto__ = new Vue({
+            el: '#ucontent',
+            data: {
+                introduction: ThisCourse[0].obj.introduction,
+                syllabus: ThisCourse[0].obj.syllabus + ThisCourse[0].obj.attachment,
+                courseliset: StudentAPI.analyzeDS.selectedCourse.getListHS(),
+                resource: StudentAPI.analyzeDS.Resource.getFileManagerHS(),
+                OHomeworkHS: StudentAPI.analyzeDS.Homework.getDoneHS(),
+                IHomeworkHS: StudentAPI.analyzeDS.Homework.getDoingHS(),
+                XHomeworkHS: StudentAPI.analyzeDS.Homework.getMissHS()
+            }
+        });
+        
     } else {
-        ThisCourse[0] = StudentAPI.DemonCourse;
+        ThisCourse[0].obj = StudentAPI.DemonCourse;
+        ThisCourse[0].obj.__proto__ = new Vue({
+            el: '#ucontent',
+            data: {
+                introduction: '<p style="color:grey">请至少选择一门课程</p>',
+                syllabus: '<p style="color:grey">请至少选择一门课程</p>',
+                courseliset: '<li><a>暂无课程</a></li>',
+                resource: [],
+                OHomeworkHS: '<p style="color:grey">无</p>',
+                IHomeworkHS: '<p style="color:grey">无</p>',
+                XHomeworkHS: '<p style="color:grey">无</p>'
+            }
+        });
     }
 
     //Step 绑定 相关基础参数
 
-    ThisCourse[0].obj.__proto__ = new Vue({
-        el: '#ucontent',
-        data: {
-            introduction: ThisCourse[0].obj.introduction,
-            syllabus: ThisCourse[0].obj.syllabus + ThisCourse[0].obj.attachment,
-            courseliset: StudentAPI.analyzeDS.selectedCourse.getListHS(),
-            resource: StudentAPI.analyzeDS.Resource.getFileManagerHS(),
-            OHomeworkHS: StudentAPI.analyzeDS.Homework.getDoneHS(),
-            IHomeworkHS: StudentAPI.analyzeDS.Homework.getDoingHS(),
-            XHomeworkHS: StudentAPI.analyzeDS.Homework.getMissHS()
-        }
-    });
 
     //    ThisCourse[1].__proto__ = new Vue({
     //        el: '#',
@@ -1337,8 +1366,22 @@ function initPage() {
     //    });
 
 
-    UProfile = new Vue({
-        el: "#tab-personalInfo",
+    
+    UPanel = new Vue({
+        el: "#ubox",
+        data: {
+            sn: StudentAPI.sn,
+            name: StudentAPI.name,
+            portrait: StudentAPI.name.toString()[0],
+            grade: StudentAPI.grade,
+            college: StudentAPI.college,
+            qq: StudentAPI.qq,
+            numOCourse: StudentAPI.numOCourse,
+            numICourse: StudentAPI.numICourse
+        }
+    });
+    UCourse = new Vue({
+        el: '#usettings',
         data: {
             id: StudentAPI.id,
             sn: StudentAPI.sn,
@@ -1351,29 +1394,9 @@ function initPage() {
             tel: StudentAPI.tel,
             qq: StudentAPI.qq,
             pw: StudentAPI.pw,
-            sex: StudentAPI.sex
-        }
-    });
-    USetting = new Vue({
-        el: '#usettings',
-        data: {
-            XCourseTableHS: StudentAPI.analyzeDS.selectableCourse.getTableHS(),
+            sex: StudentAPI.sex,
             ICourseTableHS: StudentAPI.analyzeDS.selectingCourse.getTableHS(),
             OCourseTableHS: StudentAPI.analyzeDS.selectedCourse.getTableHS()
-        }
-    });
-    UPanel = new Vue({
-        el: "#ubox",
-        data: {
-            sn: StudentAPI.sn,
-            name: StudentAPI.name,
-            portrait: StudentAPI.name.toString()[0],
-            grade: StudentAPI.grade,
-            college: StudentAPI.college,
-            qq: StudentAPI.qq,
-            numOCourse: StudentAPI.numOCourse,
-            numICourse: StudentAPI.numICourse,
-            numXCourse: StudentAPI.numXCourse
         }
     });
 
@@ -1381,6 +1404,7 @@ function initPage() {
 
 //定义更新函数(包装函数)
 function updataSelectedCourse(scid) {
+    NProgress.start();
     ThisCourse[0].scid = scid;
     ThisCourse[0].obj = StudentAPI.structureCidIsCourse(ThisCourse[0].scid);
     ThisCourse[0].obj.$data.introduction = ThisCourse[0].obj.introduction;
@@ -1389,6 +1413,10 @@ function updataSelectedCourse(scid) {
     ThisCourse[0].obj.$data.OHomeworkHS = StudentAPI.analyzeDS.Homework.getDoneHS();
     ThisCourse[0].obj.$data.IHomeworkHS = StudentAPI.analyzeDS.Homework.getDoingHS();
     ThisCourse[0].obj.$data.XHomeworkHS = StudentAPI.analyzeDS.Homework.getMissHS();
+    $('a[href="#tab-homework"]').click();
+    $('#lms-editor').empty();
+    NProgress.done();
+    
 };
 
 function updataSelectableCourse(scid) {
@@ -1400,6 +1428,7 @@ function updataSelectableCourse(scid) {
 };
 
 function updataPersonalInfo() {
+    
     if (!CheckValidation()) {
         return false;
     }
@@ -1423,45 +1452,51 @@ function updataPersonalInfo() {
     return true;
 };
 
-function updataPassword() {
+function checkPassword(){
     var status = true;
-    if($("#oldPassword").val() === ''){
+    if ($("#oldPassword").val() === '') {
         console.log($("#oldPassword").val());
         $("#validMsg-opw").html("请输入原始密码！");
         $("#validMsg-opw").fadeIn();
         status = false;
-    }else 
+    } else
         $("#validMsg-opw").fadeOut();
-    
-    if($("#newPasswordConfirm").val() !== $("#newPassword").val()){
+
+    if ($("#newPasswordConfirm").val() !== $("#newPassword").val()) {
         $("#validMsg-npwconfirm").html("两次输入的密码不一致！");
         $("#newPasswordConfirm").val("");
         $("#validMsg-npwconfirm").fadeIn();
         status = false;
-    }else 
+    } else
         $("#validMsg-npwconfirm").fadeOut();
-    
 
-    var  r=/^[a-z A-Z 0-9 _]{6,18}$/;
-    var flag=r.test($("#newPassword").val());
-    if(!flag){
+
+    var r = /^[a-z A-Z 0-9 _]{6,18}$/;
+    var flag = r.test($("#newPassword").val());
+    if (!flag && ($("#oldPassword").val() !== '')) {
         $("#validMsg-npw").html("新密码不符合要求（6到18位），是不是太简单了?");
         $("#validMsg-npw").fadeIn();
         status = false;
-    }else
+    } else
         $("#validMsg-npw").fadeOut();
-    
-    if(status === false) 
+
+    if (status === false)
         return false;
     else {
         $("#validMsg-opw").fadeOut();
         $("#validMsg-npw").fadeOut();
         $("#validMsg-npwconfirm").fadeOut();
     }
+    return true;
+}
+
+function updataPassword() {
     
-    StudentAPI.updatePassword(StudentAPI.Path.uInfo[2] +
-        "?pw=" + hex_md5($("#oldPassword").val()) +
-        "&repw=" + hex_md5($("#newPassword").val()));
+    if(checkPassword()){
+        StudentAPI.updatePassword(StudentAPI.Path.uInfo[2] +
+            "?pw=" + hex_md5($("#oldPassword").val()) +
+            "&repw=" + hex_md5($("#newPassword").val()));
+    }
 };
 
 function CheckValidation() {
@@ -1534,9 +1569,6 @@ function updataUPanel(method) {
             {
 
                 StudentAPI.initPersnalCourseInfo();
-                UPanel.$data.numOCourse = StudentAPI.numOCourse;
-                UPanel.$data.numICourse = StudentAPI.numICourse;
-                UPanel.$data.numXCourse = StudentAPI.numXCourse;
                 break;
             };
         default:
@@ -1549,9 +1581,6 @@ function updataUPanel(method) {
                 UPanel.$data.grade = StudentAPI.grade;
                 UPanel.$data.college = StudentAPI.college;
                 UPanel.$data.qq = StudentAPI.qq;
-                UPanel.$data.numOCourse = StudentAPI.numOCourse;
-                UPanel.$data.numICourse = StudentAPI.numICourse;
-                UPanel.$data.numXCourse = StudentAPI.numXCourse;
                 break;
             };
 
@@ -1562,8 +1591,7 @@ function selectCourse(scid) {
     var status = StudentAPI.operateCidIsCourse.add(scid);
     if (status === true) {
         StudentAPI.initPersnalCourseInfo();
-        USetting.$data.ICourseTableHS = StudentAPI.analyzeDS.selectingCourse.getTableHS();
-        UPanel.$data.numICourse = StudentAPI.numICourse;
+        UCourse.$data.ICourseTableHS = StudentAPI.analyzeDS.selectingCourse.getTableHS();
         $('#snackbar').snackbar({
             alive: 10000,
             content: '选课申请已提交, 等待老师批准 ' + '<a data-dismiss="snackbar">我知道了</a>'
@@ -1581,8 +1609,7 @@ function quitCourse(scid) {
     var status = StudentAPI.operateCidIsCourse.quit(scid);
     if (status === true) {
         StudentAPI.initPersnalCourseInfo();
-        USetting.$data.OCourseTableHS = StudentAPI.analyzeDS.selectedCourse.getTableHS();
-        UPanel.$data.numOCourse = StudentAPI.numOCourse;
+        UCourse.$data.OCourseTableHS = StudentAPI.analyzeDS.selectedCourse.getTableHS();
         $('#snackbar').snackbar({
             alive: 10000,
             content: '已经退选课程' + '<a data-dismiss="snackbar">我知道了</a>'
@@ -1600,8 +1627,7 @@ function cancelCourse(scid) {
     var status = StudentAPI.operateCidIsCourse.cancel(scid);
     if (status === true) {
         StudentAPI.initPersnalCourseInfo();
-        USetting.$data.ICourseTableHS = StudentAPI.analyzeDS.selectingCourse.getTableHS();
-        UPanel.$data.numICourse = StudentAPI.numICourse;
+        UCourse.$data.ICourseTableHS = StudentAPI.analyzeDS.selectingCourse.getTableHS();
         $('#snackbar').snackbar({
             alive: 10000,
             content: '已经取消选课' + '<a data-dismiss="snackbar">我知道了</a>'
@@ -1615,20 +1641,6 @@ function cancelCourse(scid) {
     }
 }
 
-function submitHomework(hid) {
-    hs = tinymce.get('editor-' + hid).getContent({
-        format: 'raw'
-    });
-    StudentAPI.operateHomework.submit(ThisCourse[0].scid, hid, hs);
-}
-
-function uploadAttachment() {
-    StudentAPI.operateHomework.uploadAttachment(ThisCourse[0].scid, ThisCourse[0].hid);
-}
-
-function downloadAttachment(src) {
-    StudentAPI.operateHomework.downloadAttachment(ThisCourse[0].scid, ThisCourse[0].hid, src);
-}
 
 function updataHid(hid) {
     ThisCourse[0].hid = hid;
@@ -1654,6 +1666,22 @@ function updataByThisHid(hid) {
         $('#uploaded-area').fadeIn();
     }
 }
+function refreshHomeworkPage(){
+    
+}
+function refreshHomeworkArea(hid){
+    updataHid(hid);
+    refreshUploadedArea();
+    
+    ThisCourse[0].hobj = StudentAPI.analyzeDS.Homework.getDetail(ThisCourse[0].scid, hid);
+    $('#homework-info').empty();
+    $('#homework-info').html(ThisCourse[0].hobj.Hwhelp);
+    console.log("course info is :" + ThisCourse[0].hobj.Hwhelp);
+    $('#lms-editor').empty();
+    $('#lms-editor').html(ThisCourse[0].hobj.HwtextWork);
+    console.log("my homework's content  is :" + ThisCourse[0].hobj.HwtextWork);
+    
+}
 
 function refreshUploadedArea() {
     $('#uploaded-area').hide();
@@ -1674,29 +1702,44 @@ function refreshUploadedArea() {
         $('#uploaded-area').fadeIn();
     }
 }
-$('#uploadify-o').click(function() {
-    $('#uploadify').uploadify("settings", "formData", {
-        'scid': ThisCourse[0].scid,
-        'homeworkid': ThisCourse[0].hid
-    });
-    $('#uploadify').uploadify('upload', '*');
-    console.log('#btn-upload-' + ThisCourse[0].hid);
-});
-$('#uploadify-s').click(function() {
-    $('#uploadify').uploadify('stop', '*');
-});
-$('#uploadify-c').click(function() {
-    $('#uploadify').uploadify('cancel', '*');
-});
+
+
+function uploadAttachment() {
+    StudentAPI.operateHomework.uploadAttachment(ThisCourse[0].scid, ThisCourse[0].hid);
+    $('#uploaded-area').hide();
+    refreshUploadedArea();
+    console.log("upload attachment ..." + ThisCourse[0].hid);
+}
+
+function downloadAttachment(src) {
+    StudentAPI.operateHomework.downloadAttachment(ThisCourse[0].scid, ThisCourse[0].hid, src);
+}
 
 function deleteAttachment(src) {
     StudentAPI.operateHomework.deleteAttachment(ThisCourse[0].scid, ThisCourse[0].hid, src);
     $('#uploaded-area').hide();
     refreshUploadedArea();
+    console.log("delete attachment ..." + ThisCourse[0].hid);
 }
 
 function downloadAttachment(src) {
     StudentAPI.operateHomework.downloadAttachment(ThisCourse[0].scid, ThisCourse[0].hid, src);
+}
+
+function submitHomework(hid) {
+    hs = tinymce.get('lms-editor').getContent({
+        format: 'raw'
+    });
+    console.log("submit homework ...");
+    var status = StudentAPI.operateHomework.submit(ThisCourse[0].scid, hid, hs);
+    console.log(status);
+    if (status === 1 || status === 0) {
+        console.log("reflesh homework list ...");
+        StudentAPI.analyzeDS.Homework.updataJSON(ThisCourse[0].scid);
+        ThisCourse[0].obj.$data.OHomeworkHS = StudentAPI.analyzeDS.Homework.getDoneHS();
+        ThisCourse[0].obj.$data.IHomeworkHS = StudentAPI.analyzeDS.Homework.getDoingHS();
+        console.log("reflesh homework list done !");
+    }
 }
 
 function getMissDetailHS(scid, hid){
@@ -1741,6 +1784,9 @@ function fomatFloat(src, pos) {
 function getIdByDomId(prefix, domId) {
     return domId.replace(prefix, '');
 }
+function isContinue(){
+    
+}
 
-// 执行!
-initPage();
+function ableSubmitUInfo(){
+}
