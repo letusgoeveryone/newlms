@@ -283,7 +283,12 @@
 
         var statusBase = [0, 0, 0, 0, 0, 0];
         var statusCheck = [0, 0, 0, 0, 0];
+        
         function checknull() {
+            verifyText('idcardCheck', 'idcardCheckMsg');
+            verifyText('nameCheck', 'nameCheckMsg');
+            verifyText('myIDNumCheck', 'myIDNumCheckMsg');
+            verifyText('passwLast', 'passwLastMsg');
             var s = 0;
             for (var t in statusCheck) {
                 if (statusCheck[t] === 1) {
@@ -298,6 +303,12 @@
         //加密代码
         function fornext()
         {
+            verifyText('idcard', 'idcardMsg');
+            verifyText('name', 'nameMsg');
+            verifyText('myIDNum', 'myIDNumMsg');
+            verifyText('myPhone', 'myPhoneMsg');
+            verifyText('myQq', 'myQqMsg');
+            verifyText('passwFrist', 'passwFristMsg');
             var k = 0;
             for (var i in statusBase) {
                 if (statusBase[i] === 1) {
