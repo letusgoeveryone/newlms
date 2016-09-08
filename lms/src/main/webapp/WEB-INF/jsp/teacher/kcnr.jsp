@@ -427,6 +427,14 @@
                     success: function (data) {
                         alert("删除成功，你可以重新上传!");
                         document.getElementById("kcnr").innerHTML = data[0];
+                        var node = $('#tt1').tree('getSelected');
+                        var len = node.resource.length;
+                        while(len===0){
+                            if(node.resource[len].name === filename){
+                                node.resource.splice(len, 1);
+                                save(0);
+                            }
+                        }
                         ckkcnr();
                     }
                 });
