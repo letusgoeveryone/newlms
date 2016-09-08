@@ -64,8 +64,8 @@
                                 <div class="form-group form-group-label">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label class="floating-label" for="name1">姓名：</label>
-                                            <input type="text" id="name" name="name1" class="form-control" placeholder="请输入您的姓名" maxlength="16" onblur="verifyText('name', 'nameMsg');" onfocus="initMessage('nameMsg');" />
+                                            <label class="floating-label" for="name">姓名：</label>
+                                            <input type="text" id="name" name="name" class="form-control" placeholder="请输入您的姓名" maxlength="16" onblur="verifyText('name', 'nameMsg');" onfocus="initMessage('nameMsg');" />
                                         </div>
                                     </div>
                                     <span id="nameMsg" class="text-error"></span>
@@ -283,7 +283,12 @@
 
         var statusBase = [0, 0, 0, 0, 0, 0];
         var statusCheck = [0, 0, 0, 0, 0];
+        
         function checknull() {
+            verifyText('idcardCheck', 'idcardCheckMsg');
+            verifyText('nameCheck', 'nameCheckMsg');
+            verifyText('myIDNumCheck', 'myIDNumCheckMsg');
+            verifyText('passwLast', 'passwLastMsg');
             var s = 0;
             for (var t in statusCheck) {
                 if (statusCheck[t] === 1) {
@@ -298,6 +303,12 @@
         //加密代码
         function fornext()
         {
+            verifyText('idcard', 'idcardMsg');
+            verifyText('name', 'nameMsg');
+            verifyText('myIDNum', 'myIDNumMsg');
+            verifyText('myPhone', 'myPhoneMsg');
+            verifyText('myQq', 'myQqMsg');
+            verifyText('passwFrist', 'passwFristMsg');
             var k = 0;
             for (var i in statusBase) {
                 if (statusBase[i] === 1) {

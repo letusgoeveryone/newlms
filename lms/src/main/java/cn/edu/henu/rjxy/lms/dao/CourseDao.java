@@ -30,6 +30,10 @@ public class CourseDao {
 
     static Session session;
     
+    public static void main(String[] args) {
+        getCourseById(1);
+    }
+    
     /**
      * 添加指定课程到数据库
      * @param course 课程对象
@@ -90,9 +94,7 @@ public class CourseDao {
         }        
     }
     
-    public static void main(String[] args) {
-        getCourseById(2);
-    }
+
     
    
     /**

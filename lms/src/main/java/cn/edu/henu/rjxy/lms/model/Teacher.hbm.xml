@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping SYSTEM "../webapps/lms/WEB-INF/classes/cn/edu/henu/rjxy/lms/model/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015-10-23 19:30:46 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="cn.edu.henu.rjxy.lms.model.Teacher" table="teacher" catalog="cs" optimistic-lock="version">
