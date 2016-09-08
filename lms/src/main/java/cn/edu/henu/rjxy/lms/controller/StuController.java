@@ -79,7 +79,8 @@ public class StuController {
     }
     //个人信息修改提交处理
     @RequestMapping("/student/updatepersoninfo")
-    public @ResponseBody String resetinf_p(HttpServletRequest request, HttpServletResponse response) {
+    public @ResponseBody String resetinf_p(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
         String sn=getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
         String name=request.getParameter("name");
