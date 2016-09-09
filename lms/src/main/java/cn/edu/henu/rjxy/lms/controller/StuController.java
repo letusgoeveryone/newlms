@@ -147,11 +147,14 @@ public class StuController {
         String stusn=getCurrentUsername();
         int xueqi=getCurrentTerm();
         List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId(xueqi, stusn);
-        Map []a = new Map[list.size()/2];
-        for (int i = 0; i < list.size()/2; i++) {
+        System.out.println(list.size());
+        Map []a = new Map[list.size()/4];
+        for (int i = 0; i < list.size()/4; i++) {
            a[i]=new HashMap();
-           a[i].put("course", list.get(2*i+1));
-           a[i].put("scid", list.get(2*i));
+           a[i].put("course", list.get(4*i+1));
+           a[i].put("scid", list.get(4*i));
+            a[i].put("teacher", list.get(4*i+2));
+            a[i].put("ClassName", list.get(4*i+3));
         }
         return a;
     }   
@@ -634,7 +637,7 @@ public class StuController {
       return SecurityContextHolder.getContext().getAuthentication().getName();
    }
    public int getCurrentTerm() {
-      return 201601;
+      return 201602;
    }
     public String getFileFolder(HttpServletRequest request) {
         String path = this.getClass().getClassLoader().getResource("/").getPath();

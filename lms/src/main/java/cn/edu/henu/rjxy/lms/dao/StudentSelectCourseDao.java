@@ -116,6 +116,8 @@ public class StudentSelectCourseDao {
             for (StudentSelectCourse list1 : list) {
                 fList.add(list1.getTermCourse().getId());
                 fList.add(list1.getTermCourse().getCourse().getCourseName());
+                fList.add(list1.getTermCourse().getTeacher().getTeacherName());
+                fList.add(list1.getTermCourse().getClasses().getClassName());
             }
 
             transaction.commit();//提交
