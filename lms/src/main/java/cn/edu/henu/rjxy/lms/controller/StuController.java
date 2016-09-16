@@ -637,7 +637,7 @@ public class StuController {
       return SecurityContextHolder.getContext().getAuthentication().getName();
    }
    public int getCurrentTerm() {
-      return 201602;
+      return 201601;
    }
     public String getFileFolder(HttpServletRequest request) {
         String path = this.getClass().getClassLoader().getResource("/").getPath();
