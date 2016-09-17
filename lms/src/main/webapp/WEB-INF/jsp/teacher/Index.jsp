@@ -27,6 +27,10 @@
                 border-left: 1px solid whitesmoke;
                 min-height: 500px;
             }
+            .sample-height{
+                min-height: 1000px;
+                margin-bottom: 10em;
+            }
         </style>
         <script src="<%=path%>/js/jquery.min.js"></script>
         <!-- js -->
@@ -68,15 +72,7 @@
                 <div id="lms_teach_CouCenter" class="tab-content tab-pane fade in active">
 
                     <section id="panel-MyCourse" class="row tab-pane fade in active">
-                        <div class="card">
-                            <aside class="card-side pull-left">
-                                <span class="card-heading" >
-                                    <a class="fbtn btn-brand waves-attach waves-circle waves-light waves-effect" 
-                                       href="#panel-HomeworkArea" data-toggle="tab" ><span class="icon">cloud_upload</span>
-                                        <span class="fbtn-text fbtn-text-left">工具</span>
-                                    </a>
-                                </span>
-                            </aside>
+                        <div class="card sample-height">
                             <div class="card-main" >
                                 <div class="card-header">
                                     <div class="padding-1em" style="width: 100%;padding: 1em;height: 3em;line-height: 1em;font-size: 2em;">
@@ -103,7 +99,7 @@
                                         </div>
                                         <div style="display: none;" id="mycourse">
                                             <%--<jsp:include page="mycourse.jsp"/>--%>
-                                            <iframe  iframepage id="addcouocontent" frameborder="0" scrolling="no" marginheight="0" height="500px" width="100%" name="addcouocontent"   onload=" startInit('addcouocontent', 500);"></iframe>
+                                            <iframe  iframepage id="addcouocontent" frameborder="0" scrolling="no" marginheight="0" height="1000px" width="100%" name="addcouocontent"></iframe>
 
                                         </div>
                                     </div>
@@ -275,45 +271,48 @@
         <script type="text/javascript">
         var browserVersion = window.navigator.userAgent.toUpperCase();
         var isOpera = false, isFireFox = false, isChrome = false, isSafari = false, isIE = false;
-        function reinitIframe(iframeId, minHeight) {
-            try {
-                var iframe = document.getElementById(iframeId);
-                var bHeight = 0;
-                if (isChrome == false && isSafari == false)
-                    bHeight = iframe.contentWindow.document.body.scrollHeight;
-                var dHeight = 0;
-                if (isFireFox == true)
-                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                else if (isIE == false && isOpera == false)
-                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                else if (isIE == true && !-[1, ] == false) {
-                } //ie9+
-                else
-                    bHeight += 3;
-                var height = Math.max(bHeight, dHeight);
-                if (height < minHeight)
-                    height = minHeight;
-                iframe.style.height = height + "px";
-            } catch (ex) {
-            }
-        }
-        function startInit(iframeId, minHeight) {
-            isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
-            isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
-            isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
-            isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
-            if (!!window.ActiveXObject || "ActiveXObject" in window)
-                isIE = true;
-            window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
-        }
-
-        function iFrameHeight() {
-                //var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
-                //if(ifm != null && subWeb != null) {
-                //   ifm.height = subWeb.body.scrollHeight;
-                //   ifm.width = subWeb.body.scrollWidth;
-                //}   
-        }   
+        var maxHeight = 0;
+//        function reinitIframe(iframeId, minHeight) {
+//            try {
+//                var iframe = document.getElementById(iframeId);
+//                var bHeight = 0;
+//                if (isChrome === false && isSafari === false)
+//                    bHeight = iframe.contentWindow.document.body.scrollHeight;
+//                var dHeight = 0;
+//                if (isFireFox === true)
+//                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+//                else if (isIE === false && isOpera === false)
+//                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+//                else if (isIE === true && !-[1, ] === false) {
+//                } //ie9+
+//                else
+//                    bHeight += 3;
+//                var height = Math.max(bHeight, dHeight);
+//                if (height < minHeight){
+//                    height = minHeight;
+//                }
+//                    
+//                iframe.style.minHeight = height + "px";
+//            } catch (ex) {
+//            }
+//        }
+//        function startInit(iframeId, maxHeight) {
+//            isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
+//            isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
+//            isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
+//            isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
+//            if (!!window.ActiveXObject || "ActiveXObject" in window)
+//                isIE = true;
+//            window.setInterval("reinitIframe('" + iframeId + "'," + maxHeight + ")", 100);
+//        }
+//
+//        function iFrameHeight() {
+//                //var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
+//                //if(ifm != null && subWeb != null) {
+//                //   ifm.height = subWeb.body.scrollHeight;
+//                //   ifm.width = subWeb.body.scrollWidth;
+//                //}   
+//        }   
     </script>      
     </body>  
 </html>

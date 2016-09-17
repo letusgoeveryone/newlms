@@ -57,11 +57,6 @@
                                     <span class="text-grey">待批准课程</span>
                                 </a>
                             </li>
-                            <li>
-                                <a class="waves-attach waves-light waves-effect"  href="<%=path%>/student/settings">
-                                    <span class="text-grey">选课<span class="icon mg-sm-left">open_in_new</span></span>
-                                </a>
-                            </li>
                         </ul>
                     </nav>
                     <div class="tab-pane fade modal-inner no-padding" id="tab-course-selected">

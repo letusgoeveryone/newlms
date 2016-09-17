@@ -104,8 +104,8 @@
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
 
         <style>
-            .input  {BORDER: 1px solid;font-size: 9pt}
-            .backc  { BORDER:1px solid;font-size: 9pt;color:white}
+            .input  {border: 1px solid;font-size: 9pt}
+            .backc  { border: 1px solid;font-size: 9pt;color:white}
             .PicBar { background-color: #f58200; border: 1px solid #000000; height: 12px;}
             .divcenter {
                 position:absolute;
@@ -114,6 +114,7 @@
                 left: 101px;
                 top: 993px;
             }
+            #srv_qresult td{display: inline-block; width: 50%;word-break: break-all;}
         </style>
         <script>
             function showsubmenu(sid){
@@ -166,7 +167,7 @@
                                 <br>
 
                                 <a type="submit" value="提交" class="btn btn-default" onClick="document.queryform.submit();$('#srv_qresult').fadeToggle()">查询</a>
-                                <a href="#"class="btn btn-default "onClick="document.queryform.submit()">枚举所有参数信息</a>
+                                <a href="#" class="btn btn-default" onClick="document.queryform.submit()">枚举所有参数信息</a>
                                 <a type="reset" value="重置" class="btn btn-default pull-right" onclick="$('#srv_qresult').fadeOut()">清除</a>
                             </div>
                         </td>

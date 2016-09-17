@@ -270,6 +270,10 @@ var StudentAPI = {
      
      */
     updatePersonalInfo: function(path) {
+        if (path === undefined ? true : false) {
+            path = StudentAPI.Path.uInfo[1];
+        }
+        ;
         $.ajax({
             url: path,
             type: 'post',
@@ -290,7 +294,7 @@ var StudentAPI = {
                 }
             },
             error: function() {
-                alert("数据传输失败 ！");
+                alert("个人信息更新失败 ！");
             }
         });
     },
@@ -313,9 +317,9 @@ var StudentAPI = {
                 if (data === 3) {
                     $('#snackbar').snackbar({
                         alive: 10000,
-                        content: '密码修改成功 <a data-dismiss="snackbar">我知道了</a>'
+                        content: '密码修改成功, 需跳转至登陆界面... <a data-dismiss="snackbar" href="logout">立即跳转</a>'
                     });
-                    $("#validMsg-opw").fadeOut();
+                    setTimeout(logout,1500);
                 } else if (data === 1) {
                     alert("原密码不正确！");
                     $("#validMsg-opw").fadeIn();
@@ -466,7 +470,7 @@ var StudentAPI = {
                         (_o[i].ClassName === undefined ? ' ' : _o[i].ClassName) + '</td><td>' +
                         '<a href="javascript: void(0)"' +
                         'id="cancel-' + _o[i].scid + '" ' +
-                        'onclick="cancelCourse(' + _o[i].scid + ')">退选</a>' +
+                        'onclick="quitCourse(' + _o[i].scid + ')">退选</a>' +
                         '</td></tr></tbody>';
 
                     _body += hs;
@@ -509,6 +513,10 @@ var StudentAPI = {
 
 
                 _o = StudentAPI.selectableCourseDS;
+                if(_o.length === 0){
+                    _body = '<tbody><tr><td  class="text-indianred text-blod" colspan="4">暂无可选课程</td></tr></tbody>';
+                    return _head + _body + _foot;
+                }
                 _numO = _o.length;
 
                 for (var i = 0; i < _numO; i++) {
@@ -922,7 +930,7 @@ var StudentAPI = {
                 return hs;
             },
 
-            getMissHS: function() {
+            getMissHS: function(fn) {
                 var _x = StudentAPI.OCidIsCourse.homeworkDS.x;
                 if (_x.length === 0) return '<p>暂无历史作业<p>';
                 var hs = '';
@@ -965,6 +973,30 @@ var StudentAPI = {
             }
 
         }
+    },
+    setDS:{
+      resource: function(scid){
+        var _o = StudentAPI.OCidIsCourse;
+            pathResourceDS = StudentAPI.Path.cInfo[1] + "?scid=" + scid;
+            $.ajax({
+                url: pathResourceDS,
+                type: 'get',
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    _o.resourceDS.json = data;
+                    //console.log(data);
+                },
+                error: function () {
+                    $('#snackbar').snackbar({
+                        alive: 10000,
+                        content: StudentAPI.OCidIsCourse.courseName + '的课程' +
+                                '数据 [教学资源] 传输失败 ！ 可能老师并未编辑' +
+                                '<a data-dismiss="snackbar">我知道了</a>'
+                    });
+                }
+            });
+      }  
     },
     structureCidIsCourse: function(scid, is, path) {
         var _o = StudentAPI.OCidIsCourse;
@@ -1242,7 +1274,7 @@ var StudentAPI = {
             var status = 0;
             $.ajax({
                 url: StudentAPI.Path.fOperate[3] + '?scid=' + scid + '&homeworkid=' + homeworkid,
-                type: 'POST',
+                type: 'post',
                 data: {
                     HwEitor: hs
                 },
@@ -1415,10 +1447,34 @@ function updataSelectedCourse(scid) {
     ThisCourse[0].obj.$data.XHomeworkHS = StudentAPI.analyzeDS.Homework.getMissHS();
     $('a[href="#tab-homework"]').click();
     $('#lms-editor').empty();
+    setTimeout(function () { 
+        fn.bindHid();
+    }, 3000);
+    
     NProgress.done();
     
 };
+var fn={};
+fn.bindHid=function(){
+    $('a[data-hid]').click(function () {
+        NProgress.start();
+        var hid = $(this).attr('data-hid');
+        var isDone = $(this).attr('data-status') === true ? true : false;
 
+        //
+        if (ThisCourse[0].hid === 0 || (hid !== ThisCourse[0].hid) || (isDone)) {
+            refreshHomeworkArea(hid);
+        }
+
+        var content = tinymce.get('lms-editor').getContent({
+            format: 'raw'
+        });
+
+        console.log(hid);
+        NProgress.done();
+
+    });
+};
 function updataSelectableCourse(scid) {
     ThisCourse[1].scid = scid;
     ThisCourse[1] = StudentAPI.structureCidIsCourse(ThisCourse[1].scid);
@@ -1451,7 +1507,11 @@ function updataPersonalInfo() {
     ;
     return true;
 };
-
+function updataResourceArea(){
+    StudentAPI.setDS.resource(ThisCourse[0].scid);
+    ThisCourse[0].obj.$data.resource = StudentAPI.analyzeDS.Resource.getFileManagerHS();
+    $('.stage-card').boxer();
+}
 function checkPassword(){
     var status = true;
     if ($("#oldPassword").val() === '') {
@@ -1606,7 +1666,10 @@ function selectCourse(scid) {
 };
 
 function quitCourse(scid) {
-    var status = StudentAPI.operateCidIsCourse.quit(scid);
+    var status;
+    if(confirm("真的确定, 退出这门课程么(请谨慎操作!)?")){
+        status = StudentAPI.operateCidIsCourse.quit(scid);
+    }
     if (status === true) {
         StudentAPI.initPersnalCourseInfo();
         UCourse.$data.OCourseTableHS = StudentAPI.analyzeDS.selectedCourse.getTableHS();
@@ -1666,8 +1729,12 @@ function updataByThisHid(hid) {
         $('#uploaded-area').fadeIn();
     }
 }
-function refreshHomeworkPage(){
-    
+function refreshHomeworkList(){
+    StudentAPI.analyzeDS.Homework.updataJSON(ThisCourse[0].scid);
+    ThisCourse[0].obj.$data.OHomeworkHS = StudentAPI.analyzeDS.Homework.getDoneHS();
+    ThisCourse[0].obj.$data.IHomeworkHS = StudentAPI.analyzeDS.Homework.getDoingHS();
+    console.log("reflesh homework list done !");
+    NProgress.start();
 }
 function refreshHomeworkArea(hid){
     updataHid(hid);
@@ -1734,12 +1801,11 @@ function submitHomework(hid) {
     var status = StudentAPI.operateHomework.submit(ThisCourse[0].scid, hid, hs);
     console.log(status);
     if (status === 1 || status === 0) {
+        NProgress.start();
         console.log("reflesh homework list ...");
-        StudentAPI.analyzeDS.Homework.updataJSON(ThisCourse[0].scid);
-        ThisCourse[0].obj.$data.OHomeworkHS = StudentAPI.analyzeDS.Homework.getDoneHS();
-        ThisCourse[0].obj.$data.IHomeworkHS = StudentAPI.analyzeDS.Homework.getDoingHS();
-        console.log("reflesh homework list done !");
-    }
+        setTimeout(refreshHomeworkList, 800);
+        return true;
+    }else return false;
 }
 
 function getMissDetailHS(scid, hid){
@@ -1789,4 +1855,8 @@ function isContinue(){
 }
 
 function ableSubmitUInfo(){
+}
+
+function logout(){
+    window.location.href="logout"; 
 }

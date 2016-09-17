@@ -17,8 +17,7 @@
         <title>教务系统 |　学生</title>
 
         <link href="<%=path%>/css/nprogress.css" rel="stylesheet" />
-        <script src="<%=path%>/js/nprogress.js"  ></script>
-        <script>NProgress.start();</script>
+        <script src="<%=path%>/js/nprogress.js"  ></script><script>NProgress.start();</script>
         
         <!-- css -->
 
@@ -28,18 +27,18 @@
         <link href="<%=path%>/css/lms.css" rel="stylesheet" />
         <script src="<%=path%>/js/jquery.min.js"></script>
         <script src="<%=path%>/js/vue.js"></script>
-        <script src="<%=path%>/js/md5.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/md5.js" type="text/javascript"></script><script>NProgress.set(0.4);</script>
         
     </head>
     <body class="page-brand container-full" id="lms_stu">
-        <script>NProgress.set(0.4);</script>
+        
         <!--aside -->
         <aside id="ubox" class="menu menu-right nav-drawer nav-drawer-md" >
             <div class="menu-scroll">
                 <div class="menu-content">
                     <div class="menu-logo" href="javascript:void(0)">个人面板 
                     </div>
-                    <div class="vcard">
+                    <div class="vcard lms-loading">
 
                         <div class="vcard-avatar-wrapper">
                             <a href="/account" alt="Change your avatar" class="vcard-avatar">
@@ -86,7 +85,7 @@
                                 <strong class="vcard-stat-count">{{numICourse}}</strong>
                                 <span class="text-muted">消息盒子</span>
                             </a>
-                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-selected">
+                            <a class="vcard-stat" data-toggle="tab"  href="#tab-personalInfo">
                                 <strong class="vcard-stat-count icon">person</strong>
                                 <span class="text-muted">个人中心</span>
                             </a>
@@ -117,7 +116,7 @@
             <span class="header-logo" >教务系统 | 学生页面</span>
             <ul class="nav nav-list pull-right">
                 <li>
-                    <a data-toggle="menu" href="#usettings" id="anchor-menu" onclick="toggleUserSettings()">
+                    <a id="for-ubox" onclick="toggleUserSettings()">
                         <span class="icon icon-lg">menu</span>
                     </a>
                 </li>
@@ -152,17 +151,96 @@
         
         <!-- js -->
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-        <script>NProgress.set(0.7);</script>
+        <script src="<%=path%>/js/project.min.js" type="text/javascript"></script><script>NProgress.set(0.7);</script>
         <script src="<%=path%>/js/api.json.student.js" type="text/javascript"></script>
-        <script>var pluginMasonry = 0;</script>
         <script src="<%=path%>/js/tinymce/tinymce.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
         <link href="<%=path%>/uploadify/uploadify.css" rel="stylesheet" type="text/css"/>
         <script src="<%=path%>/uploadify/jquery.uploadify.js" type="text/javascript"></script>
         <!--<script src="http://open.iciba.com/huaci/huaci.js"></script>-->
         <script>
-            //文件上传 初始化
+            
+           /* ==================================================================
+            * 页面初始化
+            * ================================================================== */
+            initPage();NProgress.set(0.9);
+
+
+           /* ==================================================================
+            * 作业 监听器
+            * ================================================================== */
+            
+            var hidIsSubmit = true;
+            var attIsChange = false;
+            var cntIsChange = false;
+            
+            // 编辑器 初始化
+            tinymce.init({
+                mode : "exact",
+                selector: '#lms-editor',
+                fixed_toolbar_container: 'body',
+                theme: 'inlite',
+                language: 'zh_CN',
+                inline: true,
+                plugins: [
+                    'advlist autolink autosave code link image lists charmap codesample hr anchor',
+                    'searchreplace visualchars insertdatetime media nonbreaking fullscreen',
+                    'table contextmenu directionality emoticons template paste preview textcolor textpattern visualblocks'
+                ],
+                insert_toolbar: 'h1 h2 h3 hr bullist numlist outdent indent  blockquote quickimage codesample insertdatetime template | removeformat',
+                selection_toolbar: 'bold italic underline subscript superscript textcolor forecolor backcolor strikethrough | alignleft aligncenter alignright alignjustify  outdent indent | link h1 h2 h3 blockquote codesample media | removeformat | ',
+                contextmenu: 'image media codesample | charmap | link anchor | inserttable | cell row column deletetable | visualblocks preview',
+                insertdatetime_formats: ["%H:%M:%S %Y-%m-%d", "%H:%M:%S", "%Y-%m-%d", "%I:%M:%S %p", "%D"],
+                templates: [
+                    {title: 'Some title 1', description: 'Some desc 1', content: 'My content'},
+                    {title: 'Some title 2', description: 'Some desc 2', url: 'development.html'}
+                ],
+                textpattern_patterns: [
+                    {start: '*', end: '*', format: 'italic'},
+                    {start: '**', end: '**', format: 'bold'},
+                    {start: '#', format: 'h1'},
+                    {start: '##', format: 'h2'},
+                    {start: '###', format: 'h3'},
+                    {start: '####', format: 'h4'},
+                    {start: '#####', format: 'h5'},
+                    {start: '######', format: 'h6'},
+                    {start: '>_ ', format: 'blockquote'},
+                    {start: '1. ', cmd: 'InsertOrderedList'},
+                    {start: '* ', cmd: 'InsertUnorderedList'},
+                    {start: '- ', cmd: 'InsertUnorderedList'}
+                ],
+                media_live_embeds: true,
+                init_instance_callback: function (editor) {
+                    editor.on('Change', function (e) {
+                        cntIsChange = true;
+                        hidIsSubmit = false;
+                        console.log('Editor contents was changed.');
+                        console.log("有未提交内容 !");
+                    });
+                }
+
+            });
+            // 编辑器 监视提醒
+            function isReadyLeaving(){
+                if(!hidIsSubmit && attIsChange){
+                    if(confirm("有未提交的附件, 依旧要离开么(离开后,附件列表有可能会置空)?")){
+                        $('.mce-tinymce').css({'display':'none'});
+                        return true;
+                    } else return false;
+                }else if(!hidIsSubmit && cntIsChange){
+                    if(confirm("有未提交的内容, 依旧要离开么(离开后,编辑器内容可能会置空)?")){
+                        $('.mce-tinymce').css({'display':'none'});
+                        return true;
+                    } else return false;
+                }else return true;
+            }
+            // 编辑器内容 监听
+            $('#editor-backspace').click(function(){
+                if(isReadyLeaving()){
+                     $('[href="#tab-homework"]').click();
+                }   
+            });
+            // 附件上传 初始化
             $(function () {
                 $("#uploadify").uploadify({
                     'uploader': '<%=path%>/student/zyupload100.do;jsessionid=<%=sessionid%>?Func=uploadwallpaper2Dfs', //************ action **************
@@ -191,76 +269,13 @@
                     },
                     'onUploadSuccess': function () {
                         refreshUploadedArea();
+                        attIsChange = true;
+                        console.log('new attachment(s) has been uploaded successfully !');
                     }
 
                 });
             });
-            //编辑器 初始化
-            
-            NProgress.set(0.9); 
-            tinymce.init({
-                mode : "exact",
-                selector: '#lms-editor',
-                fixed_toolbar_container: 'body',
-                theme: 'inlite',
-                language: 'zh_CN',
-                inline: true,
-                plugins: [
-                    'advlist autolink autosave code link image lists charmap codesample hr anchor',
-                    'searchreplace visualchars insertdatetime media nonbreaking',
-                    'save table contextmenu directionality emoticons template paste preview textcolor textpattern visualblocks'
-                ],
-                insert_toolbar: 'h1 h2 h3 hr bullist numlist outdent indent  blockquote quickimage codesample insertdatetime template | removeformat',
-                selection_toolbar: 'bold italic underline subscript superscript textcolor forecolor backcolor strikethrough | alignleft aligncenter alignright alignjustify  outdent indent | link h1 h2 h3 blockquote codesample media | removeformat | ',
-                contextmenu: 'image media codesample | charmap | link anchor | inserttable | cell row column deletetable | visualblocks preview',
-                insertdatetime_formats: ["%H:%M:%S %Y-%m-%d", "%H:%M:%S", "%Y-%m-%d", "%I:%M:%S %p", "%D"],
-                templates: [
-                    {title: 'Some title 1', description: 'Some desc 1', content: 'My content'},
-                    {title: 'Some title 2', description: 'Some desc 2', url: 'development.html'}
-                ],
-                textpattern_patterns: [
-                    {start: '*', end: '*', format: 'italic'},
-                    {start: '**', end: '**', format: 'bold'},
-                    {start: '#', format: 'h1'},
-                    {start: '##', format: 'h2'},
-                    {start: '###', format: 'h3'},
-                    {start: '####', format: 'h4'},
-                    {start: '#####', format: 'h5'},
-                    {start: '######', format: 'h6'},
-                    {start: '>_ ', format: 'blockquote'},
-                    {start: '1. ', cmd: 'InsertOrderedList'},
-                    {start: '* ', cmd: 'InsertUnorderedList'},
-                    {start: '- ', cmd: 'InsertUnorderedList'}
-                ],
-                media_live_embeds: true
-
-            });
-            NProgress.done(true);
-            
-            // 执行!
-            initPage();
-
-            //作业ID 监听器
-            $('a[data-hid]').click(function(){
-                NProgress.start();
-                var hid = $(this).attr('data-hid');
-                var isDone = $(this).attr('data-status') === true ? true : false;
-
-                //
-                if (ThisCourse[0].hid === 0 || (hid !== ThisCourse[0].hid) || (isDone)){
-                    refreshHomeworkArea(hid);
-                }
-
-                var content = tinymce.get('lms-editor').getContent({
-                    format: 'raw'
-                });
-
-                console.log(hid);
-                NProgress.done();
-
-            });
-
-            // 附件 监听器
+            // 附件事件 监听
             $('#uploadify-o').click(function() {
                 $('#uploadify').uploadify("settings", "formData", {
                     'scid': ThisCourse[0].scid,
@@ -275,15 +290,36 @@
             $('#uploadify-c').click(function() {
                 $('#uploadify').uploadify('cancel', '*');
             });
-
-
-            // 作业提交 监听器
-            $('#submit-homework').click(function(){
+            
+            // 作业ID 监听()
+            $('a[data-hid]').click(function(){
                 NProgress.start();
-                submitHomework(ThisCourse[0].hid);
+                var hid = $(this).attr('data-hid');
+                var isDone = $(this).attr('data-status') === true ? true : false;
+                
+                if (isDone) hidIsSubmit = true;else hidIsSubmit = false;
+                if ((hid !== ThisCourse[0].hid) || (isDone)){
+                    refreshHomeworkArea(hid);
+                }
+                
                 NProgress.done();
             });
-
+            
+            // 作业提交 监听
+            $('#submit-homework').click(function(){
+                NProgress.start();
+                if(submitHomework(ThisCourse[0].hid)){
+                    hidIsSubmit = true;
+                    cntIsChange = false;
+                    attIsChange = false;
+                };
+                NProgress.done();
+            });
+            
+           /* ==================================================================
+            * 个人面板 监听器
+            * ================================================================== */
+            
             // 个人信息 监听器
             $('a[href="#tab-personalInfo"]').click(function(){
 
@@ -317,7 +353,7 @@
                 $('#submit-uinfo').addClass('disabled');
             });
 
-            //submit 按钮 监听器
+            // submit 按钮 监听器
             $('#submit-uinfo').click(function(){
                 var status = $(this).hasClass('disabled') === true ? false : true ;
                 var method = $(this).attr('data-submit');
@@ -331,6 +367,44 @@
                 }
 
             });
+            
+            // 个人面板 点击事件监听器
+            $("#ubox a[href^='#tab']").click(function(){
+    
+                var selector = $(this).attr("href");
+                console.log("selector is :" + selector);
+
+                if(selector === '#tab-personalInfo'){
+                    $('#usettings a[href="#uinfo"]').click();
+                }else{
+                    $('#usettings a[href="#ucourses"]').click();
+                }
+
+                $("#usettings").modal().show();
+                $("#usettings a[href= '" + selector + "']").click();
+            });
+            function bindBoxer(){
+                $('.stage-card').boxer();
+                console.log("rebind boxer() function in elements '.stage-card'");
+            }
+            $('[href="#content-CourseResource"]').click(function(){
+                setTimeout(bindBoxer, 1200);
+            });
+            $('[id^="cid-"]').click(function(){
+                setTimeout(bindBoxer, 1200);
+            });
+            $('.stage-card').boxer();
+            
+           /* ==================================================================
+            * 页面 监听器
+            * ================================================================== */
+            var load = $('.lms-loading');
+            load.fadeOut();
+            load.removeClass('lms-loading');
+            load.fadeIn("slow");
+            NProgress.done(true);
+            
+            window.onbeforeunload = function() {};
         </script>
     </body>
 </html>

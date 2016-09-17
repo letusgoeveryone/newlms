@@ -7,24 +7,48 @@
     String sessionid = session.getId();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<html>
+<html class="bg-content">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            ol, ul {
+                padding: 0 0 0 33px;
+            }
+            #iswork{
+                color: #0052A3 !important;
+                font-weight: bold;
+                padding:0 15px;
+            }
+        </style>
     </head>
     <body>     
+        
         <div style="border:0px solid #b8dcff"><span id="iswork" style="color: blue"></span><span id="zjtime" style="float: right"></span><hr>
-            <ol id="myul"  ></ol>     
-        </div><hr>	
-        作业名称:<br><input class="easyui-textbox"  id="zyms" style="width: 200px"></input><br><br>
-        学生提交作业开始时间<br>
-        <input id="onexgtjzyksdd" class="easyui-datetimebox" style="width: 200px"></input><br><br>
-        学生提交作业截至时间:<br>
-        <input id="dd" class="easyui-datetimebox" style="width: 200px"></input><br><br>
-        作业要求:
-        <script type="text/plain" id="homework" style="width: 600%;height:50px;"></script><br><br>
-
-        <button  class="btn btn-primary" onclick="uploadWork()">提交</button>&nbsp;
-        <button onclick="ck()" class="btn btn-success">查看作业</button>
+            <ol id="myul"></ol>     
+        </div>
+        
+        <hr>
+        
+        <div class="row" style="padding:0 15px;">
+            <div class="col-md-4">
+                <div class="box-small">
+                    <p>作业名称:&nbsp;&nbsp;</p><input class="easyui-textbox"  id="zyms" style="width: 268px"/>
+                </div>
+                <div class="box-small">
+                    开始时间:&nbsp;&nbsp;<input id="onexgtjzyksdd" class="easyui-datetimebox" style="width: 200px" /><br>
+                    截止时间:&nbsp;&nbsp;<input id="dd" class="easyui-datetimebox" style="width: 200px" />
+                </div>
+            </div>
+            <div class="col-md-8 box-small">
+                <p>作业要求:</p>
+                <script type="text/plain" id="homework" style="width: 600%;height:50px;"></script>
+            </div>
+        </div>
+        <div style="padding:0 15px;">
+            <button  class="btn btn-primary" onclick="uploadWork()">添加</button>&nbsp;
+            <button onclick="ck()" class="btn btn-success">查看作业</button>
+        </div>
+        
         <script>
 
             $(function () {
@@ -43,14 +67,14 @@
             function hqxzlj() {
                 var term = ${term};
                 var courseName = "${courseName}";
-               window.location.href = "<%=path%>/teacher/download?term=" + term + "&courseName=" + courseName + "&workid=" + workid;
+                window.location.href = "<%=path%>/teacher/download?term=" + term + "&courseName=" + courseName + "&workid=" + workid;
 
             }
             // 下载当前班级的提交作业
             function hqdqzy() {
-               var term = ${term};
-               var courseName = "${courseName}";
-               window.location.href = "<%=path%>/teacher/downloadclas?term=" + term + "&courseName=" + courseName + "&workid=" + workid + "&classname=" + classname;
+                var term = ${term};
+                var courseName = "${courseName}";
+                window.location.href = "<%=path%>/teacher/downloadclas?term=" + term + "&courseName=" + courseName + "&workid=" + workid + "&classname=" + classname;
             }
             //清楚临时生成的压缩文件
             function clear() {
@@ -68,7 +92,7 @@
             }
 
             $(function () {
-               $("#zymultiple_file_upload").uploadify ({
+                $("#zymultiple_file_upload").uploadify({
                     'uploader': '<%=path%>/teacher/zyupload100.do;jsessionid=<%=sessionid%>?Func=uploadwallpaper2Dfs', //************ action **************
                     'height': 30,
                     'width': 120,
@@ -76,8 +100,8 @@
                     'buttonCursor': 'hand',
                     'auto': false,
                     'multi': false,
-                   'method': 'post ',
-                   'swf': '<%=path%>/uploadify/uploadify.swf ',
+                    'method': 'post ',
+                    'swf': '<%=path%>/uploadify/uploadify.swf ',
                     'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png',
                     'fileTypeExts': '*.docx;*.doc;*.xls;*.xlsx;*.ppt ', //指定文件格式
                     'fileSizeLimit': '10MB',
@@ -109,8 +133,8 @@
                     alert("作业描述没有添加!");
                     return true;
                 }
-               var term = ${term};
-               var courseName = "${courseName}";
+                var term = ${term};
+                var courseName = "${courseName}";
                 var time = $('#dd').datebox('getValue');
                 var onetime = $('#onexgtjzyksdd').datebox('getValue');
                 if (time === "" || onetime === "") {
@@ -198,7 +222,7 @@
                                 document.getElementById("xghomework").innerHTML = data[0];
                                 document.getElementById("jzsj").innerHTML = data[1];
                                 document.getElementById("jzzyks").innerHTML = data[2];
-                                $("#xgzyms").textbox('setValue',name);//赋值
+                                $("#xgzyms").textbox('setValue', name);//赋值
                                 $('#xgtjzyksdd').datetimebox('setValue', data[2]);
                                 $('#xgdd').datetimebox('setValue', data[1]);
                                 $("#mywork").show();
@@ -231,8 +255,8 @@
                     alert("作业描述没有添加!");
                     return true;
                 }
-               var term = ${term};
-               var courseName = "${courseName}";
+                var term = ${term};
+                var courseName = "${courseName}";
                 var time = $('#xgdd').datebox('getValue');
                 var starttime = $('#xgtjzyksdd').datebox('getValue');
                 if (time === "" || starttime === "") {
@@ -265,21 +289,21 @@
                 var term = ${term};
                 var courseName = "${courseName}";
                 if (window.confirm('你确定要删除吗？')) {
-                  $.ajax({
-                    url: "<%=path%>/teacher/dlworkfj",
-                    type: "POST",
-                    data: {term: term, courseName: courseName, id: id},
-                    success: function (returndata) {
-                        if (returndata === "1") {
-                            alert("删除成功！");
-                        }
-                        ck();
-                        cklastc();
-                    },
-                    error: function () {
+                    $.ajax({
+                        url: "<%=path%>/teacher/dlworkfj",
+                        type: "POST",
+                        data: {term: term, courseName: courseName, id: id},
+                        success: function (returndata) {
+                            if (returndata === "1") {
+                                alert("删除成功！");
+                            }
+                            ck();
+                            cklastc();
+                        },
+                        error: function () {
 
-                    }
-                  });
+                        }
+                    });
                 }
             }
             function ckallclass() {
@@ -294,8 +318,7 @@
                         clear();
                         if (data.length === 1 && data[0] === "0") {
                             document.getElementById("bjalllk").innerHTML = "暂时没有学生交作业";
-                        }
-                        else {
+                        } else {
                             document.getElementById("bjalllk").innerHTML = data[0];
                         }
                     },
@@ -320,8 +343,7 @@
                             $("#stuwork").show();
                             document.getElementById("stutable").innerHTML = data[0];
                             document.getElementById("bgbt").innerHTML = "共有" + data[data.length - 1] + "位同学已经交作业";
-                        }
-                        else {
+                        } else {
                             document.getElementById("stutable").innerHTML = "";
                             document.getElementById("bgbt").innerHTML = "";
                         }

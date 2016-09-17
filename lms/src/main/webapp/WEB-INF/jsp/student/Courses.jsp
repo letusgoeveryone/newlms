@@ -44,17 +44,17 @@
                         <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="<%=path%>/images/avatar.jpg"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="border-bottom-divider">
+                        <li class="">
                             <a class="waves-attach waves-effect" href="<%=path%>/logout">
                                 <span class="icon mg-sm-right">exit_to_app</span> 登出
                             </a>
                         </li>
-                        <li>
+<!--                        <li>
                             <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon mg-sm-right">account_box</span>帮助</a>
                         </li>
                         <li>
                             <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon mg-sm-right">add_to_photos</span>报告BUG</a>
-                        </li>
+                        </li>-->
                     </ul>
                 </li>
             </ul>
@@ -66,9 +66,9 @@
                     <div class="container">
 
                         <!--table：Header-->
-                        <div class="text-black bt pd-bm">&nbsp; <span class="icon icon-lg">label</span> 全部课程</div>
+                        <div class="text-black bt pd-bm lms-ci-header">全部课程</div>
 
-                        <!--table：nav：category：1-->
+                        <!--table：nav：category：
                         <div class="lms-course-category">
                             <ul>
                                 <li class="lms-cc-header"><a href="#">年级 [ Sample ] :</a></li>
@@ -79,21 +79,21 @@
                                 <li class="lms-cc-item"><a href="#">16 级 </a></li>
                             </ul>
 
-                        </div>
+                        </div>1-->
 
                         <!--table：nav：category：2-->
                         <div class="lms-course-category">
                             <ul data-filter="status">
-                                <li class="lms-cc-header"><a href="#">状态 [ Sample ] :</a></li>
-                                <li class="lms-cc-item"><a href="#" data-parm="all-status"> 全部 </a></li>
-                                <li class="lms-cc-item active"><a href="#" data-parm="ocourse">已选 </a></li>
+                                <li class="lms-cc-header"><a href="#">状态:</a></li>
+                                <!--<li class="lms-cc-item"><a href="#" data-parm="all-status"> 全部 </a></li>-->
+                                <li class="lms-cc-item"><a href="#" data-parm="ocourse">已选 </a></li>
                                 <li class="lms-cc-item"><a href="#" data-parm="icourse">未批准 </a></li>
-                                <li class="lms-cc-item"><a href="#" data-parm="xcourse">未选 </a></li>
+                                <li class="lms-cc-item active"><a href="#" data-parm="xcourse">未选 </a></li>
                             </ul>
 
                         </div>
 
-                        <!--table：nav：category：3-->
+                        <!--table：nav：category：
                         <div class="lms-course-category">
                             <ul>
                                 <li class="lms-cc-header"><a href="#">性质 [ Sample ] :</a></li>
@@ -104,14 +104,14 @@
                                 <li class="lms-cc-item"><a href="#">公共 选修 </a></li>
                             </ul>
 
-                        </div>
+                        </div>3-->
 
                     </div>
                 </div>
 
                 <div id="view-model" class="">
                     <div class="view-model-gbtn container">
-                        <div class="btn btn-flat active"><span class="icon icon-lg">view_list</span>&nbsp;选课列表</div>
+                        <div class="btn btn-flat active"><span class="icon">view_list</span>&nbsp;选课列表</div>
                         <!--<div class="btn btn-flat active"><span class="icon icon-lg">details</span>&nbsp;卡片</div>-->
                     </div>
                 </div>
@@ -328,16 +328,16 @@
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
         <script>
             initCoursePage();
-            $('.lms-course-card').masonry({
-            // options
-            itemSelector: '.card',
-            columnWidth: 10 ,
-            singleMode: true
-          });
+//            $('.lms-course-card').masonry({
+//            // options
+//            itemSelector: '.card',
+//            columnWidth: 10 ,
+//            singleMode: true
+//          });
           
             // 课程监听器
             
-            var activeCourseStatus = "ocourse";
+            var activeCourseStatus = "xcourse";
             $('.lms-cc-item').click(function(){
                 var parm = $(this).children("a").attr("data-parm");
                 console.log("parm is: " +　parm);
@@ -362,7 +362,7 @@
                     CourseAPI.DefaultParms.method = 'i';
                     updataCourseArea();
                     activeCourseStatus = parm;
-                }else{
+                }else if(parm === "all-status" && (activeCourseStatus!=="all-status")){
                     CourseAPI.DefaultParms.method = 'x';
                     updataCourseArea();
                     activeCourseStatus = parm;

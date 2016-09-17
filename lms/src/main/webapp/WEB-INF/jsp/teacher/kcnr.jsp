@@ -14,7 +14,8 @@
 <button onclick="zjd()" class="btn btn-primary btn-xs">增加子节点</button>
 <button onclick="re()"  class="btn btn-success btn-xs">删除节点</button>
 <button onclick="bj_dqjd()" class="btn btn-info btn-xs">编辑节点</button>
-<button onclick="save(1)" class="btn btn-primary btn-xs">保存设置</button><br><br><br>
+<button onclick="save(1)" class="btn btn-primary btn-xs">保存设置</button>\
+<hr>
 <div style="width: 20%;float: left;">
     <ul id="tt1"  class="easyui-tree" data-options="
         url:'<%=path%>/teacher/kcgs',
@@ -33,13 +34,12 @@
 
 
 
-<div id="kcnrdivone" style="float: left;width: 80%;height: auto;">
+<div id="kcnrdivone" style="float: left; width: 79%;margin-left: 1%;padding:0 1em; height: auto; border-left: 1px solid whitesmoke;">
     <!--        <div id="ylkenr"  style="min-height: 50px;border:0px solid #b8dcff" > <iframe id="kcnrurl" frameborder="0" scrolling="no" height="700px" width="100%" name="content" ></iframe></div>-->
-    <br>
+    
     <span id="kcnr"></span>
     <iframe src="" id="swfplayer" frameborder="0" scrolling="no" marginheight="0" height="600px" width="100%" name="swfplayer"></iframe>
 
-    <hr>
 
     <div style="padding-left: 0%;display: none" id="uploadkcnr" >
         注意：上传的视频只有.mp4才能在线观看，上传word,PPT,XLS时文件名尽量不要有符号．<br><br>
@@ -171,34 +171,49 @@
             },
             'onUploadSuccess': function (file, data, response) {
                 ckkcnr();
-                
-                var dir  = TeacherAPI.activeCoordinate[0] + '/'
-                         + TeacherAPI.activeCoordinate[1] + '/'
-                         + (TeacherAPI.activeCoordinate[2] === null ? '':(TeacherAPI.activeCoordinate[2] + '/'))
-                         + (TeacherAPI.activeCoordinate[3] === null ? '':(TeacherAPI.activeCoordinate[3] + '/'));
+                var activeCoordinate= ['',null, null, null];
+                activeCoordinate[0] = TeacherAPI.activeCoordinate[0];
+                activeCoordinate[1] = TeacherAPI.activeCoordinate[1];
+                activeCoordinate[2] = TeacherAPI.activeCoordinate[2];
+                activeCoordinate[3] = TeacherAPI.activeCoordinate[3];
+                var uploadedFile={
+                    name: '',
+                    size: 0,
+                    postfix:'',
+                    nameNoPostfix:'',
+                    handle:{
+                        status:0,
+                        downloadDir:'',
+                        previewDir:'',
+                        playDir:''
+                    }
+                };
+                var dir  = activeCoordinate[0] + '/'
+                         + activeCoordinate[1] + '/'
+                         + (activeCoordinate[2] === null ? '':(activeCoordinate[2] + '/'))
+                         + (activeCoordinate[3] === null ? '':(activeCoordinate[3] + '/'));
                 
                 fileNameNoPostfix = delExtension(file.name);
-                TeacherAPI.uploadedFile.name = file.name;
-                TeacherAPI.uploadedFile.nameNoPostfix = fileNameNoPostfix;
-                TeacherAPI.uploadedFile.size = file.size;
-                TeacherAPI.uploadedFile.postfix = file.type;
+                uploadedFile.name = file.name;
+                uploadedFile.nameNoPostfix = fileNameNoPostfix;
+                uploadedFile.size = file.size;
+                uploadedFile.postfix = file.type;
                 if(file.type==='.doc'||file.type==='.docx'||file.type==='.ppt'||file.type==='.xls'){
-                    TeacherAPI.uploadedFile.handle.status = -1;
-                    TeacherAPI.uploadedFile.handle.downloadDir = dir + file.name;
-                    TeacherAPI.uploadedFile.handle.previewDir = dir + fileNameNoPostfix + '.swf';
+                    uploadedFile.handle.status = -1;
+                    uploadedFile.handle.downloadDir = dir + file.name;
+                    uploadedFile.handle.previewDir = dir + fileNameNoPostfix + '.swf';
                 }else if(file.type==='.mp4'){
-                    TeacherAPI.uploadedFile.handle.status = 1;
-                    TeacherAPI.uploadedFile.handle.downloadDir = dir + file.name;
-                    TeacherAPI.uploadedFile.handle.playDir = '';
+                    uploadedFile.handle.status = 1;
+                    uploadedFile.handle.downloadDir = dir + file.name;
+                    uploadedFile.handle.playDir = '';
                     
                 }else{
-                    TeacherAPI.uploadedFile.handle.status = 0;
-                    TeacherAPI.uploadedFile.handle.downloadDir = dir + file.name;
+                    uploadedFile.handle.status = 0;
+                    uploadedFile.handle.downloadDir = dir + file.name;
                 };
                 
                 var node = $('#tt1').tree('getSelected');
-                node.resource.push(TeacherAPI.uploadedFile);
-                console.log(TeacherAPI);
+                node.resource.push(uploadedFile);
                 console.log(node);
                 save(0);
                 
@@ -397,8 +412,8 @@
             }
         });
     }
-
-//课件删除
+    
+    //课件删除
     function kcnrfj_sc(filename) {
         var term = ${term};
         var courseName = "${courseName}";
@@ -420,6 +435,8 @@
                 node2 = parent.id;
                 node1 = root.id;
             }
+            console.log(node);
+            console.log(filename);
             if (window.confirm('你确定要删除此课件吗？')) {
                 $.ajax({
                     url: '<%=path%>/teacher/kcsc?term=' + term + '&courseName=' + courseName + '&node1=' + node1 + '&node2=' + node2 + '&node3=' + node3 + '&filename=' + filename,
@@ -427,14 +444,8 @@
                     success: function (data) {
                         alert("删除成功，你可以重新上传!");
                         document.getElementById("kcnr").innerHTML = data[0];
-                        var node = $('#tt1').tree('getSelected');
-                        var len = node.resource.length;
-                        while(len===0){
-                            if(node.resource[len].name === filename){
-                                node.resource.splice(len, 1);
-                                save(0);
-                            }
-                        }
+                        deleteFileInJSON(node, filename);
+                        save(0);
                         ckkcnr();
                     }
                 });
@@ -445,7 +456,18 @@
         }
     }
 
-
+    function deleteFileInJSON(node, filename){
+        var len = node.resource.length;
+        console.log(node);
+        console.log(filename);
+        while(len!==0){
+            if(node.resource[len-1].name === filename){
+                console.log(node.resource[len-1].name);
+                node.resource.splice(len-1, 1);
+            }
+            len--;
+        }
+    }
     $(function () {
         var node1, node2, node3;
         $('#tt1').tree({
@@ -461,18 +483,24 @@
                 }
                 if (node.attributes === "1") {
                     node1 = node.id;
+                    TeacherAPI.activeCoordinate[1] = node1;
                     node2 = null;
                     node3 = null;
                 } else if (node.attributes === "2") {
                     node2 = node.id;
                     node1 = $('#tt1').tree('getParent', node.target).id;
                     node3 = null;
+                    TeacherAPI.activeCoordinate[1] = node1;
+                    TeacherAPI.activeCoordinate[2] = node2;
                 } else {
                     node3 = node.id;
                     parent = $('#tt1').tree('getParent', node.target);
                     root = $('#tt1').tree('getParent', parent.target);
                     node2 = parent.id;
                     node1 = root.id;
+                    TeacherAPI.activeCoordinate[1] = node1;
+                    TeacherAPI.activeCoordinate[2] = node2;
+                    TeacherAPI.activeCoordinate[3] = node3;
                 }
                 $("#uploadkcnr").show();
                 $("#kcnrdivone").show();

@@ -29,9 +29,10 @@
                         <a class="btn-upload btn btn-flat pull-right" id="uploadify-btn" href="#modal-uploadify" data-toggle="modal">
                             <span><span class="icon avatar avatar-sm">attachment</span></span>
                         </a>
-                        <a class="btn-edit btn btn-flat pull-right" data-toggle="tab" href="#tab-homework">
+                        <a class="btn-edit btn btn-flat pull-right" id="editor-backspace">
                             <span><span class="icon avatar avatar-sm">keyboard_backspace</span></span>
                         </a>
+                        <a class="btn-edit btn btn-flat pull-right" data-toggle="tab" href="#tab-homework" hidden ></a>
                     </div>
                     
                     <div class="card-inner">

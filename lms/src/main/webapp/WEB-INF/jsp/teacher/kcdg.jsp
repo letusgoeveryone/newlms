@@ -1,6 +1,5 @@
-
 <%
-    //    将项目的根取出来，页面中不再使用相对路径
+    //将项目的根取出来，页面中不再使用相对路径
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
         + request.getServerName() + ":"
@@ -14,23 +13,24 @@
     </head>
     <body>  
         <div><div id="DGText" style="border:0px solid #CCC;"></div></div>
-        
+
         <div id="DGword"></div>  
         <div id="dgxsid" style="display: none"> 
             <iframe id="kcdgurl" frameborder="0" scrolling="no" height="700px" width="100%" name="content" ></iframe>
         </div>
-        
+
         <div id="dgscid">
             <input type="file" name="uploadify" id="dgmultiple_file_upload" />
             <a class="btn btn-primary btn-uploadify" onclick="ksscdg()">开始上传</a>
             <a class="btn btn-primary" href="javascript:$('#dgmultiple_file_upload').uploadify('cancel','*')">取消上传</a>
             <a class="btn btn-primary" href="javascript:$('#dgmultiple_file_upload').uploadify('stop','*')" hidden=true id="stopUpload">停止上传</a>
         </div><br>
-        
-        <script type="text/plain" id="CourseDaGangEditor" style="width: 600%;height:100px;">
-           <p>在此处编辑课程大纲</p>
+
+        <script type="text/plain" id="CourseDaGangEditor" style="height:100px;">
+            <p>在此处编辑课程大纲</p>
         </script>
         
+
         <br>
         <button   class="btn btn-default " onclick="getContentDG()">预览</button>
         <button   class="btn btn-primary" onclick="QXDG()">撤销</button>
@@ -53,7 +53,7 @@
                 $('#dgmultiple_file_upload').uploadify('upload', '*');
             }
             $(function () {
-                  $("#dgmultiple_file_upload").uploadify({
+                $("#dgmultiple_file_upload").uploadify({
                     'uploader': '<%=path%>/teacher/dgupload100.do;jsessionid=<%=sessionid%>?Func=uploadwallpaper2Dfs',
                     'width': 120,
                     'buttonText': '选择文件',
@@ -96,16 +96,16 @@
                     data: {courseid:${courseid}, term:${term}},
                     url: "<%=path%>/teacher/lookisCourseMaster",
                     success: function (data) {
-                       if(data!=="0"){
+                        if (data !== "0") {
                             alert("你不是课程负责人，不能在此编辑课程大纲!");
-                       }else{
-                         if (window.confirm('你确定要更新课程大纲吗？')) {
-                            var arr = [];
-                            arr.push(UM.getEditor('CourseDaGangEditor').getContent());
-                            addcourseoutlino(arr);
-                            return true;
-                         }
-                       }
+                        } else {
+                            if (window.confirm('你确定要更新课程大纲吗？')) {
+                                var arr = [];
+                                arr.push(UM.getEditor('CourseDaGangEditor').getContent());
+                                addcourseoutlino(arr);
+                                return true;
+                            }
+                        }
                     },
                     error: function () {
                         CourseMaster();
@@ -160,8 +160,8 @@
                 lookcourseDG();
             }
 
-            function dgxz(path){
-                 window.location.href = "<%=path%>/teacher/downloadDG?temp="+ path;
+            function dgxz(path) {
+                window.location.href = "<%=path%>/teacher/downloadDG?temp=" + path;
             }
             function lookcourseDGword() {
                 var coursename = "${courseName}";

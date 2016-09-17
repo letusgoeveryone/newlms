@@ -26,7 +26,7 @@
                             </li>
 
                             <li>
-                                <a data-toggle="tab" href="#content-CourseResource"> 课程资源 </a>
+                                <a data-toggle="tab" href="#content-CourseResource" ondblclick="updataResourceArea()"> 课程资源 </a>
                             </li>
                             
                             <li>
@@ -37,7 +37,7 @@
                     
                     <div class="tab-content">
                         
-                        <article id="content-CourseOutline" class=" tab-pane fade in active">
+                        <article id="content-CourseOutline" class=" tab-pane fade in active lms-loading">
                             <h1>课程简介</h1><hr>
                             <section>
                                 {{{introduction}}}
@@ -73,7 +73,7 @@
                     </div>
                     <div class="collapse in" >
                         <nav class="tile-sub tab-nav tabs-right tab-nav-brand collapse in" id="tile-course-list">
-                            <ul class="nav nav-brand">{{{courseliset}}}</ul>
+                            <ul class="nav nav-brand  lms-loading">{{{courseliset}}}</ul>
                         </nav>
                         <div class="tile-footer">
 

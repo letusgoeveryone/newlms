@@ -11,7 +11,7 @@ var CourseAPI={
      * @type Object Array
      */
     DefaultParms:{
-        method:'o',
+        method:'x',
         parms:null
     },
     

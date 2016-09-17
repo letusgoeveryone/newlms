@@ -339,7 +339,10 @@ body[id^=lms] {
     border-bottom: 1.2px solid lightgray;
     border-top: 2px solid #003c72;
 }
-
+.lms-ci-header{
+    font-size: large;
+    font-weight: bold;
+}
 .lms-course-content{
     margin: 1em auto;
 }
@@ -385,6 +388,7 @@ body[id^=lms] {
 
 .lms-course-category ul {
     margin: 0;
+    padding: 1em 0;
 }
 
 .lms-course-category ul li {
@@ -398,9 +402,10 @@ body[id^=lms] {
 
 .lms-cc-header>a {
     display: block;
-    padding: 1em 3em 1em 0.1em;
+    padding: 1em 1.2em 1em 0;
     color: grey;
     cursor: default;
+    font-weight: bold;
 }
 
 .lms-cc-item>a {
@@ -468,7 +473,7 @@ body[id^=lms] {
 
 .view-model-gbtn .btn{
     border-top: 2px solid transparent;
-    margin-top: -1.5px;
+    margin-top: -1px;
 }
 .view-model-gbtn .btn:after{
     border-top: 2px solid rgba(154,154,154,.36);
@@ -1706,7 +1711,19 @@ div[id^="collapse-history"]>.history-wrap>.table-wrap{
     min-width: 320px;
     max-width: 350px;
 }
+#lms_tch_reg .stage-box,
+#lms_stu_reg .stage-box{
+    padding: 15px 2px;
+}
+.login-form{
+    width: 480px;
+    margin: 25px auto;
+}
 
+#account-title > h1 {
+    font-size: 30px;
+    line-height: 30px;
+}
 @media (max-height: 740px) {
     #lms-login-footer {
         display: none;
@@ -1730,6 +1747,7 @@ div[id^="collapse-history"]>.history-wrap>.table-wrap{
 #lms_stu_reg .text-error,
 #lms_tch_reg .text-error {
     color: #F44336;
+    position: absolute;
 }
 
 #lms_stu_reg .input-group,
@@ -2230,6 +2248,7 @@ a[class *=text-grey]:hover {
 }
 
 
+
 /*
     ** 全局 问题修复区 3.e
     **
@@ -2252,8 +2271,29 @@ a[class *=text-grey]:hover {
     color: #111;
     text-shadow: none;
 }
+#multiple_file_upload,#zymultiple_file_upload,#dgmultiple_file_upload{
 
-
+    background: #FCFCFC;
+    border: 2px dashed grey;
+    background-image: none;
+    border-radius: 2px;
+    padding: 0px;
+    margin: 0;
+    line-height: 12px !important;
+    color: #111;
+    text-shadow: none;
+}
+.uploadify-button{
+    background: none;
+    border-radius: 0;
+    border: none;
+    padding: 0;
+    margin: -2px;
+    color: #000;
+}
+#dgscid{
+    margin-top: 10em;
+}
 /*修复编辑器*/
 
 #lms-editor {
@@ -2342,7 +2382,33 @@ input[type="radio"]:checked~ .radiobtn-circle-check {
     margin-top: 20vh;
 }
 
-
+/**/
+a:focus{
+    outline: none !important;
+}
+.bg-content .nav > li > a:hover, .bg-content .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #fff !important;
+}
+ .bg-content .breadcrumb {
+    margin: 0;
+}
+.nav-item-pullrigh{
+    position: absolute !important;
+    right: 0;
+}
+/**/
+.lms-loading{
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+}
+.lms-loaded{
+    opacity: 1;
+}
+.lms-loading:after{
+    content: '';
+}
 /*未归档*****************************************************************
 
 

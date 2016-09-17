@@ -111,7 +111,7 @@
                                                     </div>
                                                     <br>
                                                     <div class="form-group">
-                                                        <div class=""><a href="#account" data-toggle="tab" class="btn-link text-grey pull-left">没有帐号？注册一个</a> <a href="<%=path%>/guest" class="btn-link text-grey pull-right">进入游客区</a></div>
+                                                        <div class=""><a href="#account" data-toggle="tab" class="btn-link text-grey pull-left">没有帐号？注册一个</a> <a href="<%=path%>/reg/guest" class="btn-link text-grey pull-right">进入游客区</a></div>
 
                                                     </div>
                                                 </form>
