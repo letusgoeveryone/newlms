@@ -70,7 +70,7 @@ public class DeanController {
     }
         //返回admin信息
     @RequestMapping("/dean/getpersoninfo")
-    public @ResponseBody Teacher personal_Informationdean(HttpServletRequest request, HttpServletResponse response) {
+    public @ResponseBody Teacher personal_InfInformation2(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
         teacher.setTeacherPwd("");
@@ -81,7 +81,7 @@ public class DeanController {
     }
      //个人信息修改提交处理
     @RequestMapping("/dean/updatepersoninfo")
-    public @ResponseBody String resetinf_pdean(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    public @ResponseBody String resetinf_p(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
         String sn=getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
@@ -114,7 +114,7 @@ public class DeanController {
     }
     //密码修改提交处理
     @RequestMapping("/dean/updatepassword")
-    public @ResponseBody String resetpassworddean(HttpServletRequest request, HttpServletResponse response) {
+    public @ResponseBody String resetpassword_p(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
         String pw=request.getParameter("pw");
