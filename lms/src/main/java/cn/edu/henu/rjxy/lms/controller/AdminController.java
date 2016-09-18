@@ -65,7 +65,7 @@ public class AdminController {
     }
         //返回admin信息
     @RequestMapping("/admin/getpersoninfo")
-    public @ResponseBody Teacher personal_InfInformation2(HttpServletRequest request, HttpServletResponse response) {
+    public @ResponseBody Teacher personal_Information_admin(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
         teacher.setTeacherPwd("");
@@ -75,8 +75,8 @@ public class AdminController {
         return teacher;
     }
      //个人信息修改提交处理
-    @RequestMapping("/teacher/updatepersoninfo")
-    public @ResponseBody String resetinf_p(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    @RequestMapping("/admin/updatepersoninfo")
+    public @ResponseBody String resetinf_padmin(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
         String sn=getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
@@ -109,7 +109,7 @@ public class AdminController {
     }
     //密码修改提交处理
     @RequestMapping("/admin/updatepassword")
-    public @ResponseBody String resetpassword_p(HttpServletRequest request, HttpServletResponse response) {
+    public @ResponseBody String resetpassword_padmin(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
         String pw=request.getParameter("pw");
