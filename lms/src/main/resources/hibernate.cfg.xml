@@ -21,5 +21,6 @@
     <mapping resource="cn/edu/henu/rjxy/lms/model/CourseMaster.hbm.xml"/>
     <mapping resource="cn/edu/henu/rjxy/lms/model/StudentSelectCourse.hbm.xml"/>
     <mapping resource="cn/edu/henu/rjxy/lms/model/TermCourseInfo.hbm.xml"/>
+    <mapping class="cn.edu.henu.rjxy.lms.model.KeyValue"/>  
   </session-factory>
 </hibernate-configuration>

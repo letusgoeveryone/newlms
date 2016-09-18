@@ -81,20 +81,20 @@ public class TeaController {
         
         return "teacher/mystudent";
     } 
-      @RequestMapping("teacher/resetpw_p")
-    public @ResponseBody String resetpw_p(HttpServletRequest request, HttpServletResponse response) {
-        String sn=getCurrentUsername();
-        Teacher teacher=TeacherDao.getTeacherBySn(sn);
-        String pw=request.getParameter("pw");
-        String repw=request.getParameter("repw");
-        if (!pw.equals(teacher.getTeacherPwd().toLowerCase())) {
-             return "1";}
-        if (pw.equals(repw.toLowerCase())) {
-             return "2";}
-        teacher.setTeacherPwd(repw);
-        TeacherDao.updateTeacherById(teacher);
-        return "3";
-     }
+//      @RequestMapping("teacher/resetpw_p")
+//    public @ResponseBody String resetpw_p(HttpServletRequest request, HttpServletResponse response) {
+//        String sn=getCurrentUsername();
+//        Teacher teacher=TeacherDao.getTeacherBySn(sn);
+//        String pw=request.getParameter("pw");
+//        String repw=request.getParameter("repw");
+//        if (!pw.equals(teacher.getTeacherPwd().toLowerCase())) {
+//             return "1";}
+//        if (pw.equals(repw.toLowerCase())) {
+//             return "2";}
+//        teacher.setTeacherPwd(repw);
+//        TeacherDao.updateTeacherById(teacher);
+//        return "3";
+//     }
     
     @RequestMapping("teacher/mycourse")
     public String alljsp(HttpServletRequest request,HttpServletResponse response) {
@@ -106,43 +106,103 @@ public class TeaController {
         request.setAttribute("courseName",courseName );
         return "teacher/mycourse";
     } 
-    
-    @RequestMapping("teacher/teapnda")
-    public String teacher(HttpServletRequest request,HttpServletResponse response) {
-         String sn=getCurrentUsername();
-         Teacher teacher = TeacherDao.getTeacherBySn(sn);
-         String name = teacher.getTeacherName();
-         String idCard = teacher.getTeacherIdcard();
-         String qq = teacher.getTeacherQq();
-         String tel =teacher.getTeacherTel();
-         request.setAttribute("sn", sn);
-         request.setAttribute("name",name);
-         request.setAttribute("idCard",idCard );
-         request.setAttribute("qq", qq);
-         request.setAttribute("tel", tel);
-         request.setAttribute("college", teacher.getTeacherCollege());
-         request.setAttribute("zc", teacher.getTeacherPosition());
-        return "teacher/teapnda";
-    } 
-    
-    @RequestMapping("teacher/updatetea")
-    public @ResponseBody
-        String update(HttpServletRequest request,HttpServletResponse response) {
-        String a="0";
-        String tsn=getCurrentUsername();
-        Teacher teacher=TeacherDao.getTeacherBySn(tsn);
-        System.out.println(tsn);
-        String qq=request.getParameter("qq");
-        teacher.setTeacherQq(qq);
+        //返回teacher信息
+    @RequestMapping("/teacher/getpersoninfo")
+    public @ResponseBody Teacher teacherPersonalInformation(HttpServletRequest request, HttpServletResponse response) {
+        String sn=getCurrentUsername();
+        Teacher teacher = TeacherDao.getTeacherBySn(sn);
+        teacher.setTeacherPwd("");
+        teacher.setTeacherRoleValue(0);
+        teacher.setTeacherEnrolling(null);
+        teacher.setTermCourse(null);
+        return teacher;
+    }
+     //个人信息修改提交处理
+    @RequestMapping("/teacher/updatepersoninfo")
+    public @ResponseBody String teacherUpdatePersonInfo(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
+        String sn=getCurrentUsername();
+        Teacher teacher = TeacherDao.getTeacherBySn(sn);
         String name=request.getParameter("name");
+        String idcard=request.getParameter("idcard");
+        String college=request.getParameter("college");
+        String sex=request.getParameter("sex");
+        String telnum=request.getParameter("telnum");
+        String qqnum=request.getParameter("qqnum");
+        if (!name.matches("[\u4e00-\u9fa5]{2,4}")) {
+            return "姓名校验未通过！";
+        }
         teacher.setTeacherName(name);
-        String tel=request.getParameter("tel");
-        teacher.setTeacherTel(tel);
-        String idCard=request.getParameter("idCard");
-        teacher.setTeacherIdcard(idCard);
+        if (!idcard.matches("([0-9]{17}([0-9]|X))|([0-9]{15})") ){
+            return "身份证校验未通过！";
+        }       
+        teacher.setTeacherIdcard(idcard);
+        teacher.setTeacherCollege(college);
+        teacher.setTeacherSex(sex.equals("男"));
+        if (!telnum.matches("\\d{11}") ){
+            return "电话号码校验未通过！";
+        } 
+        teacher.setTeacherTel(telnum);
+        if (!qqnum.matches("\\d{5,10}") ){
+            return "QQ号码校验未通过！";
+        } 
+        teacher.setTeacherQq(qqnum);
         TeacherDao.updateTeacherById(teacher);
-        return a;
-    } 
+        return "1";
+    }
+     //密码修改提交处理
+    @RequestMapping("/teacher/updatepassword")
+    public @ResponseBody String teacherUpdatePassword(HttpServletRequest request, HttpServletResponse response) {
+        String sn=getCurrentUsername();
+        Teacher teacher = TeacherDao.getTeacherBySn(sn);
+        String pw=request.getParameter("pw");
+        String repw=request.getParameter("repw");
+        if (repw.matches("\\w{6,18}")) {
+             return "0";}
+        if (!pw.equals(teacher.getTeacherPwd().toLowerCase())) {
+             return "1";}
+        if (pw.equals(repw.toLowerCase())) {
+             return "2";}
+        teacher.setTeacherPwd(repw);
+        TeacherDao.updateTeacherById(teacher);
+        return "3";
+    }  
+//    @RequestMapping("teacher/teapnda")
+//    public String teacher(HttpServletRequest request,HttpServletResponse response) {
+//         String sn=getCurrentUsername();
+//         Teacher teacher = TeacherDao.getTeacherBySn(sn);
+//         String name = teacher.getTeacherName();
+//         String idCard = teacher.getTeacherIdcard();
+//         String qq = teacher.getTeacherQq();
+//         String tel =teacher.getTeacherTel();
+//         request.setAttribute("sn", sn);
+//         request.setAttribute("name",name);
+//         request.setAttribute("idCard",idCard );
+//         request.setAttribute("qq", qq);
+//         request.setAttribute("tel", tel);
+//         request.setAttribute("college", teacher.getTeacherCollege());
+//         request.setAttribute("zc", teacher.getTeacherPosition());
+//        return "teacher/teapnda";
+//    } 
+//    
+//    @RequestMapping("teacher/updatetea")
+//    public @ResponseBody
+//        String update(HttpServletRequest request,HttpServletResponse response) {
+//        String a="0";
+//        String tsn=getCurrentUsername();
+//        Teacher teacher=TeacherDao.getTeacherBySn(tsn);
+//        System.out.println(tsn);
+//        String qq=request.getParameter("qq");
+//        teacher.setTeacherQq(qq);
+//        String name=request.getParameter("name");
+//        teacher.setTeacherName(name);
+//        String tel=request.getParameter("tel");
+//        teacher.setTeacherTel(tel);
+//        String idCard=request.getParameter("idCard");
+//        teacher.setTeacherIdcard(idCard);
+//        TeacherDao.updateTeacherById(teacher);
+//        return a;
+//    } 
     
     //教师课程树http://localhost:8080/lms/teacher/courselist?xueqi=201602
     @RequestMapping(value = "courselist",method = RequestMethod.GET)
