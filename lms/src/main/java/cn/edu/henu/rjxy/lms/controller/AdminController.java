@@ -75,7 +75,7 @@ public class AdminController {
         return teacher;
     }
      //个人信息修改提交处理
-    @RequestMapping("/student/updatepersoninfo")
+    @RequestMapping("/teacher/updatepersoninfo")
     public @ResponseBody String resetinf_p(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
         String sn=getCurrentUsername();
