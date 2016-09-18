@@ -100,7 +100,7 @@
                             </div>
                             <div class="form-group">
 
-                                <label for="zc" class="col-sm-3  control-label"></label>
+                                <label class="col-sm-3  control-label"></label>
                                 <div class="col-sm-6">
                                     <button class="btn btn-default form-control hidden" id ="update" type="button" >保存修改</button>
                                 </div>
@@ -108,11 +108,11 @@
                             </div>
                         </form>
                                 
-<!--                        <div class="card-action">
+                        <div class="card-action">
                             <div class="card-action-btn">
                                 <button class="btn btn-default" id ="update" type="button">保存修改</button>
                             </div>
-                        </div>-->
+                        </div>
                     </div>
                     
                     
@@ -122,21 +122,21 @@
                         </div>
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3  control-label">原密码:</label>
+                                <label class="col-sm-3  control-label">原密码:</label>
                                 <div class="col-sm-6 ">
                                     <input type="password" class="form-control" id="inputPassword1" placeholder="请输入您的旧密码">
                                 </div>
 
                             </div>
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3  control-label">新密码:</label>
+                                <label class="col-sm-3  control-label">新密码:</label>
                                 <div class="col-sm-6 ">
                                     <input type="password" class="form-control" id="inputPassword2" placeholder="请输入您的新密码">
                                 </div>
 
                             </div>
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3  control-label"></label>
+                                <label class="col-sm-3  control-label"></label>
                                 <div class="col-sm-6 ">
                                     <input type="password" class="form-control" id="inputPassword3" placeholder="确认您的新密码">
                                 </div>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="form-group">
 
-                                <label for="updata" class="col-sm-3  control-label"></label>
+                                <label class="col-sm-3  control-label"></label>
                                 <div class="col-sm-6 ">
                                     <button class="btn btn-default saves form-control hidden" id ="update" type="button" hidden="">保存修改</button>
                                     <label  id="submas"></label>
@@ -153,12 +153,12 @@
                             </div>
                             
                         </form>
-<!--
+
                         <div class="card-action">
                             <div class="card-action-btn">
                                 <button class="btn btn-default saves" id ="update" type="button">保存修改</button>
                             </div>
-                        </div>-->
+                        </div>
                     </div>
                 </div>
             </div>

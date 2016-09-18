@@ -24,7 +24,41 @@
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" type="text/css"/>
         <link href="<%=path%>/css/lms.css" rel="stylesheet" type="text/css"/>
         <link href="<%=path%>/table/dist/bootstrap-table.min.css" rel="stylesheet" type="text/css"/>
-
+        <style>
+            #managePower{
+                border-radius: 50%;
+                height: 100px;
+                line-height: 100px;
+                padding: 0px;
+                top: -50px;
+                width: 100px;
+            }
+            #resetPassword{
+                height: 150px;
+                width: 150px;
+                border-radius: 50%;
+                line-height: 150px;
+                padding: 0px;
+                top: -25px;
+                left: 5px;
+            }
+            @media only screen and (min-width: 330px) and (max-width: 1440px) {
+                #managePower{
+                    height: 80px;
+                    line-height: 80px;
+                    width: 80px;
+                    top: -20px;
+                    right: 20px;
+                }
+                #resetPassword{
+                    height: 100px;
+                    width: 100px;
+                    line-height: 100px;
+                    top: -40px;
+                    left: 40px;
+                } 
+            }
+        </style>
         <!--JS-->
         <script  src="<%=path%>/js/jquery.min.js"></script>
         <script src="<%=path%>/js/base.min.js" ></script>
@@ -36,7 +70,7 @@
     <body class="container-full" style="padding-bottom: 100px;">  
 
         <div class="row-fluid">
-            <div class="col-md-10">
+            <div class="col-sm-10">
                 <table id="table-style" data-url="teacher" data-search ="true"  data-striped = "true" data-pagination ="true" data-toggle="table" class="table table-bordered table-responsive">
                     <thead>
                         <tr>
@@ -57,12 +91,10 @@
                 </table>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-sm-2">
                 <div class="box-small">
-                    <a style="border-radius: 50%; height: 100px; width: 100px; line-height: 100px; padding: 0px; top: -50px;" 
-                       href="#" id="managePower" class="fbtn fbtn-brand-accent pull-left">权限管理</a>
-                    <a style="height: 150px; width: 150px; border-radius: 50%; line-height: 150px; padding: 0px; top: -25px; left: 5px;" 
-                       href="#" id="resetPassword" class="fbtn fbtn-brand pull-right">密码重置</a>
+                    <a style="" href="#" id="managePower" class="fbtn fbtn-brand-accent pull-left">权限管理</a>
+                    <a style="" href="#" id="resetPassword" class="fbtn fbtn-brand pull-right">密码重置</a>
                 </div>
             </div>
         </div>

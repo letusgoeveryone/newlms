@@ -12,7 +12,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-        <title>教师</title>
+        <title>教务系统 | 教师</title>
 
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
@@ -33,23 +33,7 @@
             }
         </style>
         <script src="<%=path%>/js/jquery.min.js"></script>
-        <!-- js -->
-        <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
         
-        <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
-
-        <!--easyui-->
-        <script src="<%=path%>/js/jquery.easyui/jquery.easyui.min.js"></script>
-        <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/bootstrap/easyui.css">
-        <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/icon.css">
- 
-        <!--uploadify-->
-        <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
-        <!--umeditor-->
-        <script charset="utf-8" src="<%=path%>/ueditor/umeditor.config.js"></script>
-        <script charset="utf-8" src="<%=path%>/ueditor/umeditor.min.js"></script>
-        <script src="<%=path%>/js/zh-cn.js"></script>
         
     </head>
     <body class="page-default tab-content" id='lms_teach'>
@@ -57,9 +41,9 @@
         <section id="lms_main" class="tab-pane fade in active">
             
             <header class="header" id="tree-header">
-                <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
+                <nav class="">
                     <ul class="nav nav-list">
-                        <li  class="active"><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_teach_CouCenter"><span class="text-white">课程中心</span></a></li>
+                        <li  class="active"><a class="waves-attach waves-light waves-effect" href="login"><span class="text-white">教务系统 | 教师页面</span></a></li>
                         <!--<li ><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_teach_RequstManage"><span class="text-white">学生管理</span></a></li>-->
                         <!--<li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_stu_tnav_tLine"><span class="text-white">时光轴</span></a></li>-->
                         <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white"> 退出系统<span class="icon icon-fixHans margin-left-sm">exit_to_app</span></span></a></li>
@@ -267,7 +251,24 @@
                 });
             }
         </script>
+        <!-- js -->
+        <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
+        
+        <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
 
+        <!--easyui-->
+        <script src="<%=path%>/js/jquery.easyui/jquery.easyui.min.js"></script>
+        <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/bootstrap/easyui.css">
+        <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/icon.css">
+ 
+        <!--uploadify-->
+        <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
+        <!--umeditor-->
+        <script charset="utf-8" src="<%=path%>/ueditor/umeditor.config.js"></script>
+        <script charset="utf-8" src="<%=path%>/ueditor/umeditor.min.js"></script>
+        <script src="<%=path%>/js/zh-cn.js"></script>
+        
         <script type="text/javascript">
         var browserVersion = window.navigator.userAgent.toUpperCase();
         var isOpera = false, isFireFox = false, isChrome = false, isSafari = false, isIE = false;

@@ -54,7 +54,7 @@
                             </aside>
                             <div class="card-main">
                                 <div class="card-inner">
-                                    <section class="card-heading">角色转换（管理员）到</section>
+                                    <section class="card-heading">管理员视角</section>
                                     <section>
                                         <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
                                             <a href="<%=path%>/dean" class='btn btn-aqua'>
@@ -138,7 +138,7 @@
         <!--返回顶部-->
         <div class="fbtn-container" id="scrollUp">
             <div class="fbtn-inner">
-                <a class="fbtn fbtn-lg fbtn-brand waves-attach waves-circle waves-light waves-effect" >T<span class="fbtn-text fbtn-text-left">返回顶部</span></a>
+                <a class="fbtn fbtn-lg fbtn-brand waves-attach waves-circle waves-light waves-effect" ><span class="fbtn-ori icon">keyboard_arrow_up</span><span class="fbtn-text fbtn-text-left">返回顶部</span></a>
             </div>
         </div>
         

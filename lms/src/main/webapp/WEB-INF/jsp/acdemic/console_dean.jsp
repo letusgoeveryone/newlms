@@ -19,8 +19,13 @@
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/lms.css" rel="stylesheet" />
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" />
+        <style>.l-btn{border-radius: 0px !important;}</style>
+        <script src="<%=path%>/js/jquery.min.js"></script>    
         
-        <script src="<%=path%>/js/jquery.min.js"></script>
+        <!--easyui-->
+        <script src="<%=path%>/js/jquery.easyui/jquery.easyui.min.js"></script>
+        <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/bootstrap/easyui.css">
+        <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/icon.css">
           
     </head>
     <body class="page-default tab-content" id='lms_acdemic'>
@@ -129,11 +134,7 @@
     </script>
     <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
 
-    <!--easyui-->
-    <script src="<%=path%>/js/jquery.easyui.min.js"></script>
-    <link rel="stylesheet"  href="<%=path%>/css/easyuicss/easyui.css">
-    <link rel="stylesheet"  href="<%=path%>/css/easyuicss/icon.css">
-    <link rel="image/png"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
+
     
     <!--uploadify-->
     <script src="<%=path%>/js/jquery.uploadify.min.js"></script>

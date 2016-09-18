@@ -63,6 +63,12 @@ public class DeanController {
 
          return "stu_index2";
      }
+    
+    @RequestMapping("pinfo")
+    public String pinfo(HttpServletRequest request, HttpServletResponse response) {
+
+        return "PersonalInfo";
+    }
      
          @RequestMapping("dean/personManage")
     public String PersonManage(HttpServletRequest request, HttpServletResponse response) {

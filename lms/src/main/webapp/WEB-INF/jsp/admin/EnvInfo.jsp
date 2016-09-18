@@ -182,7 +182,7 @@
                         env.getHashtable(query);
                         out.println("<tbody>");
                         if (env.htShowMsg.size() > 0) {
-                            out.println("<tr  >\n<td>&nbsp;参数名称</td>\n<td>&nbsp;参数信息</td>\n</tr>");
+                            out.println("<tr  ><td>&nbsp;参数名称</td><td>&nbsp;参数信息</td></tr>");
                         } else {
                             out.println("<tr >\n<td>&nbsp;<font color=red>出错信息：</font></td>\n<td>&nbsp;<font color=red>没有找到你所查询的内容，请输入所要查询的参数，如果不确认，可以进行抽象查询，输入所包含字母。</font></td>\n</tr>");
                         }

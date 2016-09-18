@@ -33,7 +33,7 @@
     <body class="page-brand container-full" id="lms_stu">
         
         <!--aside -->
-        <aside id="ubox" class="menu menu-right nav-drawer nav-drawer-md" >
+        <aside id="upanel" class="menu menu-right nav-drawer nav-drawer-md" >
             <div class="menu-scroll">
                 <div class="menu-content">
                     <div class="menu-logo" href="javascript:void(0)">个人面板 

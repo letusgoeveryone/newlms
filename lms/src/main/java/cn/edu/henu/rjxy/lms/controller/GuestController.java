@@ -58,7 +58,7 @@ public class GuestController {
     }
     //当前学期
    public int getCurrentTerm() {
-      return 201601;
+      return 201602;
    }
    //当前登录用户名
      public String getCurrentUsername() {

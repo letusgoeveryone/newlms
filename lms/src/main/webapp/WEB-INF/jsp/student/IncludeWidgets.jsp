@@ -25,49 +25,38 @@
         </div>
     </div>
     
-    <div class="modal fade" id="usettings" role="dialog">
+    <!--消息盒子-->
+    <div class="modal fade" id="ubox" role="dialog">
         <div class="modal-dialog" style="max-width: 960px;">
             <div class="modal-content tab-content" >
                 
                 <nav class="tab-nav tab-nav-brand no-margin" hidden="">
                     <ul class="nav nav-list nav-justified">
                         <li >
-                            <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#uinfo">
-                                <span class="text-grey">个人设置</span>
+                            <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#">
+                                <span class="text-grey"></span>
                             </a>
                         </li>
                         <li>
-                            <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#ucourses">
-                                <span class="text-grey">课程管理</span>
+                            <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#">
+                                <span class="text-grey"></span>
                             </a>
                         </li>
                     </ul>
                 </nav>
                 
-                <div class="tab-pane fade row mg" id="ucourses" style="margin:0 1em 1em 1em ;">
-                    <nav class="tab-nav tab-nav-brand no-margin">
-                        <ul class="nav nav-list nav-justified">
-                            <li>
-                                <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#tab-course-selected">
-                                    <span class="text-grey">已选课程</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#tab-course-notpermit">
-                                    <span class="text-grey">待批准课程</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="tab-pane fade modal-inner no-padding" id="tab-course-selected">
-                        {{{OCourseTableHS}}}
-                    </div>
-                    <div class="tab-pane fade modal-inner no-padding" id="tab-course-notpermit">
-                        {{{ICourseTableHS}}}
-                    </div>
-                </div>
+                <div class="tab-pane fade row mg" id=""></div>
                 
-                <div class="tab-pane fade row" id="uinfo" style="margin:0 1em 1em 1em ;">
+                
+                
+            </div>
+        </div>
+    </div>
+                          
+    <!--个人信息-->
+    <div class="modal fade" id="uinfo" role="dialog">
+        <div class="modal-dialog" style="max-width: 960px;">
+            <div class="modal-content" >
                     <div class="tab-content divider-right">
                         <!--基础资料-->
                         <div class="tab-pane fade" id="tab-personalInfo" >
@@ -164,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="card no-padding">
                         <div class="card-main">
@@ -185,11 +174,11 @@
                         </div>
 
                     </div>
-                </div>
-                
             </div>
         </div>
     </div>
+    
+    <!--附件-->
     <div class="modal fade" id="modal-uploadify" role="dialog">
         <div class="modal-dialog modal-xs">
             <div class="modal-content">

@@ -1400,7 +1400,7 @@ function initPage() {
 
     
     UPanel = new Vue({
-        el: "#ubox",
+        el: "#upanel",
         data: {
             sn: StudentAPI.sn,
             name: StudentAPI.name,
@@ -1412,8 +1412,8 @@ function initPage() {
             numICourse: StudentAPI.numICourse
         }
     });
-    UCourse = new Vue({
-        el: '#usettings',
+    UInfo= new Vue({
+        el: '#uifo',
         data: {
             id: StudentAPI.id,
             sn: StudentAPI.sn,
@@ -1426,9 +1426,13 @@ function initPage() {
             tel: StudentAPI.tel,
             qq: StudentAPI.qq,
             pw: StudentAPI.pw,
-            sex: StudentAPI.sex,
-            ICourseTableHS: StudentAPI.analyzeDS.selectingCourse.getTableHS(),
-            OCourseTableHS: StudentAPI.analyzeDS.selectedCourse.getTableHS()
+            sex: StudentAPI.sex
+        }
+    });
+    UBox = new Vue({
+        el: '#ubox',
+        data: {
+            
         }
     });
 
@@ -1595,7 +1599,7 @@ function CheckValidation() {
         status = false;
     }else $("#validMsg-tel").fadeOut();
     
-    r = /^[0-9]{6,12}$/;
+    r = /^[0-9]{6,10}$/;
     flag = r.test($.trim($("#qq").val()));
     if (!flag) {
         $("#validMsg-qq").fadeIn();
@@ -1650,8 +1654,8 @@ function updataUPanel(method) {
 function selectCourse(scid) {
     var status = StudentAPI.operateCidIsCourse.add(scid);
     if (status === true) {
-        StudentAPI.initPersnalCourseInfo();
-        UCourse.$data.ICourseTableHS = StudentAPI.analyzeDS.selectingCourse.getTableHS();
+//        StudentAPI.initPersnalCourseInfo();
+//        UCourse.$data.ICourseTableHS = StudentAPI.analyzeDS.selectingCourse.getTableHS();
         $('#snackbar').snackbar({
             alive: 10000,
             content: '选课申请已提交, 等待老师批准 ' + '<a data-dismiss="snackbar">我知道了</a>'
@@ -1671,8 +1675,8 @@ function quitCourse(scid) {
         status = StudentAPI.operateCidIsCourse.quit(scid);
     }
     if (status === true) {
-        StudentAPI.initPersnalCourseInfo();
-        UCourse.$data.OCourseTableHS = StudentAPI.analyzeDS.selectedCourse.getTableHS();
+//        StudentAPI.initPersnalCourseInfo();
+//        UCourse.$data.OCourseTableHS = StudentAPI.analyzeDS.selectedCourse.getTableHS();
         $('#snackbar').snackbar({
             alive: 10000,
             content: '已经退选课程' + '<a data-dismiss="snackbar">我知道了</a>'
@@ -1689,8 +1693,8 @@ function quitCourse(scid) {
 function cancelCourse(scid) {
     var status = StudentAPI.operateCidIsCourse.cancel(scid);
     if (status === true) {
-        StudentAPI.initPersnalCourseInfo();
-        UCourse.$data.ICourseTableHS = StudentAPI.analyzeDS.selectingCourse.getTableHS();
+//        StudentAPI.initPersnalCourseInfo();
+//        UCourse.$data.ICourseTableHS = StudentAPI.analyzeDS.selectingCourse.getTableHS();
         $('#snackbar').snackbar({
             alive: 10000,
             content: '已经取消选课' + '<a data-dismiss="snackbar">我知道了</a>'

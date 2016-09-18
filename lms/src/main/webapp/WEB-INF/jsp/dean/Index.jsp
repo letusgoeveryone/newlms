@@ -195,11 +195,11 @@
                                 <div class="card-inner">
                                     <section class="card-heading">院长视角（角色转换）</section>
                                     <section>
-                                        <%--<sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a  data-toggle="tab" href="#lms_dean_d" class='btn btn-brand  waves-attach  waves-light waves-effect' style="margin:auto;">
-                                               【A 管理员】
+                                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                            <a href="login" class='btn btn-aqua'>
+                                               返回
                                             </a>
-                                        </sec:authorize>--%>
+                                        </sec:authorize>
                                         <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
                                             <a href="<%=path%>/acdemic" class='btn btn-aqua'>
                                                 【A 教务员】
@@ -214,7 +214,7 @@
                                 </div>
                                 <div class="card-action">
                                     <div class="card-action-btn" style="margin:6px 16px;">
-                                        <a href="http:<%=path%>/../acdemic/teapnda" class="btn btn-flat lms-c-text-light stage-card waves-attach pull-right" style="text-align: right;"> 查看 / 修改 个人信息<span class="icon margin-left-sm">open_in_new</span> </a>
+                                        <a href="http:<%=path%>/dean/pinfo" class="btn btn-flat lms-c-text-light stage-card waves-attach pull-right" style="text-align: right;"> 查看 / 修改 个人信息<span class="icon margin-left-sm">open_in_new</span> </a>
                                     </div>
                                 </div>
                             </div>
