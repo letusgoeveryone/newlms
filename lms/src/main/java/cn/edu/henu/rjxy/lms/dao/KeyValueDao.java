@@ -17,14 +17,8 @@ import org.hibernate.Transaction;
 public class KeyValueDao {
     
     public static void main(String[] args) {
-        KeyValue kv = new KeyValue("key", "value");
-        KeyValue kv1 = new KeyValue("mykey", "value");
-        add(kv);
-        kv.setMyvalue("mykey");
-        add(kv);
-        delete(kv1);
-        
-        
+    //    add(new KeyValue("mykey", "myvalue"));
+    //    System.out.println(get("mykey"));
     }
     
     public static void add(KeyValue keyValue) {
@@ -52,12 +46,36 @@ public class KeyValueDao {
         session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
-           KeyValue kv = (KeyValue) session.createQuery("FROM key_Value k WHERE k.mykey = :key")
-                   .setString("key", keyValue.getMykey()).uniqueResult();
-            if (kv != null) {
-                session.delete(kv);
+           KeyValue kv = (KeyValue) session.createQuery("FROM key_Value k WHERE k.mykey = :aaa")
+                   .setString("aaa", keyValue.getMykey()).uniqueResult();
+            if (kv == null) {
+                session.save(keyValue);
+            }else{
+                kv.setMyvalue(keyValue.getMyvalue());
+                session.update(kv);
             }
             transaction.commit();//提交
+        } catch (RuntimeException e) {
+            transaction.rollback();//滚回事务
+            throw e;
+        } finally {
+            session.close();
+        }      
+    }
+    
+    public static String get(String key) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+           KeyValue kv = (KeyValue) session.createQuery("FROM key_Value k WHERE k.mykey = :key")
+                   .setString("key", key).uniqueResult();
+            
+            transaction.commit();//提交
+            if (kv != null) {
+                return kv.getMyvalue();
+            }else{
+                return "";
+            }
         } catch (RuntimeException e) {
             transaction.rollback();//滚回事务
             throw e;

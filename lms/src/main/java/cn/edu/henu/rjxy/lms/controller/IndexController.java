@@ -5,40 +5,11 @@
  */
 package cn.edu.henu.rjxy.lms.controller;
 
-import cn.edu.henu.rjxy.lms.dao.TempStudentDao;
 
-import cn.edu.henu.rjxy.lms.dao.TempTeacherDao;
-import cn.edu.henu.rjxy.lms.model.PageBean;
-import cn.edu.henu.rjxy.lms.model.TempStudent;
-import cn.edu.henu.rjxy.lms.model.TempTeacher;
-import cn.edu.henu.rjxy.lms.model.TempTeacherWithoutPwd;
-import cn.edu.henu.rjxy.lms.server.StudentMethod;
-import cn.edu.henu.rjxy.lms.server.TempStudentMethod;
-import cn.edu.henu.rjxy.lms.server.TempTeacherMethod;
-import static cn.edu.henu.rjxy.lms.server.TempTeacherMethod.getTempTeacherByCollegeName;
-import java.io.File;
-import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.Calendar;
-import static java.util.Collections.list;
-import java.util.Date;
-import java.util.HashMap;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import net.sf.json.JSONObject;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.servlet.ModelAndView;
 
