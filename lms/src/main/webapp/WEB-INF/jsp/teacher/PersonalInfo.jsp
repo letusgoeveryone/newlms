@@ -167,7 +167,7 @@
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/md5.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/api.json.dean.js"></script>
+        <script src="<%=path%>/js/api.json.teacher.js"></script>
         <script>
             
             // 个人信息 监听器

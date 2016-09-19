@@ -17,9 +17,9 @@
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
-        <link href="<%=path%>/css/lms.css" rel="stylesheet" />
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" />
-        <style>.l-btn{border-radius: 0px !important;}</style>
+        <link href="<%=path%>/css/lms.css" rel="stylesheet" />
+        <style>.l-btn{border-radius: 0px !important;}#scrollUp {left: -150px;bottom: 0;}</style>
         <script src="<%=path%>/js/jquery.min.js"></script>    
         
         <!--easyui-->
@@ -36,7 +36,7 @@
             <!--功能列表-->
             <nav class="lms-admin-sidebar">
             <ul class="nav nav-tabs">
-                <div style="
+                <a href="login" style="
                    color: #fff;
                    background-color: #444;
                    border-radius: 0px;
@@ -44,9 +44,10 @@
                    width: 100%;
                    padding: 1em;
                    font-size: 1.2em;
+                   display: block;
                    ">
                    校务员（控制台）
-                </div>
+                </a>
                 <div class="stage-box"></div>
                 
                 
@@ -119,25 +120,29 @@
             <div class="fbtn-inner">
                 <a class="fbtn fbtn-lg btn-gold waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
                 <div class="fbtn-dropup">
-                    <a class="fbtn fbtn-brand waves-attach waves-circle stage-card" href="http:<%=path%>/student/teapnda"><span class="fbtn-text fbtn-text-left">点击查看/修改个人信息</span><span class="icon">account_circle</span></a>
+                    <a class="fbtn fbtn-brand waves-attach waves-circle stage-card" href="acdemic/pinfo"><span class="fbtn-text fbtn-text-left">点击查看/修改个人信息</span><span class="icon">account_circle</span></a>
                     <a class="fbtn fbtn-red waves-attach waves-circle waves-light" href="<%=path%>/us" target="_blank"><span class="fbtn-text fbtn-text-left">关于我们</span><span class="icon">all_inclusive</span></a>
                     <a class="fbtn fbtn-trans waves-attach waves-circle" href="#" ><span class="fbtn-text fbtn-text-left">关于系统</span><span class="icon">information</span></a>
                 </div>
             </div>
         </div>
         
-    <!-- js -->
-    <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
-    <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-    <script>
-        var Stickup= 0;
-    </script>
-    <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
+        <!-- js -->
+        <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.fs.core.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/formstone/js/transition.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.fs.boxer.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/configure.js"></script>
+
+        <script>
+            $('.stage-card').lightbox();
+        </script>
 
 
     
-    <!--uploadify-->
-    <script src="<%=path%>/js/jquery.uploadify.min.js"></script>
+        <!--uploadify-->
+        <script src="<%=path%>/js/jquery.uploadify.min.js"></script>
 
 
         <script type="text/javascript">

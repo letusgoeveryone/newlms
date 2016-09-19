@@ -14,216 +14,212 @@
 
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<%=path%>/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=path%>/css/project.min.css" rel="stylesheet" type="text/css"/>
         <link href="<%=path%>/css/lms.css" rel="stylesheet" type="text/css"/>
         <!--JS-->
-        <script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
-        <script src="<%=path%>/js/bootstrap.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.min.js"></script>
+        <script src="<%=path%>/js/vue.js"></script>
         <style>
-            .form-control:focus, .picker__select--month:focus, .picker__select--year:focus {
-                border-bottom-width: 1px;
+            body{
+                overflow: hidden; 
+                min-width: 960px;
             }
-            .card-action-btn {
-                margin: 1em 1em 1em 0;
+            #uinfo>.row{
+                max-width: 960px;
+                margin: auto;
             }
-            .form-horizontal .control-label {
-                text-align: left;
+            #info-form{
+                overflow-y: auto;
             }
+            #info-slct{
+                padding-left: 15vh;
+            }
+            .pd-top-lg{
+                padding-top: 15vh;
+            }
+            
         </style>
     </head>
-    <body class='container stage-box height-control' >
+    <body>
 
-        <div class="card height-control" style="padding: 1em 1em 1em 0px;">
-            <div class="card-main" >
-                <div class="container">
-                    
-                    <div class="col-md-6" style="border-right: 1px dashed rgb(215, 215, 215);">
-                        <div class="card-header">
-                            个人信息
-                        </div>
-                        <form class="form-horizontal from-wrap-sm" role="form" >
-                            <div class="form-group">
-
-                                <label for="sn" class="col-sm-3  control-label">工号:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="text" class="form-control" name="sn" id="sn" placeholder="正在读取..." value="${sn}" disabled>
-                                </div>
-
+        <!--个人信息-->
+        <div class="container pd-top-lg" id="uinfo" >
+            <div class="row" >
+                <div class="tab-content col-sm-5 divider-right" id="info-form">
+                    <!--基础资料-->
+                    <div class="tab-pane fade in active" id="tab-personalInfo" >
+                        <form>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="sn"> 工号 </label>
+                                <input class="form-control" id="sn" type="text" value="{{sn}}" disabled="">
                             </div>
-                            <div class="form-group">
-
-                                <label for="name" class="col-sm-3  control-label">姓名:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="text" class="form-control" id="name" name="name"  placeholder="正在读取..." value="${name}">
-                                </div>
-
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="name"> 姓名 </label>
+                                <input class="form-control" id="name" type="text" value="{{name}}">
+                                <div id="validMsg-name" hidden>请输入至少两个汉字</div>
                             </div>
-                            <div class="form-group">
-
-                                <label for="idCard" class="col-sm-3  control-label">身份证号:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="text" class="form-control" id="idCard" name="idCard"  placeholder="正在读取..." value="${idCard}">
-                                </div>
-
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="ID"> 身份证 </label>
+                                <input class="form-control" id="ID" type="text" value="{{ID}}">
+                                <div id="validMsg-ID" hidden>您输入的身份证格式不正确</div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group form-group-label">
 
-                                <label for="qq" class="col-sm-3  control-label">QQ:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="text" class="form-control" id ="qq" name="qq" placeholder="正在读取..." value="${qq}">
+                                <div class="radiobtn radiobtn-adv radio-inline">
+                                    <label for="male">
+                                        <input class="access-hide form-control" id="male" name="sex" type="radio">先生
+                                        <span class="radiobtn-circle" ></span><span class="radiobtn-circle-check" ></span>
+                                    </label>
                                 </div>
 
+                                <div class="radiobtn radiobtn-adv radio-inline">
+                                    <label for="female">
+                                        <input class="access-hide form-control" id="female" name="sex" type="radio">女士
+                                        <span class="radiobtn-circle" ></span><span class="radiobtn-circle-check" ></span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="form-group">
-
-                                <label for="tel" class="col-sm-3  control-label">电话:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="text" class="form-control" id="tel" name="tel" placeholder="正在读取..." value="${tel}">
-                                </div>
-
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="college"> 学院 </label>
+                                <select class="form-control" id="college" value="">
+                                    <option value="{{college}}"> {{college}} </option>
+                                    {{{schoolCollegeList}}}
+                                </select>
                             </div>
-                            <div class="form-group">
-
-                                <label for="college" class="col-sm-3  control-label">院系:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="text" class="form-control" id="college" name="college" placeholder="正在读取..." value="${college}">
-                                </div>
-
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="tel"> 联系方式 </label>
+                                <input class="form-control" id="tel" type="text" value="{{tel}}">
+                                <div id="validMsg-tel" hidden>请输入正确的手机号</div>
                             </div>
-                            <div class="form-group">
-
-                                <label for="zc" class="col-sm-3  control-label">职称:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="text" class="form-control" id="zc" name="zc" placeholder="正在读取..." value="${zc}" disabled>
-                                </div>
-
-                            </div>
-                            <div class="form-group">
-
-                                <label class="col-sm-3  control-label"></label>
-                                <div class="col-sm-6">
-                                    <button class="btn btn-default form-control hidden" id ="update" type="button" >保存修改</button>
-                                </div>
-
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="qq"> QQ </label>
+                                <input class="form-control" id="qq" type="text" value="{{qq}}">
+                                <div id="validMsg-qq" hidden>请输入正确QQ号</div>
                             </div>
                         </form>
-                                
-                        <div class="card-action">
-                            <div class="card-action-btn">
-                                <button class="btn btn-default" id ="update" type="button">保存修改</button>
-                            </div>
-                        </div>
                     </div>
-                    
-                    
-                    <div class="col-md-6">
-                        <div class="card-header">
-                            个人密码
-                        </div>
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label class="col-sm-3  control-label">原密码:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="password" class="form-control" id="inputPassword1" placeholder="请输入您的旧密码">
-                                </div>
-
+                    <!--密码设置-->
+                    <div class="tab-pane fade" id="tab-password">
+                        <form>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="op"> 原始密码 </label>
+                                <input class="form-control" id="op" type="password">
+                                <div id="msg-op" hidden></div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3  control-label">新密码:</label>
-                                <div class="col-sm-6 ">
-                                    <input type="password" class="form-control" id="inputPassword2" placeholder="请输入您的新密码">
-                                </div>
-
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="np"> 新密码 </label>
+                                <input class="form-control" id="np" type="password" placeholder="密码最短为6位">
+                                <div id="msg-np" hidden></div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3  control-label"></label>
-                                <div class="col-sm-6 ">
-                                    <input type="password" class="form-control" id="inputPassword3" placeholder="确认您的新密码">
-                                </div>
-
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="nplast"> 确认密码  </label>
+                                <input class="form-control" id="nplast" type="password">
+                                <div id="msg-nplast" hidden></div>
                             </div>
-                            <div class="form-group">
-
-                                <label class="col-sm-3  control-label"></label>
-                                <div class="col-sm-6 ">
-                                    <button class="btn btn-default saves form-control hidden" id ="update" type="button" hidden="">保存修改</button>
-                                    <label  id="submas"></label>
-                                </div>
-
-                            </div>
-                            
                         </form>
-
-                        <div class="card-action">
-                            <div class="card-action-btn">
-                                <button class="btn btn-default saves" id ="update" type="button">保存修改</button>
+                    </div>
+                </div>
+                <div class="col-sm-7" id="info-slct">
+                    <div class="card">
+                        <div class="uinfo-blur"></div>
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <img alt="" class="img-circle img-rounded img-pinfo" id="img-pinfo" src="<%=path%>/images/avatar.jpg" height="230" width="230">
+                                <a class="btn btn-flat text-link">
+                                    修改头像 <span class="icon icon-edit"></span>
+                                </a>
+                            </div>
+                            <div class="card-action">
+                                <div class="card-action-btn btn btn-block btn-flat btn-dashed disabled" id="submit-uinfo" data-submit="uinfo" >
+                                    提交修改
+                                </div>
                             </div>
                         </div>
+
+                    </div>
+                    <div class="card no-padding">
+                        <div class="card-main">
+                            <nav class="tab-nav tab-nav-brand no-margin">
+                                <ul class="nav nav-list nav-justified">
+                                    <li class="active">
+                                        <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#tab-personalInfo">
+                                            <span class="text-grey">个人信息</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#tab-password">
+                                            <span class="text-grey">密码设置</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-
+        
+        <!--单向信息传递 snackbar-->
+        <div id="snackbar"></div>
+        
+        <!-- js -->
+        <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/md5.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/api.json.admin.js"></script>
         <script>
-            //修改密码
-            $(".saves").click(function () {
-
-                if ($("#inputPassword1").val() === "") {
-                    $("#submas")[0].innerHTML = "原密码不能为空！";
-                    return false;
-                }
-                if ($("#inputPassword2").val() !== $("#inputPassword3").val()) {
-                    $("#submas")[0].innerHTML = "两次输入的新密码不一致！";
-                    alert($("#inputPassword2").val() + "|" + $("#inputPassword3").val())
-                    $("#inputPassword3").val("");
-                    return false;
-                }
-
-                var r = /^[a-z A-Z 0-9 _]{6,18}$/;
-                var flag = r.test($("#inputPassword2").val());
-                if (!flag) {
-                    $("#submas")[0].innerHTML = "新密码不符合要求（6到18位），是不是太简单了?";
-                    return false;
-                }
-
-                $.post("<%=path%>/acdemic/resetpw_p", {pw: hex_md5($("#inputPassword1").val()), repw: hex_md5($("#inputPassword2").val())},
-                        function (data) {
-                            if (data == "1") {
-                                $("#submas")[0].innerHTML = "您输入的原密码不正确。";
-                                $("#inputPassword1").val("");
-                            }
-                            ;
-                            if (data == "2") {
-                                $("#submas")[0].innerHTML = "新密码与原密码一致。";
-                                $("#inputPassword2").val("");
-                                $("#inputPassword2").val("");
-                                $("#inputPassword3").val("");
-                            }
-                            ;
-                            if (data == "3") {
-                                alert("ok,您的密码已经修改成功，您需要重新登录。");
-                                window.parent.frames.location.href = "../logout" //使外部框架跳到登出 让用户重新登录
-                            }
-                            ;
-                        });
-
-            });
-
-            //修改个人信息
-            $("#update").click(function () {
-                $.ajax({
-                    type: "post",
-                    url: '<%=path%>/acdemic/updatetea',
-                    data: {idCard: $("#idCard").val(), name: $("#name").val(), qq: $("#qq").val(), tel: $("#tel").val()},
-                    success: function (data) {
-                        if (data === "0") {
-                            alert("个人资料更新成功!");
-                        }
-                    }
+            
+            // 个人信息 监听器
+            $('a[href="#tab-personalInfo"]').click(function(){
+                $('#submit-uinfo').attr("data-submit","uinfo");
+                console.log($('#submit-uinfo').attr('data-submit'));
+                $('.form-control').blur(function(){
+                    if(checkPersonalInfo()){
+                        $('#submit-uinfo').removeClass('disabled');
+                    }else{
+                        $('#submit-uinfo').addClass('disabled');
+                    };
                 });
+
+                $('#submit-uinfo').addClass('disabled');
             });
+            // 个人密码 监听器
+            $('a[href="#tab-password"]').click(function(){
+                $("#op").val("");
+                $("#np").val("");
+                $("#nplast").val("");
+                $('#submit-uinfo').attr("data-submit","upassword");
+                console.log($('#submit-uinfo').attr('data-submit'));
+                $('.form-control').blur(function () {
+                    if (checkPassword()) {
+                        $('#submit-uinfo').removeClass('disabled');
+                    }else{
+                        $('#submit-uinfo').addClass('disabled');
+                    };
+                });
+
+                $('#submit-uinfo').addClass('disabled');
+            });
+
+            // submit 按钮 监听器
+            $('#submit-uinfo').click(function(){
+                var status = $(this).hasClass('disabled') === true ? false : true ;
+                var method = $(this).attr('data-submit');
+
+                console.log(status + " | " + method);
+                if (status && (method === "uinfo")) {
+                    updatePersonalInfo();
+                } else if(status && (method === "upassword")){
+                    console.log(status + " | " + method);
+                    updatePassword();
+                }
+
+            });
+            
+            
+            //  默认监听个人信息
+            $('a[href="#tab-personalInfo"]').click();
         </script>
-
-
     </body>
 </html>

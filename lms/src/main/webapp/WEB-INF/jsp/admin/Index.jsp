@@ -17,9 +17,8 @@
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
-        <link href="<%=path%>/css/lms.css" rel="stylesheet" />
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" />
-        <link href="<%=path%>/css/uploadify.css" rel="stylesheet"  />
+        <link href="<%=path%>/css/lms.css" rel="stylesheet" />
         
         <script src="<%=path%>/js/jquery.min.js"></script>
     </head>
@@ -75,7 +74,7 @@
                                 </div>
                                 <div class="card-action">
                                     <div class="card-action-btn" style="margin:6px 16px;">
-                                        <a href="http:<%=path%>/admin/PersonalInfo" class="btn btn-flat lms-c-text-light stage-card waves-attach pull-right" style="text-align: right;"> 查看 / 修改 个人信息<span class="icon margin-left-sm">open_in_new</span> </a>
+                                        <a href="http:<%=path%>/admin/pinfo" class="btn btn-flat lms-c-text-light stage-card waves-attach pull-right" style="text-align: right;"> 查看 / 修改 个人信息<span class="icon margin-left-sm">open_in_new</span> </a>
                                     </div>
                                 </div>
                             </div>
@@ -142,12 +141,17 @@
             </div>
         </div>
         
-    <!-- js -->
-    <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
-    <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
-    <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
+        <!-- js -->
+        <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.fs.core.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/formstone/js/transition.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.fs.boxer.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/configure.js"></script>
 
-
+        <script>
+            $('.stage-card').lightbox();
+        </script>
 
         <script type="text/javascript">
         var browserVersion = window.navigator.userAgent.toUpperCase();

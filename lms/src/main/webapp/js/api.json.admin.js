@@ -1,36 +1,19 @@
-var TeacherAPI = {
-    id: 0,
-    sn: 0,
-    name: '',
-    ID: 0,
-    pw: '',
-    sex: false, 
-    activeCoordinate: ['',null, null, null],
-    uploadedFile:{
-        name: '',
-        size: 0,
-        postfix:'',
-        nameNoPostfix:'',
-        handle:{
-            status:0,
-            downloadDir:'',
-            previewDir:'',
-            playDir:''
-        }
-    },
-    uploadedFileQueue:[],
-    cidIsCourseResource:[]
-}; 
-function delExtension(name) {
-    var str = name.substring(0,name.lastIndexOf("."));
-    return str;
-}
+/*---------------------------------------------------------------- 
+ 文件名：api.json.dean.js
+ 
+ 文件功能描述：院长信息 前端接口
+ 
+ 依赖关系：Jquery, Vue 以及 前端组件Snackbar(信息提示) 和一些元素绑定(详见相关函数说明)
+
+ //----------------------------------------------------------------*/  
+
+var AdminAPI = {};
 
 /**
  * JSON路径 对象数组
  * @type Object Array 
  */
-TeacherAPI.Path = {
+AdminAPI.Path = {
     
     /**
      * 用以初始化个人相关信息 
@@ -41,9 +24,9 @@ TeacherAPI.Path = {
      * @type Array 
      */
     uInfo: [
-        "/lms/dean/getpersoninfo",      //[0] 
-        "/lms/dean/updatepersoninfo",   //[1]  
-        "/lms/dean/updatepassword"      //[2]
+        "/lms/admin/getpersoninfo",      //[0] 
+        "/lms/admin/updatepersoninfo",   //[1]  
+        "/lms/admin/updatepassword"      //[2]
     ]
 };
 
@@ -51,7 +34,7 @@ TeacherAPI.Path = {
  * 个人基础信息 对象
  * @type Object
  */
-TeacherAPI.uInfo = {
+AdminAPI.uInfo = {
     id: 0,
     sn: 0,
     name: '',
@@ -71,29 +54,29 @@ TeacherAPI.uInfo = {
  * JSON数据结构 设定函数集
  * @type Object
  */
-TeacherAPI.setDS = {
+AdminAPI.setDS = {
     uInfo: function(path){
-        if (path === undefined){ path = TeacherAPI.Path.uInfo[0]; }
+        if (path === undefined){ path = AdminAPI.Path.uInfo[0]; }
         $.ajax({
             url: path,
             type: 'get',
             async: false,
             dataType: 'json',
             success: function (data) {
-                TeacherAPI.uInfo.id = data.teacherId;
-                TeacherAPI.uInfo.sn = data.teacherSn;
-                TeacherAPI.uInfo.name = data.teacherName;
-                TeacherAPI.uInfo.ID = data.teacherIdcard;
-                TeacherAPI.uInfo.grade = data.teacherPosition;
-                TeacherAPI.uInfo.college = data.teacherCollege;
-                TeacherAPI.uInfo.tel = data.teacherTel;
-                TeacherAPI.uInfo.qq = data.teacherQq;
-                TeacherAPI.uInfo.pw = data.teacherPwd;
-                TeacherAPI.uInfo.sex = data.teacherSex;
-                TeacherAPI.uInfo.position = data.teacherPosition;
-                TeacherAPI.uInfo.enrolling = data.teacherEnrolling;
-                TeacherAPI.uInfo.roleValue = data.teacherRoleValue;
-                TeacherAPI.uInfo.termCourse = data.termCourse;
+                AdminAPI.uInfo.id = data.teacherId;
+                AdminAPI.uInfo.sn = data.teacherSn;
+                AdminAPI.uInfo.name = data.teacherName;
+                AdminAPI.uInfo.ID = data.teacherIdcard;
+                AdminAPI.uInfo.grade = data.teacherPosition;
+                AdminAPI.uInfo.college = data.teacherCollege;
+                AdminAPI.uInfo.tel = data.teacherTel;
+                AdminAPI.uInfo.qq = data.teacherQq;
+                AdminAPI.uInfo.pw = data.teacherPwd;
+                AdminAPI.uInfo.sex = data.teacherSex;
+                AdminAPI.uInfo.position = data.teacherPosition;
+                AdminAPI.uInfo.enrolling = data.teacherEnrolling;
+                AdminAPI.uInfo.roleValue = data.teacherRoleValue;
+                AdminAPI.uInfo.termCourse = data.termCourse;
             },
             error: function () {
                 alert("数据 [个人信息] 传输失败 ！");
@@ -105,13 +88,13 @@ TeacherAPI.setDS = {
 /**
  * 
  * @param {String} param
- * @param {String | TeacherAPI.Path} path
+ * @param {String | AdminAPI.Path} path
  * @returns {Number}
  */
-TeacherAPI.updatePersonalInfo = function(param,path){
+AdminAPI.updatePersonalInfo = function(param,path){
     var status = 0;
     if (path === undefined ? true : false) {
-        path = TeacherAPI.Path.uInfo[1];
+        path = AdminAPI.Path.uInfo[1];
     };
     $.ajax({
         url: path + param,
@@ -129,10 +112,10 @@ TeacherAPI.updatePersonalInfo = function(param,path){
     return status;
 };
 
-TeacherAPI.updatePassword = function(op, np, path){
+AdminAPI.updatePassword = function(op, np, path){
     var status = 0;
     if (path === undefined ? true : false) {
-        path = TeacherAPI.Path.uInfo[2];
+        path = AdminAPI.Path.uInfo[2];
     };
     $.ajax({
         url: path + "?pw=" + op + "&repw=" + np,
@@ -156,7 +139,7 @@ TeacherAPI.updatePassword = function(op, np, path){
  * @returns {undefined}
  */
 function bindInfo(e, eid){
-    TeacherAPI.setDS.uInfo();
+    AdminAPI.setDS.uInfo();
     e = new Vue({
         el: '#' + eid,
         data: {
@@ -188,7 +171,7 @@ function updatePersonalInfo() {
     var qq = $('#qq').val();
     var param = "?name=" + name + "&idcard=" + ID + "&college=" + college +
                 "&sex=" + sex +"&telnum=" + tel +"&qqnum=" + qq;
-    var status = TeacherAPI.updatePersonalInfo(param);
+    var status = AdminAPI.updatePersonalInfo(param);
     if (status === 0) {
         $('#snackbar').snackbar({
             alive: 10000,
@@ -251,7 +234,7 @@ function checkPersonalInfo() {
 function updatePassword() {
     
     if (checkPassword()) {
-        var status = TeacherAPI.updatePassword(hex_md5($("#op").val()), hex_md5($("#np").val()));
+        var status = AdminAPI.updatePassword(hex_md5($("#op").val()), hex_md5($("#np").val()));
         
         if (status === 1) {
             alert("原密码不正确！");
@@ -326,12 +309,11 @@ function logout(){
 
 
 // 初始化
-var uInfo = TeacherAPI.uInfo;
+var uInfo = AdminAPI.uInfo;
 var UProfile;
 bindInfo(UProfile, 'uinfo');
-if (TeacherAPI.uInfo.sex === true) {
+if (AdminAPI.uInfo.sex === true) {
     $('#male').attr("checked", "checked");
 } else {
     $('#female').attr("checked", "checked");
 }
-

@@ -63,7 +63,14 @@ public class AdminController {
     public String ServerInformation(HttpServletRequest request, HttpServletResponse response) {
         return "admin/EnvInfo";
     }
-        //返回admin信息
+    
+    
+    @RequestMapping("/admin/pinfo")
+    public String pinfo(HttpServletRequest request, HttpServletResponse response) {
+
+        return "/admin/PersonalInfo";
+    }
+    //返回admin信息
     @RequestMapping("/admin/getpersoninfo")
     public @ResponseBody Teacher adminPersonalInformation(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();

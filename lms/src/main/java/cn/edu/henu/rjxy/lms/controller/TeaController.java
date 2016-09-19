@@ -106,7 +106,12 @@ public class TeaController {
         request.setAttribute("courseName",courseName );
         return "teacher/mycourse";
     } 
-        //返回teacher信息
+    @RequestMapping("/teacher/pinfo")
+    public String pinfo(HttpServletRequest request, HttpServletResponse response) {
+
+        return "/teacher/PersonalInfo";
+    }
+    //返回teacher信息
     @RequestMapping("/teacher/getpersoninfo")
     public @ResponseBody Teacher teacherPersonalInformation(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();

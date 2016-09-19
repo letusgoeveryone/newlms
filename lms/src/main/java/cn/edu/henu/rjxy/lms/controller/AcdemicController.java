@@ -90,6 +90,12 @@ public class AcdemicController {
 //        return "3";
 //     }
         //返回acdemic信息
+    
+    @RequestMapping("/acdemic/pinfo")
+    public String pinfo(HttpServletRequest request, HttpServletResponse response) {
+
+        return "/acdemic/PersonalInfo";
+    }
     @RequestMapping("/acdemic/getpersoninfo")
     public @ResponseBody Teacher acdemicPersonalInformation(HttpServletRequest request, HttpServletResponse response) {
         String sn=getCurrentUsername();

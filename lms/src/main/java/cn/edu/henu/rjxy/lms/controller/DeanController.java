@@ -64,10 +64,10 @@ public class DeanController {
          return "stu_index2";
      }
     
-    @RequestMapping("pinfo")
+    @RequestMapping("/dean/pinfo")
     public String pinfo(HttpServletRequest request, HttpServletResponse response) {
 
-        return "PersonalInfo";
+        return "/dean/PersonalInfo";
     }
      
          @RequestMapping("dean/personManage")
