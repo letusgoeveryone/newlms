@@ -21,7 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import cn.edu.henu.rjxy.lms.server.AuthorityManage;
 /**
  *
  * @author Administrator
@@ -73,7 +73,7 @@ public class AdminController {
     //返回admin信息
     @RequestMapping("/admin/getpersoninfo")
     public @ResponseBody Teacher adminPersonalInformation(HttpServletRequest request, HttpServletResponse response) {
-        String sn=getCurrentUsername();
+        String sn=AuthorityManage.getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
         teacher.setTeacherPwd("");
         teacher.setTeacherRoleValue(0);
@@ -85,7 +85,7 @@ public class AdminController {
     @RequestMapping("/admin/updatepersoninfo")
     public @ResponseBody String adminUpdatePersonInfo(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
-        String sn=getCurrentUsername();
+        String sn=AuthorityManage.getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
         String name=request.getParameter("name");
         String idcard=request.getParameter("idcard");
@@ -117,7 +117,7 @@ public class AdminController {
     //密码修改提交处理
     @RequestMapping("/admin/updatepassword")
     public @ResponseBody String adminUpdatePassword(HttpServletRequest request, HttpServletResponse response) {
-        String sn=getCurrentUsername();
+        String sn=AuthorityManage.getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
         String pw=request.getParameter("pw");
         String repw=request.getParameter("repw");
@@ -261,29 +261,6 @@ public class AdminController {
         return l;
     }
 
-    public List<String> getCurrentAuthoritiest(String sn) {
-        String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER", "ROLE_ADMIN"};
-        List list = new LinkedList();
-        try {
-            Teacher tea = TeacherDao.getTeacherBySn(sn);
-            char[] ch = Integer.toBinaryString(Integer.valueOf(tea.getTeacherRoleValue())).toCharArray();
-            int j = -1;
-            for (int i = ch.length - 1; i >= 0; i--) {
-                j++;
-                if (String.valueOf(ch[i]).equals("1")) {
-                    list.add(str[j]);
-                }
-            }
-        } catch (Exception e) {
-        }
-        try {
-            Student std = StudentDao.getStudentBySn(sn);
-            System.out.println("找到学生" + std.getStudentName());
-            list.add("ROLE_STUDENT");
-        } catch (Exception e) {
-        }
-        return list;
-    }
 
     //管理员页面Role编辑
 
@@ -298,7 +275,7 @@ public class AdminController {
 
         StringBuffer sb = new StringBuffer();
         sb.append("<form role=\"form\">已选择教师sn：" + sn + "<br><div class=\"checkbox\">");
-        List<String> list = getCurrentAuthoritiest(sn);
+        List<String> list = AuthorityManage.getCurrentAuthoritiest(sn);
         String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER", "ROLE_ADMIN"};
         String str2[] = {"教务员", "院长",  "教工", "系统管理员"};
         String str3[] = {"1", "2", "4", "8"};
@@ -334,7 +311,4 @@ public class AdminController {
         TeacherDao.updateTeacherById(teacher);
         return "ok";
     }
-    public String getCurrentUsername() {
-      return SecurityContextHolder.getContext().getAuthentication().getName();
-   }
 }

@@ -32,13 +32,9 @@ import cn.edu.henu.rjxy.lms.server.TempTeacherMethod;
 import cn.edu.henu.rjxy.lms.server.TermClassMethod;
 import cn.edu.henu.rjxy.lms.server.TermCourseMethod;
 import cn.edu.henu.rjxy.lms.server.TermOpenCourseMethod;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,13 +47,12 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+import cn.edu.henu.rjxy.lms.server.AuthorityManage;
 
 /**
  *
@@ -75,20 +70,6 @@ public class AcdemicController {
        
         return "teacher/teacherIndex";
     } 
-//      @RequestMapping("acdemic/resetpw_p")
-//    public @ResponseBody String resetpw_p(HttpServletRequest request, HttpServletResponse response) {
-//        String sn=getCurrentUsername();
-//        Teacher teacher=TeacherDao.getTeacherBySn(sn);
-//        String pw=request.getParameter("pw");
-//        String repw=request.getParameter("repw");
-//        if (!pw.equals(teacher.getTeacherPwd().toLowerCase())) {
-//             return "1";}
-//        if (pw.equals(repw.toLowerCase())) {
-//             return "2";}
-//        teacher.setTeacherPwd(repw);
-//        TeacherDao.updateTeacherById(teacher);
-//        return "3";
-//     }
         //返回acdemic信息
     
     @RequestMapping("/acdemic/pinfo")
@@ -98,7 +79,7 @@ public class AcdemicController {
     }
     @RequestMapping("/acdemic/getpersoninfo")
     public @ResponseBody Teacher acdemicPersonalInformation(HttpServletRequest request, HttpServletResponse response) {
-        String sn=getCurrentUsername();
+        String sn=AuthorityManage.getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
         teacher.setTeacherPwd("");
         teacher.setTeacherRoleValue(0);
@@ -110,7 +91,7 @@ public class AcdemicController {
     @RequestMapping("/acdemic/updatepersoninfo")
     public @ResponseBody String acdemicUpdatePersonInfo(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
-        String sn=getCurrentUsername();
+        String sn=AuthorityManage.getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
         String name=request.getParameter("name");
         String idcard=request.getParameter("idcard");
@@ -142,7 +123,7 @@ public class AcdemicController {
       //密码修改提交处理
     @RequestMapping("/acdemic/updatepassword")
     public @ResponseBody String acdemicUpdatePassword(HttpServletRequest request, HttpServletResponse response) {
-        String sn=getCurrentUsername();
+        String sn=AuthorityManage.getCurrentUsername();
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
         String pw=request.getParameter("pw");
         String repw=request.getParameter("repw");
@@ -156,63 +137,7 @@ public class AcdemicController {
         TeacherDao.updateTeacherById(teacher);
         return "3";
     }  
-//     @RequestMapping("/acdemic/teapnda")
-//    public String teacher12(HttpServletRequest request,HttpServletResponse response) {
-//         String sn=getCurrentUsername();
-//         Teacher teacher = TeacherDao.getTeacherBySn(sn);
-//         String name = teacher.getTeacherName();
-//         String idCard = teacher.getTeacherIdcard();
-//         String qq = teacher.getTeacherQq();
-//         String tel =teacher.getTeacherTel();
-//         request.setAttribute("sn", sn);
-//         request.setAttribute("name",name);
-//         request.setAttribute("idCard",idCard );
-//         request.setAttribute("qq", qq);
-//         request.setAttribute("tel", tel);
-//         request.setAttribute("college", teacher.getTeacherCollege());
-//         request.setAttribute("zc", teacher.getTeacherPosition());
-//        return "acdemic/teapnda";
-//    } 
-    
-    
-//     @RequestMapping("/acdemic/updatetea")
-//    public @ResponseBody
-//        String update(HttpServletRequest request,HttpServletResponse response) {
-//        String a="0";
-//        System.out.println("111111111");
-//        String tsn=getCurrentUsername();
-//        Teacher teacher=TeacherDao.getTeacherBySn(tsn);
-//        System.out.println(tsn);
-//        String qq=request.getParameter("qq");
-//        teacher.setTeacherQq(qq);
-//        String name=request.getParameter("name");
-//        teacher.setTeacherName(name);
-//        String tel=request.getParameter("tel");
-//        teacher.setTeacherTel(tel);
-//        String idCard=request.getParameter("idCard");
-//        teacher.setTeacherIdcard(idCard);
-//        TeacherDao.updateTeacherById(teacher);
-//        return a;
-//    } 
-    
-    //修改密码
-       @RequestMapping("teaPassward")
-      public @ResponseBody String teaPassward(HttpServletRequest request,HttpServletResponse response){
-         String sn=getCurrentUsername();
-         Teacher tec = TeacherDao.getTeacherBySn(sn);
-         String lastPw = request.getParameter("passPassward");
-         String newPw1 = request.getParameter("passward");
-         String newPw2 = request.getParameter("passward1");
-         if(!newPw1.equals(newPw2)){
-            return "0";//输入新密码不对
-         }
-         if(!tec.getTeacherPwd().equals(lastPw)){
-            return "2";//输入旧密码不对
-         }
-         tec.setTeacherPwd(newPw2);
-         TeacherDao.updateTeacherById(tec);
-         return "3";
-      }
+
       //删除临时表学生
     @RequestMapping(value="scstu", method = RequestMethod.POST)
     public @ResponseBody String scstu(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
@@ -836,9 +761,6 @@ public class AcdemicController {
         }
         return "批准删除成功";
     }
-    
-   
-  
 
  //根据工号自动补全姓名
   @RequestMapping(value = "zdpqjsxm",method = RequestMethod.POST)
@@ -846,12 +768,11 @@ public class AcdemicController {
      System.out.println(params);
     return "accccccccccccccc";
   }
-  
 
   //获取教务员个人资料
   @RequestMapping("/getAcdemic")
   public @ResponseBody String[] getAcdemic(HttpServletRequest request,HttpServletResponse response){
-       String sn=getCurrentUsername();
+       String sn=AuthorityManage.getCurrentUsername();
        Teacher tec = TeacherDao.getTeacherBySn(sn);
        String []a = new String[6];
        a[0] = tec.getTeacherSn();
@@ -862,9 +783,5 @@ public class AcdemicController {
        a[5] = tec.getTeacherIdcard();
        return a;
   }
-  
-   public String getCurrentUsername() {
-      return SecurityContextHolder.getContext().getAuthentication().getName();
-   }
-    
+ 
 }

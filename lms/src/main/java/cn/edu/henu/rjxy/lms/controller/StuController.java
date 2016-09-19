@@ -13,6 +13,8 @@ import cn.edu.henu.rjxy.lms.dao.TermCourseDao;
 import cn.edu.henu.rjxy.lms.dao.TermCourseInfoDao;
 import cn.edu.henu.rjxy.lms.model.Student;
 import cn.edu.henu.rjxy.lms.model.Teacher;
+import cn.edu.henu.rjxy.lms.server.AuthorityManage;
+import cn.edu.henu.rjxy.lms.server.CurrentInfo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,15 +38,10 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import net.sf.json.JSONObject;
-
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
 
 /**
  *
@@ -56,7 +53,7 @@ public class StuController {
     //返回学生信息
     @RequestMapping("/student/getpersoninfo")
     public @ResponseBody Student personal_InfInformation2(HttpServletRequest request, HttpServletResponse response) {
-        String sn=getCurrentUsername();
+        String sn=AuthorityManage.getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
         std.setStudentPwd("");
         return std;
@@ -64,7 +61,7 @@ public class StuController {
     //密码修改提交处理
     @RequestMapping("/student/updatepassword")
     public @ResponseBody String resetpassword_p(HttpServletRequest request, HttpServletResponse response) {
-        String sn=getCurrentUsername();
+        String sn=AuthorityManage.getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
         String pw=request.getParameter("pw");
         String repw=request.getParameter("repw");
@@ -82,7 +79,7 @@ public class StuController {
     @RequestMapping("/student/updatepersoninfo")
     public @ResponseBody String resetinf_p(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         request.setCharacterEncoding("UTF-8");
-        String sn=getCurrentUsername();
+        String sn=AuthorityManage.getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
         String name=request.getParameter("name");
         String idcard=request.getParameter("idcard");
@@ -119,7 +116,7 @@ public class StuController {
     //学生选课提交处理
     @RequestMapping("/student/subselectcourse")
     public @ResponseBody String submitcourse(HttpServletRequest request, HttpServletResponse response) {
-        String sn=getCurrentUsername();
+        String sn=AuthorityManage.getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
         Integer cid=Integer.valueOf(request.getParameter("scid"));
         try {
@@ -144,7 +141,7 @@ public class StuController {
     //获取已选课程
     @RequestMapping("/student/getselectcourse")
     public @ResponseBody Map[] getselectcourse(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String stusn=getCurrentUsername();
+        String stusn=AuthorityManage.getCurrentUsername();
         int xueqi=getCurrentTerm();
         List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId(xueqi, stusn);
         System.out.println(list.size());
@@ -161,7 +158,7 @@ public class StuController {
     //获取已选未批准课程
     @RequestMapping("/student/getselectingcourse")
     public @ResponseBody Map[] getselectingcourse(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String stusn=getCurrentUsername();
+        String stusn=AuthorityManage.getCurrentUsername();
         int xueqi=getCurrentTerm();
         List list =  StudentSelectCourseDao.getStudentSelectCourseNameByTermSnCourseId2(xueqi, stusn);
         Map []a = new Map[list.size()/4];
@@ -213,7 +210,7 @@ public class StuController {
         String courseName =TermCourseDao.getCourseNameByCourseId(scid);
         String tec_sn= tec.getTeacherSn();
         String tec_name = tec.getTeacherName();
-        String stusn=getCurrentUsername();
+        String stusn=AuthorityManage.getCurrentUsername();
         String ff = getFileFolder(request)+"homework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/";
         String ff2;
         int length = haveFile(ff);
@@ -307,7 +304,7 @@ public class StuController {
     @RequestMapping("/student/cancelcourse")
     public @ResponseBody  String stuCancelCourse(HttpServletRequest request, HttpServletResponse response) {
         String scid=request.getParameter("scid");
-        String stusn=getCurrentUsername();
+        String stusn=AuthorityManage.getCurrentUsername();
         TeacherDao.updateStudentCourse(StudentDao.getStudentBySn(stusn).getStudentId(),Integer.valueOf(scid), true);
 	return "1";
     }
@@ -315,7 +312,7 @@ public class StuController {
     @RequestMapping("/student/quitcourse")
     public @ResponseBody String stuQuitCourse(HttpServletRequest request, HttpServletResponse response) {
         String scid=request.getParameter("scid");
-        String stusn=getCurrentUsername();
+        String stusn=AuthorityManage.getCurrentUsername();
         TeacherDao.updateStudentCourse(StudentDao.getStudentBySn(stusn).getStudentId(),Integer.valueOf(scid), true);
 	return "1";
     }
@@ -335,7 +332,7 @@ public class StuController {
    //返回作业详情  
     @RequestMapping("/student/dohomework")
     public @ResponseBody Map dohomework(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String stusn=getCurrentUsername();
+        String stusn=AuthorityManage.getCurrentUsername();
         int xueqi=getCurrentTerm();
         String scid = request.getParameter("scid");
         String homeworkid= request.getParameter("homeworkid");
@@ -392,7 +389,7 @@ public class StuController {
         
       String textWork=request.getParameter("HwEitor");
       String cid=request.getParameter("scid");
-      String stusn=getCurrentUsername();
+      String stusn=AuthorityManage.getCurrentUsername();
       String homeworkid=request.getParameter("homeworkid");
       Teacher tec=TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(cid));
       String sn=tec.getTeacherSn();
@@ -429,7 +426,7 @@ public class StuController {
     //学生作业附件刷新
     @RequestMapping("/student/stuhwrefresh")
     public @ResponseBody List<String> stuhwrefresh(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String stusn=getCurrentUsername();
+        String stusn=AuthorityManage.getCurrentUsername();
         String scid = request.getParameter("scid");
         String homeworkid= request.getParameter("homeworkid");
         Teacher tec=TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(scid));
@@ -456,7 +453,7 @@ public class StuController {
     //学生作业附件下载
     @RequestMapping("/student/downattach")
     public @ResponseBody String[] downattach(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String stusn=getCurrentUsername();
+        String stusn=AuthorityManage.getCurrentUsername();
         String scid = request.getParameter("scid");
         String src = request.getParameter("src");
         String homeworkid= request.getParameter("homeworkid");
@@ -501,7 +498,7 @@ public class StuController {
     //学生作业附件删除
     @RequestMapping("/student/delattach")
     public @ResponseBody String delattach(HttpServletRequest request, HttpServletResponse response) throws Exception{
-              String stusn=getCurrentUsername();
+        String stusn=AuthorityManage.getCurrentUsername();
         String scid = request.getParameter("scid");
         String src = request.getParameter("src");
         String homeworkid= request.getParameter("homeworkid");
@@ -528,7 +525,7 @@ public class StuController {
     @RequestMapping("/student/resourcedir")
     public @ResponseBody
     String resourceDir(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String stsn = getCurrentUsername();
+        String stsn = AuthorityManage.getCurrentUsername();
         String scid = request.getParameter("scid");
         String dir = request.getParameter("dir");
         Teacher tec = TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(scid));
@@ -546,7 +543,7 @@ public class StuController {
     //返回课程目录树下面列表
     @RequestMapping("/student/courdir")
     public @ResponseBody List<String> courdir(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String stsn=getCurrentUsername();
+        String stsn=AuthorityManage.getCurrentUsername();
         String scid=request.getParameter("scid");
         String dir=request.getParameter("dir");
         Teacher tec=TeacherDao.getTeacherById(TermCourseDao.getTecsnByCourseId(scid));
@@ -633,15 +630,12 @@ public class StuController {
         br.close();
         return a;
      }
-    public String getCurrentUsername() {
-      return SecurityContextHolder.getContext().getAuthentication().getName();
-   }
    public int getCurrentTerm() {
-      return 201602;
+      return CurrentInfo.getCurrentTerm();
    }
     public String getFileFolder(HttpServletRequest request) {
         String path = this.getClass().getClassLoader().getResource("/").getPath();
-        System.out.println(path);
+        System.out.println("aaa="+path);
         path=path.replace("lms/target/lms-1.0/WEB-INF/classes/", "lms/target/lms-1.0/file/");
         System.out.println(path);
         return path;

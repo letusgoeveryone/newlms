@@ -107,6 +107,28 @@ public class TempStudentDao {
             session.close();
         }
     }
+    public static List<TempStudent> getTempStudentListBySn(String studentSn){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            //操作
+            List<TempStudent> tempStudentList =  session.createQuery("FROM TempStudent s WHERE s.studentSn = :sn")
+                    .setString("sn", studentSn)
+                    .list();
+
+            transaction.commit();//提交
+            return tempStudentList;
+        } catch (RuntimeException e) {
+            transaction.rollback();//滚回事务
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+    
+    public static void main(String[] args) {
+       // System.out.println(getTempStudentListBySn("1445203199").size());;
+    }
 
     
     /**

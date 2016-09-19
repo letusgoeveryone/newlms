@@ -4,6 +4,7 @@ package cn.edu.henu.rjxy.lms.controller;
 import cn.edu.henu.rjxy.lms.dao.CourseDao;
 import cn.edu.henu.rjxy.lms.dao.TermCourseDao;
 import cn.edu.henu.rjxy.lms.dao.TermCourseInfoDao;
+import cn.edu.henu.rjxy.lms.server.AuthorityManage;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -25,7 +26,7 @@ public class GuestController {
     //游客首页
     @RequestMapping("/guest")
     public String guestindex(HttpServletRequest request, HttpServletResponse response) {
-       String sn=SecurityContextHolder.getContext().getAuthentication().getName();//anonymousUser
+       String sn=AuthorityManage.getCurrentUsername();//anonymousUser
        if(sn.equals("anonymousUser")){
             return "/guest/Index";
        }else{
@@ -59,9 +60,5 @@ public class GuestController {
     //当前学期
    public int getCurrentTerm() {
       return 201602;
-   }
-   //当前登录用户名
-     public String getCurrentUsername() {
-      return SecurityContextHolder.getContext().getAuthentication().getName();
    }
 }
