@@ -7,6 +7,7 @@ package cn.edu.henu.rjxy.lms.controller.register;
 
 import cn.edu.henu.rjxy.lms.dao.TempStudentDao;
 import cn.edu.henu.rjxy.lms.model.TempStudent;
+import cn.edu.henu.rjxy.lms.server.CurrentInfo;
 import cn.edu.henu.rjxy.lms.server.KingoApi;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,11 @@ public class Student_teacher_registercontroller {
     public String studet_sign1() {
         return "register/student_register";
     }
-    
+    @RequestMapping("/tmptest")
+    public @ResponseBody String tmptest() {
+        
+        return CurrentInfo.getFileFolder();
+    }    
     @RequestMapping("/tmp_attestation")
     public @ResponseBody String[] tmp_attestation(HttpServletRequest request, HttpServletResponse response)  {
         //TempStudent stu = TempStudentDao.getTempStudentById();
@@ -68,7 +73,7 @@ public class Student_teacher_registercontroller {
 //                        String college=k.stringSub(s,"<yxb>","</yxb>");
 //                        String sex=k.stringSub(s,"<xb>","</xb>");
 //                        String telnum=k.stringSub(s,"<dh>","</dh>");
-                        if (name.equals(stu.getStudentName())&&sfz.equals(stu.getStudentIdcard())) {
+                        if (name.equals(stu.getStudentName())&&sfz.equalsIgnoreCase(stu.getStudentIdcard())) {
                             result[0]="认证成功";
                         }else{
                             result[0]="登录授权成功，认证信息失败。";
