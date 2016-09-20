@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="user-profile-edit">
-                            <a data-toggle="tab" href="#tab-personalInfo">编辑个人名片 <span class="icon">edit</span></a>
+                            <a data-toggle="modal" href="#uinfo">编辑个人名片 <span class="icon">edit</span></a>
 
                         </div>
 
@@ -85,7 +85,7 @@
                                 <strong class="vcard-stat-count">{{numICourse}}</strong>
                                 <span class="text-muted">消息盒子</span>
                             </a>
-                            <a class="vcard-stat" data-toggle="tab"  href="#tab-personalInfo">
+                            <a class="vcard-stat" data-toggle="modal"  href="#uinfo">
                                 <strong class="vcard-stat-count icon">person</strong>
                                 <span class="text-muted">个人中心</span>
                             </a>
@@ -116,7 +116,7 @@
             <span class="header-logo" >教务系统 | 学生页面</span>
             <ul class="nav nav-list pull-right">
                 <li>
-                    <a id="for-ubox" onclick="toggleUserSettings()">
+                    <a id="for-upanel" class="btn-flat" onclick="toggleUserPanel()">
                         <span class="icon icon-lg">menu</span>
                     </a>
                 </li>
@@ -154,6 +154,9 @@
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script><script>NProgress.set(0.7);</script>
         <script src="<%=path%>/js/api.json.student.js" type="text/javascript"></script>
         <script src="<%=path%>/js/tinymce/tinymce.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.fs.core.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/formstone/js/transition.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.fs.boxer.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
         <link href="<%=path%>/uploadify/uploadify.css" rel="stylesheet" type="text/css"/>
         <script src="<%=path%>/uploadify/jquery.uploadify.js" type="text/javascript"></script>
@@ -369,7 +372,7 @@
             });
             
             // 个人面板 点击事件监听器
-            $("#ubox a[href^='#tab']").click(function(){
+            $("#upanel a[href^='#tab']").click(function(){
     
                 var selector = $(this).attr("href");
                 console.log("selector is :" + selector);
@@ -384,7 +387,7 @@
                 $("#usettings a[href= '" + selector + "']").click();
             });
             function bindBoxer(){
-                $('.stage-card').boxer();
+                $('.stage-card').lightbox();
                 console.log("rebind boxer() function in elements '.stage-card'");
             }
             $('[href="#content-CourseResource"]').click(function(){
@@ -393,7 +396,7 @@
             $('[id^="cid-"]').click(function(){
                 setTimeout(bindBoxer, 1200);
             });
-            $('.stage-card').boxer();
+            $('.stage-card').lightbox();
             
            /* ==================================================================
             * 页面 监听器

@@ -1413,7 +1413,7 @@ function initPage() {
         }
     });
     UInfo= new Vue({
-        el: '#uifo',
+        el: '#uinfo',
         data: {
             id: StudentAPI.id,
             sn: StudentAPI.sn,

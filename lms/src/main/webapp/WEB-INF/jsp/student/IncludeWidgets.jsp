@@ -56,88 +56,89 @@
     <!--个人信息-->
     <div class="modal fade" id="uinfo" role="dialog">
         <div class="modal-dialog" style="max-width: 960px;">
-            <div class="modal-content" >
-                    <div class="tab-content divider-right">
-                        <!--基础资料-->
-                        <div class="tab-pane fade" id="tab-personalInfo" >
-                            <form>
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="sn"> 学号 </label>
-                                    <input class="form-control" id="sn" type="text" value="{{sn}}" disabled="">
-                                </div>
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="name"> 姓名 </label>
-                                    <input class="form-control" id="name" type="text" value="{{name}}">
-                                    <div id="validMsg-name" hidden>请输入至少两个汉字</div>
-                                </div>
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="ID"> 身份证 </label>
-                                    <input class="form-control" id="ID" type="text" value="{{ID}}">
-                                    <div id="validMsg-ID" hidden>您输入的身份证格式不正确</div>
-                                </div>
-                                <div class="form-group form-group-label">
+            <div class="modal-content row" style="padding: 30px;">
+                <div class="tab-content divider-right col-sm-5">
+                    <!--基础资料-->
+                    <div class="tab-pane fade in active" id="tab-personalInfo" >
+                        <form>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="sn"> 学号 </label>
+                                <input class="form-control" id="sn" type="text" value="{{sn}}" disabled="">
+                            </div>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="name"> 姓名 </label>
+                                <input class="form-control" id="name" type="text" value="{{name}}">
+                                <div id="validMsg-name" hidden>请输入至少两个汉字</div>
+                            </div>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="ID"> 身份证 </label>
+                                <input class="form-control" id="ID" type="text" value="{{ID}}">
+                                <div id="validMsg-ID" hidden>您输入的身份证格式不正确</div>
+                            </div>
+                            <div class="form-group form-group-label">
 
-                                    <div class="radiobtn radiobtn-adv radio-inline">
-                                        <label for="boy">
-                                            <input class="access-hide form-control" id="boy" name="sex" type="radio">男生
-                                            <span class="radiobtn-circle" ></span><span class="radiobtn-circle-check" ></span>
-                                        </label>
-                                    </div>
+                                <div class="radiobtn radiobtn-adv radio-inline">
+                                    <label for="boy">
+                                        <input class="access-hide form-control" id="boy" name="sex" type="radio">男生
+                                        <span class="radiobtn-circle" ></span><span class="radiobtn-circle-check" ></span>
+                                    </label>
+                                </div>
 
-                                    <div class="radiobtn radiobtn-adv radio-inline">
-                                        <label for="girl">
-                                            <input class="access-hide form-control" id="girl" name="sex" type="radio">女生
-                                            <span class="radiobtn-circle" ></span><span class="radiobtn-circle-check" ></span>
-                                        </label>
-                                    </div>
+                                <div class="radiobtn radiobtn-adv radio-inline">
+                                    <label for="girl">
+                                        <input class="access-hide form-control" id="girl" name="sex" type="radio">女生
+                                        <span class="radiobtn-circle" ></span><span class="radiobtn-circle-check" ></span>
+                                    </label>
                                 </div>
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="college"> 学院 </label>
-                                    <select class="form-control" id="college" value="">
-                                        <option value="{{college}}"> {{college}} </option>
-                                        {{{schoolCollegeList}}}
-                                    </select>
-                                </div>
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="grade"> 年级 </label>
-                                    <select class="form-control" id="grade" value="">
-                                        <option value="{{grade}}"> {{grade}} </option>
-                                        {{{schoolYearsList}}}
-                                    </select>
-                                </div>
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="tel"> 联系方式 </label>
-                                    <input class="form-control" id="tel" type="text" value="{{tel}}">
-                                    <div id="validMsg-tel" hidden>请输入正确的手机号</div>
-                                </div>
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="qq"> QQ </label>
-                                    <input class="form-control" id="qq" type="text" value="{{qq}}">
-                                    <div id="validMsg-qq" hidden>请输入正确QQ号</div>
-                                </div>
-                            </form>
-                        </div>
-                        <!--密码设置-->
-                        <div class="tab-pane fade" id="tab-password">
-                            <form>
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="oldPassword"> 原始密码 </label>
-                                    <input class="form-control" id="oldPassword" type="password">
-                                    <div id="validMsg-opw" hidden></div>
-                                </div>
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="newPassword"> 新密码 </label>
-                                    <input class="form-control" id="newPassword" type="password" placeholder="密码最短为6位">
-                                    <div id="validMsg-npw" hidden></div>
-                                </div>
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="newPasswordConfirm"> 确认密码  </label>
-                                    <input class="form-control" id="newPasswordConfirm" type="password">
-                                    <div id="validMsg-npwconfirm" hidden></div>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="college"> 学院 </label>
+                                <select class="form-control" id="college" value="">
+                                    <option value="{{college}}"> {{college}} </option>
+                                    {{{schoolCollegeList}}}
+                                </select>
+                            </div>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="grade"> 年级 </label>
+                                <select class="form-control" id="grade" value="">
+                                    <option value="{{grade}}"> {{grade}} </option>
+                                    {{{schoolYearsList}}}
+                                </select>
+                            </div>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="tel"> 联系方式 </label>
+                                <input class="form-control" id="tel" type="text" value="{{tel}}">
+                                <div id="validMsg-tel" hidden>请输入正确的手机号</div>
+                            </div>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="qq"> QQ </label>
+                                <input class="form-control" id="qq" type="text" value="{{qq}}">
+                                <div id="validMsg-qq" hidden>请输入正确QQ号</div>
+                            </div>
+                        </form>
                     </div>
+                    <!--密码设置-->
+                    <div class="tab-pane fade" id="tab-password">
+                        <form>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="oldPassword"> 原始密码 </label>
+                                <input class="form-control" id="oldPassword" type="password">
+                                <div id="validMsg-opw" hidden></div>
+                            </div>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="newPassword"> 新密码 </label>
+                                <input class="form-control" id="newPassword" type="password" placeholder="密码最短为6位">
+                                <div id="validMsg-npw" hidden></div>
+                            </div>
+                            <div class="form-group form-group-label">
+                                <label class="floating-label" for="newPasswordConfirm"> 确认密码  </label>
+                                <input class="form-control" id="newPasswordConfirm" type="password">
+                                <div id="validMsg-npwconfirm" hidden></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-7"  style="padding-left: 45px;" >
                     <div class="card">
                         <div class="uinfo-blur"></div>
                         <div class="card-main">
@@ -174,6 +175,7 @@
                         </div>
 
                     </div>
+                </div>
             </div>
         </div>
     </div>

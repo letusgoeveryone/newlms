@@ -67,17 +67,16 @@ function toggleUbox(){
     
     
 }
-function toggleUserSettings(){
-    var home = $('user-home');
-    var settings = $('user-settings');
-    var homeLeft = home.css("left");
-    var settingLeft = settings.css("left");
-    var tmpLeft = settingLeft;
+function toggleUserPanel(){
+    var upanel = $("#upanel");
+    var header = $("header");
+    var footer = $("footer");
+    var content = $("#ucontent");
+    upanel.toggleClass('hidden');
+    header.toggleClass('nm-right');
+    content.toggleClass('nm-right');
+    footer.toggleClass('nm-right');
     
-    for(;settingLeft == tmpLeft;settingLeft++,homeLeft++){
-        home.css("left", homeLeft);
-        settings.css("left", settingLeft);
-    }
 };
 //
 //$(".btn-upload").hover(function(){

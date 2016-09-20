@@ -1212,11 +1212,15 @@ a[href^='#folder'] .folder-name {
 
 /*panel*/
 
-#ubox a {
+#upanel.hidden{
+    display: none !important;
+}
+
+#upanel a {
     color: #8b95cb;
 }
 
-#ubox .menu-scroll {
+#upanel .menu-scroll {
     box-shadow: 0 0 2px rgba(0, 0, 0, .5);
     -webkit-transform: none;
     transform: none;
@@ -1225,7 +1229,7 @@ a[href^='#folder'] .folder-name {
     background-size: cover;
 }
 
-#ubox .menu-logo {
+#upanel .menu-logo {
     margin-top: -15px;
     color: #3F51B5;
 }
@@ -2086,8 +2090,15 @@ div [ class^="btn-"] {
 .no-padding{
     padding: 0 !important;
 }
+.np-left{
+    padding-left: 0 ;
+}
 .no-margin{
     margin: 0 !important; 
+
+}
+.nm-right{
+    margin-right: 0;
 }
 .mg{
     margin: 1em;
@@ -2246,7 +2257,6 @@ a[class *=text-grey]:hover {
     padding-left: 30px;
     padding-right: 30px;
 }
-
 
 
 /*
