@@ -5,6 +5,7 @@ import cn.edu.henu.rjxy.lms.dao.CourseDao;
 import cn.edu.henu.rjxy.lms.dao.TermCourseDao;
 import cn.edu.henu.rjxy.lms.dao.TermCourseInfoDao;
 import cn.edu.henu.rjxy.lms.server.AuthorityManage;
+import cn.edu.henu.rjxy.lms.server.CurrentInfo;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -59,6 +60,6 @@ public class GuestController {
     }
     //当前学期
    public int getCurrentTerm() {
-      return 201602;
+      return CurrentInfo.getCurrentTerm();
    }
 }

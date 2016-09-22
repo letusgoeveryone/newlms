@@ -10,6 +10,7 @@ import cn.edu.henu.rjxy.lms.dao.TeacherDao;
 import cn.edu.henu.rjxy.lms.dao.TermCourseDao;
 import cn.edu.henu.rjxy.lms.model.Teacher;
 import cn.edu.henu.rjxy.lms.model.TermCourse;
+import cn.edu.henu.rjxy.lms.server.CurrentInfo;
 import cn.edu.henu.rjxy.lms.server.DocConverter;
 //import com.sun.image.codec.jpeg.JPEGCodec;
 //import com.sun.image.codec.jpeg.JPEGImageEncoder;
@@ -337,11 +338,7 @@ public class FileUpload extends HttpServlet {
          }
   
        public String getFileFolder(HttpServletRequest request) {
-        String path = this.getClass().getClassLoader().getResource("/").getPath();
-        System.out.println("项目运行地址"+path);
-        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/", "lms/target/lms-1.0/file/");
-        System.out.println("path=   "+path);
-        return path;        
+        return CurrentInfo.getFileFolder();
     }  
        
          //判断目录是否存在，不存在则创建

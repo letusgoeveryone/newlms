@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import cn.edu.henu.rjxy.lms.server.AuthorityManage;
+import cn.edu.henu.rjxy.lms.server.CurrentInfo;
 /**
  *
  * @author Administrator
@@ -37,9 +38,54 @@ public class AdminController {
 
     @RequestMapping("/admin/FunctionManage")
     public String functionManage(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("AllTerm", listToString(CurrentInfo.getAllTerm()));
+        request.setAttribute("AllGrade",listToString(CurrentInfo.getAllGrade()));
+        request.setAttribute("AllCollege", listToString(CurrentInfo.getAllCollege()));
+        request.setAttribute("CurrentTerm", CurrentInfo.getCurrentTerm());
+        request.setAttribute("FileFolder", CurrentInfo.getFileFolder());
+
         return "admin/FunctionManage";
     }
-
+    //保存配置提交
+    @RequestMapping("/admin/saveconfigure")
+    public @ResponseBody String adminSaveConfigure(HttpServletRequest request, HttpServletResponse response) {
+        String AllTerm=request.getParameter("AllTerm");
+        String AllGrade=request.getParameter("AllGrade");
+        String AllCollege=request.getParameter("AllCollege");
+        String CurrentTerm=request.getParameter("CurrentTerm");
+        String FileFolder=request.getParameter("FileFolder");
+        String Selfverification=request.getParameter("Selfverification");
+//        System.out.println("\n"+AllTerm+"\n==========================\n"+
+//                "\n"+AllGrade+"\n==========================\n"+
+//                "\n"+CurrentTerm+"\n==========================\n"+
+//                "\n"+AllCollege+"\n==========================\n"+
+//                "\n"+FileFolder+"\n==========================\n"+
+//                "\n"+Selfverification+"\n==========================\n");
+        CurrentInfo.setAllCollege(AllCollege);
+        CurrentInfo.setAllGrade(AllGrade);
+        CurrentInfo.setAllTerm(AllTerm);
+        CurrentInfo.setCurrentTerm(CurrentTerm);
+        CurrentInfo.setFileFolder(FileFolder);
+        CurrentInfo.setOtherConfigure("Selfverification", Selfverification);
+        return "0";
+    }
+     public static String listToString(List<String> stringList){
+        if (stringList==null) {
+            return null;
+        }
+        StringBuilder result=new StringBuilder();
+        boolean flag=false;
+        for (String string : stringList) {
+            if (flag) {
+                result.append(",");
+            }else {
+                flag=true;
+            }
+            result.append(string);
+        }
+        return result.toString();
+    }
+     
     @RequestMapping("admin/PersonManage")
     public String PersonManage(HttpServletRequest request, HttpServletResponse response) {
         return "admin/PersonManage";

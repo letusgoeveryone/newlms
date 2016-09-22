@@ -20,6 +20,7 @@ import cn.edu.henu.rjxy.lms.model.Teacher;
 import cn.edu.henu.rjxy.lms.model.TeacherCourseResult;
 import cn.edu.henu.rjxy.lms.model.TeacherMyclassstudent;
 import cn.edu.henu.rjxy.lms.server.AuthorityManage;
+import cn.edu.henu.rjxy.lms.server.CurrentInfo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -455,7 +456,7 @@ public class TeaController {
       String term = request.getParameter("term");
       String courseName = request.getParameter("courseName");
       // .../学期/学院／教师工号／教师姓名／课程名称 //课程目录结构
-      File f = new File(getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/");
+      File f = new File(getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/");
       //判断目录是否存在，不存在则创建
       if(!f.exists()&&!f.isDirectory()){
           System.out.println("不存在");
@@ -463,7 +464,7 @@ public class TeaController {
       }else{
           System.out.println("存在");
       }
-    String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/";
+    String ff = getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/";
     List list =new LinkedList();
 //    String ss = "",aa;
 //    for(int i =0;i < users.length-1;i++){
@@ -493,7 +494,7 @@ public class TeaController {
       String collage = tec.getTeacherCollege();
       String term = request.getParameter("term");
       String courseName = request.getParameter("courseName");
-      String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/"+"test.json";
+      String ff = getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/"+"test.json";
       String fileContent = "";    
        try{      
         File f = new File(ff);     
@@ -524,7 +525,7 @@ public class TeaController {
       String collage = tec.getTeacherCollege();
       String term = request.getParameter("term");
       String courseName = request.getParameter("courseName");
-      String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/"+"test.json";
+      String ff = getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/"+"test.json";
       File f =new File(ff);
       if(!f.exists()){
           return "0";//不存在
@@ -545,7 +546,7 @@ public class TeaController {
      String node1 = request.getParameter("node1");
      String node2 = request.getParameter("node2");
      String node3 = request.getParameter("node3");
-     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/";
+     String ff = getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/";
      if(node3.endsWith("null")){//2
         ff = ff+"/"+node1+"/"+node2+"/"; 
         File f = new File(ff);
@@ -582,7 +583,7 @@ public class TeaController {
      String node2 = request.getParameter("node2");
      String node3 = request.getParameter("node3");
      System.out.println(node1 + " "+ node2+"  "+node3+"  "+term+"  "+courseName);
-     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/";
+     String ff = getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/";
      if(node2.equals("undefined")&&node3.equals("undefined")){//1
          ff = ff+node1;
       }else if(node3.equals("undefined")&&(!node2.equals("undefined"))){//2
@@ -608,7 +609,7 @@ public class TeaController {
 //        System.out.println("上传课程内容 路径："+file.getOriginalFilename());
 //        DocConverter dc=new DocConverter(f+"/"+file.getOriginalFilename());
 //        boolean res=dc.conver();
-//        String swftmp=(f+"/"+file.getOriginalFilename()).replace(getFileFolder(request), "");
+//        String swftmp=(f+"/"+file.getOriginalFilename()).replace(getFileFolder(), "");
 //        swftmp=swftmp.substring(0,swftmp.lastIndexOf("."))+".swf";
 //        if (res){
 //            System.out.println("转换为flash成功。网页引用地址:http://localhost:8080/Web/getswf?uri="+swftmp);
@@ -647,7 +648,7 @@ public class TeaController {
      String sn=AuthorityManage.getCurrentUsername();
      Teacher tec = TeacherDao.getTeacherBySn(sn);
      String collage = tec.getTeacherCollege();
-     String ff = getFileFolder(request)+term +"/"+collage+"/"+coursename+"/"+"课程大纲"; 
+     String ff = getFileFolder()+term +"/"+collage+"/"+coursename+"/"+"课程大纲"; 
      File f = new File(ff);
      if(!f.exists()&&!f.isDirectory()){
           a[0]="0";
@@ -683,7 +684,7 @@ public class TeaController {
         ff= node1+"/";
      }
      dir = term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+dir;
-     ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+ff;
+     ff = getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+ff;
      System.out.println("dir="+dir);
      String ff3="../"+"getswf?uri="+dir;
      String ff4="../"+"getVideo?uri="+dir;
@@ -733,7 +734,7 @@ public class TeaController {
      String tec_sn= tec.getTeacherSn();
      String tec_name = tec.getTeacherName();
      String collage = tec.getTeacherCollege();
-     String ff = getFileFolder(request)+term +"/"+collage+"/"+coursename+"/"+"课程大纲";
+     String ff = getFileFolder()+term +"/"+collage+"/"+coursename+"/"+"课程大纲";
      String s[] = new String[2];
      int length= haveFile(ff);
      if(length==0){s[0]=""+"<ol class=\"breadcrumb\" id=\"breadcour\"><p>暂时无附件,你可以选择附件上传</p></ol>";s[1]="0";return s;}
@@ -799,7 +800,7 @@ public class TeaController {
      String node1 = request.getParameter("node1");
      String node2 = request.getParameter("node2");
      String node3 = request.getParameter("node3");
-     String ff = getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"; 
+     String ff = getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"; 
      if(!node2.equals("null")&&!node3.equals("null")){
        ff = ff+"/"+node1+"/"+node2+"/"+node3+"/";
      }else if(!node2.equals("null")&&node3.equals("null")){
@@ -836,7 +837,7 @@ public class TeaController {
       String collage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
       String sn = AuthorityManage.getCurrentUsername();
        //                                 学期　     工号　   姓名　          课程名
-       String ff = getFileFolder(request)+"homework/"+term +"/"+collage+"/"+sn+"/"+tec_name+"/"+coursename+"/";
+       String ff = getFileFolder()+"homework/"+term +"/"+collage+"/"+sn+"/"+tec_name+"/"+coursename+"/";
        file(ff);//判断目录是否存在，不存在则创建
        length = haveFile(ff);
        ff=ff+(length+1)+"/";
@@ -871,7 +872,7 @@ public class TeaController {
       String collage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
       String sn = AuthorityManage.getCurrentUsername();
        //                                 学期　     工号　   姓名　          课程名
-      String ff = getFileFolder(request)+"homework/"+term +"/"+collage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/";
+      String ff = getFileFolder()+"homework/"+term +"/"+collage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/";
       
        //写入作业要求html
        OutputStreamWriter pw = null;
@@ -898,7 +899,7 @@ public class TeaController {
      String sn = AuthorityManage.getCurrentUsername();
      String collage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
        //                                 学期　     工号　   姓名　          课程名
-     String ff = getFileFolder(request)+"homework/"+term +"/"+collage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+workid+"/"+1+"/";
+     String ff = getFileFolder()+"homework/"+term +"/"+collage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+workid+"/"+1+"/";
      file(ff);//判断目录是否存在，不存在则创建
      if(haveFile(ff)!=0){return "0";}
      File f = new File(ff);
@@ -936,7 +937,7 @@ public class TeaController {
      String sn = AuthorityManage.getCurrentUsername();
      String collage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
        //                                 学期　     工号　   姓名　          课程名
-     String ff = getFileFolder(request)+"homework/"+term +"/"+collage+"/"+sn+"/"+tec_name+"/"+coursename+"/";
+     String ff = getFileFolder()+"homework/"+term +"/"+collage+"/"+sn+"/"+tec_name+"/"+coursename+"/";
      file(ff);//判断目录是否存在，不存在则创建
      length = haveFile(ff);
      ff=ff+(length+1)+"/";
@@ -983,7 +984,7 @@ public class TeaController {
       String tec_name =TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherName();
       String sn = AuthorityManage.getCurrentUsername();
       String colage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
-      String ff = getFileFolder(request)+"homework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/";
+      String ff = getFileFolder()+"homework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/";
       System.out.println(haveFile(ff));
       length = haveFile(ff);
       a[0] = length+"";//返回长度
@@ -1005,7 +1006,7 @@ public class TeaController {
       String tec_name =TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherName();
       String sn = AuthorityManage.getCurrentUsername();
       String colage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
-      String ff = getFileFolder(request)+"homework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/";
+      String ff = getFileFolder()+"homework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/";
       String a = read(ff+"/"+"textWork.html");
       String a2 =  readline(ff+"/"+"Workall.txt")[1];//endtime
       String a3 =  readline(ff+"/"+"Workall.txt")[2];//starttime
@@ -1034,7 +1035,7 @@ public class TeaController {
       String tec_name =TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherName();
       String sn = AuthorityManage.getCurrentUsername();
       String colage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
-      String ff = getFileFolder(request)+"homework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/";
+      String ff = getFileFolder()+"homework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/";
       int length = haveFile(ff+"/"+1+"/");
       if(length==1){
        File f = new File(ff+"/"+1+"/"); 
@@ -1057,7 +1058,7 @@ public class TeaController {
       String tec_name =TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherName();
       String sn = AuthorityManage.getCurrentUsername();
       String colage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
-      String ff = getFileFolder(request)+"uploadhomework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/";
+      String ff = getFileFolder()+"uploadhomework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/";
       File file=new File(ff);
       if(!file.exists()&&!file.isDirectory()){
            c[0]= "0";
@@ -1094,7 +1095,7 @@ public class TeaController {
       String tec_name =TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherName();
       String sn = AuthorityManage.getCurrentUsername();
       String colage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
-      String ff = getFileFolder(request)+"uploadhomework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/"+clsssname+"/";
+      String ff = getFileFolder()+"uploadhomework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/"+clsssname+"/";
       String ff2="../file/"+"uploadhomework/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/"+clsssname+"/";
       int length = haveFile(ff);//班级目录下学生长度
       String []b = new String[length+1];
@@ -1188,10 +1189,10 @@ public class TeaController {
         String sn = AuthorityManage.getCurrentUsername();
         String collage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
         String teacherName = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherName();
-        String path=getFileFolder(request)+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+courseName+"/"+workid+"/"; // 压缩的目录
+        String path=getFileFolder()+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+courseName+"/"+workid+"/"; // 压缩的目录
         String fileNamelast = workid+".zip";//下载的文件名
-        file( getFileFolder(request)+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+"临时压缩");
-        String compress = getFileFolder(request)+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+"临时压缩"+"/"+fileNamelast;
+        file( getFileFolder()+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+"临时压缩");
+        String compress = getFileFolder()+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+"临时压缩"+"/"+fileNamelast;
         //压缩后下载
         ZipCompressor zc = new ZipCompressor(compress);//压缩的位置   
         zc.compress(path,"","");  //压缩一个目录，，压缩后文件不删除，下次压缩自动替换
@@ -1216,10 +1217,10 @@ public class TeaController {
         String sn = AuthorityManage.getCurrentUsername();
         String collage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
         String teacherName = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherName();
-        String path=getFileFolder(request)+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+courseName+"/"+workid+"/"+classname+"/"; // 压缩的目录
+        String path=getFileFolder()+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+courseName+"/"+workid+"/"+classname+"/"; // 压缩的目录
         String fileNamelast = classname+".zip";//下载的文件名
-        file( getFileFolder(request)+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+"临时压缩");
-        String compress = getFileFolder(request)+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+"临时压缩"+"/"+fileNamelast;
+        file( getFileFolder()+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+"临时压缩");
+        String compress = getFileFolder()+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+"临时压缩"+"/"+fileNamelast;
         //压缩后下载
         ZipCompressor zc = new ZipCompressor(compress);//压缩的位置   
         zc.compress(path,"","");  //压缩一个目录，，压缩后文件不删除，下次压缩自动替换
@@ -1239,7 +1240,7 @@ public class TeaController {
     public ResponseEntity<byte[]> downloadDG(HttpServletRequest request,HttpServletResponse response) throws IOException {  
         String path = request.getParameter("temp");
         String filename =path.substring(path.lastIndexOf("/"));
-        String compress = getFileFolder(request)+path;   
+        String compress = getFileFolder()+path;   
         File file=new File(compress);  
         HttpHeaders headers = new HttpHeaders();    
         String fileName=new String(filename.getBytes("UTF-8"),"iso-8859-1");//为了解决中文名称乱码问题  
@@ -1256,7 +1257,7 @@ public class TeaController {
         String sn = AuthorityManage.getCurrentUsername();
         String collage = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherCollege();
         String teacherName = TeacherDao.getTeacherBySn(AuthorityManage.getCurrentUsername()).getTeacherName();
-        String path = getFileFolder(request)+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+"临时压缩";
+        String path = getFileFolder()+"uploadhomework/"+term+"/"+collage+"/"+sn+"/"+teacherName+"/"+"临时压缩";
         File f = new File(path);
         if(f.exists()&&f.isDirectory()){
             System.out.println("临时压缩文件存在----------------执行删除临时压缩文件");
@@ -1377,12 +1378,8 @@ public class TeaController {
         } 
         return filename; 
     }
-    public String getFileFolder(HttpServletRequest request) {
-        String path = this.getClass().getClassLoader().getResource("/").getPath();
-        System.out.println(path);
-        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/","lms/target/lms-1.0/file/");
-        System.out.println(path);
-        return path;        
+    public String getFileFolder() {
+        return CurrentInfo.getFileFolder();    
     }  
 }
     

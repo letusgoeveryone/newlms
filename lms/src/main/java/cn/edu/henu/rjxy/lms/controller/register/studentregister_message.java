@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import cn.edu.henu.rjxy.lms.model.TempStudent;
+import cn.edu.henu.rjxy.lms.server.CurrentInfo;
 import cn.edu.henu.rjxy.lms.server.TempStudentMethod;
 import java.io.IOException;
 import java.text.ParseException;
@@ -45,6 +46,7 @@ public class studentregister_message {
         if (!ccd.equals(ccd1)) {
             request.setAttribute("Error", "你输入的验证码错误，请重新注册!");
             request.getRequestDispatcher("student_register").forward(request, response);
+             return "";
         }
         session.removeAttribute("hccd");//使当前验证码失效，否则将导致一个验证码能成功注册多个账号。刘昱注
         Integer stu_sn = Integer.parseInt(request.getParameter("idCard"));//学号
@@ -66,6 +68,13 @@ public class studentregister_message {
         stu.setStudentSex(true);
         stu.setStudentEnrolling(new Date());
         TempStudentMethod.addTempStudentMessage(stu_sn.toString(), stuName, stuIdcard, stu_niji, stu_college, stuTel, stuQq, stuPwd, stu_sex, new Date());
+//        if (CurrentInfo.getOtherConfigure("Selfverification").equalsIgnoreCase("true")) {
+        if (false) {
+            request.setAttribute("actjs", "/reg/tmp_attestation");
+            request.setAttribute("sn", stu_sn);
+            request.setAttribute("acthtml", "<h5>好消息：您现在可以自助完成信息确认：<a class=\"btn btn-default\" id=\"yanzheng\">点这里开始Next＞＞</a>（这个认证操作会自动尝试登录一次您的数字校园，我们承诺对您的数据严格保密，请知悉。）");
+        }
+
         return "register/success";
     }
      public static void main(String[] args) {

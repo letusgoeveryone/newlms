@@ -187,7 +187,7 @@ public class StuController {
         a[2].put("teacherSn",tec.getTeacherSn());//教师工号
         a[3].put("syllabus", TermCourseInfoDao.getCourseInfo(Integer.valueOf(term), TermCourseDao.getCourseidByCourseId(scid), 0));//html版课程大纲
         a[4].put("introduction", TermCourseInfoDao.getCourseInfo(Integer.valueOf(term), TermCourseDao.getCourseidByCourseId(scid), 1));//html版课程介绍
-        File f =new File(getFileFolder(request)+term +"/"+collage+"/"+courseName+"/课程大纲/");
+        File f =new File(getFileFolder()+term +"/"+collage+"/"+courseName+"/课程大纲/");
         if(f.exists()&&f.isDirectory()){
             String[] files = f.list();
             for (String file : files) {
@@ -211,14 +211,14 @@ public class StuController {
         String tec_sn= tec.getTeacherSn();
         String tec_name = tec.getTeacherName();
         String stusn=AuthorityManage.getCurrentUsername();
-        String ff = getFileFolder(request)+"homework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/";
+        String ff = getFileFolder()+"homework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/";
         String ff2;
         int length = haveFile(ff);
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         Date d1 = new Date();
         List<Map> sumList=new ArrayList<Map>();
         for(int i = 1;i<=length;i++){
-            ff2 = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+i+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
+            ff2 = getFileFolder()+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+i+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
             System.out.println(length);
             Date d3 = df.parse(readline(ff+"/"+i+"/Workall.txt")[2]);
             if(d1.getTime() > d3.getTime()){//判断作业是否已开始
@@ -327,7 +327,7 @@ public class StuController {
       String collage = tec.getTeacherCollege();
       String term =TermCourseDao.getxueqiBySCId(cid).toString();
       String courseName =TermCourseDao.getCourseNameByCourseId(cid);
-      return read((getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/"+"test.json").replaceAll("\\\\", "/"));
+      return read((getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程目录结构"+"/"+"test.json").replaceAll("\\\\", "/"));
   }
    //返回作业详情  
     @RequestMapping("/student/dohomework")
@@ -345,7 +345,7 @@ public class StuController {
         String collage = tec.getTeacherCollege();
         String term =TermCourseDao.getxueqiBySCId(scid).toString();
         String courseName =TermCourseDao.getCourseNameByCourseId(scid);
-        String ff = getFileFolder(request)+"homework/"+term+"/"+collage +"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/";
+        String ff = getFileFolder()+"homework/"+term+"/"+collage +"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/";
         Date d1 = new Date();
         Date d3 = df.parse(readline(ff+"/Workall.txt")[2]);
         Map a = new HashMap();
@@ -365,7 +365,7 @@ public class StuController {
             }   
             a.put("Hwattachment",HwattachmentList);   
             HwattachmentList=new ArrayList<String>();
-            ff = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
+            ff = getFileFolder()+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
             String ff2="/file/uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
             a.put("HwtextWork", read(ff+"/textWork.html"));
             a.put("Hwtime", read(ff+"/submitTime.txt"));
@@ -398,8 +398,8 @@ public class StuController {
       String collage = tec.getTeacherCollege();
       String term =TermCourseDao.getxueqiBySCId(cid).toString();
       String courseName =TermCourseDao.getCourseNameByCourseId(cid);
-      String ff = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(cid)+"/"+stusn+"/";
-      String ff2 = getFileFolder(request)+"homework/"+term+"/"+collage +"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/";
+      String ff = getFileFolder()+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(cid)+"/"+stusn+"/";
+      String ff2 = getFileFolder()+"homework/"+term+"/"+collage +"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/";
       DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
       Date d1 = new Date();
       Date d2 = df.parse(readline(ff2+"/Workall.txt")[1]);
@@ -436,7 +436,7 @@ public class StuController {
         String collage = tec.getTeacherCollege();
         String term =TermCourseDao.getxueqiBySCId(scid).toString();
         String courseName =TermCourseDao.getCourseNameByCourseId(scid);
-        String ff = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
+        String ff = getFileFolder()+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";
         String ff2="/file/uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/";  
         File f =new File(ff);
          List<String> HwattachmentList=new ArrayList<String>();
@@ -464,7 +464,7 @@ public class StuController {
         String collage = tec.getTeacherCollege();
         String term =TermCourseDao.getxueqiBySCId(scid).toString();
         String courseName =TermCourseDao.getCourseNameByCourseId(scid);
-        String ff = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/"+src;
+        String ff = getFileFolder()+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/"+src;
         System.out.println(ff);
         File f=new File(ff);
         String []a = new String[1];
@@ -509,8 +509,8 @@ public class StuController {
         String collage = tec.getTeacherCollege();
         String term =TermCourseDao.getxueqiBySCId(scid).toString();
         String courseName =TermCourseDao.getCourseNameByCourseId(scid);
-        String ff = getFileFolder(request)+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/"+src;
-         String ff2 = getFileFolder(request)+"homework/"+term+"/"+collage +"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/";
+        String ff = getFileFolder()+"uploadhomework/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/"+TermCourseDao.getclassNameByCourseId(scid)+"/"+stusn+"/"+src;
+         String ff2 = getFileFolder()+"homework/"+term+"/"+collage +"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+homeworkid+"/";
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
       Date d1 = new Date();
       Date d2 = df.parse(readline(ff2+"/Workall.txt")[1]);
@@ -552,7 +552,7 @@ public class StuController {
         String collage = tec.getTeacherCollege();
         String term =TermCourseDao.getxueqiBySCId(scid).toString();
         String courseName =TermCourseDao.getCourseNameByCourseId(scid);
-        String ff=getFileFolder(request)+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
+        String ff=getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
         String ff2="/file/"+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+dir;
         List<String> fileList=new ArrayList<String>();   
         File f =new File(ff);
@@ -633,11 +633,7 @@ public class StuController {
    public int getCurrentTerm() {
       return CurrentInfo.getCurrentTerm();
    }
-    public String getFileFolder(HttpServletRequest request) {
-        String path = this.getClass().getClassLoader().getResource("/").getPath();
-        System.out.println("aaa="+path);
-        path=path.replace("lms/target/lms-1.0/WEB-INF/classes/", "lms/target/lms-1.0/file/");
-        System.out.println(path);
-        return path;
+    public String getFileFolder() {
+        return CurrentInfo.getFileFolder();
     }
 }

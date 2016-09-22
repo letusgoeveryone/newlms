@@ -97,6 +97,9 @@
                                             <a href="#panel-ServerInformation" data-toggle="tab" >服务器信息</a>
                                         </li>
                                         <li>
+                                            <a href="#panel-FunctionManage" data-toggle="tab" >系统设置</a>
+                                        </li>
+                                        <li>
                                             <a href="#panel-UserSituation" data-toggle="tab">用户统计</a>
                                         </li>
                                         <li>
@@ -109,6 +112,9 @@
                                 
                                 <div class="tab-pane fade in" id="panel-PersonManage">
                                     <iframe  src="<%=path%>/admin/PersonManage" id="PersonManage" frameborder="0" scrolling="yes" marginheight="0" height="1800px" width="100%" name="用户管理"></iframe>
+                                </div>
+                                <div class="tab-pane fade in" id="panel-FunctionManage">
+                                    <iframe  src="<%=path%>/admin/FunctionManage" id="UserSituation" frameborder="0" scrolling="yes" marginheight="0" height="1800px" width="100%" name="系统设置"></iframe>
                                 </div>
                                 <div class="tab-pane fade in" id="panel-UserSituation">
                                     <iframe  src="<%=path%>/admin/UserSituation" id="UserSituation" frameborder="0" scrolling="yes" marginheight="0" height="1800px" width="100%" name="用户统计"></iframe>

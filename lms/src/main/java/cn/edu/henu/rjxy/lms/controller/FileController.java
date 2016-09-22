@@ -1,5 +1,6 @@
 package cn.edu.henu.rjxy.lms.controller;
 
+import cn.edu.henu.rjxy.lms.server.CurrentInfo;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -49,8 +50,7 @@ public class FileController {
     
     @RequestMapping("/officedocconverter")
     public @ResponseBody String officedocconverter(HttpServletRequest request, HttpServletResponse response) {
-        String uri=request.getClass().getResource("/").getFile().toString()+request.getParameter("uri");
-        uri=uri.replace("lms/target/lms-1.0/WEB-INF/classes/", "lms/target/lms-1.0/file/");
+        String uri=CurrentInfo.getFileFolder()+request.getParameter("uri");
         uri=uri.replaceAll("\\\\", "/");
         File f = new File(uri.substring(0,uri.lastIndexOf("."))+".swf");  // 输入要删除的文件位置
         if(f.exists())
