@@ -94,4 +94,16 @@ public class studentregister_message {
             return "0";
        }  
     }
+       @RequestMapping("ckccd")
+       public @ResponseBody String ckccd(HttpServletRequest request, HttpServletResponse response)  {
+       HttpSession session = request.getSession();
+        String ccd = (String) session.getAttribute("hccd");
+        String ccd1 = request.getParameter("ccd");
+        if (!ccd.equalsIgnoreCase(ccd1)) {
+            return "0";
+        }else{
+            return "1";
+        }
+    }
 }
+       
