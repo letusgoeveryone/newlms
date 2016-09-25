@@ -69,10 +69,10 @@ public class DeanController {
 
         return "/dean/PersonalInfo";
     }
-     
-         @RequestMapping("dean/personManage")
+    
+    @RequestMapping("dean/pmanage")
     public String PersonManage(HttpServletRequest request, HttpServletResponse response) {
-        return "dean/personManage";
+        return "dean/PersonManage";
     }
         //返回admin信息
     @RequestMapping("/dean/getpersoninfo")

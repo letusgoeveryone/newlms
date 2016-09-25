@@ -64,6 +64,7 @@ public class studentregister_message {
         stu.setStudentSex(true);
         stu.setStudentEnrolling(new Date());
         TempStudentMethod.addTempStudentMessage(stu_sn.toString(), stuName, stuIdcard, stu_niji, stu_college, stuTel, stuQq, stuPwd, stu_sex, new Date());
+        System.out.println("12");
 //        if (CurrentInfo.getOtherConfigure("Selfverification").equalsIgnoreCase("true")) {
         if (true) {
             request.setAttribute("actjs", "/reg/tmp_attestation");

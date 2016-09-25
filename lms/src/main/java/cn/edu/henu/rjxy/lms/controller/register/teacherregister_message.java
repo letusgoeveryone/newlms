@@ -44,14 +44,14 @@ public class teacherregister_message {
             request.getRequestDispatcher("teacher_register").forward(request, response);
         }
         session.removeAttribute("hccd");//使当前验证码失效，否则将导致一个验证码能成功注册多个账号。刘昱注        
-        String teacher_sn = request.getParameter("idCard");//工号
-        String teacher_name = request.getParameter("name1");//姓名
-        String teacher_idcard = request.getParameter("myIDNum");//身份证 
+        String teacher_sn = request.getParameter("tn");//工号
+        String teacher_name = request.getParameter("name");//姓名
+        String teacher_idcard = request.getParameter("ID");//身份证 
         String teacher_Vname = request.getParameter("Vname");//职称
-        String teacher_sex = request.getParameter("xingbie");//性别
-        String xueyuan = request.getParameter("Institute");  // xueyuan
-        String teacher_tel = request.getParameter("myPhone");//手机号 
-        String teacher_qq = request.getParameter("myQq");//qq 
+        String teacher_sex = request.getParameter("sex");//性别
+        String xueyuan = request.getParameter("institute");  // xueyuan
+        String teacher_tel = request.getParameter("tel");//手机号 
+        String teacher_qq = request.getParameter("qq");//qq 
         String teacher_pwd = request.getParameter("password_md5");//密码 
         //职称有问题，，类型不符
         System.out.println(teacher_Vname + "职称");

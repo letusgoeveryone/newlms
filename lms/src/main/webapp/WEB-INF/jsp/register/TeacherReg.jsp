@@ -289,7 +289,7 @@
 
             if (isEqualOfInfo()&&verifyText('ccd', 'ccdMsg')) {
                 document.form_login.password_md5.value = hex_md5(document.getElementById('passwLast').value);
-                var jssz = document.getElementById("sn").value;
+                var jssz = document.getElementById("tn").value;
                 $.ajax({
                     type: "get", //提交方式
                     url: "cjxh", //提交的页面，方法名

@@ -217,7 +217,7 @@ function isCCDEqual(ccd) {
             
         },
         error: function () {
-            alert("验证码信息传回失败 ！");
+            console.log("验证码信息传回失败 ！");
         }
     });
     console.log(status);

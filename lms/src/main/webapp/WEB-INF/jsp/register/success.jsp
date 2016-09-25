@@ -25,36 +25,48 @@
                     body {
                         overflow-y: scroll;
                     }
+                    .card-wrap{
+                        padding: 5vh 2em;
+                    }
+                    .card-wrap h2{
+                        margin-top: 0;
+                    }
                 </style>
                 
                 
             </head>
             
          
-            <body class="stage-image" style="background-image:url(<%=path%>/images/bg-for-role.jpg)" id="lms_login">
-            <div class="row">    
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div style="height:100px;width: 80%;"></div>
-                    <div class="row card" style="width: 680px;margin:0 auto;">
-                        <div  style="height:480px;width: 600px;margin:0 auto;">
-                            <br />
-                                                 <h2>恭喜，您已注册成功。</h2>
-                                                <h5><span style="color:red">注意：您的信息已被系统接收，但是您暂时还不能用此账号登录系统。</span><br />
-                                                    如果您是学生，请联系任意一位老师，让他（她）帮您确认。<br />
-                                                    如果您是老师，请联系教务员或院长，让他（她）帮您确认。<br />
-                                                    确认之后方可正式使用本系统。<br />
-                                                    您需在8天内得到上级的确认，若8天后未确认，则您的注册信息会被系统自动删除！<br /></h5>
-                                                <h5>您现在可以<a href="<%=path%>">回到主页</a>或<a href="<%=path%>/guest">以游客身份登录</a></h5>
-                                                
-                                                ${acthtml}
-<!--<h5>好消息：您现在可以自助完成信息确认：<a class="btn btn-default" id="yanzheng">点这里开始Next＞＞</a>（这个认证操作会自动尝试登录一次您的数字校园，我们承诺对您的数据严格保密，请知悉。）</h5>-->
-                            <br /><br />
-                             </div>
-                             
+            <body class="stage-image container-full" style="background-image:url(<%=path%>/images/bg-for-role.jpg)" id="lms_login">
+                <div class="row row-scroll">    
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="pd-sapce-top"></div>
+                        <div class="row card card-wrap">
+                            <div class="card-main">
+                                
+                                <h2>注册成功 !</h2>
+                                
+                                <p>
+                                    您的信息已被系统接收，但是您<span class="text-warning">暂时还不能用此账号登录系统</span>。<br />
+                                    您需在8天内得到<b>上级</b>的确认，可正式使用本系统。若8天后未确认，则您的注册信息会被系统自动删除！<br />
+                                    
+                                </p>
+                                
+                                <ul class="text-golden">
+                                    <li>如果您是学生，请联系任意一位老师，让他（她）帮您确认。</li>
+                                    <li>如果您是老师，请联系教务员或院长，让他（她）帮您确认。</li>
+                                </ul>
+                                
+                                您现在可以<a href="<%=path%>/">关闭页面</a>或<a href="<%=path%>/guest">浏览游客页面</a>
+                                
+                                ${acthtml}
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-3"></div>
                 </div>
-                <div class="col-md-2"></div>
+                                                
             </div>
                     <footer class="row box-small text-right" id="lms-login-footer">
                         Copyright © 2015 河南大学软件学院 · 【教学系统】

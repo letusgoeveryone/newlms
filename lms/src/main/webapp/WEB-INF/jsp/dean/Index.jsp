@@ -217,7 +217,10 @@
                                         </a>
                                     </sec:authorize>
                                     <a data-toggle="tab" href="#uconsole" class='btn btn-aqua mg-lt-3x'>
-                                        <span class="text-white">控制台</span>
+                                        <span class="text-white">院长按钮</span>
+                                    </a>
+                                    <a href="dean/pmanage" class='btn btn-aqua stage-card'>
+                                        <span class="text-white" >权限管理</span>
                                     </a>
                                 </section>
                             </div>

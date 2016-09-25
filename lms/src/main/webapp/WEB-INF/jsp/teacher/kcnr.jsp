@@ -8,7 +8,7 @@
     String sessionid = session.getId();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<script src="<%=path%>/js/api.json.teacher.js" type="text/javascript"></script>
+<script src="<%=path%>/js/api.teacher.js" type="text/javascript"></script>
 <h3 style="text-align: center;color: blue" id="kcdg_kcnr" ></h3>  
 <button onclick="tj()"  class="btn btn-default btn-xs">增加根节点</button>
 <button onclick="zjd()" class="btn btn-primary btn-xs">增加子节点</button>

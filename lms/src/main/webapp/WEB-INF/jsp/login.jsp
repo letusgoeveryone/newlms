@@ -95,7 +95,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <label class="floating-label" for="ccd">验证码：</label>
-                                                            <input type="text" class="form-control" id="ccd" name="ccd" placeholder="请输入右侧的验证码" onkeydown="keyListener(event)" onblur="verifyText('ccd', 'ccdMsg');">
+                                                            <input type="text" class="form-control" id="ccd" name="ccd" placeholder="请输入右侧的验证码" onkeydown="keyListener(event)">
                                                             <span class="ccd-image" >
                                                                 <img id="ccdImage" title="看不清楚请单击图片" onclick="updateCcdImage()" >
                                                             </span>
@@ -214,7 +214,34 @@
                         
                         if (window.event){ keynum = e.keyCode; } else if (e.which){  keynum = e.which; }
                         if (keynum === 13) {
-                            login();
+                            if(verifyText('id', 'idMsg')&&verifyText('pw', 'pwMsg')&&verifyText('ccd', 'ccdMsg')){
+                                status = true;
+                            }else
+                                status = false;
+
+                            if(status === true){
+                                $("#loginMsg").html("正在登录...请稍后...");
+                                $.post(
+
+                                    "<%=path%>/logincheck", {
+                                        username: $("#id").val(),
+                                        password: hex_md5($("#pw").val()),
+                                        ccd: $("#ccd").val()
+                                    },
+
+                                    function(data) {
+                                        if (data === "LoginError") {
+                                            $("#loginMsg").html("输入的账户错误，请重试...");
+                                            $("#pw").val("");
+                                            updateCcdImage();
+                                        };
+                                        if (data === "Loginok") {
+                                            $("#loginMsg").html("登录成功!");
+                                            window.location.href = "<%=path%>/loginsuccess";
+                                        };
+                                    }
+                                );
+                            }
                         }
                     };
                     

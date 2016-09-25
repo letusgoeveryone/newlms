@@ -189,7 +189,7 @@
         <!-- 背景 顶部 --> 
         
         <!--js-->
-        <script src="<%=path%>/js/api.json.guest.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/api.guest.js" type="text/javascript"></script>
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
         <script>
