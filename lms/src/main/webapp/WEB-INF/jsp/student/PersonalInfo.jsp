@@ -53,11 +53,11 @@
                             <div class="form-group form-group-label">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label class="floating-label" for="tn">工号：</label>
-                                        <input type="text" id="tn" name="tn" value="{{tn}}" disabled class="form-control" placeholder="请输入您的工号 " maxlength="16" onblur="verifyText('tn', 'tnMsg');">
+                                        <label class="floating-label" for="sn">学号：</label>
+                                        <input type="text" id="sn" name="sn" value="{{sn}}" disabled class="form-control" placeholder="请输入您的工号 " maxlength="16" onblur="verifyText('sn', 'snMsg');">
                                     </div>
                                 </div>
-                                <span id="tnMsg" class="text-error"></span>   
+                                <span id="snMsg" class="text-error"></span>   
                             </div>
 
                             <!-- 姓名 -->

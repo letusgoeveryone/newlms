@@ -18,7 +18,7 @@
         <title></title>
     </head>
     <body>
-       <div class="container stage-box">
+       <div class="container ">
          <div  id='xs_ls_xy' style="padding:5px;height:auto">
              选择学院:<select  id="xs_xs_xy" class="selectpicker" style="width: 100px"></select>
              选择年级:<select  id="xs_xs_xy_3" class="zs_xs_nj1" style="width: 100px"></select>

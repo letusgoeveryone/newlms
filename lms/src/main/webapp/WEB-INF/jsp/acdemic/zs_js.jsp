@@ -13,7 +13,7 @@
 
     </head>
     <body>
-        <div class="container stage-box">
+        <div class="container ">
           <div  id='js_xy' style="padding:5px;height:auto">
              选择学院:<select  id="xs_js_xy" class="zs_js" style="width: 100px"></select>
                 From: <input class="easyui-textbox" style="width:80px" id="min_zs_js">

@@ -32,13 +32,13 @@
             <ul class="nav nav-list pull-left">
                 <li>
                     <a href="<%=path%>/student">
-                        <span class="icon icon-lg">home</span>
+                        <span class="icon icon-lg">arrow_back</span>
                     </a>
                 </li>
             </ul>
             <span class="header-logo" >教务系统 | <span id="settings-head">&nbsp;课程中心</span></span>
             <ul class="nav nav-list pull-right">
-                <li class="dropdown margin-right ">
+                <li class="dropdown">
                     <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
                         <span class="access-hide">Avatar</span>
                         <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="<%=path%>/images/avatar.jpg"></span>
@@ -49,12 +49,16 @@
                                 <span class="icon mg-sm-right">exit_to_app</span> 登出
                             </a>
                         </li>
-<!--                        <li>
+
+                        <!--                        
+                        <li>
                             <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon mg-sm-right">account_box</span>帮助</a>
                         </li>
                         <li>
                             <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon mg-sm-right">add_to_photos</span>报告BUG</a>
-                        </li>-->
+                        </li>
+                        -->
+                        
                     </ul>
                 </li>
             </ul>
@@ -323,8 +327,8 @@
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
         <script>var pluginMasonry = true;</script>
-        <script src="<%=path%>/js/api.json.student.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/api.json.cou.student.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/api.student.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/api.student.cou.js" type="text/javascript"></script>
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
         <script>
             initCoursePage();

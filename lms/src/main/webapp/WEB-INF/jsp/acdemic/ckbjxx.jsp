@@ -7,8 +7,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <div class="container stage-box">
-        <table id="dg1" class="easyui-datagrid" title="已添加班级信息" style="width:515px;height:auto"
+        <div class="container">
+        <table id="dg1" class="easyui-datagrid" title="已添加班级信息" style="width:950px;height:auto"
                data-options="
                iconCls: 'icon-edit',
                singleSelect: false,
@@ -131,6 +131,7 @@
             function newbjxx(){
                 ckbjxx();
             }
+            
             function ckbjxx() {
                 $('#dg1').datagrid({
                     url: 'ckbj_xx',

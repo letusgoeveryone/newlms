@@ -8,7 +8,7 @@
         <title>正式学生</title>
     </head>
     <body>
-        <div  class="container stage-box">
+        <div  class="container ">
          <div  id='xs_zs_xy' style="padding:5px;height:auto">
              选择学院:<select  id="xs_xs_xy_1" class="zs_xs" style="width: 100px"></select>
              选择年级:<select  id="xs_xs_xy_2" class="zs_xs_nj" style="width: 100px"></select>

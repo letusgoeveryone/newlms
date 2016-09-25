@@ -1,9 +1,3 @@
-<%-- 
-    Document   : test
-    Created on : 2015-11-22, 19:35:47
-    Author     : Administrator
-    add buttons.css in 12.11
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -11,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <body>
-        <div class="container stage-box">
+        <div class="container ">
 
 
             <a style="width: 120px"  onclick="xs_course_sz()" class="easyui-linkbutton">安排下学期课程</a>
@@ -19,6 +13,7 @@
             <a  style="width: 120px"   onclick="allinall()" class="easyui-linkbutton">安排下学期课程表</a>
             <a  style="width:100px"   onclick="kechengbiao()" class="easyui-linkbutton">查看课程表</a>
 
+            <div style="padding: 1.5em"></div>
 
             <div style="display: none;height: 350px" id="dg_add_bj_div">
                 <div style="float: left">
@@ -41,13 +36,13 @@
                     </div>
                 </div> 
 
-                <div  style="float: left;padding-top: 100px;padding-left: 5px;padding-right: 5px">
-                    <a class="easyui-linkbutton"  onclick="ckbj_test()">---></a>  
+                <div  style="float: left;padding:5em;">
+                    <a class="easyui-linkbutton"  onclick="ckbj_test()"><span class="icon">all_inclusive</span></a>  
                 </div>
 
                 <div  id='xuehao_all1' style="padding:5px;height:auto">
-                    学期<select id="sz_xq1" class="test">
-                    </select>
+                    学期
+                    <select id="sz_xq1" class="test"></select>
                 </div>
                 <table id="dg_xq_bj" style="width: 320px;" class="easyui-datagrid" title="已添加班级信息" 
                        data-options="singleSelect:false,method:'post',pagination:true,toolbar:'#xuehao_all1'
@@ -64,8 +59,6 @@
 
 
             </div>
-
-
 
             <div style="display: none;height: 350px" id="dg_add_course_div">     
                 <div style="float: left">
@@ -94,9 +87,11 @@
                         </thead>
                     </table>
                 </div> 
-                <div  style="float: left;padding-top: 100px;padding-left: 5px;padding-right: 5px">
-                    <a  class="easyui-linkbutton" onclick="ck_curse_test()">---></a>  
-                </div>  
+
+                <div  style="float: left;padding:5em;">
+                    <a class="easyui-linkbutton"  onclick="ck_curse_test()"><span class="icon">all_inclusive</span></a>  
+                </div>
+
                 <div  id='xuehao_course' style="padding:5px;height:auto">
                     学期<select id="sz_xq_course" class="test1"></select>
                 </div>
@@ -117,7 +112,7 @@
             </div>
 
             <div  style="display: none;height: 350px" id="all_div">
-                <div style="float: left">
+                <div class="pull-left">
                     <table id="all" style="width:330px;height:auto" class="easyui-datagrid" title="课程信息" 
                            data-options="
                            iconCls: 'icon-edit',
@@ -144,34 +139,43 @@
                         </select>
                     </div>
                 </div>
-                <div  style="float: left;padding-top: 100px;padding-left: 5px;padding-right: 5px">
-                    一个课程对应多个班级<br>
-                    选择好课程班级后输入<br>相应的任课老师<br><br><br><br><br><br>
+                <div  style="float: left;padding:5em;">
+                    
                     <a  class="easyui-linkbutton"  onclick="tijiao()">提交</a>  
                 </div>
 
-                <div  id='all_bj_xq' style="padding:5px;height:auto">
-                    学期:<select id="szall_xq" class="allbj_ck"></select>
-                </div>
-                <table id="all_bj" style="width:350px;height:auto" class="easyui-datagrid" title="请选择课程所需的班级" 
-                       data-options="rownumbers:true,singleSelect:false,collapsible:true,method:'post',fitColumns:true,pagination:true,toolbar:'#all_bj_xq'
-                       ">
-                    <thead>
-                        <tr>
-                            <th data-options="field:'ck',checkbox:true"></th>
-                            <th data-options="field:'classId',hidden:true,align:'left'">班序号</th>
-                            <th data-options="field:'classGrade',editor:'numberbox'">年级</th>
-                            <th data-options="field:'className',editor:'text'">班级</th>
-                            <th width="100" data-options="field:'ab',formatter:rkjs">任课教师教工号</th>
-                            <th width="80" data-options="field:'rkjs',formatter:rkjsxm">任课教师</th>
-                        </tr>
-                    </thead>
-                </table>
+                <div style="width:350px;height:auto;float: left;">
+                    <div  id='all_bj_xq' style="padding:5px;height:auto">
+                        学期:<select id="szall_xq" class="allbj_ck"></select>
+                    </div>
+                    <table id="all_bj" style="width:350px;height:auto" class="easyui-datagrid" title="请选择课程所需的班级" 
+                           data-options="rownumbers:true,singleSelect:false,collapsible:true,method:'post',fitColumns:true,pagination:true,toolbar:'#all_bj_xq'
+                           ">
+                        <thead>
+                            <tr>
+                                <th data-options="field:'ck',checkbox:true"></th>
+                                <th data-options="field:'classId',hidden:true,align:'left'">班序号</th>
+                                <th data-options="field:'classGrade',editor:'numberbox'">年级</th>
+                                <th data-options="field:'className',editor:'text'">班级</th>
+                                <th width="100" data-options="field:'ab',formatter:rkjs">任课教师教工号</th>
+                                <th width="80" data-options="field:'rkjs',formatter:rkjsxm">任课教师</th>
+                            </tr>
+                        </thead>
+                    </table>
 
+                    <div>
+                        一个课程对应多个班级,
+                        <br>
+                        选择好课程班级后,输入相应的任课老师
+                    </div>
+                </div>
+                
             </div>
+
             <div  id='courselist_xq' style="padding:5px;height:auto">
                 学期:<select id="courselist_xq1" class="courselist_xq1"></select>
             </div>
+
             <div  style="display: none;height: 350px" id="kechengbiao_div">
                 <table id="course_list" style="width:400px;height:auto" class="easyui-datagrid" title="课程表" 
                        data-options="rownumbers:true,singleSelect:false,collapsible:true,method:'get',fitColumns:true,pagination:true,toolbar:'#courselist_xq'
@@ -187,7 +191,9 @@
                         </tr>
                     </thead>
                 </table>
+                
             </div>
+
         </div>
         <script type="text/javascript">
             function term(val, row) {

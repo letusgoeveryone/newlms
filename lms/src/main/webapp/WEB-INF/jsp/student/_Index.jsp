@@ -14,7 +14,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-        <title>『学生』| 教务系统</title>
+        <title>教务系统 |　学生</title>
 
         <link href="<%=path%>/css/nprogress.css" rel="stylesheet" />
         <script src="<%=path%>/js/nprogress.js"  ></script><script>NProgress.start();</script>
@@ -30,8 +30,81 @@
         <script src="<%=path%>/js/md5.js" type="text/javascript"></script><script>NProgress.set(0.4);</script>
         
     </head>
-    <body class="page-brand container-full tab-content" id="lms_stu">
+    <body class="page-brand container-full" id="lms_stu">
         
+        <!--aside -->
+        <aside id="upanel" class="menu menu-right nav-drawer nav-drawer-md" >
+            <div class="menu-scroll">
+                <div class="menu-content">
+                    <div class="menu-logo" href="javascript:void(0)">个人面板 
+                    </div>
+                    <div class="vcard lms-loading">
+
+                        <div class="vcard-avatar-wrapper">
+                            <a href="/account" alt="Change your avatar" class="vcard-avatar">
+                                <img alt="" class=" img-rounded" src="<%=path%>/images/avatar.jpg" height="230" width="230">
+                            </a>
+                        </div>
+                        
+                        <div class="vcard-names">
+                            <p class="vcard-fullname" >{{name}}</p>
+                            <p class="vcard-id" >ID: {{sn}} ( {{grade}}级 )</p>
+                        </div>
+
+                        <div class="user-profile-edit">
+                            <a data-toggle="modal" href="#uinfo">编辑个人名片 <span class="icon">edit</span></a>
+
+                        </div>
+
+                        <ul class="vcard-details">
+                            <li alt="Home location" class="vcard-detail" title="China">
+                                <span class="icon">person_outline</span> {{college}}
+                            </li>
+                            <li alt="Email" class="vcard-detail">
+                                <span class="icon">chat_bubble_outline</span> <b>扣扣:</b> {{qq}}
+                            </li>
+                            <li alt="Member since" class="vcard-detail ">
+                                <span class="icon">exit_to_app</span>
+                                <a class="" href="<%=path%>/logout"> 注销</a>
+                            </li>
+                        </ul>
+
+                        <!--个人状态 O-->
+                        <div class="vcard-stats">
+                            <!--<h3 class="vcard-stat-heading">个人状态</h3>-->
+<!--                            <a class="vcard-stat" href="javascript:void(0)">
+                                <strong class="vcard-stat-count">63</strong>
+                                <span class="text-muted">未完成作业</span>
+                            </a>-->
+<!--                            <a class="vcard-stat" data-toggle="tab"  href="#tab-course-permit">
+                                <strong class="vcard-stat-count">10</strong>
+                                <span class="text-muted">已批准课程</span>
+                            </a>-->
+                            <!--tab-news-->
+                            <a class="vcard-stat" data-toggle="tab"  href="#">
+                                <strong class="vcard-stat-count">{{numICourse}}</strong>
+                                <span class="text-muted">消息盒子</span>
+                            </a>
+                            <a class="vcard-stat" data-toggle="modal"  href="#uinfo">
+                                <strong class="vcard-stat-count icon">person</strong>
+                                <span class="text-muted">个人中心</span>
+                            </a>
+                            <a class="vcard-stat" href="student/courses">
+                                <strong class="vcard-stat-count icon">open_in_new</strong>
+                                <span class="text-muted">选课系统</span>
+                            </a>
+                        </div>
+                        <div>
+                            
+                        </div>
+                        <!--个人状态 X-->
+
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!--header-->
         <header class="header header-brand header-waterfall ui-header">
             <ul class="nav nav-list pull-left">
                 <li>
@@ -42,131 +115,24 @@
             </ul>
             <span class="header-logo" >教务系统 | 学生页面</span>
             <ul class="nav nav-list pull-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
-                        <span class="access-hide">Avatar</span>
-                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar.jpg"></span>
+                <li>
+                    <a id="for-upanel" class="btn-flat" onclick="toggleUserPanel()">
+                        <span class="icon icon-lg">menu</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="">
-                            <a class="waves-attach waves-effect" href="<%=path%>/logout">
-                                <span class="icon mg-sm-right">exit_to_app</span> 登出
-                            </a>
-                        </li>
-                        <!--                        <li>
-                                                    <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon mg-sm-right">account_box</span>帮助</a>
-                                                </li>
-                                                <li>
-                                                    <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon mg-sm-right">add_to_photos</span>报告BUG</a>
-                                                </li>-->
-                    </ul>
                 </li>
             </ul>
         </header>
-                
-        <!--学生区 主区-->
-        <div id='lms_main' class="tab-pane fade in active sample-height">
 
-            <div class="container">
-                <div class="row">
-                    <div class="pd-content-htop"></div>
-
-                    <!--个人面板-->
-                    <div class="col-sm-4" id="upanel">
-                        <div class="card">
-                            <div class="vcard lms-loading">
-
-                                <div class="vcard-avatar-wrapper">
-                                    <a href="/account" alt="Change your avatar" class="vcard-avatar">
-                                        <img alt="" class=" img-rounded" src="<%=path%>/images/avatar.jpg" height="230" width="230">
-                                    </a>
-                                </div>
-
-                                <div class="vcard-names">
-                                    <p class="vcard-fullname" >{{name}}</p>
-                                    <p class="vcard-id" >ID: {{sn}} ( {{grade}}级 )</p>
-                                </div>
-
-                                <ul class="vcard-details">
-                                    <li alt="Home location" class="vcard-detail" title="China">
-                                        <span class="icon">person_outline</span> {{college}}
-                                    </li>
-                                    <li alt="QQ" class="vcard-detail">
-                                        <span class="icon">chat_bubble_outline</span> <b>扣扣:</b> {{qq}}
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!--个人面板 END-->
-
-                    <!-- 导航面板 -->
-                    <div class="col-sm-8"> 
-                        <div class="card">
-
-                            <aside class="card-side pull-left">
-                                <sec:authorize access="hasRole('ROLE_STUDENT')">
-                                    <a  href="#" class='fbtn fbtn-lg  btn-golden'>
-                                        S<span class="fbtn-text fbtn-text-left">我的角色：学生</span>
-                                    </a>
-                                </sec:authorize>
-                            </aside>
-                            <div class="card-main">
-                                <div class="card-inner">
-                                    <section class="card-heading">导航面板</section>
-                                    <section>
-                                        <a data-toggle="tab" href="#ucontent" class='btn btn-aqua' >
-                                            【我的课程】
-                                        </a>
-                                        <a href="student/courses" class='btn btn-aqua'>
-                                            【选课中心】
-                                        </a>
-                                        <a href="#uinfo-wrap" data-lightbox-height="700" data-lightbox-width="1000" class='btn btn-aqua stage-card'>
-                                            【个人中心】
-                                        </a>
-                                    </section>
-                                </div>
-                                <div class="card-action">
-                                    <div class="card-action-btn" style="margin:6px 16px;">
-                                        <a href="#uinfo-wrap" data-lightbox-height="700" data-lightbox-width="1000" class="btn btn-flat stage-card lms-c-text-light waves-attach pull-right" style="text-align: right;"> 查看 / 修改 个人信息<span class="icon margin-left-sm">open_in_new</span> </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>      
-                    <!-- 导航面板 END--> 
-                    
-                    <!--我的课程-->
-                    <div class="col-sm-8">
-                        
-                    </div>
-                    <!--我的课程 END-->
-                    
-                </div>
-            </div>
-            <!--学生区 主区 END-->
-        </div>
-        <!--学生区 END-->
-        
-
-        <!--学生 课程区-->
-        <div  id="ucontent" class="row tab-pane fade " style="min-height: 1000px;">          
-            <div class="bg-content"></div>
-            <div class="pd-content-htop"></div>
-                    
+        <!--content-->
+        <div class="content clearfix clear" id="ucontent" style="min-height:2000px">
+            <div class=" space-block"></div>
             <jsp:include page="../student/IncludeContent.jsp" />
-
         </div>
-        <!--学生 课程区 END-->
-
-
-        <footer class="ui-footer" id="tree-footer">
+        
+        <!--footer-->
+        <footer class="ui-footer footer">
             <div class="container">
-                <p >
-                    <strong>Copyright © 2015 河南大学软件学院  · 【教务系统】</strong>
-                </p>
+                <p>河南大学</p>
             </div>
         </footer>
         

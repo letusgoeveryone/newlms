@@ -13,7 +13,7 @@
    
     </head>
     <body>
-        <div class="container stage-box">
+        <div class="container ">
         <table id="dg_couse" class="easyui-datagrid" title="已添加课程信息" style="width:950px;height:auto"
                data-options="
                iconCls: 'icon-edit',

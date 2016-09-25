@@ -16,7 +16,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-        <title>教务系统 | 院长</title>
+        <title>『院长』| 教务系统</title>
 
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
@@ -151,213 +151,219 @@
     </head>
     <body class="page-default tab-content" id='lms_dean'>
 
-        <!--院长区 主区-->
-        <div id='lms_dean_main' class="tab-pane fade in active">
+        <header class="header header-brand header-waterfall ui-header">
 
-            <!--            
-            <div class="content-header ui-content-header">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12 ">
-                            <h1 class="content-heading">管理员</h1>
-                            <div class="space-block"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
+            <ul class="nav nav-list pull-left">
+                <li>
+                    <a href="<%=path%>/admin">
+                        <span class="icon icon-lg">home</span>
+                    </a>
+                </li>
+            </ul>
+            <span class="header-logo" >教务系统 | 院长页面</span>
 
-            <header class="header " id="tree-header">
-                <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
-                    <ul class="nav nav-list">
-                        <li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_dean_tnav_class"><span class="text-white">院长按钮</span></a></li>
-                        <li  class="active"><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_dean_tnav_pInfo"><span class="text-white">个人面板</span></a></li>
-                        <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white">退出系统<span class="icon margin-left-sm">exit_to_app</span></span></a></li>
+            <ul class="nav nav-list pull-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
+                        <span class="access-hide">Avatar</span>
+                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar.jpg"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="">
+                            <a class="waves-attach waves-effect" href="<%=path%>/logout">
+                                <span class="icon mg-sm-right">exit_to_app</span> 登出
+                            </a>
+                        </li>
                     </ul>
-                </nav>
-            </header>
+                </li>
+            </ul>                  
+        </header>
+                                
+        <!--院长区 主区-->
+        <div id='lms_main' class="container tab-pane fade in active sample-height">
 
-            <div class="container tab-content">
-                <div class="row tab-pane fade in active" id="lms_dean_tnav_pInfo">
+            <div class="row">
+                <div class="pd-content-htop"></div>
 
-                    <!-- 角色转换 -->
-                    <div class="col-md-12"> 
-                        <div class="card">
+                <!-- 角色转换 -->
+                <div class="col-md-12"> 
+                    <div class="card">
 
-                            <aside class="card-side pull-left">
-                                <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                    <a  href="#" class='fbtn fbtn-lg  btn-golden'>
-                                        D<span class="fbtn-text fbtn-text-left">我的角色：院长</span>
+                        <aside class="card-side pull-left">
+                            <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
+                                <a  href="#" class='fbtn fbtn-lg  btn-golden'>
+                                    D<span class="fbtn-text fbtn-text-left">我的角色：院长</span>
+                                </a>
+                            </sec:authorize>
+                        </aside>
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <section class="card-heading">院长视角（角色转换）</section>
+                                <section>
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                        <a href="login" class='btn btn-aqua'>
+                                           返回
+                                        </a>
+                                    </sec:authorize>
+                                    <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
+                                        <a href="<%=path%>/acdemic" class='btn btn-aqua'>
+                                            【A 教务员】
+                                        </a>
+                                    </sec:authorize>
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                        <a href="<%=path%>/teacher" class='btn btn-aqua'>
+                                            【T 教职】
+                                        </a>
+                                    </sec:authorize>
+                                    <a data-toggle="tab" href="#uconsole" class='btn btn-aqua mg-lt-3x'>
+                                        <span class="text-white">控制台</span>
                                     </a>
-                                </sec:authorize>
-                            </aside>
-                            <div class="card-main">
-                                <div class="card-inner">
-                                    <section class="card-heading">院长视角（角色转换）</section>
-                                    <section>
-                                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                            <a href="login" class='btn btn-aqua'>
-                                               返回
-                                            </a>
-                                        </sec:authorize>
-                                        <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                            <a href="<%=path%>/acdemic" class='btn btn-aqua'>
-                                                【A 教务员】
-                                            </a>
-                                        </sec:authorize>
-                                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                            <a href="<%=path%>/teacher" class='btn btn-aqua'>
-                                                【T 教职】
-                                            </a>
-                                        </sec:authorize>
-                                    </section>
-                                </div>
-                                <div class="card-action">
-                                    <div class="card-action-btn" style="margin:6px 16px;">
-                                        <a href="dean/pinfo" class="btn btn-flat lms-c-text-light stage-card waves-attach pull-right" style="text-align: right;"> 查看 / 修改 个人信息<span class="icon margin-left-sm">open_in_new</span> </a>
-                                    </div>
-                                </div>
+                                </section>
                             </div>
-
-                        </div>
-                    </div>      
-                    <!-- 角色转换 END-->                
-                </div>
-
-                <div class="row tab-pane fade " id="lms_dean_tnav_class" style="min-height: 500px;">             
-                    
-                    <!--院长区 功能区-->
-                    <div class="bg-content"></div>
-                    <div class="container " style="position:relative;">
-
-                        <div class="row width-control stage-box" id="lms_dean_dbtn">
-                            <div class="col-md-5 card" style="left: 85px; top: -10px;">
-                                <aside class="card-side card-side-img pull-right">
-                                    <img alt="alt text" src="<%=path%>/images/dean_end.bmp" class="img-right">
-                                </aside>
-                                <div class="card-main">
-                                    <div class="card-inner">
-                                        <p class="card-heading">Great End !</p>
-                                        <p class="margin-bottom-lg">
-                                            确定这学期结束了么(⊙o⊙)？
-                                        </p>
-                                    </div>
-                                    <div class="card-action">
-                                        <div class="card-action-btn pull-left">
-                                            <button class="btn btn-flat waves-attach waves-effect" data-toggle="modal" data-target="#modalEndTerm"  >CLICK TO CONTINUE</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5 col-md-offset-2 card"  style="top: 100px; left: -35px;">
-                                <aside class="card-side card-side-img pull-left">
-                                    <img alt="alt text" src="<%=path%>/images/dean_start.bmp"  class="img-left">
-                                </aside>
-                                <div class="card-main">
-                                    <div class="card-inner">
-                                        <p class="card-heading">Good Start !</p>
-                                        <p class="margin-bottom-lg">
-                                            确定要开始新的学期了么\(≧▽≦)/
-                                        </p>
-                                    </div>
-                                    <div class="card-action">
-                                        <div class="card-action-btn pull-left">
-                                            <button class="btn btn-flat waves-attach waves-effect" data-toggle="modal" data-target="#modalStartTerm"  >CLICK TO CONTINUE</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="modal fade" id="modalEndTerm" role="dialog" >
-                            <div class="modal-dialog modal-xs">
-                                <div class="modal-content">
-                                    <div class="modal-heading">
-                                        <a class="modal-close" data-dismiss="modal">×</a>
-                                        <h2 class="modal-title">:-)</h2>
-                                    </div>
-                                    <div class="modal-inner">
-                                        <p class = "test-center h5">您确定要结束本学期了么？<span class="small">做最后一次确认吧</span></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="end">结束本学期</button></p>
-                                    </div>
+                            <div class="card-action">
+                                <div class="card-action-btn" style="margin:6px 16px;">
+                                    <a href="dean/pinfo" class="btn btn-flat lms-c-text-light stage-card waves-attach pull-right" style="text-align: right;"> 查看 / 修改 个人信息<span class="icon margin-left-sm">open_in_new</span> </a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="modal fade" id="modalStartTerm" role="dialog" >
-                            <div class="modal-dialog modal-xs">
-                                <div class="modal-content">
-                                    <div class="modal-heading">
-                                        <a class="modal-close" data-dismiss="modal">×</a>
-                                        <h2 class="modal-title">:-)</h2>
-                                    </div>
-                                    <div class="modal-inner">
-                                        <p class = "test-center h5">您确定要开始新的学期了么？<span class="small">做最后一次确认吧</span></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="begin">开始新的学期</button></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <script>
-                            $(function () {
-
-
-                                $("#begin").click(function () {
-                                    $.post("<%=path%>/dean/start",
-                                            function (data) {
-
-                                                if (data === "1") {
-                                                    alert("新学期开始成功")
-                                                }
-                                                ;
-                                                if (data === "0") {
-                                                    alert("新学期开始失败")
-                                                }
-                                                ;
-                                            })
-                                });
-                                $("#end").click(function () {
-
-                                    $.post("<%=path%>/dean/end",
-                                            function (data) {
-                                                if (data == "1") {
-                                                    alert("旧学期结束成功")
-                                                }
-                                                ;
-                                                if (data == "0") {
-                                                    alert("旧学期结束失败")
-                                                }
-                                                ;
-                                            }
-                                    );
-                                });
-                            });
-                        </script>
                     </div>
-
-                </div>
-
-                <footer class="ui-footer" id="tree-footer">
-                    <div class="container">
-                        <p >
-                            <strong>Copyright © 2015 河南大学软件学院  · 【教务系统】</strong>
-                        </p>
-                    </div>
-                </footer>
-
-
-
+                </div>      
+                <!-- 角色转换 END-->                
             </div>
-            <!--院长区 主区 END-->
+            
         </div>
-        <!--院长区 END-->   
+        <!--院长区 主区 END-->
+        
+        <!--院长按钮-->
+        <div class="tab-pane fade sample-height" id="uconsole">             
+
+            <!--院长区 功能区-->
+            <div class="bg-content"></div>
+            <div class="container " style="position:relative;">
+
+                <div class="row width-control stage-box" id="lms_dean_dbtn">
+                    <div class="col-md-5 card" style="left: 84px;top: 44px;">
+                        <aside class="card-side card-side-img pull-right">
+                            <img alt="alt text" src="<%=path%>/images/dean_end.bmp" class="img-right">
+                        </aside>
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <p class="card-heading">Great End !</p>
+                                <p class="margin-bottom-lg">
+                                    确定这学期结束了么(⊙o⊙)？
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                <div class="card-action-btn pull-left">
+                                    <button class="btn btn-flat waves-attach waves-effect" data-toggle="modal" data-target="#modalEndTerm"  >CLICK TO CONTINUE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-md-offset-2 card"  style="top: 340px;left: -35px;">
+                        <aside class="card-side card-side-img pull-left">
+                            <img alt="alt text" src="<%=path%>/images/dean_start.bmp"  class="img-left">
+                        </aside>
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <p class="card-heading">Good Start !</p>
+                                <p class="margin-bottom-lg">
+                                    确定要开始新的学期了么\(≧▽≦)/
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                <div class="card-action-btn pull-left">
+                                    <button class="btn btn-flat waves-attach waves-effect" data-toggle="modal" data-target="#modalStartTerm"  >CLICK TO CONTINUE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="modalEndTerm" role="dialog" >
+                    <div class="modal-dialog modal-xs">
+                        <div class="modal-content">
+                            <div class="modal-heading">
+                                <a class="modal-close" data-dismiss="modal">×</a>
+                                <h2 class="modal-title">:-)</h2>
+                            </div>
+                            <div class="modal-inner">
+                                <p class = "test-center h5">您确定要结束本学期了么？<span class="small">做最后一次确认吧</span></p>
+                            </div>
+                            <div class="modal-footer">
+                                <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="end">结束本学期</button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modalStartTerm" role="dialog" >
+                    <div class="modal-dialog modal-xs">
+                        <div class="modal-content">
+                            <div class="modal-heading">
+                                <a class="modal-close" data-dismiss="modal">×</a>
+                                <h2 class="modal-title">:-)</h2>
+                            </div>
+                            <div class="modal-inner">
+                                <p class = "test-center h5">您确定要开始新的学期了么？<span class="small">做最后一次确认吧</span></p>
+                            </div>
+                            <div class="modal-footer">
+                                <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="begin">开始新的学期</button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <script>
+                    $(function () {
+
+
+                        $("#begin").click(function () {
+                            $.post("<%=path%>/dean/start",
+                                    function (data) {
+
+                                        if (data === "1") {
+                                            alert("新学期开始成功")
+                                        }
+                                        ;
+                                        if (data === "0") {
+                                            alert("新学期开始失败")
+                                        }
+                                        ;
+                                    })
+                        });
+                        $("#end").click(function () {
+
+                            $.post("<%=path%>/dean/end",
+                                    function (data) {
+                                        if (data == "1") {
+                                            alert("旧学期结束成功")
+                                        }
+                                        ;
+                                        if (data == "0") {
+                                            alert("旧学期结束失败")
+                                        }
+                                        ;
+                                    }
+                            );
+                        });
+                    });
+                </script>
+            </div>
+
+        </div>
+
+        <footer class="ui-footer" id="tree-footer">
+            <div class="container">
+                <p >
+                    <strong>Copyright © 2015 河南大学软件学院  · 【教务系统】</strong>
+                </p>
+            </div>
+        </footer>
 
         <!--返回顶部-->
         <div class="fbtn-container" id="scrollUp">

@@ -12,7 +12,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-        <title>教务系统 | 教师</title>
+        <title>『教师』| 教务系统</title>
 
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
@@ -37,139 +37,171 @@
         
     </head>
     <body class="page-default tab-content" id='lms_teach'>
+        
+        <header class="header header-brand header-waterfall ui-header">
 
-        <section id="lms_main" class="tab-pane fade in active">
-            
-            <header class="header" id="tree-header">
-                <nav class="">
-                    <ul class="nav nav-list">
-                        <li  class="active"><a class="waves-attach waves-light waves-effect" href="login"><span class="text-white">教务系统 | 教师页面</span></a></li>
-                        <!--<li ><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_teach_RequstManage"><span class="text-white">学生管理</span></a></li>-->
-                        <!--<li><a class="waves-attach waves-light waves-effect" data-toggle="tab" href="#lms_stu_tnav_tLine"><span class="text-white">时光轴</span></a></li>-->
-                        <li class="" style="position:absolute;right: 0;"><a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout"><span class="text-white"> 退出系统<span class="icon icon-fixHans margin-left-sm">exit_to_app</span></span></a></li>
+            <ul class="nav nav-list pull-left">
+                <li>
+                    <a href="<%=path%>/teacher">
+                        <span class="icon icon-lg">home</span>
+                    </a>
+                </li>
+            </ul>
+            <span class="header-logo" >教务系统 | 教师页面</span>
+
+            <ul class="nav nav-list pull-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
+                        <span class="access-hide">Avatar</span>
+                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar.jpg"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="">
+                            <a class="waves-attach waves-effect" href="<%=path%>/logout">
+                                <span class="icon mg-sm-right">exit_to_app</span> 登出
+                            </a>
+                        </li>
                     </ul>
-                </nav>
-            </header>
+                </li>
+            </ul>                  
+        </header>
 
-            <section class="tab-content container" >
-                <div class=" space-block"></div>
-                <div id="lms_teach_CouCenter" class="tab-content tab-pane fade in active">
+        <!--教师区 主区-->
+        <div id='lms_main' class="container tab-pane fade in active sample-height">
 
-                    <section id="panel-MyCourse" class="row tab-pane fade in active">
-                        <div class="card sample-height">
-                            <div class="card-main" >
-                                <div class="card-header">
-                                    <div class="padding-1em" style="width: 100%;padding: 1em;height: 3em;line-height: 1em;font-size: 2em;">
-                                        学期课程
-                                    </div>
-                                </div>
-                                <div class="card-inner row">
-                                    <div class="col-md-3" style="min-height:300px;">
-                                        <!--<ul id="card_btn_courseList"></ul>-->
-                                        <form class="form-group form-group-brand">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <select class="form-control form-control-static test" name="xq" id="sz_xq"></select>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        
-                                        <!--学期:<select id="sz_xq" class="test "></select><br><br><br>-->
-                                        <ul id="tt" class="easyui-tree" data-options="method:'get',animate:true"></ul>
-                                    </div>
-                                    <div class="col-md-9" >
-                                        <div id="mystudent" style="display: none">
-                                            <jsp:include page="mystudent.jsp"  />
-                                        </div>
-                                        <div style="display: none;" id="mycourse">
-                                            <%--<jsp:include page="mycourse.jsp"/>--%>
-                                            <iframe  iframepage id="addcouocontent" frameborder="0" scrolling="no" marginheight="0" height="1000px" width="100%" name="addcouocontent"></iframe>
+            <div class="row">
+                <div class="pd-content-htop"></div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section id="panel-HomeworkArea" class="row tab-pane fade in">
+                <!-- 角色转换 -->
+                <div class="col-md-12"> 
+                    <div class="card">
 
-                        <div class="card">
-                            <aside class="card-side pull-left">
-                                <span class="card-heading" >
-                                    <a class="fbtn btn-brand waves-attach waves-circle waves-light waves-effect" 
-                                       href="#panel-MyCourse" data-toggle="tab" ><span class="icon">arrow_back</span>
-                                        <span class="fbtn-text fbtn-text-left">返回</span>
+                        <aside class="card-side pull-left">
+                            <sec:authorize access="hasRole('ROLE_TEACHER') or hasRole('ROLE_DEAN')">
+                                <a  href="#" class='fbtn fbtn-lg  btn-golden'>
+                                    D<span class="fbtn-text fbtn-text-left">我的角色：教师</span>
+                                </a>
+                            </sec:authorize>
+                        </aside>
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <section class="card-heading">导航面板</section>
+                                <section>
+                                    <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
+                                        <a href="<%=path%>/login" class='btn btn-aqua'>
+                                            返回
+                                        </a>
+                                    </sec:authorize>
+                                    <a data-toggle="tab" href="#panel-CouCenter" class='btn btn-aqua'>
+                                        【学期课程】
                                     </a>
-                                </span>
-                            </aside>
-                            <div class="card-main">
-                                <nav class="tab-nav tab-nav-gold hidden-xx ui-tab">
-                                    <ul class="nav nav-list">
-                                        <li class="active"><a href="#panel-HomeworkSetting" data-toggle="tab">布置作业</a></li>
-                                        <li><a href="#panel-HomeworkStatus" data-toggle="tab">作业状态</a></li>
-                                    </ul>
-                                </nav>
-                                <div class="card-inner row  tab-content">
-                                    <div class="col-md-12 tab-pane fade in active" id="panel-HomeworkStatus">
-                                        <%--<jsp:include page="HomeworkStatus.jsp"  />--%>
-                                        
-                                    </div>
-                                    <div class="col-md-12 tab-pane fade in" id="panel-HomeworkSetting">
-                                        <%--<jsp:include page="HomeworkSetting.jsp"  />--%>
-                                    </div>
+                                    <a data-toggle="tab" href="#panel-RequstManage" href="<%=path%>/teacher" class='btn btn-aqua'>
+                                        【注册管理】
+                                    </a>
+                                </section>
+                            </div>
+                            <div class="card-action">
+                                <div class="card-action-btn" style="margin:6px 16px;">
+                                    <a href="teacher/pinfo" class="btn btn-flat lms-c-text-light stage-card waves-attach pull-right" style="text-align: right;"> 查看 / 修改 个人信息<span class="icon margin-left-sm">open_in_new</span> </a>
                                 </div>
-
-                                <div class="card-action">
-                                    <!--                                    
-                                    <ul class="nav nav-list margin-no pull-right">
-                                        <li class="dropdown">
-                                            <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">keyboard_arrow_down</span></a>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a class="waves-attach waves-effect" href="javascript:void(0)"><span class="icon margin-right-sm">filter_1</span>&nbsp;</a>
-                                                </li>
-                                                <li>
-                                                    <a class="waves-attach waves-effect" href="javascript:void(0)"><span class="icon margin-right-sm">filter_2</span>&nbsp;</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    -->
-                                </div>    
                             </div>
                         </div>
-                    </section>
 
+                    </div>
+                </div>      
+                <!-- 角色转换 END-->                
+            </div>
 
+        </div>
+        <!--教师区 主区 END-->
+        
+        <!--教师 主区 课程中心 -->
+        <div id="panel-CouCenter" class="container tab-pane fade sample-height">
+            <div class="pd-content-htop"></div>
+            
+            <div class="row card">
+                <div class="card-main" >
+                    <div class="card-header">
+                        <div class="padding-1em" style="width: 100%;padding: 1em;height: 3em;line-height: 1em;font-size: 2em;">
+                            学期课程
+                        </div>
+                        <a class="fbtn btn-golden btn-up" data-toggle="tab" href="#lms_main">
+                            <span class="icon">arrow_back</span> 
+                        </a>
+                    </div>
+                    <div class="card-inner row">
+                        <div class="col-md-3" style="min-height:300px;">
+                            <!--<ul id="card_btn_courseList"></ul>-->
+                            <form class="form-group form-group-brand">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="form-control form-control-static test" name="xq" id="sz_xq"></select>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <ul id="tt" class="easyui-tree" data-options="method:'get',animate:true"></ul>
+                        </div>
+                        <div class="col-md-9" >
+                            
+                            <!--学生-->
+                            <div id="mystudent" style="display: none">
+                                <jsp:include page="mystudent.jsp"  />
+                            </div>
+                            
+                            <!--课程-->
+                            <div style="display: none;" id="mycourse">
+                                <iframe  iframepage id="addcouocontent" frameborder="0" scrolling="no" marginheight="0" height="1000px" width="100%" name="addcouocontent"></iframe>
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
+            </div>
 
 
-                <!--教师 副区 学生管理 -->
-<!--                <div id="lms_teach_RequstManage"  class="tab-pane fade in">
+        </div>
+        <!--教师 主区 课程中心 END -->
 
-                    <%--<jsp:include page="mystudent.jsp"/>--%>
-
-                </div>-->
-                <!--教师 副区 学生管理 END-->  
-            </section>
-
-            <footer class="ui-footer" id="tree-footer">
-                <div class="container">
-                    <strong>Copyright © 2015 河南大学软件学院  · 【教务系统】</strong>
+        
+        <!--教师 副区 注册管理 -->
+        <div id="panel-RequstManage"  class="container tab-pane fade sample-height">
+            <div class="pd-content-htop"></div>
+            
+            <div class="row card">
+                <div class="card-main" >
+                    <div class="card-header">
+                        <div class="padding-1em" style="width: 100%;padding: 1em;height: 3em;line-height: 1em;font-size: 2em;">
+                            注册管理
+                        </div>
+                        <a class="fbtn btn-golden btn-up" data-toggle="tab" href="#lms_main">
+                            <span class="icon">arrow_back</span> 
+                        </a>
+                    </div>
+                    <div class="card-inner row">
+                        <br><br><br><br><br>
+                        <br><br><br><br><br>
+                        <br><br><br><br><br>
+                        <br><br><br><br><br>
+                        <br><br><br><br><br>
+                    </div>
                 </div>
-            </footer>
-        </section>
+            </div>
+        </div>
+            <%--<jsp:include page="mystudent.jsp"/>--%>
+        </div>
+        <!--教师 副区 注册管理 END-->  
 
-        <section id="lms_stu_homework" class="tab-pane fade">
+        
+        <footer class="ui-footer" id="tree-footer">
+            <div class="container">
+                <strong>Copyright © 2015 河南大学软件学院  · 【教务系统】</strong>
+            </div>
+        </footer>
 
-            <%--<jsp:include page="Homework.jsp" />--%>
-
-        </section>
-          
         
         <!--返回顶部-->
-
-
         <div class="fbtn-container">
 
             <div class="fbtn-inner" id="scrollUp">

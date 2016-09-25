@@ -7,13 +7,13 @@
 
  //----------------------------------------------------------------*/  
 
-var CommonAPI = {};
+var AdtAPI = {};
 
 /**
  * JSON路径 对象数组
  * @type Object Array 
  */
-CommonAPI.Path = {
+AdtAPI.Path = {
     
     /**
      * 用以初始化个人相关信息 
@@ -34,9 +34,9 @@ CommonAPI.Path = {
  * 个人基础信息 对象
  * @type Object
  */
-CommonAPI.uInfo = {
+AdtAPI.uInfo = {
     id: 0,
-    sn: 0,
+    tn: 0,
     name: '',
     ID: 0,
     pw: '',
@@ -54,29 +54,29 @@ CommonAPI.uInfo = {
  * JSON数据结构 设定函数集
  * @type Object
  */
-CommonAPI.setDS = {
+AdtAPI.setDS = {
     uInfo: function(path){
-        if (path === undefined){ path = CommonAPI.Path.uInfo[0]; }
+        if (path === undefined){ path = AdtAPI.Path.uInfo[0]; }
         $.ajax({
             url: path,
             type: 'get',
             async: false,
             dataType: 'json',
             success: function (data) {
-                CommonAPI.uInfo.id = data.teacherId;
-                CommonAPI.uInfo.sn = data.teacherSn;
-                CommonAPI.uInfo.name = data.teacherName;
-                CommonAPI.uInfo.ID = data.teacherIdcard;
-                CommonAPI.uInfo.grade = data.teacherPosition;
-                CommonAPI.uInfo.college = data.teacherCollege;
-                CommonAPI.uInfo.tel = data.teacherTel;
-                CommonAPI.uInfo.qq = data.teacherQq;
-                CommonAPI.uInfo.pw = data.teacherPwd;
-                CommonAPI.uInfo.sex = data.teacherSex;
-                CommonAPI.uInfo.position = data.teacherPosition;
-                CommonAPI.uInfo.enrolling = data.teacherEnrolling;
-                CommonAPI.uInfo.roleValue = data.teacherRoleValue;
-                CommonAPI.uInfo.termCourse = data.termCourse;
+                AdtAPI.uInfo.id = data.teacherId;
+                AdtAPI.uInfo.tn = data.teacherSn;
+                AdtAPI.uInfo.name = data.teacherName;
+                AdtAPI.uInfo.ID = data.teacherIdcard;
+                AdtAPI.uInfo.grade = data.teacherPosition;
+                AdtAPI.uInfo.college = data.teacherCollege;
+                AdtAPI.uInfo.tel = data.teacherTel;
+                AdtAPI.uInfo.qq = data.teacherQq;
+                AdtAPI.uInfo.pw = data.teacherPwd;
+                AdtAPI.uInfo.sex = data.teacherSex;
+                AdtAPI.uInfo.position = data.teacherPosition;
+                AdtAPI.uInfo.enrolling = data.teacherEnrolling;
+                AdtAPI.uInfo.roleValue = data.teacherRoleValue;
+                AdtAPI.uInfo.termCourse = data.termCourse;
             },
             error: function () {
                 alert("数据 [个人信息] 传输失败 ！");
@@ -88,13 +88,13 @@ CommonAPI.setDS = {
 /**
  * 
  * @param {String} param
- * @param {String | CommonAPI.Path} path
+ * @param {String | AdtAPI.Path} path
  * @returns {Number}
  */
-CommonAPI.updatePersonalInfo = function(param,path){
+AdtAPI.updatePersonalInfo = function(param,path){
     var status = 0;
     if (path === undefined ? true : false) {
-        path = CommonAPI.Path.uInfo[1];
+        path = AdtAPI.Path.uInfo[1];
     };
     $.ajax({
         url: path + param,
@@ -112,10 +112,10 @@ CommonAPI.updatePersonalInfo = function(param,path){
     return status;
 };
 
-CommonAPI.updatePassword = function(op, np, path){
+AdtAPI.updatePassword = function(op, np, path){
     var status = 0;
     if (path === undefined ? true : false) {
-        path = CommonAPI.Path.uInfo[2];
+        path = AdtAPI.Path.uInfo[2];
     };
     $.ajax({
         url: path + "?pw=" + op + "&repw=" + np,
@@ -139,12 +139,12 @@ CommonAPI.updatePassword = function(op, np, path){
  * @returns {undefined}
  */
 function bindInfo(e, eid){
-    CommonAPI.setDS.uInfo();
+    AdtAPI.setDS.uInfo();
     e = new Vue({
         el: '#' + eid,
         data: {
             id: uInfo.id,
-            sn: uInfo.sn,
+            tn: uInfo.tn,
             name: uInfo.name,
             ID: uInfo.ID,
             college: uInfo.college,
@@ -164,14 +164,14 @@ function updatePersonalInfo() {
 
     var name = $('#name').val();
     var ID = $('#ID').val();
-    var college = $('#college').val();
+    var institute = $('#institute').val();
     var sex = $('#male').is(":checked") ? '男' : '女';
     console.log(sex);
     var tel = $('#tel').val();
     var qq = $('#qq').val();
-    var param = "?name=" + name + "&idcard=" + ID + "&college=" + college +
+    var param = "?name=" + name + "&idcard=" + ID + "&college=" + institute +
                 "&sex=" + sex +"&telnum=" + tel +"&qqnum=" + qq;
-    var status = CommonAPI.updatePersonalInfo(param);
+    var status = AdtAPI.updatePersonalInfo(param);
     if (status === 0) {
         $('#snackbar').snackbar({
             alive: 10000,
@@ -186,47 +186,17 @@ function updatePersonalInfo() {
     return true;
 };
 
+/**
+ * 依赖 api.common.js verifyText()函数
+ * @returns {Boolean}
+ */
 function checkPersonalInfo() {
-    var status = true;
+    var status = false;
     
-    //若值为空 复位
-    if ($.trim($("#name").val()) === "") {
-        $('#name').val(UProfile.$data.name);
-    }
-    if ($.trim($("#ID").val()) === "") {
-        $('#ID').val(UProfile.$data.ID);
-    }
-    if ($.trim($("#tel").val()) === "") {
-        $('#tel').val(UProfile.$data.tel);
-    }
-    if ($.trim($("#qq").val()) === "") {
-        $('#qq').val(UProfile.$data.qq);
-    }
-
-    //合法性检验 并提示
-    var r = /(^\d{15}$)|(^\d{17}([0-9]|X)$)/g;
-    var flag = r.test($.trim($("#ID").val()));
-    if (!flag) {
-        $("#validMsg-ID").fadeIn();
-        status = false;
+    if (verifyText('name', 'nameMsg') && verifyText('tel', 'telMsg') && verifyText('qq', 'qqMsg')) {
+        status = true;
     } else
-        $("#validMsg-ID").fadeOut();
-
-    r = /^1\d{10}$/g;
-    flag = r.test($.trim($("#tel").val()));
-    if (!flag) {
-        $("#validMsg-tel").fadeIn();
         status = false;
-    } else
-        $("#validMsg-tel").fadeOut();
-
-    r = /^[0-9]{6,10}$/;
-    flag = r.test($.trim($("#qq").val()));
-    if (!flag) {
-        $("#validMsg-qq").fadeIn();
-        status = false;
-    } else
-        $("#validMsg-qq").fadeOut();
 
     return status;
 };
@@ -234,7 +204,7 @@ function checkPersonalInfo() {
 function updatePassword() {
     
     if (checkPassword()) {
-        var status = CommonAPI.updatePassword(hex_md5($("#op").val()), hex_md5($("#np").val()));
+        var status = AdtAPI.updatePassword(hex_md5($("#pw").val()), hex_md5($("#passwLast").val()));
         
         if (status === 1) {
             alert("原密码不正确！");
@@ -257,50 +227,18 @@ function updatePassword() {
 };
 
 /**
- * ID绑定 | 密码合法性检验(返回值) 以及 相应提示
- * <br>#op
- * <br>#msg-op
- * <br>#np
- * <br>#msg-np
- * <br>#nplast
- * <br>#msg-nplast
- * @returns {Boolean} 
+ * 依赖 api.common.js verifyText()函数
+ * @returns {Boolean}
  */
 function checkPassword() {
-    var status = true;
-    if ($("#op").val() === '') {
-        $("#msg-op").html("请输入原始密码！");
-        $("#msg-op").fadeIn();
-        status = false;
+    var status = false;
+    
+    if (verifyText('pw', 'pwMsg') && verifyText('passwFrist', 'passwFristMsg') && verifyText('passwLast', 'passwLastMsg')) {
+        status = true;
     } else
-        $("#msg-op").fadeOut();
-
-    if ($("#nplast").val() !== $("#np").val()) {
-        $("#nplast").val("");
-        $("#msg-nplast").html("两次输入的密码不一致！");
-        $("#msg-nplast").fadeIn();
         status = false;
-    } else
-        $("#msg-nplast").fadeOut();
 
-
-    var r = /^[a-z A-Z 0-9 _]{6,18}$/;
-    var flag = r.test($("#np").val());
-    if (!flag && ($("#op").val() !== '')) {
-        $("#msg-np").html("新密码不符合要求（6到18位），是不是太简单了?");
-        $("#msg-np").fadeIn();
-        status = false;
-    } else
-        $("#msg-np").fadeOut();
-
-    if (status === false)
-        return false;
-    else {
-        $("#msg-op").fadeOut();
-        $("#msg-np").fadeOut();
-        $("#msg-nplast").fadeOut();
-    }
-    return true;
+    return status;
 };
 
 function logout(){
@@ -309,10 +247,10 @@ function logout(){
 
 
 // 初始化
-var uInfo = CommonAPI.uInfo;
+var uInfo = AdtAPI.uInfo;
 var UProfile;
 bindInfo(UProfile, 'uinfo');
-if (CommonAPI.uInfo.sex === true) {
+if (AdtAPI.uInfo.sex === true) {
     $('#male').attr("checked", "checked");
 } else {
     $('#female').attr("checked", "checked");

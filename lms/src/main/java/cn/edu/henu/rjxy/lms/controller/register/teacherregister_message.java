@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cn.edu.henu.rjxy.lms.controller.register;
+
 import cn.edu.henu.rjxy.lms.dao.TeacherDao;
 import cn.edu.henu.rjxy.lms.dao.TempTeacherDao;
 import cn.edu.henu.rjxy.lms.model.TempTeacher;
@@ -53,7 +54,7 @@ public class teacherregister_message {
         String teacher_qq = request.getParameter("myQq");//qq 
         String teacher_pwd = request.getParameter("password_md5");//密码 
         //职称有问题，，类型不符
-        System.out.println(teacher_Vname+"职称");
+        System.out.println(teacher_Vname + "职称");
         TempTeacher tempTeacher = new TempTeacher();
         tempTeacher.setTeacherSn(teacher_sn);
         tempTeacher.setTeacherName(teacher_name);
@@ -64,41 +65,41 @@ public class teacherregister_message {
         tempTeacher.setTeacherQq(teacher_qq);
         tempTeacher.setTeacherPwd(teacher_pwd);
         tempTeacher.setTeacherPosition(teacher_Vname);
-        if(teacher_Vname.equals("教务员")){
+        if (teacher_Vname.equals("教务员")) {
             tempTeacher.setTeacherRoleValue(25);
-        }else if(teacher_Vname.equals("院长")){
+        } else if (teacher_Vname.equals("院长")) {
             tempTeacher.setTeacherRoleValue(29);
-        }else if(teacher_Vname.equals("教师")){
+        } else if (teacher_Vname.equals("教师")) {
             tempTeacher.setTeacherRoleValue(24);
         }
-        tempTeacher.setTeacherEnrolling( new Date());
+        tempTeacher.setTeacherEnrolling(new Date());
         System.out.println(teacher_Vname);
-         TempTeacherDao.saveTempTeacher(tempTeacher);
+        TempTeacherDao.saveTempTeacher(tempTeacher);
 //        TempTeacherMethod.addTempTeacherMessage(teacher_id.toString(), teacher_name, teacher_idcard, xueyuan,  teacher_tel, teacher_qq, teacher_pwd, teacher_sex, teacher_Vname, new Date());
         return "register/success";
     }
-  
+
     //检查工号是否重复
-     @RequestMapping("/cj_gh")
-       public @ResponseBody
-       String pz(HttpServletRequest request, @RequestParam("jssz") String params) {
-       if(TeacherDao.isExistBySn(params)){
-           System.out.println("存在");
+    @RequestMapping("/cj_gh")
+    public @ResponseBody
+    String pz(HttpServletRequest request, @RequestParam("jssz") String params) {
+        if (TeacherDao.isExistBySn(params)) {
+            System.out.println("存在");
             return "1";
-       }else{
+        } else {
             System.out.println("不存在");
             return "0";
-       }  
+        }
     }
-    
-     public static void main(String[] args) {
-      for(int i = 0; i<10;i++){
-        TempTeacherMethod.addTempTeacherMessage(144520888+i+"","临时教师"+i,"411121199412454587","软件学院","1313","127464454","e10adc3949ba59abbe56e057f20f883e","男","教务员",new Date());
-        
-      }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            TempTeacherMethod.addTempTeacherMessage(144520888 + i + "", "临时教师" + i, "411121199412454587", "软件学院", "1313", "127464454", "e10adc3949ba59abbe56e057f20f883e", "男", "教务员", new Date());
+
+        }
 //       for(int i = 3;i<=13;i++){
 //       TeacherDao.addTeacherFromTempTeacherById(i);
 //       }
     }
-   
+
 }

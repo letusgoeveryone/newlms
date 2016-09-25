@@ -69,8 +69,8 @@
                 <div class="col-md-6" id="role">
                     <h1>您是: </h1>
                     <div id="f_role">
-                        <a href="teacher_register" id="role-teacher" class="card">老师</a>
-                        <a href="student_register" id="role-student">学生</a>
+                        <a href="teacher" id="role-teacher" class="card">老师</a>
+                        <a href="student" id="role-student">学生</a>
                     </div>
                 </div>
                 <div class="col-md-3"></div>

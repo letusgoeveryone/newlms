@@ -14,9 +14,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>注册 | 学生</title>
-        <link href="<%=path%>/css/base.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<%=path%>/css/project.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<%=path%>/css/lms.css" rel="stylesheet" type="text/css" />
+        <link href="<%=path%>/css/base.min.css" rel="stylesheet"/>
+        <link href="<%=path%>/css/project.min.css" rel="stylesheet"/>
+        <link href="<%=path%>/css/lms.css" rel="stylesheet" />
         <style media="screen">html{height:100%}body{min-height: 100%;overflow: scroll;}</style>
     </head>
     <body  class="hidden-x stage-image" id="lms_stu_reg"  style="background-image:url(<%=path%>/images/bg-for-role.jpg)">
@@ -38,7 +38,6 @@
                                 <h1 class="page-header">
                                     注册
                                 </h1>
-                                <p id="yc">${requestScope.Error}</p> 
                             </div>
                             <div  class="tab-pane fade in active" id="login-start">
                                 <div>
@@ -47,11 +46,11 @@
                                     <div class="form-group form-group-label">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label class="floating-label" for="idCard">学号：</label>
-                                                <input type="text" id="idcard" name="idCard" class="form-control" placeholder="请输入您的学号 " maxlength="16" onblur="verifyText('idcard', 'idcardMsg');">
+                                                <label class="floating-label" for="sn">学号：</label>
+                                                <input type="text" id="sn" name="sn" class="form-control" placeholder="请输入您的学号 " maxlength="16" onblur="verifyText('sn', 'snMsg');">
                                             </div>
                                         </div>
-                                        <span id="idcardMsg" class="text-error"></span>   
+                                        <span id="snMsg" class="text-error"></span>   
                                     </div> 
 
                                     <!--<br>-->
@@ -71,11 +70,11 @@
                                     <div class="form-group form-group-label">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label class="floating-label" for="myIDNum">身份证号：</label>
-                                                <input type="text" id="myIDNum" name="myIDNum" class="form-control" placeholder="请再次输入您的身份证号" onblur="verifyText('myIDNum', 'myIDNumMsg');" >
+                                                <label class="floating-label" for="ID">身份证号：</label>
+                                                <input type="text" id="ID" name="ID" class="form-control" placeholder="请再次输入您的身份证号" onblur="verifyText('ID', 'IDMsg');" >
                                             </div>
                                         </div>
-                                        <span id="myIDNumMsg" class="text-error"></span>
+                                        <span id="IDMsg" class="text-error"></span>
                                     </div>
                                     <!--<br>-->
 
@@ -83,8 +82,8 @@
                                     <div class="form-group form-group-label">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label class="floating-label" for="xingbie">性别：</label>
-                                                <select class="form-control" required="required" name="xingbie" >                                       
+                                                <label class="floating-label" for="sex">性别：</label>
+                                                <select class="form-control" required="required" name="sex" >                                       
                                                     <option value="女" type='hide'>女</option>
                                                     <option value="男" type='hide' selected="">男</option>                                     
                                                 </select></div>
@@ -97,8 +96,8 @@
                                     <div class="form-group form-group-label">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label class="floating-label" for="myIDNum">年级：</label>
-                                                <select class="form-control" required="required" name="niji" id="fhnj">
+                                                <label class="floating-label" for="grade">年级：</label>
+                                                <select class="form-control" required="required" name="grade" id="fhnj">
                                                     <option value="2014">
                                                         2014
                                                     </option>
@@ -112,12 +111,13 @@
                                     <div class="form-group form-group-label">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label class="floating-label" for="myIDNum">院系：</label>
-                                                <select class="form-control" name="Institute" id="szxy">
+                                                <label class="floating-label" for="institute">院系：</label>
+                                                <select class="form-control" name="institute" id="szxy">
                                                     <option value="软件学院">
                                                         软件学院
                                                     </option>
-                                                </select></div>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <span class="text-error"></span>
@@ -128,11 +128,11 @@
                                     <div class="form-group form-group-label">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label class="floating-label" for="myPhone">手机：</label>
-                                                <input type="text" id="myPhone" name="myPhone" class="form-control" placeholder="请输入您常用的手机号码" me="pn" onblur="verifyText('myPhone', 'myPhoneMsg');" >
+                                                <label class="floating-label" for="tel">手机：</label>
+                                                <input type="text" id="tel" name="tel" class="form-control" placeholder="请输入您常用的手机号码" me="pn" onblur="verifyText('tel', 'telMsg');" >
                                             </div>
                                         </div>
-                                        <span id="myPhoneMsg" class="text-error"></span>
+                                        <span id="telMsg" class="text-error"></span>
                                     </div>
                                     <!--<br>-->
 
@@ -140,11 +140,11 @@
                                     <div class="form-group form-group-label">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label class="floating-label" for="myQq">扣扣：</label>
-                                                <input type="text" id="myQq" name="myQq" class="form-control" placeholder="请输入您的QQ号" me="qq" onblur="verifyText('myQq', 'myQqMsg');">
+                                                <label class="floating-label" for="qq">扣扣：</label>
+                                                <input type="text" id="qq" name="qq" class="form-control" placeholder="请输入您的QQ号" me="qq" onblur="verifyText('qq', 'qqMsg');">
                                             </div>
                                         </div>
-                                        <span id="myQqMsg" class="text-error"></span>
+                                        <span id="qqMsg" class="text-error"></span>
                                     </div>
                                     <!--<br>-->
 
@@ -172,17 +172,17 @@
                             </div>
 
                             <!--下一步 内容验证-->
-                            <div class="tab-pane fade" id="login-1">
+                            <div class="tab-pane fade" id="login-next">
 
                                 <!-- 学号 -->
                                 <div class="form-group form-group-label">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label class="floating-label" for="idcardCheck">学号：</label>
-                                            <input type="text" id="idcardCheck" class="form-control" name="idcardCheck" placeholder="请再次输入您的学号 " maxlength="16" onblur="verifyText('idcardCheck', 'idcardCheckMsg');">
+                                            <label class="floating-label" for="snCheck">学号：</label>
+                                            <input type="text" id="snCheck" class="form-control" name="snCheck" placeholder="请再次输入您的学号 " maxlength="16" onblur="verifyText('snCheck', 'snCheckMsg');">
                                         </div>
                                     </div>
-                                    <span id="idcardCheckMsg" class="text-error"></span>
+                                    <span id="snCheckMsg" class="text-error"></span>
                                 </div>
 
                                 <!-- 姓名 -->
@@ -201,11 +201,11 @@
                                 <div class="form-group form-group-label">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label class="floating-label" for="myIDNumCheck">身份证号：</label>
-                                            <input type="text" id="myIDNumCheck" class="form-control" name="myIDNumCheck" placeholder="请再次输入您的身份证号" me="pn" onblur="verifyText('myIDNumCheck', 'myIDNumCheckMsg');">
+                                            <label class="floating-label" for="IDCheck">身份证号：</label>
+                                            <input type="text" id="IDCheck" class="form-control" name="IDCheck" placeholder="请再次输入您的身份证号" me="pn" onblur="verifyText('IDCheck', 'IDCheckMsg');">
                                         </div>
                                     </div>
-                                    <span id="myIDNumCheckMsg" class="text-error"></span>
+                                    <span id="IDCheckMsg" class="text-error"></span>
                                 </div>
 
                                 <!-- 密码 -->
@@ -227,8 +227,8 @@
 
                                             <input id="ccd" name="ccd" class="form-control ui-widget-content easyui-validatebox" type="text" maxlength="4"  
                                                    data-options="required:true,validType:'chk_code',missingMessage:'请输入验证码',tipPosition:'left' "
-                                                   title="验证码区分不大小写，看不清楚请单击图片" >
-                                            <span class="pull-right" style="position: relative;bottom: 25px; z-index: 1000; cursor:pointer;"> <img id="ccdImage" style="border:0" title="看不清楚请单击图片" onclick="reload()" ></span>
+                                                   title="验证码区分不大小写，看不清楚请单击图片" onblur="verifyText('ccd', 'ccdMsg');">
+                                            <span class="pull-right" style="position: relative;bottom: 25px; z-index: 1000; cursor:pointer;"> <img id="ccdImage" style="border:0" title="看不清楚请单击图片" onclick="updateCcdImage()" ></span>
                                             <!-- <div class="input-group">
                                                 <span class="floating-label"></span>
                                                 <input type="text" class="form-control"  id="checkcodeText" placeholder="请输入右侧的验证码" onblur="verifyText('checkcodeText','checkcodeMsg');" >
@@ -236,13 +236,13 @@
                                             </div>-->
                                         </div>
                                     </div>
-                                    <span id="checkcodeMsg" class="text-error"></span>
+                                    <span id="ccdMsg" class="text-error"></span>
                                 </div>
 
                                 <div class="box-small"></div>
                                 <div class="form-group">
 
-                                    <div onclick="mysubmit()" type="submit" class="btn btn-brand-accent btn-block">注册</div>
+                                    <div onclick="submitInfo()" type="submit" class="btn btn-brand-accent btn-block">注册</div>
                                     <br />
                                     <a href="#login-start" data-toggle="tab"><div class="btn btn-brand btn-block">上一步</div></a>
                                 </div>
@@ -257,7 +257,7 @@
                 <div class="col-md-3 stage-box">
 
                     <div class="pull-right">
-                        <a href="student_teacher">
+                        <a href="role">
                             <span><i class="fbtn waves-attach waves-circle waves-effect icon">arrow_forward</i> 重新选择角色 </span>
                         </a>
                     </div>
@@ -267,44 +267,42 @@
 
 
         <script src="<%=path%>/js/jquery.min.js"></script> 
-        <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/base.min.js"></script>
+        <script src="<%=path%>/js/project.min.js"></script>
         <script  src="<%=path%>/js/md5.js"></script>                            
         <script>
-        $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random()); //随机生成验证码
-
-        function reload() {
-            $('#ccdImage').attr("src", "<%=path%>/reg/createImage?dt=" + Math.random()); //随机生成验证码
+        function getRootPath() {
+            return '<%=path%>';
         }
         
         function isEqualOfInfo() {
-            if(verifyText('idcardCheck', 'idcardCheckMsg')&&verifyText('nameCheck', 'nameCheckMsg')&&verifyText('myIDNumCheck', 'myIDNumCheckMsg')&&verifyText('passwLast', 'passwLastMsg')){
+            if(verifyText('snCheck', 'snCheckMsg')&&verifyText('nameCheck', 'nameCheckMsg')&&verifyText('IDCheck', 'IDCheckMsg')&&verifyText('passwLast', 'passwLastMsg')){
                 return true;
             }else
                 return false;
         }
-        //加密代码
+        
         function isVaildOfInfo(){
             var status = false;
-            if(verifyText('idcard', 'idcardMsg')&&verifyText('name', 'nameMsg')&&verifyText('myPhone', 'myPhoneMsg')&&verifyText('myQq', 'myQqMsg')&&verifyText('passwFrist', 'passwFristMsg')){
+            if(verifyText('sn', 'snMsg')&&verifyText('name', 'nameMsg')&&verifyText('tel', 'telMsg')&&verifyText('qq', 'qqMsg')&&verifyText('passwFrist', 'passwFristMsg')){
                 status = true;
             }else
                 status = false;
             
             if (status === true) {
-                $('#fornext').attr("href", "#login-1");
+                $('#fornext').attr("href", "#login-next");
             } else {
                 $('#fornext').attr("href", "#");
                 alert("请填写完成并且检查无误后再行下一步");
             }
 
         }
-        function mysubmit()
-        {
+        
+        function submitInfo() {
 
-            if (isEqualOfInfo()) {
+            if (isEqualOfInfo()&&verifyText('ccd', 'ccdMsg')) {
                 document.form_login.password_md5.value = hex_md5(document.getElementById('passwLast').value);
-                var jssz = document.getElementById("idcard").value;
+                var jssz = document.getElementById("sn").value;
                 $.ajax({
                     type: "get", //提交方式
                     url: "cjxh", //提交的页面，方法名
@@ -328,174 +326,15 @@
             }
 
         }
-        /**构造&&实例化*********************************************************************************************************/
-        /*验证和提示*/
-        function verifyObject(targetParm) { //targetParm为待验证的消息
-            this.target = targetParm;
-        }
-        ;
-        verifyObject.prototype.trim = function () {
-            var pattern = /(^\s*)|(\s*$)/g;
-            this.target = this.target.replace(pattern, "");
-        };
-        verifyObject.prototype.isEqual = function (anyParm) {
-            if (this.target === anyParm) {
-                return true;
-            } else {
-                return false;
-            }
-        };
-        verifyObject.prototype.isPattern = function (patternParm) {
-            var pattern = new RegExp(patternParm);
-            var flag = pattern.test(this.target);
-            if (flag) {
-                return true;
-            } else {
-                return false;
-            }
-        };
 
-        function verifyText(checkText, checkMessage) {
-            var text = document.getElementById(checkText).value;
-            var verifyObj = new verifyObject(text); //实例化对象
-            verifyObj.trim();
-            if (checkText === "name") {
-                $('#yc').hide();//jQuery 代码该方法隐藏所有 <p> 元素
-                if (!(verifyObj.isPattern(/^[a-z A-Z 0-9 \u4e00-\u9fa5]{2,16}$/))) {
-                    document.getElementById(checkMessage).innerHTML = "用户名有误";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            } else if (checkText === "nameCheck") {
-                if (!(verifyObj.isEqual(document.getElementById("name").value))) {
-                    document.getElementById(checkMessage).innerHTML = "用户名前后不一致";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            } else if (checkText === "idcard") {
-                if (!(verifyObj.isPattern(/^[0-9 _]{6,18}$/))) {
-                    document.getElementById(checkMessage).innerHTML = "学号有误";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            } else if (checkText === "idcardCheck") {
-                if (!(verifyObj.isEqual(document.getElementById("idcard").value))) {
-                    document.getElementById(checkMessage).innerHTML = "学号前后不一致";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            } else if (checkText === "myIDNum") {
-                if (!(verifyObj.isPattern(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/g))) {
-                    document.getElementById(checkMessage).innerHTML = "身份证号有误";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            } else if (checkText === "myIDNumCheck") {
-                if (!(verifyObj.isEqual(document.getElementById("myIDNum").value))) {
-                    document.getElementById(checkMessage).innerHTML = "身份证号前后不一致";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            } else if (checkText === "passwFrist") {
-                if (!(verifyObj.isPattern(/^[a-z A-Z 0-9 _]{6,18}$/))) {
-                    document.getElementById(checkMessage).innerHTML = "密码有误";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            } else if (checkText === "passwLast") {
-                if (!(verifyObj.isEqual(document.getElementById("passwFrist").value))) {
-                    document.getElementById(checkMessage).innerHTML = "密码前后不一致";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            } else if (checkText === "myPhone") {
-                if (!(verifyObj.isPattern(/^1\d{10}$/g))) {
-                    document.getElementById(checkMessage).innerHTML = "手机号有误";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            } else if (checkText === "myQq") {
-                if (!(verifyObj.isPattern(/^[0-9]{6,12}$/))) {
-                    document.getElementById(checkMessage).innerHTML = "Qq号有误";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            } else if (checkText === "email") {
-                if (!(verifyObj.isPattern(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/))) {
-                    document.getElementById(checkMessage).innerHTML = "邮箱格式不对";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                }
-            } else if (checkText === "checkcodeText") {
-                if (!(verifyObj.isEqual(document.getElementById("checkcode").value))) {
-                    document.getElementById(checkMessage).innerHTML = "验证码输入错误";
-                    return false;
-                } else {
-                    document.getElementById(checkMessage).innerHTML = "";
-                    return true;
-                }
-            }
-
-
-        }
-
-        function initMessage(objId) {
-            var obj = document.getElementById(objId); //实例化对象obj
-            if (objId == "nameMsg") {
-                obj.innerHTML = "<span style='color:#489887'>用户名必须为2-16位的字母,数字或汉字构成</span>";
-            } else if (objId == "passwFristMsg") {
-                obj.innerHTML = "<span style='color:#489887'>密码必须为6-18位的字母,数字或下划线构成</span>";
-            }
-        }
-        $(function () {
-            $.ajax({
-                type: "get", //提交方式
-                url: "hq_xy", //提交的页面，方法名
-                success: function (data) {
-                    document.getElementById("szxy").options.length = 0;
-                    for (var i = 0; i < data.length; i++) {
-                        document.getElementById("szxy").options.add(new Option(data[i], data[i]));
-                    }
-                },
-                error: function () {
-                    alert("error!！");
-                }
-            });
-            $.ajax({
-                type: "get", //提交方式
-                url: "fhnj", //提交的页面，方法名
-                success: function (data) {
-                    document.getElementById("fhnj").options.length = 0;
-                    for (var i = 0; i < data.length; i++) {
-                        document.getElementById("fhnj").options.add(new Option(data[i], data[i]));
-                    }
-                },
-                error: function () {
-                    alert("error!！");
-                }
-            });
-        });
+        </script>
+        <script src="<%=path%>/js/api.common.js"></script>
+        <script>
+            CommonAPI.setDS.Institute();
+            CommonAPI.setDS.SchoolYear();
+            CommonAPI.setHS.Institute('szxy');
+            CommonAPI.setHS.SchoolYear('fhnj');
+            updateCcdImage();
         </script>
     </body>
 </html>

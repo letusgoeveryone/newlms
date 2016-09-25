@@ -19,7 +19,7 @@
             <div class="card sample-height">
                 <div class=" card-main">
                     
-                    <nav class="tab-nav tab-nav-brand margin-top-no" id="fix-thiscou-nav">
+                    <nav class="tab-nav tab-nav-brand margin-top-no" id="thiscou-nav">
                         <ul class="nav nav-brand">
                             <li class="active">
                                 <a data-toggle="tab" href="#content-CourseOutline"> 课程纲要 </a>
@@ -64,8 +64,25 @@
 
         <!--课程 列表 O--> 
         <nav id="tree-course-list" class="side-content">
-            <div class="tile-wrap fix-tile-style card">
+            <div class="tile-wrap card">
                 <div class="tile tile-brand tile-collapse active">
+
+                    <div class="tile-footer">
+
+                        <div class="tile-footer-btn pull-left">
+                            <a class="btn btn-flat" data-toggle="tab" href="#lms_main">
+                                <span class="icon">arrow_back</span> 
+                            </a>
+                        </div>
+                        <div class="tile-footer-btn pull-right">
+                            <a class="btn btn-flat" onclick="toggleCourseTileLocked()">
+                                <span class="tile-toggle-lock"><span class="icon">lock</span>&nbsp;固定位置</span>
+                                <span class="tile-toggle-unlock" hidden=""><span class="icon">lock_open</span>&nbsp;解除固定</span>
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
                     <div data-target="#tile-course-list" data-toggle="tile">
                         <div class="tile-inner">
                             <div class="text-overflow">课程列表</div>
@@ -75,21 +92,6 @@
                         <nav class="tile-sub tab-nav tabs-right tab-nav-brand collapse in" id="tile-course-list">
                             <ul class="nav nav-brand  lms-loading">{{{courseliset}}}</ul>
                         </nav>
-                        <div class="tile-footer">
-
-                            <div class="tile-footer-btn pull-left">
-                                <a class="btn btn-flat" onclick="toggleCourseTileScroll()">
-                                    <span class="tile-toggle-unscroll"><span class="icon">fullscreen</span></span>
-                                    <span class="tile-toggle-scroll"  hidden=""><span class="icon">fullscreen_exit</span></span>
-                                </a>
-                            </div>
-                            <div class="tile-footer-btn pull-right">
-                                <a class="btn btn-flat" onclick="toggleCourseTileLocked()">
-                                    <span class="tile-toggle-lock"><span class="icon">lock</span>&nbsp;固定位置</span>
-                                    <span class="tile-toggle-unlock" hidden=""><span class="icon">lock_open</span>&nbsp;解除固定</span>
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

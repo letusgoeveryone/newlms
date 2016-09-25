@@ -12,104 +12,145 @@
     <head>
         <meta charset="UTF-8">
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-        <title>教务系统 | 校务员</title>
+        <title>『教务员』| 教务系统</title>
 
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" />
         <link href="<%=path%>/css/lms.css" rel="stylesheet" />
-        <style>.l-btn{border-radius: 0px !important;}#scrollUp {left: -150px;bottom: 0;}</style>
-        <script src="<%=path%>/js/jquery.min.js"></script>    
-        
-        <!--easyui-->
-        <script src="<%=path%>/js/jquery.easyui/jquery.easyui.min.js"></script>
+        <style>
+            
+            .l-btn{
+                border-radius: 0px !important;
+            }
+            
+            .lms-admin-return{
+                color: #fff;
+                background-color: #444;
+                border-radius: 0px;
+                text-align: left;
+                width: 100%;
+                padding: 1em 2.5em;
+                font-size: 1.2em;
+                display: block;
+            }
+            
+            #scrollUp {
+                position: absolute;
+                left: -150px;
+                bottom: 0;
+            }
+            
+        </style>
+           
+        <script src="<%=path%>/js/jquery.min.js"></script> 
         <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/bootstrap/easyui.css">
         <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/icon.css">
           
     </head>
     <body class="page-default tab-content" id='lms_acdemic'>
-      
-        <!--管理员 副区 教务区 -->
+
+        <header class="header header-brand header-waterfall ui-header">
+
+            <ul class="nav nav-list pull-left">
+                <li>
+                    <a href="<%=path%>/acdemic">
+                        <span class="icon icon-lg">home</span>
+                    </a>
+                </li>
+            </ul>
+            <span class="header-logo" >教务系统 | 校务员页面</span>
+
+            <ul class="nav nav-list pull-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
+                        <span class="access-hide">Avatar</span>
+                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar.jpg"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="">
+                            <a class="waves-attach waves-effect" href="<%=path%>/logout">
+                                <span class="icon mg-sm-right">exit_to_app</span> 登出
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>                  
+        </header>
+        
+        <!--教务员 主区 -->
         <div id="lms_main"  class="tab-pane fade in active">
             
             <!--功能列表-->
             <nav class="lms-admin-sidebar">
             <ul class="nav nav-tabs">
-                <a href="login" style="
-                   color: #fff;
-                   background-color: #444;
-                   border-radius: 0px;
-                   text-align: left;
-                   width: 100%;
-                   padding: 1em;
-                   font-size: 1.2em;
-                   display: block;
-                   ">
-                   校务员（控制台）
-                </a>
-                <div class="stage-box"></div>
                 
+                <sec:authorize access="hasRole('ROLE_TEACHER') or hasRole('ROLE_DEAN')">
+                    <a href="login" class="lms-admin-return">
+                        返回
+                    </a>
+                </sec:authorize>
                 
+                <hr>
                 <li class="active">
-                    <a href="#panel-gradeInfoManage" data-toggle="tab" onclick="newbjxx()">班级信息管理</a>
+                    <a href="#panel-gradeInfoManage" data-toggle="tab">班级信息管理</a>
                 </li>
                 <li>
-                    <a href="#panel-courseInfoManage" data-toggle="tab" onclick="newkcxx()">课程信息管理</a>
+                    <a href="#panel-courseInfoManage" data-toggle="tab" >课程信息管理</a>
                 </li>
                 <li>
-                    <a href="#panel-courseTableManage" data-toggle="tab" onclick="newkcbxx()">课程表管理</a>
+                    <a href="#panel-courseTableManage" data-toggle="tab" >课程表管理</a>
                 </li>
                 <hr>
                 <li>
-                    <a href="#panel-TeacherManage" data-toggle="tab" onclick="newzsjs()">教师信息管理</a>
+                    <a href="#panel-TeacherManage" data-toggle="tab" >教师信息管理</a>
                 </li>
                 <li>
-                    <a href="#panel-StudentManage" data-toggle="tab" onclick="newzsxs()">学生信息管理</a>
+                    <a href="#panel-StudentManage" data-toggle="tab" >学生信息管理</a>
                 </li>
                 <hr>
                 <li>
-                    <a href="#panel-tmpTeacherManage" data-toggle="tab" onclick="newlsjs()">教师信息管理【临时】</a>
+                    <a href="#panel-tmpTeacherManage" data-toggle="tab" >教师信息管理【临时】</a>
                 </li>
                 <li>
-                    <a href="#panel-tmpStudentManage" data-toggle="tab" onclick="newlsxs()">学生信息管理【临时】</a>
+                    <a href="#panel-tmpStudentManage" data-toggle="tab" >学生信息管理【临时】</a>
                 </li>
                 <hr>
-                <li>
-                    <a class="waves-attach waves-light waves-effect"  href="<%=path%>/logout">退出系统<span class="icon icon-fixHans margin-left-sm">exit_to_app</span></a>
-                </li>
+                
             </ul>
             </nav>
 
             <!--功能区-->
             <div class="tab-content lms-admin-content">
                 
-                <div class="tab-pane fade in active" id="panel-tmpStudentManage">
+                <div class="tab-pane fade" id="panel-tmpStudentManage">
                     <jsp:include page="szxsxx.jsp"  />
                 </div>
-                <div class="tab-pane fade in " id="panel-StudentManage">
+                <div class="tab-pane fade" id="panel-StudentManage">
                     <jsp:include page="zs_stu.jsp"  />
                 </div>
-                <div class="tab-pane fade in " id="panel-tmpTeacherManage">
+                <div class="tab-pane fade" id="panel-tmpTeacherManage">
                     <jsp:include page="szlsjsxx.jsp"  />
                 </div>
-                <div class="tab-pane fade in " id="panel-TeacherManage">
+                <div class="tab-pane fade" id="panel-TeacherManage">
                     <jsp:include page="zs_js.jsp"  />
                 </div>
-                <div class="tab-pane fade in " id="panel-gradeInfoManage">
+                <div class="tab-pane fade in active" id="panel-gradeInfoManage">
                     <jsp:include page="ckbjxx.jsp"  />
                 </div>
-                <div class="tab-pane fade in " id="panel-courseInfoManage">
+                <div class="tab-pane fade" id="panel-courseInfoManage">
                     <jsp:include page="course.jsp"  />
                 </div>
-                <div class="tab-pane fade in " id="panel-courseTableManage">
+                <div class="tab-pane fade" id="panel-courseTableManage">
                     <jsp:include page="set_all.jsp"  />
                 </div>
                 
             </div>
             
         </div>
-        <!--管理员 副区 教务区 END-->  
+        <!--教务员 主区 END-->  
         
         <!--返回顶部-->
         <div class="fbtn-container">
@@ -135,58 +176,44 @@
         <script src="<%=path%>/js/jquery.fs.boxer.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/configure.js"></script>
 
-        <script>
-            $('.stage-card').lightbox();
-        </script>
 
-
-    
+        <!--easyui-->
+        <script src="<%=path%>/js/jquery.easyui/jquery.easyui.min.js"></script>
+        <script src="<%=path%>/js/jquery.easyui/plugins/jquery.datagrid.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.easyui/src/jquery.resizable.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.easyui/src/jquery.linkbutton.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.easyui/plugins/jquery.panel.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/jquery.easyui/plugins/jquery.pagination.js" type="text/javascript"></script>
         <!--uploadify-->
         <script src="<%=path%>/js/jquery.uploadify.min.js"></script>
 
+        <script>
+            $('.stage-card').lightbox();
+        </script>
+        <script>
+            newbjxx();
+            $('[href="#panel-gradeInfoManage"]').click(function(){
+                setTimeout(newbjxx,500);
+            });
+            $('[href="#panel-courseInfoManage"]').click(function(){
+                setTimeout(newkcxx,500);
+            });
+            $('[href="#panel-courseTableManage"]').click(function(){
+                setTimeout(newkcbxx,500);
+            });
 
-        <script type="text/javascript">
-        var browserVersion = window.navigator.userAgent.toUpperCase();
-        var isOpera = false, isFireFox = false, isChrome = false, isSafari = false, isIE = false;
-        function reinitIframe(iframeId, minHeight) {
-            try {
-                var iframe = document.getElementById(iframeId);
-                var bHeight = 0;
-                if (isChrome == false && isSafari == false)
-                    bHeight = iframe.contentWindow.document.body.scrollHeight;
-                var dHeight = 0;
-                if (isFireFox == true)
-                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                else if (isIE == false && isOpera == false)
-                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                else if (isIE == true && !-[1, ] == false) {
-                } //ie9+
-                else
-                    bHeight += 3;
-                var height = Math.max(bHeight, dHeight);
-                if (height < minHeight)
-                    height = minHeight;
-                iframe.style.height = height + "px";
-            } catch (ex) {
-            }
-        }
-        function startInit(iframeId, minHeight) {
-            isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
-            isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
-            isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
-            isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
-            if (!!window.ActiveXObject || "ActiveXObject" in window)
-                isIE = true;
-            window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
-        }
-
-        function iFrameHeight() {
-                //var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
-                //if(ifm != null && subWeb != null) {
-                //   ifm.height = subWeb.body.scrollHeight;
-                //   ifm.width = subWeb.body.scrollWidth;
-                //}   
-        }   
-    </script>      
+            $('[href="#panel-tmpTeacherManage"]').click(function(){
+                setTimeout(newlsjs,500);
+            });
+            $('[href="#panel-tmpStudentManage"]').click(function(){
+                setTimeout(newlsxs,500);
+            });
+            $('[href="#panel-TeacherManage"]').click(function(){
+                setTimeout(newzsjs,500);
+            });
+            $('[href="#panel-StudentManage"]').click(function(){
+                setTimeout(newzsxs,500);
+            });
+        </script>    
     </body>  
 </html>

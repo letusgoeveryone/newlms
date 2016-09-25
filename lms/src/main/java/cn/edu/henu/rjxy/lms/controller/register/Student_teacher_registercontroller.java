@@ -24,21 +24,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/reg")
 public class Student_teacher_registercontroller {
 
-    @RequestMapping("/student_teacher")
+    @RequestMapping("/role")
     public String student_register1() {
 
-        return "register/student_teacher";
+        return "register/Index";
     }
 
-    @RequestMapping("/teacher_register")
+    @RequestMapping("/teacher")
     public String teacherRegister1() {
 
-        return "register/teacher_register";
+        return "register/TeacherReg";
     }
 
-    @RequestMapping("/student_register")
+    @RequestMapping("/student")
     public String studet_sign1() {
-        return "register/student_register";
+        return "register/StudentReg";
     }
     @RequestMapping("/tmptest")
     public  String tmptest() { 

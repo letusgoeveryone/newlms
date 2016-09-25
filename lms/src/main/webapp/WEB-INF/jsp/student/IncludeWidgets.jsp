@@ -54,9 +54,10 @@
     </div>
                           
     <!--个人信息-->
-    <div class="modal fade" id="uinfo" role="dialog">
+    <div id="uinfo-wrap" style="display: none;">
+    <div id="uinfo" >
         <div class="modal-dialog" style="max-width: 960px;">
-            <div class="modal-content row" style="padding: 30px;">
+            <div class="row" style="padding: 30px;">
                 <div class="tab-content divider-right col-sm-5">
                     <!--基础资料-->
                     <div class="tab-pane fade in active" id="tab-personalInfo" >
@@ -179,7 +180,7 @@
             </div>
         </div>
     </div>
-    
+    </div>
     <!--附件-->
     <div class="modal fade" id="modal-uploadify" role="dialog">
         <div class="modal-dialog modal-xs">

@@ -40,7 +40,7 @@
             
         </style>
     </head>
-    <body>
+    <body id="lms_adt_info" >
 
         <!--个人信息-->
         <div class="container pd-top-lg" id="uinfo" >
@@ -49,20 +49,40 @@
                     <!--基础资料-->
                     <div class="tab-pane fade in active" id="tab-personalInfo" >
                         <form>
+                            <!-- 工号 -->
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="sn"> 工号 </label>
-                                <input class="form-control" id="sn" type="text" value="{{sn}}" disabled="">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="floating-label" for="tn">工号：</label>
+                                        <input type="text" id="tn" name="tn" value="{{tn}}" disabled class="form-control" placeholder="请输入您的工号 " maxlength="16" onblur="verifyText('tn', 'tnMsg');">
+                                    </div>
+                                </div>
+                                <span id="tnMsg" class="text-error"></span>   
                             </div>
+
+                            <!-- 姓名 -->
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="name"> 姓名 </label>
-                                <input class="form-control" id="name" type="text" value="{{name}}">
-                                <div id="validMsg-name" hidden>请输入至少两个汉字</div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="floating-label" for="name">姓名：</label>
+                                        <input type="text" id="name" name="name" value="{{name}}" disabled class="form-control" placeholder="请输入您的姓名" maxlength="16" onblur="verifyText('name', 'nameMsg');" onfocus="initMessage('nameMsg');" />
+                                    </div>
+                                </div>
+                                <span id="nameMsg" class="text-error"></span>
                             </div>
+                            
+                            <!-- 身份证号 -->
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="ID"> 身份证 </label>
-                                <input class="form-control" id="ID" type="text" value="{{ID}}">
-                                <div id="validMsg-ID" hidden>您输入的身份证格式不正确</div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="floating-label" for="ID">身份证号：</label>
+                                        <input type="text" id="ID" name="ID" value="{{ID}}" disabled class="form-control" placeholder="请再次输入您的身份证号" onblur="verifyText('ID', 'IDMsg');" >
+                                    </div>
+                                </div>
+                                <span id="IDMsg" class="text-error"></span>
                             </div>
+                            
+                            <!--性别-->
                             <div class="form-group form-group-label">
 
                                 <div class="radiobtn radiobtn-adv radio-inline">
@@ -79,42 +99,79 @@
                                     </label>
                                 </div>
                             </div>
+                            
+                            <!-- 院系 -->
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="college"> 学院 </label>
-                                <select class="form-control" id="college" value="">
-                                    <option value="{{college}}"> {{college}} </option>
-                                    {{{schoolCollegeList}}}
-                                </select>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="floating-label" for="institute">院系：</label>
+                                        <select class="form-control" name="institute" id="institute">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
+                            
+                            <!-- 手机号码 -->
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="tel"> 联系方式 </label>
-                                <input class="form-control" id="tel" type="text" value="{{tel}}">
-                                <div id="validMsg-tel" hidden>请输入正确的手机号</div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="floating-label" for="tel">手机：</label>
+                                        <input type="text" id="tel" name="tel" value="{{tel}}" class="form-control" placeholder="请输入您常用的手机号码" me="pn" onblur="verifyText('tel', 'telMsg');" >
+                                    </div>
+                                </div>
+                                <span id="telMsg" class="text-error"></span>
                             </div>
+
+                            <!-- QQ -->
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="qq"> QQ </label>
-                                <input class="form-control" id="qq" type="text" value="{{qq}}">
-                                <div id="validMsg-qq" hidden>请输入正确QQ号</div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="floating-label" for="qq">扣扣：</label>
+                                        <input type="text" id="qq" name="qq" value="{{qq}}" class="form-control" placeholder="请输入您的QQ号" me="qq" onblur="verifyText('qq', 'qqMsg');">
+                                    </div>
+                                </div>
+                                <span id="qqMsg" class="text-error"></span>
                             </div>
+                            
                         </form>
                     </div>
                     <!--密码设置-->
                     <div class="tab-pane fade" id="tab-password">
                         <form>
+                            <!-- 旧密码 -->
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="op"> 原始密码 </label>
-                                <input class="form-control" id="op" type="password">
-                                <div id="msg-op" hidden></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="floating-label" for="pw">密码</label>
+                                        <input type="password" class="form-control" id="pw" name="pw" placeholder="请输入密码" onblur="verifyText('pw', 'pwMsg');">
+                                    </div>
+                                </div>
+                                <span id="pwMsg" class="text-error"></span>
                             </div>
+                            
+                            <!-- 新密码-0 -->
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="np"> 新密码 </label>
-                                <input class="form-control" id="np" type="password" placeholder="密码最短为6位">
-                                <div id="msg-np" hidden></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="floating-label" for="passwFrist">密码：</label>
+                                        <input type="password" name="passwFrist" id="passwFrist" class="form-control" placeholder="请输入密码" me="psw" onblur="verifyText('passwFrist', 'passwFristMsg');
+                                               " onfocus="initMessage('passwFristMsg');">
+                                        <input type="hidden" name="password_md5"> 
+                                    </div>
+                                </div>
+                                <span id="passwFristMsg" class="text-error"></span>
                             </div>
+                            
+                            <!-- 新密码-1 -->
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="nplast"> 确认密码  </label>
-                                <input class="form-control" id="nplast" type="password">
-                                <div id="msg-nplast" hidden></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="floating-label" for="passwLast">密码：</label>
+                                        <input type="password" id="passwLast" class="form-control" name="passwLast" placeholder="请再次输入您的密码" me="psw" onblur="verifyText('passwLast', 'passwLastMsg');">
+                                    </div>
+                                </div>
+                                <span id="passwLastMsg" class="text-error"></span>
                             </div>
                         </form>
                     </div>
@@ -167,7 +224,7 @@
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/md5.js" type="text/javascript"></script>
-        <script src="<%=path%>/js/api.json.adt.js"></script>
+        <script src="<%=path%>/js/api.adt.js"></script>
         <script>
             
             // 个人信息 监听器
@@ -220,6 +277,17 @@
             
             //  默认监听个人信息
             $('a[href="#tab-personalInfo"]').click();
+            
+            // 设置路径
+            function getRootPath() {
+                return '<%=path%>';
+            }
+        </script>
+        <script src="<%=path%>/js/api.common.js"></script>
+        <<script>
+            CommonAPI.setDS.Institute('/reg/hq_xy');
+            CommonAPI.setHS.Institute('institute');
+            $('option[value="'+ AdtAPI.uInfo.college +'"]').attr('selected','');
         </script>
     </body>
 </html>

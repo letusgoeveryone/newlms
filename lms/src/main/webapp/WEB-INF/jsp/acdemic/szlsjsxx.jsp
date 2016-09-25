@@ -7,7 +7,7 @@
         <title></title>
     </head>
     <body>
-       <div class="container stage-box">
+       <div class="container ">
         <div  id='ls_js_xy1' style="padding:5px;height:auto">
             选择学院:<select  id="ls_js_xy" class="ls_js" style="width: 100px"></select>
             From: <input class="easyui-textbox" style="width:80px" id="min_ls_js">

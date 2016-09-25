@@ -144,7 +144,7 @@
                          </ul>
                      </nav>
                     <div id="f_reg_btn_grp" class="btn-group-justified">
-                        <div><a href="<%=path%>/reg/student_teacher" class="btn btn-flat  waves-attach waves-light waves-effect">注册</a> </div>
+                        <div><a href="<%=path%>/reg/role" class="btn btn-flat  waves-attach waves-light waves-effect">注册</a> </div>
                         <div><a href="<%=path%>/login" class="btn btn-flat waves-attach waves-light waves-effect">登录</a> </div>
                     </div>
                 </nav>

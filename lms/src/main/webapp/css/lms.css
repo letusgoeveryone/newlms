@@ -43,6 +43,8 @@ select {
 body[id^=lms] {
     padding: 0 !important;
     overflow: unset;
+    min-width: 960px;
+    margin: auto;
 }
 
 
@@ -138,11 +140,11 @@ body[id^=lms] {
 
 
 /**
-  &header (管理员,院长,教师)
+  &header
 */
 
 #tree-header {
-    background-color: #2c3e50;
+    background-color: #484848;
     color: #FFF;
     /*z-index: 100;*/
     -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
@@ -152,6 +154,10 @@ body[id^=lms] {
 #tree-header .header-nav {
     width: 1408px;
     margin: auto;
+}
+
+#lms_main .btn {
+    min-width: 100px;
 }
 
 .header-nav> li {
@@ -209,11 +215,28 @@ body[id^=lms] {
 }
 
 .header-brand {
-    background-color: #00539f;
+    background-color: #484848;
     color: #fff;
 }
+.header-brand .avatar{
+    transition: all .3s;
+    border-radius: 0px;
+    height: 56px;
+    width: 61px;
+    border-left: 5px solid transparent;
+}
+.header-brand .avatar:hover{
+    border-left: 5px solid whitesmoke;
+}
+.header-brand .avatar>img{
+    border-radius: 0px;
+}
 
-
+.header-brand .dropdown-menu-right {
+    top: 64px;
+    right: 8px;
+    z-index: 1;
+}
 /*修改默认 nav底部细线颜色*/
 
 .tab-nav-gold .nav> li> a:after {
@@ -238,7 +261,7 @@ body[id^=lms] {
 */
 
 #tree-footer {
-    background-color: #2c3e50;
+    background-color: #484848;
     color: #FFF;
 }
 
@@ -613,7 +636,7 @@ body[id^=lms] {
 
 #lms_admin_t .bg-content,
 #lms_admin_d .bg-content,
-#lms_admin_tnav_sInfo .bg-content {
+#uconsole .bg-content {
     position: absolute;
     background-color: #333;
     top: 0;
@@ -640,13 +663,13 @@ body[id^=lms] {
     height: 36px;
 }
 
-#lms_admin .dropdown.open .dropdown-menu {
+/*#lms_admin .dropdown.open .dropdown-menu {
     opacity: 1;
     -webkit-transform: scale(1, 1);
     transform: scale(1, 1);
     width: 600px;
     left: -496px;
-}
+}*/
 
 .pagination {
     display: inline-block;
@@ -773,7 +796,24 @@ body[id^=lms] {
     background-color: #333;
 }
 
-
+/*老师*/
+.btn-up {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: RGBA(222, 222, 222, 0.6);
+    margin-right: 1em;
+    box-shadow: none;
+}
+.btn-up:hover{
+    box-shadow: 0 1px 3px rgba(0,0,0,.15),0 1px 3px 1px rgba(0,0,0,.3);
+}
+.btn-up>.icon{
+    width: inherit;
+    height: inherit;
+    line-height: 50px;
+}
 /*   ** &2.3 管理界面(教务员)
 =================================================================================
 管理员  样式设置
@@ -790,12 +830,11 @@ body[id^=lms] {
 
 .lms-admin-sidebar {
     position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
+    left: 1.5em;
+    top: 6em;
     width: 16em;
-    background-color: #333;
-    box-shadow: 0px -1px 0px rgba(229, 229, 229, 0.55), 0px 0px 2px rgba(0, 0, 0, 0.49), 0px 2px 4px #000;
+    background-color: #484848;
+    box-shadow: 1px 1px 2px #484848;
 }
 
 .lms-admin-avatar {
@@ -826,6 +865,7 @@ body[id^=lms] {
     display: block;
     padding: 1em 3em;
     color: gold;
+    word-break: keep-all;
 }
 
 .lms-admin-sidebar ul li a:visited,
@@ -835,13 +875,11 @@ body[id^=lms] {
 }
 
 .lms-admin-sidebar .active {
-    margin-right: -8px;
-    background-color: whitesmoke;
-    /*！box-shadow: 0px -1px 0px rgba(229, 229, 229, 0.55), 0px 0px 2px rgba(0, 0, 0, 0.49), 0px 2px 4px #000;*/
+    background-color: rgb(251, 255, 191);
+    box-shadow: 1px 0px 1px #fbffbf;
 }
 
 .lms-admin-sidebar ul li a:hover {
-    margin-right: -8px;
     color: #D24A3D;
     text-decoration: none;
 }
@@ -866,12 +904,15 @@ body[id^=lms] {
 
 .lms-admin-content {
     width: 100%;
-    padding-left: 16em;
-    border-left: 15px dotted gold;
+    margin: 6em 0 0 19em;
     background-color: whitesmoke;
     min-height: 1000px;
+    border-left: 1px dashed #8e8e8e;
 }
-
+.lms-admin-content .container{
+    width: 100% !important;
+    max-width: inherit !important;
+}
 .lms-admin-content section {
     margin-left: 15px;
     padding-top: 3em;
@@ -880,7 +921,7 @@ body[id^=lms] {
 
 @media (max-width: 1400px) {
     .lms-admin-sidebar {
-        width: 16em;
+        width: 13em;
     }
     .lms-admin-avatar {
         width: inherit;
@@ -891,10 +932,10 @@ body[id^=lms] {
         display: none;
     }
     .lms-admin-sidebar ul li a {
-        padding-left: 2.3em;
+        padding: 1em 1.5em;
     }
     .lms-admin-content {
-        padding-left: 16em;
+        margin-left: 16em;
     }
 }
 
@@ -961,10 +1002,11 @@ body[id^=lms] {
     margin: 0 auto;
     width: 1100px;
 }
-
+.main-content,.side-content{
+    padding: 0 29px 0;
+}
 .main-content {
     width: 790px;
-    padding: 29px 29px 0;
     float: left;
     position: relative;
 }
@@ -989,7 +1031,6 @@ body[id^=lms] {
     position: relative;
     float: left;
     width: 270px;
-    padding: 29px 29px 0;
 }
 
 #ucontent .tile-position-fixed {
@@ -1007,49 +1048,49 @@ body[id^=lms] {
     word-wrap: break-word;
 }
 
-#fix-thiscou-nav {
+#thiscou-nav {
     position: absolute;
     right: 2px;
     width: 2em;
     box-shadow: none;
 }
 
-#fix-thiscou-nav .nav> li:nth-child(1)> a::after {
+#thiscou-nav .nav> li:nth-child(1)> a::after {
     border-right: 2px solid orange;
     border-bottom: none !important;
     height: 100%;
 }
 
-#fix-thiscou-nav .nav> li:nth-child(2)> a::after {
+#thiscou-nav .nav> li:nth-child(2)> a::after {
     border-right: 2px solid green;
     border-bottom: none !important;
     height: 100%;
 }
 
-#fix-thiscou-nav .nav> li:nth-child(3)> a::after {
+#thiscou-nav .nav> li:nth-child(3)> a::after {
     border-right: 2px solid gold;
     border-bottom: none !important;
     height: 100%;
 }
 
-#fix-thiscou-nav .tab-nav-indicator {
+#thiscou-nav .tab-nav-indicator {
     display: none;
 }
 
-#fix-thiscou-nav>ul {
+#thiscou-nav>ul {
     padding: 0;
 }
 
-#fix-thiscou-nav> ul>li {
+#thiscou-nav> ul>li {
     left: 2px;
 }
 
-#fix-thiscou-nav> ul> .active {
+#thiscou-nav> ul> .active {
     box-shadow: 1px 0 2px rgba(0, 0, 0, .25);
     z-index: 0;
 }
 
-#fix-thiscou-nav> ul> .active> a {
+#thiscou-nav> ul> .active> a {
     background-color: rgb(255, 255, 255) !important;
     box-shadow: none !important;
     width: 2.1em;
@@ -1057,14 +1098,14 @@ body[id^=lms] {
     z-index: 30;
 }
 
-#fix-thiscou-nav  ul> li> a {
+#thiscou-nav  ul> li> a {
     padding: .5em !important;
     background-color: rgba(255, 255, 255, .5);
     box-shadow: 1px 0 2px rgba(0, 0, 0, .5);
     margin-bottom: .5em;
 }
 
-#fix-thiscou-nav> ul> li> a:hover {
+#thiscou-nav> ul> li> a:hover {
     background-color: rgba(255, 255, 255, .9);
     box-shadow: 1px 0 2.5px rgba(0, 0, 0, .5);
 }
@@ -1095,17 +1136,34 @@ body[id^=lms] {
     box-shadow: none;
 }
 
-#fix-thiscou-nav .nav> li> a:hover::after,
+#tree-course-list .tile {
+    width: 100%;
+    margin: 0;
+}
+
+#tree-course-list .card,
+#tree-course-list .tile-brand{
+    background-color: transparent;
+    box-shadow: none;
+    color: #484848;
+}
+
+#tree-course-list .tile-footer {
+    border-radius: 1.5px;
+    background-color: #484848;
+    color: #fff;
+}
+
+#tree-course-list .tile-sub {
+    border-top: 1px dashed #dedede;
+    border-bottom: 1px dashed #dedede;
+    box-shadow: none;
+}
+
+#thiscou-nav .nav> li> a:hover::after,
 #tile-course-list .nav> li> a:hover::after {
     opacity: 1;
 }
-
-.btn::after,
-.card,
-.fbtn-text {
-    border-radius: 0;
-}
-
 
 /*文件管理*/
 
@@ -1163,11 +1221,6 @@ a[href^='#folder'] .folder-name {
     text-align: center;
 }
 
-.fix-tile-style> .tile {
-    width: 100%;
-    margin: 0;
-}
-
 #content-Homework .card-inner .btn-flat {
     padding: 0;
 }
@@ -1211,6 +1264,13 @@ a[href^='#folder'] .folder-name {
 
 
 /*panel*/
+#upanel .card{
+    width: 300px;
+    margin: 24px auto;
+}
+#upanel .vcard{
+    margin: 2em auto;
+}
 
 #upanel.hidden{
     display: none !important;
@@ -1676,6 +1736,13 @@ div[id^="collapse-history"]>.history-wrap>.table-wrap{
 
 /*  &2.5 登录/注册 */
 
+.ccd-image{
+    float: right;
+    position: relative;
+    bottom: 25px; 
+    z-index: 1000; 
+    cursor:pointer;
+}
 
 /*修复 登录界面 验证码输入框的不对齐 的问题*/
 
@@ -1747,10 +1814,11 @@ div[id^="collapse-history"]>.history-wrap>.table-wrap{
 #lms_stu_reg a:hover span{
     color:#444;
 }*/
-
+#lms_adt_info .text-error,
+#lms_login .text-error,
 #lms_stu_reg .text-error,
 #lms_tch_reg .text-error {
-    color: #F44336;
+    color: #FF6C6C;
     position: absolute;
 }
 
@@ -2090,25 +2158,42 @@ div [ class^="btn-"] {
 .no-padding{
     padding: 0 !important;
 }
+
 .np-left{
     padding-left: 0 ;
 }
+
 .no-margin{
     margin: 0 !important; 
 
 }
+
 .nm-right{
-    margin-right: 0;
+    margin-right: 0 !important;
 }
 .mg{
     margin: 1em;
 }
+
+.mg-rt-3x{
+    margin-right: 3em !important;
+}
+.mg-lt-3x{
+    margin-left: 3em !important;
+}
+
 .mg-bm{
     margin-bottom: 1em;
 }
+
 .pd-bm{
     padding-bottom: 1em;
 }
+
+.sample-height{
+    min-height: 1000px;
+}
+
 .text-grey {
     color: #B6B6B6 !important;
 }
@@ -2148,6 +2233,14 @@ a[class *=text-grey]:hover {
 
 .text-golden:hover {
     color: gold;
+}
+
+.text-wiki{
+    cursor: help;
+}
+
+.text-tooltips{
+    color:#489887;
 }
 
 .small {
@@ -2217,6 +2310,14 @@ a[class *=text-grey]:hover {
 
 .pd-sm-left {
     padding-left: 1em;
+}
+
+.pd-sapce-top{
+    padding-top: 10vh;
+}
+
+.pd-content-htop{
+    padding-top: 8em;
 }
 
 .scroll-x {
@@ -2444,6 +2545,13 @@ a:focus{
 
 .datagrid-row-selected {
     color: #212121 !important;
+}
+
+
+.btn::after,
+.card,
+.fbtn-text {
+    border-radius: 0;
 }
 /*未归档*****************************************************************
 
