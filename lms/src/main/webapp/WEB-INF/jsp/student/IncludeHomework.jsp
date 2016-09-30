@@ -1,22 +1,41 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
     <div class="tab-content">
+        
+        <!--作业单-->
         <div class="tab-pane fade in active" id="tab-homework">
-
-            <h2 class="content-sub-heading">待提交作业</h2>
-            <hr>
-            {{{IHomeworkHS}}}
-
-            <h2 class="content-sub-heading">已提交作业</h2>
-            <hr>
-            {{{OHomeworkHS}}}
+            
+            <div class="card card-module">
+                <div class="card-main">
+                    <h2 class="content-sub-heading">待提交作业</h2>
+                    <hr>
+                    {{{IHomeworkHS}}}
+                </div>
+            </div>
+            
+            <div class="card card-module" >
+                <div class="card-main">
+                    <h2 class="content-sub-heading">已提交作业</h2>
+                    <hr>
+                    {{{OHomeworkHS}}}
+                </div>
+            </div>
+            
 
             <div class="history-divider">神奇历史的分割线,以下作业只能查看不能提交↖(^ω^)↗</div>
-            <h2 class="content-sub-heading text-indianred">历史作业</h2>
-            <hr>
-            {{{XHomeworkHS}}}
+
+            <div class="card card-module" >
+                <div class="card-main">
+                    <h2 class="content-sub-heading text-indianred">历史作业</h2>
+                    <hr>
+                    {{{XHomeworkHS}}}
+                </div>
+            </div>
+            
 
         </div>
+        
+        <!--作业编辑器-->
         <div class="tab-pane fade" id="tab-homework-editor">
             <div class="card" style="margin: -1em -2em;box-shadow: none;">
                 <div class="card-main">

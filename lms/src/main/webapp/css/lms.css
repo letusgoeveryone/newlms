@@ -220,18 +220,22 @@ body[id^=lms] {
 }
 .header-brand .avatar{
     transition: all .3s;
-    border-radius: 0px;
     height: 56px;
-    width: 61px;
-    border-left: 5px solid transparent;
+    width: 56px;
+    padding: 12px;
+    border-radius: 0;
 }
 .header-brand .avatar:hover{
-    border-left: 5px solid whitesmoke;
+    padding: 0;
+    border-radius: 0;
 }
-.header-brand .avatar>img{
+.header-brand .avatar>img {
+    border-radius: 50%;
+    transition: all .3s;
+}
+.header-brand .avatar:hover>img{
     border-radius: 0px;
 }
-
 .header-brand .dropdown-menu-right {
     top: 64px;
     right: 8px;
@@ -997,7 +1001,6 @@ body[id^=lms] {
 
 
 /*content*/
-
 .content-wrapper {
     margin: 0 auto;
     width: 1100px;
@@ -1017,14 +1020,6 @@ body[id^=lms] {
 
 .main-content>.card>.card-main {
     padding-bottom: 5em;
-}
-
-#content-CourseOutline{
-    padding: 2em;
-}
-
-#content-CourseOutline h1 {
-    font-size: 2em;
 }
 
 .side-content {
@@ -1048,66 +1043,84 @@ body[id^=lms] {
     word-wrap: break-word;
 }
 
-#thiscou-nav {
+#cid-nav,#cid-syllabus,#cid-homework,#cid-resource{
+    margin: 0px auto;
+}
+
+#cid-nav {
     position: absolute;
-    right: 2px;
+    right: 25px;
     width: 2em;
     box-shadow: none;
+    top: 25px;
 }
-
-#thiscou-nav .nav> li:nth-child(1)> a::after {
-    border-right: 2px solid orange;
+#cid-nav .nav> li> a::after {
+    border-right: 2px solid #212121;
     border-bottom: none !important;
     height: 100%;
 }
 
-#thiscou-nav .nav> li:nth-child(2)> a::after {
-    border-right: 2px solid green;
-    border-bottom: none !important;
-    height: 100%;
-}
-
-#thiscou-nav .nav> li:nth-child(3)> a::after {
-    border-right: 2px solid gold;
-    border-bottom: none !important;
-    height: 100%;
-}
-
-#thiscou-nav .tab-nav-indicator {
+#cid-nav .tab-nav-indicator {
     display: none;
 }
 
-#thiscou-nav>ul {
+#cid-nav>ul {
     padding: 0;
 }
 
-#thiscou-nav> ul>li {
+#cid-nav> ul>li {
     left: 2px;
 }
 
-#thiscou-nav> ul> .active {
-    box-shadow: 1px 0 2px rgba(0, 0, 0, .25);
-    z-index: 0;
-}
-
-#thiscou-nav> ul> .active> a {
+/*#cid-nav> ul> .active> a {
     background-color: rgb(255, 255, 255) !important;
     box-shadow: none !important;
     width: 2.1em;
     left: -.1em;
     z-index: 30;
+}*/
+
+#cid-nav  ul> .active> a {
+    background-color: #FFF;
 }
 
-#thiscou-nav  ul> li> a {
+#cid-nav  ul> li> a {
     padding: .5em !important;
     background-color: rgba(255, 255, 255, .5);
     box-shadow: 1px 0 2px rgba(0, 0, 0, .5);
     margin-bottom: .5em;
 }
 
-#thiscou-nav> ul> li> a:hover {
+#cid-nav> ul> li> a:hover {
     background-color: rgba(255, 255, 255, .9);
     box-shadow: 1px 0 2.5px rgba(0, 0, 0, .5);
+}
+
+#cid-syllabus{
+
+}
+
+#cid-syllabus .card{
+    padding: 2em;
+    margin-top: -4px;
+}
+
+#cid-syllabus h1 {
+    font-size: 2em;
+}
+
+#cid-resource .tab-content,#cid-homework>.tab-content{
+    padding-top: 10px;
+}
+
+#cid-resource > .row{
+    margin: -4px auto;
+    padding: 1em 0;
+}
+
+#cid-resource-nav ul > li {
+    padding-left: 1em;
+    border-left: 3px solid #dedede;
 }
 
 #tile-course-list {
@@ -1146,31 +1159,50 @@ body[id^=lms] {
     background-color: transparent;
     box-shadow: none;
     color: #484848;
+    border: 1px dashed #dedede;
 }
 
 #tree-course-list .tile-footer {
-    border-radius: 1.5px;
     background-color: #484848;
     color: #fff;
+    margin: -2px -1.8px -1px;
 }
 
 #tree-course-list .tile-sub {
-    border-top: 1px dashed #dedede;
-    border-bottom: 1px dashed #dedede;
+    border: none;
     box-shadow: none;
 }
+#tree-course-list li{
+    border-top: 1px dashed  #dedede;
+}
 
-#thiscou-nav .nav> li> a:hover::after,
+#cid-nav .nav> li> a:hover::after,
 #tile-course-list .nav> li> a:hover::after {
     opacity: 1;
 }
 
+.card-module{
+    margin: -1em -2em 3em ;
+    padding: 1em 1.5em 1.5em;
+}
+.card-module h1
+.card-module h4{
+    margin-top: 24px;
+}
+
+.card-module .card{
+    box-shadow: none;
+    border: 1px dashed rgb(191, 191, 191);
+}
+.no-bs{
+    box-shadow: none;
+}
 /*文件管理*/
 
 
 /*文件夹*/
 
-a[href^='#nodes'],
+div[id^='nodes'],
 a[href^='#folder'] {
     display: inline-block;
     position: relative;
@@ -1184,19 +1216,21 @@ a[href^='#folder'] {
     background: transparent;
 }
 
-a[href^='#nodes']:hover,
+div[id^='nodes']:hover,
 a[href^='#folder']:hover {
     background-color: rgba(211,211,211,0.1);
+    cursor: pointer;
 }
 
-a[href^="#nodes"] .icon, 
+div[id^="nodes"] .icon, 
 a[href^="#folder"] .icon {
     background-color: #fdefc0;
     color: transparent;
     border-radius: 2px;
-    margin: 0 0 13px 0;
+    margin: 0 auto 13px;
+    display: block;
 }
-a[href^="#nodes"] .folder-name,
+div[id^="nodes"] .folder-name,
 a[href^='#folder'] .folder-name {
     display: block;
     text-align: center;
@@ -1266,6 +1300,7 @@ a[href^='#folder'] .folder-name {
 /*panel*/
 #upanel .card{
     width: 300px;
+    height: 500px;
     margin: 24px auto;
 }
 #upanel .vcard{
@@ -1712,9 +1747,9 @@ div[id^="validMsg"] {
 
 .history-divider {
     border-top: 1px dashed rgb(223, 223, 223);
+    margin: 5em -30px;
     padding: 1em 0;
-    margin: 5em 0;
-    color: lightgray;
+    color: #8a8a8a;
 }
 
 div[id^="collapse-history"]>.history-wrap{
@@ -2263,7 +2298,9 @@ a[class *=text-grey]:hover {
 .height-control {
     height: inherit;
 }
-
+.height-1000{
+    height: 1000px;
+}
 .min-height-control {
     min-height: 100%;
 }
@@ -2294,7 +2331,9 @@ a[class *=text-grey]:hover {
 .divider-right {
     border-right: 1px solid whitesmoke;
 }
-
+.mg-sm-tb{
+    margin: 1em auto;
+}
 .mg-sm-right {
     margin-right: 1em !important;
 }
@@ -2318,6 +2357,10 @@ a[class *=text-grey]:hover {
 
 .pd-content-htop{
     padding-top: 8em;
+}
+
+.bd-lt-divider{
+    border-left: 1px solid whitesmoke;
 }
 
 .scroll-x {

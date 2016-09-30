@@ -211,9 +211,11 @@
                     //验证码框响应回车键提交登录
                     function keyListener(e) {
                         var keynum;
+                        var status = false;
                         
                         if (window.event){ keynum = e.keyCode; } else if (e.which){  keynum = e.which; }
                         if (keynum === 13) {
+                            
                             if(verifyText('id', 'idMsg')&&verifyText('pw', 'pwMsg')&&verifyText('ccd', 'ccdMsg')){
                                 status = true;
                             }else

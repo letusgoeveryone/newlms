@@ -93,7 +93,7 @@
                                             返回
                                         </a>
                                     </sec:authorize>
-                                    <a data-toggle="tab" href="#panel-CouCenter" class='btn btn-aqua'>
+                                    <a data-toggle="tab" href="#panel-CouCenter" class='btn btn-aqua mg-rt-3x'>
                                         【学期课程】
                                     </a>
                                     <a data-toggle="tab" href="#panel-RequstManage" href="<%=path%>/teacher" class='btn btn-aqua'>

@@ -47,7 +47,7 @@ var StudentAPI = {
         teacherName: '',
         teacherSn: '',
         introduction: '[请至少选着一门课程]',
-        syllabus: '[请至少选着一门课程]',
+        outline: '[请至少选着一门课程]',
         attachment: '',
         resourceDS: {},
         homeworkDS: {}
@@ -77,7 +77,7 @@ var StudentAPI = {
         teacherName: '',
         teacherSn: '',
         introduction: '',
-        syllabus: '',
+        outline: '',
         attachment: '',
         resourceDS: {
             dir: '',
@@ -94,7 +94,7 @@ var StudentAPI = {
         teacherName: '',
         teacherSn: '',
         introduction: '',
-        syllabus: '',
+        outline: '',
         attachment: ''
     },
     CidIsHomework: {
@@ -286,7 +286,7 @@ var StudentAPI = {
                         content: '个人信息修改失败 !' + '<a data-dismiss="snackbar">我知道了</a>'
                     });
                 } else {
-                    updataUPanel(0);
+                    updateUPanel(0);
                     $('#snackbar').snackbar({
                         alive: 10000,
                         content: '个人信息已修改...' + '<a data-dismiss="snackbar">我知道了</a>'
@@ -426,6 +426,19 @@ var StudentAPI = {
 
         console.log("init has done ! ");
     },
+    
+    FileManage:{
+        configure:function(e){
+            StudentAPI.FileManage.setDS = e.setDS;
+            StudentAPI.FileManage.updateResource = e.updateResource;
+        },
+        getOM: function () {
+            return StudentAPI.OCidIsCourse.resourceDS.json;
+        },
+        setDS: function () {},
+        updateResource: function () {}
+    },
+    
     /**
      * 解析相关数据结构
      * @type type
@@ -442,11 +455,11 @@ var StudentAPI = {
                 for (var i = 0; i < _o.length; i++) {
                     if (i === 0) {
                         ListHS = ListHS +
-                            '<li class="active"><a id="cid-' + _o[i].scid + '" herf="#null" data-toggle="tab" class="btn btn-flat " onclick="updataSelectedCourse(' + _o[i].scid + ')">' +
+                            '<li class="active"><a id="cid-' + _o[i].scid + '" herf="#null" data-toggle="tab" class="btn btn-flat " onclick="updateSelectedCourse(' + _o[i].scid + ')">' +
                             _o[i].course + '</a></li>';
                     } else {
                         ListHS = ListHS +
-                            '<li><a id="cid-' + _o[i].scid + '" herf="#null" data-toggle="tab" class="btn btn-flat " onclick="updataSelectedCourse(' + _o[i].scid + ')">' +
+                            '<li><a id="cid-' + _o[i].scid + '" herf="#null" data-toggle="tab" class="btn btn-flat " onclick="updateSelectedCourse(' + _o[i].scid + ')">' +
                             _o[i].course + '</a></li>';
                     }
                 }
@@ -603,192 +616,8 @@ var StudentAPI = {
             }
         },
 
-        Resource: {
-            getJSON: function() {
-                var _root = StudentAPI.OCidIsCourse.resourceDS.json;
-
-                if (_root === undefined || _root === null) return [];
-                var _nodeI,
-                    _nodeII,
-                    _nodeIII,
-                    _now = null,
-                    JSON = [];
-
-                for (var i = 0; i < _root.length; i++) {
-
-                    _nodeI = _root[i];
-                    //初始化位置坐标
-                    //console.log('i:' + i);
-                    _now = JSON;
-                    _now[i] = {
-                        description: _nodeI.text,
-                        position: [_nodeI.id, null, null],
-                        resource: [],
-                        nodes: []
-                    };
-                    if (_nodeI.resource !== undefined) {
-                        _now[i].resource = _nodeI.resource;
-                    }
-                    //                    console.log(_now[i].resource);
-                    _now = _now[i].nodes;
-                    if (_nodeI.children === undefined) continue;
-                    for (var j = 0; j < _nodeI.children.length; j++) {
-                        _nodeII = _nodeI.children[j];
-
-                        //初始化位置坐标
-                        //console.log('j:' + j);
-                        _now[j] = {
-                            description: _nodeII.text,
-                            position: [_nodeI.id, _nodeII.id, null],
-                            resource: [],
-                            nodes: []
-                        };
-                        if (_nodeII.resource !== undefined) {
-                            _now[j].resource = _nodeII.resource;
-                        }
-                        _now = _now[j].nodes;
-                        if (_nodeII.children === undefined) continue;
-                        for (var k = 0; k < _nodeII.children.length; k++) {
-                            _nodeIII = _nodeII.children[k];
-
-                            //初始化位置坐标
-                            //console.log('k:' + k);
-                            _now[k] = {
-                                description: _nodeIII.text,
-                                position: [_nodeI.id, _nodeII.id, _nodeIII.id],
-                                resource: []
-                            };
-
-                            if (_nodeIII.resource !== undefined) {
-                                _now[k].resource = _nodeIII.resource;
-                            }
-                        }
-                    }
-                }
-                return JSON;
-            },
-
-            getFileHS: function(nodes) {
-                var name = '',
-                    size = 0,
-                    status = 0,
-                    previewPath = '',
-                    playPath = '',
-                    downloadPath = '';
-
-                var hs = '<hr>';
-                if (nodes === undefined) return '';
-                var _head = '<table class="table table-responsive table-filelist">' +
-                    '<thead><tr><th>文件名</th><th>大小</th><th>下载</th><th>其它</th></tr></thead>',
-                    _foot = '</table>';
-                if (nodes.length === 0) {
-                    return hs + _head + '<tr><td colspan="4">暂无资源</td></tr>' + _foot;
-                }
-                for (var i = 0; i < nodes.length; i++) {
-
-                    name = nodes[i].name;
-                    size = nodes[i].size;
-                    size = (size / 1000000 > 1 ? toDecimal2(size / 1000000) + 'MB' : toDecimal2(size / 1000) + 'KB');
-                    status = nodes[i].handle.status;
-                    downloadPath = "file/" + StudentAPI.OCidIsCourse.resourceDS.dir + nodes[i].handle.downloadDir;
-                    //                    alert(downloadPath);
-                    previewPath = '' + StudentAPI.OCidIsCourse.resourceDS.dir + nodes[i].handle.previewDir;
-                    if (status === -1) {
-                        hs += '<tr><td  class="text-indianred text-blod">' +
-                            name + '</td><td>' +
-                            size + '</td><td>' +
-                            '<a class="btn btn-flat btn-brand" href="' + downloadPath + '" target="_blank">下载</a>' + '</td><td>' +
-                            '<a class="btn btn-flat btn-red stage-card" href="http://localhost:8084/lms/getswf?uri=' + previewPath + '">预览</a>' +
-                            '</td></tr>';
-
-                    } else if (status === 1) {
-
-                        hs += '<tr><td  class="text-indianred text-blod">' +
-                            name + '</td><td>' +
-                            size + '</td><td>' +
-                            '<a class="btn btn-flat btn-brand" href="' + downloadPath + '">下载</a>' + '</td><td>' +
-                            '<a class="btn btn-flat btn-red stage-card" target="_blank" href="http://localhost:8084/lms/getvideo?uri=' + downloadPath + '">播放</a>' +
-                            '</td></tr>';
-
-                    } else {
-
-                        hs += '<tr><td  class="text-indianred text-blod">' +
-                            name + '</td><td>' +
-                            size + '</td><td>' +
-                            '<a class="btn btn-flat btn-brand" target="_blank" href="' + downloadPath + '">下载</a>' + '</td><td>' +
-                            '-' +
-                            '</td></tr>';
-                    }
-                }
-                return _head + hs + _foot;
-            },
-
-            getFileManagerHS: function() {
-                var _o = StudentAPI.analyzeDS.Resource.getJSON();
-                if (_o === undefined || _o === null) return '暂无课件';
-                var _now;
-                var _hs = '',
-                    _hsI = '',
-                    _hsII = '',
-                    _hsIII = '',
-                    _hsFile = '';
-
-                _hsI = '<div class="tab-content tab-pane fade in active " id="folder-root">';
-                for (var i = 0; i < _o.length; i++) {
-                    _hsI += '<a data-toggle="tab" data-posi="' + _o[i].position[0] +
-                        '" data-posii="null" data-posiii="null" data-type="folder" href="#nodes-' + _o[i].position[0] +
-                        '"><span class="icon icon-5x" >folder</span><span class="folder-name">' + _o[i].description + '</span><span class="file-num">' + (_o[i].nodes.length + _o[i].resource.length) + ' 项</span></a>'; //<span class="file-num">'+ (_o[i].nodes.length + _o[i].resource.length) +'</span>
-
-
-                    _hsII = '<div class="tab-content tab-pane fade " id="nodes-' + _o[i].position[0] + '">' +
-                        '<a data-toggle="tab" href="#folder-root"><span class="icon icon-5x" >folder</span><span class="folder-name">返回根目录</span><span class="file-num">...</span></a>';
-
-                    _now = _o[i].nodes;
-                    for (var j = 0; j < _o[i].nodes.length; j++) {
-                        _hsII += '<a data-toggle="tab" data-posi="' + _now[j].position[0] + '" data-posii="' + _now[j].position[1] + '" data-posiii="null' +
-                            '"data-type="folder" href="#nodes-' + _now[j].position[0] + _now[j].position[1] +
-                            '"><span class="icon icon-5x" >folder</span><span class="folder-name">' + _now[j].description + '</span><span class="file-num">' + (_o[i].nodes[j].nodes.length + _now[j].resource.length) + ' 项</span></a>';
-
-
-                        _hsIII = '<div class="tab-content tab-pane fade " id="nodes-' + _now[j].position[0] + _now[j].position[1] + '">' +
-                            '<a data-toggle="tab" href="#folder-root"><span class="icon icon-5x" >folder</span><span class="folder-name">返回根目录</span><span class="file-num">...</span></a><a data-toggle="tab" href="#nodes-' + _o[i].position[0] + '"><span class="icon icon-5x">folder</span><span class="folder-name">返回上一级</span><span class="file-num">...</span></a>';
-
-                        //                        console.log(_now);
-                        _now = _o[i].nodes[j].nodes;
-                        for (var k = 0; k < _now.length; k++) {
-
-                            _hsIII += '<a data-toggle="tab" data-posi="' + _now[k].position[0] + '" data-posii="' + _now[k].position[1] + '" data-posiii="' + _now[k].position[2] +
-                                '"data-type="folder" href="#nodes-' + _now[k].position[0] + _now[k].position[1] + _now[k].position[2] +
-                                '"><span class="icon icon-5x">folder</span><span class="folder-name">' + _now[k].description + '</span><span class="file-num">' + (_now[k].resource.length) + ' 项</span></a>';
-
-
-                            _hsFile = '<div class="tab-content tab-pane fade " id="nodes-' + _now[j].position[0] + _now[j].position[1] + _now[k].position[2] + '">' +
-                                '<a data-toggle="tab" href="#folder-root"><span class="icon icon-5x" >folder</span><span class="folder-name">返回根目录</span><span class="file-num">...</span></a><a data-toggle="tab" href="#nodes-' + _now[j].position[0] + _now[j].position[1] + '"><span class="icon icon-5x" >folder</span><span class="folder-name">返回上一级</span><span class="file-num">...</span></a>';
-
-
-                            _hsFile += StudentAPI.analyzeDS.Resource.getFileHS(_o[i].nodes[j].nodes[k].resource);
-                            _hsFile += '</div>';
-                            _hs += _hsFile;
-                        }
-                        _hsIII += StudentAPI.analyzeDS.Resource.getFileHS(_o[i].nodes[j].resource);
-                        _hsIII += '</div>';
-                        _hs += _hsIII;
-                    }
-                    _hsII += StudentAPI.analyzeDS.Resource.getFileHS(_o[i].resource);
-                    _hsII += '</div>';
-                    _hs += _hsII;
-
-                }
-                _hsI += '</div>';
-                _hs += _hsI;
-
-                //                alert(_hs);
-                return _hs;
-            }
-        },
-
         Homework: {
-            updataJSON: function(scid){
+            updateJSON: function(scid){
                 $.ajax({
                     url: StudentAPI.Path.cInfo[2] + "?scid=" + scid,
                     type: 'get',
@@ -1022,7 +851,7 @@ var StudentAPI = {
                     _x.teacherName = data[1].teacherName;
                     _x.teacherSn = data[2].teacherSn;
                     _x.introduction = data[4].introduction === null ? '暂无介绍' : data[4].introduction;
-                    _x.syllabus = data[3].syllabus === null ? '暂无介绍' : data[3].syllabus;
+                    _x.outline = data[3].syllabus === null ? '暂无介绍' : data[3].syllabus;
                     _x.attachment = data[5].swf_syllabus;
                 },
                 error: function() {
@@ -1042,7 +871,7 @@ var StudentAPI = {
                     _o.teacherName = data[1].teacherName;
                     _o.teacherSn = data[2].teacherSn;
                     _o.introduction = data[4].introduction === null ? '暂无介绍' : data[4].introduction;
-                    _o.syllabus = data[3].syllabus === null ? '暂无介绍' : data[3].syllabus;
+                    _o.outline = data[3].syllabus === null ? '暂无介绍' : data[3].syllabus;
                     _o.attachment = data[5].swf_syllabus;
 
                     _o.resourceDS.json = null;
@@ -1335,9 +1164,10 @@ var UPanel;
  */
 var UProfile;
 
-
 var ThisCourse = StudentAPI.ThisCourse;
+
 var HidIsAttachmentHS = '';
+
 //定义初始化函数
 function initPage() {
 
@@ -1354,21 +1184,22 @@ function initPage() {
         /**
          * 获得已选课程的第一个,加以初始化
          */
-        var scid = StudentAPI.selectedCourseDS[0].scid;
+        var scid = StudentAPI.selectedCourseDS[1].scid;
         ThisCourse[0].obj = StudentAPI.structureCidIsCourse(scid);
         ThisCourse[0].scid = scid; 
         ThisCourse[0].obj.__proto__ = new Vue({
             el: '#ucontent',
             data: {
                 introduction: ThisCourse[0].obj.introduction,
-                syllabus: ThisCourse[0].obj.syllabus + ThisCourse[0].obj.attachment,
-                courseliset: StudentAPI.analyzeDS.selectedCourse.getListHS(),
-                resource: StudentAPI.analyzeDS.Resource.getFileManagerHS(),
-                OHomeworkHS: StudentAPI.analyzeDS.Homework.getDoneHS(),
-                IHomeworkHS: StudentAPI.analyzeDS.Homework.getDoingHS(),
-                XHomeworkHS: StudentAPI.analyzeDS.Homework.getMissHS()
+                outline: ThisCourse[0].obj.outline + ThisCourse[0].obj.attachment
             }
         });
+        
+        //初始化 文件管理器
+        console.log('初始化文件管理器...');
+        StudentAPI.FileManage.setDS();
+        StudentAPI.FileManage.updateResource();
+        console.log('初始化文件管理器 成功 !');
         
     } else {
         ThisCourse[0].obj = StudentAPI.DemonCourse;
@@ -1376,7 +1207,7 @@ function initPage() {
             el: '#ucontent',
             data: {
                 introduction: '<p style="color:grey">请至少选择一门课程</p>',
-                syllabus: '<p style="color:grey">请至少选择一门课程</p>',
+                outline: '<p style="color:grey">请至少选择一门课程</p>',
                 courseliset: '<li><a>暂无课程</a></li>',
                 resource: [],
                 OHomeworkHS: '<p style="color:grey">无</p>',
@@ -1393,7 +1224,7 @@ function initPage() {
     //        el: '#',
     //        data: {
     //            introduction: ThisCourse[1].introduction,
-    //            syllabus: ThisCourse[1].syllabus
+    //            outline: ThisCourse[1].outline
     //        }
     //    });
 
@@ -1439,29 +1270,27 @@ function initPage() {
 };
 
 //定义更新函数(包装函数)
-function updataSelectedCourse(scid) {
-    NProgress.start();
+function updateSelectedCourse(scid) {
+    
     ThisCourse[0].scid = scid;
     ThisCourse[0].obj = StudentAPI.structureCidIsCourse(ThisCourse[0].scid);
     ThisCourse[0].obj.$data.introduction = ThisCourse[0].obj.introduction;
-    ThisCourse[0].obj.$data.syllabus = ThisCourse[0].obj.syllabus + ThisCourse[0].obj.attachment;
-    ThisCourse[0].obj.$data.resource = StudentAPI.analyzeDS.Resource.getFileManagerHS();
-    ThisCourse[0].obj.$data.OHomeworkHS = StudentAPI.analyzeDS.Homework.getDoneHS();
-    ThisCourse[0].obj.$data.IHomeworkHS = StudentAPI.analyzeDS.Homework.getDoingHS();
-    ThisCourse[0].obj.$data.XHomeworkHS = StudentAPI.analyzeDS.Homework.getMissHS();
+    ThisCourse[0].obj.$data.outline = ThisCourse[0].obj.outline + ThisCourse[0].obj.attachment;
+    
+    updateResource();
     $('a[href="#tab-homework"]').click();
     $('#lms-editor').empty();
     setTimeout(function () { 
         fn.bindHid();
     }, 3000);
     
-    NProgress.done();
+
     
 };
+
 var fn={};
 fn.bindHid=function(){
     $('a[data-hid]').click(function () {
-        NProgress.start();
         var hid = $(this).attr('data-hid');
         var isDone = $(this).attr('data-status') === true ? true : false;
 
@@ -1475,19 +1304,19 @@ fn.bindHid=function(){
         });
 
         console.log(hid);
-        NProgress.done();
 
     });
 };
-function updataSelectableCourse(scid) {
+
+function updateSelectableCourse(scid) {
     ThisCourse[1].scid = scid;
     ThisCourse[1] = StudentAPI.structureCidIsCourse(ThisCourse[1].scid);
     ThisCourse[1].obj.$data.introduction = ThisCourse[1].introduction;
-    ThisCourse[1].obj.$data.syllabus = ThisCourse[1].syllabus + ThisCourse[1].attachment;
+    ThisCourse[1].obj.$data.outline = ThisCourse[1].outline + ThisCourse[1].attachment;
     //console.log(ThisCourse[1]);
 };
 
-function updataPersonalInfo() {
+function updatePersonalInfo() {
     
     if (!CheckValidation()) {
         return false;
@@ -1511,11 +1340,14 @@ function updataPersonalInfo() {
     ;
     return true;
 };
-function updataResourceArea(){
+
+function updateResource(){
     StudentAPI.setDS.resource(ThisCourse[0].scid);
-    ThisCourse[0].obj.$data.resource = StudentAPI.analyzeDS.Resource.getFileManagerHS();
-    $('.stage-card').boxer();
-}
+    
+    StudentAPI.FileManage.setDS();
+    StudentAPI.FileManage.updateResource();
+};
+
 function checkPassword(){
     var status = true;
     if ($("#oldPassword").val() === '') {
@@ -1552,9 +1384,9 @@ function checkPassword(){
         $("#validMsg-npwconfirm").fadeOut();
     }
     return true;
-}
+};
 
-function updataPassword() {
+function updatePassword() {
     
     if(checkPassword()){
         StudentAPI.updatePassword(StudentAPI.Path.uInfo[2] +
@@ -1607,16 +1439,17 @@ function CheckValidation() {
     }else $("#validMsg-qq").fadeOut();
     
     return status;
-}
-function updataThisCourse1cid(scid) {
+};
+
+function updateThisCourse1cid(scid) {
     ThisCourse[1].scid = scid;
 };
 
-function updataThisCourse0cid(scid) {
+function updateThisCourse0cid(scid) {
     ThisCourse[0].scid = scid;
 };
 
-function updataUPanel(method) {
+function updateUPanel(method) {
     switch (method) {
         case 0:
             {
@@ -1649,7 +1482,7 @@ function updataUPanel(method) {
             };
 
     }
-}
+};
 
 function selectCourse(scid) {
     var status = StudentAPI.operateCidIsCourse.add(scid);
@@ -1708,12 +1541,11 @@ function cancelCourse(scid) {
     }
 }
 
-
-function updataHid(hid) {
+function updateHid(hid) {
     ThisCourse[0].hid = hid;
-}
+};
 
-function updataByThisHid(hid) {
+function updateByThisHid(hid) {
     ThisCourse[0].hid = hid;
     $('#uploaded-area').hide();
     if (StudentAPI.operateHomework.getAttachmentList(ThisCourse[0].scid, ThisCourse[0].hid)) {
@@ -1732,16 +1564,18 @@ function updataByThisHid(hid) {
         $('#uploaded-area').append(HidIsAttachmentHS);
         $('#uploaded-area').fadeIn();
     }
-}
+};
+
 function refreshHomeworkList(){
-    StudentAPI.analyzeDS.Homework.updataJSON(ThisCourse[0].scid);
+    StudentAPI.analyzeDS.Homework.updateJSON(ThisCourse[0].scid);
     ThisCourse[0].obj.$data.OHomeworkHS = StudentAPI.analyzeDS.Homework.getDoneHS();
     ThisCourse[0].obj.$data.IHomeworkHS = StudentAPI.analyzeDS.Homework.getDoingHS();
     console.log("reflesh homework list done !");
-    NProgress.start();
-}
+    
+};
+
 function refreshHomeworkArea(hid){
-    updataHid(hid);
+    updateHid(hid);
     refreshUploadedArea();
     
     ThisCourse[0].hobj = StudentAPI.analyzeDS.Homework.getDetail(ThisCourse[0].scid, hid);
@@ -1752,7 +1586,7 @@ function refreshHomeworkArea(hid){
     $('#lms-editor').html(ThisCourse[0].hobj.HwtextWork);
     console.log("my homework's content  is :" + ThisCourse[0].hobj.HwtextWork);
     
-}
+};
 
 function refreshUploadedArea() {
     $('#uploaded-area').hide();
@@ -1772,30 +1606,29 @@ function refreshUploadedArea() {
         $('#uploaded-area').append(HidIsAttachmentHS);
         $('#uploaded-area').fadeIn();
     }
-}
-
+};
 
 function uploadAttachment() {
     StudentAPI.operateHomework.uploadAttachment(ThisCourse[0].scid, ThisCourse[0].hid);
     $('#uploaded-area').hide();
     refreshUploadedArea();
     console.log("upload attachment ..." + ThisCourse[0].hid);
-}
+};
 
 function downloadAttachment(src) {
     StudentAPI.operateHomework.downloadAttachment(ThisCourse[0].scid, ThisCourse[0].hid, src);
-}
+};
 
 function deleteAttachment(src) {
     StudentAPI.operateHomework.deleteAttachment(ThisCourse[0].scid, ThisCourse[0].hid, src);
     $('#uploaded-area').hide();
     refreshUploadedArea();
     console.log("delete attachment ..." + ThisCourse[0].hid);
-}
+};
 
 function downloadAttachment(src) {
     StudentAPI.operateHomework.downloadAttachment(ThisCourse[0].scid, ThisCourse[0].hid, src);
-}
+};
 
 function submitHomework(hid) {
     hs = tinymce.get('lms-editor').getContent({
@@ -1805,16 +1638,16 @@ function submitHomework(hid) {
     var status = StudentAPI.operateHomework.submit(ThisCourse[0].scid, hid, hs);
     console.log(status);
     if (status === 1 || status === 0) {
-        NProgress.start();
+        
         console.log("reflesh homework list ...");
         setTimeout(refreshHomeworkList, 800);
         return true;
     }else return false;
-}
+};
 
 function getMissDetailHS(scid, hid){
     StudentAPI.analyzeDS.Homework.getMissDetailHS(scid, hid);
-}
+};
 //其它函数
 //保留两位小数
 //功能：将浮点数四舍五入，取小数点后2位
@@ -1825,8 +1658,7 @@ function toDecimal(x) {
     }
     f = Math.round(x * 100) / 100;
     return f;
-}
-
+};
 
 //强制保留2位小数，如：2，会在2后面补上00.即2.00
 function toDecimal2(x) {
@@ -1845,22 +1677,31 @@ function toDecimal2(x) {
         s += '0';
     }
     return s;
-}
+};
 
 function fomatFloat(src, pos) {
     return Math.round(src * Math.pow(10, pos)) / Math.pow(10, pos);
-}
+};
 
 function getIdByDomId(prefix, domId) {
     return domId.replace(prefix, '');
-}
+};
+
 function isContinue(){
     
-}
+};
 
 function ableSubmitUInfo(){
-}
+};
 
 function logout(){
     window.location.href="logout"; 
-}
+};
+
+function getFileManagePath() {
+    var Path = [
+        'kcgs', //[0] TOC 解析对象
+        'courdir'   //[1] 列出某级目录下的文件
+    ];
+    return Path;
+};

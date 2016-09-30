@@ -16,48 +16,79 @@
         
         <!--课程 正文 O--> 
         <div id="tree-course-content" class="main-content">
-            <div class="card sample-height">
-                <div class=" card-main">
+            <div class="tab-content">
                     
-                    <nav class="tab-nav tab-nav-brand margin-top-no" id="thiscou-nav">
+                    <nav class="tab-nav tab-nav-brand margin-top-no" id="cid-nav">
                         <ul class="nav nav-brand">
                             <li class="active">
-                                <a data-toggle="tab" href="#content-CourseOutline"> 课程纲要 </a>
+                                <a data-toggle="tab" href="#cid-syllabus"> 课程纲要 </a>
                             </li>
 
                             <li>
-                                <a data-toggle="tab" href="#content-CourseResource" ondblclick="updataResourceArea()"> 课程资源 </a>
+                                <a data-toggle="tab" href="#cid-resource" ondblclick="updataResource()"> 课程资源 </a>
                             </li>
                             
                             <li>
-                                <a data-toggle="tab" href="#content-Homework" > 课程作业 </a>
+                                <a data-toggle="tab" href="#cid-homework" > 课程作业 </a>
                             </li>
                         </ul>
                     </nav>
-                    
-                    <div class="tab-content">
+                
                         
-                        <article id="content-CourseOutline" class=" tab-pane fade in active lms-loading">
-                            <h1>课程简介</h1><hr>
-                            <section>
-                                {{{introduction}}}
-                            </section>
-                            <h1>课程大纲</h1><hr>
-                            <section>
-                                {{{syllabus}}}
-                            </section>
-                        </article>
-                        
-                        <div id="content-CourseResource" class=" tab-pane fade">
-                           {{{resource}}}
+                    <div id="cid-syllabus" class="tab-pane fade in active lms-loading">
+                        <div class="card">
+                            
+                                <div class="card-main card-module">
+                                    
+                                    <h1>课程简介</h1><hr>
+                                    <section>
+                                        {{{introduction}}}
+                                    </section>
+                                    
+                                    <h1>课程大纲</h1><hr>
+                                    <section>
+                                        {{{outline}}}
+                                    </section>
+                                    
+                                </div>
                         </div>
-                        
-                        <div id="content-Homework" class=" tab-pane fade">
-                            <jsp:include page="../student/IncludeHomework.jsp" />
-                        </div>
-                        
                     </div>
-                </div>
+
+                    <div id="cid-resource" class="tab-pane fade">
+                        <div class="row card">
+                            <div class="col-sm-4">
+                                <div class="mg-sm-tb" style="border-bottom: 1px solid rgb(222, 222, 222);position: relative;top: -1.2px;">
+                                    <button class="btn btn-flat" id="cid-resource-home"><span class="icon">home</span></button>
+                                    <button class="btn btn-flat pull-right" id="cid-resource-npd"><span >返回上一级</span></button>
+                                </div>
+                                <nav id="cid-resource-nav">
+                                    
+                                </nav>
+                            </div>
+                            <div class="col-sm-8 height-1000 bd-lt-divider">
+                                
+                                <!-- 搜索 -->
+                                <div class="form-group form-group-label row mg-sm-tb" >
+                                    <div class="col-md-12">
+                                        <label class="floating-label" for="cid-resource-search">Search</label>
+                                        <input class="form-control" name="cid-resource-search" id="cid-resource-search"/>
+                                    </div>
+                                </div>
+                                
+                                <!--文件浏览器主区-->
+                                <div id="cid-resource-content">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {{{resource}}}
+                    </div>
+
+                    <div id="cid-homework" class="tab-pane fade">
+                        <jsp:include page="../student/IncludeHomework.jsp" />
+                    </div>
+                        
+                        
             </div>
         </div>
         <!--课程 正文 O-->

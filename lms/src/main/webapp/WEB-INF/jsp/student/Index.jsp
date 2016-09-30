@@ -116,14 +116,14 @@
                                 <div class="card-inner">
                                     <section class="card-heading">导航面板</section>
                                     <section>
-                                        <a data-toggle="tab" href="#ucontent" class='btn btn-aqua' >
+                                        <a data-toggle="tab" href="#ucontent" class='btn btn-aqua mg-rt-3x' >
                                             【我的课程】
-                                        </a>
-                                        <a href="student/courses" class='btn btn-aqua'>
-                                            【选课中心】
                                         </a>
                                         <a href="#uinfo-wrap" data-lightbox-height="700" data-lightbox-width="1000" class='btn btn-aqua stage-card'>
                                             【个人中心】
+                                        </a>
+                                        <a href="student/courses" class='btn btn-aqua'>
+                                            【选课中心】
                                         </a>
                                     </section>
                                 </div>
@@ -187,6 +187,7 @@
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script><script>NProgress.set(0.7);</script>
         <script src="<%=path%>/js/api.student.js" type="text/javascript"></script>
+        <script src="<%=path%>/js/api.file.js" type="text/javascript"></script>
         <script src="<%=path%>/js/tinymce/tinymce.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/jquery.fs.core.js" type="text/javascript"></script>
         <script src="<%=path%>/js/formstone/js/transition.js" type="text/javascript"></script>
@@ -197,10 +198,7 @@
         <!--<script src="http://open.iciba.com/huaci/huaci.js"></script>-->
         <script>
             
-           /* ==================================================================
-            * 页面初始化
-            * ================================================================== */
-            initPage();NProgress.set(0.9);
+            NProgress.set(0.9);
 
 
            /* ==================================================================
@@ -442,6 +440,41 @@
             NProgress.done(true);
             
             window.onbeforeunload = function() {};
+        </script>
+        <script>
+            FileManageAPI.configure({
+                cid:'cid-resource-content', 
+                nid:'cid-resource-nav', 
+                hid:'cid-resource-home', 
+                pid:'cid-resource-npd', 
+                sid:'cid-resource-search',
+                getOM:StudentAPI.FileManage.getOM,
+                getPlayPath:function(){},
+                getPreviewPath:function(){},
+                getDownloadPath:function(){}
+            });
+            
+            StudentAPI.FileManage.configure({
+                setDS:FileManageAPI.TOC.set,
+                updateResource:FileManageAPI.update
+            });
+            
+           /* ==================================================================
+            * 页面初始化
+            * ================================================================== */
+            initPage();
+            
+            console.log({
+                cid:'cid-resource-content', 
+                nid:'cid-resource-nav', 
+                hid:'cid-resource-home', 
+                pid:'cid-resource-npd', 
+                sid:'cid-resource-search',
+                getTOC:function(){},
+                getPlayPath:function(){},
+                getPreviewPath:function(){},
+                getDownloadPath:function(){}
+            });
         </script>
     </body>
 </html>
