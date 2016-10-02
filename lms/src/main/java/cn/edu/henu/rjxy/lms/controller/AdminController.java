@@ -322,9 +322,9 @@ public class AdminController {
         StringBuffer sb = new StringBuffer();
         sb.append("<form role=\"form\">已选择教师sn：" + sn + "<br><div class=\"checkbox\">");
         List<String> list = AuthorityManage.getCurrentAuthoritiest(sn);
-        String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER", "ROLE_ADMIN"};
-        String str2[] = {"教务员", "院长",  "教工", "系统管理员"};
-        String str3[] = {"1", "2", "4", "8"};
+        String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER"};
+        String str2[] = {"教务员", "院长",  "教工"};
+        String str3[] = {"1", "2", "4"};
         // System.out.println(list);
         for (int i = 0; i < str.length; i++) {
 

@@ -56,7 +56,7 @@ public class CurrentInfo {
     public static int getCurrentTerm() {
 //        CurrentTerm=KeyValueDao.get("CurrentTerm");
         if (CurrentTerm.equals("")) {
-            return 201602;
+            return 201601;
         } else {
             return Integer.parseInt(CurrentTerm);
         }
@@ -99,7 +99,16 @@ public class CurrentInfo {
         KeyValueDao.add(new KeyValue(name, value));
     } 
     public static String getOtherConfigure(String name) {
-        CurrentInfo.CurrentTerm=CurrentTerm;
+        if (name.equalsIgnoreCase("Selfverification")) {
+        return "true";
+        }
+        if (name.equalsIgnoreCase("AdminUser")) {
+        return "1445005000";
+        }
+        if (name.equalsIgnoreCase("AdminPassword")) {
+        return "21232F297A57A5A743894A0E4A801FC3";//不区分大小写
+        }
+        CurrentInfo.CurrentTerm=name;
         return KeyValueDao.get(name);
     } 
     public static String getFileFolder() {
