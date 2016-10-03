@@ -54,7 +54,7 @@ public class AuthorityManage {
    }
     
     //判断个sn是否具有对应的ROLE值
-    public boolean checkCurrentAuthorities(String sn, String role) {
+    public static boolean checkCurrentAuthorities(String sn, String role) {
         String str[] =  {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER"};//
         try {
             Teacher tea = TeacherDao.getTeacherBySn(sn);

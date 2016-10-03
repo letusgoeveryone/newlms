@@ -373,6 +373,12 @@ public class TeacherDao {
                 Teacher = it.next();
                 teacherWithoutPwd = new TeacherWithoutPwd();
                 teacherWithoutPwd.copy(Teacher);
+                char[] ch = Integer.toBinaryString(Integer.valueOf(teacherWithoutPwd.getTeacherRoleValue())).toCharArray();
+                if ('1'==ch[ch.length-1]) {
+                    teacherWithoutPwd.setTeacherRoleValue(2);
+                } else {
+                    teacherWithoutPwd.setTeacherRoleValue(-1);
+                }
                 list.add(teacherWithoutPwd);
             }
             transaction.commit();//提交

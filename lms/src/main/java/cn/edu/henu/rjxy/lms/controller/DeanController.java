@@ -702,7 +702,7 @@ public class DeanController {
     public @ResponseBody String acedmicqxpz(HttpServletRequest request){
          int id = Integer.parseInt(request.getParameter("id"));
          Teacher teacher = TeacherDao.getTeacherById(id);
-         teacher.setTeacherRoleValue(2);
+         teacher.setTeacherRoleValue(5);
          TeacherDao.updateTeacherById(teacher);
          return "1";
     }
