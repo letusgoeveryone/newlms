@@ -44,6 +44,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import cn.edu.henu.rjxy.lms.server.AuthorityManage;
 import cn.edu.henu.rjxy.lms.server.CurrentInfo;
+import net.sf.json.JSONArray;
 /**
  *
  * @author Administrator
@@ -683,5 +684,36 @@ public class DeanController {
             return "error";
         }
        
-    }  
+    } 
+    
+    //设置教务员
+    @RequestMapping("dean/teachermessage")
+    public @ResponseBody String deanteachermessage(){
+         System.out.println("设置教务员");
+         List list = TeacherDao.getAllacdemicTeacher();
+         System.out.println(list.size());
+        JSONArray json = JSONArray.fromObject(list);
+        System.out.println("json="+json.toString());
+         return json.toString();
+    }
+    
+     //批准教务员
+    @RequestMapping("dean/acedmicqxpz")
+    public @ResponseBody String acedmicqxpz(HttpServletRequest request){
+         int id = Integer.parseInt(request.getParameter("id"));
+         Teacher teacher = TeacherDao.getTeacherById(id);
+         teacher.setTeacherRoleValue(2);
+         TeacherDao.updateTeacherById(teacher);
+         return "1";
+    }
+     //取消教务员
+    @RequestMapping("dean/acedmicqx")
+    public @ResponseBody String acedmicqx(HttpServletRequest request){
+        int id = Integer.parseInt(request.getParameter("id"));
+        Teacher teacher = TeacherDao.getTeacherById(id);
+        teacher.setTeacherRoleValue(4);
+        TeacherDao.updateTeacherById(teacher);
+         return "1";
+    }
+    
 }

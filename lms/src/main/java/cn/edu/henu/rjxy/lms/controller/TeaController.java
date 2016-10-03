@@ -9,6 +9,7 @@ package cn.edu.henu.rjxy.lms.controller;
 import cn.edu.henu.rjxy.lms.dao.StudentDao;
 import static cn.edu.henu.rjxy.lms.dao.StudentDao.getStudentById;
 import cn.edu.henu.rjxy.lms.dao.TeacherDao;
+import cn.edu.henu.rjxy.lms.dao.TempStudentDao;
 import cn.edu.henu.rjxy.lms.dao.TermCourseDao;
 import cn.edu.henu.rjxy.lms.dao.TermCourseInfoDao;
 import cn.edu.henu.rjxy.lms.model.AutoCourseNode;
@@ -19,8 +20,10 @@ import cn.edu.henu.rjxy.lms.model.StuSelectResult;
 import cn.edu.henu.rjxy.lms.model.Teacher;
 import cn.edu.henu.rjxy.lms.model.TeacherCourseResult;
 import cn.edu.henu.rjxy.lms.model.TeacherMyclassstudent;
+import cn.edu.henu.rjxy.lms.model.TempStudent;
 import cn.edu.henu.rjxy.lms.server.AuthorityManage;
 import cn.edu.henu.rjxy.lms.server.CurrentInfo;
+import cn.edu.henu.rjxy.lms.server.StudentMethod;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -158,6 +161,43 @@ public class TeaController {
         return "3";
     }  
 
+    
+    
+     //临时学生根据学号分页
+     @RequestMapping("/teacher/ls_xs_search")
+    public @ResponseBody
+    JSONObject search_ls(HttpServletRequest request) {
+       int min = Integer.parseInt(request.getParameter("min"));
+       int max = Integer.parseInt(request.getParameter("max"));
+       int pc = Integer.parseInt(request.getParameter("page"));
+       int ps = Integer.parseInt(request.getParameter("rows"));
+       PageBean<TempStudent> list = TempStudentDao.findAllTempStudentBySn(min, max, pc, ps);
+        Map<String, Object> jsonMap = new HashMap<>();
+        jsonMap.put("total", list.getTr()); 
+        jsonMap.put("rows",list.getBeanList());
+        return JSONObject.fromObject(jsonMap);
+    }
+    
+       //批准临时表学生
+    @RequestMapping(value = "/teacher/pzstu", method = RequestMethod.POST)
+    public @ResponseBody String pzstu(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
+        System.out.println(params.length);
+        for (String param : params) {
+            new StudentMethod().addStudentFromtempStudent(Integer.parseInt(param));
+            TempStudentDao.deleteTempStudentById(Integer.parseInt(param)); //批准的同时删除
+        }    
+        return "批准成功！";
+    }
+    
+        //删除临时表学生
+    @RequestMapping(value="/teacher/scstu", method = RequestMethod.POST)
+    public @ResponseBody String scstu(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
+        for (String param : params) {
+            TempStudentDao.deleteTempStudentById(Integer.parseInt(param)); //删除临时表学生
+        }    
+        return "删除成功！";
+    }
+    
     //教师课程树http://localhost:8080/lms/teacher/courselist?xueqi=201602
     @RequestMapping(value = "courselist",method = RequestMethod.GET)
     public @ResponseBody List<TeacherCourseResult> courselist(HttpServletRequest request,@RequestParam ("xueqi") String xueqi) throws UnsupportedEncodingException{

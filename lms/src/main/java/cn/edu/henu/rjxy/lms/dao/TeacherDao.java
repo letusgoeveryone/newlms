@@ -16,7 +16,7 @@ import cn.edu.henu.rjxy.lms.model.Teacher;
 import cn.edu.henu.rjxy.lms.model.TeacherCourseResult;
 import cn.edu.henu.rjxy.lms.model.Teachers;
 import cn.edu.henu.rjxy.lms.model.TempTeacher;
-import cn.edu.henu.rjxy.lms.model.TempTeacherWithoutPwd;
+import cn.edu.henu.rjxy.lms.model.*;
 import cn.edu.henu.rjxy.lms.model.TermCourse;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -360,6 +360,30 @@ public class TeacherDao {
         }
     }
 
+       public static List getAllacdemicTeacher() {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            List lists = session.createQuery("From Teacher").list();
+            Teacher Teacher;
+            TeacherWithoutPwd teacherWithoutPwd;
+            Iterator<Teacher> it = lists.iterator();
+            List list = new LinkedList();
+            while (it.hasNext()) {
+                Teacher = it.next();
+                teacherWithoutPwd = new TeacherWithoutPwd();
+                teacherWithoutPwd.copy(Teacher);
+                list.add(teacherWithoutPwd);
+            }
+            transaction.commit();//提交
+            return list;
+        } catch (RuntimeException e) {
+            transaction.rollback();//滚回事务
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
     /**
      *判断教师是否存在
      * @param teacherSn 教师工号

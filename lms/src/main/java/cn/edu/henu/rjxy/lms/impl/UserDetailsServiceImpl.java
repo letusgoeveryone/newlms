@@ -67,7 +67,6 @@ public static ArrayList<GrantedAuthority> getAuthoritiesBySn(String sn){
     ArrayList<GrantedAuthority> authorities = new ArrayList<>();
     String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER"};//,"ROLE_ADMIN"
     //                   1              2              4             8          
-    //                                                 7 
         try {
             Teacher tea=TeacherDao.getTeacherBySn(sn);
             System.out.println("找到老师"+tea.getTeacherName());

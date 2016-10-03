@@ -65,7 +65,7 @@ public class Login {
         String sn = AuthorityManage.getCurrentUsername();
         List<String> list = AuthorityManage.getCurrentAuthoritiest(sn);
         String str[] = {"ROLE_ADMIN", "ROLE_DEAN", "ROLE_ACDEMIC", "ROLE_TEACHER", "ROLE_STUDENT"};
-        String str2[] = {"redirect:/admin", "redirect:/dean", "redirect:/acdemic", "redirect:/teacherIndex", "redirect:/student"};
+        String str2[] = {"redirect:/admin", "redirect:/dean", "redirect:/acdemic", "redirect:/teacher", "redirect:/student"};
         for (int j = 0; j < 5; j++) {
             if (list.contains(str[j])) {
                 return str2[j];

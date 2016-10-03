@@ -65,11 +65,6 @@ public class AcdemicController {
     public String index2() {
         return "acdemic/console_dean";
     }
-      @RequestMapping("/teacherIndex")
-    public String teacher(HttpServletRequest request,HttpServletResponse response) {
-       
-        return "teacher/teacherIndex";
-    } 
         //返回acdemic信息
     
     @RequestMapping("/acdemic/pinfo")
@@ -139,7 +134,7 @@ public class AcdemicController {
     }  
 
       //删除临时表学生
-    @RequestMapping(value="scstu", method = RequestMethod.POST)
+    @RequestMapping(value="/acdemic/scstu", method = RequestMethod.POST)
     public @ResponseBody String scstu(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
         for (String param : params) {
             TempStudentDao.deleteTempStudentById(Integer.parseInt(param)); //删除临时表学生
@@ -148,7 +143,7 @@ public class AcdemicController {
     }
     
       ////批准临时表学生
-    @RequestMapping(value = "pzstu", method = RequestMethod.POST)
+    @RequestMapping(value = "/acdemic/pzstu", method = RequestMethod.POST)
     public @ResponseBody String pzstu(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
         System.out.println(params.length);
         for (String param : params) {
@@ -159,7 +154,7 @@ public class AcdemicController {
     }
     
      //正式学生分页 
-    @RequestMapping("/fh_zs_stume")
+    @RequestMapping("/acdemic/fh_zs_stume")
     public @ResponseBody
     JSONObject fhstume(HttpServletRequest request, HttpServletResponse response) {
         int pc = Integer.parseInt(request.getParameter("page"));
@@ -176,7 +171,7 @@ public class AcdemicController {
     }
     
     //正式学生学号范围
-        @RequestMapping("/xh_search")
+        @RequestMapping("/acdemic//xh_search")
     public @ResponseBody
     JSONObject search(HttpServletRequest request) {
        int min = Integer.parseInt(request.getParameter("min"));
@@ -191,7 +186,7 @@ public class AcdemicController {
     }
    
      //删除正式学生的
-    @RequestMapping(value = "sc_zs_xs", method = RequestMethod.POST)
+    @RequestMapping(value = "/acdemic/sc_zs_xs", method = RequestMethod.POST)
     public @ResponseBody String sczsxs(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
         for (String param : params) {
             if(StudentDao.deleteStudentById(Integer.parseInt(param))){
@@ -206,7 +201,7 @@ public class AcdemicController {
     
     
     //临时学生根据学号分页
-     @RequestMapping("ls_xs_search")
+     @RequestMapping("/acdemic/ls_xs_search")
     public @ResponseBody
     JSONObject search_ls(HttpServletRequest request) {
        int min = Integer.parseInt(request.getParameter("min"));
@@ -222,7 +217,7 @@ public class AcdemicController {
     
     
     //临时学生学院年级
-     @RequestMapping("/ls_xs_xy_ni__search")
+     @RequestMapping("/acdemic//ls_xs_xy_ni__search")
     public @ResponseBody
     JSONObject search_ls1(HttpServletRequest request) {
        String min =request.getParameter("xueyuan");
@@ -241,7 +236,7 @@ public class AcdemicController {
     }
     
      //正式学生学院年级
-    @RequestMapping("/xy_nianji_search")
+    @RequestMapping("/acdemic//xy_nianji_search")
     public @ResponseBody
     JSONObject search_ls2(HttpServletRequest request) {
        String min =request.getParameter("xueyuan");
@@ -259,7 +254,7 @@ public class AcdemicController {
     }
     
      //导出正式表学生信息
-    @RequestMapping("daochuxuesheng")
+    @RequestMapping("/acdemic/daochuxuesheng")
     public void daochuxuesheng(HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession session = request.getSession();
         session.setAttribute("state", null);
@@ -334,7 +329,7 @@ public class AcdemicController {
     
     }
     
-       @RequestMapping("/fhstume")//临时学生分页
+       @RequestMapping("/acdemic//fhstume")//临时学生分页
     public @ResponseBody
     JSONObject fhstume1(HttpServletRequest request, HttpServletResponse response) {
         int pc = Integer.parseInt(request.getParameter("page"));
@@ -353,7 +348,7 @@ public class AcdemicController {
     
     
     //临时教师分页
-    @RequestMapping(value = "/fhjsxx", method = RequestMethod.GET)
+    @RequestMapping(value = "/acdemic//fhjsxx", method = RequestMethod.GET)
     public @ResponseBody
     JSONObject json_test2(HttpServletRequest request, HttpServletResponse response) {
         int pc = Integer.parseInt(request.getParameter("page"));
@@ -371,7 +366,7 @@ public class AcdemicController {
 
     
      //删除临时表教师信息
-    @RequestMapping("sc")
+    @RequestMapping("/acdemic/sc")
     public @ResponseBody
     String pz(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
          for (int i=0;i<params.length;i++) {  
@@ -381,7 +376,7 @@ public class AcdemicController {
     }
     
     //批准的同时删除临时表教师信息
-    @RequestMapping(value = "pzscjs", method = RequestMethod.POST)
+    @RequestMapping(value = "/acdemic/pzscjs", method = RequestMethod.POST)
     public @ResponseBody
     String pzscjsxx(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
         System.out.println(params.length+"j");
@@ -394,7 +389,7 @@ public class AcdemicController {
     }
     
     //正式教师信息分页
-      @RequestMapping("fh_zs_jsme")
+      @RequestMapping("/acdemic/fh_zs_jsme")
     public @ResponseBody
     JSONObject fhtecme(HttpServletRequest request, HttpServletResponse response) {
         int pc = Integer.parseInt(request.getParameter("page"));
@@ -408,7 +403,7 @@ public class AcdemicController {
     }
     
     //批量删除正式教师信息
-    @RequestMapping(value = "pzsc_zs_jsxx", method = RequestMethod.POST)
+    @RequestMapping(value = "/acdemic/pzsc_zs_jsxx", method = RequestMethod.POST)
     public @ResponseBody
     String pzsc_zs_jsxx(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
         System.out.println(params.length+"j");
@@ -428,7 +423,7 @@ public class AcdemicController {
     }
     
     //正式教师根据工号范围分页
-     @RequestMapping("/zs_js_search")
+     @RequestMapping("/acdemic//zs_js_search")
     public @ResponseBody
     JSONObject search_ls_js(HttpServletRequest request) {
        int min = Integer.parseInt(request.getParameter("min"));
@@ -443,7 +438,7 @@ public class AcdemicController {
     }
     
      //匹配教师姓名
-    @RequestMapping("/ppjsxx")
+    @RequestMapping("/acdemic//ppjsxx")
     public @ResponseBody String[]
      ppjsxx(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
       response.setContentType("text/html;charset=utf-8");
@@ -463,7 +458,7 @@ public class AcdemicController {
     }
      
       //临时教师根据工号范围分页
-     @RequestMapping("/ls_js_search")
+     @RequestMapping("/acdemic//ls_js_search")
     public @ResponseBody
     JSONObject search_zs(HttpServletRequest request) {
        int min = Integer.parseInt(request.getParameter("min"));
@@ -478,7 +473,7 @@ public class AcdemicController {
     }
      
      //临时教师根据学院年级分页
-       @RequestMapping("/ls_js_xy_search")
+       @RequestMapping("/acdemic//ls_js_xy_search")
     public @ResponseBody JSONObject
      ppjsxx1(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
        String collage =request.getParameter("min");
@@ -493,7 +488,7 @@ public class AcdemicController {
     }
      
       //正式教师根据学院
-     @RequestMapping("/zs_js_xy_search")
+     @RequestMapping("/acdemic//zs_js_xy_search")
     public @ResponseBody JSONObject
      ppjsxx2(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
        String collage =request.getParameter("min");
@@ -508,7 +503,7 @@ public class AcdemicController {
      
       
     //导出正式表教师信息
-   @RequestMapping("daochualltoxls")
+   @RequestMapping("/acdemic/daochualltoxls")
     public void exportExcel(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
          System.out.println("1...");
@@ -585,7 +580,7 @@ public class AcdemicController {
     
     
        //添加班级  
-    @RequestMapping(value = "/tjbj", method = RequestMethod.POST)
+    @RequestMapping(value = "/acdemic/tjbj", method = RequestMethod.POST)
     public @ResponseBody
     String tjbj(HttpServletRequest request, @RequestParam("jssz[]") String[] params) throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");
@@ -597,7 +592,7 @@ public class AcdemicController {
     
     
    //查看班级
-    @RequestMapping(value = "/ckbj_xx", method = RequestMethod.GET)
+    @RequestMapping(value = "/acdemic//ckbj_xx", method = RequestMethod.GET)
     public @ResponseBody
     JSONObject fhtjbj(HttpServletRequest request) {
         int pc = Integer.parseInt(request.getParameter("page"));
@@ -612,7 +607,7 @@ public class AcdemicController {
     }
     
     //删除班级
-    @RequestMapping(value = "/scbj",method = RequestMethod.POST)
+    @RequestMapping(value = "/acdemic//scbj",method = RequestMethod.POST)
     public  @ResponseBody String scbj(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
         for (int i=0;i<params.length;i++) {
             if(ClassesMethod.deleteClassById(Integer.parseInt(params[i]))){
@@ -626,7 +621,7 @@ public class AcdemicController {
     }
     
     //添加学期课程
-     @RequestMapping("tj_next_course")
+     @RequestMapping("/acdemic/tj_next_course")
     public @ResponseBody String tj_next_course(HttpServletRequest request, @RequestParam("jssz[]") String[] params,
             @RequestParam("tecgh[]") String[] tec_gh,@RequestParam("term[]") String[] term,@RequestParam("courseName[]") String[] courseName){
         for(int i = 0;i<tec_gh.length;i++){
@@ -637,7 +632,7 @@ public class AcdemicController {
     }
     
     //设置的课程和课程负责人分页
-    @RequestMapping("next_cs_tr")
+    @RequestMapping("/acdemic/next_cs_tr")
       public @ResponseBody
       JSONObject course_fanhui1(HttpServletRequest request, HttpServletResponse response) {
         int pc;
@@ -657,7 +652,7 @@ public class AcdemicController {
     }
       
      //添加学期班级
-    @RequestMapping(value = "/tj_next_bj", method = RequestMethod.POST)
+    @RequestMapping(value = "/acdemic//tj_next_bj", method = RequestMethod.POST)
     public @ResponseBody
     String tj_next_bj(HttpServletRequest request, @RequestParam("jssz[]") String[] params
             ,@RequestParam("term[]") String[] terms) {
@@ -667,7 +662,7 @@ public class AcdemicController {
         return "sucess";
     }
     //显示学期班级
-    @RequestMapping(value = "/next_bj",method = RequestMethod.POST)
+    @RequestMapping(value = "/acdemic//next_bj",method = RequestMethod.POST)
     public @ResponseBody JSONObject next_bj(HttpServletRequest request){
         int pc;
         if( (request.getParameter("page")==" ")||Integer.parseInt(request.getParameter("page"))==0){
@@ -686,7 +681,7 @@ public class AcdemicController {
     }
       
     //课程表的添加
-      @RequestMapping(value = "courselist_add", method = RequestMethod.POST)
+      @RequestMapping(value = "/acdemic/courselist_add", method = RequestMethod.POST)
     public @ResponseBody
     String pz2(HttpServletRequest request, @RequestParam("tec_gh[]") String[] tec_gh,@RequestParam("classId[]") String[] classId) {
       String term = request.getParameter("xueqi");
@@ -699,7 +694,7 @@ public class AcdemicController {
     }
     
     //课程表的分页
-    @RequestMapping("courselist_fanhui")
+    @RequestMapping("/acdemic/courselist_fanhui")
      public @ResponseBody JSONObject courselist_fanhui(HttpServletRequest request){
        int term = Integer.parseInt(request.getParameter("term"));
        int pc = Integer.parseInt(request.getParameter("page"));
@@ -712,7 +707,7 @@ public class AcdemicController {
        return JSONObject.fromObject(jsonMap);          
     }
      
-      @RequestMapping(value = "course_add", method = RequestMethod.POST)
+      @RequestMapping(value = "/acdemic/course_add", method = RequestMethod.POST)
     public @ResponseBody
     String pz2(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
         String course_number = params[0];
@@ -729,7 +724,7 @@ public class AcdemicController {
     }
 
     //课程显示
-    @RequestMapping("course_fanhui")
+    @RequestMapping("/acdemic/course_fanhui")
     public @ResponseBody
     JSONObject course_fanhui(HttpServletRequest request, HttpServletResponse response) {
         int pc;
@@ -747,7 +742,7 @@ public class AcdemicController {
     }
     
     //课程delete
-    @RequestMapping("sckc")
+    @RequestMapping("/acdemic/sckc")
     public @ResponseBody
     String sckc(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
         System.out.println(params[0]);
@@ -763,14 +758,14 @@ public class AcdemicController {
     }
 
  //根据工号自动补全姓名
-  @RequestMapping(value = "zdpqjsxm",method = RequestMethod.POST)
+  @RequestMapping(value = "/acdemic/zdpqjsxm",method = RequestMethod.POST)
   public @ResponseBody String zdpq(HttpServletRequest request,@RequestParam("search-text") String params){
      System.out.println(params);
     return "accccccccccccccc";
   }
 
   //获取教务员个人资料
-  @RequestMapping("/getAcdemic")
+  @RequestMapping("/acdemic/getAcdemic")
   public @ResponseBody String[] getAcdemic(HttpServletRequest request,HttpServletResponse response){
        String sn=AuthorityManage.getCurrentUsername();
        Teacher tec = TeacherDao.getTeacherBySn(sn);
