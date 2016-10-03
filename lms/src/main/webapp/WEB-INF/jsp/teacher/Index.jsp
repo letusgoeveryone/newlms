@@ -180,11 +180,9 @@
                         </a>
                     </div>
                     <div class="card-inner row">
-                        <br><br><br><br><br>
-                        <br><br><br><br><br>
-                        <br><br><br><br><br>
-                        <br><br><br><br><br>
-                        <br><br><br><br><br>
+                        教师可在此处批准本班学生，不建议批准其他学生。<br><br>
+                        <jsp:include page="tempstu.jsp"  />
+                        
                     </div>
                 </div>
             </div>
@@ -218,6 +216,16 @@
         </div>
 
         <script>
+            
+            function sbysn(){
+                var min_sn = $("#min_sn").val();
+                var max_sn = $("#max_sn").val();
+                $('#dg_stu').datagrid({
+                    url: 'searchbysn?min=' + min_sn + "&max=" + max_sn,
+                    loadMsg: '加载中请稍后……'
+                }); 
+            }
+            
         //学期下拉框
             function kcdz() {
                 $.ajax({

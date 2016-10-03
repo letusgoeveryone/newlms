@@ -57,7 +57,7 @@
                 jssz[0] = teacherId;
                 $.ajax({
                     type: "post", //提交方式
-                    url: "sc", //提交的页面，方法名
+                    url: "acdemic/sc", //提交的页面，方法名
                     data: {jssz: jssz}, //参数，如果没有，可以为null
                     success: function (data) {
                         alert("删除成功");
@@ -75,7 +75,7 @@
                 jssz[0] = teacherId;
                 $.ajax({
                     type: "post", //提交方式
-                    url: "pzscjs", //提交的页面，方法名
+                    url: "acdemic/pzscjs", //提交的页面，方法名
                     data: {jssz: jssz}, //参数，如果没有，可以为null
                     success: function (data) {
                         alert("批准成功");
@@ -129,7 +129,7 @@
             }
             function ckls_jsxx() {
                 $('#dg').datagrid({
-                    url: 'fhjsxx',
+                    url: 'acdemic/fhjsxx',
                     loadMsg: '临时教师数据加载中请稍后……'
                 });
                 looktemptea();
@@ -144,7 +144,7 @@
                 }
                 $.ajax({
                     type: "post", //提交方式
-                    url: "pzscjs", //提交的页面，方法名
+                    url: "acdemic/pzscjs", //提交的页面，方法名
                     data: {jssz: jssz}, //参数，如果没有，可以为null
                     success: function (data) {
                         alert("批准成功");
@@ -165,7 +165,7 @@
                 }
                 $.ajax({
                     type: "post", //提交方式
-                    url: "sc", //提交的页面，方法名
+                    url: "acdemic/sc", //提交的页面，方法名
                     data: {jssz: jssz}, //参数，如果没有，可以为null
                     success: function (data) {
                         alert("删除成功");
@@ -198,7 +198,7 @@
                 $('.ls_js').change(function () {
                     var a = document.getElementById("ls_js_xy").value;
                     $('#dg').datagrid({
-                        url: 'ls_js_xy_search?min=' + a,
+                        url: 'acdemic/ls_js_xy_search?min=' + a,
                         loadMsg: '加载中请稍后……'
                     });
                 });
@@ -206,7 +206,7 @@
             function xh_lsjs_search() {
                 //  alert( $('#min_ls_js').val()+"="+ $('#max_ls_js').val())
                 $('#dg').datagrid({
-                    url: 'ls_js_search?min=' + $('#min_ls_js').val() + "&max=" + $('#max_ls_js').val(),
+                    url: 'acdemic/ls_js_search?min=' + $('#min_ls_js').val() + "&max=" + $('#max_ls_js').val(),
                     loadMsg: '加载中请稍后……'
                 });
             }

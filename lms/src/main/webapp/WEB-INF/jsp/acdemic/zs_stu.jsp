@@ -40,7 +40,7 @@
         <a  class="easyui-linkbutton" onclick="getSelections_zs_xs()">查看选中的多个信息</a>
         <a  class="easyui-linkbutton" onclick="sj_zs_stu()">加载所有学院学生信息</a>
         <a  class="easyui-linkbutton" onclick="sc_zs_xs()">删除选中的学生</a>
-        <a href="daochuxuesheng?a=正式学生信息" class="easyui-linkbutton" >下载学生信息</a>
+        <a href="acdemic/daochuxuesheng?a=正式学生信息" class="easyui-linkbutton" >下载学生信息</a>
         
     </div>
         <script type="text/javascript">
@@ -60,7 +60,7 @@
                 jssz[0] = studentId;
                 $.ajax({
                     type: "post", 
-                    url: "sc_zs_xs", 
+                    url: "acdemic/sc_zs_xs", 
                     data: {jssz: jssz}, 
                     success: function (data){
                         if(data==="1"){
@@ -112,7 +112,7 @@
         }
         function sj_zs_stu() {
             $('#dg_zs_stu').datagrid({
-                url: 'fh_zs_stume',
+                url: 'acdemic/fh_zs_stume',
                 loadMsg: '数据加载中请稍后……'
             });
             looknew();
@@ -128,7 +128,7 @@
                 }
                 $.ajax({
                 type: "post", 
-                    url: "sc_zs_xs",
+                    url: "acdemic/sc_zs_xs",
                     data: {jssz: jssz},
                      success: function (data) {
                         if(data==="1"){
@@ -147,7 +147,7 @@
         function go_zs_stu(){
             $('#dg_zs_stu').datagrid('options').pageNumber=$('#go').val();
             $('#dg_zs_stu').datagrid({
-            url: 'fh_zs_stume',
+            url: 'acdemic/fh_zs_stume',
             loadMsg:'数据加载中请稍后……'
             });
 
@@ -162,7 +162,7 @@
             }
             $.ajax({
             type: "post", 
-            url: "sc_zs_xs", 
+            url: "acdemic/sc_zs_xs", 
             data: {jssz: jssz}, 
             success: function (data) {
                if(data==="1"){
@@ -179,7 +179,7 @@
         }
         function  xh_search() {
             $('#dg_zs_stu').datagrid({
-              url: 'xh_search?min=' + $('#min_stu').val() + "&max=" + $('#max_stu').val(),
+              url: 'acdemic/xh_search?min=' + $('#min_stu').val() + "&max=" + $('#max_stu').val(),
               loadMsg: '加载中请稍后……'
             });
         }
@@ -219,13 +219,13 @@
              $(function(){
                 $('.zs_xs').change(function(){
                   $('#dg_zs_stu').datagrid({
-                        url: 'xh_nianji_search?nianji=' + document.getElementById("xs_xs_xy_2").value + "&xueyuan=" +  document.getElementById("xs_xs_xy_1").value,
+                        url: 'acdemic/xh_nianji_search?nianji=' + document.getElementById("xs_xs_xy_2").value + "&xueyuan=" +  document.getElementById("xs_xs_xy_1").value,
                         loadMsg: '加载中请稍后……'
                      });   
                 });
                  $('.zs_xs_nj').change(function(){
                      $('#dg_zs_stu').datagrid({
-                        url: 'xy_nianji_search?nianji=' + document.getElementById("xs_xs_xy_2").value + "&xueyuan=" + document.getElementById("xs_xs_xy_1").value,
+                        url: 'acdemic/xy_nianji_search?nianji=' + document.getElementById("xs_xs_xy_2").value + "&xueyuan=" + document.getElementById("xs_xs_xy_1").value,
                         loadMsg: '加载中请稍后……'
                      });
                 

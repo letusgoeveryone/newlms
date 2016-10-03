@@ -93,7 +93,7 @@
                 } 
                 $.ajax({
                     type: "post", 
-                    url: "sckc", 
+                    url: "acdemic/sckc", 
                     data: {jssz: jssz}, 
                     success: function (data) {
                         if(data==="1"){
@@ -144,14 +144,14 @@
             }
             function ckkcxx() {
                 $('#dg_couse').datagrid({
-                    url: 'course_fanhui',
+                    url: 'acdemic/course_fanhui',
                     loadMsg: '课程数据加载中请稍后……'
                 });
             }
             function tijiakecheng(jssz) {
                 $.ajax({
                     type: "post", //提交方式
-                    url: "course_add", //提交的页面，方法名
+                    url: "acdemic/course_add", //提交的页面，方法名
                     data: {jssz: jssz},
                     success: function (data) {
                      //   alert("sucess!");
@@ -161,7 +161,7 @@
                     }
                 });
                 $('#dg_couse').datagrid({
-                    url: 'course_fanhui',
+                    url: 'acdemic/course_fanhui',
                     loadMsg: '课程数据加载中请稍后……'
                 });
             }
