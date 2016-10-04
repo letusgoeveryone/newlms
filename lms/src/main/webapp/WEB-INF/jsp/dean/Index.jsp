@@ -155,7 +155,7 @@
 
             <ul class="nav nav-list pull-left">
                 <li>
-                    <a href="<%=path%>/admin">
+                    <a href="<%=path%>/dean">
                         <span class="icon icon-lg">home</span>
                     </a>
                 </li>
@@ -201,17 +201,13 @@
                             <div class="card-inner">
                                 <section class="card-heading">院长视角（角色转换）</section>
                                 <section>
-                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                        <a href="login" class='btn btn-aqua'>
-                                           返回
-                                        </a>
-                                    </sec:authorize>
-                                    <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
+                                   
+                                    <sec:authorize access="hasRole('ROLE_ACDEMIC')">
                                         <a href="<%=path%>/acdemic" class='btn btn-aqua'>
                                             【A 教务员】
                                         </a>
                                     </sec:authorize>
-                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                    <sec:authorize access="hasRole('ROLE_TEACHER')">
                                         <a href="<%=path%>/teacher" class='btn btn-aqua'>
                                             【T 教职】
                                         </a>
