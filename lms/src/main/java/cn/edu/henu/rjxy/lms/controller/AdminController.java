@@ -43,7 +43,7 @@ public class AdminController {
         request.setAttribute("AllCollege", listToString(CurrentInfo.getAllCollege()));
         request.setAttribute("CurrentTerm", CurrentInfo.getCurrentTerm());
         request.setAttribute("FileFolder", CurrentInfo.getFileFolder());
-
+        request.setAttribute("Selfverification", CurrentInfo.getOtherConfigure("Selfverification").toLowerCase());
         return "admin/FunctionManage";
     }
     //保存配置提交

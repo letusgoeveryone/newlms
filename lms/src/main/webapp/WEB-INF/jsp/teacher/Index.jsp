@@ -42,7 +42,7 @@
 
             <ul class="nav nav-list pull-left">
                 <li>
-                    <a href="<%=path%>/teacher">
+                    <a href="<%=path%>/login">
                         <span class="icon icon-lg">home</span>
                     </a>
                 </li>
