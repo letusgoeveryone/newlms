@@ -35,7 +35,7 @@ import org.hibernate.Transaction;
  */
 public class TeacherDao {
 
-    static Session session;
+
 
     //根据用户名查询正式教师对象
 
@@ -45,7 +45,7 @@ public class TeacherDao {
      * @return 返回指定教师
      */
     public static Teacher getTeacherById(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -63,7 +63,7 @@ public class TeacherDao {
     }
     
     public static boolean isCourseMaster(Integer term, Integer teacherId, Integer courseId) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -92,7 +92,7 @@ public class TeacherDao {
     }
     
     public static void updateStudentCourse(Integer studentId, Integer termCourseId, boolean state) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -122,7 +122,7 @@ public class TeacherDao {
     
     
     public static Teacher updateTeacherById(Teacher teacher) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -138,7 +138,7 @@ public class TeacherDao {
     }
     
     public static PageBean<StuSelectResult> getStuSelectByTermCourseId(Integer termCourseId,Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -187,7 +187,7 @@ public class TeacherDao {
      * @param tempTeacher 临时教师对象
      */
     public static void addTeacherFromtempTeacher(TempTeacher tempTeacher) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -210,7 +210,7 @@ public class TeacherDao {
      * @param teacher 教师对象
      */
     public static void saveTeacher(Teacher teacher) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -238,7 +238,7 @@ public class TeacherDao {
      * @param id 教师id
      */
     public static boolean deleteTeacherById(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -273,7 +273,7 @@ public class TeacherDao {
      * @return
      */
     public static List<TeacherCourseResult> getTeacherCourseByTermSn(Integer term, String teacherSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
@@ -333,7 +333,7 @@ public class TeacherDao {
      * @return  全体教师列表
      */
     public static List getAllTeacher() {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -361,7 +361,7 @@ public class TeacherDao {
     }
 
        public static List getAllacdemicTeacher() {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List lists = session.createQuery("From Teacher").list();
@@ -396,7 +396,7 @@ public class TeacherDao {
      * @return 存在则返回true，不存在返回fals
      */
     public static boolean isExistBySn(String teacherSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List list = session.createQuery("FROM Teacher t WHERE t.teacherSn = :sn")
@@ -419,7 +419,7 @@ public class TeacherDao {
      * @return 教师姓名
      */
     public static String getTeacherNameBySn(String teacherSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
@@ -456,7 +456,7 @@ public class TeacherDao {
      * @return  返回一个分页bean对象
      */
     public static PageBean<Teacher> findAllTeacherBySn(Integer min, Integer max, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List<Teacher> lists = session.createQuery("FROM Teacher t WHERE t.teacherSn BETWEEN :min  AND  :max")
@@ -504,7 +504,7 @@ public class TeacherDao {
      * @return  返回一个分页bean对象
      */
     public static PageBean<Teacher> findAllTeacherByCollege(String teacherCollege, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List lists = session.createQuery("FROM Teacher t WHERE t.teacherCollege = :college")
@@ -546,7 +546,7 @@ public class TeacherDao {
      * @return 返回指定教师对象
      */
     public static Teacher getTeacherBySn(String teacherSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 

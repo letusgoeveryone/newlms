@@ -23,7 +23,7 @@ import org.hibernate.Transaction;
  * @author Administrator
  */
 public class TermCourseInfoDao {
-    static Session session;
+
 
     
     /**
@@ -34,7 +34,7 @@ public class TermCourseInfoDao {
      */
     public static void addCourseInfo(Integer term, Integer courseId, String courseBInfo, Integer flag){
         Course course = CourseDao.getCourseById(courseId);
-        session = HibernateUtil.getSessionFactory().openSession();
+         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -74,7 +74,7 @@ public class TermCourseInfoDao {
     
     public static String getCourseInfo(Integer term, Integer courseId,  Integer flag){
         Course course = CourseDao.getCourseById(courseId);
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -105,9 +105,6 @@ public class TermCourseInfoDao {
         }
     }
     
-    public static void main(String[] args) {
-        System.out.println(getCourseInfo(201602, 1, 0));
-    }
   
 
 }

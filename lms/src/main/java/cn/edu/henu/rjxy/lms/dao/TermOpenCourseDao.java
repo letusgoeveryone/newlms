@@ -26,14 +26,14 @@ import org.hibernate.Transaction;
  * @author Administrator
  */
 public class TermOpenCourseDao {
-   static Session session;
+
     
     /**
      *保存一个学期开课课程
      * @param termOpenCourse
      */
     public static void saveTermOpenCourse(TermOpenCourse termOpenCourse) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -65,7 +65,7 @@ public class TermOpenCourseDao {
      * @param termOpenCourse 学期开课课程对象
      */
     public static void deleteTermOpenCourse(TermOpenCourse termOpenCourse) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -101,7 +101,7 @@ public class TermOpenCourseDao {
      * @return 返回指定学期开课课程对象
      */
     public static TermOpenCourse  getTermOpenCourse(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -121,7 +121,7 @@ public class TermOpenCourseDao {
      * @param id 学期开课课程id
      */
     public static void deleteTermOpenCourseById(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -157,7 +157,7 @@ public class TermOpenCourseDao {
      * @return 返回一个分页bean对象
      */
     public static PageBean<String> findAll(Integer term, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List<TermOpenCourse> list = session.createQuery("FROM TermOpenCourse t WHERE t.term = :term")

@@ -28,21 +28,15 @@ import org.hibernate.Transaction;
  * @author Administrator
  */
 public class TermClassDao {
-    
-    public static void main(String[] args) {
-        deleteTermClassByid(2);
-        
-    }
 
-    
-    static Session session;
+
 
     /**
      *保存一个学期班级
      * @param termClass 学期班级对象
      */
     public static void saveTermClass(TermClass termClass) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();//开启事务
         try {
             //操作
@@ -73,7 +67,7 @@ public class TermClassDao {
      * @param termClass 学期班级对象
      */
     public static void deleteTermClass(TermClass termClass) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();//开启事务
         try {
             //操作
@@ -105,7 +99,7 @@ public class TermClassDao {
      * @return 返回一个学期班级
      */
     public static TermClass getTermClass(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();//开启事务
         try {
             //操作
@@ -126,7 +120,7 @@ public class TermClassDao {
      */
     public static void deleteTermClassByid(Integer id) {
         TermClass termClass = getTermClass(id);
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();//开启事务
         try {
             //操作
@@ -159,7 +153,7 @@ public class TermClassDao {
      * @return 全体学期班级列表
      */
     public static List getAllTermClass() {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();//开启事务
         try {
             //操作
@@ -183,7 +177,7 @@ public class TermClassDao {
      * @return 返回一个分页bean对象
      */
     public static PageBean<Classes1> findAll(Integer term, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 //操作

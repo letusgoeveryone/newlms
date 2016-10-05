@@ -21,7 +21,7 @@ import org.hibernate.Transaction;
  * @author Administrator
  */
 public class StudentSelectCourseDao {
-    static Session session;
+    
     public static void saveStudentSelectCourse( String studentSn, Integer termCourseId, Integer state) {
         Student student = StudentDao.getStudentBySn(studentSn);
         if (student == null) {
@@ -33,7 +33,7 @@ public class StudentSelectCourseDao {
             throw  new RuntimeException("找不到对应课程,找不到的课程id为"+termCourseId);
         }
         StudentSelectCourse studentSelectCourse = new StudentSelectCourse( student, tc, state);
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List list = session.createQuery("FROM StudentSelectCourse s WHERE s.student.studentSn = :sn AND s.termCourse.course.courseId = :id")
@@ -59,7 +59,7 @@ public class StudentSelectCourseDao {
     
     
     public static List<StudentSelectCourse> getStudentSelectCourseByTermSnCourseId(Integer term, String studentSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             List<StudentSelectCourse> list = session.createQuery("FROM StudentSelectCourse s WHERE s.termCourse.term = :term AND s.student.studentSn = :sn")
@@ -79,7 +79,7 @@ public class StudentSelectCourseDao {
     }
 
     public static StudentSelectCourse getStudentSelectCourseByTermStudentId(Integer termCourseId, Integer studentId) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             StudentSelectCourse ssc = (StudentSelectCourse)session.createQuery("FROM StudentSelectCourse s WHERE s.termCourse.id = :termCourseId AND s.student.studentId = :id")
@@ -103,7 +103,7 @@ public class StudentSelectCourseDao {
 //    }
     //查询某一学生已选课程（老师已确认）
     public static List getStudentSelectCourseNameByTermSnCourseId(Integer term, String studentSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             List<StudentSelectCourse> list = session.createQuery("FROM StudentSelectCourse s WHERE s.termCourse.term = :term AND s.student.studentSn = :sn AND s.state=1")
@@ -132,7 +132,7 @@ public class StudentSelectCourseDao {
     
  //查询某一学生已选课程（老师未确认）
  public static List getStudentSelectCourseNameByTermSnCourseId2(Integer term, String studentSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             List<StudentSelectCourse> list = session.createQuery("FROM StudentSelectCourse s WHERE s.termCourse.term = :term AND s.student.studentSn = :sn AND s.state=0")
@@ -160,7 +160,7 @@ public class StudentSelectCourseDao {
     }
  
     public static void updateStudentSelectCourse(StudentSelectCourse studentSelectCourse) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             session.update(studentSelectCourse);
@@ -190,7 +190,7 @@ public class StudentSelectCourseDao {
                 studentSelectCourse = list1;
             }
         }
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             session.delete(studentSelectCourse);
@@ -205,7 +205,7 @@ public class StudentSelectCourseDao {
     
 
     public static Integer getTermCourseIdByothers(Integer term,Integer courseId,Integer classId, Integer teacherId){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();//开启事务
         try {
             //操作

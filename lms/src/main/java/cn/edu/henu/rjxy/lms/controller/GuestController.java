@@ -37,6 +37,7 @@ public class GuestController {
     //所有课程列表
     @RequestMapping("/guest/getcoulist")
     public @ResponseBody Map[] getcoulist(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("i am comming");
         List<String> list=CourseDao.findAllCourse2();
         Map []a = new Map[list.size()/2];      
         for (int i = 0; i < list.size()/2; i++) {
@@ -51,6 +52,7 @@ public class GuestController {
     public  @ResponseBody String[]  guestcour(HttpServletRequest request, HttpServletResponse response) {
         int cid =Integer.valueOf(request.getParameter("cid"));
         int term=getCurrentTerm();
+        System.out.println(term);
         String []a = new String[2];
         a[0]=TermCourseInfoDao.getCourseInfo(term, cid, 0);
         a[1]=TermCourseInfoDao.getCourseInfo(term, cid, 1);
