@@ -5,9 +5,10 @@
  */
 package cn.edu.henu.rjxy.lms.dao;
 
-import static cn.edu.henu.rjxy.lms.dao.CourseDao.session;
+
 import cn.edu.henu.rjxy.lms.hibernateutil.HibernateUtil;
 import cn.edu.henu.rjxy.lms.model.KeyValue;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
@@ -15,14 +16,9 @@ import org.hibernate.Transaction;
  * @author Administrator
  */
 public class KeyValueDao {
-    
-    public static void main(String[] args) {
-    //    add(new KeyValue("mykey", "myvalue"));
-    //    System.out.println(get("mykey"));
-    }
-    
+
     public static void add(KeyValue keyValue) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
            KeyValue kv = (KeyValue) session.createQuery("FROM key_Value k WHERE k.mykey = :aaa")
@@ -43,7 +39,7 @@ public class KeyValueDao {
     }
     
     public static void delete(KeyValue keyValue) {
-        session = HibernateUtil.getSessionFactory().openSession();
+       Session  session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
            KeyValue kv = (KeyValue) session.createQuery("FROM key_Value k WHERE k.mykey = :aaa")
@@ -64,7 +60,7 @@ public class KeyValueDao {
     }
     
     public static String get(String key) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
            KeyValue kv = (KeyValue) session.createQuery("FROM key_Value k WHERE k.mykey = :key")
@@ -80,7 +76,10 @@ public class KeyValueDao {
             transaction.rollback();//滚回事务
             throw e;
         } finally {
-            session.close();
+            if (session.isOpen()) {
+                session.close();
+            }
+            
         }      
     }
     

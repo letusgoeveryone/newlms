@@ -28,10 +28,11 @@ import org.hibernate.Transaction;
  */
 public class CourseDao {
 
-    static Session session;
+
     
     public static void main(String[] args) {
-        getCourseById(1);
+        List list1 = findAllCourse2();
+        System.out.println(list1.size());
     }
     
     /**
@@ -39,7 +40,7 @@ public class CourseDao {
      * @param course 课程对象
      */
     public static void addCourse(Course course) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -67,7 +68,7 @@ public class CourseDao {
      * @param id  课程id
      */
     public static boolean deleteCourse(Integer id){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             
@@ -103,7 +104,7 @@ public class CourseDao {
      * @return 返回指定课程对象
      */
     public static Course getCourseById(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -126,7 +127,7 @@ public class CourseDao {
      * @return 返回一个分页bean对象
      */
     public static PageBean<Course> findAllCourse(Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
@@ -172,7 +173,7 @@ public class CourseDao {
      * @return 返回包含所有课程的List
      */
     public static List findAllCourse2() {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         List fList = new LinkedList();
         try {
@@ -200,7 +201,7 @@ public class CourseDao {
      * @return 返回一个分页bean对象，返回列包括课程名，教师id，教师学号，教师姓名
      */
     public static PageBean<MasterCourseResult> findAllCourseMaster(Integer term, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
        //操作
@@ -251,7 +252,7 @@ public class CourseDao {
      */
     
      public static Course getCourseByName(String courseName) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
@@ -277,7 +278,7 @@ public class CourseDao {
      public static void saveCourseMaster(Integer term, String teacherSn, String courseName) {
          Teacher teacher = TeacherDao.getTeacherBySn(teacherSn);
          Course course = getCourseByName(courseName);
-         session = HibernateUtil.getSessionFactory().openSession();
+         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             
@@ -298,7 +299,7 @@ public class CourseDao {
      
      public static void deleteCourseMaster(Integer id) {
 
-         session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.delete(session.get(CourseMaster.class, id));
@@ -316,7 +317,7 @@ public class CourseDao {
      * @param term  学期
      */
 public static List getCourseIdByTerm(Integer term) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List<TermOpenCourse> list = session.createQuery(" FROM TermOpenCourse t WHERE t.term = :term")
@@ -342,7 +343,7 @@ public static List getCourseIdByTerm(Integer term) {
      * @param courseId  课程
      */
 public static List getTeacherSnByTermCourseId(Integer term,  Integer courseId) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List<TermCourse> list = session.createQuery(" FROM TermCourse t WHERE t.term = :term")
@@ -373,7 +374,7 @@ public static List getTeacherSnByTermCourseId(Integer term,  Integer courseId) {
      * @param teacherSn  某老师
      */
 public static List getClassSnByTermCourseNumber(Integer term,  Integer courseId,String teacherSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List<TermCourse> list = session.createQuery(" FROM TermCourse t WHERE t.term = :term AND t.teacher.teacherSn = :sn AND t.course.courseId = :Id")

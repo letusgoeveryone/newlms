@@ -52,6 +52,25 @@ public class TeacherMethod {
         TeacherDao.saveTeacher(teacher);
     }
 
+    
+    /*
+      *筛选出教务员
+    */
+     public List findteaacdemic() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            List list = session.createQuery("FROM Teacher").list();
+            transaction.commit();//提交
+            return list;
+        } catch (RuntimeException e) {
+            transaction.rollback();//滚回事务
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+    
     /**
      *为正式教师分页
      * @param pc 当前页

@@ -25,7 +25,7 @@ import org.hibernate.Transaction;
  */
 public class StudentDao {
 
-    static Session session;
+
 
     /**
      * 保存传入的学生对象
@@ -33,7 +33,7 @@ public class StudentDao {
      *@throw 如果传入的学生学号和已有正式某学生重复，则抛出异常，并提示重复学号
      */
     public static void saveStudent(Student student) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -57,7 +57,7 @@ public class StudentDao {
     }
     
     public static void updateStudent(Student student) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.update(student);
@@ -79,7 +79,7 @@ public class StudentDao {
      * @return 返回一个分页bean对象
      */
     public static PageBean<Student>  findAll(Integer pc, Integer ps){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -116,7 +116,7 @@ public class StudentDao {
      * @return 返回pageBean
      */
     public static PageBean<Student> findAllStudentByCollegeGrade(String studentCollege, Integer studentGrade, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             Long x = (Long) session.createQuery(
@@ -151,7 +151,7 @@ public class StudentDao {
      * @return 返回全体正式学生的集合（不含密码）
      */
     public static List<StudentWithoutPwd> getAllStudent() {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -191,7 +191,7 @@ public class StudentDao {
      * @param id 学生id
      */
     public static boolean deleteStudentById(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -227,7 +227,7 @@ public class StudentDao {
      * @return  返回全体学生集合
      */
     public static List<Student> getStudentBySn(Integer minSn, Integer maxSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 //操作
@@ -252,7 +252,7 @@ public class StudentDao {
      * @return 返回指定学生
      */
     public static Student getStudentBySn(String studentSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 //操作
@@ -271,7 +271,7 @@ public class StudentDao {
     }
     
     public static Student getStudentById(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 //操作
@@ -298,7 +298,7 @@ public class StudentDao {
      * @return  返回一个分页bean对象
      */
     public static PageBean<Student> findAllStudentBySn(Integer min, Integer max, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 //操作
@@ -337,7 +337,7 @@ public class StudentDao {
      * @return 返回一个分页bean对象
      */
     public PageBean<Student>  findAllStudent(Integer pc, Integer ps){
-         session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -374,7 +374,7 @@ public class StudentDao {
      * @return  返回一个分页bean对象
      */
     public static PageBean<Student> findAllStudentByCollegeSn(String studentCollege, Integer studentGrade, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 

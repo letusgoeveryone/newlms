@@ -24,6 +24,10 @@ public class KingoApi {
 	private String other = null;
 	private String usernName = null;
 	private String password = null;
+        
+        public KingoApi(){
+        }
+        
 	public String step1() {
 		String url="http://ids.henu.edu.cn/authserver/login";
 		String result = "";

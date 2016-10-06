@@ -21,15 +21,13 @@ import org.hibernate.Transaction;
  */
 public class TempStudentDao {
 
-    static Session session;
-
     /**
      * 保存传入的学生对象
      * @param tempStudent
      *@throw 如果传入的学生学号和已有正式某学生重复，则抛出异常，“学号重复”和重复学号
      */
     public static void saveTempStudent(TempStudent tempStudent) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -49,7 +47,7 @@ public class TempStudentDao {
      * @param id 临时学生id
      */
     public static void deleteTempStudentById(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -69,7 +67,7 @@ public class TempStudentDao {
      * @return 返回指定临时学生
      */
     public static TempStudent getTempStudentById(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -90,7 +88,7 @@ public class TempStudentDao {
      * @return 返回一个临时学生对象
      */
     public static TempStudent getTempStudentBySn(String studentSn){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -108,7 +106,7 @@ public class TempStudentDao {
         }
     }
     public static List<TempStudent> getTempStudentListBySn(String studentSn){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -138,7 +136,7 @@ public class TempStudentDao {
      * @return 返回范围内学生列表
      */
     public static List<StudentWithoutPwd> getTempStudentsBySn(Integer minSn,Integer maxSn){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -172,7 +170,7 @@ public class TempStudentDao {
      * @return 全体临时学生列表
      */
     public static List<StudentWithoutPwd> getAllTempStudent() {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -205,7 +203,7 @@ public class TempStudentDao {
      * @return  返回一个分页bean对象
      */
     public static PageBean<TempStudent> findAllTempStudentBySn(Integer min, Integer max, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 //操作
@@ -246,7 +244,7 @@ public class TempStudentDao {
      * @return 返回pageBean
      */
     public static PageBean<TempStudent> findAllTempStudentByCollegeGrade(String studentCollege, Integer studentGrade, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List list = session.createQuery(

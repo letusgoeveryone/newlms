@@ -228,7 +228,7 @@
                 var b = document.getElementById("spanrk" + a).value;
                 $.ajax({
                     type: "post",
-                    url: "ppjsxx",
+                    url: "acdemic/ppjsxx",
                     data: {value: b},
                     success: function (data) {
                         document.getElementById("span1" + a).innerHTML = data;
@@ -243,7 +243,7 @@
                 var b = document.getElementById("row" + a).value;
                 $.ajax({
                     type: "post",
-                    url: "ppjsxx",
+                    url: "acdemic/ppjsxx",
                     data: {value: b},
                     success: function (data) {
                         document.getElementById("span" + a).innerHTML = data;
@@ -260,7 +260,7 @@
                 $("#kechengbiao_div").hide();
                 $("#all_div").hide();
                 $('#dg_add_bj').datagrid({
-                    url: 'ckbj_xx',
+                    url: 'acdemic/ckbj_xx',
                     loadMsg: '数据加载中请稍后……'
                 });
             }
@@ -277,7 +277,7 @@
                 term[0] = document.getElementById("sz_xq").value;
                 $.ajax({
                     type: "post",
-                    url: "tj_next_bj",
+                    url: "acdemic/tj_next_bj",
                     data: {jssz: jssz, term: term},
                     success: function (data) {
                         alert("添加成功");
@@ -289,7 +289,7 @@
                 });
                 term[0] = document.getElementById("sz_xq1").value;
                 $('#dg_xq_bj').datagrid({
-                    url: 'next_bj?term=' + term[0],
+                    url: 'acdemic/next_bj?term=' + term[0],
                     loadMsg: '加载中请稍后……'
                 });
             }
@@ -300,7 +300,7 @@
                 $("#dg_add_course_div").show();
                 $("#all_div").hide();
                 $('#dg_add_course').datagrid({
-                    url: 'course_fanhui',
+                    url: 'acdemic/course_fanhui',
                     loadMsg: '课程数据加载中请稍后……'
                 });
             }
@@ -332,12 +332,12 @@
                 } else {
                     $.ajax({
                         type: "post",
-                        url: "tj_next_course",
+                        url: "acdemic/tj_next_course",
                         data: {jssz: jssz, tecgh: tecgh, term: term, courseName: courseName},
                         success: function (data) {
                             alert("添加成功");
                             $('#dg_xq_cs').datagrid({
-                                url: 'next_cs_tr?term=' + document.getElementById("sz_xq_course").value,
+                                url: 'acdemic/next_cs_tr?term=' + document.getElementById("sz_xq_course").value,
                                 loadMsg: '加载中请稍后……'
                             });
                         },
@@ -390,7 +390,7 @@
             $(function () {
                 $('.test').change(function () {
                     $('#dg_xq_bj').datagrid({
-                        url: 'next_bj?term=' + document.getElementById("sz_xq1").value,
+                        url: 'acdemic/next_bj?term=' + document.getElementById("sz_xq1").value,
                         loadMsg: '加载中请稍后……'
                     });
                 });
@@ -398,7 +398,7 @@
             $(function () {
                 $('.test1').change(function () {
                     $('#dg_xq_cs').datagrid({
-                        url: 'next_cs_tr?term=' + document.getElementById("sz_xq_course").value,
+                        url: 'acdemic/next_cs_tr?term=' + document.getElementById("sz_xq_course").value,
                         loadMsg: '加载中请稍后……'
                     });
                 });
@@ -406,7 +406,7 @@
             $(function () {
                 $('.allbj_ck').change(function () {
                     $('#all_bj').datagrid({
-                        url: 'next_bj?term=' + document.getElementById("szall_xq").value,
+                        url: 'acdemic/next_bj?term=' + document.getElementById("szall_xq").value,
                         loadMsg: '加载中请稍后……'
                     });
                 });
@@ -415,7 +415,7 @@
 
                 $('.courselist_xq1').change(function () {
                     $('#course_list').datagrid({
-                        url: 'courselist_fanhui?term=' + document.getElementById("courselist_xq1").value,
+                        url: 'acdemic/courselist_fanhui?term=' + document.getElementById("courselist_xq1").value,
                         loadMsg: '加载中请稍后……'
                     });
                 });
@@ -426,12 +426,12 @@
                 $("#kechengbiao_div").hide();
                 $("#all_div").show();
                 $('#all').datagrid({
-                    url: 'course_fanhui',
+                    url: 'acdemic/course_fanhui',
                     loadMsg: '课程数据加载中请稍后……'
                 });
                 var term = document.getElementById("szall_xq").value;
                 $('#all_bj').datagrid({
-                    url: 'next_bj?term=' + term,
+                    url: 'acdemic/next_bj?term=' + term,
                     loadMsg: '加载中请稍后……'
                 });
             }
@@ -458,7 +458,7 @@
                 var xueqi = document.getElementById("szxq").value;
                 $.ajax({
                     type: "post",
-                    url: "courselist_add",
+                    url: "acdemic/courselist_add",
                     data: {xueqi: xueqi, tec_gh: tec_gh, courseName: courseName, classId: classId},
                     success: function (data) {
                         alert("success!");

@@ -44,6 +44,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import cn.edu.henu.rjxy.lms.server.AuthorityManage;
 import cn.edu.henu.rjxy.lms.server.CurrentInfo;
+import net.sf.json.JSONArray;
 /**
  *
  * @author Administrator
@@ -643,9 +644,9 @@ public class DeanController {
         StringBuffer sb = new StringBuffer();
         sb.append("<form role=\"form\">已选择教师sn：" + sn + "<br><div class=\"checkbox\">");
         List<String> list = AuthorityManage.getCurrentAuthoritiest(sn);
-        String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER", "ROLE_ADMIN"};
-        String str2[] = {"教务员", "院长",  "教工", "系统管理员"};
-        String str3[] = {"1", "2", "4", "8"};
+        String str[] = {"ROLE_ACDEMIC","ROLE_TEACHER"};
+        String str2[] = {"教务员",  "教工"};
+        String str3[] = {"1", "4"};
         // System.out.println(list);
         for (int i = 0; i < str.length; i++) {
             if (list.contains(str[i])) {
@@ -669,13 +670,50 @@ public class DeanController {
         String sn = request.getParameter("sn");
         String rolesum = request.getParameter("rolesum");
         Teacher teacher = TeacherDao.getTeacherBySn(sn);
-        List<String> list = AuthorityManage.getCurrentAuthoritiest(sn);
-        if(list.contains("ROLE_ADMIN")){        //先判断此人之前是否有管理员权限
-            teacher.setTeacherRoleValue(Integer.valueOf(rolesum)+8);
-        }else{
+//        List<String> list = AuthorityManage.getCurrentAuthoritiest(sn);
+//        if(list.contains("ROLE_ADMIN")){        //先判断此人之前是否有管理员权限
+//            teacher.setTeacherRoleValue(Integer.valueOf(rolesum)+8);
+//        }else{
+//            teacher.setTeacherRoleValue(Integer.valueOf(rolesum));
+//        }
+        if (rolesum.equals("1")||rolesum.equals("4")||rolesum.equals("5")) {
             teacher.setTeacherRoleValue(Integer.valueOf(rolesum));
+            TeacherDao.updateTeacherById(teacher);
+            return "ok";
+        }else{
+            return "error";
         }
+       
+    } 
+    
+    //设置教务员
+    @RequestMapping("dean/teachermessage")
+    public @ResponseBody String deanteachermessage(){
+         System.out.println("设置教务员");
+         List list = TeacherDao.getAllacdemicTeacher();
+         System.out.println(list.size());
+        JSONArray json = JSONArray.fromObject(list);
+        System.out.println("json="+json.toString());
+         return json.toString();
+    }
+    
+     //批准教务员
+    @RequestMapping("dean/acedmicqxpz")
+    public @ResponseBody String acedmicqxpz(HttpServletRequest request){
+         int id = Integer.parseInt(request.getParameter("id"));
+         Teacher teacher = TeacherDao.getTeacherById(id);
+         teacher.setTeacherRoleValue(5);
+         TeacherDao.updateTeacherById(teacher);
+         return "1";
+    }
+     //取消教务员
+    @RequestMapping("dean/acedmicqx")
+    public @ResponseBody String acedmicqx(HttpServletRequest request){
+        int id = Integer.parseInt(request.getParameter("id"));
+        Teacher teacher = TeacherDao.getTeacherById(id);
+        teacher.setTeacherRoleValue(4);
         TeacherDao.updateTeacherById(teacher);
-        return "ok";
-    }  
+         return "1";
+    }
+    
 }

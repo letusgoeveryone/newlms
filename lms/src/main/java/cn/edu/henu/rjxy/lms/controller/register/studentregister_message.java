@@ -65,8 +65,8 @@ public class studentregister_message {
         stu.setStudentEnrolling(new Date());
         TempStudentMethod.addTempStudentMessage(stu_sn.toString(), stuName, stuIdcard, stu_niji, stu_college, stuTel, stuQq, stuPwd, stu_sex, new Date());
         System.out.println("12");
-//        if (CurrentInfo.getOtherConfigure("Selfverification").equalsIgnoreCase("true")) {
-        if (true) {
+        if (CurrentInfo.getOtherConfigure("Selfverification").equalsIgnoreCase("true")) {
+       
             request.setAttribute("actjs", "/reg/tmp_attestation");
             request.setAttribute("sn", stu_sn);
             request.setAttribute("acthtml", "<h5>好消息：您现在可以自助完成信息确认：<a class=\"btn btn-default\" id=\"yanzheng\">点这里开始Next＞＞</a>（这个认证操作会自动尝试登录一次您的数字校园，我们承诺对您的数据严格保密，请知悉。）");

@@ -94,7 +94,7 @@
             }
             function ck_zs_jsxx() {
                 $('#dg_zs_tec').datagrid({
-                    url: 'fh_zs_jsme',
+                    url: 'acdemic/fh_zs_jsme',
                     loadMsg:'数据加载中请稍后……'
                 });
                 looktea();
@@ -112,7 +112,7 @@
                 }
                  $.ajax({
                     type: "post", 
-                    url: "pzsc_zs_jsxx", 
+                    url: "acdemic/pzsc_zs_jsxx", 
                     data: {jssz: jssz}, 
                     success: function (data) {
                         if(data==="1"){
@@ -132,7 +132,7 @@
             function go_zs_tec(){
                  $('#dg_zs_tec').datagrid('options').pageNumber=$('#go_zs_tec').val();        
                 $('#dg_zs_tec').datagrid({
-                    url: 'fh_zs_jsme',
+                    url: 'acdemic/fh_zs_jsme',
                     loadMsg:'数据加载中请稍后……'
                 });
             }
@@ -142,7 +142,7 @@
                 jssz[0] = teacherId;
                  $.ajax({
                     type: "post", 
-                    url: "pzsc_zs_jsxx", 
+                    url: "acdemic/pzsc_zs_jsxx", 
                     data: {jssz: jssz}, 
                     success: function (data) {
                         if(data==="1"){
@@ -176,14 +176,14 @@
              $(function(){
                 $('.zs_js').change(function(){
                    $('#dg_zs_tec').datagrid({
-                    url: 'zs_js_xy_search?min=' + $('#xs_js_xy').val(),
+                    url: 'acdemic/zs_js_xy_search?min=' + $('#xs_js_xy').val(),
                     loadMsg: '加载中请稍后……'
                   });    
                 });
              });
             function xh_zsjs_search(){
                 $('#dg_zs_tec').datagrid({
-                    url: 'zs_js_search?min=' + $('#min_zs_js').val() + "&max=" + $('#max_zs_js').val(),
+                    url: 'acdemic/zs_js_search?min=' + $('#min_zs_js').val() + "&max=" + $('#max_zs_js').val(),
                     loadMsg: '加载中请稍后……'
                 }); 
             }

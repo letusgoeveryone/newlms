@@ -70,6 +70,9 @@ window.onload=function(){
           div2.className=(div2.className=="switches_close2")?"switches_open2":"switches_close2";
         }
         
+        if("${Selfverification}"=="false"){
+            div2.onclick();
+        }
         $("#saveconfigure").click(function(){ 
                  $.post("<%=path%>/admin/saveconfigure", { AllTerm : $("#AllTerm").val(),AllGrade : $("#AllGrade").val() ,AllCollege :$("#AllCollege").val() ,
                      CurrentTerm : $("#CurrentTerm").val() ,FileFolder : $("#FileFolder").val() ,Selfverification :div1.className=="switches_open1"},

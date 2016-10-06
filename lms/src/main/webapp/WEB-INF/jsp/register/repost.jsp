@@ -54,7 +54,7 @@
                         <ul>
                             <h2 class="ul-mg-minus">信息验证出现问题 !</h2>
                             <h5>可能原因:</h5>
-                            <li>注册表存在虚假信息 <a href="<%=path%>/reg/student_teacher" title="点击,重新注册~~">&CircleDot;_&CircleDot; 请重新注册</a></li>
+                            <li>注册表存在虚假信息 <a href="<%=path%>/reg/role" title="点击,重新注册~~">&CircleDot;_&CircleDot; 请重新注册</a></li>
                             <li class="form_dash-border">
                                 您更改过自己的<a class="text-wiki" data-toggle="modal" href="#wiki_digital-school"> 数字校园 </a>密码
                                 <!-- 密码 -->

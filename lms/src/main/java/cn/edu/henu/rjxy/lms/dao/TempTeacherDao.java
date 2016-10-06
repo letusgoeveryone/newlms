@@ -20,15 +20,12 @@ import org.hibernate.Transaction;
  * @author Administrator
  */
 public class TempTeacherDao {
-
-    static Session session;
-
     /**
      *保存一个临时教师对象
      * @param tempTeacher 临时教师对象
      */
     public static void saveTempTeacher(TempTeacher tempTeacher) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
@@ -49,7 +46,7 @@ public class TempTeacherDao {
      * @return 返回指定教师
      */
     public static TempTeacher  getTempTeacherById(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -72,7 +69,7 @@ public class TempTeacherDao {
      * @return 返回指定范围内临时教师列表
      */
     public static List<TempTeacherWithoutPwd> getTempTeacherBySn(Integer minSn, Integer maxSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try{
         List<TempTeacher> lists = session.createQuery("FROM TempTeacher t WHERE t.teacherSn  BETWEEN  :min AND  :max")
@@ -107,7 +104,7 @@ public class TempTeacherDao {
      * @return 返回临时教师列表
      */
     public static List getTempTeacherByCollegeName(String collegeName){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
@@ -143,7 +140,7 @@ public class TempTeacherDao {
      * @return 教师分页bean对象
      */
     public static PageBean<TempTeacher>  findAll(Integer pc, Integer ps){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
@@ -178,7 +175,7 @@ public class TempTeacherDao {
      * @return 全体临时教师对象
      */
     public static List getAllTempTeacher() {
-        session = HibernateUtil.getSessionFactory().openSession();
+       Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
@@ -210,7 +207,7 @@ public class TempTeacherDao {
      * @return 返回一个临时教师对象
      */
     public static TempTeacher getTempTeacherBySn(String userSn) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             TempTeacher tempTeacher = (TempTeacher) session.createQuery("FROM TempTeacher t Where t.teacherSn = :sn")
@@ -231,7 +228,7 @@ public class TempTeacherDao {
      * @param tempTeacher 临时教师对象
      */
     public static void deleteTempTeacher(TempTeacher tempTeacher) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.delete(tempTeacher);
@@ -259,7 +256,7 @@ public class TempTeacherDao {
      * @param id 临时教师id
      */
     public static void deleteTempTeacherById(Integer id) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -282,7 +279,7 @@ public class TempTeacherDao {
      * @return 返回一个分页bean对象
      */
     public static PageBean<TempTeacher> getTeachersBySn(Integer min, Integer max, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
@@ -330,7 +327,7 @@ public class TempTeacherDao {
      * @return 分页bean对象
      */
     public static PageBean<TempTeacher> findAllTempTeacherByCollege(String teacherCollege, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List<TempTeacher> list =  session.createQuery("FROM TempTeacher t WHERE t.teacherCollege =  :college")

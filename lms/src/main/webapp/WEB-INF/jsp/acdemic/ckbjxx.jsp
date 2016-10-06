@@ -98,7 +98,7 @@
                 }
                 $.ajax({
                     type: "post",
-                    url: "scbj", 
+                    url: "acdemic/scbj", 
                     data: {jssz: jssz}, 
                     success: function (data) {
                         if(data==="1"){
@@ -134,7 +134,7 @@
             
             function ckbjxx() {
                 $('#dg1').datagrid({
-                    url: 'ckbj_xx',
+                    url: 'acdemic/ckbj_xx',
                     loadMsg: '班级数据加载中请稍后……'
                 });
             }
@@ -147,7 +147,7 @@
                 document.getElementById("tjbj").value = "";
                 $.ajax({
                     type: "post", //提交方式
-                    url: "tjbj", //提交的页面，方法名
+                    url: "acdemic/tjbj", //提交的页面，方法名
                     data: {jssz: jssz}, //参数，如果没有，可以为null
                     success: function (data) {
                         alert("添加成功");

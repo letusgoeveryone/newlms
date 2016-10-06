@@ -65,12 +65,16 @@ public class teacherregister_message {
         tempTeacher.setTeacherQq(teacher_qq);
         tempTeacher.setTeacherPwd(teacher_pwd);
         tempTeacher.setTeacherPosition(teacher_Vname);
-        if (teacher_Vname.equals("教务员")) {
-            tempTeacher.setTeacherRoleValue(25);
-        } else if (teacher_Vname.equals("院长")) {
-            tempTeacher.setTeacherRoleValue(29);
-        } else if (teacher_Vname.equals("教师")) {
-            tempTeacher.setTeacherRoleValue(24);
+        switch (teacher_Vname) {
+            case "教务员":
+                tempTeacher.setTeacherRoleValue(5);
+                break;
+            case "院长":
+                tempTeacher.setTeacherRoleValue(6);
+                break;
+            case "教师":
+                tempTeacher.setTeacherRoleValue(4);
+                break;
         }
         tempTeacher.setTeacherEnrolling(new Date());
         System.out.println(teacher_Vname);

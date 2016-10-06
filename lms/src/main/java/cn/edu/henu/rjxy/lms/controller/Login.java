@@ -65,7 +65,7 @@ public class Login {
         String sn = AuthorityManage.getCurrentUsername();
         List<String> list = AuthorityManage.getCurrentAuthoritiest(sn);
         String str[] = {"ROLE_ADMIN", "ROLE_DEAN", "ROLE_ACDEMIC", "ROLE_TEACHER", "ROLE_STUDENT"};
-        String str2[] = {"redirect:/admin", "redirect:/dean", "redirect:/acdemic", "redirect:/teacherIndex", "redirect:/student"};
+        String str2[] = {"redirect:/admin", "redirect:/dean", "redirect:/acdemic", "redirect:/teacher", "redirect:/student"};
         for (int j = 0; j < 5; j++) {
             if (list.contains(str[j])) {
                 return str2[j];
@@ -102,36 +102,6 @@ public class Login {
         return "Loginok";
     }
 
-//判断个sn是否具有对应的ROLE值
-
-    public boolean checkCurrentAuthorities(String sn, String role) {
-        String str[] =  {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER","ROLE_ADMIN"};
-        try {
-            Teacher tea = TeacherDao.getTeacherBySn(sn);
-            char[] ch = Integer.toBinaryString(Integer.valueOf(tea.getTeacherRoleValue())).toCharArray();
-            int j = -1;
-            for (int i = ch.length - 1; i >= 0; i--) {
-                j++;
-                if (str[j].equals(role)) {
-                    return true;
-                }
-
-            }
-
-        } catch (Exception e) {
-        }
-        try {
-            Student std = StudentDao.getStudentBySn(sn);
-            System.out.println("找到学生" + std.getStudentName());
-            if (role.equals("ROLE_STUDENT")) {
-                return true;
-            }
-
-        } catch (Exception e) {
-        }
-
-        return false;
-    }
 
     @RequestMapping("/tea_dat_up")
     public @ResponseBody String[] teacherRoleDataUpdate(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, ServletException, IOException {

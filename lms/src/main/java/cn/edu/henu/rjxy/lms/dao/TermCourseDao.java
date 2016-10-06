@@ -26,14 +26,14 @@ import org.hibernate.Transaction;
  * @author Administrator
  */
 public class TermCourseDao {
-    static Session session;
+
     
     /**
      *保存一个学期课程
      * @param termCourse 学期课程对象
      */
    public static void saveTermCourse(TermCourse termCourse){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();//开启事务
         try {
             //操作
@@ -65,7 +65,7 @@ public class TermCourseDao {
    
    
    public static Integer getTermCourseId(Integer term, Integer courseId, Integer classId, Integer teacherId){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();//开启事务
         try {
             Integer x = (Integer) session.createQuery("SELECT t.id FROM TermCourse t WHERE t.term = :term AND t.course.courseId = :courseId AND t.classes.classId = :classId AND  t.teacher.teacherId = :teacherId")
@@ -87,7 +87,7 @@ public class TermCourseDao {
    
 //根据课程id查询教师id 
  public static Integer getTecsnByCourseId(String courseId) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             TermCourse tc = (TermCourse) session.createQuery("FROM TermCourse s WHERE s.id = :id")
@@ -106,7 +106,7 @@ public class TermCourseDao {
     }
  //根据选课id查询课程id
  public static Integer getCourseidByCourseId(String courseId) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             TermCourse tc = (TermCourse) session.createQuery("FROM TermCourse s WHERE s.id = :id")
@@ -126,7 +126,7 @@ public class TermCourseDao {
     }
   //根据选课id查询学期
  public static Integer getxueqiBySCId(String courseId) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             TermCourse tc = (TermCourse) session.createQuery("FROM TermCourse s WHERE s.id = :id")
@@ -146,7 +146,7 @@ public class TermCourseDao {
     }
  //根据选课id查询课程名称
  public static String getCourseNameByCourseId(String courseId) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             TermCourse tc = (TermCourse) session.createQuery("FROM TermCourse s WHERE s.id = :id")
@@ -165,7 +165,7 @@ public class TermCourseDao {
     }   
 //根据选课id查询class名称
  public static String getclassNameByCourseId(String courseId) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {            
             TermCourse tc = (TermCourse) session.createQuery("FROM TermCourse s WHERE s.id = :id")
@@ -205,7 +205,7 @@ public class TermCourseDao {
      * @return 返回指定学期课程
      */
     public static TermCourse getTermCourseById(Integer id){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();//开启事务
         try {
             //操作
@@ -226,7 +226,7 @@ public class TermCourseDao {
      * @param id 学期课程id
      */
     public static void deleteTermCourseById(Integer id){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();//开启事务
         try {
             //操作
@@ -269,7 +269,7 @@ public class TermCourseDao {
      * @return 返回一个分页bean对象
      */
     public static PageBean<TermCourseResult> findAll(Integer term, Integer pc, Integer ps) {
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             List<TermCourse> list = session.createQuery("FROM TermCourse t WHERE t.term = :term")

@@ -21,7 +21,7 @@ import org.hibernate.Transaction;
  * @author Administrator
  */
 public class ClassesDao {
-    static Session session;
+    
     
     /**
      * 添加课程
@@ -29,7 +29,7 @@ public class ClassesDao {
     */
 
     public static void addClass(Classes classes){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             String name = classes.getClassName();
@@ -61,7 +61,7 @@ public class ClassesDao {
      * @return 返回一个课程对象
      */
     public static Classes getClassById(Integer id){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -82,7 +82,7 @@ public class ClassesDao {
      * @param classes 课程对象
      */
     public static  boolean deleteClass(Classes classes){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             //操作
@@ -120,7 +120,7 @@ public class ClassesDao {
      * @return 返回一个分页bean对象
      */
     public static PageBean<Classes>  findAll(Integer pc, Integer ps){
-        session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
