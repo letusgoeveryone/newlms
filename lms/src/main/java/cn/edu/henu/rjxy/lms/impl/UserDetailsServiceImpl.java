@@ -73,7 +73,7 @@ public static ArrayList<GrantedAuthority> getAuthoritiesBySn(String sn){
             System.out.println("getTeacherPosition"+tea.getTeacherRoleValue());
             char[] ch= Integer.toBinaryString(Integer.valueOf(tea.getTeacherRoleValue())).toCharArray();
             int j=-1;
-            for (int i = ch.length-2; i >=0; i--) {
+            for (int i = ch.length-1; i >=0; i--) {
                 j++;
                 if(String.valueOf(ch[i]).equals("1")){
                 authorities.add(new SimpleGrantedAuthority(str[j]));

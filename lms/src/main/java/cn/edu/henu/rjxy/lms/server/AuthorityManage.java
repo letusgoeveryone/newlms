@@ -25,7 +25,7 @@ public class AuthorityManage {
             Teacher tea = TeacherDao.getTeacherBySn(sn);
             char[] ch = Integer.toBinaryString(Integer.valueOf(tea.getTeacherRoleValue())).toCharArray();
             int j = -1;
-            for (int i = ch.length - 2; i >= 0; i--) {
+            for (int i = ch.length - 1; i >= 0; i--) {
                 j++;
                 if (String.valueOf(ch[i]).equals("1")) {
                     list.add(str[j]);
@@ -60,7 +60,7 @@ public class AuthorityManage {
             Teacher tea = TeacherDao.getTeacherBySn(sn);
             char[] ch = Integer.toBinaryString(Integer.valueOf(tea.getTeacherRoleValue())).toCharArray();
             int j = -1;
-            for (int i = ch.length - 2; i >= 0; i--) {
+            for (int i = ch.length - 1; i >= 0; i--) {
                 j++;
                 if (str[j].equals(role)) {
                     return true;
