@@ -9,7 +9,9 @@
                 <div class="card-main">
                     <h2 class="content-sub-heading">待提交作业</h2>
                     <hr>
-                    {{{IHomeworkHS}}}
+                    <div id="cid-homework-doing">
+
+                    </div>
                 </div>
             </div>
             
@@ -17,7 +19,9 @@
                 <div class="card-main">
                     <h2 class="content-sub-heading">已提交作业</h2>
                     <hr>
-                    {{{OHomeworkHS}}}
+                    <div id="cid-homework-done">
+                        
+                    </div>
                 </div>
             </div>
             
@@ -28,9 +32,13 @@
                 <div class="card-main">
                     <h2 class="content-sub-heading text-indianred">历史作业</h2>
                     <hr>
-                    {{{XHomeworkHS}}}
+                    <div id="cid-homework-miss">
+
+                    </div>
                 </div>
             </div>
+            <a id="anchor-heditor" href="#tab-homework-editor" data-toggle="tab" class="hidden"></a>
+            
             
 
         </div>

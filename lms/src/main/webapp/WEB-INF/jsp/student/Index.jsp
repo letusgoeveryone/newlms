@@ -74,7 +74,7 @@
                     <!--个人面板-->
                     <div class="col-sm-4" id="upanel">
                         <div class="card">
-                            <div class="vcard lms-loading">
+                            <div class="vcard">
 
                                 <div class="vcard-avatar-wrapper">
                                     <a href="/account" alt="Change your avatar" class="vcard-avatar">
@@ -116,8 +116,11 @@
                                 <div class="card-inner">
                                     <section class="card-heading">导航面板</section>
                                     <section>
-                                        <a data-toggle="tab" href="#ucontent" class='btn btn-aqua mg-rt-3x' >
+                                        <a  class='btn btn-aqua mg-rt-3x' onclick="initCourse()">
                                             【我的课程】
+                                        </a>
+                                        <a data-toggle="tab" href="#ucontent" id="anchor-mcourse" class='hidden' title="【课程锚点】">
+                                            
                                         </a>
                                         <a href="#uinfo-wrap" data-lightbox-height="700" data-lightbox-width="1000" class='btn btn-aqua stage-card'>
                                             【个人中心】
@@ -209,54 +212,8 @@
             var attIsChange = false;
             var cntIsChange = false;
             
-            // 编辑器 初始化
-            tinymce.init({
-                mode : "exact",
-                selector: '#lms-editor',
-                fixed_toolbar_container: 'body',
-                theme: 'inlite',
-                language: 'zh_CN',
-                inline: true,
-                plugins: [
-                    'advlist autolink autosave code link image lists charmap codesample hr anchor',
-                    'searchreplace visualchars insertdatetime media nonbreaking fullscreen',
-                    'table contextmenu directionality emoticons template paste preview textcolor textpattern visualblocks'
-                ],
-                insert_toolbar: 'h1 h2 h3 hr bullist numlist outdent indent  blockquote quickimage codesample insertdatetime template | removeformat',
-                selection_toolbar: 'bold italic underline subscript superscript textcolor forecolor backcolor strikethrough | alignleft aligncenter alignright alignjustify  outdent indent | link h1 h2 h3 blockquote codesample media | removeformat | ',
-                contextmenu: 'image media codesample | charmap | link anchor | inserttable | cell row column deletetable | visualblocks preview',
-                insertdatetime_formats: ["%H:%M:%S %Y-%m-%d", "%H:%M:%S", "%Y-%m-%d", "%I:%M:%S %p", "%D"],
-                templates: [
-                    {title: 'Some title 1', description: 'Some desc 1', content: 'My content'},
-                    {title: 'Some title 2', description: 'Some desc 2', url: 'development.html'}
-                ],
-                textpattern_patterns: [
-                    {start: '*', end: '*', format: 'italic'},
-                    {start: '**', end: '**', format: 'bold'},
-                    {start: '#', format: 'h1'},
-                    {start: '##', format: 'h2'},
-                    {start: '###', format: 'h3'},
-                    {start: '####', format: 'h4'},
-                    {start: '#####', format: 'h5'},
-                    {start: '######', format: 'h6'},
-                    {start: '>_ ', format: 'blockquote'},
-                    {start: '1. ', cmd: 'InsertOrderedList'},
-                    {start: '* ', cmd: 'InsertUnorderedList'},
-                    {start: '- ', cmd: 'InsertUnorderedList'}
-                ],
-                media_live_embeds: true,
-                init_instance_callback: function (editor) {
-                    editor.on('Change', function (e) {
-                        cntIsChange = true;
-                        hidIsSubmit = false;
-                        console.log('Editor contents was changed.');
-                        console.log("有未提交内容 !");
-                    });
-                }
-
-            });
             // 编辑器 监视提醒
-            function isReadyLeaving(){
+            function isSafeLeaving(){
                 if(!hidIsSubmit && attIsChange){
                     if(confirm("有未提交的附件, 依旧要离开么(离开后,附件列表有可能会置空)?")){
                         $('.mce-tinymce').css({'display':'none'});
@@ -268,15 +225,17 @@
                         return true;
                     } else return false;
                 }else return true;
-            }
+            };
+            
             // 编辑器内容 监听
             $('#editor-backspace').click(function(){
-                if(isReadyLeaving()){
+                if(isSafeLeaving()){
                      $('[href="#tab-homework"]').click();
                 }   
             });
+            
             // 附件上传 初始化
-            $(function () {
+            StudentAPI.ThisHomework.uploadify.configure = function () {
                 $("#uploadify").uploadify({
                     'uploader': '<%=path%>/student/zyupload100.do;jsessionid=<%=sessionid%>?Func=uploadwallpaper2Dfs', //************ action **************
                     'height': 30,
@@ -303,21 +262,22 @@
                         
                     },
                     'onUploadSuccess': function () {
-                        refreshUploadedArea();
+                        updateUploadedContent();
                         attIsChange = true;
                         console.log('new attachment(s) has been uploaded successfully !');
                     }
 
                 });
-            });
+            };
+            
             // 附件事件 监听
             $('#uploadify-o').click(function() {
                 $('#uploadify').uploadify("settings", "formData", {
-                    'scid': ThisCourse[0].scid,
-                    'homeworkid': ThisCourse[0].hid
+                    'scid': ThisCourse.cid,
+                    'homeworkid': ThisHomework.hid
                 });
                 $('#uploadify').uploadify('upload', '*');
-                console.log('#btn-upload-' + ThisCourse[0].hid);
+                console.log('#btn-upload-' + ThisHomework.hid);
             });
             $('#uploadify-s').click(function() {
                 $('#uploadify').uploadify('stop', '*');
@@ -333,9 +293,10 @@
                 var isDone = $(this).attr('data-status') === true ? true : false;
                 
                 if (isDone) hidIsSubmit = true;else hidIsSubmit = false;
-                if ((hid !== ThisCourse[0].hid) || (isDone)){
-                    refreshHomeworkArea(hid);
+                if ((hid !== ThisHomework.hid) || (isDone)){
+                    updateHomeworkContent(hid);
                 }
+                $('anchor-heditor').click();
                 
                 NProgress.done();
             });
@@ -343,7 +304,7 @@
             // 作业提交 监听
             $('#submit-homework').click(function(){
                 NProgress.start();
-                if(submitHomework(ThisCourse[0].hid)){
+                if(submitHomework(ThisHomework.hid)){
                     hidIsSubmit = true;
                     cntIsChange = false;
                     attIsChange = false;
@@ -361,7 +322,7 @@
                 $('#submit-uinfo').attr("data-submit","uinfo");
                 console.log($('#submit-uinfo').attr('data-submit'));
                 $('.form-control').blur(function(){
-                    if(CheckValidation()){
+                    if(CheckPersonalInfo()){
                         $('#submit-uinfo').removeClass('disabled');
                     }else{
                         $('#submit-uinfo').addClass('disabled');
@@ -370,6 +331,7 @@
 
                 $('#submit-uinfo').addClass('disabled');
             });
+            
             // 个人密码 监听器
             $('a[href="#tab-password"]').click(function(){
                 $("#oldPassword").val("");
@@ -395,13 +357,16 @@
 
                 console.log(status + " | " + method);
                 if (status && (method === "uinfo")) {
-                    updataPersonalInfo();
+                    updatePersonalInfo();
                 } else if(status && (method === "upassword")){
                     console.log(status + " | " + method);
-                    updataPassword();
+                    updatePassword();
                 }
 
             });
+            
+            //  默认监听个人信息
+            $('a[href="#tab-personalInfo"]').click();
             
             // 个人面板 点击事件监听器
             $("#upanel a[href^='#tab']").click(function(){
@@ -418,30 +383,28 @@
                 $("#usettings").modal().show();
                 $("#usettings a[href= '" + selector + "']").click();
             });
+            
             function bindBoxer(){
                 $('.stage-card').lightbox();
                 console.log("rebind boxer() function in elements '.stage-card'");
             }
-            $('[href="#content-CourseResource"]').click(function(){
-                setTimeout(bindBoxer, 1200);
-            });
+            
             $('[id^="cid-"]').click(function(){
                 setTimeout(bindBoxer, 1200);
             });
+            
             $('.stage-card').lightbox();
             
            /* ==================================================================
             * 页面 监听器
             * ================================================================== */
-            var load = $('.lms-loading');
-            load.fadeOut();
-            load.removeClass('lms-loading');
-            load.fadeIn("slow");
             NProgress.done(true);
             
             window.onbeforeunload = function() {};
+            
         </script>
         <script>
+            //配置相关参数
             FileManageAPI.configure({
                 cid:'cid-resource-content', 
                 nid:'cid-resource-nav', 
@@ -449,32 +412,29 @@
                 pid:'cid-resource-npd', 
                 sid:'cid-resource-search',
                 getOM:StudentAPI.FileManage.getOM,
-                getPlayPath:function(){},
-                getPreviewPath:function(){},
-                getDownloadPath:function(){}
+                
+                getPlayPath:StudentAPI.ThisCourse.getPlayPath,
+                getPreviewPath:StudentAPI.ThisCourse.getPreviewPath,
+                getDownloadPath:StudentAPI.ThisCourse.getDownloadPath
             });
             
-            StudentAPI.FileManage.configure({
-                setDS:FileManageAPI.TOC.set,
-                updateResource:FileManageAPI.update
+            // 配置数据绑定的元素对象 id
+            StudentAPI.configure({
+                ci:'cid-content-intro',
+                co:'cid-content-outline',
+                n:'course-list',
+                hi:'cid-homework-doing',
+                ho:'cid-homework-done',
+                hx:'cid-homework-miss',
+                setCresourceDS: FileManageAPI.TOC.set,
+                structureCresourceBrowser: FileManageAPI.BrowseDB.set
             });
             
            /* ==================================================================
             * 页面初始化
             * ================================================================== */
-            initPage();
+            init();
             
-            console.log({
-                cid:'cid-resource-content', 
-                nid:'cid-resource-nav', 
-                hid:'cid-resource-home', 
-                pid:'cid-resource-npd', 
-                sid:'cid-resource-search',
-                getTOC:function(){},
-                getPlayPath:function(){},
-                getPreviewPath:function(){},
-                getDownloadPath:function(){}
-            });
         </script>
     </body>
 </html>

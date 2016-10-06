@@ -1044,7 +1044,7 @@ body[id^=lms] {
 }
 
 #cid-nav,#cid-syllabus,#cid-homework,#cid-resource{
-    margin: 0px auto;
+    margin: 0px auto 5em;
 }
 
 #cid-nav {
@@ -1255,21 +1255,21 @@ a[href^='#folder'] .folder-name {
     text-align: center;
 }
 
-#content-Homework .card-inner .btn-flat {
+#cid-homework .card-inner .btn-flat {
     padding: 0;
 }
 
-#content-Homework .divider-b {
+#cid-homework .divider-b {
     padding: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-#content-Homework .divider-t {
+#cid-homework .divider-t {
     padding-bottom: 2em;
     border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-#content-Homework .btn-flat::after {
+#cid-homework .btn-flat::after {
     background: transparent !important;
 }
 

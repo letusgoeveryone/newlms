@@ -327,7 +327,6 @@
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/project.min.js" type="text/javascript"></script>
         <script>var pluginMasonry = true;</script>
-        <script src="<%=path%>/js/api.student.js" type="text/javascript"></script>
         <script src="<%=path%>/js/api.student.cou.js" type="text/javascript"></script>
         <script src="<%=path%>/js/configure.js" type="text/javascript"></script>
         <script>

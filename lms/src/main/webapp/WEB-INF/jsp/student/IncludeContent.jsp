@@ -41,13 +41,13 @@
                                 <div class="card-main card-module">
                                     
                                     <h1>课程简介</h1><hr>
-                                    <section>
-                                        {{{introduction}}}
+                                    <section id="cid-content-intro">
+                                        
                                     </section>
                                     
                                     <h1>课程大纲</h1><hr>
-                                    <section>
-                                        {{{outline}}}
+                                    <section id="cid-content-outline">
+                                        
                                     </section>
                                     
                                 </div>
@@ -81,7 +81,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{{resource}}}
                     </div>
 
                     <div id="cid-homework" class="tab-pane fade">
@@ -121,7 +120,7 @@
                     </div>
                     <div class="collapse in" >
                         <nav class="tile-sub tab-nav tabs-right tab-nav-brand collapse in" id="tile-course-list">
-                            <ul class="nav nav-brand  lms-loading">{{{courseliset}}}</ul>
+                            <ul class="nav nav-brand  lms-loading" id="course-list"></ul>
                         </nav>
                     </div>
                 </div>

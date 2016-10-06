@@ -3,18 +3,13 @@
  
  文件功能描述：文件管理器 前端接口
  
- 需实现的接口(通过FileManageAPI.init())：
+ 需实现的接口(通过FileManageAPI.configure(e))：
+    <li>相关绑定元素ID</li>
     <li>getFileManagePath()</li>
     <li>getTOC()</li>
     <li>getPlayPath()</li>
     <li>getPreviewPath()</li>
     <li>getDownloadPath()</li>
- 
- 初始化函数(文件浏览器|学生端):
-     FileManageAPI.init();
-
- 更新函数(文件浏览器|学生端):
-     FileManageAPI.update();
  
  //----------------------------------------------------------------*/
 
@@ -66,8 +61,8 @@ FileManageAPI.TOC = {
         parent: null,
         children:[]
     },
-    OM:{},
-    getOM:function(){},
+    
+    OM:{},getOM: function(){},
     
     set:function(){
         var ds=[];
@@ -80,6 +75,8 @@ FileManageAPI.TOC = {
         FileManageAPI.TOC.DS.children = ds;
 
     },
+    
+    setByTraversingAllFolder:function(toc){},
     
     /**
      * 
@@ -134,52 +131,47 @@ FileManageAPI.TOC = {
         return Node;
     },
     
-    countFilesNum:function(node){},
-    
-    updataDSByTraversingAllFolder:function(toc){}
+    getFilesNum:function(node){}
 };
 
 //文件浏览器 HS
-FileManageAPI.BrowserHS = {
+FileManageAPI.BrowseDB = {
     
-    init:function(){
-        FileManageAPI.BrowserHS.eleN.innerHTML = '';
-        FileManageAPI.BrowserHS.eleP.removeEventListener('click',function (){});
-        FileManageAPI.BrowserHS.eleC.innerHTML = '';
-        FileManageAPI.BrowserHS.structureMainContentByNodes(FileManageAPI.TOC.DS);
-        FileManageAPI.BrowserHS.structureSideNav();
+    configure:function(e){
+        
+        FileManageAPI.BrowseDB.eleN = document.getElementById(e.nid);
+        FileManageAPI.BrowseDB.eleP = document.getElementById(e.pid);
+        FileManageAPI.BrowseDB.eleC = document.getElementById(e.cid);
+        FileManageAPI.BrowseDB.eleS = document.getElementById(e.fs);
+        FileManageAPI.BrowseDB.eleH = document.getElementById(e.fh);
+    },
+    
+    set:function(){
+        FileManageAPI.BrowseDB.eleN.innerHTML = '';
+        FileManageAPI.BrowseDB.eleP.removeEventListener('click',function (){});
+        FileManageAPI.BrowseDB.eleC.innerHTML = '';
+        FileManageAPI.BrowseDB.structureMainContentByNodes(FileManageAPI.TOC.DS);
+        FileManageAPI.BrowseDB.structureSideNav();
     },
     
     eleN:{},
     eleP:{},
     eleC:{},
     
-    setEleN: function (eid) {
-        FileManageAPI.BrowserHS.eleN = document.getElementById(eid);
-    },
-    
-    setEleP: function (eid) {
-        FileManageAPI.BrowserHS.eleP = document.getElementById(eid);
-    },
-    
-    setEleC: function(eid){
-        FileManageAPI.BrowserHS.eleC = document.getElementById(eid);
-    },
-    
     setHomeDirectory: function(eid){
         eid = document.getElementById(eid);
 
         eid.addEventListener('click', function () {
-            FileManageAPI.updateBrowserHSByNodes(FileManageAPI.TOC.DS);
+            FileManageAPI.updateBrowseDBByNodes(FileManageAPI.TOC.DS);
         });
     },
     
     setParentDirectory: function(pos){
-        eid = FileManageAPI.BrowserHS.eleP;
+        eid = FileManageAPI.BrowseDB.eleP;
         
         eid.addEventListener('click', function () {
             FileManageAPI.setNodesDSByPosition(pos);
-            FileManageAPI.updateBrowserHSByNodes(FileManageAPI.Node);
+            FileManageAPI.updateBrowseDBByNodes(FileManageAPI.Node);
         });
     },
     
@@ -188,7 +180,7 @@ FileManageAPI.BrowserHS = {
     },
     
     structureSideNav: function(){
-        var ele = FileManageAPI.BrowserHS.eleN;
+        var ele = FileManageAPI.BrowseDB.eleN;
         var toc = FileManageAPI.TOC.DS;
         var nav = document.createElement('ul');
         
@@ -197,7 +189,7 @@ FileManageAPI.BrowserHS = {
         
         if (toc.children.length !== 0) {
             for (var i = 0; i < toc.children.length; i++) {
-                nav.appendChild(FileManageAPI.BrowserHS.structureSideItem(toc.children[i], nav.id));
+                nav.appendChild(FileManageAPI.BrowseDB.structureSideItem(toc.children[i], nav.id));
             };
         }
         ele.appendChild(nav);
@@ -220,8 +212,8 @@ FileManageAPI.BrowserHS = {
         a.addEventListener('click', function () {
             console.log(node.position);
             FileManageAPI.setNodesDSByPosition(node.position);
-            FileManageAPI.updateBrowserHSByNodes(FileManageAPI.Node);
-            //FileManageAPI.BrowserHS.setParentDirectory(node.parent);
+            FileManageAPI.updateBrowseDBByNodes(FileManageAPI.Node);
+            //FileManageAPI.BrowseDB.setParentDirectory(node.parent);
         });
 
         if (node.children !== undefined) {
@@ -237,7 +229,7 @@ FileManageAPI.BrowserHS = {
                 
                 var _item = document.createElement('li');
                 
-                _item.appendChild(FileManageAPI.BrowserHS.structureSideItem(node.children[i], Eid));
+                _item.appendChild(FileManageAPI.BrowseDB.structureSideItem(node.children[i], Eid));
                 NavUl.appendChild(_item);
             }
             
@@ -252,21 +244,25 @@ FileManageAPI.BrowserHS = {
         return NavItem;
         
     },
+    
+    structureMainContent: function(){
+        FileManageAPI.BrowseDB.structureMainContentByNodes(FileManageAPI.TOC.DS);
+    },
         
     structureMainContentByNodes: function(nodes){
-        var ele = FileManageAPI.BrowserHS.eleC;
+        var ele = FileManageAPI.BrowseDB.eleC;
         
 //        if(nodes === undefined) return;
         
         if(nodes.children.length !== 0){
             for(var i=0; i<nodes.children.length; i++){
-                ele.appendChild(FileManageAPI.BrowserHS.structureFolder(nodes.children[i]));
+                ele.appendChild(FileManageAPI.BrowseDB.structureFolder(nodes.children[i]));
             };
         }
         
         if(nodes.resource !== undefined){
             for(var i=0; i<nodes.resource.length; i++){
-                ele.appendChild(FileManageAPI.BrowserHS.structureFiles(nodes.resource));
+                ele.appendChild(FileManageAPI.BrowseDB.structureFiles(nodes.resource, nodes.position));
             };
         }
     },
@@ -280,8 +276,8 @@ FileManageAPI.BrowserHS = {
         Folder.addEventListener('click', function(){
             console.log(node.position);
             FileManageAPI.setNodesDSByPosition(node.position);
-            FileManageAPI.updateBrowserHSByNodes(FileManageAPI.Node);
-            FileManageAPI.BrowserHS.setParentDirectory(node.position);
+            FileManageAPI.updateBrowseDBByNodes(FileManageAPI.Node);
+            FileManageAPI.BrowseDB.setParentDirectory(node.position);
             
         });
         
@@ -305,14 +301,14 @@ FileManageAPI.BrowserHS = {
         return Folder;
     },
     
-    structureFiles: function(nodes) {
+    structureFiles: function(nodes, pos) {
         var table = document.createElement('table');
         table.className = 'table table-responsive table-filelist';
         
-        FileManageAPI.BrowserHS.structureFilesHeader(table);
+        FileManageAPI.BrowseDB.structureFilesHeader(table);
         
         for(var i=0; i<nodes.length; i++){
-            FileManageAPI.BrowserHS.structureFile(table,nodes[i]);
+            FileManageAPI.BrowseDB.structureFile(table,nodes[i], pos);
         }
         return table;
     },
@@ -335,7 +331,7 @@ FileManageAPI.BrowserHS = {
         
     },
     
-    structureFile: function(node, file){
+    structureFile: function(node, file, pos){
         
         var File = node.insertRow();
         var name = File.insertCell();
@@ -355,23 +351,23 @@ FileManageAPI.BrowserHS = {
         size.innerHTML = FileManageAPI.getFormattedSize(file.size);
         
         
-        if(file.status === 'normal'){
-            e1.setAttribute('href',FileManageAPI.getDownloadPath(file.position));
-            e1.innerHTML = '下载';
-            e2.innerHTML = '';
+        if(file.status === -1){
             
-        }else if(file.status === 'preview'){
-            
-            e1.setAttribute('href',FileManageAPI.getDownloadPath(file.position));
+            e1.setAttribute('href',FileManageAPI.getDownloadPath(pos, file.name));
             e1.innerHTML = '下载';
-            e2.setAttribute('href',FileManageAPI.getPreviewPath(file.position));
+            e2.setAttribute('href',FileManageAPI.getPreviewPath(pos, file.name));
             e2.innerHTML = '预览';
             
-        }else if(file.status === 'play'){
-            e1.setAttribute('href',FileManageAPI.getDownloadPath(file.position));
+        }else if(file.status === 1){
+            e1.setAttribute('href',FileManageAPI.getDownloadPath(pos, file.name));
             e1.innerHTML = '下载';
-            e2.setAttribute('href',FileManageAPI.getPlayPath(file.position));
+            e2.setAttribute('href',FileManageAPI.getPlayPath(pos, file.name));
             e2.innerHTML = '播放';
+        } else {
+            console.log(pos);
+            e1.setAttribute('href', FileManageAPI.getDownloadPath(pos, file.name));
+            e1.innerHTML = '下载';
+            e2.innerHTML = '';
         }
         download.appendChild(e1);
         method.appendChild(e2);
@@ -428,21 +424,21 @@ FileManageAPI.setNodesDSByPosition = function (pos, nodes) {
     return {};
 };
 
-FileManageAPI.updateBrowserHSByNodes = function (nodes) {
-    FileManageAPI.BrowserHS.eleC.innerHTML = '';
-    FileManageAPI.BrowserHS.structureMainContentByNodes(nodes);
-    console.log('updateBrowserHSByNodes...');
+FileManageAPI.updateBrowseDBByNodes = function (nodes) {
+    FileManageAPI.BrowseDB.eleC.innerHTML = '';
+    FileManageAPI.BrowseDB.structureMainContentByNodes(nodes);
+    console.log('updateBrowseDBByNodes...');
 };
 
 FileManageAPI.setNodesDSByKeyword = function (key) {
 
 };
 
-FileManageAPI.updateBrowserHSByKeyword = function (key) {
+FileManageAPI.updateBrowseDBByKeyword = function (key) {
 
 };
 
-FileManageAPI.method = {
+FileManageAPI.operate = {
     
     append:{},
     
@@ -493,19 +489,13 @@ FileManageAPI.getFormattedSize = function (size) {
  */
 FileManageAPI.configure = function(e){
     
-    FileManageAPI.BrowserHS.setEleN(e.nid);
-    FileManageAPI.BrowserHS.setEleP(e.pid);
-    FileManageAPI.BrowserHS.setEleC(e.cid);
-    FileManageAPI.BrowserHS.setHomeDirectory(e.hid);
-    FileManageAPI.BrowserHS.setSearch(e.sid);
+    FileManageAPI.BrowseDB.configure(e);
+    FileManageAPI.BrowseDB.setHomeDirectory(e.hid);
+    FileManageAPI.BrowseDB.setSearch(e.sid);
     FileManageAPI.TOC.getOM = e.getOM;
     FileManageAPI.getPlayPath = e.getPlayPath;
     FileManageAPI.getPreviewPath = e.getPreviewPath;
     FileManageAPI.getDownloadPath = e.getDownloadPath;
-};
-
-FileManageAPI.update= function(){
-    FileManageAPI.BrowserHS.init();
 };
 
 //功能：将浮点数四舍五入，取小数点后2位
