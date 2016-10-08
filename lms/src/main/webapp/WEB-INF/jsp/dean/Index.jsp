@@ -236,7 +236,12 @@
             <div class="container " style="position:relative;">
 
                 <div class="row width-control stage-box" id="lms_dean_dbtn">
+                    
                     <div class="col-md-5 card" style="left: 84px;top: 44px;">
+                        <a data-toggle="tab" href="#lms_main" class='btn btn-default btn-trans pull-left' 
+                           style="position: absolute;top: -55px;left: 0px;padding: 8px;">
+                            返回
+                        </a>
                         <aside class="card-side card-side-img pull-right">
                             <img alt="alt text" src="<%=path%>/images/dean_end.bmp" class="img-right">
                         </aside>

@@ -642,7 +642,7 @@ body[id^=lms] {
 #lms_admin_d .bg-content,
 #uconsole .bg-content {
     position: absolute;
-    background-color: #333;
+    background-color: #263F3F;
     top: 0;
     left: 0;
     right: 0;
