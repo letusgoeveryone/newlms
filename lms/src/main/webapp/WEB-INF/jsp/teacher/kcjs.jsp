@@ -110,17 +110,15 @@
         document.getElementById("hfText").innerHTML = "";
         lookcourseJS();
     }
-    $(function () {
-        lookcourseJS();
-    });
 
     function editJS() {
+        
         lookcourseJS();
 
     }
-
-
-
-
-
+    
+    $(function () {
+        lookcourseJS();
+    });
+    
 </script>
