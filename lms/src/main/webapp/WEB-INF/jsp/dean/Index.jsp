@@ -85,13 +85,6 @@
             #lms_dean_tnav select{
                 height: 36px;
             }
-            .dropdown.open .dropdown-menu {
-                opacity: 1;
-                -webkit-transform: scale(1,1);
-                transform: scale(1,1);
-                width: 600px;
-                left: -496px;
-            }
             .dropdown>ul{
                 position: absolute;
                 left: 0;
