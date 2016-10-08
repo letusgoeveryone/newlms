@@ -143,7 +143,7 @@
                             <div class="form-group form-group-label">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label class="floating-label" for="pw">密码</label>
+                                        <label class="floating-label" for="pw">原始密码</label>
                                         <input type="password" class="form-control" id="pw" name="pw" placeholder="请输入密码" onblur="verifyText('pw', 'pwMsg');">
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@
                             <div class="form-group form-group-label">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label class="floating-label" for="passwFrist">密码：</label>
+                                        <label class="floating-label" for="passwFrist">新密码：</label>
                                         <input type="password" name="passwFrist" id="passwFrist" class="form-control" placeholder="请输入密码" me="psw" onblur="verifyText('passwFrist', 'passwFristMsg');
                                                " onfocus="initMessage('passwFristMsg');">
                                         <input type="hidden" name="password_md5"> 
@@ -167,7 +167,7 @@
                             <div class="form-group form-group-label">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label class="floating-label" for="passwLast">密码：</label>
+                                        <label class="floating-label" for="passwLast">确认密码：</label>
                                         <input type="password" id="passwLast" class="form-control" name="passwLast" placeholder="请再次输入您的密码" me="psw" onblur="verifyText('passwLast', 'passwLastMsg');">
                                     </div>
                                 </div>
