@@ -32,10 +32,10 @@
         
 
         <br>
+        <button class="btn btn-primary" onclick="lookcourseDG()">编辑</button>
         <button   class="btn btn-default " onclick="getContentDG()">预览</button>
-        <button   class="btn btn-primary" onclick="QXDG()">撤销</button>
+        <!--<button   class="btn btn-primary" onclick="QXDG()">撤销</button>-->
         <button id="DG" class="btn btn-success" onclick="updateDG()">提交</button>
-        <button class="btn btn-info" onclick="lookcourseDG()">查看</button>
         <script type="text/javascript">
 
             var ue = UE.getEditor('CourseDaGangEditor');
@@ -147,6 +147,7 @@
                             document.getElementById("DGText").innerHTML = "课程大纲暂未更新，等待课程负责人添加";
                         } else {
                             document.getElementById("DGText").innerHTML = data[0];
+                            UE.getEditor("CourseDaGangEditor").setContent(data[0]);
                         }
                     },
                     error: function () {

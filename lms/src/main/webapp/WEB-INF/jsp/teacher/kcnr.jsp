@@ -14,7 +14,7 @@
 <button onclick="zjd()" class="btn btn-primary btn-xs">增加子节点</button>
 <button onclick="re()"  class="btn btn-success btn-xs">删除节点</button>
 <button onclick="bj_dqjd()" class="btn btn-info btn-xs">编辑节点</button>
-<button onclick="save(1)" class="btn btn-primary btn-xs">保存设置</button>\
+<button onclick="save(1)" class="btn btn-primary btn-xs">保存设置</button>
 <hr>
 <div style="width: 20%;float: left;">
     <ul id="tt1"  class="easyui-tree" data-options="
