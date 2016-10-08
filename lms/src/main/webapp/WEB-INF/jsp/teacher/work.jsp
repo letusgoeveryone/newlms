@@ -142,9 +142,9 @@
                     return true;
                 }
                 var arred = [];
-                arred.push(UM.getEditor('homework').getContent());
+                arred.push(UE.getEditor('homework').getContent());
                 arred = arred + "";
-                if (UM.getEditor('homework').hasContents() === false) {
+                if (UE.getEditor('homework').hasContents() === false) {
                     alert("作业要求需要编辑哦!");
                     return true;
                 }
@@ -264,9 +264,9 @@
                     return true;
                 }
                 var arred = [];
-                arred.push(UM.getEditor('xghomework').getContent());
+                arred.push(UE.getEditor('xghomework').getContent());
                 arred = arred + "";
-                if (UM.getEditor('xghomework').hasContents() === false) {
+                if (UE.getEditor('xghomework').hasContents() === false) {
                     alert("作业要求需要编辑哦!");
                     return true;
                 }

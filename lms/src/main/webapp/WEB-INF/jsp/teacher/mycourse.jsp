@@ -43,9 +43,9 @@
          <!--uploadify-->
          <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
          <!--umeditor-->
-         <script charset="utf-8" src="<%=path%>/ueditor/umeditor.config.js"></script>
-         <script charset="utf-8" src="<%=path%>/ueditor/umeditor.min.js"></script>
-         <script src="<%=path%>/js/zh-cn.js"></script>
+         <script charset="utf-8" src="<%=path%>/ueditor/ueditor.config.js"></script>
+         <script charset="utf-8" src="<%=path%>/ueditor/ueditor.all.min.js"></script>
+         <script src="<%=path%>/ueditor/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
 
      </head>
      <div class="row-fluid" style="min-height: 600px" id="coall">
@@ -183,8 +183,8 @@
      </div>
 
      <script>
-         var ue = UM.getEditor('homework');
-         var ue = UM.getEditor('xghomework');
+         var ue = UE.getEditor('homework');
+         var ue = UE.getEditor('xghomework');
          function cklastc() {
              $("#mywork").hide();
              $("#coall").show();

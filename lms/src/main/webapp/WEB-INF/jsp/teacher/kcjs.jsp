@@ -41,7 +41,7 @@
                          }else{
                              if(window.confirm('你确定要更新课程介绍吗？')){  
                                 var arr = [];     
-                                arr.push(UM.getEditor('myEditor').getContent());
+                                arr.push(UE.getEditor('myEditor').getContent());
                                 addcourseinfo(arr);
                              return true;
                           }
@@ -100,12 +100,12 @@
              lookcourseJS();
          });
 
-         var ue = UM.getEditor('myEditor');
+         var ue = UE.getEditor('myEditor');
         function getContent(){
          var arr = [];     
-         arr.push(UM.getEditor('myEditor').getContent());
-         var value = UM.getEditor('myEditor').getContent();
-         UM.getEditor("myEditor").setContent(value);
+         arr.push(UE.getEditor('myEditor').getContent());
+         var value = UE.getEditor('myEditor').getContent();
+         UE.getEditor("myEditor").setContent(value);
          document.getElementById("hfText").innerHTML=value;
         }
         

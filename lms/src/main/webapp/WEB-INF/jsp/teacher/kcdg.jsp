@@ -38,12 +38,12 @@
         <button class="btn btn-info" onclick="lookcourseDG()">查看</button>
         <script type="text/javascript">
 
-            var ue = UM.getEditor('CourseDaGangEditor');
+            var ue = UE.getEditor('CourseDaGangEditor');
             function getContentDG() {
                 var arr = [];
-                arr.push(UM.getEditor('CourseDaGangEditor').getContent());
-                var value = UM.getEditor('CourseDaGangEditor').getContent();
-                UM.getEditor("CourseDaGangEditor").setContent(value);
+                arr.push(UE.getEditor('CourseDaGangEditor').getContent());
+                var value = UE.getEditor('CourseDaGangEditor').getContent();
+                UE.getEditor("CourseDaGangEditor").setContent(value);
                 document.getElementById("DGText").innerHTML = value;
             }
             function ksscdg() {
@@ -101,7 +101,7 @@
                         } else {
                             if (window.confirm('你确定要更新课程大纲吗？')) {
                                 var arr = [];
-                                arr.push(UM.getEditor('CourseDaGangEditor').getContent());
+                                arr.push(UE.getEditor('CourseDaGangEditor').getContent());
                                 addcourseoutlino(arr);
                                 return true;
                             }
