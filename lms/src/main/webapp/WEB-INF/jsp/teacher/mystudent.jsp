@@ -1,9 +1,3 @@
-<%-- 
-    Document   : mystudent
-    Created on : 2016-2-27, 13:17:38
-    Author     : Administrator
---%>
-
 <%
     //    将项目的根取出来，页面中不再使用相对路径
     String path = request.getContextPath();
@@ -16,10 +10,12 @@
 
 <a href="mystudent.jsp"></a>
 <br><br>
-<div id='xs'class="box-small">
+
+<div id='xs' class="box-small">
     <a href="javascript:void(0)" class="easyui-linkbutton" id="dc" data-options="iconCls:'icon-add',plain:true" onclick="dc_xs()">导出</a>  
     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeSelect()">批量批准</a>  
 </div>
+
 <table id="dg_zs_stu" class="table table-responsive"
        data-options="rownumbers:true,singleSelect:false,pagination:true,toolbar:'#xs',fitColumns:true,method:'get'">
     <thead>
@@ -40,6 +36,7 @@
         </tr>
     </thead>
 </table>   
+
 <script>
     function go_xs_by(val, row) {
         if (row.state === 1) {
@@ -49,6 +46,7 @@
         }
 
     }
+    
     function go(val, row) {
         if (row.state === 1) {
             return '<span> 已批准</span>';
@@ -56,6 +54,7 @@
             return '<span> 未批准</span>';
         }
     }
+    
     function zs_xs_sex(val, row) {
         if (row.studentSex) {
             return '<span> 男</span>';
@@ -101,6 +100,7 @@
             });
         }
     }
+    
     function dc_xs() {
         var node = $('#tt').tree('getSelected');//当前节点
         var b = $("#tt").tree("getParent", node.target); //父节点

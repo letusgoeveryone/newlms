@@ -180,7 +180,7 @@
                         </a>
                     </div>
                     <div class="card-inner row">
-                        教师可在此处批准本班学生，不建议批准其他学生。<br><br>
+                        
                         <jsp:include page="tempstu.jsp"  />
                         
                     </div>

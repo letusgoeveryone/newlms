@@ -41,74 +41,75 @@
                         data-search-on-enter-key="true"
                         data-show-refresh="true"
                         data-page-size="12">
-                       </table>
-                       </div>
-                       </div>
+                    
+                </table>
+            </div>
+        </div>
 
-                       <script>
+        <script>
 
-                    $('#myacdemictable').bootstrapTable({
-                       url: 'teachermessage',
-                       columns: [
-                       {
-                       field: 'teacherName',
-                       title: '姓名'
-                       }, {
-                       field: 'teacherSn',
-                       title: '工号'
-                       }, {
-                       field: 'teacherTel',
-                       title: '手机号'
-                       }, {
-                       field: 'teacherPosition',
-                       title: '职称'
-                       }, {
-                       field: 'teacherRoleValue',
-                       title: '角色',
-                       align: 'center',
-                       formatter: function (value, row, index) {
-                       var teacherRoleValue;
-                       if (row.teacherRoleValue === 2) {
-                       teacherRoleValue = '教务员';
-                       } else {
-                       teacherRoleValue = '教师';
-                       }
-                       return teacherRoleValue;
-                       }
-                       }, {
-                       title: '操作',
-                       field: 'temp',
-                       align: 'center',
-                       formatter: function (value, row, index) {
-                       var temp;
-                       if (row.teacherRoleValue === 2) {
-                       temp = '<a href="#" mce_href="#" onclick="szacdemic(\'' + row.teacherId + '\')">取消</a> ';
+        $('#myacdemictable').bootstrapTable({
+           url: 'teachermessage',
+           columns: [
+                {
+                field: 'teacherName',
+                title: '姓名'
+                }, {
+                field: 'teacherSn',
+                title: '工号'
+                }, {
+                field: 'teacherTel',
+                title: '手机号'
+                }, {
+                field: 'teacherPosition',
+                title: '职称'
+                }, {
+                field: 'teacherRoleValue',
+                title: '角色',
+                align: 'center',
+                formatter: function (value, row, index) {
+                    var teacherRoleValue;
+                    if (row.teacherRoleValue === 2) {
+                        teacherRoleValue = '教务员';
                     } else {
-                    temp = '<a href="#" mce_href="#" onclick="pzacdemic(\'' + row.teacherId + '\')">设置</a> ';
+                        teacherRoleValue = '教师';
                     }
-                    return temp;
+                        return teacherRoleValue;
                     }
+                }, {
+                    title: '操作',
+                    field: 'temp',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var temp;
+                        if (row.teacherRoleValue === 2) {
+                            temp = '<a href="#" mce_href="#" onclick="szacdemic(\'' + row.teacherId + '\')">取消</a> ';
+                        } else {
+                            temp = '<a href="#" mce_href="#" onclick="pzacdemic(\'' + row.teacherId + '\')">设置</a> ';
+                        }
+                            return temp;
+                        }
                     }
-                    ]
-                    });
+                ]
+            });
 
-                    function szacdemic(id) {
-                    $.post("acedmicqx?id=" + id, function (data, status) {
+            function szacdemic(id) {
+                $.post("acedmicqx?id=" + id, function (data, status) {
                     $('#myacdemictable').bootstrapTable('refresh');
-                    });
-                    }
+                });
+            }
 
-                    function pzacdemic(id) {
-                    $.post("acedmicqxpz?id=" + id, function (data, status) {
+            function pzacdemic(id) {
+                $.post("acedmicqxpz?id=" + id, function (data, status) {
                     $('#myacdemictable').bootstrapTable('refresh');
-                    });
+                });
 
-                    }
+            }
 
-                    $('[name="refresh"]').append('<span class="icon">refresh</sapn>');
-                    $(".search").removeClass('pull-right');
-                    $(".search").addClass('pull-left');
+            $('[name="refresh"]').append('<span class="icon">refresh</sapn>');
+            $(".search").removeClass('pull-right');
+            $(".search").addClass('pull-left');
 
-                    </script>
-                    </body>
-                    </html>
+        </script>
+    </body>
+</html>
