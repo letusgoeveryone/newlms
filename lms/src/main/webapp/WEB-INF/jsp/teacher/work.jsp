@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-8 box-small">
                 <p>作业要求:</p>
-                <script type="text/plain" id="homework" style="width: 600%;height:50px;"></script>
+                <script type="text/plain" id="homework" style="width: 100%;height:50px;"></script>
             </div>
         </div>
         <div style="padding:0 15px;">

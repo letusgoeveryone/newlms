@@ -152,7 +152,7 @@
                             
                             <!--课程-->
                             <div style="display: none;" id="mycourse">
-                                <iframe  iframepage id="addcouocontent" frameborder="0" scrolling="no" marginheight="0" height="1000px" width="100%" name="addcouocontent"></iframe>
+                                <iframe  class="iframe-auto-adapt" id="iframe-thiscourse" frameborder="0" scrolling="no" marginheight="0" height="1000px" width="100%" name="course"></iframe>
                             </div>
                             
                         </div>
@@ -279,7 +279,7 @@
                     var courseName = node.text;
                     var courseid = node.id;
                     var b = "<%=path%>/teacher/mycourse?term=" + term + "&courseid=" + courseid + "&courseName=" + courseName;
-                    $("#addcouocontent", parent.document.body).attr("src", b);
+                    $("#iframe-thiscourse", parent.document.body).attr("src", b);
                 }
             }
 
@@ -315,51 +315,29 @@
         <script charset="utf-8" src="<%=path%>/ueditor/ueditor.all.min.js"></script>
         <script src="<%=path%>/ueditor/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
         
-        <script type="text/javascript">
-        var browserVersion = window.navigator.userAgent.toUpperCase();
-        var isOpera = false, isFireFox = false, isChrome = false, isSafari = false, isIE = false;
-        var maxHeight = 0;
-        function reinitIframe(iframeId, minHeight) {
-            try {
-                var iframe = document.getElementById(iframeId);
-                var bHeight = 0;
-                if (isChrome === false && isSafari === false)
-                    bHeight = iframe.contentWindow.document.body.scrollHeight;
-                var dHeight = 0;
-                if (isFireFox === true)
-                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                else if (isIE === false && isOpera === false)
-                    dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                else if (isIE === true && !-[1, ] === false) {
-                } //ie9+
-                else
-                    bHeight += 3;
-                var height = Math.max(bHeight, dHeight);
-                if (height < minHeight){
-                    height = minHeight;
-                }
-                    
-                iframe.style.minHeight = height + "px";
-            } catch (ex) {
-            }
-        }
-        function startInit(iframeId, maxHeight) {
-            isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
-            isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
-            isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
-            isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
-            if (!!window.ActiveXObject || "ActiveXObject" in window)
-                isIE = true;
-            window.setInterval("reinitIframe('" + iframeId + "'," + maxHeight + ")", 100);
-        }
+        <script>
+            
+        function reinitIframe(){
+            var iframes = document.getElementsByClassName('iframe-auto-adapt');
+            
+            for(var i=0; i<iframes.length; i++){
+                var iframe = iframes[i];
+                try{
+                    var bHeight = iframe.contentWindow.document.body.scrollHeight;
+                    var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                    //var height = Math.max(bHeight, dHeight);
+                    var height = bHeight;
 
-        function iFrameHeight() {
-                var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
-                if(ifm != null && subWeb != null) {
-                   ifm.height = subWeb.body.scrollHeight;
-                   ifm.width = subWeb.body.scrollWidth;
-                }   
+                    iframe.height = height;
+                    console.log('b: '+ bHeight);
+                    console.log('d: '+ dHeight);
+                
+                }catch (ex){}
+            }
         }   
+        
+        window.setInterval(reinitIframe, 200);
+        
     </script>      
     </body>  
 </html>
