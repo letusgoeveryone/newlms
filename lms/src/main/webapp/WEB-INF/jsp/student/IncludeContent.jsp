@@ -59,7 +59,7 @@
                             <div class="col-sm-4">
                                 <div class="mg-sm-tb" style="border-bottom: 1px solid rgb(222, 222, 222);position: relative;top: -1.2px;">
                                     <button class="btn btn-flat" id="cid-resource-home"><span class="icon">home</span></button>
-                                    <button class="btn btn-flat pull-right" id="cid-resource-npd"><span >返回上一级</span></button>
+                                    <button class="btn btn-flat pull-right hidden" id="cid-resource-npd"><span >返回上一级</span></button>
                                 </div>
                                 <nav id="cid-resource-nav">
                                     
@@ -68,7 +68,7 @@
                             <div class="col-sm-8 height-1000 bd-lt-divider">
                                 
                                 <!-- 搜索 -->
-                                <div class="form-group form-group-label row mg-sm-tb" >
+                                <div class="form-group form-group-label row mg-sm-tb hidden" >
                                     <div class="col-md-12">
                                         <label class="floating-label" for="cid-resource-search">Search</label>
                                         <input class="form-control" name="cid-resource-search" id="cid-resource-search"/>

@@ -1206,7 +1206,6 @@ div[id^='nodes'],
 a[href^='#folder'] {
     display: inline-block;
     position: relative;
-    height: 150px;
     width: 100px;
     margin: 15px;
     margin-left: 0;
@@ -1214,6 +1213,8 @@ a[href^='#folder'] {
     padding: 15px;
     border-radius: 3px;
     background: transparent;
+    /*tmp*/
+    height: 120px;
 }
 
 div[id^='nodes']:hover,
@@ -1237,6 +1238,10 @@ a[href^='#folder'] .folder-name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    /*tmp*/
+    position: absolute;
+    text-align: center;
+    width: 70px;
 }
 
 .folder-name:hover {
@@ -1296,6 +1301,9 @@ a[href^='#folder'] .folder-name {
     padding: 1em 1em 4em 1em;
 }
 
+.att-tch{
+    font-weight: bold;
+}
 
 /*panel*/
 #upanel .card{
@@ -2602,6 +2610,10 @@ a:focus{
 =================================================================================
 兼容 Bootstrap  
 =================================================================================*/
+.hidden{
+    display: none;
+}
+
 .bs-breadcrumb {
     padding: 8px 15px !important;
     margin-bottom: 20px;

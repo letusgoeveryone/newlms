@@ -271,7 +271,7 @@ FileManageAPI.BrowseDB = {
         var Folder = document.createElement('div');
         var e1 = document.createElement('span');
         var e2 = document.createElement('span');
-        var e3 = document.createElement('span');
+        //var e3 = document.createElement('span');
         
         Folder.addEventListener('click', function(){
             console.log(node.position);
@@ -291,12 +291,12 @@ FileManageAPI.BrowseDB = {
         e1.innerHTML = 'folder';
         e2.className = 'folder-name';
         e2.innerHTML = node.description;
-        e3.className = 'file-num';
-        e3.innerHTML = node.number;
+        //e3.className = 'file-num';
+        //e3.innerHTML = node.number;
         
         Folder.appendChild(e1);
         Folder.appendChild(e2);
-        Folder.appendChild(e3);
+        //Folder.appendChild(e3);
         
         return Folder;
     },

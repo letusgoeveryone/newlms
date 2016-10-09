@@ -398,6 +398,11 @@
            /* ==================================================================
             * 页面 监听器
             * ================================================================== */
+            var load = $('.lms-loading');
+                load.fadeOut();
+                load.removeClass('lms-loading');
+                load.fadeIn("slow");
+                
             NProgress.done(true);
             
             window.onbeforeunload = function() {};

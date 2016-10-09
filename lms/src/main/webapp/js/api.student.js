@@ -205,6 +205,31 @@ var StudentAPI = {
             p1.innerHTML = _o.cobj.introduction;
             var p2 = document.createElement('p');
             p2.innerHTML = _o.cobj.outline;
+            
+            // 课程大纲 附件只有一个！
+            var att = document.createElement('div');
+            setStyle(att, {
+                position: 'absolute',
+                right: '0px',
+                top: '-86px'
+            });
+            //att.className = 'bs-breadcrumb';
+            if(_o.cobj.attachment === ''){
+                var span = document.createElement('span');
+                span.innerHTML = '暂无附件';
+                span.className = 'btn btn-flat text-grey';
+                att.appendChild(span);
+            }else {
+                var a = document.createElement('a');
+                a.href = _o.cobj.attachment;
+                a.innerHTML = '课程大纲附件, 点击下载';
+                a.className  = 'btn btn-flat text-grey';
+                att.appendChild(a);
+            }
+            p2.appendChild(att);
+            p2.style.position = 'relative';
+            
+            
 
             eleCi.appendChild(p1);
             eleCo.appendChild(p2);
@@ -1324,17 +1349,32 @@ function editThisHomework(hid, status) {
     $('#uploaded-area').hide();
     
     if (StudentAPI.ThisHomework.getAttachmentList(ThisCourse.cid, ThisHomework.hid)) {
-        var _list = StudentAPI.ThisHomework.hobj.atts.stu;
+        var _slist = StudentAPI.ThisHomework.hobj.atts.stu;
+        var _tlist = StudentAPI.ThisHomework.hobj.atts.tch;
         var _src;
         HidIsAttachmentHS = '<table class="table table-bordered"><thead><tr><th>附件名</th><th>下载</th><th>删除</th></tr></thead>';
-        for (var i = 0; i < _list.length; i++) {
-            _src = _list[i];
+        
+        if(_tlist.length !== 0){
+            for (var i = 0; i < _tlist.length; i++) {
+                _src = _tlist[i];
+                HidIsAttachmentHS += '<tbody><tr><td><span class="text-indianred att-tch">' + '教师附件' + '</span></td>' +
+                        '<td><a class="btn-brand btn-flat" target="_blank" href="' + StudentAPI.Path.fOperate[1] + '?scid=' + ThisCourse.cid + '&homeworkid=' + ThisHomework.hid + '&src=' + _src + '" class="">下载</a></td>' +
+                        '<td></td></tr></tbody>';
+            }
+        } else {
+            HidIsAttachmentHS += '<tbody><tr><td><span class="text-indianred att-tch">' + '教师附件' + '</span></td>' +
+                    '<td>暂无</td>' +
+                    '<td></td></tr></tbody>';
+        }        
+        for (var i = 0; i < _slist.length; i++) {
+            _src = _slist[i];
             HidIsAttachmentHS += '<tbody><tr><td><span class="text-indianred">' + _src + '</span></td>' +
                 '<td><a class="btn-brand btn-flat" target="_blank" href="' + StudentAPI.Path.fOperate[1] + '?scid=' + ThisCourse.cid + '&homeworkid=' + ThisHomework.hid + '&src=' + _src + '" class="">下载</a></td>' +
                 '<td><a class="btn-default btn-flat" onclick="deleteAttachment(\'' + _src + '\')" class="">删除</a></td></tr></tbody>';
         }
+        
         HidIsAttachmentHS += '</table>';
-        console.log(_list);
+        console.log(_tlist);
         $('#uploaded-area').empty();
         $('#uploaded-area').append(HidIsAttachmentHS);
         $('#uploaded-area').fadeIn();
@@ -1494,6 +1534,13 @@ function getFileManagePath() {
     var Path = [];
     return Path;
 };
+
+function setStyle(ele, style){
+    
+    for (var i in style){
+        ele.style[i] = style[i];
+    }
+}
 
 function logout() {
     window.location.href = "logout";
