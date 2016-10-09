@@ -60,6 +60,7 @@
             }
             #course-content{
                 position: relative;
+                overflow-y: scroll;
             }
             #course-content .tab-pane{
                 color: #212121;
@@ -246,6 +247,27 @@
                         CourseContent.$data.syllabus = GuestAPI.DemonCourse.obj.syllabus;
                     }
             }
+            
+            function reinitIframe(){
+                var iframes = document.getElementsByClassName('iframe-auto-adapt');
+
+                for(var i=0; i<iframes.length; i++){
+                    var iframe = iframes[i];
+                    try{
+                        var bHeight = iframe.contentWindow.document.body.scrollHeight;
+                        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                        //var height = Math.max(bHeight, dHeight);
+                        var height = bHeight;
+
+                        iframe.height = height;
+                        console.log('b: '+ bHeight);
+                        console.log('d: '+ dHeight);
+
+                    }catch (ex){}
+                }
+            }   
+        
+            //window.setInterval(reinitIframe, 200);
             
             // 初始化页面 !
             initPage();
