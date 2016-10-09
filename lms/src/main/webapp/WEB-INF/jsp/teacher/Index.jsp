@@ -83,7 +83,7 @@
                         <aside class="card-side pull-left">
                             <sec:authorize access="hasRole('ROLE_TEACHER') or hasRole('ROLE_DEAN')">
                                 <a  href="#" class='fbtn fbtn-lg  btn-golden'>
-                                    D<span class="fbtn-text fbtn-text-left">我的角色：教师</span>
+                                    T<span class="fbtn-text fbtn-text-left">我的角色：教师</span>
                                 </a>
                             </sec:authorize>
                         </aside>
