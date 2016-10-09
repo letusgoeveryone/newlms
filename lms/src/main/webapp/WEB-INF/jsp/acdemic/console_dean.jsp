@@ -14,6 +14,9 @@
         <meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
         <title>『教务员』| 教务系统</title>
 
+        <link href="<%=path%>/css/nprogress.css" rel="stylesheet" />
+        <script src="<%=path%>/js/nprogress.js"  ></script><script>NProgress.start();</script>
+
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
@@ -43,10 +46,11 @@
             }
             
         </style>
-           
+        <script>NProgress.set(0.1);</script>   
         <script src="<%=path%>/js/jquery.min.js"></script> 
         <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/bootstrap/easyui.css">
         <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/icon.css">
+        <script>NProgress.set(0.3);</script>   
           
     </head>
     <body class="page-default tab-content" id='lms_acdemic'>
@@ -167,6 +171,7 @@
                 </div>
             </div>
         </div>
+        <script>NProgress.set(0.7);</script>   
         
         <!-- js -->
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
@@ -175,6 +180,7 @@
         <script src="<%=path%>/js/formstone/js/transition.js" type="text/javascript"></script>
         <script src="<%=path%>/js/jquery.fs.boxer.min.js" type="text/javascript"></script>
         <script src="<%=path%>/js/configure.js"></script>
+        <script>NProgress.set(0.8);</script>   
 
 
         <!--easyui-->
@@ -184,6 +190,8 @@
         <script src="<%=path%>/js/jquery.easyui/src/jquery.linkbutton.js" type="text/javascript"></script>
         <script src="<%=path%>/js/jquery.easyui/plugins/jquery.panel.js" type="text/javascript"></script>
         <script src="<%=path%>/js/jquery.easyui/plugins/jquery.pagination.js" type="text/javascript"></script>
+        <script>NProgress.set(0.9);</script>   
+        
         <!--uploadify-->
         <script src="<%=path%>/js/jquery.uploadify.min.js"></script>
 
@@ -214,6 +222,7 @@
             $('[href="#panel-StudentManage"]').click(function(){
                 setTimeout(newzsxs,500);
             });
-        </script>    
+        </script>
+        <script>NProgress.done();</script>       
     </body>  
 </html>
