@@ -1243,6 +1243,10 @@ a[href^='#folder'] .folder-name {
     text-align: center;
     width: 70px;
 }
+.menu-collapse-toggle {
+    right: auto;
+    left: -24.5px;
+}
 
 .folder-name:hover {
     overflow: unset !important;

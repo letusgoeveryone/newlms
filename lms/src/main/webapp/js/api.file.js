@@ -197,6 +197,7 @@ FileManageAPI.BrowseDB = {
     },
     
     structureSideItem: function(node, pid){
+        
         var NavItem = document.createElement('li');
         var a = document.createElement('a');
 
@@ -207,7 +208,6 @@ FileManageAPI.BrowseDB = {
         }
 
         a.className = 'waves-attach';
-        a.innerHTML = node.description;
         a.setAttribute('data-parent', '#' + pid);
         a.addEventListener('click', function () {
             console.log(node.position);
@@ -216,14 +216,15 @@ FileManageAPI.BrowseDB = {
             //FileManageAPI.BrowseDB.setParentDirectory(node.parent);
         });
 
-        if (node.children !== undefined) {
+        if (node.children !== undefined && node.length !== 0 && node.children.length !== 0) {
             var NavUl = document.createElement('ul');
             
             NavUl.id = Eid;
-            NavUl.className = 'menu-collapse collapse';
-						
-            a.setAttribute('href', '#' + Eid);
-            a.setAttribute('data-toggle', 'collapse');
+            NavUl.className = 'menu-collapse collapse in';
+            
+            a.appendChild(FileManageAPI.BrowseDB.getSideItemDropdown(Eid, node.description)[1]);
+            a.appendChild(FileManageAPI.BrowseDB.getSideItemDropdown(Eid, node.description)[0]);
+              
             
             for (var i = 0; i < node.children.length; i++) {
                 
@@ -239,10 +240,58 @@ FileManageAPI.BrowseDB = {
             
         }else{
             
+            a.innerHTML = node.description;
             NavItem.appendChild(a);
         }
         return NavItem;
         
+    },
+    
+    getSideItemDropdown: function(eid, des){
+        
+        /**
+         <a class="sn-a" href="javascript:void(0)">
+            <span class="icon mg-sm-right">info</span>个人信息
+-           <span class="menu-collapse-toggle waves-attach waves-effect" data-target="#collapse-profile-settings" data-toggle="collapse">
+-               <div class="menu-collapse-toggle-close">
+-                       <i class="icon icon-lg">close</i>
+-                   </div>
+-                   <div class="menu-collapse-toggle-default">
+-                        <i class="icon icon-lg">add</i>
+-                   </div>
+-               </span>
+        </a>
+         * @type Element
+         */
+        
+        var title = document.createElement('span');
+        var btnWrap = document.createElement('span');
+        var close = document.createElement('div');
+        var iconClose = document.createElement('i');
+        var open = document.createElement('div');
+        var iconOpen = document.createElement('i');
+        
+        title.innerHTML = des;
+        
+        btnWrap.className = 'menu-collapse-toggle waves-attach waves-effect';
+        btnWrap.setAttribute('data-target', "#" + eid);
+        btnWrap.setAttribute('data-toggle', "collapse");
+        
+        close.className = 'menu-collapse-toggle-close';
+        iconClose.className = 'icon icon-lg';
+        iconClose.innerHTML = 'close',
+                
+        open.className = 'menu-collapse-toggle-default';
+        iconOpen.className = 'icon icon-lg';
+        iconOpen.innerHTML = 'add';
+        
+        open.appendChild(iconOpen);
+        close.appendChild(iconClose);
+        
+        btnWrap.appendChild(open);
+        btnWrap.appendChild(close);
+        
+        return [title,btnWrap];
     },
     
     structureMainContent: function(){
