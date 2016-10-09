@@ -155,7 +155,7 @@
                             
                             <!--课程-->
                             <div style="display: none;" id="mycourse">
-                                <iframe  class="iframe-auto-adapt" id="iframe-thiscourse" frameborder="0" scrolling="no" marginheight="0" height="1000px" width="100%" name="course"></iframe>
+                                <iframe class="iframe-auto-adapt" id="iframe-thiscourse" frameborder="0" scrolling="no" marginheight="0" height="1000px" width="100%" name="course"></iframe>
                             </div>
                             
                         </div>
@@ -324,26 +324,23 @@
         
         <script>
             
+        var iframe = document.getElementById('iframe-thiscourse');
         function reinitIframe(){
-            var iframes = document.getElementsByClassName('iframe-auto-adapt');
             
-            for(var i=0; i<iframes.length; i++){
-                var iframe = iframes[i];
-                try{
-                    var bHeight = iframe.contentWindow.document.body.scrollHeight;
-                    var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                    //var height = Math.max(bHeight, dHeight);
-                    var height = bHeight;
+            try{
+                iframe.height = iframe.contentDocument.body.offsetHeight;
+                console.log(iframe.contentDocument.body.offsetHeight);
+                var bHeight = iframe.contentWindow.document.body.scrollHeight;
+                var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                //var height = Math.max(bHeight, dHeight);
+                var height = bHeight;
 
-                    iframe.height = height;
-                    console.log('b: '+ bHeight);
-                    console.log('d: '+ dHeight);
-                
-                }catch (ex){}
-            }
-        }   
-        
-        window.setInterval(reinitIframe, 200);
+                iframe.height = height;
+
+            }catch (ex){}
+        }
+            
+        window.setInterval(reinitIframe, 1000);
         NProgress.done();
         
     </script>      
