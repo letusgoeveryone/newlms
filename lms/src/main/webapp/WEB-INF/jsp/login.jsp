@@ -73,7 +73,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <label class="floating-label" for="id">ID号</label>
-                                                            <input type="text" class="form-control" id="id" name="id" placeholder="请输入学生证号/教职工号" onblur="verifyText('id', 'idMsg');">
+                                                            <input type="text" class="form-control" id="id" name="id" placeholder="请输入学生证号/教职工号">
                                                         </div>
                                                     </div>
                                                     <span id="idMsg" class="text-error"></span>
@@ -84,7 +84,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <label class="floating-label" for="pw">密码</label>
-                                                            <input type="password" class="form-control" id="pw" name="pw" placeholder="请输入密码" onblur="verifyText('pw', 'pwMsg');">
+                                                            <input type="password" class="form-control" id="pw" name="pw" placeholder="请输入密码">
                                                         </div>
                                                     </div>
                                                     <span id="pwMsg" class="text-error"></span>
@@ -208,6 +208,15 @@
                         return '<%=path%>';
                     };
                     
+                    function isInfoNull(){
+                        var status = false;
+                        
+                        if($('#id').val() !== ''){ status = true;}
+                        if($('#pw').val() !== ''){ status = true;}
+                        
+                        return true;
+                    }
+                    
                     //验证码框响应回车键提交登录
                     function keyListener(e) {
                         var keynum;
@@ -216,7 +225,7 @@
                         if (window.event){ keynum = e.keyCode; } else if (e.which){  keynum = e.which; }
                         if (keynum === 13) {
                             
-                            if(verifyText('id', 'idMsg')&&verifyText('pw', 'pwMsg')&&verifyText('ccd', 'ccdMsg')){
+                            if(isInfoNull()&&verifyText('ccd', 'ccdMsg')){
                                 status = true;
                             }else
                                 status = false;
@@ -250,7 +259,7 @@
                     function login() {
                         var status = false;
                         
-                        if(verifyText('id', 'idMsg')&&verifyText('pw', 'pwMsg')&&verifyText('ccd', 'ccdMsg')){
+                        if(isInfoNull()&&verifyText('ccd', 'ccdMsg')){
                             status = true;
                         }else
                             status = false;

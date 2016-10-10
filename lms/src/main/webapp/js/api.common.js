@@ -71,7 +71,7 @@ function verifyText(checkText, checkMessage) {
             return true;
         }
     } else if (checkText === "tn") {
-        if (!(verifyObj.isPattern(/^[0-9 _]{6,18}$/))) {
+        if (!(verifyObj.isPattern(/^[a-z A-Z 0-9 _]{6,18}$/))) {
             document.getElementById(checkMessage).innerHTML = "工号有误";
             return false;
         } else {
