@@ -250,7 +250,7 @@ var StudentAPI = {
         },
         
         setDoneH: function () {
-            var ele = StudentAPI.CourseDB.eleH.o;
+            var ele = StudentAPI.CourseDB.eleH.o; ele.innerHTML = '';
             var _o = StudentAPI.ThisCourse.cobj.homework.o;
 
             if (_o.length === 0) {
@@ -316,7 +316,7 @@ var StudentAPI = {
         
         setDoingH: function () {
 
-            var ele = StudentAPI.CourseDB.eleH.i;
+            var ele = StudentAPI.CourseDB.eleH.i; ele.innerHTML = '';
             var _o = StudentAPI.ThisCourse.cobj.homework.i;
 
             if (_o.length === 0) {
@@ -382,7 +382,7 @@ var StudentAPI = {
         },
         
         setMissH: function () {
-            var ele = StudentAPI.CourseDB.eleH.x;
+            var ele = StudentAPI.CourseDB.eleH.x; ele.innerHTML = '';
             var _o = StudentAPI.ThisCourse.cobj.homework.x;
 
             if (_o.length === 0) {
@@ -1359,7 +1359,7 @@ function editThisHomework(hid, status) {
             for (var i = 0; i < _tlist.length; i++) {
                 _src = _tlist[i];
                 HidIsAttachmentHS += '<tbody><tr><td><span class="text-indianred att-tch">' + '教师附件' + '</span></td>' +
-                        '<td><a class="btn-brand btn-flat" target="_blank" href="' + StudentAPI.Path.fOperate[1] + '?scid=' + ThisCourse.cid + '&homeworkid=' + ThisHomework.hid + '&src=' + _src + '" class="">下载</a></td>' +
+                        '<td><a class="btn-brand btn-flat" target="_blank" href="/lms/'+ _src + '" class="">下载</a></td>' +
                         '<td></td></tr></tbody>';
             }
         } else {
@@ -1417,7 +1417,6 @@ function previewThisHomework(hid){
 
 function updateHomeworkList(){
     StudentAPI.ThisCourse.setHomework();
-    StudentAPI.CourseDB.eleH.innerHTML='';
     StudentAPI.CourseDB.structureCourseHomework();
     console.log("reflesh homework list done !");
     
