@@ -9,7 +9,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>FlexPaper</title>
+        <title>Flash 阅读器</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
         <style type="text/css" media="screen">

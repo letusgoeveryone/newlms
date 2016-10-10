@@ -221,9 +221,10 @@ var StudentAPI = {
                 att.appendChild(span);
             }else {
                 var a = document.createElement('a');
-                a.href = _o.cobj.attachment;
-                a.innerHTML = '课程大纲附件, 点击下载';
+                a.href = '/lms' + _o.cobj.attachment;
+                a.innerHTML = '课程大纲附件, 点击预览';
                 a.className  = 'btn btn-flat text-grey';
+                a.setAttribute('target', '_blank');
                 att.appendChild(a);
             }
             p2.appendChild(att);
