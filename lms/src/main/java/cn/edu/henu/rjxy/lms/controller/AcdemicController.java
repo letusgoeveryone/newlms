@@ -62,8 +62,8 @@ import cn.edu.henu.rjxy.lms.server.AuthorityManage;
 public class AcdemicController {
      
     @RequestMapping("/acdemic")
-    public String index2() {
-        return "acdemic/console_dean";
+    public String index() {
+        return "acdemic/Index";
     }
         //返回acdemic信息
     

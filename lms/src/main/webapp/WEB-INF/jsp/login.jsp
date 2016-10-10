@@ -73,7 +73,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <label class="floating-label" for="id">ID号</label>
-                                                            <input type="text" class="form-control" id="id" name="id" placeholder="请输入学生证号/教职工号">
+                                                            <input type="text" class="form-control" id="id" onblur="isIdNull()" name="id" placeholder="请输入学生证号/教职工号">
                                                         </div>
                                                     </div>
                                                     <span id="idMsg" class="text-error"></span>
@@ -84,7 +84,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <label class="floating-label" for="pw">密码</label>
-                                                            <input type="password" class="form-control" id="pw" name="pw" placeholder="请输入密码">
+                                                            <input type="password" class="form-control" id="pw" onblur="isPwNull()"  name="pw" placeholder="请输入密码">
                                                         </div>
                                                     </div>
                                                     <span id="pwMsg" class="text-error"></span>
@@ -95,7 +95,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <label class="floating-label" for="ccd">验证码：</label>
-                                                            <input type="text" class="form-control" id="ccd" name="ccd" placeholder="请输入右侧的验证码" onkeydown="keyListener(event)">
+                                                            <input type="text" class="form-control" id="ccd" name="ccd" placeholder="请输入右侧的验证码" onblur="isCcdNull()" onkeydown="keyListener(event)">
                                                             <span class="ccd-image" >
                                                                 <img id="ccdImage" title="看不清楚请单击图片" onclick="updateCcdImage()" >
                                                             </span>
@@ -208,14 +208,51 @@
                         return '<%=path%>';
                     };
                     
-                    function isInfoNull(){
+                    function isIdNull(){
                         var status = false;
+                        var ele = document.getElementById('id');
+                        var msg = document.getElementById('idMsg');
                         
-                        if($('#id').val() !== ''){ status = true;}
-                        if($('#pw').val() !== ''){ status = true;}
+                        if(ele.value !== ''){ 
+                            status = true;
+                            msg.innerHTML = '';
+                        } else {
+                            msg.innerHTML = '工号/学号 不能为空...';
+                        }
                         
-                        return true;
-                    }
+                        return status;
+                    };
+                    
+                    function isPwNull(){
+                        var status = false;
+                        var ele = document.getElementById('pw');
+                        var msg = document.getElementById('pwMsg');
+                            
+                        if(ele.value !== ''){ 
+                            status = true;
+                            msg.innerHTML = '';
+                        } else {
+                            msg.innerHTML = '密码不能为空...';
+                        }
+                        
+                        return status;
+                    };
+                    
+                    function isCcdNull(){
+                        var status = false;
+                        var ele = document.getElementById("ccd");
+                        var msg = document.getElementById('ccdMsg');
+                        
+                        if(ele.value !== ''){ 
+                            status = true;
+                            msg.innerHTML = '';
+                        } else {
+                            msg.innerHTML = '请输入验证码...';
+                        }
+                        
+                        return status;
+                        
+                    };
                     
                     //验证码框响应回车键提交登录
                     function keyListener(e) {
@@ -225,7 +262,7 @@
                         if (window.event){ keynum = e.keyCode; } else if (e.which){  keynum = e.which; }
                         if (keynum === 13) {
                             
-                            if(isInfoNull()&&verifyText('ccd', 'ccdMsg')){
+                            if(isIdNull()&&isPwNull()&&verifyText('ccd', 'ccdMsg')){
                                 status = true;
                             }else
                                 status = false;
@@ -259,7 +296,7 @@
                     function login() {
                         var status = false;
                         
-                        if(isInfoNull()&&verifyText('ccd', 'ccdMsg')){
+                        if(isIdNull()&&isPwNull()&&verifyText('ccd', 'ccdMsg')){
                             status = true;
                         }else
                             status = false;

@@ -39,6 +39,10 @@
                 display: block;
             }
             
+            .textbox{
+                border-radius: 0px;
+            }
+            
             #scrollUp {
                 position: absolute;
                 left: -150px;

@@ -35,7 +35,6 @@
             </thead>
         </table>    
         <br>
-        <a  onclick="go_zs_stu()">go</a> <input type="text" id="go" style="width: 50px">
         <a class="easyui-linkbutton" onclick="getSelected_zs_xs()">查看选中的信息</a>
         <a  class="easyui-linkbutton" onclick="getSelections_zs_xs()">查看选中的多个信息</a>
         <a  class="easyui-linkbutton" onclick="sj_zs_stu()">加载所有学院学生信息</a>

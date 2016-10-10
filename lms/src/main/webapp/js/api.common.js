@@ -150,11 +150,19 @@ function verifyText(checkText, checkMessage) {
             document.getElementById(checkMessage).innerHTML = "";
         }
     } else if (checkText === "ccd") {
-        if (!isCCDEqual(document.getElementById("ccd").value)) {
-            document.getElementById(checkMessage).innerHTML = "验证码输入错误";
+        var ele = document.getElementById("ccd");
+        var msg = document.getElementById(checkMessage);
+        console.log(msg);
+        if (ele.value === ''){
+            msg.innerHTML = '请输入验证码...';
+            return false;
+        }
+        if (!isCCDEqual(ele.value)) {
+            ele.value = '';
+            msg.innerHTML = "验证码输入错误";
             return false;
         } else {
-            document.getElementById(checkMessage).innerHTML = "";
+            msg.innerHTML = "";
             return true;
         }
     } else {
