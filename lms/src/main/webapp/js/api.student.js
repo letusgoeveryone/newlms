@@ -1173,6 +1173,7 @@ function initCourse(){
     if(isCourseInited === false){
         //初始化 课程信息
         StudentAPI.initPersnalCourseInfo();
+        isCourseInited = true;
 
         if (StudentAPI.CourseDS[0] !== undefined) {
             StudentAPI.ThisCourse.set(StudentAPI.CourseDS[0].scid);
@@ -1185,6 +1186,8 @@ function initCourse(){
             }
         }
 
+    }else{
+        $('#anchor-mcourse').click();
     }
 }
 
@@ -1531,7 +1534,7 @@ function getIdByDomId(prefix, domId) {
 };
 
 function getFileManagePath() {
-    var Path = [];
+    var Path = StudentAPI.Path;
     return Path;
 };
 

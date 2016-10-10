@@ -34,7 +34,7 @@ public class FileController {
         uri=uri.replaceAll("\\\\", "/");
         uri=uri.replaceAll("//", "/");
         System.out.println(uri);
-	request.setAttribute("uri","file/"+uri);
+	request.setAttribute("uri", uri);
 	return "getswf"; 
     }
     
@@ -44,7 +44,7 @@ public class FileController {
         uri=uri.replaceAll("\\\\", "/");
         uri=uri.replaceAll("//", "/");
         System.out.println(uri);
-	request.setAttribute("uri","file/"+uri);
+	request.setAttribute("uri", uri);
 	return "getvideo"; 
     }
     

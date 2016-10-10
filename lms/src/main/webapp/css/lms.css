@@ -1202,6 +1202,7 @@ body[id^=lms] {
 
 /*文件夹*/
 
+.lms-file,
 div[id^='nodes'],
 a[href^='#folder'] {
     display: inline-block;
@@ -1217,12 +1218,14 @@ a[href^='#folder'] {
     height: 120px;
 }
 
+.lms-file:hover,
 div[id^='nodes']:hover,
 a[href^='#folder']:hover {
     background-color: rgba(211,211,211,0.1);
     cursor: pointer;
 }
 
+.lms-file .icon,
 div[id^="nodes"] .icon, 
 a[href^="#folder"] .icon {
     background-color: #fdefc0;
@@ -1231,8 +1234,15 @@ a[href^="#folder"] .icon {
     margin: 0 auto 13px;
     display: block;
 }
+.lms-file .icon{
+    background-color: rgba(255, 255, 255, 0.60);
+    border: 1px solid rgba(162, 159, 159, 0.50);
+    position: relative;
+}
+
 div[id^="nodes"] .folder-name,
-a[href^='#folder'] .folder-name {
+a[href^='#folder'] .folder-name,
+.file-name{
     display: block;
     text-align: center;
     white-space: nowrap;
@@ -1243,15 +1253,48 @@ a[href^='#folder'] .folder-name {
     text-align: center;
     width: 70px;
 }
+
+.file-name{
+    bottom: 15px;
+}
+
+.file-name:hover, .folder-name:hover {
+    overflow: unset !important;
+}
+
+[data-fstatus]:after{
+    text-align: center;
+    line-height: 50px;
+    font-size: small;
+    position: absolute;
+    left: 13.5px;
+    color: #666;
+    transition: all .3s;
+}
+.lms-file:hover [data-fstatus]:after{
+    color: #313131;
+}
+
+[data-fstatus='play']:after{
+    content: '播放';
+}
+
+[data-fstatus='preview']:after{
+    content: '预览';
+}
+
+[data-fstatus='download']:after{
+    content: '下载';
+}
+
 .menu-collapse-toggle {
     right: auto;
     left: -24.5px;
 }
 
-.folder-name:hover {
-    overflow: unset !important;
+.fs-lightbox{
+    transform: unset;
 }
-
 
 /*文件[名,大小,按钮]*/
 

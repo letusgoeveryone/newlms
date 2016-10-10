@@ -131,7 +131,28 @@ FileManageAPI.TOC = {
         return Node;
     },
     
-    getFilesNum:function(node){}
+    getFilesNum:function(node){},
+    
+    setResource: function(node, pos, cid){
+        var dir = '';
+        for(var i=1; i<pos.length; i++){
+            dir += '/' + pos[i];
+        }
+        $.ajax({
+            url: FileManageAPI.Path.cInfo[3] + "?scid=" + cid + '&dir=' + dir + '/',
+            type: 'get',
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                node.resource= data;
+                console.log(node.resource);
+            },
+            error: function () {
+                node.resource = [];
+                status = -1;
+            }
+        });
+    }
 };
 
 //文件浏览器 HS
@@ -171,7 +192,7 @@ FileManageAPI.BrowseDB = {
         
         eid.addEventListener('click', function () {
             FileManageAPI.setNodesDSByPosition(pos);
-            FileManageAPI.updateBrowseDBByNodes(FileManageAPI.Node);
+            FileManageAPI.updateBrowseDBByNodes(FileManageAPI.Node, pos);
         });
     },
     
@@ -212,7 +233,7 @@ FileManageAPI.BrowseDB = {
         a.addEventListener('click', function () {
             console.log(node.position);
             FileManageAPI.setNodesDSByPosition(node.position);
-            FileManageAPI.updateBrowseDBByNodes(FileManageAPI.Node);
+            FileManageAPI.updateBrowseDBByNodes(FileManageAPI.Node, node.position);
             //FileManageAPI.BrowseDB.setParentDirectory(node.parent);
         });
 
@@ -298,8 +319,11 @@ FileManageAPI.BrowseDB = {
         FileManageAPI.BrowseDB.structureMainContentByNodes(FileManageAPI.TOC.DS);
     },
         
-    structureMainContentByNodes: function(nodes){
+    structureMainContentByNodes: function(nodes, pos){
         var ele = FileManageAPI.BrowseDB.eleC;
+        if (pos === undefined){
+            nodes.resource = [];
+        }
         
 //        if(nodes === undefined) return;
         
@@ -308,11 +332,11 @@ FileManageAPI.BrowseDB = {
                 ele.appendChild(FileManageAPI.BrowseDB.structureFolder(nodes.children[i]));
             };
         }
-        
-        if(nodes.resource !== undefined){
-            for(var i=0; i<nodes.resource.length; i++){
-                ele.appendChild(FileManageAPI.BrowseDB.structureFiles(nodes.resource, nodes.position));
-            };
+        console.info(nodes.resource);
+        if(nodes.resource !== undefined && nodes.resource.length !== 0){
+            FileManageAPI.TOC.setResource(nodes , pos, ThisCourse.cid);
+            console.info(nodes.resource);
+            FileManageAPI.BrowseDB.structureFiles(nodes.resource, pos);
         }
     },
     
@@ -325,7 +349,7 @@ FileManageAPI.BrowseDB = {
         Folder.addEventListener('click', function(){
             console.log(node.position);
             FileManageAPI.setNodesDSByPosition(node.position);
-            FileManageAPI.updateBrowseDBByNodes(FileManageAPI.Node);
+            FileManageAPI.updateBrowseDBByNodes(FileManageAPI.Node, node.position);
             FileManageAPI.BrowseDB.setParentDirectory(node.position);
             
         });
@@ -351,83 +375,97 @@ FileManageAPI.BrowseDB = {
     },
     
     structureFiles: function(nodes, pos) {
-        var table = document.createElement('table');
-        table.className = 'table table-responsive table-filelist';
-        
-        FileManageAPI.BrowseDB.structureFilesHeader(table);
+        var ele = FileManageAPI.BrowseDB.eleC;
         
         for(var i=0; i<nodes.length; i++){
-            FileManageAPI.BrowseDB.structureFile(table,nodes[i], pos);
+            var file = FileManageAPI.BrowseDB.getFileByUrls(nodes[i]);
+            FileManageAPI.BrowseDB.structureFile(ele, file, pos);
         }
-        return table;
+        return ele;
     },
     
-    structureFilesHeader: function(node){
+    getFileByUrls: function(urls){
+        var file = {
+            name:'',
+            status:'',
+            type:'',
+            dir:''
+        };
         
-        var header = node.createTHead();
-        var row = header.insertRow();
-        var filename = row.insertCell();
-        var filesize = row.insertCell();
-        var filedownload = row.insertCell();
-        var filemethod = row.insertCell();
+        // 文件名
+        file.name = urls.substr(urls.lastIndexOf("/")+1);
         
-        header.className = '';
+        // 文件类型
+        file.type = file.name.substr(file.name.lastIndexOf(".")+1);
+        console.log(file.type);
         
-        filename.innerHTML = '文件名';
-        filesize.innerHTML = '大小';
-        filedownload.innerHTML = '下载';
-        filemethod.innerHTML = '其他';
+        // 文件拥有的事件类型
         
+        // 可预览
+        if(file.type === 'swf'){
+            file.status = 'preview';
+            
+        //可播放
+        }else if(file.type === 'mp4'){
+            file.status = 'play';
+            
+        //可下载
+        }else {
+            file.status = 'download';
+            
+        }
+        
+        //文件对应事件类型的路径
+        //预览
+        if(file.status === 'download'){
+            file.dir = PATH + urls;
+            
+        //播放
+        }else if(file.status === 'preview'){
+            file.dir = PATH + '/getswf?uri=' + urls;
+            
+        //下载
+        }else if(file.status === 'play'){
+            file.dir = PATH + '/getvideo?uri=' + urls;
+            
+        }
+        
+        return file;
     },
     
-    structureFile: function(node, file, pos){
+    structureFile: function (ele, file, pos) {
+        var File = document.createElement('a');
+        var icon = document.createElement('span');
+        var name = document.createElement('span');
         
-        var File = node.insertRow();
-        var name = File.insertCell();
-        var size = File.insertCell();
-        var download = File.insertCell();
-        var method = File.insertCell();
+        File.className = 'lms-file';
+        File.href = file.dir;
         
-        var e1 = document.createElement('a');
-        e1.className = 'btn btn-flat btn-brand';
-        e1.setAttribute('target','_blank');
-        
-        var e2 = document.createElement('a');
-        e2.className = 'btn btn-flat btn-red stage-card';
-        
+        icon.className = 'icon icon-4x ';
+        //预览
+        if (file.status === 'download') {
+            icon.setAttribute('data-fstatus','download');
+
+        //播放
+        } else if (file.status === 'preview') {
+            icon.setAttribute('data-fstatus','preview');
+            File.className = 'lms-file stage-card';
+            
+
+        //下载
+        } else if (file.status === 'play') {
+            icon.setAttribute('data-fstatus','play');
+            File.className = 'lms-file stage-card';
+
+        }
+        icon.innerHTML = 'file';
+        name.className = 'file-name';
         name.innerHTML = file.name;
-        name.className = 'text-indianred text-blod';
-        size.innerHTML = FileManageAPI.getFormattedSize(file.size);
         
-        
-        if(file.status === -1){
-            
-            e1.setAttribute('href',FileManageAPI.getDownloadPath(pos, file.name));
-            e1.innerHTML = '下载';
-            e2.setAttribute('href',FileManageAPI.getPreviewPath(pos, file.name));
-            e2.innerHTML = '预览';
-            
-        }else if(file.status === 1){
-            e1.setAttribute('href',FileManageAPI.getDownloadPath(pos, file.name));
-            e1.innerHTML = '下载';
-            e2.setAttribute('href',FileManageAPI.getPlayPath(pos, file.name));
-            e2.innerHTML = '播放';
-        } else {
-            console.log(pos);
-            e1.setAttribute('href', FileManageAPI.getDownloadPath(pos, file.name));
-            e1.innerHTML = '下载';
-            e2.innerHTML = '';
-        }
-        download.appendChild(e1);
-        method.appendChild(e2);
-        
-        //
+        File.appendChild(icon);
         File.appendChild(name);
-        File.appendChild(size);
-        File.appendChild(download);
-        File.appendChild(method);
         
-        node.appendChild(File);
+        ele.appendChild(File);
     },
 
     structureMainContentByKeyword: function(str){
@@ -473,9 +511,9 @@ FileManageAPI.setNodesDSByPosition = function (pos, nodes) {
     return {};
 };
 
-FileManageAPI.updateBrowseDBByNodes = function (nodes) {
+FileManageAPI.updateBrowseDBByNodes = function (nodes, pos) {
     FileManageAPI.BrowseDB.eleC.innerHTML = '';
-    FileManageAPI.BrowseDB.structureMainContentByNodes(nodes);
+    FileManageAPI.BrowseDB.structureMainContentByNodes(nodes, pos);
     console.log('updateBrowseDBByNodes...');
 };
 

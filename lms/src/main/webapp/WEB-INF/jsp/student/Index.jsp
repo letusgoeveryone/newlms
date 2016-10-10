@@ -200,9 +200,9 @@
         <script src="<%=path%>/uploadify/jquery.uploadify.js" type="text/javascript"></script>
         <!--<script src="http://open.iciba.com/huaci/huaci.js"></script>-->
         <script>
-            
             NProgress.set(0.9);
-
+            
+            var PATH = '<%=path%>';
 
            /* ==================================================================
             * 作业 监听器

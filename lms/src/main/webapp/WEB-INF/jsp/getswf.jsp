@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
         <style type="text/css" media="screen">
-            html,body{ height:100%; padding: 0; margin: 0;}
+            html,body{ height:100%; padding: .3px; margin: 0 5px 0 0;}
             .viewer-wrapper{
                 height: 100vh;
                 width: 100%;
@@ -37,6 +37,7 @@
             var startDocument = "Paper";            
             var url = window.location.href.toString();
             var path = '<%=path%>' + '/' + '${uri}';
+            console.log(path);
             $('#viewer').FlexPaperViewer({
                 config: 
                     {
