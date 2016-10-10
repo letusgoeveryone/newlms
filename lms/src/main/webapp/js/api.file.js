@@ -242,9 +242,6 @@ FileManageAPI.BrowseDB = {
             
             NavUl.id = Eid;
             NavUl.className = 'menu-collapse collapse in';
-            
-            a.appendChild(FileManageAPI.BrowseDB.getSideItemDropdown(Eid, node.description)[1]);
-            a.appendChild(FileManageAPI.BrowseDB.getSideItemDropdown(Eid, node.description)[0]);
               
             
             for (var i = 0; i < node.children.length; i++) {
@@ -256,6 +253,10 @@ FileManageAPI.BrowseDB = {
             }
             
             
+
+            NavItem.appendChild(FileManageAPI.BrowseDB.getSideItemDropdown(Eid, node.description)[1]);
+            //a.appendChild();
+            a.appendChild(FileManageAPI.BrowseDB.getSideItemDropdown(Eid, node.description)[0]);
             NavItem.appendChild(a);
             NavItem.appendChild(NavUl);
             
@@ -337,6 +338,11 @@ FileManageAPI.BrowseDB = {
             FileManageAPI.TOC.setResource(nodes , pos, ThisCourse.cid);
             console.info(nodes.resource);
             FileManageAPI.BrowseDB.structureFiles(nodes.resource, pos);
+        }else{
+            var warn = document.createElement('span');
+            warn.className = 'box-small text-orange no-file';
+            warn.innerHTML = '此目录下无文件';
+            ele.appendChild(warn);
         }
     },
     

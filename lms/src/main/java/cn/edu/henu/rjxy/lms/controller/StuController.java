@@ -192,7 +192,7 @@ public class StuController {
             String[] files = f.list();
             for (String file : files) {
                 if (file.toLowerCase().endsWith(".swf")) {
-                    swf_syllabus="/getswf?uri="+term +"/"+collage+"/"+courseName+"/课程大纲/"+file;
+                    swf_syllabus="/getswf?uri=file/"+term +"/"+collage+"/"+courseName+"/课程大纲/"+file;
                     break;
                 }
             }

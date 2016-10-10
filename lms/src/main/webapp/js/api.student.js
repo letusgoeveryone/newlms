@@ -136,6 +136,8 @@ var StudentAPI = {
             StudentAPI.CourseDB.structureCourseContent();
             StudentAPI.CourseDB.structureCourseResource();
             StudentAPI.CourseDB.structureCourseHomework();
+            
+            $('.stage-card').lightbox();
 
         },
         
@@ -183,6 +185,8 @@ var StudentAPI = {
             StudentAPI.CourseDB.structureCourseResource();
             StudentAPI.CourseDB.structureCourseHomework();
             
+            $('.stage-card').lightbox();
+            
         },
         
         clearThisCourse: function(){
@@ -223,8 +227,8 @@ var StudentAPI = {
                 var a = document.createElement('a');
                 a.href = '/lms' + _o.cobj.attachment;
                 a.innerHTML = '课程大纲附件, 点击预览';
-                a.className  = 'btn btn-flat text-grey';
-                a.setAttribute('target', '_blank');
+                a.className  = 'btn btn-flat text-grey stage-card';
+                //a.setAttribute('target', '_blank');
                 att.appendChild(a);
             }
             p2.appendChild(att);

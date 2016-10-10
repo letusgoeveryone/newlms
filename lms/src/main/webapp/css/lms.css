@@ -1119,9 +1119,14 @@ body[id^=lms] {
 }
 
 #cid-resource-nav ul > li {
-    padding-left: 1em;
+    margin-left: 1em;
     border-left: 3px solid #dedede;
 }
+
+[data-parent^='#cid-rnav']{
+    padding: 0 32px !important;
+}
+
 
 #tile-course-list {
     margin: 0 auto;
@@ -1287,9 +1292,21 @@ a[href^='#folder'] .folder-name,
     content: '下载';
 }
 
+.no-file{
+    display: block;
+    margin: 3em 20px;
+    text-align: center;
+    border: 3px dashed whitesmoke;
+    color: #848484;
+    font-size: large;
+}
+
 .menu-collapse-toggle {
     right: auto;
-    left: -24.5px;
+    left: 6px;
+    height: 50px;
+    position: absolute;
+    padding: 0;
 }
 
 .fs-lightbox{
