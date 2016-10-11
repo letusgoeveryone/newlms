@@ -21,33 +21,34 @@ import javax.persistence.OneToMany;
 public class Teacher implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "teacher_Id")
      private Integer teacherId;
-    @Column(name = "teacherSn", length= 45, nullable = false)
+    @Column(name = "teacher_Sn", length= 45, nullable = false)
      private String teacherSn;//工号
-    @Column(name = "teacherName", length= 45, nullable = false)
+    @Column(name = "teacher_Name", length= 45, nullable = false)
      private String teacherName;//姓名
-    @Column(name = "teacherIdcard", length= 18, nullable = false)
+    @Column(name = "teacher_Idcard", length= 18, nullable = false)
      private String teacherIdcard;//身份证 
-    @Column(name = "teacherCollege", length= 18, nullable = false)
+    @Column(name = "teacher_College", length= 18, nullable = false)
      private String teacherCollege;//yuan
-    @Column(name = "teacherImg", length= 18, nullable = true, columnDefinition = "0")
+    @Column(name = "teacher_Img", length= 18, nullable = true, columnDefinition = "int(10)  default 0")
      private int teacherImg;
-    @Column(name = "teacherTel", length= 20, nullable = false)
+    @Column(name = "teacher_Tel", length= 20, nullable = false)
      private String teacherTel;//手机号 
-    @Column(name = "teacherQq", length= 20, nullable = false)
+    @Column(name = "teacher_Qq", length= 20, nullable = false)
      private String teacherQq;//qq 
-    @Column(name = "teacherPwd", length= 45, nullable = false)
+    @Column(name = "teacher_Pwd", length= 45, nullable = false)
      private String teacherPwd;//密码 
 
      private boolean teacherSex;//性别 
-    @Column(name = "teacherPosition", length= 45, nullable = false)
+    @Column(name = "teacher_Position", length= 45, nullable = false)
      private String teacherPosition;//职称 
-    @Column(name = "teacherEnrolling", nullable = false)
+    @Column(name = "teacher_Enrolling", nullable = false)
      private Date teacherEnrolling;//注册时间
-    @Column(name = "teacher_rolevalue", length= 45, nullable = false)
+    @Column(name = "teacher_role_value", length= 45, nullable = false)
      private int teacherRoleValue;
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "teacherId")
+    @JoinColumn(name = "teacher_Id")
      private Set<TermCourse> termCourse;
      
 

@@ -18,26 +18,27 @@ public class Student  implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "student_id", length= 45)
      private Integer studentId;
-    @Column(name = "studentSn", length= 45, nullable = false)
+    @Column(name = "student_Sn", length= 45, nullable = false)
      private String studentSn;
-    @Column(name = "studentName", length= 45, nullable = false)
+    @Column(name = "student_Name", length= 45, nullable = false)
      private String studentName;
-    @Column(name = "studentIdcard", length= 18, nullable = false)
+    @Column(name = "student_Idcard", length= 18, nullable = false)
      private String studentIdcard;
-    @Column(name = "studentGrade", length= 18, nullable = false)
+    @Column(name = "student_Grade", length= 18, nullable = false)
      private int studentGrade;
-    @Column(name = "studentImgId", length= 18, nullable = true,columnDefinition = "0")
+    @Column(name = "student_ImgId", length= 18, nullable = true,columnDefinition = "int(10)  default 0")
      private int studentImgId;
-    @Column(name = "studentCollege", length= 18, nullable = false)
+    @Column(name = "student_College", length= 18, nullable = false)
      private String studentCollege;
-    @Column(name = "studentTel", length= 20, nullable = false)
+    @Column(name = "student_Tel", length= 20, nullable = false)
      private String studentTel;
-    @Column(name = "studentQq", length= 20, nullable = false)
+    @Column(name = "student_Qq", length= 20, nullable = false)
      private String studentQq;
-    @Column(name = "studentPwd", length= 45, nullable = false)
+    @Column(name = "student_Pwd", length= 45, nullable = false)
      private String studentPwd;
-    @Column(name = "studentSex", nullable = false)
+    @Column(name = "student_Sex", nullable = false)
      private boolean studentSex;
 
     public Student() {
