@@ -116,50 +116,7 @@ public class AdminController {
 
         return "/admin/PersonalInfo";
     }
-    //返回admin信息
-    @RequestMapping("/admin/getpersoninfo")
-    public @ResponseBody Teacher adminPersonalInformation(HttpServletRequest request, HttpServletResponse response) {
-        String sn=AuthorityManage.getCurrentUsername();
-        Teacher teacher = TeacherDao.getTeacherBySn(sn);
-        teacher.setTeacherPwd("");
-        teacher.setTeacherRoleValue(0);
-        teacher.setTeacherEnrolling(null);
-        teacher.setTermCourse(null);
-        return teacher;
-    }
-     //个人信息修改提交处理
-    @RequestMapping("/admin/updatepersoninfo")
-    public @ResponseBody String adminUpdatePersonInfo(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-        request.setCharacterEncoding("UTF-8");
-        String sn=AuthorityManage.getCurrentUsername();
-        Teacher teacher = TeacherDao.getTeacherBySn(sn);
-        String name=request.getParameter("name");
-        String idcard=request.getParameter("idcard");
-        String college=request.getParameter("college");
-        String sex=request.getParameter("sex");
-        String telnum=request.getParameter("telnum");
-        String qqnum=request.getParameter("qqnum");
-        if (!name.matches("[\u4e00-\u9fa5]{2,4}")) {
-            return "姓名校验未通过！";
-        }
-        teacher.setTeacherName(name);
-        if (!idcard.matches("([0-9]{17}([0-9]|X))|([0-9]{15})") ){
-            return "身份证校验未通过！";
-        }       
-        teacher.setTeacherIdcard(idcard);
-        teacher.setTeacherCollege(college);
-        teacher.setTeacherSex(sex.equals("男"));
-        if (!telnum.matches("\\d{11}") ){
-            return "电话号码校验未通过！";
-        } 
-        teacher.setTeacherTel(telnum);
-        if (!qqnum.matches("\\d{5,10}") ){
-            return "QQ号码校验未通过！";
-        } 
-        teacher.setTeacherQq(qqnum);
-        TeacherDao.updateTeacherById(teacher);
-        return "1";
-    }
+
     //密码修改提交处理
     @RequestMapping("/admin/updatepassword")
     public @ResponseBody String adminUpdatePassword(HttpServletRequest request, HttpServletResponse response) {
@@ -169,14 +126,30 @@ public class AdminController {
         String repw=request.getParameter("repw");
         if (repw.matches("\\w{6,18}")) {
              return "0";}
-        if (!pw.equals(teacher.getTeacherPwd().toLowerCase())) {
+        if (!pw.equals(CurrentInfo.getOtherConfigure("AdminPassword").toLowerCase())) {
              return "1";}
         if (pw.equals(repw.toLowerCase())) {
              return "2";}
-        teacher.setTeacherPwd(repw);
-        TeacherDao.updateTeacherById(teacher);
+        CurrentInfo.setOtherConfigure("AdminPassword", repw);
         return "3";
     }
+        //修改管理员用户名
+    @RequestMapping("/admin/updateadminname")
+    public @ResponseBody String adminUpdateName(HttpServletRequest request, HttpServletResponse response) {
+        String sn=AuthorityManage.getCurrentUsername();
+        Teacher teacher = TeacherDao.getTeacherBySn(sn);
+        String pw=request.getParameter("name");
+        String repw=request.getParameter("rename");
+        if (repw.matches("\\w{6,18}")) {
+             return "0";}
+        if (!pw.equals(CurrentInfo.getOtherConfigure("AdminUser").toLowerCase())) {
+             return "1";}
+        if (pw.equals(repw.toLowerCase())) {
+             return "2";}
+        CurrentInfo.setOtherConfigure("AdminUser", repw);
+        return "3";
+    }
+    
     @RequestMapping("admin/search")
     public @ResponseBody
     List<ManageResult> search(HttpServletRequest request, HttpServletResponse response) {

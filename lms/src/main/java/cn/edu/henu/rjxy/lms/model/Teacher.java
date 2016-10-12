@@ -16,6 +16,7 @@ public class Teacher implements java.io.Serializable {
      private String teacherCollege;//yuan
      private String teacherTel;//手机号 
      private String teacherQq;//qq 
+     private int teacherImg;
      private String teacherPwd;//密码 
      private boolean teacherSex;//性别 
      private String teacherPosition;//职称 
@@ -232,6 +233,20 @@ public class Teacher implements java.io.Serializable {
      */
     public void setTermCourse(Set<TermCourse> termCourse) {
         this.termCourse = termCourse;
+    }
+
+    /**
+     * @return the teacherImg
+     */
+    public int getTeacherImg() {
+        return teacherImg;
+    }
+
+    /**
+     * @param teacherImg the teacherImg to set
+     */
+    public void setTeacherImg(int teacherImg) {
+        this.teacherImg = teacherImg;
     }
 
 

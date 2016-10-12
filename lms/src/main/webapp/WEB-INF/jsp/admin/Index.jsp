@@ -75,21 +75,21 @@
                             <div class="card-inner">
                                 <section class="card-heading">管理员视角</section>
                                 <section>
-                                    <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
+                            <!--        <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
                                         <a href="<%=path%>/dean" class='btn btn-aqua'>
                                             【D 院长】
                                         </a>
-                                    </sec:authorize>
+                                    </sec:authorize>-->
                                     <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
                                         <a href="<%=path%>/acdemic" class='btn btn-aqua' >
                                             【A 教务员】
                                         </a>
                                     </sec:authorize>
-                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <!--          <sec:authorize access="hasRole('ROLE_ADMIN')">
                                         <a href="<%=path%>/teacher" class='btn btn-aqua'>
                                             【T 教职】
                                         </a>
-                                    </sec:authorize>
+                                    </sec:authorize>-->
                                     <a data-toggle="tab" href="#uconsole" class='btn btn-aqua mg-lt-3x'>
                                         <span class="text-white">控制台</span>
                                     </a>

@@ -27,6 +27,9 @@
         <property name="teacherQq" type="string">
             <column name="teacher_qq" length="20" not-null="true" />
         </property>
+        <property name="teacherImg" type="int">
+            <column name="teacher_img" length="20" not-null="false" default="0"/>
+        </property>
         <property name="teacherPwd" type="string">
             <column name="teacher_pwd" length="45" not-null="true" />
         </property>

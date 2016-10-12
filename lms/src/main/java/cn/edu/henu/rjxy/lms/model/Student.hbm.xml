@@ -21,6 +21,9 @@
         <property name="studentGrade" type="int">
             <column name="student_grade"  length="18" not-null="true" />
         </property>
+        <property name="studentImg" type="int">
+            <column name="student_img"  length="18" not-null="false" default="0"/>
+        </property>
         <property name="studentCollege" type="string">
             <column name="student_college" length="18"  not-null="true" />
         </property>

@@ -82,7 +82,7 @@ public class StuController {
         String sn=AuthorityManage.getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
         String name=request.getParameter("name");
-        String idcard=request.getParameter("idcard");
+//        String idcard=request.getParameter("idcard");
         String grade=request.getParameter("grade");
         String college=request.getParameter("college");
         String sex=request.getParameter("sex");
@@ -92,10 +92,10 @@ public class StuController {
             return "姓名校验未通过！";
         }
         std.setStudentName(name);
-        if (!idcard.matches("([0-9]{17}([0-9]|X))|([0-9]{15})") ){
-            return "身份证校验未通过！";
-        }       
-        std.setStudentIdcard(idcard);
+//        if (!idcard.matches("([0-9]{17}([0-9]|X))|([0-9]{15})") ){
+//            return "身份证校验未通过！";
+//        }       
+//        std.setStudentIdcard(idcard);
         if (!grade.matches("\\d{4}") ){
             return "年级校验未通过！";
         } 
@@ -124,6 +124,16 @@ public class StuController {
         } catch (Exception e) {
             return "0";
         }
+        return "1"; 
+    }
+        //学生头像id修改
+    @RequestMapping("/student/updateimgid")
+    public @ResponseBody String updateStuImgId(HttpServletRequest request, HttpServletResponse response) {
+        String sn=AuthorityManage.getCurrentUsername();
+        Student std=StudentDao.getStudentBySn(sn);
+        Integer imgid=Integer.valueOf(request.getParameter("imgid"));
+        std.setStudentImg(imgid);
+        StudentDao.updateStudent(std);
         return "1"; 
     }
       //选课时展示的课程页

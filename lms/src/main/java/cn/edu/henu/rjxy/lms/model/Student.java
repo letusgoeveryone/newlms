@@ -14,6 +14,7 @@ public class Student  implements java.io.Serializable {
      private String studentName;
      private String studentIdcard;
      private int studentGrade;
+     private int studentImg;
      private String studentCollege;
      private String studentTel;
      private String studentQq;
@@ -116,6 +117,20 @@ public class Student  implements java.io.Serializable {
     
     public void setStudentSex(boolean studentSex) {
         this.studentSex = studentSex;
+    }
+
+    /**
+     * @return the studentImg
+     */
+    public int getStudentImg() {
+        return studentImg;
+    }
+
+    /**
+     * @param studentImg the studentImg to set
+     */
+    public void setStudentImg(int studentImg) {
+        this.studentImg = studentImg;
     }
 
 
