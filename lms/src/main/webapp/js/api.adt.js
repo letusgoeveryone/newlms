@@ -44,6 +44,7 @@ AdtAPI.uInfo = {
     college: '',
     tel: '',
     qq: '',
+    avatar:0,
     position:'',
     enrolling:'',
     roleValue:'',
@@ -73,6 +74,7 @@ AdtAPI.setDS = {
                 AdtAPI.uInfo.qq = data.teacherQq;
                 AdtAPI.uInfo.pw = data.teacherPwd;
                 AdtAPI.uInfo.sex = data.teacherSex;
+                AdtAPI.uInfo.avatar = data.teacherImg;
                 AdtAPI.uInfo.position = data.teacherPosition;
                 AdtAPI.uInfo.enrolling = data.teacherEnrolling;
                 AdtAPI.uInfo.roleValue = data.teacherRoleValue;

@@ -9,27 +9,7 @@
 %>
 <sec:authorize access="hasRole('ROLE_STUDENT') or hasRole('ROLE_ADMIN')">    
     <style>
-        .lms-avatars {
-            height: 64px;
-            width: 64px;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-size: contain;
-            display: inline-block;
-        }
-        .lms-avatars>img{
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        #lms-uavatar{
-            display: block;
-        }
-        #lms-uavatar>img{
-            display: block;
-            margin: 1.5em auto;
-            border-radius: 50%;
-            cursor: pointer;
-        }
+        
     </style>
     <!--个人信息-->
     <div id="uinfo-wrap" style="display: none;">
@@ -261,14 +241,41 @@
         $('#modify-avatar').fadeIn();
         $('#reset-avatar').fadeOut();
         
-        function updateAvatar(){
-            console.log('new avatar\'s id is' +  tmpAid);
-            UavatarSrc = document.getElementById('img-pinfo').src;
-            console.log('new avatar\'s src is' +  UavatarSrc);
-            $('#lms-uavatar>img').attr('src', UavatarSrc);
-            $('#uavatar').attr('src', UavatarSrc);
-            $('#uavatar-small').attr('src', UavatarSrc);
-            resetUavatarStatus(0);
+        function updateAvatar(aid){
+            var status = false;
+            if(aid===undefined){
+                aid = tmpAid;
+            }
+            
+            $.ajax({
+                url: PATH + '/student/updateimgid&imgid=' + aid,
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                success: function(data) {
+                    if(data===1){
+                        status = true;
+                    }
+                },
+                error: function() {
+                    alert("数据传输失败 ！");
+                }
+            });
+            
+            if(status === true ){
+                console.log('new avatar\'s id is' +  tmpAid);
+                UavatarSrc = document.getElementById('img-pinfo').src;
+                console.log('new avatar\'s src is' +  UavatarSrc);
+                $('#lms-uavatar>img').attr('src', UavatarSrc);
+                $('#uavatar').attr('src', UavatarSrc);
+                $('#uavatar-small').attr('src', UavatarSrc);
+                resetUavatarStatus(0);
+            }else{
+                $('#snackbar').snackbar({
+                    alive: 10000,
+                    content: '头像修改失败 !' + '<a data-dismiss="snackbar">我知道了</a>'
+                });
+            }
         }
         
         function setAvatars(pos,size){
@@ -340,12 +347,22 @@
         }
         
         function setDefaultAvatar(){
+            updateAvatar(0);
             var sex = getSex()===true?'male':'female';
             UavatarSrc = PATH + '/images/avatar/' + sex + '.svg';
             $('#uavatar').attr('src', UavatarSrc);
             $('#uavatar-small').attr('src', UavatarSrc);
             $('#lms-uavatar>img').attr('src', UavatarSrc);
             resetUavatarStatus();
+        }
+        
+        function getAvatarId(aid){
+            if(aid === 0){
+                var sex = getSex()===true?'male':'female';
+                return sex ;
+            } else {
+                return aid;
+            }
         }
         
         function getSex(){

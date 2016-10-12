@@ -175,6 +175,10 @@
                             </div>
                         </form>
                     </div>
+                    <!--头像设置-->
+                    <div class="tab-pane fade" id="tab-avatars">
+
+                    </div>
                 </div>
                 <div class="col-sm-7" id="info-slct">
                     <div class="card">
@@ -182,8 +186,11 @@
                         <div class="card-main">
                             <div class="card-inner">
                                 <img alt="" class="img-circle img-rounded img-pinfo" id="img-pinfo" src="<%=path%>/images/avatar.jpg" height="230" width="230">
-                                <a class="btn btn-flat text-link">
+                                <a class="btn btn-flat text-link" id="modify-avatar" data-toggle="tab" href="#tab-avatars" onclick="setAvatars([7,5],640)">
                                     修改头像 <span class="icon icon-edit"></span>
+                                </a>
+                                <a class="btn btn-flat text-link" id="reset-avatar" onclick="setDefaultAvatar()">
+                                    还原系统头像 <span class="icon icon-edit"></span>
                                 </a>
                             </div>
                             <div class="card-action">
@@ -226,57 +233,213 @@
         <script src="<%=path%>/js/md5.js" type="text/javascript"></script>
         <script src="<%=path%>/js/api.adt.js"></script>
         <script>
-            
-            // 个人信息 监听器
-            $('a[href="#tab-personalInfo"]').click(function(){
-                $('#submit-uinfo').attr("data-submit","uinfo");
-                console.log($('#submit-uinfo').attr('data-submit'));
-                $('.form-control').blur(function(){
-                    if(checkPersonalInfo()){
-                        $('#submit-uinfo').removeClass('disabled');
-                    }else{
-                        $('#submit-uinfo').addClass('disabled');
-                    };
-                });
+        UavatarSrc = '<%=path%>' + '/images/avatar/' + getAvatarId(AdtAPI.uInfo.avatar) + '.svg';
+        setAvatar(UavatarSrc);    
+        // 基本信息 监听器
+        $('a[href="#tab-personalInfo"]').click(function(){
+            resetUavatarStatus();
 
-                $('#submit-uinfo').addClass('disabled');
-            });
-            // 个人密码 监听器
-            $('a[href="#tab-password"]').click(function(){
-                $("#op").val("");
-                $("#np").val("");
-                $("#nplast").val("");
-                $('#submit-uinfo').attr("data-submit","upassword");
-                console.log($('#submit-uinfo').attr('data-submit'));
-                $('.form-control').blur(function () {
-                    if (checkPassword()) {
-                        $('#submit-uinfo').removeClass('disabled');
-                    }else{
-                        $('#submit-uinfo').addClass('disabled');
-                    };
-                });
-
-                $('#submit-uinfo').addClass('disabled');
+            $('#submit-uinfo').attr("data-submit","uinfo");
+            console.log($('#submit-uinfo').attr('data-submit'));
+            $('.form-control').blur(function(){
+                if(CheckPersonalInfo()){
+                    $('#submit-uinfo').removeClass('disabled');
+                }else{
+                    $('#submit-uinfo').addClass('disabled');
+                };
             });
 
-            // submit 按钮 监听器
-            $('#submit-uinfo').click(function(){
-                var status = $(this).hasClass('disabled') === true ? false : true ;
-                var method = $(this).attr('data-submit');
+            $('#submit-uinfo').addClass('disabled');
+        });
 
+        // 个人密码 监听器
+        $('a[href="#tab-password"]').click(function(){
+            resetUavatarStatus();
+
+            $("#oldPassword").val("");
+            $("#newPassword").val("");
+            $("#newPasswordConfirm").val("");
+            $('#submit-uinfo').attr("data-submit","upassword");
+            console.log($('#submit-uinfo').attr('data-submit'));
+            $('.form-control').blur(function () {
+                if (checkPassword()) {
+                    $('#submit-uinfo').removeClass('disabled');
+                }else{
+                    $('#submit-uinfo').addClass('disabled');
+                };
+            });
+
+            $('#submit-uinfo').addClass('disabled');
+        });
+
+        // 个人头像 监听器
+        $('a[href="#tab-avatars"]').click(function(){
+            $('#modify-avatar').hide();
+            $('#reset-avatar').fadeIn();
+            $('a[href="#tab-password"]').parent('li').removeClass('active');
+            $('a[href="#tab-personalInfo"]').parent('li').removeClass('active');
+
+            $('#submit-uinfo').attr("data-submit","avatar");
+            console.log($('#submit-uinfo').attr('data-submit'));
+
+            $('.lms-avatars').click(function(){
+                $('#submit-uinfo').removeClass('disabled');
+            });
+
+            $('#lms-uavatar').click(function(){
+                $('#submit-uinfo').addClass('disabled');
+            });
+
+            $('#submit-uinfo').addClass('disabled');
+        });
+
+        // submit 按钮 监听器
+        $('#submit-uinfo').click(function(){
+            var status = $(this).hasClass('disabled') === true ? false : true ;
+            var method = $(this).attr('data-submit');
+
+            console.log(status + " | " + method);
+            if (status && (method === "uinfo")) {
+                updatePersonalInfo();
+            } else if(status && (method === "upassword")){
                 console.log(status + " | " + method);
-                if (status && (method === "uinfo")) {
-                    updatePersonalInfo();
-                } else if(status && (method === "upassword")){
-                    console.log(status + " | " + method);
-                    updatePassword();
-                }
+                updatePassword();
+            }else if(status && (method === "avatar")){
+                console.log(status + " | " + method);
+                updateAvatar();
+            }
 
+        });
+        
+        //  默认监听个人信息
+        $('a[href="#tab-personalInfo"]').click();
+        $('#modify-avatar').fadeIn();
+        $('#reset-avatar').fadeOut();
+        
+        function updateAvatar(aid){
+            var status = false;
+            if(aid===undefined){
+                aid = tmpAid;
+            }
+            
+            $.ajax({
+                url: PATH + '/acdemic/updateimgid&imgid=' + aid,
+                type: 'post',
+                async: false,
+                dataType: 'json',
+                success: function(data) {
+                    if(data===1){
+                        status = true;
+                    }
+                },
+                error: function() {
+                    alert("数据传输失败 ！");
+                }
             });
             
+            if(status === true ){
+                console.log('new avatar\'s id is' +  tmpAid);
+                UavatarSrc = document.getElementById('img-pinfo').src;
+                console.log('new avatar\'s src is' +  UavatarSrc);
+                $('#lms-uavatar>img').attr('src', UavatarSrc);
+                $('#uavatar').attr('src', UavatarSrc);
+                $('#uavatar-small').attr('src', UavatarSrc);
+                resetUavatarStatus(0);
+            }else{
+                $('#snackbar').snackbar({
+                    alive: 10000,
+                    content: '头像修改失败 !' + '<a data-dismiss="snackbar">我知道了</a>'
+                });
+            }
+        }
+        
+        function setAvatars(pos,size){
+            var ele = document.getElementById('tab-avatars');
+            var img = document.createElement('img'); 
+            var oavatar = document.createElement('div');
+            ele.innerHTML = '';
             
-            //  默认监听个人信息
-            $('a[href="#tab-personalInfo"]').click();
+            
+            
+            for(var i=1; i<=pos[0]; i++){
+                for(var k=1; k<=pos[1]; k++){
+                    ele.appendChild(structureAvatar((i-1)*pos[1] +k));
+                }
+            }
+            
+            oavatar.id = 'lms-uavatar';  
+            
+            img.src = UavatarSrc;
+            img.height = 96;
+            img.width = 96;  
+            img.addEventListener('click', function(){
+                resetUavatarStatus(0);
+            });
+            
+            oavatar.appendChild(img); 
+            ele.appendChild(oavatar); 
+        }
+        
+        function structureAvatar(aid){
+            var ele = document.createElement('div');
+            var img = document.createElement('img');
+            
+            ele.className = 'lms-avatars';      
+            
+            img.src = PATH + '/images/avatar/'+ aid + '.svg';
+            img.height = 64;
+            img.width = 64;
+            
+            img.addEventListener('click', function(){
+                previewAvatar(PATH + '/images/avatar/' + aid + '.svg');
+                tmpAid = aid;
+            });
+            
+            ele.appendChild(img);
+            
+            return ele;
+        }
+        
+        function previewAvatar(src){
+            document.getElementById('img-pinfo').src = src;
+        }
+        
+        
+        function resetUavatarStatus(sign){
+            document.getElementById('img-pinfo').src = UavatarSrc;
+            
+            if(sign===undefined){
+                $('#reset-avatar').hide();
+                $('#modify-avatar').fadeIn();
+            }
+        }
+        
+        function setAvatar(src){
+            $('#lms-uavatar>img').attr('src', src);
+            $('#img-pinfo').attr('src', src);
+        }
+        
+        function setDefaultAvatar(){
+            
+            updateAvatar(0);
+            UavatarSrc = '<%=path%>' + '/images/avatar/' + getAvatarId(0) + '.svg';
+            $('#lms-uavatar>img').attr('src', UavatarSrc);
+            resetUavatarStatus();
+            
+        }
+        
+        function getAvatarId(aid){
+            if(aid === 0){
+                var sex = getSex()===true?'male':'female';
+                return sex ;
+            } else {
+                return aid;
+            }
+        }
+        
+        function getSex(){
+            return AdtAPI.uInfo.sex;
+        }
             
             // 设置路径
             function getRootPath() {
@@ -284,10 +447,12 @@
             }
         </script>
         <script src="<%=path%>/js/api.common.js"></script>
-        <<script>
+        <script>
             CommonAPI.setDS.Institute('/reg/hq_xy');
             CommonAPI.setHS.Institute('institute');
             $('option[value="'+ AdtAPI.uInfo.college +'"]').attr('selected','');
+            UavatarSrc = '<%=path%>' + '/images/avatar/' + getAvatarId(AdtAPI.uInfo.avatar) + '.svg';
+            setAvatar(UavatarSrc);
         </script>
     </body>
 </html>

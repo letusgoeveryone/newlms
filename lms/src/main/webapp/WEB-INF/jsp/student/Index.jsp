@@ -413,7 +413,7 @@
             * ================================================================== */
             init();
             
-            UavatarSrc = PATH + '/images/avatar/' + StudentAPI.avatar + '.svg';;
+            UavatarSrc = PATH + '/images/avatar/' + getAvatarId(StudentAPI.avatar) + '.svg';
             setAvatar(UavatarSrc);
                 
             NProgress.done(true);

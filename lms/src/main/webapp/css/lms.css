@@ -334,6 +334,27 @@ body[id^=lms] {
     }
 }
 
+.lms-avatars {
+    height: 64px;
+    width: 64px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+}
+.lms-avatars>img{
+    border-radius: 50%;
+    cursor: pointer;
+}
+#lms-uavatar{
+    display: block;
+}
+#lms-uavatar>img{
+    display: block;
+    margin: 1.5em auto;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
 /*! 基本布局 结束 */
 

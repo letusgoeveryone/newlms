@@ -160,7 +160,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
                         <span class="access-hide">Avatar</span>
-                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar.jpg"></span>
+                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/${avatar}.svg"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="">
@@ -324,11 +324,11 @@
                                     function (data) {
 
                                         if (data === "1") {
-                                            alert("新学期开始成功")
+                                            alert("新学期开始成功");
                                         }
                                         ;
                                         if (data === "0") {
-                                            alert("新学期开始失败")
+                                            alert("新学期开始失败");
                                         }
                                         ;
                                     })
@@ -380,52 +380,6 @@
         <script src="<%=path%>/js/jquery.fs.boxer.min.js" type="text/javascript"></script>
         <script>
             $('.stage-card').lightbox();
-        </script>
-        <script>
-            var browserVersion = window.navigator.userAgent.toUpperCase();
-            var isOpera = false, isFireFox = false, isChrome = false, isSafari = false, isIE = false;
-            function reinitIframe(iframeId, minHeight) {
-                try {
-                    var iframe = document.getElementById(iframeId);
-                    var bHeight = 0;
-                    if (isChrome == false && isSafari == false)
-                        bHeight = iframe.contentWindow.document.body.scrollHeight;
-                    var dHeight = 0;
-                    if (isFireFox == true)
-                        dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                    else if (isIE == false && isOpera == false)
-                        dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                    else if (isIE == true && !-[1, ] == false) {
-                    } //ie9+
-                    else
-                        bHeight += 3;
-
-                    var height = Math.max(bHeight, dHeight);
-                    if (height < minHeight)
-                        height = minHeight;
-                    iframe.style.height = height + "px";
-                } catch (ex) {
-                }
-            }
-            function startInit(iframeId, minHeight) {
-                isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
-                startInit('iframepage', 430);
-                //            var ifm= document.getElementById("iframepage");   
-                //          isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
-                isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
-                isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
-                if (!!window.ActiveXObject || "ActiveXObject" in window)
-                    isIE = true;
-                window.setInterval("reinitIframe('" + iframeId + "'," + minHeight + ")", 100);
-            }
-
-            function iFrameHeight() {
-                var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
-                //            if(ifm != null && subWeb != null) {
-                //               ifm.height = subWeb.body.scrollHeight;
-                //              // ifm.width = subWeb.body.scrollWidth;
-                //            }   
-            }
-        </script>      
+        </script>    
     </body>  
 </html>
