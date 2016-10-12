@@ -242,7 +242,7 @@
             $('#submit-uinfo').attr("data-submit","uinfo");
             console.log($('#submit-uinfo').attr('data-submit'));
             $('.form-control').blur(function(){
-                if(CheckPersonalInfo()){
+                if(checkPersonalInfo()){
                     $('#submit-uinfo').removeClass('disabled');
                 }else{
                     $('#submit-uinfo').addClass('disabled');
@@ -256,9 +256,9 @@
         $('a[href="#tab-password"]').click(function(){
             resetUavatarStatus();
 
-            $("#oldPassword").val("");
-            $("#newPassword").val("");
-            $("#newPasswordConfirm").val("");
+            $("#op").val("");
+            $("#np").val("");
+            $("#nplast").val("");
             $('#submit-uinfo').attr("data-submit","upassword");
             console.log($('#submit-uinfo').attr('data-submit'));
             $('.form-control').blur(function () {
