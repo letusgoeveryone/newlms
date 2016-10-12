@@ -166,10 +166,10 @@
                     </nav>
                     <div class="box-small"></div>
                     <div class="tab-pane fade in active" id="c-introduction"> 
-                        {{{introduction}}}
+                        {{{syllabus}}}
                     </div>
                     <div class="tab-pane fade" id="c-syllabus"> 
-                        {{{syllabus}}}
+                        {{{introduction}}}
                     </div>
                 </div>
 

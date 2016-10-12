@@ -63,7 +63,7 @@ public class CurrentInfo {
     public static int getCurrentTerm() {
         CurrentTerm=KeyValueDao.get("CurrentTerm");
         if (CurrentTerm.equals("")) {
-            return 201602;
+            return 201601;
         } else {
             return Integer.parseInt(CurrentTerm);
         }

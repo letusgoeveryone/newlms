@@ -1112,7 +1112,13 @@ public class TeaController {
       for (int i = 0; i < tempList.length; i++) {//循环这个数组
         if (tempList[i].isDirectory()) {//根据需要取出文件夹
            String a =tempList[i].toString();
-           temp = a.substring(a.lastIndexOf("/")+1);
+           System.out.println("a="+a);
+           if(a.indexOf("\\") != -1){  
+              temp = a.substring(a.lastIndexOf("\\")+1);
+            } else{
+              temp = a.substring(a.lastIndexOf("/")+1);
+            }  
+           System.out.println("temp="+temp);
            b[i] =  " <a onclick=\"czxs('"+temp+"')\" >"+temp+"</a>"; 
            allString=allString+b[i];
         }
@@ -1121,6 +1127,7 @@ public class TeaController {
       if(tempList.length==0){
          b[0] = "0";
       }
+      System.out.println("b[0]="+b[0]);
       return b;
   }
   
@@ -1146,8 +1153,14 @@ public class TeaController {
       for (int i = 0; i < tempList.length; i++) {//循环这个数组
         if (tempList[i].isDirectory()) {//根据需要取出文件夹
            String a =tempList[i].toString();
-           temp = a.substring(a.lastIndexOf("/")+1);//学号
-           String fileStudentPath = ff+"/"+temp;
+            String fileStudentPath = null;
+             if(a.indexOf("\\") != -1){  
+              temp = a.substring(a.lastIndexOf("\\")+1);
+              fileStudentPath = ff+"\\"+temp;
+            } else{
+              temp = a.substring(a.lastIndexOf("/")+1);
+               fileStudentPath = ff+"/"+temp;
+            }  
            int studentWorkLength = haveFile(fileStudentPath);//学生作业文件总长度
            String stu_name =StudentDao.getStudentBySn(temp).getStudentName();//学生姓名  
            String []ld=new String[studentWorkLength];
@@ -1218,6 +1231,7 @@ public class TeaController {
       }
       b[length]=length+"";
       if(!"".equals(allString)){ b[0]=allString;}
+      System.out.println("b="+b[0]);
     return b;
   }
   //下载全部作业
