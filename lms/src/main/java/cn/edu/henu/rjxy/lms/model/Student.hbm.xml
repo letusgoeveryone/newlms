@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-23 19:30:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cn.edu.henu.rjxy.lms.model.Student" table="student" catalog="cs" optimistic-lock="version">
+        <id name="studentId" type="java.lang.Integer">
+            <column name="student_id" />
+            <generator class="identity" />
+        </id>
+        <property name="studentSn" type="string">
+            <column name="student_sn" not-null="true" />
+        </property>
+        <property name="studentName" type="string">
+            <column name="student_name" length="45" not-null="true" />
+        </property>
+        <property name="studentIdcard" type="string">
+            <column name="student_idcard" length="18" not-null="true" />
+        </property>
+        <property name="studentGrade" type="int">
+            <column name="student_grade"  length="18" not-null="true" />
+        </property>
+        <property name="studentImg" type="int">
+            <column name="student_img"  length="18" not-null="false" default="0"/>
+        </property>
+        <property name="studentCollege" type="string">
+            <column name="student_college" length="18"  not-null="true" />
+        </property>
+        <property name="studentTel" type="string">
+            <column name="student_tel" length="20" not-null="true" />
+        </property>
+        <property name="studentQq" type="string">
+            <column name="student_qq" length="20" not-null="true" />
+        </property>
+        <property name="studentPwd" type="string">
+            <column name="student_pwd" length="45" not-null="true" />
+        </property>
+        <property name="studentSex" type="boolean">
+            <column name="student_sex" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

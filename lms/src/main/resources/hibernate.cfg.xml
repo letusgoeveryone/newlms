@@ -19,8 +19,8 @@
     <!--多久检查一次，秒为单位-->
     <property name="hibernate.c3p0.idle_test_period">120</property>
     <!--<property  name = "hibernate.current_session_context_class">thread</property>-->
-    <mapping class="cn.edu.henu.rjxy.lms.model.Teacher"/>
-    <mapping class="cn.edu.henu.rjxy.lms.model.Student"/>
+    <mapping resource="cn/edu/henu/rjxy/lms/model/Teacher.hbm.xml"/>
+    <mapping resource="cn/edu/henu/rjxy/lms/model/Student.hbm.xml"/>
     <mapping resource="cn/edu/henu/rjxy/lms/model/Classes.hbm.xml"/>
     <mapping resource="cn/edu/henu/rjxy/lms/model/TempStudent.hbm.xml"/>
     <mapping resource="cn/edu/henu/rjxy/lms/model/TempTeacher.hbm.xml"/>

@@ -132,7 +132,7 @@ public class StuController {
         String sn=AuthorityManage.getCurrentUsername();
         Student std=StudentDao.getStudentBySn(sn);
         Integer imgid=Integer.valueOf(request.getParameter("imgid"));
-        std.setStudentImgId(imgid);
+        std.setStudentImg(imgid);
         StudentDao.updateStudent(std);
         return "1"; 
     }
