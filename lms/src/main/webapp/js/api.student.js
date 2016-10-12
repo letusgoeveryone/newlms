@@ -24,6 +24,7 @@ var StudentAPI = {
     college: '',
     tel: '',
     qq: '',
+    avatar:0,
     
 
     /**
@@ -920,6 +921,7 @@ var StudentAPI = {
                 StudentAPI.qq = data.studentQq;
                 StudentAPI.pw = data.studentPwd;
                 StudentAPI.sex = data.studentSex;
+                StudentAPI.avatar = data.studentImgId;
             },
             error: function() {
                 alert("数据传输失败 ！");

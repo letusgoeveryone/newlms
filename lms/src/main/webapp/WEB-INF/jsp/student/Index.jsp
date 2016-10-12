@@ -45,7 +45,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
                         <span class="access-hide">Avatar</span>
-                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar.jpg"></span>
+                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar.jpg" id="uavatar-small"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="">
@@ -77,8 +77,8 @@
                             <div class="vcard">
 
                                 <div class="vcard-avatar-wrapper">
-                                    <a href="/account" alt="Change your avatar" class="vcard-avatar">
-                                        <img alt="" class=" img-rounded" src="<%=path%>/images/avatar.jpg" height="230" width="230">
+                                    <a alt="Change your avatar" class="vcard-avatar">
+                                        <img alt="" class=" img-rounded" src="<%=path%>/images/avatar.jpg" height="230" width="230" id="uavatar">
                                     </a>
                                 </div>
 
@@ -159,7 +159,7 @@
             <div class="bg-content"></div>
             <div class="pd-content-htop"></div>
                     
-            <jsp:include page="../student/IncludeContent.jsp" />
+            <jsp:include page="../student/IncludeCourses.jsp" />
 
         </div>
         <!--学生 课程区 END-->
@@ -173,8 +173,8 @@
             </div>
         </footer>
         
-        <!--widgets-->
-        <jsp:include page="../student/IncludeWidgets.jsp" />
+        <!--Uinfo-->
+        <jsp:include page="../student/IncludeUinfo.jsp" />
         
         <!--scrollUp-->
         <div class="fbtn-container" id="scrollUp">
@@ -185,6 +185,37 @@
                 </a>
             </div>
         </div>
+        
+        <!--附件-->
+        <div class="modal fade" id="modal-uploadify" role="dialog">
+            <div class="modal-dialog modal-xs">
+                <div class="modal-content">
+                    <div class="modal-heading">
+                        <h4>我的附件</h4>
+                    </div>
+                    <div class="modal-inner">
+                        <h5>文件上传</h5>
+                        <hr>
+                        <input type="file" name="uploadify" id="uploadify" />
+                        <a class="btn btn-flat btn-green" id="uploadify-o"><span class="icon">file_upload</span></a>
+                        <a class="btn btn-flat btn-default" id="uploadify-s" ><span class="icon">pause</span></a>
+                        <a class="btn btn-flat text-grey" id="uploadify-c" ><span class="icon">stop</span></a>
+
+                        <hr>
+                        <h5>已传文件</h5>
+                        <div id="uploaded-area" class="table-responsive">
+
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--单向信息传递 snackbar-->
+        <div id="snackbar"></div>
         
         <!-- js -->
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
@@ -312,62 +343,6 @@
                 NProgress.done();
             });
             
-           /* ==================================================================
-            * 个人面板 监听器
-            * ================================================================== */
-            
-            // 个人信息 监听器
-            $('a[href="#tab-personalInfo"]').click(function(){
-
-                $('#submit-uinfo').attr("data-submit","uinfo");
-                console.log($('#submit-uinfo').attr('data-submit'));
-                $('.form-control').blur(function(){
-                    if(CheckPersonalInfo()){
-                        $('#submit-uinfo').removeClass('disabled');
-                    }else{
-                        $('#submit-uinfo').addClass('disabled');
-                    };
-                });
-
-                $('#submit-uinfo').addClass('disabled');
-            });
-            
-            // 个人密码 监听器
-            $('a[href="#tab-password"]').click(function(){
-                $("#oldPassword").val("");
-                $("#newPassword").val("");
-                $("#newPasswordConfirm").val("");
-                $('#submit-uinfo').attr("data-submit","upassword");
-                console.log($('#submit-uinfo').attr('data-submit'));
-                $('.form-control').blur(function () {
-                    if (checkPassword()) {
-                        $('#submit-uinfo').removeClass('disabled');
-                    }else{
-                        $('#submit-uinfo').addClass('disabled');
-                    };
-                });
-
-                $('#submit-uinfo').addClass('disabled');
-            });
-
-            // submit 按钮 监听器
-            $('#submit-uinfo').click(function(){
-                var status = $(this).hasClass('disabled') === true ? false : true ;
-                var method = $(this).attr('data-submit');
-
-                console.log(status + " | " + method);
-                if (status && (method === "uinfo")) {
-                    updatePersonalInfo();
-                } else if(status && (method === "upassword")){
-                    console.log(status + " | " + method);
-                    updatePassword();
-                }
-
-            });
-            
-            //  默认监听个人信息
-            $('a[href="#tab-personalInfo"]').click();
-            
             // 个人面板 点击事件监听器
             $("#upanel a[href^='#tab']").click(function(){
     
@@ -402,8 +377,6 @@
                 load.fadeOut();
                 load.removeClass('lms-loading');
                 load.fadeIn("slow");
-                
-            NProgress.done(true);
             
             window.onbeforeunload = function() {};
             
@@ -440,6 +413,10 @@
             * ================================================================== */
             init();
             
+            UavatarSrc = PATH + '/images/avatar/' + StudentAPI.avatar + '.svg';;
+            setAvatar(UavatarSrc);
+                
+            NProgress.done(true);
         </script>
     </body>
 </html>
