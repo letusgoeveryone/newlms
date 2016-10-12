@@ -102,65 +102,23 @@ public class TeaController {
     //返回teacher信息
     @RequestMapping("/teacher/getpersoninfo")
     public @ResponseBody Teacher teacherPersonalInformation(HttpServletRequest request, HttpServletResponse response) {
-        String sn=AuthorityManage.getCurrentUsername();
-        Teacher teacher = TeacherDao.getTeacherBySn(sn);
-        teacher.setTeacherPwd("");
-        teacher.setTeacherRoleValue(0);
-        teacher.setTeacherEnrolling(null);
-        teacher.setTermCourse(null);
-        return teacher;
+        return AuthorityManage.GetTecPersonalInfo();
     }
      //个人信息修改提交处理
     @RequestMapping("/teacher/updatepersoninfo")
-    public @ResponseBody String teacherUpdatePersonInfo(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-        request.setCharacterEncoding("UTF-8");
-        String sn=AuthorityManage.getCurrentUsername();
-        Teacher teacher = TeacherDao.getTeacherBySn(sn);
-        String name=request.getParameter("name");
-        String idcard=request.getParameter("idcard");
-        String college=request.getParameter("college");
-        String sex=request.getParameter("sex");
-        String telnum=request.getParameter("telnum");
-        String qqnum=request.getParameter("qqnum");
-        if (!name.matches("[\u4e00-\u9fa5]{2,4}")) {
-            return "姓名校验未通过！";
-        }
-        teacher.setTeacherName(name);
-        if (!idcard.matches("([0-9]{17}([0-9]|X))|([0-9]{15})") ){
-            return "身份证校验未通过！";
-        }       
-        teacher.setTeacherIdcard(idcard);
-        teacher.setTeacherCollege(college);
-        teacher.setTeacherSex(sex.equals("男"));
-        if (!telnum.matches("\\d{11}") ){
-            return "电话号码校验未通过！";
-        } 
-        teacher.setTeacherTel(telnum);
-        if (!qqnum.matches("\\d{5,10}") ){
-            return "QQ号码校验未通过！";
-        } 
-        teacher.setTeacherQq(qqnum);
-        TeacherDao.updateTeacherById(teacher);
-        return "1";
+    public @ResponseBody String teacherUpdatePersonInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return AuthorityManage.UpdateTecPersonlInfo(request, response);
     }
      //密码修改提交处理
     @RequestMapping("/teacher/updatepassword")
     public @ResponseBody String teacherUpdatePassword(HttpServletRequest request, HttpServletResponse response) {
-        String sn=AuthorityManage.getCurrentUsername();
-        Teacher teacher = TeacherDao.getTeacherBySn(sn);
-        String pw=request.getParameter("pw");
-        String repw=request.getParameter("repw");
-        if (repw.matches("\\w{6,18}")) {
-             return "0";}
-        if (!pw.equals(teacher.getTeacherPwd().toLowerCase())) {
-             return "1";}
-        if (pw.equals(repw.toLowerCase())) {
-             return "2";}
-        teacher.setTeacherPwd(repw);
-        TeacherDao.updateTeacherById(teacher);
-        return "3";
+        return AuthorityManage.UpdateTecPassword(request, response);
     }  
-
+     //更新头像id
+    @RequestMapping("/teacher/updateimgid")
+    public @ResponseBody String teacherUpdateimgid(HttpServletRequest request, HttpServletResponse response) {
+        return AuthorityManage.updateTecImgId(request, response);
+    }  
     
     
      //临时学生根据学号分页
