@@ -167,7 +167,7 @@
                 <a class="fbtn fbtn-lg fbtn-trans waves-attach waves-circle waves-light waves-effect" ><span class="fbtn-ori icon">keyboard_arrow_up</span><span class="fbtn-text fbtn-text-left">返回顶部</span></a>
             </div>
             
-            <sec:authorize access="hasRole('ROLE_TEACHER') or hasRole('ROLE_DEAN')">
+            <sec:authorize ifNotGranted="ROLE_ADMIN">
                 <div class="fbtn-inner">
                     <a class="fbtn fbtn-lg btn-gold waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
                     <div class="fbtn-dropup">
