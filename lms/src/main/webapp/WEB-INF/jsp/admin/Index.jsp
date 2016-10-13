@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <%
     //    将项目的根取出来，页面中不再使用相对路径
     String path = request.getContextPath();
@@ -57,31 +56,17 @@
                     <div class="card">
 
                         <aside class="card-side pull-left">
-                            <sec:authorize access="hasRole('ROLE_ADMIN')">
                                 <a  href="#" class='fbtn fbtn-lg  btn-golden'>
                                     A<span class="fbtn-text fbtn-text-left">我的角色：管理员</span>
                                 </a>
-                            </sec:authorize>
                         </aside>
                         <div class="card-main">
                             <div class="card-inner">
                                 <section class="card-heading">管理员视角</section>
-                                <section>
-                            <!--        <sec:authorize access="hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
-                                        <a href="<%=path%>/dean" class='btn btn-aqua'>
-                                            【D 院长】
-                                        </a>
-                                    </sec:authorize>-->
-                                    <sec:authorize access="hasRole('ROLE_ACDEMIC') or hasRole('ROLE_ADMIN') or hasRole('ROLE_DEAN')">
+                                <section>                       
                                         <a href="<%=path%>/acdemic" class='btn btn-aqua' >
                                             【A 教务员】
                                         </a>
-                                    </sec:authorize>
-                            <!--          <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                        <a href="<%=path%>/teacher" class='btn btn-aqua'>
-                                            【T 教职】
-                                        </a>
-                                    </sec:authorize>-->
                                     <a data-toggle="tab" href="#uconsole" class='btn btn-aqua mg-lt-3x'>
                                         <span class="text-white">控制台</span>
                                     </a>

@@ -32,7 +32,6 @@ public class AdminController {
 
     @RequestMapping("/admin")
     public String personal_InfInformation(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("username",SecurityContextHolder.getContext().getAuthentication().getName());
         return "admin/Index";
     }
 
@@ -55,12 +54,6 @@ public class AdminController {
         String CurrentTerm=request.getParameter("CurrentTerm");
         String FileFolder=request.getParameter("FileFolder");
         String Selfverification=request.getParameter("Selfverification");
-//        System.out.println("\n"+AllTerm+"\n==========================\n"+
-//                "\n"+AllGrade+"\n==========================\n"+
-//                "\n"+CurrentTerm+"\n==========================\n"+
-//                "\n"+AllCollege+"\n==========================\n"+
-//                "\n"+FileFolder+"\n==========================\n"+
-//                "\n"+Selfverification+"\n==========================\n");
         CurrentInfo.setAllCollege(AllCollege);
         CurrentInfo.setAllGrade(AllGrade);
         CurrentInfo.setAllTerm(AllTerm);
