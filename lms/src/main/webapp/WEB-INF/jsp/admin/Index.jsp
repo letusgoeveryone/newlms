@@ -41,7 +41,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
                         <span class="access-hide">Avatar</span>
-                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/${avatar}.svg"></span>
+                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar/${avatar}.svg"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="">

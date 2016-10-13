@@ -45,7 +45,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
                         <span class="access-hide">Avatar</span>
-                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar.jpg" id="uavatar-small"></span>
+                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar.svg" id="uavatar-small"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="">
@@ -78,7 +78,7 @@
 
                                 <div class="vcard-avatar-wrapper">
                                     <a alt="Change your avatar" class="vcard-avatar">
-                                        <img alt="" class=" img-rounded" src="<%=path%>/images/avatar.jpg" height="230" width="230" id="uavatar">
+                                        <img alt="" class=" img-rounded" src="<%=path%>/images/avatar.svg" height="230" width="230" id="uavatar">
                                     </a>
                                 </div>
 
