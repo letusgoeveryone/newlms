@@ -95,7 +95,7 @@
             <nav class="lms-admin-sidebar">
             <ul class="nav nav-tabs">
                 
-                <sec:authorize access="hasRole('ROLE_TEACHER') or hasRole('ROLE_DEAN') or hasRole('ROLE_ADMIN')">
+                <sec:authorize access="hasRole('ROLE_DEAN') or hasRole('ROLE_ADMIN')">
                     <a href="login" class="lms-admin-return">
                         返回
                     </a>
