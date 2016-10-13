@@ -6,7 +6,12 @@
 package cn.edu.henu.rjxy.lms.controller;
 
 
+import cn.edu.henu.rjxy.lms.dao.StudentDao;
+import cn.edu.henu.rjxy.lms.dao.TeacherDao;
+import cn.edu.henu.rjxy.lms.model.Student;
+import cn.edu.henu.rjxy.lms.model.Teacher;
 import cn.edu.henu.rjxy.lms.server.CurrentInfo;
+import cn.edu.henu.rjxy.lms.server.AuthorityManage;
 import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +39,37 @@ public class IndexController {
     public String index2() {
         return "redirect:/guest ";
     }
-
+    //重定向当前头像
+    @RequestMapping("/getavatar.svg")
+    public String getAvatar() {
+        int imgid=-1;
+        String sn=AuthorityManage.getCurrentUsername();
+        boolean sex=true;
+        Teacher tea;
+        Student stu;
+        try {
+            tea=TeacherDao.getTeacherBySn(sn);
+            imgid=tea.getTeacherImg();
+            sex=tea.getTeacherSex();
+        } catch (Exception e) {
+        }
+        if (imgid==-1) {
+            try {
+                stu=StudentDao.getStudentBySn(sn);
+                imgid=TeacherDao.getTeacherBySn(sn).getTeacherImg();
+            } catch (Exception e) {
+            } 
+        }
+        if (imgid<=0) {//默认头像
+            if (sex) {
+                imgid=1;//男
+            }else{
+                imgid=2;//女
+            }
+            
+        }
+        return "redirect:/images/avatar/"+imgid+".svg";
+    }
     //前台显示学院
     @RequestMapping("/reg/hq_xy")
     public @ResponseBody List<String> xy(HttpServletRequest request){
