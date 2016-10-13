@@ -95,7 +95,7 @@
             <nav class="lms-admin-sidebar">
             <ul class="nav nav-tabs">
                 
-                <sec:authorize access="hasRole('ROLE_TEACHER') or hasRole('ROLE_DEAN')">
+                <sec:authorize access="hasRole('ROLE_TEACHER') or hasRole('ROLE_DEAN') or hasRole('ROLE_ADMIN')">
                     <a href="login" class="lms-admin-return">
                         返回
                     </a>
@@ -166,14 +166,17 @@
             <div class="fbtn-inner" id="scrollUp">
                 <a class="fbtn fbtn-lg fbtn-trans waves-attach waves-circle waves-light waves-effect" ><span class="fbtn-ori icon">keyboard_arrow_up</span><span class="fbtn-text fbtn-text-left">返回顶部</span></a>
             </div>
-            <div class="fbtn-inner">
-                <a class="fbtn fbtn-lg btn-gold waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
-                <div class="fbtn-dropup">
-                    <a class="fbtn fbtn-brand waves-attach waves-circle stage-card" href="acdemic/pinfo"><span class="fbtn-text fbtn-text-left">点击查看/修改个人信息</span><span class="icon">account_circle</span></a>
-                    <a class="fbtn fbtn-red waves-attach waves-circle waves-light" href="<%=path%>/us" target="_blank"><span class="fbtn-text fbtn-text-left">关于我们</span><span class="icon">all_inclusive</span></a>
-                    <a class="fbtn fbtn-trans waves-attach waves-circle" href="#" ><span class="fbtn-text fbtn-text-left">关于系统</span><span class="icon">information</span></a>
-                </div>
-            </div>
+            
+            <sec:authorize access="hasRole('ROLE_TEACHER') or hasRole('ROLE_DEAN')">
+                <div class="fbtn-inner">
+                    <a class="fbtn fbtn-lg btn-gold waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
+                    <div class="fbtn-dropup">
+                        <a class="fbtn fbtn-brand waves-attach waves-circle stage-card" href="acdemic/pinfo"><span class="fbtn-text fbtn-text-left">点击查看/修改个人信息</span><span class="icon">account_circle</span></a>
+                        <a class="fbtn fbtn-red waves-attach waves-circle waves-light" href="<%=path%>/us" target="_blank"><span class="fbtn-text fbtn-text-left">关于我们</span><span class="icon">all_inclusive</span></a>
+                        <a class="fbtn fbtn-trans waves-attach waves-circle" href="#" ><span class="fbtn-text fbtn-text-left">关于系统</span><span class="icon">information</span></a>
+                    </div>
+                </div>       
+            </sec:authorize>
         </div>
         <script>NProgress.set(0.7);</script>   
         

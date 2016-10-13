@@ -33,22 +33,6 @@ public class AdminController {
     @RequestMapping("/admin")
     public String personal_InfInformation(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("username",SecurityContextHolder.getContext().getAuthentication().getName());
-        String sn = AuthorityManage.getCurrentUsername();
-        Teacher tec = TeacherDao.getTeacherBySn(sn);
-        int avatarId = tec.getTeacherImg();
-        Boolean sex = tec.getTeacherSex();
-
-        if (avatarId == 0) {
-            if (!sex) {
-                request.setAttribute("avatar", "female");
-            } else {
-                request.setAttribute("avatar", "male");
-            }
-
-        } else {
-
-            request.setAttribute("avatar", avatarId);
-        }
         return "admin/Index";
     }
 

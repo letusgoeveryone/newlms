@@ -308,6 +308,22 @@ public class StuController {
     //学生首页
     @RequestMapping("/student/courses")
     public String stuSettings(HttpServletRequest request, HttpServletResponse response) {
+        String sn = AuthorityManage.getCurrentUsername();
+        Student u = StudentDao.getStudentBySn(sn);
+        int avatarId = u.getStudentImg();
+        Boolean sex = u.getStudentSex();
+
+        if (avatarId == 0) {
+            if (!sex) {
+                request.setAttribute("avatar", "female");
+            } else {
+                request.setAttribute("avatar", "male");
+            }
+
+        } else {
+
+            request.setAttribute("avatar", avatarId);
+        }
         return "student/UcourseCenter";
     }
     //取消选课处理

@@ -116,7 +116,7 @@
                                 <div class="card-inner">
                                     <section class="card-heading">导航面板</section>
                                     <section>
-                                        <a  class='btn btn-aqua mg-rt-3x' onclick="initCourse()">
+                                        <a class='btn btn-aqua mg-rt-3x' onclick="initCourse()">
                                             【我的课程】
                                         </a>
                                         <a data-toggle="tab" href="#ucontent" id="anchor-mcourse" class='hidden' title="【课程锚点】">

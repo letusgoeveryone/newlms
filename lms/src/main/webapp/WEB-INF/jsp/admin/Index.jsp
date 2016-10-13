@@ -39,17 +39,9 @@
             <ul class="nav nav-list pull-right">
                 
                 <li class="dropdown">
-                    <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
-                        <span class="access-hide">Avatar</span>
-                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/images/avatar/${avatar}.svg"></span>
+                    <a class="waves-attach waves-effect" href="<%=path%>/logout">
+                        <span class="icon mg-sm-right">exit_to_app</span> 登出
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="">
-                            <a class="waves-attach waves-effect" href="<%=path%>/logout">
-                                <span class="icon mg-sm-right">exit_to_app</span> 登出
-                            </a>
-                        </li>
-                    </ul>
                 </li>
             </ul>                    
         </header>

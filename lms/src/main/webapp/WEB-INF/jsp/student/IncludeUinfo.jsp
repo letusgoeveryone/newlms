@@ -106,7 +106,7 @@
                             <div class="uinfo-blur"></div>
                             <div class="card-main">
                                 <div class="card-inner">
-                                    <img alt="" class="img-circle img-rounded img-pinfo" id="img-pinfo" src="<%=path%>/images/avatar.jpg" height="230" width="230">
+                                    <img alt="" class="img-circle img-rounded img-pinfo" id="img-pinfo" src="<%=path%>/images/avatar.svg" height="230" width="230">
                                     <a class="btn btn-flat text-link" id="modify-avatar" data-toggle="tab" href="#tab-avatars" onclick="setAvatars([7,5],640)">
                                         修改头像 <span class="icon icon-edit"></span>
                                     </a>
@@ -148,7 +148,6 @@
     </div>
     <script>
         var UavatarSrc = document.getElementById('img-pinfo').src;
-        var Bimage = '';
         var tmpAid = 0;
         /* ==================================================================
         * 个人信息 监听器
@@ -248,7 +247,7 @@
             }
             
             $.ajax({
-                url: PATH + '/student/updateimgid&imgid=' + aid,
+                url: PATH + '/student/updateimgid?imgid=' + aid,
                 type: 'post',
                 async: false,
                 dataType: 'json',

@@ -57,6 +57,7 @@ AdtAPI.uInfo = {
  */
 AdtAPI.setDS = {
     uInfo: function(path){
+        var status = false;
         if (path === undefined){ path = AdtAPI.Path.uInfo[0]; }
         $.ajax({
             url: path,
@@ -79,11 +80,13 @@ AdtAPI.setDS = {
                 AdtAPI.uInfo.enrolling = data.teacherEnrolling;
                 AdtAPI.uInfo.roleValue = data.teacherRoleValue;
                 AdtAPI.uInfo.termCourse = data.termCourse;
+                status = true;
             },
             error: function () {
-                alert("数据 [个人信息] 传输失败 ！");
+                console.log("数据 [个人信息] 传输失败 ！");
             }
         });
+        return status;
     }
 };
 

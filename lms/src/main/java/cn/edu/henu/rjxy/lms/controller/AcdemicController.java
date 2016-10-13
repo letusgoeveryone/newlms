@@ -64,20 +64,24 @@ public class AcdemicController {
     @RequestMapping("/acdemic")
     public String index(HttpServletRequest request, HttpServletResponse response) {
         String sn = AuthorityManage.getCurrentUsername();
-        Teacher tec = TeacherDao.getTeacherBySn(sn);
-        int avatarId = tec.getTeacherImg();
-        Boolean sex = tec.getTeacherSex();
+        try {
+            Teacher tec = TeacherDao.getTeacherBySn(sn);
+            int avatarId = tec.getTeacherImg();
+            Boolean sex = tec.getTeacherSex();
 
-        if (avatarId == 0) {
-            if (!sex) {
-                request.setAttribute("avatar", "female");
+            if (avatarId == 0) {
+                if (!sex) {
+                    request.setAttribute("avatar", "female");
+                } else {
+                    request.setAttribute("avatar", "male");
+                }
+
             } else {
-                request.setAttribute("avatar", "male");
+
+                request.setAttribute("avatar", avatarId);
             }
-
-        } else {
-
-            request.setAttribute("avatar", avatarId);
+        } catch (Exception e) {
+            request.setAttribute("avatar", '0');
         }
         return "acdemic/Index";
     }

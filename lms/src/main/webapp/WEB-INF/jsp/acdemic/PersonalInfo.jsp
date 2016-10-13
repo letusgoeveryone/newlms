@@ -234,6 +234,7 @@
         <script src="<%=path%>/js/api.adt.js"></script>
         <script>
         UavatarSrc = '<%=path%>' + '/images/avatar/' + getAvatarId(AdtAPI.uInfo.avatar) + '.svg';
+        var tmpAid = 0;
         setAvatar(UavatarSrc);    
         // 基本信息 监听器
         $('a[href="#tab-personalInfo"]').click(function(){
@@ -424,7 +425,7 @@
             updateAvatar(0);
             UavatarSrc = '<%=path%>' + '/images/avatar/' + getAvatarId(0) + '.svg';
             $('#lms-uavatar>img').attr('src', UavatarSrc);
-            resetUavatarStatus();
+            $('a[href="#tab-personalInfo"]').click();
             
         }
         

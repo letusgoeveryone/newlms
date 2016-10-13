@@ -385,7 +385,7 @@ body[id^=lms] {
     padding: 1.2em 0 2em 0;
     background: rgba(242, 242, 242, 0.89);
     border-bottom: 1.2px solid lightgray;
-    border-top: 2px solid #003c72;
+    /*border-top: 2px solid #003c72;*/
 }
 .lms-ci-header{
     font-size: large;

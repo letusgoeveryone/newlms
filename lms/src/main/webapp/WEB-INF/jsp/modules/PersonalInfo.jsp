@@ -181,7 +181,7 @@
                         <div class="uinfo-blur"></div>
                         <div class="card-main">
                             <div class="card-inner">
-                                <img alt="" class="img-circle img-rounded img-pinfo" id="img-pinfo" src="<%=path%>/images/avatar.jpg" height="230" width="230">
+                                <img alt="" class="img-circle img-rounded img-pinfo" id="img-pinfo" src="<%=path%>/images/avatar.svg" height="230" width="230">
                                 <a class="btn btn-flat text-link">
                                     修改头像 <span class="icon icon-edit"></span>
                                 </a>
