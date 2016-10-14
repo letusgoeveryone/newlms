@@ -56,7 +56,7 @@
         <script charset="utf-8" src="<%=path%>/ueditor/ueditor.all.min.js"></script>
         <script>NProgress.set(0.5);</script>
     </head>
-    <div class="row-fluid" style="min-height: 600px" id="coall">
+    <div class="" style="min-height: 600px" id="coall">
         <div class="span12">
             <div class="tab-nav tab-nav-gold hidden-xx ui-tab">
                 <ul class="nav nav-list ">
@@ -124,8 +124,7 @@
                     </div>
 
                     <div class="tab-content">
-                        <div class="tab-pane" id="panel-HomeworkDetail">
-                            <p>
+                        <div class="tab-pane fade" id="panel-HomeworkDetail">
                             <div id="worklk" style="border:0px solid #b8dcff;width: 800px;padding-left: 0%;display: none">
                                 <span >作业要求:</span><br>
                                 <span id = "newwork" style="width: 550px"></span><br>
@@ -143,26 +142,40 @@
                                 </div>   
 
                             </div>
-                            </p>
                         </div>
-                        <div class="tab-pane active" id="panel-AlterHomework">
-                            <p> 
-                                <br>
-                                学生提交作业开始时间<br>
-                                <input id="xgtjzyksdd" class="easyui-datetimebox" style="width: 200px"></input><br><br>
-                                学生提交作业截至时间:<br>
-                                <input id="xgdd" class="easyui-datetimebox" style="width: 200px"></input><br><br>
-                                作业名称:<br><input class="easyui-textbox"  id="xgzyms" style="width: 200px"></input><br><br>
+                        <div class="tab-pane row fade in active" id="panel-AlterHomework">
+                            
+                            <div class="col-md-4">
+                                <div class="box-small">
+                                    
+                                    <p>作业名称:</p>
+                                    <input class="easyui-textbox"  id="xgzyms" style="width: 200px" /><br>
+                                    
+                                </div>
+                                <div class="box-small">
+
+                                    开始时间:&nbsp;&nbsp;
+                                    <input id="xgtjzyksdd" class="easyui-datetimebox" style="width: 200px"/><br>
+                                    截至时间:&nbsp;&nbsp;
+                                    <input id="xgdd" class="easyui-datetimebox" style="width: 200px" /><br>
+                                    
+                                </div>
+
+                            </div>
+                            
+                            <div class="col-md-8 box-small">
                                 作业要求:
-                                <script type="text/plain" id="xghomework" style="width:550px;height:100px;">
-                                       <p>在此处编辑课程大纲</p>
-                                </script><br>
+                                <script type="text/plain" id="xghomework" style="width:100%;height:100px;"></script>
+                            </div>
+                            
+                            <div class="col-md-12">
                                 <button type="button"  class="btn btn-primary"  onclick="tjzygg()">
                                     提交更改
                                 </button>
-                            </p>
+                            </div>
+                            
                         </div>
-                        <div class="tab-pane active1" id="panel-LookOverHomeWork">
+                        <div class="tab-pane fade" id="panel-LookOverHomeWork">
                             <p><br>
 
                             <span id="bjalllk"></span>

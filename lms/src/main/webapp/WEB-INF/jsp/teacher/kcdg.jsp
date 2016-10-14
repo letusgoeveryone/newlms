@@ -12,7 +12,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>  
-        <div><div id="DGText" style="border:0px solid #CCC;"></div></div>
+        <div class="cca-preview">
+            <a class="btn btn-edit" onclick="lookcourseDG()" href="#anchor-CourseDaGangEditor">编辑</a>
+            <div id="DGText" style="border:0px solid #CCC;"></div>
+        </div>
 
         <div id="DGword"></div>  
         <div id="dgxsid" style="display: none"> 
@@ -25,14 +28,13 @@
             <a class="btn btn-primary" href="javascript:$('#dgmultiple_file_upload').uploadify('cancel','*')">取消上传</a>
             <a class="btn btn-primary" href="javascript:$('#dgmultiple_file_upload').uploadify('stop','*')" hidden=true id="stopUpload">停止上传</a>
         </div><br>
-
+        <a id="anchor-CourseDaGangEditor"></a>
         <script type="text/plain" id="CourseDaGangEditor" style="height:100px;">
             <p>在此处编辑课程大纲</p>
         </script>
         
 
         <br>
-        <button class="btn btn-primary" onclick="lookcourseDG()">编辑</button>
         <button   class="btn btn-default " onclick="getContentDG()">预览</button>
         <!--<button   class="btn btn-primary" onclick="QXDG()">撤销</button>-->
         <button id="DG" class="btn btn-success" onclick="updateDG()">提交</button>

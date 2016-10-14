@@ -1018,7 +1018,7 @@ public class TeaController {
            String ff2="../file/"+"homework"+"/"+term +"/"+colage+"/"+sn+"/"+tec_name+"/"+coursename+"/"+id+"/"+1+"/";
            ff2=ff2+a1;
            String c;
-           c = "<li style=\"width:300px\"><a href=\""+ff2+"\">"+a1+"</a>&nbsp;<a  onclick=\"sczyfj()\">"+"删除"+"</a></li>";
+           c = "<li ><a href=\""+ff2+"\">"+a1+"</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  onclick=\"sczyfj()\">"+"删除"+"</a></li>";
            c = "<ol class=\"breadcrumb\" id=\"breadcour\"><p>​附件，你可以点击下载,删除</p>"+c+"</ol>";
            b[3] = c;
       }else{b[3]="2";}

@@ -19,14 +19,40 @@
         padding: 0 2em;
     }
 
+    #DGText{
+        padding:2em 1em;
+        background: whitesmoke;
+        margin: 2em 0;
+    }
+    #DGText p{
+        padding: 0 2em;
+    }
+    .cca-preview .btn-edit{
+        border-radius: 1px;
+        border-bottom-left-radius: 20px;
+        background: #333;
+        position: absolute;
+        top: 82px;
+        right: -8px;
+        color: #cfcfd0;
+    }
+    .cca-preview .btn-edit:hover{
+        color: #0081C2;
+    }
 </style>
-<div><div id="hfText" style="border:0px solid #CCC;"></div></div>
+<div class="cca-preview">
+    <a class="btn btn-edit" onclick="lookcourseJS()" href="#anchor-CourseIntro">编辑</a>
+    <div id="hfText" style="border:0px solid #CCC;">
+    
+    </div>
+        
+</div>
+<a id="anchor-CourseIntro"></a>
 <script type="text/plain" id="myEditor" style="width: 100%;min-height:100px;">
     <p>在此处编辑课程介绍</p>
 </script>
 <br>
 
-<button class="btn btn-primary" onclick="lookcourseJS()">编辑</button>
 <button  class="btn btn-default " onclick="getContent()">预览</button>
 <!--<button  class="btn btn-primary " onclick="QXJS()">撤销</button>-->
 <button id="tj"  class="btn btn-success" onclick="update()">提交</button>
