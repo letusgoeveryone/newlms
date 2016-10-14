@@ -146,7 +146,7 @@
                                 <input id="xgdd" class="easyui-datetimebox" style="width: 200px"></input><br><br>
                                 作业名称:<br><input class="easyui-textbox"  id="xgzyms" style="width: 200px"></input><br><br>
                                 作业要求:
-                                <script type="text/plain" id="xghomework" style="width:550%;height:100px;">
+                                <script type="text/plain" id="xghomework" style="width:550px;height:100px;">
                                        <p>在此处编辑课程大纲</p>
                                 </script><br>
                                 <button type="button"  class="btn btn-primary"  onclick="tjzygg()">

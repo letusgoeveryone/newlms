@@ -219,7 +219,7 @@
                                 $("#worklk").show();
                                 $("#stuwork").hide();
                                 document.getElementById("newwork").innerHTML = data[0];
-                                document.getElementById("xghomework").innerHTML = data[0];
+                                UE.getEditor("xghomework").setContent(data[0]);
                                 document.getElementById("jzsj").innerHTML = data[1];
                                 document.getElementById("jzzyks").innerHTML = data[2];
                                 $("#xgzyms").textbox('setValue', name);//赋值
