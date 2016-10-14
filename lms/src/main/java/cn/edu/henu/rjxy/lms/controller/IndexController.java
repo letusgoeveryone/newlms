@@ -59,6 +59,7 @@ public class IndexController {
             try {
                 stu=StudentDao.getStudentBySn(sn);
                 imgid=stu.getStudentImg();
+                sex = stu.getStudentSex();
             } catch (Exception e) {
             } 
         }
