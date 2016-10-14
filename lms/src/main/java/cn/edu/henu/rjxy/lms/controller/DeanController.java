@@ -121,47 +121,33 @@ public class DeanController {
 
     @RequestMapping("/dean/end")
     public @ResponseBody  String end(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int CurrentTerm=CurrentInfo.getCurrentTerm();
         System.out.println("end");
+        if (CurrentTerm>0) {
+            CurrentInfo.setCurrentTerm("-"+String.valueOf(CurrentTerm));
+            return "0";
+        }
         return "1";
     }
     
     @RequestMapping("/dean/start")
     public @ResponseBody  String start(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        try {
-            Properties p = new Properties();
-            String x = System.getProperty("file.separator");
-            File f = new File("D:"+x+"My.ini");
-            System.out.println(f.getAbsolutePath());
-        if (!f.exists()) {
-            f.createNewFile();
-            p.setProperty("term", "201602");//初始化学期信息
+        int CurrentTerm=CurrentInfo.getCurrentTerm();
+        List<String> Term=CurrentInfo.getAllTerm();
+        int nextTerm;
+        if (CurrentTerm>0) {
         }else{
-            System.out.println(f.getAbsolutePath());//打印了配置文件的绝对路径
-            p.load(new FileInputStream(f));//下载数据
-            String term = p.getProperty("term");
-            char c = term.charAt(5);
-            term = term.substring(0, term.length()-1);
-            if (c=='1') {
-                term += '2';
-            }else if (c == '2'){
-                term += '3';
-            }else{
-                String tempString = term.substring(4);
-                Integer tempInteger = new Integer(term.substring(0, 4))+1;
-                term = tempInteger + tempString+"1";
+            CurrentTerm=CurrentTerm*-1; 
+        }
+         nextTerm=Integer.parseInt(Term.get(0));
+            for (String Term1 : Term) {
+                int tmp=Integer.parseInt(Term1);
+                if (tmp>CurrentTerm || tmp<nextTerm) {
+                    nextTerm=tmp;
+                }
             }
-            p.setProperty("term", term);
-            
-        }
-        p.store(new FileOutputStream(f), "");//将修改的信息保存
-            
-        } catch (Exception e) {
-            System.out.println(e.toString());
+            CurrentInfo.setCurrentTerm(String.valueOf(nextTerm));
             return "0";
-        }
-        
-        return "1";
      }
   
        //正式教师根据工号范围分页
