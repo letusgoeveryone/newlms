@@ -72,6 +72,7 @@
     function setcourse() {
         $('#myModalkcnr').modal('show');
     }
+    
     function kssc() {
         var a1 = null, a2 = "undefined", a3 = "undefined";
         var selected = $('#tt1').tree('getSelected');
@@ -503,6 +504,8 @@
                     TeacherAPI.activeCoordinate[2] = node2;
                     TeacherAPI.activeCoordinate[3] = node3;
                 }
+                hideSwfPlayer();
+                console.log('hideSwfPlayer');
                 $("#uploadkcnr").show();
                 $("#kcnrdivone").show();
 

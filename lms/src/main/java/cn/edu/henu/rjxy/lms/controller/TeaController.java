@@ -704,10 +704,10 @@ public class TeaController {
                  if (file.lastIndexOf(".")!=-1) {
                      if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".swf")){
                  swf=true;
-                 a[0]=a[0]+"<li><a href=\""+ff3+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";
+                 a[0]=a[0]+"<li><a href=\""+ff3+file+"\" target=\"swfplayer\" onclick=\"showSwfPlayer()\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";
                      }else if((file.substring(file.lastIndexOf("."), file.length())).toLowerCase().equals(".mp4")){
                  swf=true;
-                 a[0]=a[0]+"<li><a href=\""+ff4+file+"\" target=\"swfplayer\" onclick=\"setheight()\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";   
+                 a[0]=a[0]+"<li><a href=\""+ff4+file+"\" target=\"swfplayer\" onclick=\"showSwfPlayer()\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";   
                      }else{
                  ddoc=true;
                  dlc=dlc+"<li><a  onclick=\"kcnrxz('"+dir+file+"')\">"+file+"</a>&nbsp;<a  onclick=\"kcnrfj_sc('"+file+"')\">"+"删除"+"</a></li>";

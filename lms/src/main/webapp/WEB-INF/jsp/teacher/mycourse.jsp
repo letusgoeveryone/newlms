@@ -246,13 +246,32 @@
     <script>
         var ue = UE.getEditor('homework');
         var ue = UE.getEditor('xghomework');
+        $('#swfplayer').hide();
+        $('#swfplayer-close').hide();
+        
         function cklastc() {
             $("#mywork").hide();
             $("#coall").show();
         }
         $('#swfplayer-close').click(function(){
+            $(this).fadeOut();
+            $('#swfplayer').fadeOut();
             $('#swfplayer').attr('src', 'about:blank');
         });
+        $('a[data-toggle="tab"]').click(function(){
+            hideSwfPlayer();
+        });
+        function showSwfPlayer(){
+            $('#swfplayer').fadeIn();
+            $('#swfplayer-close').fadeIn();
+        }
+        
+        function hideSwfPlayer(){
+            $('#swfplayer').fadeOut();
+            $('#swfplayer').attr('src', 'about:blank');
+            $('#swfplayer-close').fadeOut();
+        }
+        
         lookcourseJS();
     </script> 
     <script>NProgress.done();</script>    
