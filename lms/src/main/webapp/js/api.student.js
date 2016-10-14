@@ -471,7 +471,7 @@ var StudentAPI = {
         set: function (cid) {
             
             StudentAPI.ThisCourse.cid = cid;
-            StudentAPI.ThisCourse.setCreourceDir();
+            //StudentAPI.ThisCourse.setCreourceDir();
             StudentAPI.ThisCourse.structureCidIsCourse();
             
         },

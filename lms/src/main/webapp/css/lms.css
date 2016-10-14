@@ -1,3 +1,4 @@
+@charset "utf-8";
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -1286,6 +1287,10 @@ a[href^='#folder'] .folder-name,
 
 .file-name:hover, .folder-name:hover {
     overflow: unset !important;
+    white-space: pre-wrap;
+    background: rgba(0,0,0,.5);
+    padding: 5px;
+    color: wheat;
 }
 
 [data-fstatus]:after{
