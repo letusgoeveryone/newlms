@@ -125,9 +125,9 @@ public class DeanController {
         System.out.println("end");
         if (CurrentTerm>0) {
             CurrentInfo.setCurrentTerm("-"+String.valueOf(CurrentTerm));
-            return "0";
+            return "1";
         }
-        return "1";
+        return "0";
     }
     
     @RequestMapping("/dean/start")
@@ -136,18 +136,19 @@ public class DeanController {
         List<String> Term=CurrentInfo.getAllTerm();
         int nextTerm;
         if (CurrentTerm>0) {
+            return "0";
         }else{
             CurrentTerm=CurrentTerm*-1; 
         }
-         nextTerm=Integer.parseInt(Term.get(0));
+         nextTerm=999999;
             for (String Term1 : Term) {
                 int tmp=Integer.parseInt(Term1);
-                if (tmp>CurrentTerm || tmp<nextTerm) {
+                if (tmp>CurrentTerm && tmp<=nextTerm) {
                     nextTerm=tmp;
                 }
             }
             CurrentInfo.setCurrentTerm(String.valueOf(nextTerm));
-            return "0";
+            return "1";
      }
   
        //正式教师根据工号范围分页
