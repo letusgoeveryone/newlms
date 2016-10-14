@@ -27,18 +27,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/")
 public class IndexController {
+    
     //主页映射
     @RequestMapping("/index")
-    public String index1() {
+    public String login() {
         return "redirect:/login";
     }
     
 
     //重定向到主页
     @RequestMapping("/reg/guest")
-    public String index2() {
+    public String guest() {
         return "redirect:/guest ";
     }
+    
     //重定向当前头像
     @RequestMapping("/getavatar.svg")
     public String getAvatar() {
@@ -62,14 +64,15 @@ public class IndexController {
         }
         if (imgid<=0) {//默认头像
             if (sex) {
-                imgid=1;//男
+                return "redirect:/images/avatar/male.svg";  //男
             }else{
-                imgid=2;//女
+                return "redirect:/images/avatar/female.svg";//女
             }
             
         }
         return "redirect:/images/avatar/"+imgid+".svg";
     }
+    
     //前台显示学院
     @RequestMapping("/reg/hq_xy")
     public @ResponseBody List<String> xy(HttpServletRequest request){
@@ -77,21 +80,22 @@ public class IndexController {
     }
     
     //学期返回前台,下拉框显示
-       @RequestMapping("/fhxq")
-        public @ResponseBody List<String> xq(HttpServletRequest request){
-           return CurrentInfo.getAllTerm();
-        }
-         //年级返回前台,下拉框显示
-       @RequestMapping("/reg/fhnj")
-        public @ResponseBody List<String> nj(HttpServletRequest request){
-           return CurrentInfo.getAllGrade();
-        }
-        //关于我们
-        @RequestMapping("us")
-        public String aboutus(){
-            return "us";
-        }
-        public String getFileFolder(HttpServletRequest request) {
+    @RequestMapping("/fhxq")
+    public @ResponseBody List<String> xq(HttpServletRequest request){
+        return CurrentInfo.getAllTerm();
+    }
+      //年级返回前台,下拉框显示
+    @RequestMapping("/reg/fhnj")
+    public @ResponseBody List<String> nj(HttpServletRequest request){
+        return CurrentInfo.getAllGrade();
+    }
+     //关于我们
+    @RequestMapping("us")
+    public String aboutus(){
+         return "us";
+    }
+     
+    public String getFileFolder(HttpServletRequest request) {
         String path = this.getClass().getClassLoader().getResource("/").getPath();
         System.out.println(path);
         path=path.replace("target/classes/", "web/file/");
