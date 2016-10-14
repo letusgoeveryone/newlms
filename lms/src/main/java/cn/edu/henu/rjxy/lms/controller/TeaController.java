@@ -685,7 +685,7 @@ public class TeaController {
      ff = getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+ff;
      System.out.println("dir="+dir);
      String ff3="../"+"getswf?uri="+dir;
-     String ff4="../"+"getVideo?uri="+dir;
+     String ff4="../"+"getvideo?uri="+dir;
      String []a = new String[1];
      a[0]="";
      String dlc="";
@@ -741,7 +741,7 @@ public class TeaController {
      b =term +"/"+collage+"/"+coursename+"/"+"课程大纲"+"/"+ b;
      String ff2=term +"/"+collage+"/"+coursename+"/"+"课程大纲/"+a;
      s[0] = "<li><a onclick=\"dgxz('"+ff2+"')\">"+a+"</a>&nbsp;<a  onclick=\"scfj()\">"+"删除"+"</a>&nbsp;<a  onclick=\"dgyl('"+b+"')\">"+"预览"+"</a>&nbsp;<a  onclick=\"gbdgyl()\">"+"关闭预览"+"</a>";
-     s[0]= "<ol class=\"breadcrumb\" id=\"breadcour\"><p>​课程大纲附件，你可以点击下载,删除</p>"+s[0]+"</ol>";
+     s[0]= "<ol class=\"breadcrumb\" id=\"breadcour\"><p>​课程大纲附件：</p>"+s[0]+"</ol>";
      s[1]="1";
      return s;
  }
@@ -1019,7 +1019,7 @@ public class TeaController {
            ff2=ff2+a1;
            String c;
            c = "<li ><a href=\""+ff2+"\">"+a1+"</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  onclick=\"sczyfj()\">"+"删除"+"</a></li>";
-           c = "<ol class=\"breadcrumb\" id=\"breadcour\"><p>​附件，你可以点击下载,删除</p>"+c+"</ol>";
+           c = "<ol class=\"breadcrumb\" id=\"breadcour\"><p>​附件：</p>"+c+"</ol>";
            b[3] = c;
       }else{b[3]="2";}
       return b;

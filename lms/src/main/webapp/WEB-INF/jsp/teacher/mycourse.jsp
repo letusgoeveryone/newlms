@@ -21,6 +21,40 @@
             .modal-body{
                 padding: 0 !important;
             }
+            #kcdgurl, #swfplayer{
+                border: 3px dashed lightgray;
+                margin: 1em 0;
+                padding: 1em 1em;
+                background: transparent;
+                z-index: 100;
+            }
+            .swfplayer-wrap{
+                content: "文档预览区 Flash Player";
+                color: lightgray;
+                font-size: large;
+                text-align: center;
+                z-index: 0;
+            }
+            #swfplayer-close{
+                border-radius: 50%;
+                background-color: #003147;
+                border: 5px solid #DEDEDE;
+                height: 40px;
+                width: 40px;
+                position: absolute;
+                cursor: pointer;
+                right: 0;
+            }
+            #swfplayer-close:after{
+                display: block;
+                content: '×';
+                height: 30px;
+                width: 30px;
+                font-size: 30px;
+                line-height: 30px;
+                text-align: center;
+                color: #FFF;
+            }
         </style>
         
 
@@ -216,6 +250,10 @@
             $("#mywork").hide();
             $("#coall").show();
         }
+        $('#swfplayer-close').click(function(){
+            $('#swfplayer').attr('src', 'about:blank');
+        });
+        lookcourseJS();
     </script> 
     <script>NProgress.done();</script>    
 

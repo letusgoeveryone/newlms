@@ -212,7 +212,7 @@
 
             function dgyl(url) {
                 $("#dgxsid").show();
-                url = "http://localhost:8080/lms/getswf?uri=" + url;
+                url = "<%=path%>/getswf?uri=" + url;
                 alert(url);
                 document.getElementById("kcdgurl").src = url;
             }

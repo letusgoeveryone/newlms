@@ -38,6 +38,7 @@
     <!--        <div id="ylkenr"  style="min-height: 50px;border:0px solid #b8dcff" > <iframe id="kcnrurl" frameborder="0" scrolling="no" height="700px" width="100%" name="content" ></iframe></div>-->
     
     <span id="kcnr"></span>
+    <div id="swfplayer-close"></div>
     <iframe src="" id="swfplayer" frameborder="0" scrolling="no" marginheight="0" height="600px" width="100%" name="swfplayer"></iframe>
 
 

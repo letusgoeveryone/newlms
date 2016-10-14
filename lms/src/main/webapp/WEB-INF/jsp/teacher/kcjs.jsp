@@ -48,9 +48,7 @@
         
 </div>
 <a id="anchor-CourseIntro"></a>
-<script type="text/plain" id="myEditor" style="width: 100%;min-height:100px;">
-    <p>在此处编辑课程介绍</p>
-</script>
+<script type="text/plain" id="myEditor" style="width: 100%;min-height:100px;"></script>
 <br>
 
 <button  class="btn btn-default " onclick="getContent()">预览</button>
@@ -62,8 +60,6 @@
     var ue = UE.getEditor('myEditor');
 
     function getContent() {
-        var arr = [];
-        arr.push(UE.getEditor('myEditor').getContent());
         var value = UE.getEditor('myEditor').getContent();
         UE.getEditor("myEditor").setContent(value);
         document.getElementById("hfText").innerHTML = value;
@@ -123,7 +119,9 @@
                     document.getElementById("hfText").innerHTML = "课程介绍暂未更新，等待课程负责人添加";
                 } else {
                     document.getElementById("hfText").innerHTML = data[0];
-                    UE.getEditor("myEditor").setContent(data[0]);
+                    setTimeout(function(){
+                        UE.getEditor("myEditor").setContent(data[0]);
+                    }, 500);
                 }
             },
             error: function () {
@@ -136,15 +134,4 @@
         document.getElementById("hfText").innerHTML = "";
         lookcourseJS();
     }
-
-    function editJS() {
-        
-        lookcourseJS();
-
-    }
-    
-    $(function () {
-        lookcourseJS();
-    });
-    
 </script>
