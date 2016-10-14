@@ -21,7 +21,6 @@
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" />
-        <link href="<%=path%>/css/uploadify.css" rel="stylesheet"  />
         <link href="<%=path%>/css/lms.css" rel="stylesheet" /><script>NProgress.set(0.2);</script>
         <style>
             .col-md-9{
@@ -309,19 +308,12 @@
             $('.stage-card').lightbox();
         </script>
         <script>NProgress.set(0.4);</script>
+        
         <!--easyui-->
         <script src="<%=path%>/js/jquery.easyui/jquery.easyui.min.js"></script>
         <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/bootstrap/easyui.css">
         <link rel="stylesheet"  href="<%=path%>/js/jquery.easyui/themes/icon.css">
         
-        <!--uploadify-->
-        <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
-        <script>NProgress.set(0.7);</script>
-        
-        <!--umeditor-->
-        <script charset="utf-8" src="<%=path%>/ueditor/ueditor.config.js"></script>
-        <script charset="utf-8" src="<%=path%>/ueditor/ueditor.all.min.js"></script>
-        <script src="<%=path%>/ueditor/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
         <script>NProgress.set(0.9);</script>
         
         <script>

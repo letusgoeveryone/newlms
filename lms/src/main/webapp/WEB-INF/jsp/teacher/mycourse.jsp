@@ -22,13 +22,21 @@
                 padding: 0 !important;
             }
         </style>
+        
+
+
+        <link href="<%=path%>/css/nprogress.css" rel="stylesheet" />
+        <script src="<%=path%>/js/nprogress.js"  ></script>
+        <script>NProgress.configure({ showSpinner: false });NProgress.start();</script>
+        
         <!-- css -->
         <link href="<%=path%>/css/base.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" />
         <link href="<%=path%>/css/uploadify.css" rel="stylesheet"  />
         <link href="<%=path%>/css/lms.css" rel="stylesheet" />
-
+        
+        <script>NProgress.set(0.2);</script>
         <script src="<%=path%>/js/jquery.min.js"></script>
         <!-- js -->
         <script src="<%=path%>/js/base.min.js" type="text/javascript"></script>
@@ -39,13 +47,14 @@
         <link rel="stylesheet"  href="<%=path%>/css/easyuicss/easyui.css">
         <link rel="stylesheet"  href="<%=path%>/css/easyuicss/icon.css">
         <link rel="image/png"  href="<%=path%>/css/easyuicss/images/tree_icons.png">
+        <script>NProgress.set(0.3);</script>
+        
         <!--uploadify-->
         <script src="<%=path%>/uploadify/jquery.uploadify.min.js"></script>
         <!--umeditor-->
         <script charset="utf-8" src="<%=path%>/ueditor/ueditor.config.js"></script>
         <script charset="utf-8" src="<%=path%>/ueditor/ueditor.all.min.js"></script>
-        <script src="<%=path%>/ueditor/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
-
+        <script>NProgress.set(0.5);</script>
     </head>
     <div class="row-fluid" style="min-height: 600px" id="coall">
         <div class="span12">
@@ -90,7 +99,7 @@
             </div>
         </div>
     </div>
-
+    <script>NProgress.set(0.8);</script>
 
     <div class="modal-body" style="display: none" id="mywork">
 
@@ -194,6 +203,7 @@
             $("#mywork").hide();
             $("#coall").show();
         }
-    </script>     
+    </script> 
+    <script>NProgress.done();</script>    
 
 </html>
