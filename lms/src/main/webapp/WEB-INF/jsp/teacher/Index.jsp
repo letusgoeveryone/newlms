@@ -57,7 +57,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
                         <span class="access-hide">Avatar</span>
-                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/getavatar.svg"></span>
+                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/getavatar.svg" id="uavatar-small"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="">
@@ -292,6 +292,9 @@
                     url: '<%=path%>/teacher/mystudent?classid=' + b + '&course_id=' + c + '&term=' + term,
                     loadMsg: '数据加载中请稍后……'
                 });
+            }
+            function refreshAvatar() {
+                $('#uavatar-small').attr('src', "<%=path%>/getavatar.svg"+"?tempid="+Math.random());
             }
         </script>
         </script><script>NProgress.set(0.3);</script>

@@ -160,7 +160,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown" >
                         <span class="access-hide">Avatar</span>
-                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/getavatar.svg"></span>
+                        <span class="avatar avatar-sm"><img alt="avatar" src="<%=path%>/getavatar.svg" id="uavatar-small"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="">
@@ -316,6 +316,9 @@
 
 
                 <script>
+                    function refreshAvatar() {
+                        $('#uavatar-small').attr('src', "<%=path%>/getavatar.svg"+"?tempid="+Math.random());
+                     }
                     $(function () {
 
 

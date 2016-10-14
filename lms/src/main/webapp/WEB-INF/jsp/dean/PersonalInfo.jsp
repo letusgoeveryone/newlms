@@ -418,6 +418,7 @@
         function setAvatar(src){
             $('#lms-uavatar>img').attr('src', src);
             $('#img-pinfo').attr('src', src);
+            parent.refreshAvatar();
         }
         
         function setDefaultAvatar(){
