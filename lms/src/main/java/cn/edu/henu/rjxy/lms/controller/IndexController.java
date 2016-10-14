@@ -58,7 +58,7 @@ public class IndexController {
         if (imgid==-1) {
             try {
                 stu=StudentDao.getStudentBySn(sn);
-                imgid=TeacherDao.getTeacherBySn(sn).getTeacherImg();
+                imgid=stu.getStudentImg();
             } catch (Exception e) {
             } 
         }
