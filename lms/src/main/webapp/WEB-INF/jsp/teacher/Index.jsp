@@ -22,7 +22,6 @@
         <link href="<%=path%>/css/project.min.css" rel="stylesheet" />
         <link href="<%=path%>/css/jquery.fs.boxer.css" rel="stylesheet" />
         <link href="<%=path%>/css/uploadify.css" rel="stylesheet"  />
-        <link href="<%=path%>/ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
         <link href="<%=path%>/css/lms.css" rel="stylesheet" /><script>NProgress.set(0.2);</script>
         <style>
             .col-md-9{
