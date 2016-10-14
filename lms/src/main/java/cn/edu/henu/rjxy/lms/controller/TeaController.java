@@ -685,7 +685,7 @@ public class TeaController {
      ff = getFileFolder()+term +"/"+collage+"/"+tec_sn+"/"+tec_name+"/"+courseName+"/"+"课程内容"+"/"+ff;
      System.out.println("dir="+dir);
      String ff3="../"+"getswf?uri="+dir;
-     String ff4="../"+"getVideo?uri="+dir;
+     String ff4="../"+"getvideo?uri="+dir;
      String []a = new String[1];
      a[0]="";
      String dlc="";
