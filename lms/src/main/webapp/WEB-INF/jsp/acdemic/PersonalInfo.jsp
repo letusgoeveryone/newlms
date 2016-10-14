@@ -345,6 +345,7 @@
                 $('#lms-uavatar>img').attr('src', UavatarSrc);
                 $('#uavatar').attr('src', UavatarSrc);
                 $('#uavatar-small').attr('src', UavatarSrc);
+                parent.refreshAvatar();
                 resetUavatarStatus(0);
             }else{
                 $('#snackbar').snackbar({
@@ -418,7 +419,6 @@
         function setAvatar(src){
             $('#lms-uavatar>img').attr('src', src);
             $('#img-pinfo').attr('src', src);
-            parent.refreshAvatar();
         }
         
         function setDefaultAvatar(){
