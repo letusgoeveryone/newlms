@@ -72,7 +72,7 @@
             var stu_id = id;
             $.ajax({
                 type: 'post',
-                url: 'teacher/scstu?term=' + term + '&fjd_id=' + b.id + '&zjd_id=' + node.id + '&stu_id=' + stu_id,
+                url: 'teacher/scstustu?term=' + term + '&fjd_id=' + b.id + '&zjd_id=' + node.id + '&stu_id=' + stu_id,
                 success: function (data) {
                     alert(data);
                     $('#dg_zs_stu').datagrid('reload');
@@ -89,10 +89,12 @@
             var node = $('#tt').tree('getSelected');//当前节点
             var b = $("#tt").tree("getParent", node.target); //父节点
             var term = $('#sz_xq').val();
-            var stu_id = id;
+            var jssz = new Array();
+            jssz[0]=id;
             $.ajax({
                 type: 'post',
-                url: 'teacher/pzstu?term=' + term + '&fjd_id=' + b.id + '&zjd_id=' + node.id + '&stu_id=' + stu_id,
+                url: 'teacher/pzPLstu',
+                data: {term: term, fjdid: b.id, zjdid: node.id, jssz: jssz},
                 success: function (data) {
                     alert(data);
                     $('#dg_zs_stu').datagrid('reload');

@@ -150,6 +150,7 @@ public class TeaController {
         //删除临时表学生
     @RequestMapping(value="/teacher/scstu", method = RequestMethod.POST)
     public @ResponseBody String scstu(HttpServletRequest request, @RequestParam("jssz[]") String[] params) {
+        System.out.println("删除临时表学生");
         for (String param : params) {
             TempStudentDao.deleteTempStudentById(Integer.parseInt(param)); //删除临时表学生
         }    
@@ -230,8 +231,8 @@ public class TeaController {
           return JSONObject.fromObject(jg);
       }
       //删除班级学生
-      @RequestMapping("teacher/scstu")
-      public @ResponseBody String[] scstu(HttpServletRequest request,HttpServletResponse response){
+      @RequestMapping("teacher/scstustu")
+      public @ResponseBody String[] scstustu(HttpServletRequest request,HttpServletResponse response){
           String [] a =new String [1];
           a[0] = "删除成功";
           int term = Integer.parseInt(request.getParameter("term"));
@@ -249,25 +250,25 @@ public class TeaController {
           return a;
       }
       
-    //批准班级学生
-    @RequestMapping("teacher/pzstu")
-    public @ResponseBody String[] pzstu(HttpServletRequest request,HttpServletResponse response){
-          String [] a =new String [1];
-          a[0] = "批准班级学生成功";
-          int term = Integer.parseInt(request.getParameter("term"));
-          int classid = Integer.parseInt(request.getParameter("zjd_id"));
-          int course_id = Integer.parseInt(request.getParameter("fjd_id"));
-          int Stu_id = Integer.parseInt(request.getParameter("stu_id"));
-          System.out.println("term = "+term+" classid=" + classid+" course_id="+course_id+" stu_id = "+Stu_id);
-          String sn=AuthorityManage.getCurrentUsername();
-          Teacher tec = TeacherDao.getTeacherBySn(sn);
-          int tec_id = tec.getTeacherId();
-          int trem_courseid = TermCourseDao.getTermCourseId(term, course_id, classid, tec_id);
-          System.out.println("term_courseid= "+trem_courseid);
-          //学生ｉd和termcourseid
-          TeacherDao.updateStudentCourse(Stu_id, trem_courseid, false);
-          return a;
-      }
+//    //批准临时表的班级学生
+//    @RequestMapping("teacher/pzstu")
+//    public @ResponseBody String[] pzstu(HttpServletRequest request,HttpServletResponse response){
+//          String [] a =new String [1];
+//          a[0] = "批准班级学生成功";
+//          int term = Integer.parseInt(request.getParameter("term"));
+//          int classid = Integer.parseInt(request.getParameter("zjd_id"));
+//          int course_id = Integer.parseInt(request.getParameter("fjd_id"));
+//          int Stu_id = Integer.parseInt(request.getParameter("stu_id"));
+//          System.out.println("term = "+term+" classid=" + classid+" course_id="+course_id+" stu_id = "+Stu_id);
+//          String sn=AuthorityManage.getCurrentUsername();
+//          Teacher tec = TeacherDao.getTeacherBySn(sn);
+//          int tec_id = tec.getTeacherId();
+//          int trem_courseid = TermCourseDao.getTermCourseId(term, course_id, classid, tec_id);
+//          System.out.println("term_courseid= "+trem_courseid);
+//          //学生ｉd和termcourseid
+//          TeacherDao.updateStudentCourse(Stu_id, trem_courseid, false);
+//          return a;
+//      }
       
       //批量批准学生
        @RequestMapping("teacher/pzPLstu")
@@ -288,6 +289,8 @@ public class TeaController {
           }
           return a;
       }
+      
+      
 
         //导出学生信息,getStuSelectByTermCourseId(trem_courseid,1,300);1表示第一页．300表示最大学生数
     @RequestMapping("teacher/xz_xs_xx")
