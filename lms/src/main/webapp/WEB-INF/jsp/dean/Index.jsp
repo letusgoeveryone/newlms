@@ -249,7 +249,7 @@
                             <div class="card-inner">
                                 <p class="card-heading">Great End !</p>
                                 <p class="margin-bottom-lg">
-                                    确定这学期结束了么(⊙o⊙)？
+                                    确定${Term}学期结束了么(⊙o⊙)？
                                 </p>
                             </div>
                             <div class="card-action">
@@ -267,7 +267,7 @@
                             <div class="card-inner">
                                 <p class="card-heading">Good Start !</p>
                                 <p class="margin-bottom-lg">
-                                    确定要开始新的学期了么\(≧▽≦)/
+                                    确定要开始${newTerm}学期了么\(≧▽≦)/
                                 </p>
                             </div>
                             <div class="card-action">
@@ -288,10 +288,10 @@
                                 <h2 class="modal-title">:-)</h2>
                             </div>
                             <div class="modal-inner">
-                                <p class = "test-center h5">您确定要结束本学期了么？<span class="small">做最后一次确认吧</span></p>
+                                <p class = "test-center h5">您确定要结束${Term}学期了么？<span class="small">做最后一次确认吧</span></p>
                             </div>
                             <div class="modal-footer">
-                                <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="end">结束本学期</button></p>
+                                <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="end">结束${Term}学期</button></p>
                             </div>
                         </div>
                     </div>
@@ -305,10 +305,10 @@
                                 <h2 class="modal-title">:-)</h2>
                             </div>
                             <div class="modal-inner">
-                                <p class = "test-center h5">您确定要开始新的学期了么？<span class="small">做最后一次确认吧</span></p>
+                                <p class = "test-center h5">您确定要开始${newTerm}学期了么？<span class="small">做最后一次确认吧</span></p>
                             </div>
                             <div class="modal-footer">
-                                <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="begin">开始新的学期</button></p>
+                                <p class="text-right"><button class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal" type="button" id ="begin">开始${newTerm}学期</button></p>
                             </div>
                         </div>
                     </div>
@@ -327,11 +327,12 @@
                                     function (data) {
 
                                         if (data === "1") {
-                                            alert("新学期开始成功");
+                                            alert("新学期${newTerm}开始成功");
+                                            window.location.href="<%=path%>/dean/";
                                         }
                                         ;
                                         if (data === "0") {
-                                            alert("新学期开始失败");
+                                            alert("新学期${newTerm}开始失败，可能上一学期仍未结束。");
                                         }
                                         ;
                                     })
@@ -341,11 +342,11 @@
                             $.post("<%=path%>/dean/end",
                                     function (data) {
                                         if (data == "1") {
-                                            alert("旧学期结束成功")
+                                            alert("旧学期${Term}结束成功")
                                         }
                                         ;
                                         if (data == "0") {
-                                            alert("旧学期结束失败")
+                                            alert("旧学期${Term}结束失败。\n可能该学期已经结束过了，请直接开始新学期")
                                         }
                                         ;
                                     }

@@ -53,6 +53,25 @@ import net.sf.json.JSONArray;
 public class DeanController {
     @RequestMapping("/dean")
      public String personal_InfInformation(HttpServletRequest request, HttpServletResponse response) {
+       
+        int CurrentTerm=CurrentInfo.getCurrentTerm();
+        List<String> Term=CurrentInfo.getAllTerm();
+        int nextTerm;
+        if (CurrentTerm>0) {
+            request.setAttribute("Term", CurrentTerm);
+        
+        }else{
+            CurrentTerm=CurrentTerm*-1; 
+            request.setAttribute("Term", CurrentTerm);
+        }
+         nextTerm=999999;
+            for (String Term1 : Term) {
+                int tmp=Integer.parseInt(Term1);
+                if (tmp>CurrentTerm && tmp<=nextTerm) {
+                    nextTerm=tmp;
+                }
+            }
+       request.setAttribute("newTerm", nextTerm);
        return "dean/Index";
      }
      

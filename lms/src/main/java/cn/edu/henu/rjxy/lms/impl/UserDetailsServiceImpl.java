@@ -67,7 +67,14 @@ public static ArrayList<GrantedAuthority> getAuthoritiesBySn(String sn){
     ArrayList<GrantedAuthority> authorities = new ArrayList<>();
     String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER"};//,"ROLE_ADMIN"
     //                   1              2              4             8          
-        try {
+    try {
+             Student std=StudentDao.getStudentBySn(sn);
+             System.out.println("找到学生"+std.getStudentName());
+             authorities.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
+             return authorities;
+        } catch (Exception e) {
+        }
+    try {
             Teacher tea=TeacherDao.getTeacherBySn(sn);
             System.out.println("找到老师"+tea.getTeacherName());
             System.out.println("getTeacherPosition"+tea.getTeacherRoleValue());
@@ -79,22 +86,16 @@ public static ArrayList<GrantedAuthority> getAuthoritiesBySn(String sn){
                 authorities.add(new SimpleGrantedAuthority(str[j]));
                 }
               }
-             
+             return authorities;
         } catch (Exception e) {
         }
-        try {
-             Student std=StudentDao.getStudentBySn(sn);
-             System.out.println("找到学生"+std.getStudentName());
-             authorities.add(new SimpleGrantedAuthority("ROLE_STUDENT"));
-             
-        } catch (Exception e) {
-        }
+        
         try {
                 if (sn.equalsIgnoreCase(CurrentInfo.getOtherConfigure("AdminUser"))) {
                    authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
                    authorities.add(new SimpleGrantedAuthority("ROLE_ACDEMIC"));
                 }
-                 
+                return authorities; 
             } catch (Exception e) {
         }
         //System.out.println(authorities.toString());
