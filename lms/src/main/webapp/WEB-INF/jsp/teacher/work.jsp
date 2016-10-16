@@ -99,7 +99,7 @@
                     'buttonText': '选择文件',
                     'buttonCursor': 'hand',
                     'auto': false,
-                    'multi': false,
+                    'multi': true,
                     'method': 'post ',
                     'swf': '<%=path%>/uploadify/uploadify.swf ',
                     'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png',

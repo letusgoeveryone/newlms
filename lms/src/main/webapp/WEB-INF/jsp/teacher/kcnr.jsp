@@ -153,7 +153,7 @@
             'buttonText': '选择文件', //按钮上显示的文字，默认”SELECT FILES”
             'buttonCursor': 'hand', //上传按钮Hover时的鼠标形状，默认值是’hand’
             'auto': false, //是否自动开始   
-            'multi': false, //是否支持多文件上传，默认为true
+            'multi': true, //是否支持多文件上传，默认为true
             'method': 'post', //默认是’post’,也可以设置为’get’
             'swf': '<%=path%>/uploadify/uploadify.swf', //进度条显示文件
             'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png', //取消按钮的图片
