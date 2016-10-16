@@ -53,6 +53,25 @@ import net.sf.json.JSONArray;
 public class DeanController {
     @RequestMapping("/dean")
      public String personal_InfInformation(HttpServletRequest request, HttpServletResponse response) {
+       
+        int CurrentTerm=CurrentInfo.getCurrentTerm();
+        List<String> Term=CurrentInfo.getAllTerm();
+        int nextTerm;
+        if (CurrentTerm>0) {
+            request.setAttribute("Term", CurrentTerm);
+        
+        }else{
+            CurrentTerm=CurrentTerm*-1; 
+            request.setAttribute("Term", CurrentTerm);
+        }
+         nextTerm=999999;
+            for (String Term1 : Term) {
+                int tmp=Integer.parseInt(Term1);
+                if (tmp>CurrentTerm && tmp<=nextTerm) {
+                    nextTerm=tmp;
+                }
+            }
+       request.setAttribute("newTerm", nextTerm);
        return "dean/Index";
      }
      
@@ -121,47 +140,34 @@ public class DeanController {
 
     @RequestMapping("/dean/end")
     public @ResponseBody  String end(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int CurrentTerm=CurrentInfo.getCurrentTerm();
         System.out.println("end");
-        return "1";
+        if (CurrentTerm>0) {
+            CurrentInfo.setCurrentTerm("-"+String.valueOf(CurrentTerm));
+            return "1";
+        }
+        return "0";
     }
     
     @RequestMapping("/dean/start")
     public @ResponseBody  String start(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        try {
-            Properties p = new Properties();
-            String x = System.getProperty("file.separator");
-            File f = new File("D:"+x+"My.ini");
-            System.out.println(f.getAbsolutePath());
-        if (!f.exists()) {
-            f.createNewFile();
-            p.setProperty("term", "201602");//初始化学期信息
-        }else{
-            System.out.println(f.getAbsolutePath());//打印了配置文件的绝对路径
-            p.load(new FileInputStream(f));//下载数据
-            String term = p.getProperty("term");
-            char c = term.charAt(5);
-            term = term.substring(0, term.length()-1);
-            if (c=='1') {
-                term += '2';
-            }else if (c == '2'){
-                term += '3';
-            }else{
-                String tempString = term.substring(4);
-                Integer tempInteger = new Integer(term.substring(0, 4))+1;
-                term = tempInteger + tempString+"1";
-            }
-            p.setProperty("term", term);
-            
-        }
-        p.store(new FileOutputStream(f), "");//将修改的信息保存
-            
-        } catch (Exception e) {
-            System.out.println(e.toString());
+        int CurrentTerm=CurrentInfo.getCurrentTerm();
+        List<String> Term=CurrentInfo.getAllTerm();
+        int nextTerm;
+        if (CurrentTerm>0) {
             return "0";
+        }else{
+            CurrentTerm=CurrentTerm*-1; 
         }
-        
-        return "1";
+         nextTerm=999999;
+            for (String Term1 : Term) {
+                int tmp=Integer.parseInt(Term1);
+                if (tmp>CurrentTerm && tmp<=nextTerm) {
+                    nextTerm=tmp;
+                }
+            }
+            CurrentInfo.setCurrentTerm(String.valueOf(nextTerm));
+            return "1";
      }
   
        //正式教师根据工号范围分页

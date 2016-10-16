@@ -46,15 +46,7 @@
                 </tr>
             </thead>
         </table>
-<!--        <div style="margin:10px 0;">
-            <span>Selection Mode: </span>
-            <select onchange="$('#dg_stu').datagrid({singleSelect: (this.value === 0)})">
-                <option value="0">单行</option>
-                <option value="1">多行</option>
-            </select>
-            SelectOnCheck: <input type="checkbox" checked onchange="$('#dg_stu').datagrid({selectOnCheck: $(this).is(':checked')})">
-            CheckOnSelect: <input type="checkbox" checked onchange="$('#dg_stu').datagrid({checkOnSelect: $(this).is(':checked')})">
-        </div>-->
+
         <a  onclick="go_ls_stu()">go</a> <input type="text" id="go_ls_xs" style="width: 50px">
         <a class="easyui-linkbutton" onclick="getSelected()_xs">查看选中的信息</a>
         <a class="easyui-linkbutton" onclick="getSelections()_xs">查看选中的多个信息</a>

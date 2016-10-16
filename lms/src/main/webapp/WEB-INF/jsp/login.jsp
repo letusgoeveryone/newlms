@@ -283,6 +283,11 @@
                                             $("#pw").val("");
                                             updateCcdImage();
                                         };
+                                        if (data === "RoleError") {
+                                            $("#loginMsg").html("权限出错，请联系管理员...");
+                                            $("#pw").val("");
+                                            updateCcdImage();
+                                        };
                                         if (data === "Loginok") {
                                             $("#loginMsg").html("登录成功!");
                                             window.location.href = "<%=path%>/loginsuccess";
@@ -317,6 +322,11 @@
                                         $("#pw").val("");
                                         updateCcdImage();
                                     };
+                                    if (data === "RoleError") {
+                                            $("#loginMsg").html("权限出错，请联系管理员...");
+                                            $("#pw").val("");
+                                            updateCcdImage();
+                                        };
                                     if (data === "Loginok") {
                                         $("#loginMsg").html("登录成功!");
                                         window.location.href = "<%=path%>/loginsuccess";

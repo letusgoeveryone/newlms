@@ -25,6 +25,13 @@ public class AuthorityManage {
         String str[] = {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER"};//"ROLE_ADMIN"
         List list = new LinkedList();
         try {
+            Student std = StudentDao.getStudentBySn(sn);
+            System.out.println("找到学生" + std.getStudentName());
+            list.add("ROLE_STUDENT");
+            return list;
+        } catch (Exception e) {
+        }
+        try {
             Teacher tea = TeacherDao.getTeacherBySn(sn);
             char[] ch = Integer.toBinaryString(Integer.valueOf(tea.getTeacherRoleValue())).toCharArray();
             int j = -1;
@@ -34,19 +41,14 @@ public class AuthorityManage {
                     list.add(str[j]);
                 }
             }
-        } catch (Exception e) {
-        }
-        try {
-            Student std = StudentDao.getStudentBySn(sn);
-            System.out.println("找到学生" + std.getStudentName());
-            list.add("ROLE_STUDENT");
+            return list;
         } catch (Exception e) {
         }
         try {
                 if (sn.equalsIgnoreCase(CurrentInfo.getOtherConfigure("AdminUser"))) {
                    list.add("ROLE_ADMIN");
                 }
-                 
+                return list; 
             } catch (Exception e) {
         }
         return list;
@@ -59,6 +61,17 @@ public class AuthorityManage {
     //判断个sn是否具有对应的ROLE值
     public static boolean checkCurrentAuthorities(String sn, String role) {
         String str[] =  {"ROLE_ACDEMIC","ROLE_DEAN","ROLE_TEACHER"};//
+
+        try {
+            Student std = StudentDao.getStudentBySn(sn);
+            System.out.println("找到学生" + std.getStudentName());
+            if (role.equals("ROLE_STUDENT")) {
+                return true;
+            }
+
+        } catch (Exception e) {
+        }
+        
         try {
             Teacher tea = TeacherDao.getTeacherBySn(sn);
             char[] ch = Integer.toBinaryString(Integer.valueOf(tea.getTeacherRoleValue())).toCharArray();
@@ -69,15 +82,6 @@ public class AuthorityManage {
                     return true;
                 }
 
-            }
-
-        } catch (Exception e) {
-        }
-        try {
-            Student std = StudentDao.getStudentBySn(sn);
-            System.out.println("找到学生" + std.getStudentName());
-            if (role.equals("ROLE_STUDENT")) {
-                return true;
             }
 
         } catch (Exception e) {

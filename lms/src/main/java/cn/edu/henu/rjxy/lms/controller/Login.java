@@ -91,6 +91,13 @@ public class Login {
         }
         session.removeAttribute("hccd");
         username = username.trim();
+        try {
+           Teacher teacher = TeacherDao.getTeacherBySn(username);
+            if (teacher.getTeacherRoleValue()<0 || teacher.getTeacherRoleValue()>7) {
+                return "RoleError";
+            }
+        } catch (Exception ex) {
+        }        
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
         try {
             Authentication authentication = myAuthenticationManager.authenticate(authRequest);
@@ -99,34 +106,35 @@ public class Login {
         } catch (AuthenticationException ex) {
             return "LoginError";
         }
+    
         return "Loginok";
     }
 
-
-    @RequestMapping("/tea_dat_up")
-    public @ResponseBody String[] teacherRoleDataUpdate(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, ServletException, IOException {
-        int str[] = {1,0,2,0,4,0,8};
-//       String str2[] = {"教务员","辅导员","院长","学生","教工","助教","系统管理员"};
-        int sum=0,ok=0;
-        List<TempTeacherWithoutPwd> tealist = TeacherDao.getAllTeacher();
-            for (TempTeacherWithoutPwd tea : tealist) {
-                Teacher teacher = TeacherDao.getTeacherBySn(tea.getTeacherSn());
-                sum++;
-                if(teacher.getTeacherRoleValue()>15){
-                    char[] ch = Integer.toBinaryString(teacher.getTeacherRoleValue()).toCharArray();
-                    int j = 0;
-                    for (int i = ch.length - 1; i >= 0; i--) {
-                        if (String.valueOf(ch[i]).equals("1")) {
-                            j=j+str[i];
-                        }
-                    }
-                    teacher.setTeacherRoleValue(j);
-                    TeacherDao.updateTeacherById(teacher);
-                    ok++;
-                }
-            } 
-        String []a = new String[1];
-        a[0]="教师权限数据已全部处理完成。共"+sum+ "条，更新成功"+ok+ "条";
-        return a;
-    }
+//
+//    @RequestMapping("/tea_dat_up")
+//    public @ResponseBody String[] teacherRoleDataUpdate(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, ServletException, IOException {
+//        int str[] = {1,0,2,0,4,0,8};
+////       String str2[] = {"教务员","辅导员","院长","学生","教工","助教","系统管理员"};
+//        int sum=0,ok=0;
+//        List<TempTeacherWithoutPwd> tealist = TeacherDao.getAllTeacher();
+//            for (TempTeacherWithoutPwd tea : tealist) {
+//                Teacher teacher = TeacherDao.getTeacherBySn(tea.getTeacherSn());
+//                sum++;
+//                if(teacher.getTeacherRoleValue()>15){
+//                    char[] ch = Integer.toBinaryString(teacher.getTeacherRoleValue()).toCharArray();
+//                    int j = 0;
+//                    for (int i = ch.length - 1; i >= 0; i--) {
+//                        if (String.valueOf(ch[i]).equals("1")) {
+//                            j=j+str[i];
+//                        }
+//                    }
+//                    teacher.setTeacherRoleValue(j);
+//                    TeacherDao.updateTeacherById(teacher);
+//                    ok++;
+//                }
+//            } 
+//        String []a = new String[1];
+//        a[0]="教师权限数据已全部处理完成。共"+sum+ "条，更新成功"+ok+ "条";
+//        return a;
+//    }
 }

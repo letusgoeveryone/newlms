@@ -33,6 +33,12 @@ public class StudentDao {
      *@throw 如果传入的学生学号和已有正式某学生重复，则抛出异常，并提示重复学号
      */
     public static void saveStudent(Student student) {
+        String sn = student.getStudentSn();
+        if (TeacherDao.getTeacherBySn(sn) != null) {
+            throw new RuntimeException("该注册学生学号与已注册教师工号重复，重复学号为:"+sn);
+        }
+        
+        
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
