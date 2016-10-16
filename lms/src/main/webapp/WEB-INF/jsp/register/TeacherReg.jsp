@@ -157,7 +157,7 @@
                                     <!--下一步按钮-->
                                     <div class="box-small"></div>
                                     <div class="form-group">
-                                        <a id="fornext" onclick="isVaildOfInfo()" data-toggle="tab" href="#"><div class="btn btn-brand btn-block">最后一步</div></a>
+                                        <a id="fornext" onclick="isVaildOfInfo()" data-toggle="tab" href="#"><div class="btn btn-brand btn-block">下一步</div></a>
                                     </div>
                                     <div class="stage-box"></div>
                                 </div>
