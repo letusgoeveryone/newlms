@@ -18,9 +18,7 @@ import cn.edu.henu.rjxy.lms.model.Teachers;
 import cn.edu.henu.rjxy.lms.model.TempTeacher;
 import cn.edu.henu.rjxy.lms.model.*;
 import cn.edu.henu.rjxy.lms.model.TermCourse;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -87,8 +85,9 @@ public class TeacherDao {
     
     public static void main(String[] args) {
         Teacher t = getTeacherBySn("144520666");
-        t.setTeacherRoleValue(127);
-        updateTeacherById(t);
+        if (t == null) {
+            System.out.println("搞定");
+        }
     }
     
     public static void updateStudentCourse(Integer studentId, Integer termCourseId, boolean state) {
@@ -210,6 +209,10 @@ public class TeacherDao {
      * @param teacher 教师对象
      */
     public static void saveTeacher(Teacher teacher) {
+        String sn = teacher.getTeacherSn();
+        if (StudentDao.getStudentBySn(sn) != null) {
+            throw new RuntimeException("该注册教师与已注册学生重复，重复工号为"+sn);
+        }
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
