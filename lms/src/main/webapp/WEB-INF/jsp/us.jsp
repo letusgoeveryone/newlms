@@ -117,7 +117,7 @@
                         <h1 >开发团队<span class="small-bottom">Development Team</span></h1>
 
                         
-                        <p class="lms-us-leader">架构设计 王洪涛</p>
+                        <p class="lms-us-leader">架构设计 王红涛</p>
                         <p class="lms-us-members">开发人员：刘炳旭，刘煜，李汶龙，王鸿运，侯鋆，常成蕾 等 ……</p>
                         <p></p>
                     </div>
