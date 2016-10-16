@@ -26,9 +26,9 @@
             }
 
             #tree-us>div>article,
-            #tree-us>div>div {
+            #tree-us>div>div {    
                 padding: 10px;
-                margin: 10px auto;
+                margin: 0 15px 0 0 !important;
             }
 
             #tree-us>.bg-content {
@@ -39,7 +39,44 @@
                 text-decoration: none;
                 background-color: transparent;
             }
-
+            .lms-us-vcard{
+                width: 960px;
+                margin:0 auto 2em;
+                box-shadow: 0 0px 1px rgba(0, 0, 0, 0.4) !important;
+            }
+            .text-lightgreen{
+                color: rgba(21, 87, 57, 0.78);
+            }
+            .lms-us-vcard>div{
+                padding: 0 2.5em 2em !important;
+            }
+            .lms-us-vstatus{
+                margin: 1em 0;
+            }
+            .lms-uv-detail{
+                padding: 0 1em;
+            }
+            .lms-us-team{
+                padding-left: 1em;
+            }
+            .lms-us-team>h1{
+                color: rgba(0,0,0,.38);
+            }
+            .small-bottom{
+                margin-left: 1em;
+                font-size: 18px;
+                font-weight: bolder;
+                color: rgba(0,0,0,.2);
+            }
+            .lms-us-leader{
+                font-weight: bolder;
+                font-size: larger;
+                margin: 2em auto .1em;
+                color: rgba(243, 243, 243, 0.75);
+            }
+            .lms-us-members{
+                color: rgba(253, 253, 253, 0.65);
+            }
         </style>
 
 
@@ -55,40 +92,34 @@
                     </a>
                 </li>
             </ul>
-            <span class="header-logo" >教务系统 | <span id="settings-head">&nbsp;我们 &nbsp;; )</span></span>
+            <span class="header-logo" >教务系统 | <span id="settings-head">&nbsp;关于我们</span></span>
 
         </header> 
 
         <div id="tree-us" class="stage-image stage-box height-control" style="background-image:url(images/bg-for-role.jpg)">
-            <div class="container bg-content">
+            <div class="lms-us-vcard row bg-content card">
                 
-                <div class="row">
-                    <h1 class="page-header text-grey">Hello World ~</h1>
-                    <div class=" col-md-12 bs-breadcrumb">
-                        -
-                        <div class="pull-right "><span class="label label-primary"> 平 静 </span> &nbsp; <span class="label label-warning"> 谦 逊 </span> &nbsp; <span class="label label-info"> 清 澈 </span> &nbsp; <span class="label label-danger"> 热 情 </span></div>
+                <div class="col-md-4 card-inner divider-right">
+                    <h2 class="page-header text-lightgreen">Contact</h2>
+                    
+                    <div>
+                        <div class="lms-us-vstatus"><span class="icon">location_on</span><span class="lms-uv-detail">中国 河南 开封 金明大道</span></div> 
+                        <div class="lms-us-vstatus"><span class="icon">chat_bubble_outline</span><span class="lms-uv-detail">0371-1234567</span></div> 
+                        <div class="lms-us-vstatus"><span class="icon">email</span><span class="lms-uv-detail">helloworld@139.com</span></div> 
+                        <div class="lms-us-vstatus"><span class="icon">link</span><span class="lms-uv-detail">software.henu.edu.cn</span></div>  
                     </div>
+                    
                 </div>
                 
                 <!-- 一些美丽的句子 和 标语 -->
-                <article class="row">
-                    <div id="quto">
-                        <h2 class="page-header pull-right hidden-xm hidden-xs">-- 寄<small>语</small></h2>
-                        <h2 class=" visible-xs visible-xm ">寄<small>语:</small> </h2>
-                        <p>
-                            <br/> 我很幸运成为你偶遇的分享者
-                            <br/> 每一次见面，你从不吝惜把你内心丰溢的生息倾注于我的杯
-                            <br/> 我的固执不是因为对你任何一桩现实的责难，而是对自己个我生命忠贞不二的守信
-                            <br/> 你甚美丽，你一向甚我美丽
-                        </p>
-                    </div>
-                    <div class="row hidden-xm hidden-xs">
-                        <dl class="dl-horizontal pull-right" contenteditable="false">
-                            <dt>河南大学</dt>
-                            <dd>源于1912 ;<br /></dd>
-                            <dt>河南大学软件学院</dt>
-                            <dd>源于你的加入 !<br /></dd>
-                        </dl>
+                <article class="col-md-8 card-inner" style="background-color: rgba(21, 87, 57, 0.78);margin: 0px;">
+                    <div class="lms-us-team">
+                        <h1 >开发团队<span class="small-bottom">Development Team</span></h1>
+
+                        
+                        <p class="lms-us-leader">架构设计 王洪涛</p>
+                        <p class="lms-us-members">开发人员：刘炳旭，刘煜，李汶龙，王鸿运，侯鋆，常成蕾 等 ……</p>
+                        <p></p>
                     </div>
                 </article>
                 
