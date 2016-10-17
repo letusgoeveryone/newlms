@@ -206,6 +206,8 @@
             $('.stage-card').lightbox();
         </script>
         <script>
+            var isTimeTablesInit = false;
+            
             newbjxx();
             $('[href="#panel-gradeInfoManage"]').click(function(){
                 setTimeout(newbjxx,500);
@@ -214,7 +216,10 @@
                 setTimeout(newkcxx,500);
             });
             $('[href="#panel-courseTableManage"]').click(function(){
-                setTimeout(newkcbxx,500);
+                if(!isTimeTablesInit){
+                    setTimeout(kechengbiao,500);
+                    isTimeTablesInit = true;
+                }
             });
 
             $('[href="#panel-tmpTeacherManage"]').click(function(){

@@ -26,7 +26,7 @@
 
             <nav class="nav-tabs">
                 <ul>
-                    <li class="active">
+                    <li>
                         <a data-toggle="tab" href="#panel-setCourses" style="width: 120px" class="easyui-linkbutton">安排下学期课程</a>
                     </li>
                     <li>
@@ -35,7 +35,7 @@
                     <li>
                         <a data-toggle="tab" href="#panel-setTimeTables" style="width: 120px" class="easyui-linkbutton">安排下学期课程表</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a data-toggle="tab" href="#panel-getTimeTables" style="width:100px" class="easyui-linkbutton active">查看课程表</a>
                     </li>
                     
@@ -205,17 +205,17 @@
             </div>
 
             <div  class="tab-pane fade in active"  id="panel-getTimeTables">
-                <table id="course_list" style="width:400px;height:auto" class="easyui-datagrid" title="课程表" 
+                <table id="course_list" style="width:800px;height:auto" class="easyui-datagrid" title="课程表" 
                        data-options="rownumbers:true,singleSelect:false,collapsible:true,method:'get',fitColumns:true,pagination:true,toolbar:'#courselist_xq'
                        ">
                     <thead>
                         <tr>
                             <th data-options="field:'ck',checkbox:true"></th>
                             <!--<th data-options="field:'classId',hidden:true,align:'left'">班序号</th>-->
-                            <th data-options="field:'teacherName',editor:'numberbox'">任课教师</th>
-                            <th data-options="field:'teacherSn',editor:'numberbox'">任课教师工号</th>
-                            <th data-options="field:'className',editor:'text'">班级</th>
-                            <th data-options="field:'courseName',editor:'text'">课程名称</th>
+                            <th data-options="field:'teacherName',width:200,editor:'numberbox'">任课教师</th>
+                            <th data-options="field:'teacherSn',width:200,editor:'numberbox'">任课教师工号</th>
+                            <th data-options="field:'className',width:200,editor:'text'">班级</th>
+                            <th data-options="field:'courseName',width:200,editor:'text'">课程名称</th>
                         </tr>
                     </thead>
                 </table>
@@ -452,7 +452,10 @@
                 });
             }
             function kechengbiao() {
-
+                $('#course_list').datagrid({
+                    url: 'acdemic/courselist_fanhui?term=' + document.getElementById("courselist_xq1").value,
+                    loadMsg: '加载中请稍后……'
+                });
             }
             function tijiao() {
                 var rows = $('#all').datagrid('getChecked');
@@ -493,7 +496,7 @@
             $('[href="#panel-setTimeTables"]').click(function(){
                 setTimeout(allinall,500);
             });
-            $('[href="#panel-setTimeTables"]').click(function(){
+            $('[href="#panel-getTimeTables"]').click(function(){
                 setTimeout(kechengbiao,500);
             });
         </script>
