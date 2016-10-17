@@ -934,13 +934,16 @@ var StudentAPI = {
             dataType: 'json',
             success: function(data) {
                 var _hs = '';
-                StudentAPI.schoolYearsDS = data;
+                StudentAPI.gradeDS = data;
 
                 for (var i = 0; i < data.length; i++) {
-
-                    _hs += '<option value="' + data[i] + '"> ' + data[i] + ' </option>';
+                    if(data[i]== StudentAPI.grade){
+                        _hs += '<option value="' + data[i] + '" selected="selected"> ' + data[i] + ' </option>';
+                    }else{
+                        _hs += '<option value="' + data[i] + '"> ' + data[i] + ' </option>';
+                    }
                 }
-                StudentAPI.schoolYearsListHS = _hs;
+                StudentAPI.gradeHS = _hs;
             },
             error: function() {
                 $('#snackbar').snackbar({
@@ -956,12 +959,16 @@ var StudentAPI = {
             dataType: 'json',
             success: function(data) {
                 var _hs = '';
-                StudentAPI.schoolCollegeDS = data;
+                StudentAPI.collegeDS = data;
 
                 for (var i = 0; i < data.length; i++) {
-                    _hs += '<option value="' + data[i] + '"> ' + data[i] + ' </option>';
+                    if(data[i]===StudentAPI.college){
+                        _hs += '<option value="' + data[i] + '" selected="selected"> ' + data[i] + ' </option>';
+                    }else{
+                        _hs += '<option value="' + data[i] + '"> ' + data[i] + ' </option>';
+                    }
                 }
-                StudentAPI.schoolCollegeListHS = _hs;
+                StudentAPI.collegeHS = _hs;
             },
             error: function() {
                 $('#snackbar').snackbar({
@@ -1109,6 +1116,7 @@ var StudentAPI = {
 
 //定义全局变量
 var isCourseInited = false;
+var isCourseNull = true;
 var isEditorInited = false;
 
 /**
@@ -1161,10 +1169,8 @@ function init() {
             sn: StudentAPI.sn,
             name: StudentAPI.name,
             ID: StudentAPI.ID,
-            grade: StudentAPI.grade,
-            schoolYearsList: StudentAPI.schoolYearsListHS,
-            college: StudentAPI.college,
-            schoolCollegeList: StudentAPI.schoolCollegeListHS,
+            gradeHS: StudentAPI.gradeHS,
+            collegeHS: StudentAPI.collegeHS,
             tel: StudentAPI.tel,
             qq: StudentAPI.qq,
             pw: StudentAPI.pw,
@@ -1176,16 +1182,18 @@ function init() {
 
 function initCourse(){
     
-    if(isCourseInited === false){
+    if(isCourseInited === false || isCourseNull === true){
         //初始化 课程信息
         StudentAPI.initPersnalCourseInfo();
-        isCourseInited = true;
 
         if (StudentAPI.CourseDS[0] !== undefined) {
             StudentAPI.ThisCourse.set(StudentAPI.CourseDS[0].scid);
             StudentAPI.CourseDB.set();
             $('#anchor-mcourse').click();
+            isCourseInited = true;
+            isCourseNull = false;
         } else {
+            isCourseNull = true;
             //ThisCourse.cobj = StudentAPI.DemonCourse;
             if (confirm("暂无已选课程！是否前往选课中心进行选课？")){
                 window.location.href = 'student/courses';

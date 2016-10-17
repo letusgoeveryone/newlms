@@ -65,7 +65,7 @@
                     'method': 'post        ',
                     'swf': '<%=path%>/uploadify/uploadify.swf        ',
                     'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png',
-                    'fileTypeExts': '**.docx;*.doc;*.xls;*.xlsx;*.ppt ',
+                    'fileTypeExts': '**.docx;*.doc;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar;*.7z;*.txt;*.odt;*.odg;*.ods;*.odp',
                     'fileSizeLimit': '200MB',
                     'fileObjName': 'myFile',
                     'progressData': 'speed',

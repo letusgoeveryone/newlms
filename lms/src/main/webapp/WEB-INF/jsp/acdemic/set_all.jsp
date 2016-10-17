@@ -4,18 +4,47 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            #lms-am-timetables [id^="panel"]{
+                height:  350px;
+            }
+            #lms-am-timetables .nav-tabs li{
+                display: inline-block;
+                list-style: none;
+            }
+            #lms-am-timetables .nav-tabs>ul{
+                padding: 0;
+            }
+            #lms-am-timetables .active>a{
+                background: linear-gradient(to bottom,rgba(255, 255, 255, 0.73) 0,rgba(63, 81, 181, 0.43) 100%);
+                color: #313131;
+            }
+        </style>
+    </head>
     <body>
-        <div class="container ">
+        <div class="container " id="lms-am-timetables">
 
-
-            <a style="width: 120px"  onclick="xs_course_sz()" class="easyui-linkbutton">安排下学期课程</a>
-            <a  style="width:120px " onclick="xs_bj_sz()" class="easyui-linkbutton">安排下学期班级</a>
-            <a  style="width: 120px"   onclick="allinall()" class="easyui-linkbutton">安排下学期课程表</a>
-            <a  style="width:100px"   onclick="kechengbiao()" class="easyui-linkbutton">查看课程表</a>
+            <nav class="nav-tabs">
+                <ul>
+                    <li class="active">
+                        <a data-toggle="tab" href="#panel-setCourses" style="width: 120px" class="easyui-linkbutton">安排下学期课程</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#panel-setClasses" style="width:120px " class="easyui-linkbutton">安排下学期班级</a> 
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#panel-setTimeTables" style="width: 120px" class="easyui-linkbutton">安排下学期课程表</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#panel-getTimeTables" style="width:100px" class="easyui-linkbutton active">查看课程表</a>
+                    </li>
+                    
+                </ul>
+            </nav>
 
             <div style="padding: 1.5em"></div>
 
-            <div style="display: none;height: 350px" id="dg_add_bj_div">
+            <div class="tab-pane fade" id="panel-setClasses">
                 <div style="float: left">
                     <div  id='xuehao_all' style="padding:5px;height:auto">
                         请设置学期:<select  id="sz_xq" ></select>
@@ -50,7 +79,6 @@
                     <thead>
                         <tr>
                             <th data-options="field:'ck',checkbox:true"></th>
-                            <!--                        <th data-options="field:'classId',hidden:'true',align:'left'">班序号</th>-->
                             <th data-options="field:'classGrade',editor:'numberbox'">年级</th>
                             <th data-options="field:'className',editor:'text'">班级</th>
                         </tr>
@@ -60,7 +88,7 @@
 
             </div>
 
-            <div style="display: none;height: 350px" id="dg_add_course_div">     
+            <div  class="tab-pane fade"  id="panel-setCourses">     
                 <div style="float: left">
                     <div  id='xuehao_curse' style="padding:5px;height:auto">
                         请设置学期:<select id="szxq"></select>
@@ -111,7 +139,7 @@
 
             </div>
 
-            <div  style="display: none;height: 350px" id="all_div">
+            <div  class="tab-pane fade"  id="panel-setTimeTables">
                 <div class="pull-left">
                     <table id="all" style="width:330px;height:auto" class="easyui-datagrid" title="课程信息" 
                            data-options="
@@ -176,7 +204,7 @@
                 学期:<select id="courselist_xq1" class="courselist_xq1"></select>
             </div>
 
-            <div  style="display: none;height: 350px" id="kechengbiao_div">
+            <div  class="tab-pane fade in active"  id="panel-getTimeTables">
                 <table id="course_list" style="width:400px;height:auto" class="easyui-datagrid" title="课程表" 
                        data-options="rownumbers:true,singleSelect:false,collapsible:true,method:'get',fitColumns:true,pagination:true,toolbar:'#courselist_xq'
                        ">
@@ -255,10 +283,6 @@
             }
 
             function xs_bj_sz() {
-                $("#dg_add_bj_div").show();
-                $("#dg_add_course_div").hide();
-                $("#kechengbiao_div").hide();
-                $("#all_div").hide();
                 $('#dg_add_bj').datagrid({
                     url: 'acdemic/ckbj_xx',
                     loadMsg: '数据加载中请稍后……'
@@ -295,10 +319,6 @@
             }
 
             function xs_course_sz() {
-                $("#dg_add_bj_div").hide();
-                $("#kechengbiao_div").hide();
-                $("#dg_add_course_div").show();
-                $("#all_div").hide();
                 $('#dg_add_course').datagrid({
                     url: 'acdemic/course_fanhui',
                     loadMsg: '课程数据加载中请稍后……'
@@ -421,10 +441,6 @@
                 });
             });
             function allinall() {
-                $("#dg_add_bj_div").hide();
-                $("#dg_add_course_div").hide();
-                $("#kechengbiao_div").hide();
-                $("#all_div").show();
                 $('#all').datagrid({
                     url: 'acdemic/course_fanhui',
                     loadMsg: '课程数据加载中请稍后……'
@@ -436,10 +452,6 @@
                 });
             }
             function kechengbiao() {
-                $("#dg_add_bj_div").hide();
-                $("#dg_add_course_div").hide();
-                $("#all_div").hide();
-                $("#kechengbiao_div").show();
 
             }
             function tijiao() {
@@ -470,6 +482,20 @@
                     }
                 });
             }
+            
+
+            $('[href="#panel-setCourses"]').click(function(){
+                setTimeout(xs_course_sz,500);
+            });
+            $('[href="#panel-setClasses"]').click(function(){
+                setTimeout(xs_bj_sz,500);
+            });
+            $('[href="#panel-setTimeTables"]').click(function(){
+                setTimeout(allinall,500);
+            });
+            $('[href="#panel-setTimeTables"]').click(function(){
+                setTimeout(kechengbiao,500);
+            });
         </script>
     </body>
 </html>

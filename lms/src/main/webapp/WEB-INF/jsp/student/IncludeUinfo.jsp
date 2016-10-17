@@ -26,12 +26,12 @@
                                 </div>
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="name"> 姓名 </label>
-                                    <input class="form-control" id="name" type="text" value="{{name}}">
+                                    <input class="form-control" id="name" type="text" value="{{name}}"  disabled="">
                                     <div id="validMsg-name" hidden>请输入至少两个汉字</div>
                                 </div>
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="ID"> 身份证 </label>
-                                    <input class="form-control" id="ID" type="text" value="{{ID}}">
+                                    <input class="form-control" id="ID" type="text" value="{{ID}}" disabled="">
                                     <div id="validMsg-ID" hidden>您输入的身份证格式不正确</div>
                                 </div>
                                 <div class="form-group form-group-label">
@@ -53,15 +53,13 @@
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="college"> 学院 </label>
                                     <select class="form-control" id="college" value="">
-                                        <option value="{{college}}"> {{college}} </option>
-                                        {{{schoolCollegeList}}}
+                                        {{{collegeHS}}}
                                     </select>
                                 </div>
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="grade"> 年级 </label>
                                     <select class="form-control" id="grade" value="">
-                                        <option value="{{grade}}"> {{grade}} </option>
-                                        {{{schoolYearsList}}}
+                                        {{{gradeHS}}}
                                     </select>
                                 </div>
                                 <div class="form-group form-group-label">

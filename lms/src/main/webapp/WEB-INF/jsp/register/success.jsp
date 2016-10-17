@@ -58,7 +58,7 @@
                                     <li>如果您是老师，请联系教务员或院长，让他（她）帮您确认。</li>
                                 </ul>
                                 
-                                您现在可以<a href="<%=path%>/">返回登录界面</a>或<a href="<%=path%>/guest">浏览游客页面</a>
+                                您现在可以<a href="<%=path%>/"> 返回登录界面 </a>或<a href="<%=path%>/guest"> 浏览游客页面 </a>
                                 
                                 ${acthtml}
                             </div>
