@@ -105,24 +105,6 @@ var CourseAPI = {
             });
         },
         
-        setX: function(){
-            console.log("init 可选课程的列表树 info...");
-            //初始化 可选课程的列表树
-            $.ajax({
-                url: CourseAPI.Path.uInfo[4],
-                type: 'get',
-                async: false,
-                dataType: 'json',
-                success: function (data) {
-                    CourseAPI.selectableCourseDS = data;
-                    CourseAPI.Courses.x.num = data.length;
-                },
-                error: function () {
-                    alert("数据[可选课程的列表树]传输失败 ！");
-                }
-            });
-        },
-        
         setI: function(){
             //初始化 待批准课程的列表树
             console.log("init 待批准课程的列表树 info...");
@@ -139,6 +121,60 @@ var CourseAPI = {
                     alert("数据[待批准课程的列表树]传输失败 ！");
                 }
             });
+        },
+        
+        
+        setX: function(){
+            console.log("init 可选课程的列表树 info...");
+            //初始化 可选课程的列表树
+            $.ajax({
+                url: CourseAPI.Path.uInfo[4],
+                type: 'get',
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    CourseAPI.allCourseDS = data;
+                    CourseAPI.selectableCourseDS = CourseAPI.Courses.getX(data);
+                    CourseAPI.Courses.x.num = data.length;
+                },
+                error: function () {
+                    alert("数据[可选课程的列表树]传输失败 ！");
+                }
+            });
+        },
+        getX: function(data){
+            var _o = CourseAPI.selectedCourseDS;
+            var _i = CourseAPI.selectingCourseDS;
+            var _x = [];
+            for(var i=0; i<data.length; i++){
+                var isO = false;
+                var isI = false;
+                
+                console.log(data[i].text  + " is : ");
+                for (var k = 0; k < _o.length; k++) {
+                    isO = data[i].text === _o[k].course ? true : false;
+                    if(isO) break;
+                }
+
+                if (isO) {
+                    console.log(" O ");
+                    continue;
+                }
+                
+                for (var k = 0; k < _i.length; k++) {
+                    isI = data[i].text === _i[k].course ? true : false;
+                    if(isI) break;
+                }
+
+                if (isI) {
+                    console.log(" I ");
+                    continue;
+                }
+                
+                console.log(" X ");
+                _x.push(data[i]);
+            }
+            return _x;
         }
     },
     
@@ -557,6 +593,80 @@ var CourseAPI = {
                 return _head + _body + _foot;
             }
         },
+        allCourse:{
+            
+            getTableHS: function () {
+                var _head = '<table class="table table-responsive" title="选课表">' +
+                        '<thead><tr><th>课程</th><th>老师</th><th>地点</th><th>状态: 无</th></tr></thead>',
+                        _body = '',
+                        _foot = '</table>',
+                        _o = [],
+                        _i = [], //记录 当前课类节点对象
+                        _x = [], //记录 当前教师节点对象
+                        _numO = 0, //记录 课类数量 
+                        _numI = 0, //记录 每个课类下 教师数量 临时变量
+                        _numX = 0, //记录 每个教师下 课程数量 临时变量
+                        _sum = 0, //记录 所有课程总数
+                        TableHS = '';
+
+
+                _o = CourseAPI.allCourseDS;
+                if (_o.length === 0) {
+                    _body = '<tbody><tr><td  class="text-indianred text-blod" colspan="4">暂无课程</td></tr></tbody>';
+                    return _head + _body + _foot;
+                }
+                _numO = _o.length;
+
+                for (var i = 0; i < _numO; i++) {
+                    _i = _o[i].nodes;
+                    _numI = _i.length;
+
+                    var _tmpHS = '';
+                    var _tmpSum = 0;
+
+                    for (var j = 0; j < _numI; j++) {
+                        _x = _i[j].nodes;
+                        _numX = _x.length;
+                        _tmpSum += _numX;
+                        if (j === 0) {
+                            for (var k = 0; k < _numX; k++) {
+                                if (k === 0) {
+                                    _tmpHS = '<td rowspan="' + _numX + '">' +
+                                            _i[j].text + '</td><td>' +
+                                            _x[k].text + '</td><td></td></tr>';
+                                } else {
+                                    _tmpHS = _tmpHS +
+                                            '<tr><td>' +
+                                            _x[k].text + '</td><td></td></tr>';
+                                }
+                            }
+                        } else {
+                            for (var k = 0; k < _numX; k++) {
+                                if (k === 0) {
+                                    _tmpHS = _tmpHS +
+                                            '<tr><td rowspan="' + _numX + '">' +
+                                            _i[j].text + '</td><td>' +
+                                            _x[k].text + '</td><td></td></tr>';
+                                } else {
+                                    _tmpHS = _tmpHS +
+                                            '<tr><td>' +
+                                            _x[k].text + '</td><td></td></tr>';
+                                }
+                            }
+                        }
+
+                        _sum += _numX;
+                    }
+                    _body += '<tbody id="cname-' + _o[i].text + '"><tr><td class="text-indianred text-blod" rowspan="' + _tmpSum + '">' + _o[i].text + '</td>' + _tmpHS + '</tbody>';
+
+
+                }
+                TableHS = _head + _body + _foot;
+                CourseAPI.numXCourse = _sum;
+                return TableHS;
+
+            }
+        }
     }
 };
 
@@ -597,6 +707,10 @@ function updataCourseArea(){
     }else if(CourseAPI.DefaultParms.method === 'x'){
         console.log("updata courseTableArea by selectableCourse...");
         UCourse.$data.courseTableArea = CourseAPI.analyzeDS.selectableCourse.getTableHS();
+    }else if(CourseAPI.DefaultParms.method === 'a'){
+        
+        console.log("updata courseTableArea by allCourseDS...");
+        UCourse.$data.courseTableArea = CourseAPI.analyzeDS.allCourse.getTableHS();
     }
     console.log("updata courseTableArea has done !");
 };
@@ -605,7 +719,7 @@ function selectCourse(scid) {
     var status = CourseAPI.operateCidIsCourse.add(scid);
     if (status === true) {
         CourseAPI.initPersnalCourseInfo();
-        //UCourse.$data.courseTableArea = CourseAPI.analyzeDS.selectingCourse.getTableHS();
+        UCourse.$data.courseTableArea = CourseAPI.analyzeDS.selectableCourse.getTableHS();
         $('#snackbar').snackbar({
             alive: 10000,
             content: '选课申请已提交, 等待老师批准 ' + '<a data-dismiss="snackbar">我知道了</a>'
@@ -620,9 +734,14 @@ function selectCourse(scid) {
 };
 
 function quitCourse(scid) {
-    var status;
+    var status=undefined;
     if (confirm("真的确定, 退出这门课程么(请谨慎操作!)?")) {
         status = CourseAPI.operateCidIsCourse.quit(scid);
+    }else{
+        $('#snackbar').snackbar({
+            alive: 10000,
+            content: '操作已取消 ' + '<a data-dismiss="snackbar">我知道了</a>'
+        });
     }
     if (status === true) {
         CourseAPI.initPersnalCourseInfo();
@@ -631,7 +750,7 @@ function quitCourse(scid) {
             alive: 10000,
             content: '已经退选课程' + '<a data-dismiss="snackbar">我知道了</a>'
         });
-    } else {
+    } else if (status === false) {
 
         $('#snackbar').snackbar({
             alive: 10000,

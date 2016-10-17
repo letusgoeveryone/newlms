@@ -89,10 +89,10 @@
                         <div class="lms-course-category">
                             <ul data-filter="status">
                                 <li class="lms-cc-header"><a href="#">状态:</a></li>
-                                <!--<li class="lms-cc-item"><a href="#" data-parm="all-status"> 全部 </a></li>-->
+                                <li class="lms-cc-item"><a href="#" data-parm="all-status"> 全部 </a></li>
                                 <li class="lms-cc-item"><a href="#" data-parm="ocourse">已选 </a></li>
                                 <li class="lms-cc-item"><a href="#" data-parm="icourse">未批准 </a></li>
-                                <li class="lms-cc-item active"><a href="#" data-parm="xcourse">未选 </a></li>
+                                <li class="lms-cc-item active"><a href="#" data-parm="xcourse">可选 </a></li>
                             </ul>
 
                         </div>
@@ -366,7 +366,7 @@
                     updataCourseArea();
                     activeCourseStatus = parm;
                 }else if(parm === "all-status" && (activeCourseStatus!=="all-status")){
-                    CourseAPI.DefaultParms.method = 'x';
+                    CourseAPI.DefaultParms.method = 'a';
                     updataCourseArea();
                     activeCourseStatus = parm;
                 }
