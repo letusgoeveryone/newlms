@@ -41,19 +41,19 @@
     }
 </style>
 <div class="cca-preview">
-    <a class="btn btn-edit" onclick="lookcourseJS()" href="#anchor-CourseIntro">编辑</a>
+    <a class="btn btn-edit lms-course-master" onclick="lookcourseJS()" href="#anchor-CourseIntro">编辑</a>
     <div id="hfText" style="border:0px solid #CCC;">
     
     </div>
         
 </div>
 <a id="anchor-CourseIntro"></a>
-<script type="text/plain" id="myEditor" style="width: 100%;min-height:100px;"></script>
+<script type="text/plain" id="myEditor" class="lms-course-master" style="width: 100%;min-height:100px;"></script>
 <br>
 
-<button  class="btn btn-default " onclick="getContent()">预览</button>
+<button  class="btn btn-default  lms-course-master" onclick="getContent()">预览</button>
 <!--<button  class="btn btn-primary " onclick="QXJS()">撤销</button>-->
-<button id="tj"  class="btn btn-success" onclick="update()">提交</button>
+<button id="tj"  class="btn btn-success  lms-course-master" onclick="update()">提交</button>
 
 <script type="text/javascript">
 

@@ -13,7 +13,7 @@
     </head>
     <body>  
         <div class="cca-preview">
-            <a class="btn btn-edit" onclick="lookcourseDG()" href="#anchor-CourseDaGangEditor">编辑</a>
+            <a class="btn btn-edit lms-course-master" onclick="lookcourseDG()" href="#anchor-CourseDaGangEditor">编辑</a>
             <div id="DGText" style="border:0px solid #CCC;"></div>
         </div>
 
@@ -22,22 +22,22 @@
             <iframe id="kcdgurl" frameborder="0" scrolling="no" height="700px" width="100%" name="content" ></iframe>
         </div>
 
-        <div id="dgscid">
+        <div id="dgscid" class="lms-course-master">
             <input type="file" name="uploadify" id="dgmultiple_file_upload" />
             <a class="btn btn-primary btn-uploadify" onclick="ksscdg()">开始上传</a>
             <a class="btn btn-primary" href="javascript:$('#dgmultiple_file_upload').uploadify('cancel','*')">取消上传</a>
             <a class="btn btn-primary" href="javascript:$('#dgmultiple_file_upload').uploadify('stop','*')" hidden=true id="stopUpload">停止上传</a>
         </div><br>
         <a id="anchor-CourseDaGangEditor"></a>
-        <script type="text/plain" id="CourseDaGangEditor" style="height:100px;">
+        <script type="text/plain" id="CourseDaGangEditor" class="lms-course-master" style="height:100px;">
             <p>在此处编辑课程大纲</p>
         </script>
         
 
         <br>
-        <button   class="btn btn-default " onclick="getContentDG()">预览</button>
+        <button   class="btn btn-default lms-course-master" onclick="getContentDG()">预览</button>
         <!--<button   class="btn btn-primary" onclick="QXDG()">撤销</button>-->
-        <button id="DG" class="btn btn-success" onclick="updateDG()">提交</button>
+        <button id="DG" class="btn btn-success lms-course-master" onclick="updateDG()">提交</button>
         <script type="text/javascript">
 
             var ue = UE.getEditor('CourseDaGangEditor');

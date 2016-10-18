@@ -738,7 +738,7 @@ public class TeaController {
      String ff = getFileFolder()+term +"/"+collage+"/"+coursename+"/"+"课程大纲";
      String s[] = new String[2];
      int length= haveFile(ff);
-     if(length==0){s[0]=""+"<ol class=\"breadcrumb\" id=\"breadcour\"><p>暂时无附件,你可以选择附件上传</p></ol>";s[1]="0";return s;}
+     if(length==0){s[0]=""+"<ol class=\"breadcrumb\" id=\"breadcour\"><p>暂时无附件</p></ol>";s[1]="0";return s;}
      String a,b;
      if(readname(ff,2)[0].endsWith(".swf")){a = readname(ff,2)[1];b = readname(ff,2)[0];}else{ a = readname(ff,2)[0];b = readname(ff,2)[1];}
      b =term +"/"+collage+"/"+coursename+"/"+"课程大纲"+"/"+ b;

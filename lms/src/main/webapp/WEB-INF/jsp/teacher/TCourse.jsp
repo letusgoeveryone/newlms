@@ -55,6 +55,9 @@
                 text-align: center;
                 color: #FFF;
             }
+            .lms-course-master.false{
+                display: none!important;
+            }
         </style>
         
 
@@ -270,6 +273,20 @@
             $('#swfplayer').attr('src', 'about:blank');
             $('#swfplayer-close').fadeOut();
         }
+        
+        $.ajax({
+            type: "post",
+            
+            data: {courseid:${courseid}, term:${term}},
+            url: "<%=path%>/teacher/lookisCourseMaster",
+            success: function (data) {
+                if (data === "0") {
+                    console.log("Is not the course master !");
+                    $('.lms-course-master').addClass('false');
+                }
+            },
+            error: function () {}
+        });
         
         lookcourseJS();
     </script> 
