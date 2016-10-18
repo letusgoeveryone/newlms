@@ -78,7 +78,7 @@
                    <script>
             window.onload=function(){
             $("#yanzheng").click(function(){ 
-                $.get("<%=path%>${actjs}", { sn: ${sn}},
+                $.get("<%=path%>${actjs}?sn=${sn}",
                   function(data){
                     if(data=="认证成功"){
                         alert("您已认证成功！账号已能正常登录！");

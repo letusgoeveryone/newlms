@@ -60,6 +60,7 @@ public class Student_teacher_registercontroller {
         String s;
         String []result = new String[1];
         result[0]="";
+        if (CurrentInfo.getOtherConfigure("Selfverification").equalsIgnoreCase("true")) {
         KingoApi k=new KingoApi();
         s=stu.getStudentIdcard();
         s=s.substring(s.length()-6).toLowerCase();
@@ -86,12 +87,13 @@ public class Student_teacher_registercontroller {
                             result[0]="认证成功";
                             new StudentMethod().addStudentFromtempStudent(stu.getStudentId());
                             TempStudentDao.deleteTempStudentById(stu.getStudentId()); //批准的同时删除
+                            k.step3("http://ids.henu.edu.cn/authserver/logout?service=/authserver/login");
                         }else{
                             result[0]="登录授权成功，认证信息失败。";
                         }
                         System.out.println(s);
                 }
-        }
+        }}
         return result;
     }
     @RequestMapping("/tmp_attestation_repost")
@@ -106,6 +108,7 @@ public class Student_teacher_registercontroller {
             result[0]="验证码错误";
             return result;
         }
+        if (CurrentInfo.getOtherConfigure("Selfverification").equalsIgnoreCase("true")) {
         session.removeAttribute("hccd");
         List<TempStudent> tempStudentList = TempStudentDao.getTempStudentListBySn(sn);
         TempStudent stu = tempStudentList.get(tempStudentList.size()-1);
@@ -134,7 +137,8 @@ public class Student_teacher_registercontroller {
                         }
                         System.out.println(s);
                 }
-        }
+        }}
         return result;
     }
+    
 }
