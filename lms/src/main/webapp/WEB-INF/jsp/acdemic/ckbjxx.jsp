@@ -30,19 +30,19 @@
         </table>
 
         <div id="tb">
-          
-            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="ckbjxx()">查看班级</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">批量删除</a>
+            <form action="tjbj" method="post" name="tibjle" class="lms-acdemic-tjbj"> 
+                <input type="text"  name="tjnj" id="tjnj"  placeholder="添加年级/例如2014" >
+                <input type="text"  name="tjbj" id="tjbj" placeholder="添加班级/例如软工1班">
+                <a type="button" onclick="accept()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" >添加班级</a>
+            </form>
+
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">删除</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept()">保存</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="getChanges()">查看更改</a>
-           
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-find',plain:true" onclick="getChanges()">查看更改</a>
+
         </div>
         <br />
-        <form action="tjbj" method="post" name="tibjle"> 
-            <th><input type="text"  name="tjnj" id="tjnj"  placeholder="添加年级/例如2014" ></th> 
-            <th><input type="text"  name="tjbj" id="tjbj" placeholder="添加班级/例如软工1班"></th>
-            <th> <a type="button" onclick="accept()" >添加班级</a><br>  </th>
-        </form>
+        
         </div>
         <script type="text/javascript">
 

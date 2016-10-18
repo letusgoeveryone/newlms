@@ -1000,6 +1000,9 @@ body[id^=lms] {
     border: none;
 }
 
+.lms-acdemic-tjbj{
+    display: inline-block;
+}
 
 /*   ** &2.4 学生界面
 =================================================================================
@@ -2924,6 +2927,19 @@ a.label:focus {
     z-index: 10000;
 }
 
+
+/*   ** 3.5 修改 EasyUI 样式
+=================================================================================
+EasyUI 
+=================================================================================*/
+
+.icon-export{
+	background:url('../images/icons/data_export.png') no-repeat center center;
+}
+
+.icon-find{
+	background:url('../images/icons/find.png') no-repeat center center;
+}
 
 /*未归档*****************************************************************
 
