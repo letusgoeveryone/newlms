@@ -25,7 +25,7 @@ var GuestAPI = {
     ThisCourse:{
         cid: 0,
         obj:{
-            //courseName: '',
+            courseName: '',
             introduction: '',
             syllabus: ''
         }
@@ -71,11 +71,12 @@ var GuestAPI = {
          */
         CidIsCourse: function (cid, path) {
             var _o = GuestAPI.ThisCourse.obj;
+            _o.courseName = GuestAPI.getCNameByCid(cid);
+            console.log(_o.courseName);
             var status = true;
             if (path === undefined ? true : false) {
                 path = GuestAPI.Path.cInfo[0] + "?cid=" + cid;
             };
-
             $.ajax({
                 url: path,
                 type: 'get',
@@ -90,7 +91,7 @@ var GuestAPI = {
                 error: function () {
                     $('#snackbar').snackbar({
                         alive: 10000,
-                        content: '资源 [课程详情] 传输失败! <a data-dismiss="snackbar">我知道了</a>'
+                        content: '课程（'+ _o.courseName + '）资源 [课程详情] 传输失败! <a data-dismiss="snackbar">我知道了</a>'
                     });
                     status = false;
                 }
@@ -119,5 +120,16 @@ var GuestAPI = {
                 return ListHS;
             }
         }
+    },
+    getCNameByCid: function(cid){
+        var list = GuestAPI.CourseListDS;
+        
+        for(var i=0; i<list.length; i++){
+            if(cid == list[i].cid){
+                return list[i].course;
+            }
+            
+        }
+        return '';
     }
 };
