@@ -91,7 +91,7 @@
                                     <div class="form-group form-group-label">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label class="floating-label" for="Vname">职称：</label>
+                                                <label class="floating-label" for="Vname">职务：</label>
                                                 <select class="form-control" required="required" name="Vname" >
                                                     <option value="教师" type='hide'>教师</option>
                                                     <option value="教务员" type='hide'>教务员</option>

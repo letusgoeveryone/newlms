@@ -93,13 +93,13 @@
         <div class="span12">
             <div class="tab-nav tab-nav-gold hidden-xx ui-tab">
                 <ul class="nav nav-list ">
-                    <li class="active">
+                    <li>
                         <a href="#panel-CourseIntro" data-toggle="tab">课程介绍</a>
                     </li>
                     <li>
                         <a href="#panel-CourseOutline" data-toggle="tab" onclick="lookcourseDG()">课程大纲</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="#panel-CourseContent" data-toggle="tab" onclick="lookmu()">课程内容</a>
                     </li>
                     <li class="nav-item-pullrigh">
@@ -109,7 +109,7 @@
             </div>
 
             <div class="tab-content">
-                <div class="tab-pane fade in active" id="panel-CourseIntro">
+                <div class="tab-pane fade in" id="panel-CourseIntro">
 
                     <jsp:include page="CourseJS.jsp"  />
 
@@ -119,7 +119,7 @@
                     <jsp:include page="CourseDG.jsp"  />
 
                 </div>
-                <div class="tab-pane fade in" id="panel-CourseContent">
+                <div class="tab-pane fade in active" id="panel-CourseContent">
                     
                     <jsp:include page="CourseNR.jsp" /> 
                     

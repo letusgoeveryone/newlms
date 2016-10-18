@@ -127,21 +127,7 @@
             //各个功能添加，删除
             $(function () {
                 var pager = $('#dg_stu').datagrid().datagrid('getPager'); // get the pager of datagrid
-                pager.pagination({
-                    buttons: [{iconCls: 'icon-search',
-                            handler: function () {
-                                alert('search');
-                            }
-                        }, {
-                            iconCls: 'icon-add', handler: function () {
-                                alert('add');
-                            }
-                        }, {
-                            iconCls: 'icon-edit', handler: function () {
-                                alert('edit');
-                            }
-                        }]
-                });
+                pager.pagination();
             });
             
             function getSelected_xs() {

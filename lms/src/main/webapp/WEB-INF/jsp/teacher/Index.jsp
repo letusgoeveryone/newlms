@@ -334,7 +334,7 @@
             }catch (ex){}
         }
             
-        window.setInterval(reinitIframe, 1000);
+        window.setInterval(reinitIframe, 2000);
         NProgress.done();
         
     </script>      

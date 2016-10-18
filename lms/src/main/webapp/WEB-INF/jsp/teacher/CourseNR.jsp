@@ -43,7 +43,13 @@
 
 
     <div style="padding-left: 0%;display: none" id="uploadkcnr" >
-        注意：上传的视频只有.mp4才能在线观看，上传word,PPT,XLS时文件名尽量不要有符号．<br><br>
+        <br>
+        <span class="text-grey box-small">注意：</span>
+        <ul class="text-grey box-small">
+            
+            <li>上传的视频只有.mp4才能在线观看</li>
+            <li>上传word,PPT,XLS时文件名尽量不要有符号</li>
+        </ul>
         <input type="file" name="uploadify" id="multiple_file_upload" />
         <a class="btn btn-primary" onclick="kssc()">开始上传</a>
         <a class="btn btn-primary" href="javascript:$('#multiple_file_upload').uploadify('cancel','*')">取消上传</a>
