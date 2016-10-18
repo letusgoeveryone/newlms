@@ -84,7 +84,7 @@
                     </div>
 
                     <div id="cid-homework" class="tab-pane fade">
-                        <jsp:include page="../student/IncludeHomework.jsp" />
+                        <jsp:include page="Uhomework.jsp" />
                     </div>
                         
                         

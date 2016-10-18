@@ -159,7 +159,7 @@
             <div class="bg-content"></div>
             <div class="pd-content-htop"></div>
                     
-            <jsp:include page="../student/IncludeCourses.jsp" />
+            <jsp:include page="Ucourses.jsp" />
 
         </div>
         <!--学生 课程区 END-->
@@ -174,7 +174,7 @@
         </footer>
         
         <!--Uinfo-->
-        <jsp:include page="../student/IncludeUinfo.jsp" />
+        <jsp:include page="Uinfo.jsp" />
         
         <!--scrollUp-->
         <div class="fbtn-container" id="scrollUp">

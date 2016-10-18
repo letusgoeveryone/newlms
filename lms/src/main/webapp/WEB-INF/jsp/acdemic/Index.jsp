@@ -132,27 +132,33 @@
 
             <!--功能区-->
             <div class="tab-content lms-admin-content">
-                
-                <div class="tab-pane fade" id="panel-tmpStudentManage">
-                    <jsp:include page="szxsxx.jsp"  />
-                </div>
-                <div class="tab-pane fade" id="panel-StudentManage">
-                    <jsp:include page="zs_stu.jsp"  />
-                </div>
-                <div class="tab-pane fade" id="panel-tmpTeacherManage">
-                    <jsp:include page="szlsjsxx.jsp"  />
-                </div>
-                <div class="tab-pane fade" id="panel-TeacherManage">
-                    <jsp:include page="zs_js.jsp"  />
-                </div>
+
                 <div class="tab-pane fade in active" id="panel-gradeInfoManage">
-                    <jsp:include page="ckbjxx.jsp"  />
+                    <jsp:include page="ManageGradeInfo.jsp"  />
                 </div>
+                
                 <div class="tab-pane fade" id="panel-courseInfoManage">
-                    <jsp:include page="course.jsp"  />
+                    <jsp:include page="ManageCourseInfo.jsp"  />
                 </div>
+                
                 <div class="tab-pane fade" id="panel-courseTableManage">
-                    <jsp:include page="set_all.jsp"  />
+                    <jsp:include page="ManageTimeTables.jsp"  />
+                </div>
+                    
+                <div class="tab-pane fade" id="panel-tmpStudentManage">
+                    <jsp:include page="ManageTmpStudent.jsp"  />
+                </div>
+                
+                <div class="tab-pane fade" id="panel-StudentManage">
+                    <jsp:include page="ManageStudent.jsp"  />
+                </div>
+                
+                <div class="tab-pane fade" id="panel-tmpTeacherManage">
+                    <jsp:include page="ManageTmpTeacher.jsp"  />
+                </div>
+                
+                <div class="tab-pane fade" id="panel-TeacherManage">
+                    <jsp:include page="ManageTeacher.jsp"  />
                 </div>
                 
             </div>

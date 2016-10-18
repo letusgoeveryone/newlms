@@ -111,22 +111,22 @@
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="panel-CourseIntro">
 
-                    <jsp:include page="kcjs.jsp"  />
+                    <jsp:include page="CourseJS.jsp"  />
 
                 </div>
                 <div class="tab-pane fade in" id="panel-CourseOutline">
 
-                    <jsp:include page="kcdg.jsp"  />
+                    <jsp:include page="CourseDG.jsp"  />
 
                 </div>
                 <div class="tab-pane fade in" id="panel-CourseContent">
                     
-                    <jsp:include page="kcnr.jsp" /> 
+                    <jsp:include page="CourseNR.jsp" /> 
                     
                 </div>
                 <div class="tab-pane fade in" id="panel-CourseHomework">
                     
-                    <jsp:include page="work.jsp"  /> 
+                    <jsp:include page="CourseZY.jsp"  /> 
                     
                 </div>
             </div>

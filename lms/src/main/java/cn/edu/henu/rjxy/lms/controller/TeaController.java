@@ -92,7 +92,7 @@ public class TeaController {
         request.setAttribute("term", term);
         request.setAttribute("courseid",courseid);
         request.setAttribute("courseName",courseName );
-        return "teacher/mycourse";
+        return "teacher/TCourse";
     } 
     @RequestMapping("/teacher/pinfo")
     public String pinfo(HttpServletRequest request, HttpServletResponse response) {

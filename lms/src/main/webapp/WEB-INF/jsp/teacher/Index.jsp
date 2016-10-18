@@ -148,7 +148,7 @@
                             
                             <!--学生-->
                             <div id="mystudent" style="display: none">
-                                <jsp:include page="mystudent.jsp"  />
+                                <jsp:include page="TStudent.jsp"  />
                             </div>
                             
                             <!--课程-->
@@ -182,13 +182,13 @@
                     </div>
                     <div class="card-inner row">
                         
-                        <jsp:include page="tempstu.jsp"  />
+                        <jsp:include page="TmpStudnetManage.jsp"  />
                         
                     </div>
                 </div>
             </div>
         </div>
-            <%--<jsp:include page="mystudent.jsp"/>--%>
+                        
         </div>
         <!--教师 副区 注册管理 END-->  
 

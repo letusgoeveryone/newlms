@@ -11,9 +11,9 @@
 <a href="mystudent.jsp"></a>
 <br><br>
 
-<div id='xs' class="box-small">
-    <a href="javascript:void(0)" class="easyui-linkbutton" id="dc" data-options="iconCls:'icon-export',plain:true" onclick="dc_xs()">导出</a>  
-    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeSelect()">批量批准</a>  
+<div id='xs' class="box-small">  
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="removeSelect()">批准</a>  
+    <a href="javascript:void(0)" class="easyui-linkbutton" id="dc" data-options="iconCls:'icon-export',plain:true" onclick="dc_xs()">导出</a>
 </div>
 
 <table id="dg_zs_stu" class="table table-responsive"
