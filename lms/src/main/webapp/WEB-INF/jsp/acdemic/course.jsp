@@ -41,11 +41,10 @@
         </table>
         <br>
         <div id="tb1" style="height:auto">
-            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="ckkcxx()">查看课程</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit_course()">批量删除</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="getChanges_course()">查看更改</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append_course()">添加</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept_course()">添加课程</a>	
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit_course()">删除</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept_course()">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-find',plain:true" onclick="getChanges_course()">查看更改</a>	
         </div>
         </div>
         <script type="text/javascript">

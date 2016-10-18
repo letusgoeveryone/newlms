@@ -46,10 +46,9 @@
                 </tr>
             </thead>
         </table>
-
-        <a  onclick="go_ls_stu()">go</a> <input type="text" id="go_ls_xs" style="width: 50px">
-        <a class="easyui-linkbutton" onclick="getSelected()_xs">查看选中的信息</a>
-        <a class="easyui-linkbutton" onclick="getSelections()_xs">查看选中的多个信息</a>
+           <br>
+        <a class="easyui-linkbutton" onclick="getSelected_xs()">查看选中的信息</a>
+        <a class="easyui-linkbutton" onclick="getSelections_xs()">查看选中的多个信息</a>
         <a class="easyui-linkbutton" onclick="sj_stu()">加载所有学院学生信息</a>
         <a  class="easyui-linkbutton" onclick="pzxs()">批准选中的学生</a>
         <a  class="easyui-linkbutton" onclick="scxs()">删除选中的学生</a>

@@ -65,6 +65,7 @@
         <script src="<%=path%>/js/project.min.js" ></script>
         <script src="<%=path%>/table/dist/bootstrap-table.min.js" type="text/javascript"></script>
         <script src="<%=path%>/table/dist/bootstrap-table-locale-all.min.js" type="text/javascript"></script>
+        <script src="<%=path%>/table/dist/locale/bootstrap-table-zh-CN.min.js" type="text/javascript"></script>
 
     </head>
     <body class="container-full" style="padding-bottom: 100px;">  

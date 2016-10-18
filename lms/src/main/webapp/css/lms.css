@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -161,20 +162,20 @@ body[id^=lms] {
     min-width: 100px;
 }
 
-.header-nav> li {
+.header-nav>li {
     transition: all 0.3s;
 }
 
-.header-nav> li:hover {
+.header-nav>li:hover {
     background-color: #34495e;
     box-shadow: 0 .8px 5px rgba(3, 3, 3, 0.8);
 }
 
-.header-nav> .active {
+.header-nav>.active {
     box-shadow: 0 .6px 2px rgba(3, 3, 3, 0.8);
 }
 
-.header-nav> .nav-brand {
+.header-nav>.nav-brand {
     background-color: transparent;
     font-size: large;
     color: whitesmoke;
@@ -185,19 +186,19 @@ body[id^=lms] {
     left: 45%;
 }
 
-.header-nav> .nav-brand:hover {
+.header-nav>.nav-brand:hover {
     box-shadow: none;
     background-color: transparent;
     border: none;
     color: #FFF;
 }
 
-.header-nav> .nav-brand> a:hover {
+.header-nav>.nav-brand>a:hover {
     box-shadow: none;
     border: none;
 }
 
-.header-nav> .open {
+.header-nav>.open {
     background-color: #34495e;
     border-bottom: 2px solid #FFFF66;
 }
@@ -206,7 +207,7 @@ body[id^=lms] {
     box-shadow: none !important;
 }
 
-.fix-dd-usr> .open> .avatar {
+.fix-dd-usr>.open>.avatar {
     background: rgba(155, 155, 155, 0.9);
 }
 
@@ -219,36 +220,43 @@ body[id^=lms] {
     background-color: #484848;
     color: #fff;
 }
-.header-brand .avatar{
+
+.header-brand .avatar {
     transition: all .3s;
     height: 56px;
     width: 56px;
     padding: 12px;
     border-radius: 0;
 }
-.header-brand .avatar:hover{
+
+.header-brand .avatar:hover {
     padding: 0;
     border-radius: 0;
 }
+
 .header-brand .avatar>img {
     border-radius: 50%;
     transition: all .3s;
 }
-.header-brand .avatar:hover>img{
+
+.header-brand .avatar:hover>img {
     border-radius: 0px;
 }
+
 .header-brand .dropdown-menu-right {
     top: 64px;
     right: 8px;
     z-index: 1;
 }
+
+
 /*修改默认 nav底部细线颜色*/
 
-.tab-nav-gold .nav> li> a:after {
+.tab-nav-gold .nav>li>a:after {
     border-bottom-color: #ffff66;
 }
 
-.tab-nav-gold .nav> .nav-brand> a:after {
+.tab-nav-gold .nav>.nav-brand>a:after {
     border-bottom-color: #333;
 }
 
@@ -270,7 +278,7 @@ body[id^=lms] {
     color: #FFF;
 }
 
-#tree-footer> div {
+#tree-footer>div {
     padding: 1em;
 }
 
@@ -296,7 +304,7 @@ body[id^=lms] {
     z-index: 500;
 }
 
-#for-centerbox> .tab-nav {
+#for-centerbox>.tab-nav {
     margin-top: 0;
 }
 
@@ -316,11 +324,11 @@ body[id^=lms] {
     color: #FFF;
 }
 
-#btn-centerbox-x> .icon {
+#btn-centerbox-x>.icon {
     padding: 0 18px;
 }
 
-#for-centerbox> .tab-content {
+#for-centerbox>.tab-content {
     padding: .2em 1em;
 }
 
@@ -328,9 +336,9 @@ body[id^=lms] {
     #ubox {
         display: none !important;
     }
-    .nav-drawer.nav-drawer-md.menu-right~ .content,
-    .nav-drawer.nav-drawer-md.menu-right~ .footer,
-    .nav-drawer.nav-drawer-md.menu-right~ .header {
+    .nav-drawer.nav-drawer-md.menu-right~.content,
+    .nav-drawer.nav-drawer-md.menu-right~.footer,
+    .nav-drawer.nav-drawer-md.menu-right~.header {
         margin-right: 0 !important;
     }
 }
@@ -343,19 +351,23 @@ body[id^=lms] {
     background-size: contain;
     display: inline-block;
 }
-.lms-avatars>img{
+
+.lms-avatars>img {
     border-radius: 50%;
     cursor: pointer;
 }
-#lms-uavatar{
+
+#lms-uavatar {
     display: block;
 }
-#lms-uavatar>img{
+
+#lms-uavatar>img {
     display: block;
     margin: 1.5em auto;
     border-radius: 50%;
     cursor: pointer;
 }
+
 
 /*! 基本布局 结束 */
 
@@ -369,7 +381,7 @@ body[id^=lms] {
 =================================================================================
 */
 
-.mg-hd-top{
+.mg-hd-top {
     margin-top: 56px;
 }
 
@@ -388,11 +400,13 @@ body[id^=lms] {
     border-bottom: 1.2px solid lightgray;
     /*border-top: 2px solid #003c72;*/
 }
-.lms-ci-header{
+
+.lms-ci-header {
     font-size: large;
     font-weight: bold;
 }
-.lms-course-content{
+
+.lms-course-content {
     margin: 1em auto;
 }
 
@@ -513,27 +527,29 @@ body[id^=lms] {
     overflow-y: scroll;
 }
 
-#view-model{
+#view-model {
     background-color: #e3e3e3;
 }
 
-.view-model-gbtn{
-}
+.view-model-gbtn {}
 
-.view-model-gbtn .btn{
+.view-model-gbtn .btn {
     border-top: 2px solid transparent;
     margin-top: -1px;
 }
-.view-model-gbtn .btn:after{
-    border-top: 2px solid rgba(154,154,154,.36);
+
+.view-model-gbtn .btn:after {
+    border-top: 2px solid rgba(154, 154, 154, .36);
     height: 38px;
     margin-top: -1.5px;
 }
-.view-model-gbtn .active{
+
+.view-model-gbtn .active {
     background-color: #fff;
     border-radius: 0px;
     border-top: 2px solid black;
 }
+
 
 /*.card-expand .card-inner .card-main .card-img .card-img-heading .card-action*/
 
@@ -689,6 +705,7 @@ body[id^=lms] {
     height: 36px;
 }
 
+
 /*#lms_admin .dropdown.open .dropdown-menu {
     opacity: 1;
     -webkit-transform: scale(1, 1);
@@ -704,12 +721,12 @@ body[id^=lms] {
     border-radius: 4px;
 }
 
-.pagination> li {
+.pagination>li {
     display: inline;
 }
 
-.pagination> li> a,
-.pagination> li> span {
+.pagination>li>a,
+.pagination>li>span {
     position: relative;
     float: left;
     padding: 6px 12px;
@@ -721,35 +738,35 @@ body[id^=lms] {
     border: 1px solid #ddd;
 }
 
-.pagination> li:first-child> a,
-.pagination> li:first-child> span {
+.pagination>li:first-child>a,
+.pagination>li:first-child>span {
     margin-left: 0;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
 }
 
-.pagination> li:last-child> a,
-.pagination> li:last-child> span {
+.pagination>li:last-child>a,
+.pagination>li:last-child>span {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
 }
 
-.pagination> li> a:hover,
-.pagination> li> span:hover,
-.pagination> li> a:focus,
-.pagination> li> span:focus {
+.pagination>li>a:hover,
+.pagination>li>span:hover,
+.pagination>li>a:focus,
+.pagination>li>span:focus {
     z-index: 3;
     color: #23527c;
     background-color: #eee;
     border-color: #ddd;
 }
 
-.pagination> .active> a,
-.pagination> .active> span,
-.pagination> .active> a:hover,
-.pagination> .active> span:hover,
-.pagination> .active> a:focus,
-.pagination> .active> span:focus {
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
     z-index: 2;
     color: #fff;
     cursor: default;
@@ -757,12 +774,12 @@ body[id^=lms] {
     border-color: #337ab7;
 }
 
-.pagination> .disabled> span,
-.pagination> .disabled> span:hover,
-.pagination> .disabled> span:focus,
-.pagination> .disabled> a,
-.pagination> .disabled> a:hover,
-.pagination> .disabled> a:focus {
+.pagination>.disabled>span,
+.pagination>.disabled>span:hover,
+.pagination>.disabled>span:focus,
+.pagination>.disabled>a,
+.pagination>.disabled>a:hover,
+.pagination>.disabled>a:focus {
     color: #777;
     cursor: not-allowed;
     background-color: #fff;
@@ -782,9 +799,11 @@ body[id^=lms] {
     text-align: center;
     margin: 15px !important;
 }
-#lms_acdemic .stage-box{
+
+#lms_acdemic .stage-box {
     padding: 15px 2px;
 }
+
 
 /*院长*/
 
@@ -822,7 +841,9 @@ body[id^=lms] {
     background-color: #333;
 }
 
+
 /*老师*/
+
 .btn-up {
     width: 50px;
     height: 50px;
@@ -832,14 +853,18 @@ body[id^=lms] {
     margin-right: 1em;
     box-shadow: none;
 }
-.btn-up:hover{
-    box-shadow: 0 1px 3px rgba(0,0,0,.15),0 1px 3px 1px rgba(0,0,0,.3);
+
+.btn-up:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .15), 0 1px 3px 1px rgba(0, 0, 0, .3);
 }
-.btn-up>.icon{
+
+.btn-up>.icon {
     width: inherit;
     height: inherit;
     line-height: 50px;
 }
+
+
 /*   ** &2.3 管理界面(教务员)
 =================================================================================
 管理员  样式设置
@@ -935,10 +960,12 @@ body[id^=lms] {
     min-height: 1000px;
     border-left: 1px dashed #8e8e8e;
 }
-.lms-admin-content .container{
+
+.lms-admin-content .container {
     width: 100% !important;
     max-width: inherit !important;
 }
+
 .lms-admin-content section {
     margin-left: 15px;
     padding-top: 3em;
@@ -973,6 +1000,9 @@ body[id^=lms] {
     border: none;
 }
 
+.lms-acdemic-tjbj{
+    display: inline-block;
+}
 
 /*   ** &2.4 学生界面
 =================================================================================
@@ -1002,13 +1032,13 @@ body[id^=lms] {
     left: auto;
 }
 
-.nav-drawer.nav-drawer-md.menu-right~ .content,
-.nav-drawer.nav-drawer-md.menu-right~ .footer,
-.nav-drawer.nav-drawer-md.menu-right~ .header {
+.nav-drawer.nav-drawer-md.menu-right~.content,
+.nav-drawer.nav-drawer-md.menu-right~.footer,
+.nav-drawer.nav-drawer-md.menu-right~.header {
     margin-right: 265px;
 }
 
-.nav-drawer.nav-drawer-md.menu-right~ .footer {
+.nav-drawer.nav-drawer-md.menu-right~.footer {
     margin-bottom: -256px;
 }
 
@@ -1023,13 +1053,17 @@ body[id^=lms] {
 
 
 /*content*/
+
 .content-wrapper {
     margin: 0 auto;
     width: 1100px;
 }
-.main-content,.side-content{
+
+.main-content,
+.side-content {
     padding: 0 29px 0;
 }
+
 .main-content {
     width: 790px;
     float: left;
@@ -1065,7 +1099,10 @@ body[id^=lms] {
     word-wrap: break-word;
 }
 
-#cid-nav,#cid-syllabus,#cid-homework,#cid-resource{
+#cid-nav,
+#cid-syllabus,
+#cid-homework,
+#cid-resource {
     margin: 0px auto 5em;
 }
 
@@ -1076,7 +1113,8 @@ body[id^=lms] {
     box-shadow: none;
     top: 25px;
 }
-#cid-nav .nav> li> a::after {
+
+#cid-nav .nav>li>a::after {
     border-right: 2px solid #212121;
     border-bottom: none !important;
     height: 100%;
@@ -1090,9 +1128,10 @@ body[id^=lms] {
     padding: 0;
 }
 
-#cid-nav> ul>li {
+#cid-nav>ul>li {
     left: 2px;
 }
+
 
 /*#cid-nav> ul> .active> a {
     background-color: rgb(255, 255, 255) !important;
@@ -1102,27 +1141,25 @@ body[id^=lms] {
     z-index: 30;
 }*/
 
-#cid-nav  ul> .active> a {
+#cid-nav ul>.active>a {
     background-color: #FFF;
 }
 
-#cid-nav  ul> li> a {
+#cid-nav ul>li>a {
     padding: .5em !important;
     background-color: rgba(255, 255, 255, .5);
     box-shadow: 1px 0 2px rgba(0, 0, 0, .5);
     margin-bottom: .5em;
 }
 
-#cid-nav> ul> li> a:hover {
+#cid-nav>ul>li>a:hover {
     background-color: rgba(255, 255, 255, .9);
     box-shadow: 1px 0 2.5px rgba(0, 0, 0, .5);
 }
 
-#cid-syllabus{
+#cid-syllabus {}
 
-}
-
-#cid-syllabus .card{
+#cid-syllabus .card {
     padding: 2em;
     margin-top: -4px;
 }
@@ -1131,31 +1168,31 @@ body[id^=lms] {
     font-size: 2em;
 }
 
-#cid-resource .tab-content,#cid-homework>.tab-content{
+#cid-resource .tab-content,
+#cid-homework>.tab-content {
     padding-top: 10px;
 }
 
-#cid-resource > .row{
+#cid-resource>.row {
     margin: -4px auto;
     padding: 1em 0;
 }
 
-#cid-resource-nav ul > li {
+#cid-resource-nav ul>li {
     margin-left: 1em;
     border-left: 3px solid #dedede;
 }
 
-[data-parent^='#cid-rnav']{
+[data-parent^='#cid-rnav'] {
     padding: 0 32px !important;
 }
-
 
 #tile-course-list {
     margin: 0 auto;
     padding: 0;
 }
 
-#tile-course-list .nav> li> a::after {
+#tile-course-list .nav>li>a::after {
     border: none !important;
     height: 100%;
 }
@@ -1182,7 +1219,7 @@ body[id^=lms] {
 }
 
 #tree-course-list .card,
-#tree-course-list .tile-brand{
+#tree-course-list .tile-brand {
     background-color: transparent;
     box-shadow: none;
     color: #484848;
@@ -1199,31 +1236,35 @@ body[id^=lms] {
     border: none;
     box-shadow: none;
 }
-#tree-course-list li{
-    border-top: 1px dashed  #dedede;
+
+#tree-course-list li {
+    border-top: 1px dashed #dedede;
 }
 
-#cid-nav .nav> li> a:hover::after,
-#tile-course-list .nav> li> a:hover::after {
+#cid-nav .nav>li>a:hover::after,
+#tile-course-list .nav>li>a:hover::after {
     opacity: 1;
 }
 
-.card-module{
-    margin: -1em -2em 3em ;
+.card-module {
+    margin: -1em -2em 3em;
     padding: 1em 1.5em 1.5em;
 }
-.card-module h1
-.card-module h4{
+
+.card-module h1 .card-module h4 {
     margin-top: 24px;
 }
 
-.card-module .card{
+.card-module .card {
     box-shadow: none;
     border: 1px dashed rgb(191, 191, 191);
 }
-.no-bs{
+
+.no-bs {
     box-shadow: none;
 }
+
+
 /*文件管理*/
 
 
@@ -1248,12 +1289,12 @@ a[href^='#folder'] {
 .lms-file:hover,
 div[id^='nodes']:hover,
 a[href^='#folder']:hover {
-    background-color: rgba(211,211,211,0.1);
+    background-color: rgba(211, 211, 211, 0.1);
     cursor: pointer;
 }
 
 .lms-file .icon,
-div[id^="nodes"] .icon, 
+div[id^="nodes"] .icon,
 a[href^="#folder"] .icon {
     background-color: #fdefc0;
     color: transparent;
@@ -1261,7 +1302,8 @@ a[href^="#folder"] .icon {
     margin: 0 auto 13px;
     display: block;
 }
-.lms-file .icon{
+
+.lms-file .icon {
     background-color: rgba(255, 255, 255, 0.60);
     border: 1px solid rgba(162, 159, 159, 0.50);
     position: relative;
@@ -1269,7 +1311,7 @@ a[href^="#folder"] .icon {
 
 div[id^="nodes"] .folder-name,
 a[href^='#folder'] .folder-name,
-.file-name{
+.file-name {
     display: block;
     text-align: center;
     white-space: nowrap;
@@ -1281,19 +1323,20 @@ a[href^='#folder'] .folder-name,
     width: 70px;
 }
 
-.file-name{
+.file-name {
     bottom: 15px;
 }
 
-.file-name:hover, .folder-name:hover {
+.file-name:hover,
+.folder-name:hover {
     overflow: unset !important;
     white-space: pre-wrap;
-    background: rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, .5);
     padding: 5px;
     color: wheat;
 }
 
-[data-fstatus]:after{
+[data-fstatus]:after {
     text-align: center;
     line-height: 50px;
     font-size: small;
@@ -1302,23 +1345,24 @@ a[href^='#folder'] .folder-name,
     color: #666;
     transition: all .3s;
 }
-.lms-file:hover [data-fstatus]:after{
+
+.lms-file:hover [data-fstatus]:after {
     color: #313131;
 }
 
-[data-fstatus='play']:after{
+[data-fstatus='play']:after {
     content: '播放';
 }
 
-[data-fstatus='preview']:after{
+[data-fstatus='preview']:after {
     content: '预览';
 }
 
-[data-fstatus='download']:after{
+[data-fstatus='download']:after {
     content: '下载';
 }
 
-.no-file{
+.no-file {
     display: block;
     margin: 3em 20px;
     text-align: center;
@@ -1335,9 +1379,10 @@ a[href^='#folder'] .folder-name,
     padding: 0;
 }
 
-.fs-lightbox{
+.fs-lightbox {
     transform: unset;
 }
+
 
 /*文件[名,大小,按钮]*/
 
@@ -1391,21 +1436,24 @@ a[href^='#folder'] .folder-name,
     padding: 1em 1em 4em 1em;
 }
 
-.att-tch{
+.att-tch {
     font-weight: bold;
 }
 
+
 /*panel*/
-#upanel .card{
+
+#upanel .card {
     width: 300px;
     height: 500px;
     margin: 24px auto;
 }
-#upanel .vcard{
+
+#upanel .vcard {
     margin: 2em auto;
 }
 
-#upanel.hidden{
+#upanel.hidden {
     display: none !important;
 }
 
@@ -1437,7 +1485,7 @@ a[href^='#folder'] .folder-name,
     padding-bottom: 8px;
 }
 
-.menu-content> .vcard {
+.menu-content>.vcard {
     margin-right: auto;
     margin-left: auto;
     padding-right: 16px;
@@ -1529,7 +1577,7 @@ a[href^='#folder'] .folder-name,
     line-height: 1;
 }
 
-.vcard-stat> .text-muted {
+.vcard-stat>.text-muted {
     color: #767676 !important;
     float: left;
     position: absolute;
@@ -1545,26 +1593,32 @@ a[href^='#folder'] .folder-name,
     position: relative;
 }
 
+
 /*setting*/
+
 .modal-dialog {
     margin: 30px auto;
 }
-#uinfo>.tab-content{
+
+#uinfo>.tab-content {
     padding: 1em;
     width: 400px;
     float: left;
     height: 640px;
 }
-#uinfo>.card{
+
+#uinfo>.card {
     padding: 1em;
     width: 400px;
     margin: auto;
     margin-top: 3em;
     position: relative;
 }
-#uinfo .card-main{
+
+#uinfo .card-main {
     z-index: 101;
 }
+
 .uinfo-blur {
     position: absolute;
     height: 100%;
@@ -1576,57 +1630,75 @@ a[href^='#folder'] .folder-name,
     z-index: 100;
     background-size: cover;
 }
-#uinfo>form{
+
+#uinfo>form {
     height: 640px;
 }
-#img-pinfo{
+
+#img-pinfo {
     display: block;
     margin: 1em auto;
     border-radius: 50%;
     box-shadow: 0px 0px 1.5px rgba(0, 0, 0, 0.77);
 }
-#uinfo .btn-dashed{
+
+#uinfo .btn-dashed {
     border: 2px dashed grey;
     width: 150px;
 }
-#uinfo .btn-dashed.disabled{
+
+#uinfo .btn-dashed.disabled {
     cursor: not-allowed;
     border: 2px dashed grey;
     width: 150px;
 }
-#uinfo .text-link{
+
+#uinfo .text-link {
     color: grey;
     width: 150px;
     margin: auto;
     display: block;
 }
-#uinfo .text-link:hover{
+
+#uinfo .text-link:hover {
     position: relative;
     color: #EF5350;
 }
-#uinfo .text-link .icon-edit{
+
+#uinfo .text-link .icon-edit {
     position: absolute;
     top: 12px;
     margin: 0 6px;
 }
-#uinfo .text-link:hover .icon-edit:after{
+
+#uinfo .text-link:hover .icon-edit:after {
     content: "edit";
 }
-#uinfo .card-action-btn{
+
+#uinfo .card-action-btn {
     margin: 15px auto;
 }
+
 #uinfo .card .active {
     background-color: #212121;
 }
-#uinfo .text-grey:hover{
+
+#uinfo .text-grey:hover {
     color: #212121 !important;
 }
-#uinfo .active .text-grey{
+
+#uinfo .active .text-grey {
     color: #fff !important;
 }
+
+#ucourses .text-indianred {
+    background-color: #f5f5f5;
+}
+
 #ucourses .tab-pane {
     margin-top: 4em;
 }
+
 #usettings .menu-scroll {
     width: 80%;
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
@@ -1676,16 +1748,18 @@ a[href^='#folder'] .folder-name,
     margin-top: 5em;
 }
 
+
 /*#tab-personalInfo>form,
 #tab-password>form {
     width: 500px;
     margin: auto;
 }*/
 
-#valid-message{
+#valid-message {
     width: 300px;
     position: absolute;
 }
+
 div[id^="validMsg"] {
     position: absolute;
     top: -25px;
@@ -1693,6 +1767,8 @@ div[id^="validMsg"] {
     right: 0;
     font-size: small;
 }
+
+
 /*导航*/
 
 .fix-menu-nav {
@@ -1771,7 +1847,6 @@ div[id^="validMsg"] {
     cursor: pointer;
 }
 
-
 #lms_stu_cou tbody>tr:first-child>td:first-child {
     background: whitesmoke;
 }
@@ -1796,6 +1871,7 @@ div[id^="validMsg"] {
     cursor: pointer;
 }
 
+
 /*文件上传*/
 
 #uploaded-area td,
@@ -1808,14 +1884,18 @@ div[id^="validMsg"] {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 #uploaded-area td:hover {
     overflow: unset !important;
 }
 
+
 /*作业编辑*/
-.enhidden{
+
+.enhidden {
     display: none !important;
 }
+
 .btn-edit,
 .btn-looks,
 .btn-submit,
@@ -1851,32 +1931,38 @@ div[id^="validMsg"] {
     color: #8a8a8a;
 }
 
-div[id^="collapse-history"]>.history-wrap{
+div[id^="collapse-history"]>.history-wrap {
     padding: 1em;
 }
-div[id^="collapse-history"]>.history-wrap>p{
+
+div[id^="collapse-history"]>.history-wrap>p {
     padding-left: 8px;
 }
+
 div[id^="collapse-history"]>.history-wrap>.content-area,
-div[id^="collapse-history"]>.history-wrap>.table-wrap{
+div[id^="collapse-history"]>.history-wrap>.table-wrap {
     margin-left: 8px;
 }
 
+
 /* */
-#ucourses .tab-content{
+
+#ucourses .tab-content {
     border-radius: 2.5px;
     padding: 4em;
 }
 
+
 /*  &2.5 登录/注册 */
 
-.ccd-image{
+.ccd-image {
     float: right;
     position: relative;
-    bottom: 25px; 
-    z-index: 1000; 
-    cursor:pointer;
+    bottom: 25px;
+    z-index: 1000;
+    cursor: pointer;
 }
+
 
 /*修复 登录界面 验证码输入框的不对齐 的问题*/
 
@@ -1916,19 +2002,22 @@ div[id^="collapse-history"]>.history-wrap>.table-wrap{
     min-width: 320px;
     max-width: 350px;
 }
+
 #lms_tch_reg .stage-box,
-#lms_stu_reg .stage-box{
+#lms_stu_reg .stage-box {
     padding: 15px 2px;
 }
-.login-form{
+
+.login-form {
     width: 480px;
     margin: 25px auto;
 }
 
-#account-title > h1 {
+#account-title>h1 {
     font-size: 30px;
     line-height: 30px;
 }
+
 @media (max-height: 740px) {
     #lms-login-footer {
         display: none;
@@ -1948,6 +2037,7 @@ div[id^="collapse-history"]>.history-wrap>.table-wrap{
 #lms_stu_reg a:hover span{
     color:#444;
 }*/
+
 #lms_adt_info .text-error,
 #lms_login .text-error,
 #lms_stu_reg .text-error,
@@ -2265,7 +2355,7 @@ div [ class^="btn-"] {
     color: #333;
 }
 
-.border-bottom-divider{
+.border-bottom-divider {
     border-bottom: 2px solid grey;
 }
 
@@ -2289,42 +2379,43 @@ div [ class^="btn-"] {
     padding-right: 1em;
 }
 
-.no-padding{
+.no-padding {
     padding: 0 !important;
 }
 
-.np-left{
-    padding-left: 0 ;
+.np-left {
+    padding-left: 0;
 }
 
-.no-margin{
-    margin: 0 !important; 
-
+.no-margin {
+    margin: 0 !important;
 }
 
-.nm-right{
+.nm-right {
     margin-right: 0 !important;
 }
-.mg{
+
+.mg {
     margin: 1em;
 }
 
-.mg-rt-3x{
+.mg-rt-3x {
     margin-right: 3em !important;
 }
-.mg-lt-3x{
+
+.mg-lt-3x {
     margin-left: 3em !important;
 }
 
-.mg-bm{
+.mg-bm {
     margin-bottom: 1em;
 }
 
-.pd-bm{
+.pd-bm {
     padding-bottom: 1em;
 }
 
-.sample-height{
+.sample-height {
     min-height: 1000px;
 }
 
@@ -2369,12 +2460,12 @@ a[class *=text-grey]:hover {
     color: gold;
 }
 
-.text-wiki{
+.text-wiki {
     cursor: help;
 }
 
-.text-tooltips{
-    color:#489887;
+.text-tooltips {
+    color: #489887;
 }
 
 .small {
@@ -2397,9 +2488,11 @@ a[class *=text-grey]:hover {
 .height-control {
     height: inherit;
 }
-.height-1000{
+
+.height-1000 {
     height: 1000px;
 }
+
 .min-height-control {
     min-height: 100%;
 }
@@ -2430,15 +2523,16 @@ a[class *=text-grey]:hover {
 .divider-right {
     border-right: 1px solid whitesmoke;
 }
-.mg-sm-tb{
+
+.mg-sm-tb {
     margin: 1em auto;
 }
+
 .mg-sm-right {
     margin-right: 1em !important;
 }
 
-.mg-sm-left{
-
+.mg-sm-left {
     margin-left: 1em !important;
 }
 
@@ -2450,15 +2544,15 @@ a[class *=text-grey]:hover {
     padding-left: 1em;
 }
 
-.pd-sapce-top{
+.pd-sapce-top {
     padding-top: 10vh;
 }
 
-.pd-content-htop{
+.pd-content-htop {
     padding-top: 8em;
 }
 
-.bd-lt-divider{
+.bd-lt-divider {
     border-left: 1px solid whitesmoke;
 }
 
@@ -2524,8 +2618,10 @@ a[class *=text-grey]:hover {
     color: #111;
     text-shadow: none;
 }
-#multiple_file_upload,#zymultiple_file_upload,#dgmultiple_file_upload{
 
+#multiple_file_upload,
+#zymultiple_file_upload,
+#dgmultiple_file_upload {
     background: #FCFCFC;
     border: 2px dashed grey;
     background-image: none;
@@ -2536,7 +2632,8 @@ a[class *=text-grey]:hover {
     color: #111;
     text-shadow: none;
 }
-.uploadify-button{
+
+.uploadify-button {
     background: none;
     border-radius: 0;
     border: none;
@@ -2544,9 +2641,12 @@ a[class *=text-grey]:hover {
     margin: -2px;
     color: #000;
 }
-#dgscid{
+
+#dgscid {
     margin-top: 10em;
 }
+
+
 /*修复编辑器*/
 
 #lms-editor {
@@ -2568,6 +2668,7 @@ a[class *=text-grey]:hover {
 
 
 /*修复 Material框架缺失Bootstrap container-fluid类  的问题*/
+
 .container-fluid {
     padding-right: 15px;
     padding-left: 15px;
@@ -2605,7 +2706,7 @@ a[class *=text-grey]:hover {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
 
-input[type="radio"]:checked~ .radiobtn-circle-check {
+input[type="radio"]:checked~.radiobtn-circle-check {
     -webkit-transform: scale(.4, .4);
     transform: scale(.4, .4);
 }
@@ -2635,35 +2736,46 @@ input[type="radio"]:checked~ .radiobtn-circle-check {
     margin-top: 20vh;
 }
 
+
 /**/
-a:focus{
+
+a:focus {
     outline: none !important;
 }
-.bg-content .nav > li > a:hover, .bg-content .nav > li > a:focus {
+
+.bg-content .nav>li>a:hover,
+.bg-content .nav>li>a:focus {
     text-decoration: none;
     background-color: #fff !important;
 }
- .bg-content .breadcrumb {
+
+.bg-content .breadcrumb {
     margin: 0;
 }
-.nav-item-pullrigh{
+
+.nav-item-pullrigh {
     position: absolute !important;
     right: 0;
 }
+
+
 /**/
-.lms-loading{
+
+.lms-loading {
     display: none !important;
     visibility: hidden;
     opacity: 0;
 }
-.lms-loaded{
+
+.lms-loaded {
     opacity: 1;
 }
-.lms-loading:after{
+
+.lms-loading:after {
     content: '';
 }
 
-.fs-lightbox-close{
+.fs-lightbox-close {
     height: 40px;
     width: 40px;
     background-color: rgb(123, 123, 123);
@@ -2673,7 +2785,8 @@ a:focus{
     border: 3px solid rgb(255, 255, 255);
     color: rgb(123, 123, 123);
 }
-.fs-lightbox-close:after{
+
+.fs-lightbox-close:after {
     content: '×';
     height: 40px;
     line-height: 40px;
@@ -2689,7 +2802,6 @@ a:focus{
     color: #212121 !important;
 }
 
-
 .btn::after,
 .card,
 .fbtn-text {
@@ -2701,7 +2813,8 @@ a:focus{
 =================================================================================
 兼容 Bootstrap  
 =================================================================================*/
-.hidden{
+
+.hidden {
     display: none;
 }
 
@@ -2725,63 +2838,110 @@ a:focus{
     vertical-align: baseline;
     border-radius: .25em;
 }
+
 a.label:hover,
 a.label:focus {
     color: #fff;
     text-decoration: none;
     cursor: pointer;
 }
+
 .label:empty {
     display: none;
 }
+
 .btn .label {
     position: relative;
     top: -1px;
 }
+
 .label-default {
     background-color: #777;
 }
+
 .label-default[href]:hover,
 .label-default[href]:focus {
     background-color: #5e5e5e;
 }
+
 .label-primary {
     background-color: #337ab7;
 }
+
 .label-primary[href]:hover,
 .label-primary[href]:focus {
     background-color: #286090;
 }
+
 .label-success {
     background-color: #5cb85c;
 }
+
 .label-success[href]:hover,
 .label-success[href]:focus {
     background-color: #449d44;
 }
+
 .label-info {
     background-color: #5bc0de;
 }
+
 .label-info[href]:hover,
 .label-info[href]:focus {
     background-color: #31b0d5;
 }
+
 .label-warning {
     background-color: #f0ad4e;
 }
+
 .label-warning[href]:hover,
 .label-warning[href]:focus {
     background-color: #ec971f;
 }
+
 .label-danger {
     background-color: #d9534f;
 }
+
 .label-danger[href]:hover,
 .label-danger[href]:focus {
     background-color: #c9302c;
 }
-/*未归档*****************************************************************
 
+
+/*   ** 3.4 修改默认样式
+=================================================================================
+修改默认样式  
+=================================================================================*/
+
+.table>tbody>tr:hover {
+    background-color: transparent;
+}
+
+.table>tbody td:hover {
+    background-color: #f5f5f5;
+}
+
+.snackbar {
+    z-index: 10000;
+}
+
+
+/*   ** 3.5 修改 EasyUI 样式
+=================================================================================
+EasyUI 
+=================================================================================*/
+
+.icon-export{
+	background:url('../images/icons/data_export.png') no-repeat center center;
+}
+
+.icon-find{
+	background:url('../images/icons/find.png') no-repeat center center;
+}
+
+/*未归档*****************************************************************
 
 .content-header {
     background-color: #3F51B5 !important;
@@ -2819,10 +2979,6 @@ a.label:focus {
     cursor: pointer;
 }
 
-
-
-
-
 .nav-drawer.nav-drawer-md.hide {
     display: none !important;
 }
@@ -2836,9 +2992,6 @@ a.label:focus {
     width: 500px;
     margin: auto;
 }
-
-
-
 
 .clearfix:before,
 .clearfix:after {
@@ -2862,6 +3015,4 @@ a.label:focus {
     margin-left: -0em !important;
     margin-top: 3em !important;
 }
-
-
 /*************************************END!*/
