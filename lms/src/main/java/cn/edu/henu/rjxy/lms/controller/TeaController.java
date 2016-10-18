@@ -779,7 +779,7 @@ public class TeaController {
      String courseid = request.getParameter("courseid");
      String sn=AuthorityManage.getCurrentUsername();
      Teacher tec = TeacherDao.getTeacherBySn(sn);
-     if(TeacherDao.isCourseMaster(Integer.parseInt(term), Integer.parseInt(courseid),tec.getTeacherId())==false){
+     if(TeacherDao.isCourseMaster(Integer.parseInt(term), tec.getTeacherId() , Integer.parseInt(courseid))==false){
        return "0";//不是课程负责人
      }
      return "1";//是课程负责人

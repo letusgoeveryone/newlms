@@ -98,7 +98,7 @@
                     data: {courseid:${courseid}, term:${term}},
                     url: "<%=path%>/teacher/lookisCourseMaster",
                     success: function (data) {
-                        if (data !== "0") {
+                        if (data === "0") {
                             alert("你不是课程负责人，不能在此编辑课程大纲!");
                         } else {
                             if (window.confirm('你确定要更新课程大纲吗？')) {
