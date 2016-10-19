@@ -163,7 +163,7 @@
             'method': 'post', //默认是’post’,也可以设置为’get’
             'swf': '<%=path%>/uploadify/uploadify.swf', //进度条显示文件
             'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png', //取消按钮的图片
-            'fileTypeExts': '*.pdf;*.wmv;*.asf;*.mp4;*.rmvb;*.avi;*.3gp;*.mkv;*.docx;*.doc;*.xls;*.xlsx;*.ppt;*.odt;*.ogt;*.ods;*.odp ', //指定文件格式
+            'fileTypeExts': '*.pdf;*.wmv;*.asf;*.mp4;*.rmvb;*.avi;*.3gp;*.mkv;*.docx;*.doc;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar;*.7z;*.txt;*.odt;*.ogt;*.ods;*.odp', //指定文件格式
             'fileSizeLimit': '200MB', //上传文件大小限制，默认单位是KB，若需要限制大小在100KB以内，可设置该属性为：'100KB'
             'fileObjName': 'myFile', //文件对象名称。用于在服务器端获取文件。
             'progressData': 'speed', // 'percentage''speed''all'//队列中显示文件上传进度的方式：all-上传速度+百分比，percentage-百分比，speed-上传速度
