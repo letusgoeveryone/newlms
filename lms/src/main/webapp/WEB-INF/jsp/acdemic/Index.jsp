@@ -69,7 +69,9 @@
                 </li>
             </ul>
             <span class="header-logo" >教务系统 | 校务员页面</span>
-
+            
+            <!--教务员 顶栏-->
+            <sec:authorize ifNotGranted="ROLE_ADMIN">
             <ul class="nav nav-list pull-right">
 
                 <li class="dropdown">
@@ -85,7 +87,21 @@
                         </li>
                     </ul>
                 </li>
-            </ul>                  
+            </ul>
+            </sec:authorize>
+            
+            <!--管理员 顶栏-->
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <ul class="nav nav-list pull-right">
+
+                <li class="dropdown">
+                    <a class="waves-attach waves-effect" href="<%=path%>/logout">
+                        <span class="icon mg-sm-right">exit_to_app</span> 登出
+                    </a>
+                </li>
+            </ul>
+            </sec:authorize>
+                        
         </header>
         
         <!--教务员 主区 -->
