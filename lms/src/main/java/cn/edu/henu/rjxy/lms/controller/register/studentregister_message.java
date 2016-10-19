@@ -61,7 +61,7 @@ public class studentregister_message {
         stu.setStudentTel(stuTel);
         stu.setStudentQq(stuQq);
         stu.setStudentPwd(stuPwd);
-        stu.setStudentSex(true);
+        stu.setStudentSex(stu_sex.equals("男"));
         stu.setStudentEnrolling(new Date());
         TempStudentMethod.addTempStudentMessage(stu_sn.toString(), stuName, stuIdcard, stu_niji, stu_college, stuTel, stuQq, stuPwd, stu_sex, new Date());
         System.out.println("12");

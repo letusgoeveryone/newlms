@@ -78,7 +78,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label class="floating-label" for="xingbie">性别：</label>
-                                                <select class="form-control" required="required" name="xingbie" >                                       
+                                                <select class="form-control" required="required" name="sex" >                                       
                                                     <option value="女" type='hide'>女</option>
                                                     <option value="男" type='hide' selected="">男</option>                                     
                                                 </select></div>
