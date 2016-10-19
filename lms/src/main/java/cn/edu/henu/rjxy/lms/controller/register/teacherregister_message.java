@@ -59,7 +59,7 @@ public class teacherregister_message {
         tempTeacher.setTeacherSn(teacher_sn);
         tempTeacher.setTeacherName(teacher_name);
         tempTeacher.setTeacherIdcard(teacher_idcard);
-        tempTeacher.setTeacherSex(true);//teacher_sex.compareTo("男")==0
+        tempTeacher.setTeacherSex(teacher_sex.equals("男"));//teacher_sex.compareTo("男")==0
         tempTeacher.setTeacherCollege(xueyuan);
         tempTeacher.setTeacherTel(teacher_tel);
         tempTeacher.setTeacherQq(teacher_qq);
