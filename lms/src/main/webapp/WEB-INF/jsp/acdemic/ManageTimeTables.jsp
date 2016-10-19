@@ -66,7 +66,7 @@
                 </div> 
 
                 <div  style="float: left;padding:5em;">
-                    <a class="easyui-linkbutton"  onclick="ckbj_test()"><span class="icon">all_inclusive</span></a>  
+                    <a class="easyui-linkbutton"  onclick="ckbj_test()">关 &nbsp;&nbsp;&nbsp;<span class="icon">all_inclusive</span>&nbsp;&nbsp;&nbsp;联</a>  
                 </div>
 
                 <div  id='xuehao_all1' style="padding:5px;height:auto">
@@ -117,7 +117,7 @@
                 </div> 
 
                 <div  style="float: left;padding:5em;">
-                    <a class="easyui-linkbutton"  onclick="ck_curse_test()"><span class="icon">all_inclusive</span></a>  
+                    <a class="easyui-linkbutton"  onclick="ck_curse_test()">关 &nbsp;&nbsp;&nbsp;<span class="icon">all_inclusive</span>&nbsp;&nbsp;&nbsp;联</a>  
                 </div>
 
                 <div  id='xuehao_course' style="padding:5px;height:auto">
@@ -169,7 +169,7 @@
                 </div>
                 <div  style="float: left;padding:5em;">
                     
-                    <a  class="easyui-linkbutton"  onclick="tijiao()">提交</a>  
+                    <a  class="easyui-linkbutton"  onclick="tijiao()">关 &nbsp;&nbsp;&nbsp;<span class="icon">all_inclusive</span>&nbsp;&nbsp;&nbsp;联</a>  
                 </div>
 
                 <div style="width:350px;height:auto;float: left;">
