@@ -450,11 +450,18 @@
                     url: '<%=path%>/teacher/kcsc?term=' + term + '&courseName=' + courseName + '&node1=' + node1 + '&node2=' + node2 + '&node3=' + node3 + '&filename=' + filename,
                     type: "post",
                     success: function (data) {
-                        alert("删除成功，你可以重新上传!");
-                        document.getElementById("kcnr").innerHTML = data[0];
-                        deleteFileInJSON(node, filename);
-                        save(0);
-                        ckkcnr();
+                         var fileExtension = filename.substring(filename.lastIndexOf('.') + 1);
+                        if(fileExtension==="swf"){
+                            $("#swfplayer").hide();
+                            $("#swfplayer-close").hide();
+                        }
+                        if(data[0]==="1"){
+                            alert("删除成功，你可以重新上传!");
+                            document.getElementById("kcnr").innerHTML = data[0];
+                            deleteFileInJSON(node, filename);
+                            save(0);
+                            ckkcnr();
+                        }
                     }
                 });
             }
