@@ -449,8 +449,8 @@
                 $.ajax({
                     url: '<%=path%>/teacher/kcsc?term=' + term + '&courseName=' + courseName + '&node1=' + node1 + '&node2=' + node2 + '&node3=' + node3 + '&filename=' + filename,
                     type: "post",
-                    success: function (data) {
-                         var fileExtension = filename.substring(filename.lastIndexOf('.') + 1);
+                    success: function (data){
+                        var fileExtension = filename.substring(filename.lastIndexOf('.') + 1);
                         if(fileExtension==="swf"){
                             $("#swfplayer").hide();
                             $("#swfplayer-close").hide();

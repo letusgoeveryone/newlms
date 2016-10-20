@@ -65,7 +65,7 @@
                     'method': 'post        ',
                     'swf': '<%=path%>/uploadify/uploadify.swf        ',
                     'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png',
-                    'fileTypeExts': '*.docx;*.doc;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar;*.7z;*.txt;*.odt;*.odg;*.ods;*.odp,*.pdf',
+                    'fileTypeExts': '**.docx;*.doc;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar;*.7z;*.txt;*.odt;*.odg;*.ods;*.odp,*.pdf',
                     'fileSizeLimit': '200MB',
                     'fileObjName': 'myFile',
                     'progressData': 'speed',
@@ -213,7 +213,6 @@
             function dgyl(url) {
                 $("#dgxsid").show();
                 url = "<%=path%>/getswf?uri=" + url;
-                alert(url);
                 document.getElementById("kcdgurl").src = url;
             }
         </script>
