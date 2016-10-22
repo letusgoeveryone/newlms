@@ -80,7 +80,6 @@
                         $("#stopUpload").removeAttr("hidden");
                     },
                     'onUploadSuccess': function (file, data, response) {
-                        alert(file.name + " upload success !");
                         lookcourseDGword();
                         $("#stopUpload").attr("hidden", true);
                     }

@@ -225,7 +225,6 @@
                 console.log(node);
                 save(0);
                 
-                alert(file.name + " upload success !");
                 $("#stopUpload").attr("hidden", true);
             }
 

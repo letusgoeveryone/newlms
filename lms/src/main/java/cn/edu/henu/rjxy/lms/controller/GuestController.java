@@ -55,8 +55,8 @@ public class GuestController {
         String []a = new String[2];
         a[0]=TermCourseInfoDao.getCourseInfo(term, cid, 0);
         a[1]=TermCourseInfoDao.getCourseInfo(term, cid, 1);
-        if(a[0].equals(""))a[0]="暂无";
-        if(a[1].equals(""))a[1]="暂无";
+        if(a[0].isEmpty())a[0]="暂无";
+        if(a[1].isEmpty())a[1]="暂无";
         return a;
     }
     //当前学期
