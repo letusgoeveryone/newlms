@@ -17,19 +17,7 @@
 <button onclick="save(1)" class="btn btn-primary btn-xs">保存设置</button>
 <hr>
 <div style="width: 20%;float: left;">
-    <ul id="tt1"  class="easyui-tree" data-options="
-        url:'<%=path%>/teacher/kcgs',
-        method: 'get',
-        animate: true,                          
-        onContextMenu: function(e,node){
-        e.preventDefault();
-        $(this).tree('select',node.target);
-        $('#menu').menu('show',{
-        left: e.pageX,
-        top: e.pageY
-        });
-        }
-        "></ul>
+    <ul id="tt1"  class="easyui-tree"></ul>
 </div>  
 
 
@@ -69,7 +57,9 @@
                 if (data === "1") {
                     $('#tt1').tree({url: '<%=path%>/teacher/scTree?term=' + term + '&courseName=' + courseName});
                 } else {
-                    $('#tt1').tree({url: '<%=path%>/teacher/kcgs'});
+                     $('#tt1').tree({
+                         data:[{"id":1,"state":"open","text":"第一部分","attributes":"1","children":[{"id":1,"state":"open","text":"第一章","attributes":"2","children":[{"id":1000,"text":"第一节","state":"open","domId":"_easyui_tree_19","target":{}}],"domId":"_easyui_tree_18","target":{}}],"domId":"_easyui_tree_17","target":{}}]    
+                    });
                 }
             }
         });
@@ -483,6 +473,7 @@
         }
     }
     $(function () {
+        lookmu();
         var node1, node2, node3;
         $('#tt1').tree({
             onClick: function (node) {
