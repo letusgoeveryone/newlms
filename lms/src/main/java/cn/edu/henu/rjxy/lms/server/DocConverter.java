@@ -22,7 +22,7 @@ import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConv
  * 注意：pdf2swf方法中的 D:/Program Files (x86)/SWFTools/pdf2swf.exe 需要修改。
  */  
 public class DocConverter {  
-    private static final int environment =2;// 环境 1：windows 2:linux  
+    private static final int environment =1;// 环境 1：windows 2:linux  
     private String fileString;// (只涉及pdf2swf路径问题)  
     private String outputPath = "";// 输入路径 ，如果不设置就输出在默认的位置  
     private String fileName;  
@@ -105,7 +105,7 @@ public class DocConverter {
             if (pdfFile.exists()) {  
                 if (environment == 1) {// windows环境处理  
                     try {  
-                        Process p = r.exec("D:/Program Files (x86)/SWFTools/pdf2swf.exe "+ pdfFile.getPath() + " -o "+ swfFile.getPath() + " -T 9");  
+                        Process p = r.exec("C:\\自定义目录\\娱乐软件\\pdf2swf.exe "+ pdfFile.getPath() + " -o "+ swfFile.getPath() + " -T 9");  
                         System.out.print(loadStream(p.getInputStream()));  
                         System.err.print(loadStream(p.getErrorStream()));  
                         System.out.print(loadStream(p.getInputStream()));  

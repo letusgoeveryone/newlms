@@ -66,7 +66,7 @@
                 </div> 
 
                 <div  style="float: left;padding:5em;">
-                    <a class="easyui-linkbutton"  onclick="ckbj_test()">关 &nbsp;&nbsp;&nbsp;<span class="icon">all_inclusive</span>&nbsp;&nbsp;&nbsp;联</a>  
+                    <a class="easyui-linkbutton"  onclick="ckbj_test()">--></a>  
                 </div>
 
                 <div  id='xuehao_all1' style="padding:5px;height:auto">
@@ -117,7 +117,7 @@
                 </div> 
 
                 <div  style="float: left;padding:5em;">
-                    <a class="easyui-linkbutton"  onclick="ck_curse_test()">关 &nbsp;&nbsp;&nbsp;<span class="icon">all_inclusive</span>&nbsp;&nbsp;&nbsp;联</a>  
+                    <a class="easyui-linkbutton"  onclick="ck_curse_test()">--></a>  
                 </div>
 
                 <div  id='xuehao_course' style="padding:5px;height:auto">
@@ -169,7 +169,7 @@
                 </div>
                 <div  style="float: left;padding:5em;">
                     
-                    <a  class="easyui-linkbutton"  onclick="tijiao()">关 &nbsp;&nbsp;&nbsp;<span class="icon">all_inclusive</span>&nbsp;&nbsp;&nbsp;联</a>  
+                    <a  class="easyui-linkbutton"  onclick="tijiao()">--></a>  
                 </div>
 
                 <div style="width:350px;height:auto;float: left;">
@@ -287,6 +287,11 @@
                     url: 'acdemic/ckbj_xx',
                     loadMsg: '数据加载中请稍后……'
                 });
+                  term = document.getElementById("sz_xq1").value;
+                $('#dg_xq_bj').datagrid({
+                    url: 'acdemic/next_bj?term=' + term,
+                    loadMsg: '加载中请稍后……'
+                });
             }
             //下学期班级的添加
             function ckbj_test() {
@@ -322,6 +327,10 @@
                 $('#dg_add_course').datagrid({
                     url: 'acdemic/course_fanhui',
                     loadMsg: '课程数据加载中请稍后……'
+                });
+                 $('#dg_xq_cs').datagrid({
+                                url: 'acdemic/next_cs_tr?term=' + document.getElementById("sz_xq_course").value,
+                                loadMsg: '加载中请稍后……'
                 });
             }
 

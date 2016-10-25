@@ -17,19 +17,7 @@
 <button onclick="save(1)" class="btn btn-primary btn-xs">保存设置</button>
 <hr>
 <div style="width: 20%;float: left;">
-    <ul id="tt1"  class="easyui-tree" data-options="
-        url:'<%=path%>/teacher/kcgs',
-        method: 'get',
-        animate: true,                          
-        onContextMenu: function(e,node){
-        e.preventDefault();
-        $(this).tree('select',node.target);
-        $('#menu').menu('show',{
-        left: e.pageX,
-        top: e.pageY
-        });
-        }
-        "></ul>
+    <ul id="tt1"  class="easyui-tree"></ul>
 </div>  
 
 
@@ -69,7 +57,9 @@
                 if (data === "1") {
                     $('#tt1').tree({url: '<%=path%>/teacher/scTree?term=' + term + '&courseName=' + courseName});
                 } else {
-                    $('#tt1').tree({url: '<%=path%>/teacher/kcgs'});
+                     $('#tt1').tree({
+                         data:[{"id":1,"state":"open","text":"第一部分","attributes":"1","children":[{"id":1,"state":"open","text":"第一章","attributes":"2","children":[{"id":1000,"text":"第一节","state":"open","domId":"_easyui_tree_19","target":{}}],"domId":"_easyui_tree_18","target":{}}],"domId":"_easyui_tree_17","target":{}}]    
+                    });
                 }
             }
         });
@@ -163,7 +153,7 @@
             'method': 'post', //默认是’post’,也可以设置为’get’
             'swf': '<%=path%>/uploadify/uploadify.swf', //进度条显示文件
             'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png', //取消按钮的图片
-            'fileTypeExts': '*.pdf;*.wmv;*.asf;*.mp4;*.rmvb;*.avi;*.3gp;*.mkv;*.docx;*.doc;*.xls;*.xlsx;*.ppt;*.odt;*.ogt;*.ods;*.odp ', //指定文件格式
+            'fileTypeExts': '*.pdf;*.wmv;*.asf;*.mp4;*.rmvb;*.avi;*.3gp;*.mkv;*.docx;*.doc;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar;*.7z;*.txt;*.odt;*.ogt;*.ods;*.odp', //指定文件格式
             'fileSizeLimit': '200MB', //上传文件大小限制，默认单位是KB，若需要限制大小在100KB以内，可设置该属性为：'100KB'
             'fileObjName': 'myFile', //文件对象名称。用于在服务器端获取文件。
             'progressData': 'speed', // 'percentage''speed''all'//队列中显示文件上传进度的方式：all-上传速度+百分比，percentage-百分比，speed-上传速度
@@ -225,7 +215,6 @@
                 console.log(node);
                 save(0);
                 
-                alert(file.name + " upload success !");
                 $("#stopUpload").attr("hidden", true);
             }
 
@@ -449,12 +438,19 @@
                 $.ajax({
                     url: '<%=path%>/teacher/kcsc?term=' + term + '&courseName=' + courseName + '&node1=' + node1 + '&node2=' + node2 + '&node3=' + node3 + '&filename=' + filename,
                     type: "post",
-                    success: function (data) {
-                        alert("删除成功，你可以重新上传!");
-                        document.getElementById("kcnr").innerHTML = data[0];
-                        deleteFileInJSON(node, filename);
-                        save(0);
-                        ckkcnr();
+                    success: function (data){
+                        var fileExtension = filename.substring(filename.lastIndexOf('.') + 1);
+                        if(fileExtension==="swf"){
+                            $("#swfplayer").hide();
+                            $("#swfplayer-close").hide();
+                        }
+                        if(data[0]==="1"){
+                            alert("删除成功，你可以重新上传!");
+                            document.getElementById("kcnr").innerHTML = data[0];
+                            deleteFileInJSON(node, filename);
+                            save(0);
+                            ckkcnr();
+                        }
                     }
                 });
             }
@@ -477,6 +473,7 @@
         }
     }
     $(function () {
+        lookmu();
         var node1, node2, node3;
         $('#tt1').tree({
             onClick: function (node) {

@@ -788,7 +788,7 @@ public class TeaController {
   //课件删除
   @RequestMapping("teacher/kcsc")
   public @ResponseBody String[] kcsc(HttpServletRequest request,HttpServletResponse response){
-     System.out.println("课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除课件删除111");
+     System.out.println("课件删除");
      String []a = new String[1];
      String sn=AuthorityManage.getCurrentUsername();
      Teacher tec = TeacherDao.getTeacherBySn(sn);
@@ -816,6 +816,7 @@ public class TeaController {
      File f =new File(a1);
      if(f.exists()){//删除文件
             f.delete();
+            a[0]="1";
             System.out.println("no");
      }else{
        a[0] = "0";

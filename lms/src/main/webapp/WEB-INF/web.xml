@@ -4,18 +4,16 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <!--metadata-complete="true">-->
-   
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/application-context.xml,/WEB-INF/spring-security.xml</param-value>
+        <param-value>/WEB-INF/spring-security.xml</param-value>
     </context-param>
     
     <!--spring-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    
     
     <!--springmvc-->
     <servlet>
@@ -27,7 +25,7 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    
+     
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -37,13 +35,13 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
     
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>
     </welcome-file-list>

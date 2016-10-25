@@ -111,10 +111,6 @@ public class CurrentInfo {
             switch (name.toLowerCase()){
             case "selfverification":
                 return "true";
-            case "adminuser":
-                return "1445005000";
-            case "adminpassword":
-                return "21232F297A57A5A743894A0E4A801FC3";//不区分大小写
             default:
                 return "";
             }
@@ -122,6 +118,8 @@ public class CurrentInfo {
             return OtherConfigure;
         }
     } 
+    
+    
     public static String getFileFolder() {
 //        Tomcat配置虚拟路径，使上传文件与服务器分离http://blog.csdn.net/xiaoyu19910321/article/details/51363679  
         FileFolder=KeyValueDao.get("FileFolder");

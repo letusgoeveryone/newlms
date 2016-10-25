@@ -324,7 +324,7 @@
             }
             
             $.ajax({
-                url: PATH + '/acdemic/updateimgid?imgid=' + aid,
+                url:'<%=path%>/acdemic/updateimgid?imgid=' + aid,
                 type: 'post',
                 async: false,
                 dataType: 'json',
@@ -388,12 +388,12 @@
             
             ele.className = 'lms-avatars';      
             
-            img.src = PATH + '/images/avatar/'+ aid + '.svg';
+            img.src = '<%=path%>/images/avatar/'+ aid + '.svg';
             img.height = 64;
             img.width = 64;
             
             img.addEventListener('click', function(){
-                previewAvatar(PATH + '/images/avatar/' + aid + '.svg');
+                previewAvatar( '<%=path%>/images/avatar/' + aid + '.svg');
                 tmpAid = aid;
             });
             
@@ -424,7 +424,7 @@
         function setDefaultAvatar(){
             
             updateAvatar(0);
-            UavatarSrc = '<%=path%>' + '/images/avatar/' + getAvatarId(0) + '.svg';
+            UavatarSrc = '<%=path%>/images/avatar/' + getAvatarId(0) + '.svg';
             $('#lms-uavatar>img').attr('src', UavatarSrc);
             $('a[href="#tab-personalInfo"]').click();
             
@@ -453,7 +453,7 @@
             CommonAPI.setDS.Institute('/reg/hq_xy');
             CommonAPI.setHS.Institute('institute');
             $('option[value="'+ AdtAPI.uInfo.college +'"]').attr('selected','');
-            UavatarSrc = '<%=path%>' + '/images/avatar/' + getAvatarId(AdtAPI.uInfo.avatar) + '.svg';
+            UavatarSrc = '<%=path%>/images/avatar/' + getAvatarId(AdtAPI.uInfo.avatar) + '.svg';
             setAvatar(UavatarSrc);
         </script>
     </body>

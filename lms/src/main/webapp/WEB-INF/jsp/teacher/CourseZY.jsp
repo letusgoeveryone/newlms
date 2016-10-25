@@ -103,7 +103,7 @@
                     'method': 'post ',
                     'swf': '<%=path%>/uploadify/uploadify.swf ',
                     'cancelImg': '<%=path%>/uploadify/uploadify-cancel.png',
-                    'fileTypeExts': '*.docx;*.doc;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar;*.7z;*.txt;*.odt;*.odg;*.ods;*.odp ', //指定文件格式
+                    'fileTypeExts': '*.pdf;*.wmv;*.asf;*.mp4;*.rmvb;*.avi;*.3gp;*.mkv;*.docx;*.doc;*.xls;*.xlsx;*.ppt;*.pptx;*.zip;*.rar;*.7z;*.txt;*.odt;*.ogt;*.ods;*.odp', //指定文件格式
                     'fileSizeLimit': '10MB',
                     'fileObjName': 'myFile',
                     'progressData': 'speed',
