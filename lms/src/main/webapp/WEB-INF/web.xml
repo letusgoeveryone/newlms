@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-        <!--metadata-complete="true">-->
+    <!--metadata-complete="true">-->
    
 
     <context-param>
@@ -11,7 +11,7 @@
         <param-value>/WEB-INF/application-context.xml,/WEB-INF/spring-security.xml</param-value>
     </context-param>
     
-   <!--spring-->
+    <!--spring-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -28,15 +28,15 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     
-    	<filter>
-	  <filter-name>springSecurityFilterChain</filter-name>
-	  <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
 	
-	<filter-mapping>
-	  <filter-name>springSecurityFilterChain</filter-name>
-	  <url-pattern>/*</url-pattern>
-	</filter-mapping>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     
     <session-config>
@@ -48,8 +48,19 @@
         <welcome-file>redirect.jsp</welcome-file>
     </welcome-file-list>
     
-    	<error-page>
-		<error-code>403</error-code>
-		<location>/WEB-INF/jsp/403.jsp</location>
-	</error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/jsp/403.jsp</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jsp/404.jsp</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsp/500.jsp</location>
+    </error-page>
+    
 </web-app>

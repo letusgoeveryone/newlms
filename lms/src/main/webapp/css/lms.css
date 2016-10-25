@@ -2078,6 +2078,19 @@ div[id^="collapse-history"]>.history-wrap>.table-wrap {
 }
 
 
+/*  &2.6 异常页面 */
+.lms-status-code{
+    font-size: 50px;
+    font-weight: bold;
+    color: #818181;
+    padding: 25px 0;
+}
+.lms-status-page{
+    width: 500px;
+    margin-top: 15vh !important;
+    padding: 3em;
+}
+
 /*   ** 3.0 实用类 Stage
 =================================================================================
 一些辅助用的小工具  
@@ -2111,6 +2124,11 @@ div[id^="collapse-history"]>.history-wrap>.table-wrap {
 
 .bg-top {
     background-position: top center;
+}
+
+.div-center {
+    display: block;
+    margin: auto;
 }
 
 .stage-x {
@@ -2397,6 +2415,10 @@ div [ class^="btn-"] {
 
 .mg {
     margin: 1em;
+}
+
+.mg-rt-1x {
+    margin-right: 1em !important;
 }
 
 .mg-rt-3x {
