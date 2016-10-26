@@ -93,7 +93,8 @@ public class IndexController {
      //关于我们
     @RequestMapping("us")
     public String aboutus(){
-         return "us";
+        return "redirect:/login";
+        ///return "us";
     }
      
     public String getFileFolder(HttpServletRequest request) {
