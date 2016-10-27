@@ -68,6 +68,10 @@
             #lms-tcourse .tab-content>.active{
                 padding-bottom: 3em;
             }
+            
+            #lms-tcourse td{
+                border: 1px solid rgba(204,204,204,.8);
+            }
         </style>
         
 

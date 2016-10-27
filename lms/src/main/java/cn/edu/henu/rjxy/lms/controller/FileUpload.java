@@ -182,7 +182,7 @@ public class FileUpload extends HttpServlet {
 			String newFileName;
                         newFileName = originalFileName;   
                         System.out.println("上传文件名后缀:"+newFileName);
-                        if(newFileName.endsWith(".docx")||newFileName.endsWith(".doc")||newFileName.endsWith(".xls")||newFileName.endsWith(".xlsx")||newFileName.endsWith(".ppt")||newFileName.endsWith(".pdf")){
+                        if(newFileName.endsWith(".docx")||newFileName.endsWith(".doc")||newFileName.endsWith(".xls")||newFileName.endsWith(".xlsx")||newFileName.endsWith(".ppt")||newFileName.endsWith(".pdf")||newFileName.endsWith(".pptx")){
                             System.out.println("上传的是word");
                             temp="1";
                         }else{

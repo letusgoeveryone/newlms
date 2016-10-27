@@ -16,33 +16,22 @@ public class CurrentInfo {
     private static String AllGrade="";
     private static String CurrentTerm="";
     private static String AllCollege="";
-//    private static long lasttime=-1;//缓存机制计时
     private static String FileFolder="";
     
     public static void CurrentInfo(){
-//        long nowtime= System.currentTimeMillis(); //缓存机制计时
-//        if (lasttime==-1 ||((nowtime-lasttime) >300000)) {
-//            AllTerm=KeyValueDao.get("AllTerm");
-//            AllGrade=KeyValueDao.get("AllGrade");
-//            CurrentTerm=KeyValueDao.get("CurrentTerm");
-//            AllCollege=KeyValueDao.get("AllCollege");
-//            lasttime= System.currentTimeMillis();
-//            FileFolder=KeyValueDao.get("FileFolder");
-//            System.out.println("\n"+AllTerm+"\n==========================\n"+"\n"+AllGrade+"\n==========================\n"+"\n"+CurrentTerm+"\n==========================\n"+"\n"+AllCollege+"\n==========================\n"+"\n"+lasttime+"\n==========================\n");
-//        } 
     }
     
     public static void main(String[] args) {
-        List<String> list = getAllTerm();
-        for (String list1 : list) {
-            System.out.println(list1);
-        }
+//        List<String> list = getAllTerm();
+//        for (String list1 : list) {
+//            System.out.println(list1);
+//        }
     }
     public static List<String> getAllTerm() {
         List<String> list =null;
         AllTerm=KeyValueDao.get("AllTerm");
         if (AllTerm.equals("")) {
-             String str[] = {"201601","201602","201603","201701","201702","201703","201801","201802","201803",};
+             String str[] = {"201601","201602","201603","201701","201702","201703","201801","201802","201803"};
             list = java.util.Arrays.asList(str);
         } else {
            list = java.util.Arrays.asList(AllTerm.split(","));
@@ -53,7 +42,7 @@ public class CurrentInfo {
         AllGrade=KeyValueDao.get("AllGrade");
         List<String> list =null;
         if (AllGrade.equals("")) {
-             String str[] = {"2011","2013","2014","2015","2016","2017",};
+             String str[] = {"2011","2012","2013","2014","2015","2016","2017"};
             list = java.util.Arrays.asList(str);
         } else {
            list = java.util.Arrays.asList(AllGrade.split(","));
@@ -63,7 +52,7 @@ public class CurrentInfo {
     public static int getCurrentTerm() {
         CurrentTerm=KeyValueDao.get("CurrentTerm");
         if (CurrentTerm.equals("")) {
-            return 201602;
+            return 201601;
         } else {
             return Integer.parseInt(CurrentTerm);
         }
