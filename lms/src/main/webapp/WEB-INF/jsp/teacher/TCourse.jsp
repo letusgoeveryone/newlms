@@ -58,9 +58,21 @@
             .lms-course-master.false{
                 display: none!important;
             }
+            #lms-tcourse {
+                min-width: unset;
+            }
             #lms-tcourse .tree-node-selected {
                 color: #000;
             }
+            
+            td{
+                border: 1px solid rgba(204,204,204,.8);
+            }
+            
+            .tab-content>.active{
+                padding-bottom: 3em;
+            }
+            
         </style>
         
 
