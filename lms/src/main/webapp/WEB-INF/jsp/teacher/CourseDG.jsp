@@ -29,7 +29,7 @@
             <a class="btn btn-primary" href="javascript:$('#dgmultiple_file_upload').uploadify('stop','*')" hidden=true id="stopUpload">停止上传</a>
         </div><br>
         <a id="anchor-CourseDaGangEditor"></a>
-        <script type="text/plain" id="CourseDaGangEditor" class="lms-course-master" style="height:100px;">
+        <script type="text/plain" id="CourseDaGangEditor" class="lms-course-master" style="height:100px;width:100%">
             <p>在此处编辑课程大纲</p>
         </script>
         

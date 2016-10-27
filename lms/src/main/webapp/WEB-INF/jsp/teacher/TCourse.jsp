@@ -58,8 +58,15 @@
             .lms-course-master.false{
                 display: none!important;
             }
+            #lms-tcourse{
+                min-width: unset;
+                padding-bottom: 3em !important;
+            }
             #lms-tcourse .tree-node-selected {
                 color: #000;
+            }
+            #lms-tcourse .tab-content>.active{
+                padding-bottom: 3em;
             }
         </style>
         
@@ -249,7 +256,53 @@
             </div>                           
         </div>
     </body>
+    
+    <!--修复 火狐 iframe 不支持锚点问题-->
+    <script>
+        $(function(){
 
+          $("a").each(function(){
+
+            var link = $(this);
+
+            var href = link.attr("href");
+            var type = link.attr("data-toggle");
+
+            if(href && href[0] === "#" && type === undefined) {
+
+              var name = href.substring(1);
+
+              $(this).click(function() {
+                var nameElement = $("[name='"+name+"']");
+                var idElement = $("#"+name);
+
+                var element = null;
+
+                if(nameElement.length > 0) {
+                    element = nameElement;
+
+                }else if(idElement.length> 0) {
+                  element = idElement;
+                }
+
+                if(element) {
+
+                  var offset = element.offset();
+
+                  window.parent.scrollTo(offset.left, offset.top);
+
+                }
+                return false;
+
+              });
+
+            }
+
+          });
+
+        });
+    </script>
+    
     <script>
         var ue = UE.getEditor('homework');
         var ue = UE.getEditor('xghomework');

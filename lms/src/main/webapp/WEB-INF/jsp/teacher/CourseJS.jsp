@@ -47,7 +47,7 @@
     </div>
         
 </div>
-<a id="anchor-CourseIntro"></a>
+<a id="anchor-CourseIntro" ></a>
 <script type="text/plain" id="myEditor" class="lms-course-master" style="width: 100%;min-height:100px;"></script>
 <br>
 
